@@ -1,0 +1,6 @@
+syntax: glob
+*.suo
+
+syntax: regexp
+/bin/
+/obj/
