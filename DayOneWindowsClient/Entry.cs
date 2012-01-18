@@ -42,56 +42,57 @@ namespace DayOneWindowsClient
 
         public static Entry LoadFromFile(string path)
         {
-            StreamReader sr = new StreamReader(path, Encoding.UTF8);
-            XmlDocument doc = new XmlDocument();
-            doc.Load(sr);
-            sr.Close();
-
-            Entry newEntry = new Entry();
-
-            XmlNode dictNode = doc.SelectSingleNode("//dict");
-            Debug.Assert(dictNode.ChildNodes.Count % 2 == 0);
-            for (int i = 0; i < dictNode.ChildNodes.Count; i += 2)
+            using (StreamReader sr = new StreamReader(path, Encoding.UTF8))
             {
-                XmlNode keyNode = dictNode.ChildNodes[i];
-                Debug.Assert(keyNode.Name == "key");
+                Entry newEntry = new Entry();
 
-                XmlNode valueNode = dictNode.ChildNodes[i + 1];
+                XmlDocument doc = new XmlDocument();
+                doc.Load(sr);
 
-                switch (keyNode.InnerText)
+                XmlNode dictNode = doc.SelectSingleNode("//dict");
+                Debug.Assert(dictNode.ChildNodes.Count % 2 == 0);
+                for (int i = 0; i < dictNode.ChildNodes.Count; i += 2)
                 {
-                    case "Creation Date":
-                        {
-                            newEntry.UTCDateTime = DateTime.Parse(valueNode.InnerText).ToUniversalTime();
-                        }
-                        break;
+                    XmlNode keyNode = dictNode.ChildNodes[i];
+                    Debug.Assert(keyNode.Name == "key");
 
-                    case "Entry Text":
-                        {
-                            newEntry.EntryText = valueNode.InnerText;
-                        }
-                        break;
+                    XmlNode valueNode = dictNode.ChildNodes[i + 1];
 
-                    case "Starred":
-                        {
-                            newEntry.Starred = valueNode.Name == "true";
-                        }
-                        break;
+                    switch (keyNode.InnerText)
+                    {
+                        case "Creation Date":
+                            {
+                                newEntry.UTCDateTime = DateTime.Parse(valueNode.InnerText).ToUniversalTime();
+                            }
+                            break;
 
-                    case "UUID":
-                        {
-                            newEntry.UUID = new Guid(valueNode.InnerText);
-                        }
-                        break;
+                        case "Entry Text":
+                            {
+                                newEntry.EntryText = valueNode.InnerText;
+                            }
+                            break;
 
-                    default:
-                        throw new Exception("Unknown key name in the plist dictionary");
+                        case "Starred":
+                            {
+                                newEntry.Starred = valueNode.Name == "true";
+                            }
+                            break;
+
+                        case "UUID":
+                            {
+                                newEntry.UUID = new Guid(valueNode.InnerText);
+                            }
+                            break;
+
+                        default:
+                            throw new Exception("Unknown key name in the plist dictionary");
+                    }
                 }
+
+                newEntry.IsDirty = false;
+
+                return newEntry;
             }
-
-            newEntry.IsDirty = false;
-
-            return newEntry;
         }
 
         public DateTime UTCDateTime { get; set; }
