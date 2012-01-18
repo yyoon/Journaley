@@ -4,3 +4,4 @@ syntax: glob
 syntax: regexp
 /bin/
 /obj/
+TestResults/
