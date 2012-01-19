@@ -51,8 +51,8 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.buttonStar = new System.Windows.Forms.Button();
             this.buttonSettings = new System.Windows.Forms.Button();
-            this.entryListBoxAll = new DayOneWindowsClient.EntryListBox();
             this.textEntryText = new System.Windows.Forms.TextBox();
+            this.entryListBoxAll = new DayOneWindowsClient.EntryListBox();
             this.tabLeftPanel.SuspendLayout();
             this.tabPageAllEntries.SuspendLayout();
             this.tableLayoutStats.SuspendLayout();
@@ -272,6 +272,7 @@
             this.buttonEditSave.TabIndex = 5;
             this.toolTip.SetToolTip(this.buttonEditSave, "Edit");
             this.buttonEditSave.UseVisualStyleBackColor = true;
+            this.buttonEditSave.Click += new System.EventHandler(this.buttonEditSave_Click);
             // 
             // buttonStar
             // 
@@ -295,6 +296,17 @@
             this.buttonSettings.UseVisualStyleBackColor = true;
             this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
+            // textEntryText
+            // 
+            this.textEntryText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textEntryText.Location = new System.Drawing.Point(277, 58);
+            this.textEntryText.Multiline = true;
+            this.textEntryText.Name = "textEntryText";
+            this.textEntryText.Size = new System.Drawing.Size(629, 503);
+            this.textEntryText.TabIndex = 9;
+            // 
             // entryListBoxAll
             // 
             this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -306,17 +318,6 @@
             this.entryListBoxAll.Size = new System.Drawing.Size(245, 435);
             this.entryListBoxAll.TabIndex = 0;
             this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
-            // 
-            // textEntryText
-            // 
-            this.textEntryText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.textEntryText.Location = new System.Drawing.Point(277, 58);
-            this.textEntryText.Multiline = true;
-            this.textEntryText.Name = "textEntryText";
-            this.textEntryText.Size = new System.Drawing.Size(629, 503);
-            this.textEntryText.TabIndex = 9;
             // 
             // MainForm
             // 

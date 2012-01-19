@@ -94,6 +94,7 @@ namespace DayOneWindowsClient
             this.dateTimePicker.Enabled = this.IsEditing;
             this.buttonEditSave.Image = this.IsEditing ? Properties.Resources.Save_32x32 : Properties.Resources.Edit_32x32;
             this.toolTip.SetToolTip(this.buttonEditSave, this.IsEditing ? "Save" : "Edit");
+            this.textEntryText.ReadOnly = !this.IsEditing;
         }
 
         private void UpdateStar()
@@ -191,9 +192,20 @@ namespace DayOneWindowsClient
             this.SelectedEntry = entryListBox.Items[entryListBox.SelectedIndex] as Entry;
         }
 
-        private void entryListBoxAll_SelectedIndexChanged(object sender, EventArgs e)
+        private void buttonEditSave_Click(object sender, EventArgs e)
         {
+            if (this.IsEditing)
+            {
+                SaveSelectedEntry();
+                this.IsEditing = false;
 
+                UpdateUI();
+            }
+            else
+            {
+                this.IsEditing = true;
+                this.textEntryText.Focus();
+            }
         }
     }
 }
