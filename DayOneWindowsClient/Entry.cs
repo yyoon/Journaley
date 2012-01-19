@@ -219,7 +219,7 @@ namespace DayOneWindowsClient
                 builder.Replace("    <", "\t<");
                 builder.Replace("  <", "<");
 
-                using (StreamWriter streamWriter = new StreamWriter(Path.Combine(folderPath, this.FileName), false, Encoding.UTF8))
+                using (StreamWriter streamWriter = new StreamWriter(Path.Combine(folderPath, this.FileName), false, new UTF8Encoding()))
                 {
                     streamWriter.Write(builder.ToString());
 
