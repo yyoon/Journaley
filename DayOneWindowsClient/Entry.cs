@@ -15,8 +15,8 @@ namespace DayOneWindowsClient
         {
         }
 
-        public Entry(DateTime utcDateTime)
-            : this(utcDateTime, Guid.NewGuid())
+        public Entry(DateTime dateTime)
+            : this(dateTime, Guid.NewGuid())
         {
         }
 
@@ -25,14 +25,14 @@ namespace DayOneWindowsClient
         {
         }
 
-        public Entry(DateTime utcDateTime, Guid uuid)
-            : this(utcDateTime, "", false, uuid, true)
+        public Entry(DateTime dateTime, Guid uuid)
+            : this(dateTime, "", false, uuid, true)
         {
         }
 
-        public Entry(DateTime utcDateTime, string entryText, bool starred, Guid uuid, bool isDirty)
+        public Entry(DateTime dateTime, string entryText, bool starred, Guid uuid, bool isDirty)
         {
-            this.UTCDateTime = utcDateTime;
+            this.UTCDateTime = dateTime;
             this.EntryText = entryText;
             this.Starred = starred;
             this.UUID = uuid;
@@ -98,10 +98,7 @@ namespace DayOneWindowsClient
         private DateTime _utcDateTime;
         public DateTime UTCDateTime
         {
-            get
-            {
-                return _utcDateTime;
-            }
+            get { return _utcDateTime; }
             set
             {
                 _utcDateTime = value;
@@ -118,8 +115,30 @@ namespace DayOneWindowsClient
                 this.IsDirty = true;
             }
         }
-        public string EntryText { get; set; }
-        public bool Starred { get; set; }
+
+        private string _entryText;
+        public string EntryText
+        {
+            get { return _entryText; }
+            set
+            {
+                _entryText = value;
+                this.IsDirty = true;
+            }
+        }
+
+        private bool _starred;
+        public bool Starred
+        {
+            get { return _starred; }
+            set
+            {
+                _starred = value;
+                this.IsDirty = true;
+            }
+        }
+
+        // This should never be changed
         public Guid UUID { get; private set; }
 
         public DateTime LocalTime
@@ -236,6 +255,16 @@ namespace DayOneWindowsClient
                 return false;
 
             return this.Equals(right as Entry);
+        }
+
+        public override int GetHashCode()
+        {
+            return this.UUID.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return string.Format("Date: {0}, Entry Text: \"{1}\"", this.CreationDate, this.EntryText);
         }
 
         #region IEquatable<Entry> Members
