@@ -62,6 +62,9 @@
       <DependentUpon>EnablePasswordForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Entry.cs" />
+    <Compile Include="EntryListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,9 +129,6 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="images\126_Edit_32x32_72.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="images\Edit_32x32.png" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +154,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\Plus_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\StarGray_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\StarYellow_16x16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

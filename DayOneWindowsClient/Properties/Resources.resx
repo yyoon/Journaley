@@ -139,8 +139,14 @@
   <data name="Settings_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\Settings_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="StarGray_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\StarGray_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="StarGray_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\StarGray_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StarYellow_16x16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\images\StarYellow_16x16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="StarYellow_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\StarYellow_32x32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

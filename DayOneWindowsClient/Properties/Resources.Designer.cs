@@ -109,9 +109,23 @@ namespace DayOneWindowsClient.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap StarGray_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("StarGray_16x16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap StarGray_32x32 {
             get {
                 object obj = ResourceManager.GetObject("StarGray_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap StarYellow_16x16 {
+            get {
+                object obj = ResourceManager.GetObject("StarYellow_16x16", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

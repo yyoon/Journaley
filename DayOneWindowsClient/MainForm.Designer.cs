@@ -52,7 +52,9 @@
             this.buttonSettings = new System.Windows.Forms.Button();
             this.tabPageEntriesByYear = new System.Windows.Forms.TabPage();
             this.tabPageCalendar = new System.Windows.Forms.TabPage();
+            this.entryListBoxAll = new DayOneWindowsClient.EntryListBox();
             this.tabLeftPanel.SuspendLayout();
+            this.tabPageAllEntries.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +74,7 @@
             // 
             // tabPageAllEntries
             // 
+            this.tabPageAllEntries.Controls.Add(this.entryListBoxAll);
             this.tabPageAllEntries.Location = new System.Drawing.Point(4, 22);
             this.tabPageAllEntries.Name = "tabPageAllEntries";
             this.tabPageAllEntries.Padding = new System.Windows.Forms.Padding(3);
@@ -282,6 +285,7 @@
             this.buttonSettings.TabIndex = 3;
             this.toolTip.SetToolTip(this.buttonSettings, "Settings");
             this.buttonSettings.UseVisualStyleBackColor = true;
+            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
             // tabPageEntriesByYear
             // 
@@ -300,6 +304,16 @@
             this.tabPageCalendar.TabIndex = 3;
             this.tabPageCalendar.Text = "Calendar";
             this.tabPageCalendar.UseVisualStyleBackColor = true;
+            // 
+            // entryListBoxAll
+            // 
+            this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxAll.FormattingEnabled = true;
+            this.entryListBoxAll.Location = new System.Drawing.Point(3, 3);
+            this.entryListBoxAll.Name = "entryListBoxAll";
+            this.entryListBoxAll.ScrollAlwaysVisible = true;
+            this.entryListBoxAll.Size = new System.Drawing.Size(245, 415);
+            this.entryListBoxAll.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -321,6 +335,7 @@
             this.Text = "Day One Windows Client";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabLeftPanel.ResumeLayout(false);
+            this.tabPageAllEntries.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -353,6 +368,7 @@
         private System.Windows.Forms.Button buttonSettings;
         private System.Windows.Forms.TabPage tabPageEntriesByYear;
         private System.Windows.Forms.TabPage tabPageCalendar;
+        private EntryListBox entryListBoxAll;
     }
 }
 
