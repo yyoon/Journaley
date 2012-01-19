@@ -3,6 +3,7 @@
   <Description>These are default test settings for a local test run.</Description>
   <Deployment>
     <DeploymentItem filename="DayOneWindowsClient.Test\Inputs\3C5D6CCEABCB43858752E69A1CCF4C4B.doentry" />
+    <DeploymentItem filename="DayOneWindowsClient.Test\Inputs\test1.settings" />
   </Deployment>
   <Execution>
     <TestTypeSpecific>

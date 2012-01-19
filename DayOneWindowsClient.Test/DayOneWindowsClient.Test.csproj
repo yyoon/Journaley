@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="EntryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Shadow Include="Test References\DayOneWindowsClient.accessor" />
