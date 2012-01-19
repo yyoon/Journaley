@@ -150,6 +150,16 @@ namespace DayOneWindowsClient
             return this.Equals(right as Settings);
         }
 
+        public override int GetHashCode()
+        {
+            return this.DayOneFolderPath.GetHashCode() ^ this.PasswordHash.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return "Folder: \"" + this.DayOneFolderPath + "\", Hash: \"" + this.PasswordHash + "\"";
+        }
+
         #region IEquatable<Settings> Members
 
         public bool Equals(Settings right)
