@@ -24,10 +24,10 @@ namespace DayOneWindowsClient
                 ENTRY_DAY_FONT = new Font(this.Font.FontFamily, 28.0f, FontStyle.Bold);
 
             if (ENTRY_DAY_OF_WEEK_FONT == null)
-                ENTRY_DAY_OF_WEEK_FONT = new Font(this.Font.FontFamily, 13.0f, FontStyle.Bold);
+                ENTRY_DAY_OF_WEEK_FONT = new Font(this.Font.FontFamily, 11.0f, FontStyle.Bold);
 
             if (ENTRY_TIME_FONT == null)
-                ENTRY_TIME_FONT = new Font(this.Font.FontFamily, 10.0f);
+                ENTRY_TIME_FONT = new Font(this.Font.FontFamily, 9.0f);
         }
 
         private static readonly int MONTH_HEIGHT = 22;
