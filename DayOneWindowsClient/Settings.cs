@@ -79,20 +79,28 @@ namespace DayOneWindowsClient
             }
         }
 
-        public void Save()
+        public bool Save()
         {
-            Save(GetSettingsFilePath());
+            return Save(GetSettingsFilePath());
         }
 
-        public void Save(string path)
+        public bool Save(string path)
         {
             if (!Directory.Exists(this.DayOneFolderPath))
-                throw new Exception("Day One folder path is not valid");
+                return false;
 
-            using (StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8))
+            try
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(Settings));
-                serializer.Serialize(sw, this);
+                using (StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+                    serializer.Serialize(sw, this);
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
 

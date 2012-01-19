@@ -97,10 +97,14 @@ namespace DayOneWindowsClient.Test
         [TestMethod()]
         public void SaveTest()
         {
-            Settings target = new Settings();
-            target.DayOneFolderPath = ".";
             string path = "test.settings";
-            target.Save(path);
+
+            Settings target = new Settings();
+            Assert.IsFalse(target.Save(path));
+
+            target.DayOneFolderPath = ".";
+            Assert.IsTrue(target.Save(path));
+
             Settings loaded = Settings.GetSettingsFile(path);
             Assert.AreEqual(target, loaded);
         }
