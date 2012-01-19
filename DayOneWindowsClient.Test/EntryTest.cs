@@ -1,6 +1,8 @@
 ﻿using DayOneWindowsClient;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.IO;
+using System.Text;
 
 namespace DayOneWindowsClient.Test
 {
@@ -73,7 +75,7 @@ namespace DayOneWindowsClient.Test
             string path = "3C5D6CCEABCB43858752E69A1CCF4C4B.doentry";
 
             Entry expected = new Entry(
-                new DateTime(2011, 6, 20, 16, 0, 0),            // Creation Date
+                new DateTime(2011, 6, 20, 16, 0, 0, DateTimeKind.Utc),            // Creation Date
                 "This is the body. 나는 바디다.",                 // Entry Text
                 false,                                          // Starred
                 new Guid("3C5D6CCEABCB43858752E69A1CCF4C4B"),   // UUID
@@ -83,6 +85,41 @@ namespace DayOneWindowsClient.Test
             Entry actual;
             actual = Entry.LoadFromFile(path);
             Assert.AreEqual(expected, actual);
+            Assert.IsFalse(actual.IsDirty);
+        }
+
+        /// <summary>
+        ///A test for Save
+        ///</summary>
+        [TestMethod()]
+        public void SaveTest()
+        {
+            Entry target = new Entry();
+            target.Save();
+
+            Assert.IsFalse(target.IsDirty);
+            Assert.IsTrue(File.Exists(target.FileName));
+
+            Entry loaded = Entry.LoadFromFile(target.FileName);
+            Assert.AreEqual(target, loaded);
+        }
+
+        /// <summary>
+        ///A test for Save
+        ///</summary>
+        [TestMethod()]
+        public void SaveTest1()
+        {
+            Entry target = new Entry();
+            target.Starred = true;
+            target.EntryText = "This is the body.\n나는 바디다.";
+            target.Save();
+
+            Assert.IsFalse(target.IsDirty);
+            Assert.IsTrue(File.Exists(target.FileName));
+
+            Entry loaded = Entry.LoadFromFile(target.FileName);
+            Assert.AreEqual(target, loaded);
         }
     }
 }
