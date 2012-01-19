@@ -152,7 +152,8 @@ namespace DayOneWindowsClient
 
         public override int GetHashCode()
         {
-            return this.DayOneFolderPath.GetHashCode() ^ this.PasswordHash.GetHashCode();
+            return (this.DayOneFolderPath == null ? 0 : this.DayOneFolderPath.GetHashCode()) ^
+                (this.PasswordHash == null ? 0 : this.PasswordHash.GetHashCode());
         }
 
         public override string ToString()
