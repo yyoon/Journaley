@@ -38,5 +38,18 @@ namespace DayOneWindowsClient
                 this.Settings.Save();
             }
         }
+
+        private void buttonSettings_Click(object sender, EventArgs e)
+        {
+            SettingsForm form = new SettingsForm();
+            form.Settings = new Settings(this.Settings);    // pass a copied settings object
+            DialogResult result = form.ShowDialog(this);
+            if (result == DialogResult.OK)
+            {
+                // TODO: Update something. maybe load everything from scratch if the directory has been changed.
+                this.Settings = form.Settings;
+                this.Settings.Save();
+            }
+        }
     }
 }

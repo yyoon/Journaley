@@ -127,6 +127,7 @@ namespace DayOneWindowsClient
         private void buttonSelectFolder_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            folderDialog.SelectedPath = this.Settings.DayOneFolderPath;
             folderDialog.ShowDialog();
 
             this.Settings.DayOneFolderPath = folderDialog.SelectedPath;
