@@ -101,18 +101,17 @@ namespace DayOneWindowsClient
             get { return _utcDateTime; }
             set
             {
-                _utcDateTime = value;
+                DateTime temp = value;
+                temp = temp.AddTicks(-(temp.Ticks % 10000000));
 
-                // clean everything beyond the seconds
-                _utcDateTime = _utcDateTime.AddTicks(-(_utcDateTime.Ticks % 10000000));
+                if (temp.Kind != DateTimeKind.Utc)
+                    temp.ToUniversalTime();
 
-                // turn it into UTC if it's not
-                if (_utcDateTime.Kind != DateTimeKind.Utc)
+                if (_utcDateTime != temp)
                 {
-                    _utcDateTime = _utcDateTime.ToUniversalTime();
+                    _utcDateTime = temp;
+                    this.IsDirty = true;
                 }
-
-                this.IsDirty = true;
             }
         }
 
@@ -122,8 +121,11 @@ namespace DayOneWindowsClient
             get { return _entryText; }
             set
             {
-                _entryText = value;
-                this.IsDirty = true;
+                if (_entryText != value)
+                {
+                    _entryText = value;
+                    this.IsDirty = true;
+                }
             }
         }
 
@@ -133,8 +135,11 @@ namespace DayOneWindowsClient
             get { return _starred; }
             set
             {
-                _starred = value;
-                this.IsDirty = true;
+                if (_starred != value)
+                {
+                    _starred = value;
+                    this.IsDirty = true;
+                }
             }
         }
 

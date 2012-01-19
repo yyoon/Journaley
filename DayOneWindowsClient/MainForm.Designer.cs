@@ -34,8 +34,7 @@
             this.tabPageStarred = new System.Windows.Forms.TabPage();
             this.tabPageEntriesByYear = new System.Windows.Forms.TabPage();
             this.tabPageCalendar = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutStats = new System.Windows.Forms.TableLayoutPanel();
             this.labelEntries = new System.Windows.Forms.Label();
             this.labelDays = new System.Windows.Forms.Label();
@@ -53,6 +52,7 @@
             this.buttonStar = new System.Windows.Forms.Button();
             this.buttonSettings = new System.Windows.Forms.Button();
             this.entryListBoxAll = new DayOneWindowsClient.EntryListBox();
+            this.textEntryText = new System.Windows.Forms.TextBox();
             this.tabLeftPanel.SuspendLayout();
             this.tabPageAllEntries.SuspendLayout();
             this.tableLayoutStats.SuspendLayout();
@@ -111,29 +111,17 @@
             this.tabPageCalendar.Text = "Calendar";
             this.tabPageCalendar.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // dateTimePicker
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(277, 58);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(629, 503);
-            this.textBox1.TabIndex = 9;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.CustomFormat = "MMM d, yyyy hh:mm tt";
-            this.dateTimePicker1.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dateTimePicker1.Enabled = false;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(522, 32);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 4;
+            this.dateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker.CustomFormat = "MMM d, yyyy hh:mm tt";
+            this.dateTimePicker.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.dateTimePicker.Enabled = false;
+            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker.Location = new System.Drawing.Point(522, 32);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker.TabIndex = 4;
             // 
             // tableLayoutStats
             // 
@@ -317,12 +305,25 @@
             this.entryListBoxAll.ScrollAlwaysVisible = true;
             this.entryListBoxAll.Size = new System.Drawing.Size(245, 435);
             this.entryListBoxAll.TabIndex = 0;
+            this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
+            // 
+            // textEntryText
+            // 
+            this.textEntryText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textEntryText.Location = new System.Drawing.Point(277, 58);
+            this.textEntryText.Multiline = true;
+            this.textEntryText.Name = "textEntryText";
+            this.textEntryText.Size = new System.Drawing.Size(629, 503);
+            this.textEntryText.TabIndex = 9;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(918, 573);
+            this.Controls.Add(this.textEntryText);
             this.Controls.Add(this.buttonSettings);
             this.Controls.Add(this.buttonStar);
             this.Controls.Add(this.buttonEditSave);
@@ -330,8 +331,7 @@
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonAddEntry);
             this.Controls.Add(this.tableLayoutStats);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.tabLeftPanel);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -351,8 +351,7 @@
         private System.Windows.Forms.TabControl tabLeftPanel;
         private System.Windows.Forms.TabPage tabPageAllEntries;
         private System.Windows.Forms.TabPage tabPageStarred;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.TableLayoutPanel tableLayoutStats;
         private System.Windows.Forms.Label labelEntries;
         private System.Windows.Forms.Label labelDays;
@@ -372,6 +371,7 @@
         private System.Windows.Forms.TabPage tabPageEntriesByYear;
         private System.Windows.Forms.TabPage tabPageCalendar;
         private EntryListBox entryListBoxAll;
+        private System.Windows.Forms.TextBox textEntryText;
     }
 }
 
