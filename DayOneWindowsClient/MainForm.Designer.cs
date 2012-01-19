@@ -32,9 +32,11 @@
             this.tabLeftPanel = new System.Windows.Forms.TabControl();
             this.tabPageAllEntries = new System.Windows.Forms.TabPage();
             this.tabPageStarred = new System.Windows.Forms.TabPage();
+            this.tabPageEntriesByYear = new System.Windows.Forms.TabPage();
+            this.tabPageCalendar = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutStats = new System.Windows.Forms.TableLayoutPanel();
             this.labelEntries = new System.Windows.Forms.Label();
             this.labelDays = new System.Windows.Forms.Label();
             this.labelThisWeek = new System.Windows.Forms.Label();
@@ -50,12 +52,10 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.buttonStar = new System.Windows.Forms.Button();
             this.buttonSettings = new System.Windows.Forms.Button();
-            this.tabPageEntriesByYear = new System.Windows.Forms.TabPage();
-            this.tabPageCalendar = new System.Windows.Forms.TabPage();
             this.entryListBoxAll = new DayOneWindowsClient.EntryListBox();
             this.tabLeftPanel.SuspendLayout();
             this.tabPageAllEntries.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutStats.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabLeftPanel
@@ -66,10 +66,10 @@
             this.tabLeftPanel.Controls.Add(this.tabPageStarred);
             this.tabLeftPanel.Controls.Add(this.tabPageEntriesByYear);
             this.tabLeftPanel.Controls.Add(this.tabPageCalendar);
-            this.tabLeftPanel.Location = new System.Drawing.Point(12, 114);
+            this.tabLeftPanel.Location = new System.Drawing.Point(12, 94);
             this.tabLeftPanel.Name = "tabLeftPanel";
             this.tabLeftPanel.SelectedIndex = 0;
-            this.tabLeftPanel.Size = new System.Drawing.Size(259, 447);
+            this.tabLeftPanel.Size = new System.Drawing.Size(259, 467);
             this.tabLeftPanel.TabIndex = 2;
             // 
             // tabPageAllEntries
@@ -78,7 +78,7 @@
             this.tabPageAllEntries.Location = new System.Drawing.Point(4, 22);
             this.tabPageAllEntries.Name = "tabPageAllEntries";
             this.tabPageAllEntries.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAllEntries.Size = new System.Drawing.Size(251, 421);
+            this.tabPageAllEntries.Size = new System.Drawing.Size(251, 441);
             this.tabPageAllEntries.TabIndex = 0;
             this.tabPageAllEntries.Text = "All";
             this.tabPageAllEntries.UseVisualStyleBackColor = true;
@@ -88,10 +88,28 @@
             this.tabPageStarred.Location = new System.Drawing.Point(4, 22);
             this.tabPageStarred.Name = "tabPageStarred";
             this.tabPageStarred.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageStarred.Size = new System.Drawing.Size(251, 421);
+            this.tabPageStarred.Size = new System.Drawing.Size(251, 441);
             this.tabPageStarred.TabIndex = 1;
             this.tabPageStarred.Text = "Starred";
             this.tabPageStarred.UseVisualStyleBackColor = true;
+            // 
+            // tabPageEntriesByYear
+            // 
+            this.tabPageEntriesByYear.Location = new System.Drawing.Point(4, 22);
+            this.tabPageEntriesByYear.Name = "tabPageEntriesByYear";
+            this.tabPageEntriesByYear.Size = new System.Drawing.Size(251, 441);
+            this.tabPageEntriesByYear.TabIndex = 2;
+            this.tabPageEntriesByYear.Text = "Entries by Year";
+            this.tabPageEntriesByYear.UseVisualStyleBackColor = true;
+            // 
+            // tabPageCalendar
+            // 
+            this.tabPageCalendar.Location = new System.Drawing.Point(4, 22);
+            this.tabPageCalendar.Name = "tabPageCalendar";
+            this.tabPageCalendar.Size = new System.Drawing.Size(251, 441);
+            this.tabPageCalendar.TabIndex = 3;
+            this.tabPageCalendar.Text = "Calendar";
+            this.tabPageCalendar.UseVisualStyleBackColor = true;
             // 
             // textBox1
             // 
@@ -101,6 +119,7 @@
             this.textBox1.Location = new System.Drawing.Point(277, 58);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(629, 503);
             this.textBox1.TabIndex = 9;
             // 
@@ -116,28 +135,28 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 4;
             // 
-            // tableLayoutPanel1
+            // tableLayoutStats
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Controls.Add(this.labelEntries, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.labelDays, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.labelThisWeek, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.labelToday, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 3, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 58);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(259, 50);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.tableLayoutStats.ColumnCount = 4;
+            this.tableLayoutStats.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutStats.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutStats.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutStats.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutStats.Controls.Add(this.labelEntries, 0, 0);
+            this.tableLayoutStats.Controls.Add(this.labelDays, 1, 0);
+            this.tableLayoutStats.Controls.Add(this.labelThisWeek, 2, 0);
+            this.tableLayoutStats.Controls.Add(this.labelToday, 3, 0);
+            this.tableLayoutStats.Controls.Add(this.label5, 0, 1);
+            this.tableLayoutStats.Controls.Add(this.label6, 1, 1);
+            this.tableLayoutStats.Controls.Add(this.label7, 2, 1);
+            this.tableLayoutStats.Controls.Add(this.label8, 3, 1);
+            this.tableLayoutStats.Location = new System.Drawing.Point(12, 58);
+            this.tableLayoutStats.Name = "tableLayoutStats";
+            this.tableLayoutStats.RowCount = 2;
+            this.tableLayoutStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutStats.Size = new System.Drawing.Size(259, 30);
+            this.tableLayoutStats.TabIndex = 1;
             // 
             // labelEntries
             // 
@@ -183,7 +202,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(0, 25);
+            this.label5.Location = new System.Drawing.Point(0, 15);
             this.label5.Margin = new System.Windows.Forms.Padding(0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 14);
@@ -194,7 +213,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(64, 25);
+            this.label6.Location = new System.Drawing.Point(64, 15);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(33, 14);
@@ -205,7 +224,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(128, 25);
+            this.label7.Location = new System.Drawing.Point(128, 15);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(63, 14);
@@ -216,7 +235,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(192, 25);
+            this.label8.Location = new System.Drawing.Point(192, 15);
             this.label8.Margin = new System.Windows.Forms.Padding(0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(41, 14);
@@ -230,6 +249,7 @@
             this.buttonAddEntry.Name = "buttonAddEntry";
             this.buttonAddEntry.Size = new System.Drawing.Size(259, 40);
             this.buttonAddEntry.TabIndex = 0;
+            this.toolTip.SetToolTip(this.buttonAddEntry, "Add a new entry");
             this.buttonAddEntry.UseVisualStyleBackColor = true;
             // 
             // buttonDelete
@@ -287,32 +307,15 @@
             this.buttonSettings.UseVisualStyleBackColor = true;
             this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
-            // tabPageEntriesByYear
-            // 
-            this.tabPageEntriesByYear.Location = new System.Drawing.Point(4, 22);
-            this.tabPageEntriesByYear.Name = "tabPageEntriesByYear";
-            this.tabPageEntriesByYear.Size = new System.Drawing.Size(251, 421);
-            this.tabPageEntriesByYear.TabIndex = 2;
-            this.tabPageEntriesByYear.Text = "Entries by Year";
-            this.tabPageEntriesByYear.UseVisualStyleBackColor = true;
-            // 
-            // tabPageCalendar
-            // 
-            this.tabPageCalendar.Location = new System.Drawing.Point(4, 22);
-            this.tabPageCalendar.Name = "tabPageCalendar";
-            this.tabPageCalendar.Size = new System.Drawing.Size(251, 421);
-            this.tabPageCalendar.TabIndex = 3;
-            this.tabPageCalendar.Text = "Calendar";
-            this.tabPageCalendar.UseVisualStyleBackColor = true;
-            // 
             // entryListBoxAll
             // 
             this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxAll.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.entryListBoxAll.FormattingEnabled = true;
             this.entryListBoxAll.Location = new System.Drawing.Point(3, 3);
             this.entryListBoxAll.Name = "entryListBoxAll";
             this.entryListBoxAll.ScrollAlwaysVisible = true;
-            this.entryListBoxAll.Size = new System.Drawing.Size(245, 415);
+            this.entryListBoxAll.Size = new System.Drawing.Size(245, 435);
             this.entryListBoxAll.TabIndex = 0;
             // 
             // MainForm
@@ -326,7 +329,7 @@
             this.Controls.Add(this.buttonShare);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonAddEntry);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.tableLayoutStats);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.tabLeftPanel);
@@ -336,8 +339,8 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabLeftPanel.ResumeLayout(false);
             this.tabPageAllEntries.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutStats.ResumeLayout(false);
+            this.tableLayoutStats.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -350,7 +353,7 @@
         private System.Windows.Forms.TabPage tabPageStarred;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutStats;
         private System.Windows.Forms.Label labelEntries;
         private System.Windows.Forms.Label labelDays;
         private System.Windows.Forms.Label labelThisWeek;
