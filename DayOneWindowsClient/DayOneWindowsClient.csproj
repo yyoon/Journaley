@@ -125,6 +125,36 @@
   <ItemGroup>
     <Folder Include="Resources\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\126_Edit_32x32_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\Edit_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\Copy_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\Delete_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\Save_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\Star_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\StarGray_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\StarYellow_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\Settings_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\Plus_32x32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

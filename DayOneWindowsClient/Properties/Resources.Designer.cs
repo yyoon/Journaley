@@ -60,10 +60,66 @@ namespace DayOneWindowsClient.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Copy_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Copy_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Delete_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Delete_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Edit_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Edit_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Icon MainIcon {
             get {
                 object obj = ResourceManager.GetObject("MainIcon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Plus_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Plus_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Save_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Save_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Settings_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("Settings_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap StarGray_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("StarGray_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap StarYellow_32x32 {
+            get {
+                object obj = ResourceManager.GetObject("StarYellow_32x32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
