@@ -175,7 +175,7 @@ namespace DayOneWindowsClient
 
         public bool IsDirty { get; private set; }
 
-        public void Save()
+        public void Save(string folderPath)
         {
             XmlDocument doc = new XmlDocument();
 
@@ -219,7 +219,7 @@ namespace DayOneWindowsClient
                 builder.Replace("    <", "\t<");
                 builder.Replace("  <", "<");
 
-                using (StreamWriter streamWriter = new StreamWriter(this.FileName, false, Encoding.UTF8))
+                using (StreamWriter streamWriter = new StreamWriter(Path.Combine(folderPath, this.FileName), false, Encoding.UTF8))
                 {
                     streamWriter.Write(builder.ToString());
 

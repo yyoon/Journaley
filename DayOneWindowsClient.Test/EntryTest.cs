@@ -95,7 +95,7 @@ namespace DayOneWindowsClient.Test
         public void SaveTest()
         {
             Entry target = new Entry();
-            target.Save();
+            target.Save(".");
 
             Assert.IsFalse(target.IsDirty);
             Assert.IsTrue(File.Exists(target.FileName));
@@ -113,7 +113,7 @@ namespace DayOneWindowsClient.Test
             Entry target = new Entry();
             target.Starred = true;
             target.EntryText = "This is the body.\n나는 바디다.";
-            target.Save();
+            target.Save(".");
 
             Assert.IsFalse(target.IsDirty);
             Assert.IsTrue(File.Exists(target.FileName));
