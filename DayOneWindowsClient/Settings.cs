@@ -14,6 +14,18 @@ namespace DayOneWindowsClient
         private static readonly string SETTINGS_FOLDER = "DayOneWindowsClient";
         private static readonly string SETTINGS_FILENAME = "DayOneWindowsClient.settings";
 
+        public Settings()
+        {
+            this.PasswordHash = null;
+            this.DayOneFolderPath = null;
+        }
+
+        public Settings(Settings other)
+        {
+            this.PasswordHash = other.PasswordHash;
+            this.DayOneFolderPath = other.DayOneFolderPath;
+        }
+
         private static string GetSettingsFilePath()
         {
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), SETTINGS_FOLDER);

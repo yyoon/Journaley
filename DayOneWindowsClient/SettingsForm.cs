@@ -62,17 +62,66 @@ namespace DayOneWindowsClient
 
         private void buttonChangePassword_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            ChangePasswordForm form = new ChangePasswordForm();
+
+            while (true)
+            {
+                DialogResult result = form.ShowDialog(this);
+
+                if (result == DialogResult.Cancel)
+                    break;
+
+                if (this.Settings.VerifyPassword(form.CurrentPassword))
+                {
+                    this.Settings.Password = form.NewPassword;
+                    break;
+                }
+                else
+                {
+                    MessageBox.Show("Wrong Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            UpdatePasswordInterface();
         }
 
         private void buttonEnablePassword_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            EnablePasswordForm form = new EnablePasswordForm();
+
+            DialogResult result = form.ShowDialog(this);
+
+            if (result != DialogResult.Cancel)
+            {
+                this.Settings.Password = form.NewPassword;
+            }
+
+            UpdatePasswordInterface();
         }
 
         private void buttonRemovePassword_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            RemovePasswordForm form = new RemovePasswordForm();
+
+            while (true)
+            {
+                DialogResult result = form.ShowDialog(this);
+
+                if (result == DialogResult.Cancel)
+                    break;
+
+                if (this.Settings.VerifyPassword(form.CurrentPassword))
+                {
+                    this.Settings.PasswordHash = null;
+                    break;
+                }
+                else
+                {
+                    MessageBox.Show("Wrong Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            UpdatePasswordInterface();
         }
 
         private void buttonSelectFolder_Click(object sender, EventArgs e)

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using DayOneWindowsClient.Properties;
 using System.Diagnostics;
+using System.IO;
 
 namespace DayOneWindowsClient
 {
@@ -32,7 +33,9 @@ namespace DayOneWindowsClient
                 DialogResult result = settingsForm.ShowDialog();
                 Debug.Assert(result == DialogResult.OK);
 
-                Settings = settingsForm.Settings;
+                Debug.Assert(Directory.Exists(settingsForm.Settings.DayOneFolderPath));
+                this.Settings = settingsForm.Settings;
+                this.Settings.Save();
             }
         }
     }
