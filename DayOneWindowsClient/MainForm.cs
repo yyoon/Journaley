@@ -194,6 +194,8 @@ namespace DayOneWindowsClient
 
         private void buttonEditSave_Click(object sender, EventArgs e)
         {
+            Debug.Assert(this.SelectedEntry != null);
+
             if (this.IsEditing)
             {
                 SaveSelectedEntry();
@@ -206,6 +208,16 @@ namespace DayOneWindowsClient
                 this.IsEditing = true;
                 this.textEntryText.Focus();
             }
+        }
+
+        private void buttonStar_Click(object sender, EventArgs e)
+        {
+            Debug.Assert(this.SelectedEntry != null);
+
+            this.SelectedEntry.Starred ^= true;
+            SaveSelectedEntry();
+
+            UpdateStar();
         }
     }
 }

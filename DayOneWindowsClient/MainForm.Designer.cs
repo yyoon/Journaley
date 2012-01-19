@@ -284,6 +284,7 @@
             this.buttonStar.TabIndex = 6;
             this.toolTip.SetToolTip(this.buttonStar, "Star");
             this.buttonStar.UseVisualStyleBackColor = true;
+            this.buttonStar.Click += new System.EventHandler(this.buttonStar_Click);
             // 
             // buttonSettings
             // 
