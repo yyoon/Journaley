@@ -166,37 +166,46 @@ namespace DayOneWindowsClient
             this.labelToday.Text = this.Entries.Where(x => x.LocalTime.ToString("yyyyMMdd") == DateTime.Now.ToString("yyyyMMdd")).Count().ToString();
         }
 
-        private void UpdateEntryListBoxAll()
+        private void UpdateAllEntryLists()
+        {
+            UpdateEntryList(this.Entries, this.entryListBoxAll);
+        }
+
+        private void UpdateEntryList(IEnumerable<Entry> entries, EntryListBox list)
         {
             // Clear everything.
-            this.entryListBoxAll.Items.Clear();
+            list.Items.Clear();
 
             // Reverse sort and group by month.
             var groupedEntries = this.Entries
                 .OrderByDescending(x => x.UTCDateTime)
                 .GroupBy(x => new DateTime(x.LocalTime.Year, x.LocalTime.Month, 1));
 
+            // Add the list items
             foreach (var group in groupedEntries)
             {
-                this.entryListBoxAll.Items.Add(group.Key);
-                this.entryListBoxAll.Items.AddRange(group.ToArray());
+                // Add the month group bar
+                list.Items.Add(group.Key);
+                list.Items.AddRange(group.ToArray());
             }
 
-            // If there is a selected entry, select it!
+            // If there is already a selected entry, select it!
             if (this.SelectedEntry != null)
             {
-                int index = this.entryListBoxAll.Items.IndexOf(this.SelectedEntry);
+                int index = list.Items.IndexOf(this.SelectedEntry);
                 if (index != -1)
                 {
-                    this.entryListBoxAll.SelectedIndex = index;
-                    this.entryListBoxAll.TopIndex = index;
+                    list.SelectedIndex = index;
+                    if (index > 0 && list.Items[index - 1] is DateTime)
+                    {
+                        list.TopIndex = index - 1;
+                    }
+                    else
+                    {
+                        list.TopIndex = index;
+                    }
                 }
             }
-        }
-
-        private void UpdateAllEntryLists()
-        {
-            UpdateEntryListBoxAll();
         }
 
         private void LoadEntries()
