@@ -349,5 +349,10 @@ namespace DayOneWindowsClient
             this.SelectedEntry = newEntry;
             UpdateAllEntryLists();
         }
+
+        private void buttonShare_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This is not yet implemented.", "Sorry");
+        }
     }
 }

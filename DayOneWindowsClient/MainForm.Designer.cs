@@ -292,6 +292,7 @@
             this.buttonShare.TabIndex = 7;
             this.toolTip.SetToolTip(this.buttonShare, "Share");
             this.buttonShare.UseVisualStyleBackColor = true;
+            this.buttonShare.Click += new System.EventHandler(this.buttonShare_Click);
             // 
             // buttonEditSave
             // 
