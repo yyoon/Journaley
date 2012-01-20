@@ -33,7 +33,11 @@ namespace DayOneWindowsClient
                 // Save / Cleanup
                 if (_selectedEntry != null)
                 {
-                    SaveSelectedEntry();
+                    // If this is still in the Entries list, it's alive.
+                    if (this.Entries.Contains(_selectedEntry))
+                    {
+                        SaveSelectedEntry();
+                    }
                 }
 
                 _selectedEntry = value;
@@ -121,9 +125,13 @@ namespace DayOneWindowsClient
 
             LoadEntries();
 
+            UpdateFromScratch();
+        }
+
+        private void UpdateFromScratch()
+        {
             UpdateStats();
             UpdateEntryListBoxAll();
-
             UpdateUI();
         }
 
@@ -218,6 +226,27 @@ namespace DayOneWindowsClient
             SaveSelectedEntry();
 
             UpdateStar();
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            Debug.Assert(this.SelectedEntry != null);
+
+            DialogResult result = MessageBox.Show(
+                "Do you really want to delete this journal entry?",
+                "Delete entry",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button2
+                );
+
+            if (result == System.Windows.Forms.DialogResult.No)
+                return;
+
+            this.Entries.Remove(this.SelectedEntry);
+            this.SelectedEntry.Delete(this.Settings.DayOneFolderPath);
+
+            UpdateFromScratch();
         }
     }
 }

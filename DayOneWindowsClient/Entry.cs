@@ -246,6 +246,17 @@ namespace DayOneWindowsClient
                 value.InnerText = valueString;
         }
 
+        public void Delete(string folderPath)
+        {
+            string path = Path.Combine(folderPath, this.FileName);
+
+            FileInfo finfo = new FileInfo(path);
+            if (finfo.Exists)
+            {
+                finfo.Delete();
+            }
+        }
+
         #region object level members
 
         public override bool Equals(object right)

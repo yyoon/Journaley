@@ -250,6 +250,7 @@
             this.buttonDelete.TabIndex = 8;
             this.toolTip.SetToolTip(this.buttonDelete, "Delete");
             this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonShare
             // 

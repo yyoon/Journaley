@@ -121,5 +121,21 @@ namespace DayOneWindowsClient.Test
             Entry loaded = Entry.LoadFromFile(target.FileName);
             Assert.AreEqual(target, loaded);
         }
+
+        /// <summary>
+        ///A test for Delete
+        ///</summary>
+        [TestMethod()]
+        public void DeleteTest()
+        {
+            Entry target = new Entry();
+            string folderPath = ".";
+
+            target.Save(folderPath);
+            Assert.IsTrue(File.Exists(target.FileName));
+
+            target.Delete(folderPath);
+            Assert.IsFalse(File.Exists(target.FileName));
+        }
     }
 }
