@@ -70,7 +70,28 @@ namespace DayOneWindowsClient
             this.SelectedEntry.EntryText = this.textEntryText.Text.Replace(Environment.NewLine, "\n");
 
             if (this.SelectedEntry.IsDirty)
+            {
                 this.SelectedEntry.Save(this.Settings.DayOneFolderPath);
+
+                // Update the EntryList items as well.
+                foreach (var list in GetAllEntryLists())
+                {
+                    int index = list.Items.IndexOf(this.SelectedEntry);
+                    if (index != -1)
+                    {
+                        list.Invalidate(list.GetItemRectangle(index));
+                    }
+                }
+            }
+        }
+
+        private IEnumerable<EntryListBox> GetAllEntryLists()
+        {
+            foreach (TabPage page in this.tabLeftPanel.TabPages)
+            {
+                foreach (var list in page.Controls.OfType<EntryListBox>())
+                    yield return list;
+            }
         }
 
         private bool _isEditing;
@@ -277,6 +298,15 @@ namespace DayOneWindowsClient
                 this.SelectedEntry.UTCDateTime = this.dateTimePicker.Value.ToUniversalTime();
                 UpdateAllEntryLists();
             }
+        }
+
+        private void buttonAddEntry_Click(object sender, EventArgs e)
+        {
+            Entry newEntry = new Entry();
+            this.Entries.Add(newEntry);
+
+            this.SelectedEntry = newEntry;
+            UpdateAllEntryLists();
         }
     }
 }

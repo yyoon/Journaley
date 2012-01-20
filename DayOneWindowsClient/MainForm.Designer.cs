@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabLeftPanel = new System.Windows.Forms.TabControl();
             this.tabPageAllEntries = new System.Windows.Forms.TabPage();
+            this.entryListBoxAll = new DayOneWindowsClient.EntryListBox();
             this.tabPageStarred = new System.Windows.Forms.TabPage();
             this.tabPageEntriesByYear = new System.Windows.Forms.TabPage();
             this.tabPageCalendar = new System.Windows.Forms.TabPage();
@@ -52,7 +53,6 @@
             this.buttonStar = new System.Windows.Forms.Button();
             this.buttonSettings = new System.Windows.Forms.Button();
             this.textEntryText = new System.Windows.Forms.TextBox();
-            this.entryListBoxAll = new DayOneWindowsClient.EntryListBox();
             this.tabLeftPanel.SuspendLayout();
             this.tabPageAllEntries.SuspendLayout();
             this.tableLayoutStats.SuspendLayout();
@@ -82,6 +82,18 @@
             this.tabPageAllEntries.TabIndex = 0;
             this.tabPageAllEntries.Text = "All";
             this.tabPageAllEntries.UseVisualStyleBackColor = true;
+            // 
+            // entryListBoxAll
+            // 
+            this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxAll.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxAll.FormattingEnabled = true;
+            this.entryListBoxAll.Location = new System.Drawing.Point(3, 3);
+            this.entryListBoxAll.Name = "entryListBoxAll";
+            this.entryListBoxAll.ScrollAlwaysVisible = true;
+            this.entryListBoxAll.Size = new System.Drawing.Size(245, 435);
+            this.entryListBoxAll.TabIndex = 0;
+            this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
             // 
             // tabPageStarred
             // 
@@ -241,6 +253,7 @@
             this.buttonAddEntry.TabIndex = 0;
             this.toolTip.SetToolTip(this.buttonAddEntry, "Add a new entry");
             this.buttonAddEntry.UseVisualStyleBackColor = true;
+            this.buttonAddEntry.Click += new System.EventHandler(this.buttonAddEntry_Click);
             // 
             // buttonDelete
             // 
@@ -310,18 +323,6 @@
             this.textEntryText.Name = "textEntryText";
             this.textEntryText.Size = new System.Drawing.Size(629, 503);
             this.textEntryText.TabIndex = 9;
-            // 
-            // entryListBoxAll
-            // 
-            this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxAll.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxAll.FormattingEnabled = true;
-            this.entryListBoxAll.Location = new System.Drawing.Point(3, 3);
-            this.entryListBoxAll.Name = "entryListBoxAll";
-            this.entryListBoxAll.ScrollAlwaysVisible = true;
-            this.entryListBoxAll.Size = new System.Drawing.Size(245, 435);
-            this.entryListBoxAll.TabIndex = 0;
-            this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
             // 
             // MainForm
             // 
