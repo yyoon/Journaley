@@ -59,6 +59,8 @@ namespace DayOneWindowsClient
 
                 UpdateStar();
                 UpdateUI();
+
+                HighlightSelectedEntry();
             }
         }
 
@@ -168,7 +170,18 @@ namespace DayOneWindowsClient
 
         private void UpdateAllEntryLists()
         {
+            UpdateEntryListBoxAll();
+            UpdateEntryListBoxStarred();
+        }
+
+        private void UpdateEntryListBoxAll()
+        {
             UpdateEntryList(this.Entries, this.entryListBoxAll);
+        }
+
+        private void UpdateEntryListBoxStarred()
+        {
+            UpdateEntryList(this.Entries.Where(x => x.Starred), this.entryListBoxStarred);
         }
 
         private void UpdateEntryList(IEnumerable<Entry> entries, EntryListBox list)
@@ -177,7 +190,7 @@ namespace DayOneWindowsClient
             list.Items.Clear();
 
             // Reverse sort and group by month.
-            var groupedEntries = this.Entries
+            var groupedEntries = entries
                 .OrderByDescending(x => x.UTCDateTime)
                 .GroupBy(x => new DateTime(x.LocalTime.Year, x.LocalTime.Month, 1));
 
@@ -189,20 +202,38 @@ namespace DayOneWindowsClient
                 list.Items.AddRange(group.ToArray());
             }
 
+            HighlightSelectedEntry(list);
+        }
+
+        private void HighlightSelectedEntry()
+        {
+            foreach (var list in GetAllEntryLists())
+                HighlightSelectedEntry(list);
+        }
+
+        private void HighlightSelectedEntry(EntryListBox list)
+        {
             // If there is already a selected entry, select it!
             if (this.SelectedEntry != null)
             {
                 int index = list.Items.IndexOf(this.SelectedEntry);
-                if (index != -1)
+                if (list.SelectedIndex != index)
                 {
-                    list.SelectedIndex = index;
-                    if (index > 0 && list.Items[index - 1] is DateTime)
+                    if (index != -1)
                     {
-                        list.TopIndex = index - 1;
+                        list.SelectedIndex = index;
+                        if (index > 0 && list.Items[index - 1] is DateTime)
+                        {
+                            list.TopIndex = index - 1;
+                        }
+                        else
+                        {
+                            list.TopIndex = index;
+                        }
                     }
                     else
                     {
-                        list.TopIndex = index;
+                        list.SelectedIndex = -1;
                     }
                 }
             }
@@ -275,6 +306,7 @@ namespace DayOneWindowsClient
             SaveSelectedEntry();
 
             UpdateStar();
+            UpdateEntryListBoxStarred();
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)

@@ -33,6 +33,7 @@
             this.tabPageAllEntries = new System.Windows.Forms.TabPage();
             this.entryListBoxAll = new DayOneWindowsClient.EntryListBox();
             this.tabPageStarred = new System.Windows.Forms.TabPage();
+            this.entryListBoxStarred = new DayOneWindowsClient.EntryListBox();
             this.tabPageEntriesByYear = new System.Windows.Forms.TabPage();
             this.tabPageCalendar = new System.Windows.Forms.TabPage();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -55,6 +56,7 @@
             this.textEntryText = new System.Windows.Forms.TextBox();
             this.tabLeftPanel.SuspendLayout();
             this.tabPageAllEntries.SuspendLayout();
+            this.tabPageStarred.SuspendLayout();
             this.tableLayoutStats.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,6 +99,7 @@
             // 
             // tabPageStarred
             // 
+            this.tabPageStarred.Controls.Add(this.entryListBoxStarred);
             this.tabPageStarred.Location = new System.Drawing.Point(4, 22);
             this.tabPageStarred.Name = "tabPageStarred";
             this.tabPageStarred.Padding = new System.Windows.Forms.Padding(3);
@@ -104,6 +107,18 @@
             this.tabPageStarred.TabIndex = 1;
             this.tabPageStarred.Text = "Starred";
             this.tabPageStarred.UseVisualStyleBackColor = true;
+            // 
+            // entryListBoxStarred
+            // 
+            this.entryListBoxStarred.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxStarred.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxStarred.FormattingEnabled = true;
+            this.entryListBoxStarred.Location = new System.Drawing.Point(3, 3);
+            this.entryListBoxStarred.Name = "entryListBoxStarred";
+            this.entryListBoxStarred.ScrollAlwaysVisible = true;
+            this.entryListBoxStarred.Size = new System.Drawing.Size(245, 435);
+            this.entryListBoxStarred.TabIndex = 0;
+            this.entryListBoxStarred.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
             // 
             // tabPageEntriesByYear
             // 
@@ -345,6 +360,7 @@
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabLeftPanel.ResumeLayout(false);
             this.tabPageAllEntries.ResumeLayout(false);
+            this.tabPageStarred.ResumeLayout(false);
             this.tableLayoutStats.ResumeLayout(false);
             this.tableLayoutStats.PerformLayout();
             this.ResumeLayout(false);
@@ -378,6 +394,7 @@
         private System.Windows.Forms.TabPage tabPageCalendar;
         private EntryListBox entryListBoxAll;
         private System.Windows.Forms.TextBox textEntryText;
+        private EntryListBox entryListBoxStarred;
     }
 }
 
