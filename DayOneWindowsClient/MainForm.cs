@@ -30,6 +30,9 @@ namespace DayOneWindowsClient
             get { return _selectedEntry; }
             set
             {
+                if (_selectedEntry == value)
+                    return;
+
                 // Save / Cleanup
                 if (_selectedEntry != null)
                 {
@@ -131,21 +134,8 @@ namespace DayOneWindowsClient
         private void UpdateFromScratch()
         {
             UpdateStats();
-            UpdateEntryListBoxAll();
+            UpdateAllEntryLists();
             UpdateUI();
-        }
-
-        private void LoadEntries()
-        {
-            LoadEntries(this.Settings.DayOneFolderPath);
-        }
-
-        private void LoadEntries(string path)
-        {
-            DirectoryInfo dinfo = new DirectoryInfo(path);
-            FileInfo[] files = dinfo.GetFiles("*.doentry");
-
-            this.Entries = files.Select(x => Entry.LoadFromFile(x.FullName)).ToList();
         }
 
         private void UpdateStats()
@@ -170,6 +160,35 @@ namespace DayOneWindowsClient
                 this.entryListBoxAll.Items.Add(group.Key);
                 this.entryListBoxAll.Items.AddRange(group.ToArray());
             }
+
+            // If there is a selected entry, select it!
+            if (this.SelectedEntry != null)
+            {
+                int index = this.entryListBoxAll.Items.IndexOf(this.SelectedEntry);
+                if (index != -1)
+                {
+                    this.entryListBoxAll.SelectedIndex = index;
+                    this.entryListBoxAll.TopIndex = index;
+                }
+            }
+        }
+
+        private void UpdateAllEntryLists()
+        {
+            UpdateEntryListBoxAll();
+        }
+
+        private void LoadEntries()
+        {
+            LoadEntries(this.Settings.DayOneFolderPath);
+        }
+
+        private void LoadEntries(string path)
+        {
+            DirectoryInfo dinfo = new DirectoryInfo(path);
+            FileInfo[] files = dinfo.GetFiles("*.doentry");
+
+            this.Entries = files.Select(x => Entry.LoadFromFile(x.FullName)).ToList();
         }
 
         private void buttonSettings_Click(object sender, EventArgs e)
@@ -247,6 +266,17 @@ namespace DayOneWindowsClient
             this.SelectedEntry.Delete(this.Settings.DayOneFolderPath);
 
             UpdateFromScratch();
+        }
+
+        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+            Debug.Assert(this.SelectedEntry != null);
+
+            if (this.IsEditing)
+            {
+                this.SelectedEntry.UTCDateTime = this.dateTimePicker.Value.ToUniversalTime();
+                UpdateAllEntryLists();
+            }
         }
     }
 }
