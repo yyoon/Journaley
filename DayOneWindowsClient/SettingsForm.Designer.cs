@@ -34,8 +34,8 @@
             this.buttonRemovePassword = new System.Windows.Forms.Button();
             this.buttonChangePassword = new System.Windows.Forms.Button();
             this.groupFolder = new System.Windows.Forms.GroupBox();
-            this.buttonSelectFolder = new System.Windows.Forms.Button();
             this.textFolder = new System.Windows.Forms.TextBox();
+            this.buttonSelectFolder = new System.Windows.Forms.Button();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.groupPassword.SuspendLayout();
@@ -107,6 +107,14 @@
             this.groupFolder.TabStop = false;
             this.groupFolder.Text = "Day One Folder";
             // 
+            // textFolder
+            // 
+            this.textFolder.Location = new System.Drawing.Point(6, 21);
+            this.textFolder.Name = "textFolder";
+            this.textFolder.ReadOnly = true;
+            this.textFolder.Size = new System.Drawing.Size(212, 20);
+            this.textFolder.TabIndex = 1;
+            // 
             // buttonSelectFolder
             // 
             this.buttonSelectFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -117,14 +125,6 @@
             this.buttonSelectFolder.Text = "...";
             this.buttonSelectFolder.UseVisualStyleBackColor = true;
             this.buttonSelectFolder.Click += new System.EventHandler(this.buttonSelectFolder_Click);
-            // 
-            // textFolder
-            // 
-            this.textFolder.Location = new System.Drawing.Point(6, 21);
-            this.textFolder.Name = "textFolder";
-            this.textFolder.ReadOnly = true;
-            this.textFolder.Size = new System.Drawing.Size(212, 20);
-            this.textFolder.TabIndex = 1;
             // 
             // buttonOK
             // 
@@ -149,8 +149,7 @@
             // SettingsForm
             // 
             this.AcceptButton = this.buttonOK;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(284, 155);
             this.ControlBox = false;
