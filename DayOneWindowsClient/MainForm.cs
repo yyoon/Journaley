@@ -141,6 +141,10 @@ namespace DayOneWindowsClient
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
 
+            // Trick to bring this form to the front
+            this.TopMost = true;
+            this.TopMost = false;
+
             this.Settings = Settings.GetSettingsFile();
 
             // When there is no settings file, show up the settings dialog first.
