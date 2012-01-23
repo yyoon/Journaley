@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using DayOneWindowsClient.Properties;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
+using System.Globalization;
 
 namespace DayOneWindowsClient
 {
@@ -135,6 +137,10 @@ namespace DayOneWindowsClient
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // Set Current Culture
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
+
             this.Settings = Settings.GetSettingsFile();
 
             // When there is no settings file, show up the settings dialog first.
