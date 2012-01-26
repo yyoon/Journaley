@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_512588E070D0427AB537AD4D95651713"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_87F03E69E4A3466EB72E3AEF19D877C5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -23,6 +29,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B5D4961FD72843B3A12EB187DEFA40BF"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_512588E070D0427AB537AD4D95651713"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -88,6 +100,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_512588E070D0427AB537AD4D95651713"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MarkdownSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_512588E070D0427AB537AD4D95651713"
+                    {
+                    "Name" = "8:MarkdownSharp.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\MarkdownSharp.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_9E57BA856C604816AB60DC315908F41F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_87F03E69E4A3466EB72E3AEF19D877C5"
             {
             "SourcePath" = "8:..\\mit-license.rtf"
@@ -146,6 +189,17 @@
             "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_100DA6F02DCD44D9954F54AA7C1A7992"
+                    {
+                    "Name" = "8:DayOneWindowsClient"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_41CFAD4451784CD793FAC0FB8CC84394"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
         }
@@ -164,12 +218,12 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:DayOneWindowsClient"
-        "ProductCode" = "8:{A1A47820-1162-4F0A-8A7B-41DAB0592B5C}"
-        "PackageCode" = "8:{1323A1DC-107F-42C7-8085-958F469FC7F7}"
+        "ProductCode" = "8:{6ED922BB-E860-4A1D-BE6C-62B2E0A98942}"
+        "PackageCode" = "8:{0A47D92C-0804-4C4E-8F30-7A17B84BD454}"
         "UpgradeCode" = "8:{2B3B2265-B63C-4E00-9089-183C27092625}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
         "ProductVersion" = "8:1.0.0"
@@ -291,12 +345,12 @@
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
+            "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
             "Target" = "8:_B5D4961FD72843B3A12EB187DEFA40BF"
-            "Folder" = "8:_EF94A5F521B442CEA33EBF6C60B5D942"
+            "Folder" = "8:_100DA6F02DCD44D9954F54AA7C1A7992"
             "WorkingFolder" = "8:_9E57BA856C604816AB60DC315908F41F"
-            "Icon" = "8:"
+            "Icon" = "8:_B5D4961FD72843B3A12EB187DEFA40BF"
             "Feature" = "8:"
             }
         }
