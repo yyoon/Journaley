@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 namespace DayOneWindowsClient
 {
     [Serializable]
-    public class Settings : IEquatable<Settings>
+    public class Settings : IEquatable<Settings>, IPasswordVerifier
     {
         private static readonly string SETTINGS_FOLDER = "DayOneWindowsClient";
         private static readonly string SETTINGS_FILENAME = "DayOneWindowsClient.settings";

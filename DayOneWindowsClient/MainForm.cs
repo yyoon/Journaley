@@ -20,6 +20,8 @@ namespace DayOneWindowsClient
         {
             InitializeComponent();
             this.Icon = Resources.MainIcon;
+
+            this.FormLoaded = false;
         }
 
         private Settings Settings { get; set; }
@@ -109,6 +111,8 @@ namespace DayOneWindowsClient
             }
         }
 
+        private bool FormLoaded { get; set; }
+
         private void UpdateUI()
         {
             bool noEntry = this.SelectedEntry == null;
@@ -141,10 +145,6 @@ namespace DayOneWindowsClient
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
 
-            // Trick to bring this form to the front
-            this.TopMost = true;
-            this.TopMost = false;
-
             this.Settings = Settings.GetSettingsFile();
 
             // When there is no settings file, show up the settings dialog first.
@@ -158,10 +158,102 @@ namespace DayOneWindowsClient
                 this.Settings = settingsForm.Settings;
                 this.Settings.Save();
             }
+            // If there was a password set, ask it before showing the main form!
+            else if (this.Settings.PasswordHash != null)
+            {
+                PasswordInputForm form = new PasswordInputForm(this.Settings);
+                DialogResult result = form.ShowDialog();
+
+                // If the user cancels the password input dialog, just close the whole application.
+                if (result == System.Windows.Forms.DialogResult.Cancel)
+                {
+                    Close();
+                    return;
+                }
+            }
+
+            Debug.Assert(this.Settings != null);
 
             LoadEntries();
 
             UpdateFromScratch();
+
+            // Trick to bring this form to the front
+            this.TopMost = true;
+            this.TopMost = false;
+
+            // Finished Loading
+            this.FormLoaded = true;
+        }
+
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            return;
+
+            if (this.Settings.PasswordHash != null)
+            {
+                // Hide the main form first.
+                Hide();
+
+                // Show the password input dialog
+                PasswordInputForm form = new PasswordInputForm(this.Settings);
+                DialogResult result = form.ShowDialog();
+
+                // If the user cancels the password input dialog, just close the whole application.
+                if (result == System.Windows.Forms.DialogResult.Cancel)
+                {
+                    Close();
+                    return;
+                }
+                else
+                {
+                    Show();
+                }
+            }
+        }
+
+        protected void OnActivateApp(bool activate)
+        {
+            if (activate == false)
+                return;
+
+            if (this.FormLoaded == false)
+                return;
+
+            if (this.Settings.PasswordHash != null)
+            {
+                // Hide the main form first.
+                Hide();
+
+                // Show the password input dialog
+                PasswordInputForm form = new PasswordInputForm(this.Settings);
+                DialogResult result = form.ShowDialog();
+
+                // If the user cancels the password input dialog, just close the whole application.
+                if (result == System.Windows.Forms.DialogResult.Cancel)
+                {
+                    Close();
+                    return;
+                }
+                else
+                {
+                    Show();
+                }
+            }
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case 0x001C:    // WM_ACTIVATEAPP
+                    OnActivateApp(m.WParam != IntPtr.Zero);
+                    break;
+
+                default:
+                    base.WndProc(ref m);
+                    break;
+            }
         }
 
         private void UpdateFromScratch()
