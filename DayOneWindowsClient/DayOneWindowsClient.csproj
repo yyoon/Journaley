@@ -37,6 +37,10 @@
     <ApplicationIcon>images\moleskine_blue.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MarkdownSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\MarkdownSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -78,6 +82,7 @@
     <Compile Include="PasswordInputForm.Designer.cs">
       <DependentUpon>PasswordInputForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PInvoke.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RemovePasswordForm.cs">
@@ -149,9 +154,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\Save_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="images\Star_32x32.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="images\StarGray_32x32.png" />

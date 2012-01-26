@@ -35,15 +35,11 @@
             System.Windows.Forms.Label label8;
             this.tabLeftPanel = new System.Windows.Forms.TabControl();
             this.tabPageAllEntries = new System.Windows.Forms.TabPage();
-            this.entryListBoxAll = new DayOneWindowsClient.EntryListBox();
             this.tabPageStarred = new System.Windows.Forms.TabPage();
-            this.entryListBoxStarred = new DayOneWindowsClient.EntryListBox();
             this.tabPageEntriesByYear = new System.Windows.Forms.TabPage();
             this.panelYearEntryListWrapper = new System.Windows.Forms.Panel();
-            this.entryListBoxYear = new DayOneWindowsClient.EntryListBox();
             this.listBoxYear = new System.Windows.Forms.ListBox();
             this.tabPageCalendar = new System.Windows.Forms.TabPage();
-            this.entryListBoxCalendar = new DayOneWindowsClient.EntryListBox();
             this.monthCalendar = new System.Windows.Forms.MonthCalendar();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutStats = new System.Windows.Forms.TableLayoutPanel();
@@ -58,10 +54,16 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.buttonStar = new System.Windows.Forms.Button();
             this.buttonSettings = new System.Windows.Forms.Button();
-            this.textEntryText = new System.Windows.Forms.TextBox();
             this.contextMenuStripShare = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.emailThisEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textEntryText = new System.Windows.Forms.TextBox();
+            this.panelWebBrowserWrapper = new System.Windows.Forms.Panel();
+            this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.entryListBoxAll = new DayOneWindowsClient.EntryListBox();
+            this.entryListBoxStarred = new DayOneWindowsClient.EntryListBox();
+            this.entryListBoxYear = new DayOneWindowsClient.EntryListBox();
+            this.entryListBoxCalendar = new DayOneWindowsClient.EntryListBox();
             label5 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
@@ -74,6 +76,7 @@
             this.tabPageCalendar.SuspendLayout();
             this.tableLayoutStats.SuspendLayout();
             this.contextMenuStripShare.SuspendLayout();
+            this.panelWebBrowserWrapper.SuspendLayout();
             this.SuspendLayout();
             // 
             // label5
@@ -145,18 +148,6 @@
             this.tabPageAllEntries.Text = "All";
             this.tabPageAllEntries.UseVisualStyleBackColor = true;
             // 
-            // entryListBoxAll
-            // 
-            this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxAll.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxAll.FormattingEnabled = true;
-            this.entryListBoxAll.Location = new System.Drawing.Point(3, 3);
-            this.entryListBoxAll.Name = "entryListBoxAll";
-            this.entryListBoxAll.ScrollAlwaysVisible = true;
-            this.entryListBoxAll.Size = new System.Drawing.Size(245, 435);
-            this.entryListBoxAll.TabIndex = 0;
-            this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
-            // 
             // tabPageStarred
             // 
             this.tabPageStarred.Controls.Add(this.entryListBoxStarred);
@@ -167,18 +158,6 @@
             this.tabPageStarred.TabIndex = 1;
             this.tabPageStarred.Text = "Starred";
             this.tabPageStarred.UseVisualStyleBackColor = true;
-            // 
-            // entryListBoxStarred
-            // 
-            this.entryListBoxStarred.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxStarred.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxStarred.FormattingEnabled = true;
-            this.entryListBoxStarred.Location = new System.Drawing.Point(3, 3);
-            this.entryListBoxStarred.Name = "entryListBoxStarred";
-            this.entryListBoxStarred.ScrollAlwaysVisible = true;
-            this.entryListBoxStarred.Size = new System.Drawing.Size(245, 435);
-            this.entryListBoxStarred.TabIndex = 0;
-            this.entryListBoxStarred.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
             // 
             // tabPageEntriesByYear
             // 
@@ -202,18 +181,6 @@
             this.panelYearEntryListWrapper.Size = new System.Drawing.Size(245, 353);
             this.panelYearEntryListWrapper.TabIndex = 1;
             // 
-            // entryListBoxYear
-            // 
-            this.entryListBoxYear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxYear.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxYear.FormattingEnabled = true;
-            this.entryListBoxYear.Location = new System.Drawing.Point(0, 3);
-            this.entryListBoxYear.Name = "entryListBoxYear";
-            this.entryListBoxYear.ScrollAlwaysVisible = true;
-            this.entryListBoxYear.Size = new System.Drawing.Size(245, 350);
-            this.entryListBoxYear.TabIndex = 0;
-            this.entryListBoxYear.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
-            // 
             // listBoxYear
             // 
             this.listBoxYear.Dock = System.Windows.Forms.DockStyle.Top;
@@ -234,18 +201,6 @@
             this.tabPageCalendar.TabIndex = 3;
             this.tabPageCalendar.Text = "Calendar";
             this.tabPageCalendar.UseVisualStyleBackColor = true;
-            // 
-            // entryListBoxCalendar
-            // 
-            this.entryListBoxCalendar.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxCalendar.FormattingEnabled = true;
-            this.entryListBoxCalendar.IntegralHeight = false;
-            this.entryListBoxCalendar.Location = new System.Drawing.Point(3, 186);
-            this.entryListBoxCalendar.Name = "entryListBoxCalendar";
-            this.entryListBoxCalendar.ScrollAlwaysVisible = true;
-            this.entryListBoxCalendar.Size = new System.Drawing.Size(245, 252);
-            this.entryListBoxCalendar.TabIndex = 1;
-            this.entryListBoxCalendar.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
             // 
             // monthCalendar
             // 
@@ -403,17 +358,6 @@
             this.buttonSettings.UseVisualStyleBackColor = true;
             this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
             // 
-            // textEntryText
-            // 
-            this.textEntryText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.textEntryText.Location = new System.Drawing.Point(277, 58);
-            this.textEntryText.Multiline = true;
-            this.textEntryText.Name = "textEntryText";
-            this.textEntryText.Size = new System.Drawing.Size(629, 503);
-            this.textEntryText.TabIndex = 9;
-            // 
             // contextMenuStripShare
             // 
             this.contextMenuStripShare.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -436,10 +380,91 @@
             this.emailThisEntryToolStripMenuItem.Text = "Email this entry";
             this.emailThisEntryToolStripMenuItem.Click += new System.EventHandler(this.emailThisEntryToolStripMenuItem_Click);
             // 
+            // textEntryText
+            // 
+            this.textEntryText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.textEntryText.Location = new System.Drawing.Point(277, 58);
+            this.textEntryText.Multiline = true;
+            this.textEntryText.Name = "textEntryText";
+            this.textEntryText.Size = new System.Drawing.Size(629, 503);
+            this.textEntryText.TabIndex = 9;
+            // 
+            // panelWebBrowserWrapper
+            // 
+            this.panelWebBrowserWrapper.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelWebBrowserWrapper.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelWebBrowserWrapper.Controls.Add(this.webBrowser);
+            this.panelWebBrowserWrapper.Location = new System.Drawing.Point(277, 58);
+            this.panelWebBrowserWrapper.Name = "panelWebBrowserWrapper";
+            this.panelWebBrowserWrapper.Size = new System.Drawing.Size(629, 503);
+            this.panelWebBrowserWrapper.TabIndex = 11;
+            // 
+            // webBrowser
+            // 
+            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.Size = new System.Drawing.Size(627, 501);
+            this.webBrowser.TabIndex = 11;
+            // 
+            // entryListBoxAll
+            // 
+            this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxAll.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxAll.FormattingEnabled = true;
+            this.entryListBoxAll.Location = new System.Drawing.Point(3, 3);
+            this.entryListBoxAll.Name = "entryListBoxAll";
+            this.entryListBoxAll.ScrollAlwaysVisible = true;
+            this.entryListBoxAll.Size = new System.Drawing.Size(245, 435);
+            this.entryListBoxAll.TabIndex = 0;
+            this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
+            // 
+            // entryListBoxStarred
+            // 
+            this.entryListBoxStarred.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxStarred.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxStarred.FormattingEnabled = true;
+            this.entryListBoxStarred.Location = new System.Drawing.Point(3, 3);
+            this.entryListBoxStarred.Name = "entryListBoxStarred";
+            this.entryListBoxStarred.ScrollAlwaysVisible = true;
+            this.entryListBoxStarred.Size = new System.Drawing.Size(245, 435);
+            this.entryListBoxStarred.TabIndex = 0;
+            this.entryListBoxStarred.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
+            // 
+            // entryListBoxYear
+            // 
+            this.entryListBoxYear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxYear.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxYear.FormattingEnabled = true;
+            this.entryListBoxYear.Location = new System.Drawing.Point(0, 3);
+            this.entryListBoxYear.Name = "entryListBoxYear";
+            this.entryListBoxYear.ScrollAlwaysVisible = true;
+            this.entryListBoxYear.Size = new System.Drawing.Size(245, 350);
+            this.entryListBoxYear.TabIndex = 0;
+            this.entryListBoxYear.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
+            // 
+            // entryListBoxCalendar
+            // 
+            this.entryListBoxCalendar.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxCalendar.FormattingEnabled = true;
+            this.entryListBoxCalendar.IntegralHeight = false;
+            this.entryListBoxCalendar.Location = new System.Drawing.Point(3, 186);
+            this.entryListBoxCalendar.Name = "entryListBoxCalendar";
+            this.entryListBoxCalendar.ScrollAlwaysVisible = true;
+            this.entryListBoxCalendar.Size = new System.Drawing.Size(245, 252);
+            this.entryListBoxCalendar.TabIndex = 1;
+            this.entryListBoxCalendar.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(918, 573);
+            this.Controls.Add(this.panelWebBrowserWrapper);
             this.Controls.Add(this.textEntryText);
             this.Controls.Add(this.buttonSettings);
             this.Controls.Add(this.buttonStar);
@@ -464,6 +489,7 @@
             this.tableLayoutStats.ResumeLayout(false);
             this.tableLayoutStats.PerformLayout();
             this.contextMenuStripShare.ResumeLayout(false);
+            this.panelWebBrowserWrapper.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -490,7 +516,6 @@
         private System.Windows.Forms.TabPage tabPageEntriesByYear;
         private System.Windows.Forms.TabPage tabPageCalendar;
         private EntryListBox entryListBoxAll;
-        private System.Windows.Forms.TextBox textEntryText;
         private EntryListBox entryListBoxStarred;
         private System.Windows.Forms.Panel panelYearEntryListWrapper;
         private EntryListBox entryListBoxYear;
@@ -500,6 +525,9 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStripShare;
         private System.Windows.Forms.ToolStripMenuItem copyToClipboardToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem emailThisEntryToolStripMenuItem;
+        private System.Windows.Forms.TextBox textEntryText;
+        private System.Windows.Forms.Panel panelWebBrowserWrapper;
+        private System.Windows.Forms.WebBrowser webBrowser;
     }
 }
 

@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Globalization;
+using MarkdownSharp;
 
 namespace DayOneWindowsClient
 {
@@ -55,6 +56,7 @@ namespace DayOneWindowsClient
 
                     this.dateTimePicker.Value = _selectedEntry.LocalTime;
                     this.textEntryText.Text = _selectedEntry.EntryText.Replace("\n", Environment.NewLine);
+                    UpdateWebBrowser();
                 }
                 else
                 {
@@ -66,6 +68,15 @@ namespace DayOneWindowsClient
 
                 HighlightSelectedEntry();
             }
+        }
+
+        private void UpdateWebBrowser()
+        {
+            this.webBrowser.DocumentText =
+                string.Format(
+                "<html style='margin:0;padding:2px'><body style='font-family:sans-serif;font-size:9pt'>{0}</body></html>",
+                Markdown.Transform(this.SelectedEntry.EntryText)
+                );
         }
 
         private void SaveSelectedEntry()
@@ -113,6 +124,21 @@ namespace DayOneWindowsClient
 
         private bool FormLoaded { get; set; }
 
+        private Markdown _markdown;
+        private Markdown Markdown
+        {
+            get
+            {
+                if (_markdown == null)
+                {
+                    _markdown = new Markdown();
+                    _markdown.AutoNewLines = true;
+                }
+
+                return _markdown;
+            }
+        }
+
         private void UpdateUI()
         {
             bool noEntry = this.SelectedEntry == null;
@@ -125,12 +151,18 @@ namespace DayOneWindowsClient
             this.textEntryText.Enabled = !noEntry;
 
             if (noEntry)
+            {
                 this.textEntryText.Text = "";
+                this.webBrowser.DocumentText = "";
+            }
 
             this.dateTimePicker.Enabled = this.IsEditing;
             this.buttonEditSave.Image = this.IsEditing ? Properties.Resources.Save_32x32 : Properties.Resources.Edit_32x32;
             this.toolTip.SetToolTip(this.buttonEditSave, this.IsEditing ? "Save" : "Edit");
             this.textEntryText.ReadOnly = !this.IsEditing;
+
+            this.textEntryText.Visible = this.IsEditing;
+            this.panelWebBrowserWrapper.Visible = this.webBrowser.Visible = noEntry || !this.IsEditing;
         }
 
         private void UpdateStar()
@@ -145,6 +177,15 @@ namespace DayOneWindowsClient
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
 
+            // Disable the click sound of the web browser for this process.
+            // http://stackoverflow.com/questions/393166/how-to-disable-click-sound-in-webbrowser-control
+            PInvoke.CoInternetSetFeatureEnabled(
+                21,     // FEATURE_DISABLE_NAVIGATION_SOUNDS
+                2,      // SET_FEATURE_ON_PROCESS
+                true    // Enable
+                );
+
+            // Get the settings file.
             this.Settings = Settings.GetSettingsFile();
 
             // When there is no settings file, show up the settings dialog first.
@@ -528,6 +569,7 @@ namespace DayOneWindowsClient
                 SaveSelectedEntry();
                 this.IsEditing = false;
 
+                UpdateWebBrowser();
                 UpdateUI();
             }
             else
