@@ -33,7 +33,7 @@ namespace DayOneWindowsClient
 
         private void UpdatePasswordInterface()
         {
-            bool passwordEnabled = this.Settings.PasswordHash != null;
+            bool passwordEnabled = this.Settings.HasPassword;
 
             this.labelPasswordStatus.Text = passwordEnabled ? "Enabled" : "Disabled";
 
@@ -62,24 +62,13 @@ namespace DayOneWindowsClient
 
         private void buttonChangePassword_Click(object sender, EventArgs e)
         {
-            ChangePasswordForm form = new ChangePasswordForm();
+            ChangePasswordForm form = new ChangePasswordForm(this.Settings);
 
-            while (true)
+            DialogResult result = form.ShowDialog(this);
+
+            if (result != DialogResult.Cancel)
             {
-                DialogResult result = form.ShowDialog(this);
-
-                if (result == DialogResult.Cancel)
-                    break;
-
-                if (this.Settings.VerifyPassword(form.CurrentPassword))
-                {
-                    this.Settings.Password = form.NewPassword;
-                    break;
-                }
-                else
-                {
-                    MessageBox.Show("Wrong Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                this.Settings.Password = form.NewPassword;
             }
 
             UpdatePasswordInterface();
@@ -101,24 +90,13 @@ namespace DayOneWindowsClient
 
         private void buttonRemovePassword_Click(object sender, EventArgs e)
         {
-            RemovePasswordForm form = new RemovePasswordForm();
+            RemovePasswordForm form = new RemovePasswordForm(this.Settings);
 
-            while (true)
+            DialogResult result = form.ShowDialog(this);
+
+            if (result != DialogResult.Cancel)
             {
-                DialogResult result = form.ShowDialog(this);
-
-                if (result == DialogResult.Cancel)
-                    break;
-
-                if (this.Settings.VerifyPassword(form.CurrentPassword))
-                {
-                    this.Settings.PasswordHash = null;
-                    break;
-                }
-                else
-                {
-                    MessageBox.Show("Wrong Password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                this.Settings.PasswordHash = null;
             }
 
             UpdatePasswordInterface();

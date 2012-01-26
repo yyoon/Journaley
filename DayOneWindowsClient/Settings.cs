@@ -91,6 +91,14 @@ namespace DayOneWindowsClient
             }
         }
 
+        public bool HasPassword
+        {
+            get
+            {
+                return this.PasswordHash != null;
+            }
+        }
+
         public bool Save()
         {
             return Save(GetSettingsFilePath());

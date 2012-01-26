@@ -159,7 +159,7 @@ namespace DayOneWindowsClient
                 this.Settings.Save();
             }
             // If there was a password set, ask it before showing the main form!
-            else if (this.Settings.PasswordHash != null)
+            else if (this.Settings.HasPassword)
             {
                 PasswordInputForm form = new PasswordInputForm(this.Settings);
                 DialogResult result = form.ShowDialog();
@@ -186,32 +186,6 @@ namespace DayOneWindowsClient
             this.FormLoaded = true;
         }
 
-        private void MainForm_Activated(object sender, EventArgs e)
-        {
-            return;
-
-            if (this.Settings.PasswordHash != null)
-            {
-                // Hide the main form first.
-                Hide();
-
-                // Show the password input dialog
-                PasswordInputForm form = new PasswordInputForm(this.Settings);
-                DialogResult result = form.ShowDialog();
-
-                // If the user cancels the password input dialog, just close the whole application.
-                if (result == System.Windows.Forms.DialogResult.Cancel)
-                {
-                    Close();
-                    return;
-                }
-                else
-                {
-                    Show();
-                }
-            }
-        }
-
         protected void OnActivateApp(bool activate)
         {
             if (activate == false)
@@ -220,7 +194,7 @@ namespace DayOneWindowsClient
             if (this.FormLoaded == false)
                 return;
 
-            if (this.Settings.PasswordHash != null)
+            if (this.Settings.HasPassword)
             {
                 // Hide the main form first.
                 Hide();
