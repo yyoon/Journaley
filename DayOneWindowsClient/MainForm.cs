@@ -211,6 +211,7 @@ namespace DayOneWindowsClient
             UpdateEntryListBoxAll();
             UpdateEntryListBoxStarred();
             UpdateEntryListBoxYear();
+            UpdateEntryListBoxCalendar();
         }
 
         private void UpdateEntryListBoxAll()
@@ -305,6 +306,20 @@ namespace DayOneWindowsClient
             }
         }
 
+        private void UpdateEntryListBoxCalendar()
+        {
+            // Update the bold dates
+            this.monthCalendar.BoldedDates = this.Entries.Select(x => x.LocalTime.Date).Distinct().ToArray();
+        }
+
+        private void monthCalendar_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            Debug.Assert(sender == this.monthCalendar);
+            Debug.Assert(e.Start.ToShortDateString() == e.End.ToShortDateString());
+
+            UpdateEntryList(this.Entries.Where(x => x.LocalTime.ToShortDateString() == e.Start.ToShortDateString()), this.entryListBoxCalendar);
+        }
+
         private void UpdateEntryList(IEnumerable<Entry> entries, EntryListBox list)
         {
             // Clear everything.
@@ -330,6 +345,20 @@ namespace DayOneWindowsClient
         {
             foreach (var list in GetAllEntryLists())
                 HighlightSelectedEntry(list);
+
+            HighlightSelectedEntryInCalendar();
+        }
+
+        private void HighlightSelectedEntryInCalendar()
+        {
+            DateTime toDate = DateTime.Now.Date;
+
+            if (this.SelectedEntry != null)
+            {
+                toDate = this.SelectedEntry.LocalTime.Date;
+            }
+
+            this.monthCalendar.SelectionStart = this.monthCalendar.SelectionEnd = toDate;
         }
 
         private void HighlightSelectedEntry(EntryListBox list)
@@ -388,6 +417,8 @@ namespace DayOneWindowsClient
 
         private void entryListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Highlight the entries that represents the currently selected journal entry
+            // in all the entry list boxes.
             EntryListBox entryListBox = sender as EntryListBox;
             if (entryListBox == null)
                 return;

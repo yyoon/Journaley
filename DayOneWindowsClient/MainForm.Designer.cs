@@ -54,9 +54,11 @@
             this.textEntryText = new System.Windows.Forms.TextBox();
             this.listBoxYear = new System.Windows.Forms.ListBox();
             this.panelYearEntryListWrapper = new System.Windows.Forms.Panel();
+            this.monthCalendar = new System.Windows.Forms.MonthCalendar();
             this.entryListBoxAll = new DayOneWindowsClient.EntryListBox();
             this.entryListBoxStarred = new DayOneWindowsClient.EntryListBox();
             this.entryListBoxYear = new DayOneWindowsClient.EntryListBox();
+            this.entryListBoxCalendar = new DayOneWindowsClient.EntryListBox();
             label5 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
@@ -65,6 +67,7 @@
             this.tabPageAllEntries.SuspendLayout();
             this.tabPageStarred.SuspendLayout();
             this.tabPageEntriesByYear.SuspendLayout();
+            this.tabPageCalendar.SuspendLayout();
             this.tableLayoutStats.SuspendLayout();
             this.panelYearEntryListWrapper.SuspendLayout();
             this.SuspendLayout();
@@ -163,6 +166,8 @@
             // 
             // tabPageCalendar
             // 
+            this.tabPageCalendar.Controls.Add(this.entryListBoxCalendar);
+            this.tabPageCalendar.Controls.Add(this.monthCalendar);
             this.tabPageCalendar.Location = new System.Drawing.Point(4, 22);
             this.tabPageCalendar.Name = "tabPageCalendar";
             this.tabPageCalendar.Size = new System.Drawing.Size(251, 441);
@@ -348,6 +353,15 @@
             this.panelYearEntryListWrapper.Size = new System.Drawing.Size(245, 353);
             this.panelYearEntryListWrapper.TabIndex = 1;
             // 
+            // monthCalendar
+            // 
+            this.monthCalendar.FirstDayOfWeek = System.Windows.Forms.Day.Sunday;
+            this.monthCalendar.Location = new System.Drawing.Point(12, 12);
+            this.monthCalendar.MaxSelectionCount = 1;
+            this.monthCalendar.Name = "monthCalendar";
+            this.monthCalendar.TabIndex = 0;
+            this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar_DateChanged);
+            // 
             // entryListBoxAll
             // 
             this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -384,6 +398,18 @@
             this.entryListBoxYear.TabIndex = 0;
             this.entryListBoxYear.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
             // 
+            // entryListBoxCalendar
+            // 
+            this.entryListBoxCalendar.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxCalendar.FormattingEnabled = true;
+            this.entryListBoxCalendar.IntegralHeight = false;
+            this.entryListBoxCalendar.Location = new System.Drawing.Point(3, 186);
+            this.entryListBoxCalendar.Name = "entryListBoxCalendar";
+            this.entryListBoxCalendar.ScrollAlwaysVisible = true;
+            this.entryListBoxCalendar.Size = new System.Drawing.Size(245, 252);
+            this.entryListBoxCalendar.TabIndex = 1;
+            this.entryListBoxCalendar.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -406,6 +432,7 @@
             this.tabPageAllEntries.ResumeLayout(false);
             this.tabPageStarred.ResumeLayout(false);
             this.tabPageEntriesByYear.ResumeLayout(false);
+            this.tabPageCalendar.ResumeLayout(false);
             this.tableLayoutStats.ResumeLayout(false);
             this.tableLayoutStats.PerformLayout();
             this.panelYearEntryListWrapper.ResumeLayout(false);
@@ -440,6 +467,8 @@
         private System.Windows.Forms.Panel panelYearEntryListWrapper;
         private EntryListBox entryListBoxYear;
         private System.Windows.Forms.ListBox listBoxYear;
+        private System.Windows.Forms.MonthCalendar monthCalendar;
+        private EntryListBox entryListBoxCalendar;
     }
 }
 
