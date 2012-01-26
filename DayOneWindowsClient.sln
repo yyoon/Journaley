@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "DayOneWindowsClientSetup", "DayOneWindowsClientSetup\DayOneWindowsClientSetup.vdproj", "{C0D506F3-1669-464B-9052-6B21159ABCEE}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = DayOneWindowsClient.vsmdi
@@ -45,6 +47,12 @@ Global
 		{795F741D-E4CE-4EA0-A062-56D5EFBD55BC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{795F741D-E4CE-4EA0-A062-56D5EFBD55BC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{795F741D-E4CE-4EA0-A062-56D5EFBD55BC}.Release|x86.ActiveCfg = Release|Any CPU
+		{C0D506F3-1669-464B-9052-6B21159ABCEE}.Debug|Any CPU.ActiveCfg = Debug
+		{C0D506F3-1669-464B-9052-6B21159ABCEE}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{C0D506F3-1669-464B-9052-6B21159ABCEE}.Debug|x86.ActiveCfg = Debug
+		{C0D506F3-1669-464B-9052-6B21159ABCEE}.Release|Any CPU.ActiveCfg = Release
+		{C0D506F3-1669-464B-9052-6B21159ABCEE}.Release|Mixed Platforms.ActiveCfg = Release
+		{C0D506F3-1669-464B-9052-6B21159ABCEE}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

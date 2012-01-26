@@ -7,3 +7,5 @@ syntax: regexp
 /bin/
 /obj/
 TestResults/
+/Debug/
+/Release/
