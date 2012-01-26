@@ -128,6 +128,8 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ChangePasswordForm";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Change Password";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChangePasswordForm_FormClosing);
