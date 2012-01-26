@@ -210,6 +210,7 @@ namespace DayOneWindowsClient
         {
             UpdateEntryListBoxAll();
             UpdateEntryListBoxStarred();
+            UpdateEntryListBoxYear();
         }
 
         private void UpdateEntryListBoxAll()
@@ -220,6 +221,88 @@ namespace DayOneWindowsClient
         private void UpdateEntryListBoxStarred()
         {
             UpdateEntryList(this.Entries.Where(x => x.Starred), this.entryListBoxStarred);
+        }
+
+        private class YearCountEntry
+        {
+            public YearCountEntry(int year, int count)
+            {
+                this.Year = year;
+                this.Count = count;
+            }
+
+            public int Year { get; set; }
+            public int Count { get; set; }
+
+            public override string ToString()
+            {
+                return string.Format("Year of {0} ({1} entries)", Year, Count);
+            }
+        }
+
+        private void UpdateEntryListBoxYear()
+        {
+            // Clear everything.
+            this.listBoxYear.Items.Clear();
+            this.listBoxYear.SelectedIndex = -1;
+
+            // First item is always "all years"
+            this.listBoxYear.Items.Add("All Years");
+
+            // Get the years and entry count for each year, in reverse order.
+            var yearsAndCounts = this.Entries
+                .GroupBy(x => x.LocalTime.Year)
+                .Select(x => new YearCountEntry(x.Key, x.Count()))
+                .OrderByDescending(x => x.Year);
+
+            // If there is any entry,
+            if (yearsAndCounts.Any())
+            {
+                // Add to the top list box first.
+                this.listBoxYear.Items.AddRange(yearsAndCounts.ToArray());
+
+                // Select the second item (this will invoke the event handler and eventually the entry list box will be filled)
+                this.listBoxYear.SelectedIndex = 1;
+            }
+            else
+            {
+                // Select the first item
+                this.listBoxYear.SelectedIndex = 0;
+            }
+
+            // Resize the upper list box
+            this.listBoxYear.Height = this.listBoxYear.PreferredHeight;
+        }
+
+        private void listBoxYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Debug.Assert(sender == this.listBoxYear);
+
+            switch (this.listBoxYear.SelectedIndex)
+            {
+                case -1:
+                    this.entryListBoxYear.Items.Clear();
+                    break;
+
+                case 0:
+                    UpdateEntryList(this.Entries, this.entryListBoxYear);
+                    break;
+
+                default:
+                    {
+                        YearCountEntry entry = this.listBoxYear.SelectedItem as YearCountEntry;
+                        if (entry != null)
+                        {
+                            UpdateEntryList(this.Entries.Where(x => x.LocalTime.Year == entry.Year), this.entryListBoxYear);
+                        }
+                        else
+                        {
+                            // This should not happen.
+                            Debug.Assert(false);
+                        }
+                    }
+                    break;
+            }
         }
 
         private void UpdateEntryList(IEnumerable<Entry> entries, EntryListBox list)

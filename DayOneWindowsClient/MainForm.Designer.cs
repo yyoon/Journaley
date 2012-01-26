@@ -35,9 +35,7 @@
             System.Windows.Forms.Label label8;
             this.tabLeftPanel = new System.Windows.Forms.TabControl();
             this.tabPageAllEntries = new System.Windows.Forms.TabPage();
-            this.entryListBoxAll = new DayOneWindowsClient.EntryListBox();
             this.tabPageStarred = new System.Windows.Forms.TabPage();
-            this.entryListBoxStarred = new DayOneWindowsClient.EntryListBox();
             this.tabPageEntriesByYear = new System.Windows.Forms.TabPage();
             this.tabPageCalendar = new System.Windows.Forms.TabPage();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -54,6 +52,11 @@
             this.buttonStar = new System.Windows.Forms.Button();
             this.buttonSettings = new System.Windows.Forms.Button();
             this.textEntryText = new System.Windows.Forms.TextBox();
+            this.listBoxYear = new System.Windows.Forms.ListBox();
+            this.panelYearEntryListWrapper = new System.Windows.Forms.Panel();
+            this.entryListBoxAll = new DayOneWindowsClient.EntryListBox();
+            this.entryListBoxStarred = new DayOneWindowsClient.EntryListBox();
+            this.entryListBoxYear = new DayOneWindowsClient.EntryListBox();
             label5 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
@@ -61,8 +64,54 @@
             this.tabLeftPanel.SuspendLayout();
             this.tabPageAllEntries.SuspendLayout();
             this.tabPageStarred.SuspendLayout();
+            this.tabPageEntriesByYear.SuspendLayout();
             this.tableLayoutStats.SuspendLayout();
+            this.panelYearEntryListWrapper.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label5.Location = new System.Drawing.Point(0, 15);
+            label5.Margin = new System.Windows.Forms.Padding(0);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(49, 14);
+            label5.TabIndex = 4;
+            label5.Text = "ENTRIES";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label6.Location = new System.Drawing.Point(64, 15);
+            label6.Margin = new System.Windows.Forms.Padding(0);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(33, 14);
+            label6.TabIndex = 5;
+            label6.Text = "DAYS";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label7.Location = new System.Drawing.Point(128, 15);
+            label7.Margin = new System.Windows.Forms.Padding(0);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(63, 14);
+            label7.TabIndex = 6;
+            label7.Text = "THIS WEEK";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label8.Location = new System.Drawing.Point(192, 15);
+            label8.Margin = new System.Windows.Forms.Padding(0);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(41, 14);
+            label8.TabIndex = 7;
+            label8.Text = "TODAY";
             // 
             // tabLeftPanel
             // 
@@ -89,18 +138,6 @@
             this.tabPageAllEntries.Text = "All";
             this.tabPageAllEntries.UseVisualStyleBackColor = true;
             // 
-            // entryListBoxAll
-            // 
-            this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxAll.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxAll.FormattingEnabled = true;
-            this.entryListBoxAll.Location = new System.Drawing.Point(3, 3);
-            this.entryListBoxAll.Name = "entryListBoxAll";
-            this.entryListBoxAll.ScrollAlwaysVisible = true;
-            this.entryListBoxAll.Size = new System.Drawing.Size(245, 435);
-            this.entryListBoxAll.TabIndex = 0;
-            this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
-            // 
             // tabPageStarred
             // 
             this.tabPageStarred.Controls.Add(this.entryListBoxStarred);
@@ -112,22 +149,13 @@
             this.tabPageStarred.Text = "Starred";
             this.tabPageStarred.UseVisualStyleBackColor = true;
             // 
-            // entryListBoxStarred
-            // 
-            this.entryListBoxStarred.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxStarred.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxStarred.FormattingEnabled = true;
-            this.entryListBoxStarred.Location = new System.Drawing.Point(3, 3);
-            this.entryListBoxStarred.Name = "entryListBoxStarred";
-            this.entryListBoxStarred.ScrollAlwaysVisible = true;
-            this.entryListBoxStarred.Size = new System.Drawing.Size(245, 435);
-            this.entryListBoxStarred.TabIndex = 0;
-            this.entryListBoxStarred.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
-            // 
             // tabPageEntriesByYear
             // 
+            this.tabPageEntriesByYear.Controls.Add(this.panelYearEntryListWrapper);
+            this.tabPageEntriesByYear.Controls.Add(this.listBoxYear);
             this.tabPageEntriesByYear.Location = new System.Drawing.Point(4, 22);
             this.tabPageEntriesByYear.Name = "tabPageEntriesByYear";
+            this.tabPageEntriesByYear.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageEntriesByYear.Size = new System.Drawing.Size(251, 441);
             this.tabPageEntriesByYear.TabIndex = 2;
             this.tabPageEntriesByYear.Text = "Entries by Year";
@@ -219,50 +247,6 @@
             this.labelToday.Size = new System.Drawing.Size(0, 14);
             this.labelToday.TabIndex = 3;
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label5.Location = new System.Drawing.Point(0, 15);
-            label5.Margin = new System.Windows.Forms.Padding(0);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(49, 14);
-            label5.TabIndex = 4;
-            label5.Text = "ENTRIES";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label6.Location = new System.Drawing.Point(64, 15);
-            label6.Margin = new System.Windows.Forms.Padding(0);
-            label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(33, 14);
-            label6.TabIndex = 5;
-            label6.Text = "DAYS";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label7.Location = new System.Drawing.Point(128, 15);
-            label7.Margin = new System.Windows.Forms.Padding(0);
-            label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(63, 14);
-            label7.TabIndex = 6;
-            label7.Text = "THIS WEEK";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            label8.Location = new System.Drawing.Point(192, 15);
-            label8.Margin = new System.Windows.Forms.Padding(0);
-            label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(41, 14);
-            label8.TabIndex = 7;
-            label8.Text = "TODAY";
-            // 
             // buttonAddEntry
             // 
             this.buttonAddEntry.Image = global::DayOneWindowsClient.Properties.Resources.Plus_32x32;
@@ -344,6 +328,62 @@
             this.textEntryText.Size = new System.Drawing.Size(629, 503);
             this.textEntryText.TabIndex = 9;
             // 
+            // listBoxYear
+            // 
+            this.listBoxYear.Dock = System.Windows.Forms.DockStyle.Top;
+            this.listBoxYear.FormattingEnabled = true;
+            this.listBoxYear.Location = new System.Drawing.Point(3, 3);
+            this.listBoxYear.Name = "listBoxYear";
+            this.listBoxYear.Size = new System.Drawing.Size(245, 82);
+            this.listBoxYear.TabIndex = 0;
+            this.listBoxYear.SelectedIndexChanged += new System.EventHandler(this.listBoxYear_SelectedIndexChanged);
+            // 
+            // panelYearEntryListWrapper
+            // 
+            this.panelYearEntryListWrapper.Controls.Add(this.entryListBoxYear);
+            this.panelYearEntryListWrapper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelYearEntryListWrapper.Location = new System.Drawing.Point(3, 85);
+            this.panelYearEntryListWrapper.Name = "panelYearEntryListWrapper";
+            this.panelYearEntryListWrapper.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.panelYearEntryListWrapper.Size = new System.Drawing.Size(245, 353);
+            this.panelYearEntryListWrapper.TabIndex = 1;
+            // 
+            // entryListBoxAll
+            // 
+            this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxAll.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxAll.FormattingEnabled = true;
+            this.entryListBoxAll.Location = new System.Drawing.Point(3, 3);
+            this.entryListBoxAll.Name = "entryListBoxAll";
+            this.entryListBoxAll.ScrollAlwaysVisible = true;
+            this.entryListBoxAll.Size = new System.Drawing.Size(245, 435);
+            this.entryListBoxAll.TabIndex = 0;
+            this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
+            // 
+            // entryListBoxStarred
+            // 
+            this.entryListBoxStarred.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxStarred.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxStarred.FormattingEnabled = true;
+            this.entryListBoxStarred.Location = new System.Drawing.Point(3, 3);
+            this.entryListBoxStarred.Name = "entryListBoxStarred";
+            this.entryListBoxStarred.ScrollAlwaysVisible = true;
+            this.entryListBoxStarred.Size = new System.Drawing.Size(245, 435);
+            this.entryListBoxStarred.TabIndex = 0;
+            this.entryListBoxStarred.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
+            // 
+            // entryListBoxYear
+            // 
+            this.entryListBoxYear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxYear.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxYear.FormattingEnabled = true;
+            this.entryListBoxYear.Location = new System.Drawing.Point(0, 3);
+            this.entryListBoxYear.Name = "entryListBoxYear";
+            this.entryListBoxYear.ScrollAlwaysVisible = true;
+            this.entryListBoxYear.Size = new System.Drawing.Size(245, 350);
+            this.entryListBoxYear.TabIndex = 0;
+            this.entryListBoxYear.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -365,8 +405,10 @@
             this.tabLeftPanel.ResumeLayout(false);
             this.tabPageAllEntries.ResumeLayout(false);
             this.tabPageStarred.ResumeLayout(false);
+            this.tabPageEntriesByYear.ResumeLayout(false);
             this.tableLayoutStats.ResumeLayout(false);
             this.tableLayoutStats.PerformLayout();
+            this.panelYearEntryListWrapper.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -395,6 +437,9 @@
         private EntryListBox entryListBoxAll;
         private System.Windows.Forms.TextBox textEntryText;
         private EntryListBox entryListBoxStarred;
+        private System.Windows.Forms.Panel panelYearEntryListWrapper;
+        private EntryListBox entryListBoxYear;
+        private System.Windows.Forms.ListBox listBoxYear;
     }
 }
 
