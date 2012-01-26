@@ -343,22 +343,43 @@ namespace DayOneWindowsClient
 
         private void HighlightSelectedEntry()
         {
+            HighlightSelectedYearInList();
+            HighlightSelectedEntryInCalendar();
+
             foreach (var list in GetAllEntryLists())
                 HighlightSelectedEntry(list);
+        }
 
-            HighlightSelectedEntryInCalendar();
+        private void HighlightSelectedYearInList()
+        {
+            if (this.SelectedEntry != null)
+            {
+                int index = -1;
+                for (int i = 1; i < this.listBoxYear.Items.Count; ++i)
+                {
+                    YearCountEntry entry = this.listBoxYear.Items[i] as YearCountEntry;
+                    if (entry == null) { continue; }
+
+                    if (this.SelectedEntry.LocalTime.Year == entry.Year)
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+
+                if (index != -1)
+                {
+                    this.listBoxYear.SelectedIndex = index;
+                }
+            }
         }
 
         private void HighlightSelectedEntryInCalendar()
         {
-            DateTime toDate = DateTime.Now.Date;
-
             if (this.SelectedEntry != null)
             {
-                toDate = this.SelectedEntry.LocalTime.Date;
+                this.monthCalendar.SelectionStart = this.monthCalendar.SelectionEnd = this.SelectedEntry.LocalTime.Date;
             }
-
-            this.monthCalendar.SelectionStart = this.monthCalendar.SelectionEnd = toDate;
         }
 
         private void HighlightSelectedEntry(EntryListBox list)
