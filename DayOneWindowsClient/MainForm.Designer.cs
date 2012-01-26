@@ -383,10 +383,10 @@
             // 
             // emailThisEntryToolStripMenuItem
             // 
-            this.emailThisEntryToolStripMenuItem.Enabled = false;
             this.emailThisEntryToolStripMenuItem.Name = "emailThisEntryToolStripMenuItem";
             this.emailThisEntryToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.emailThisEntryToolStripMenuItem.Text = "Email this entry";
+            this.emailThisEntryToolStripMenuItem.Click += new System.EventHandler(this.emailThisEntryToolStripMenuItem_Click);
             // 
             // entryListBoxAll
             // 

@@ -521,5 +521,15 @@ namespace DayOneWindowsClient
             Clipboard.SetDataObject(this.textEntryText.Text, true);
             MessageBox.Show(this, "The entry text has been successfully copied to the clipboard.", "Copy to Clipboard", MessageBoxButtons.OK);
         }
+
+        private void emailThisEntryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Debug.Assert(this.SelectedEntry != null);
+
+            string encodedBody = Uri.EscapeUriString(this.textEntryText.Text);
+            string link = string.Format("mailto:?body={0}", encodedBody);
+
+            Process.Start(link);
+        }
     }
 }
