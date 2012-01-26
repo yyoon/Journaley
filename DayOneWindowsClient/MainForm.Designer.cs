@@ -55,6 +55,9 @@
             this.listBoxYear = new System.Windows.Forms.ListBox();
             this.panelYearEntryListWrapper = new System.Windows.Forms.Panel();
             this.monthCalendar = new System.Windows.Forms.MonthCalendar();
+            this.contextMenuStripShare = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.emailThisEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entryListBoxAll = new DayOneWindowsClient.EntryListBox();
             this.entryListBoxStarred = new DayOneWindowsClient.EntryListBox();
             this.entryListBoxYear = new DayOneWindowsClient.EntryListBox();
@@ -70,6 +73,7 @@
             this.tabPageCalendar.SuspendLayout();
             this.tableLayoutStats.SuspendLayout();
             this.panelYearEntryListWrapper.SuspendLayout();
+            this.contextMenuStripShare.SuspendLayout();
             this.SuspendLayout();
             // 
             // label5
@@ -362,6 +366,28 @@
             this.monthCalendar.TabIndex = 0;
             this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar_DateChanged);
             // 
+            // contextMenuStripShare
+            // 
+            this.contextMenuStripShare.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToClipboardToolStripMenuItem,
+            this.emailThisEntryToolStripMenuItem});
+            this.contextMenuStripShare.Name = "contextMenuStripShare";
+            this.contextMenuStripShare.Size = new System.Drawing.Size(172, 70);
+            // 
+            // copyToClipboardToolStripMenuItem
+            // 
+            this.copyToClipboardToolStripMenuItem.Name = "copyToClipboardToolStripMenuItem";
+            this.copyToClipboardToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.copyToClipboardToolStripMenuItem.Text = "Copy to Clipboard";
+            this.copyToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyToClipboardToolStripMenuItem_Click);
+            // 
+            // emailThisEntryToolStripMenuItem
+            // 
+            this.emailThisEntryToolStripMenuItem.Enabled = false;
+            this.emailThisEntryToolStripMenuItem.Name = "emailThisEntryToolStripMenuItem";
+            this.emailThisEntryToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.emailThisEntryToolStripMenuItem.Text = "Email this entry";
+            // 
             // entryListBoxAll
             // 
             this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -436,6 +462,7 @@
             this.tableLayoutStats.ResumeLayout(false);
             this.tableLayoutStats.PerformLayout();
             this.panelYearEntryListWrapper.ResumeLayout(false);
+            this.contextMenuStripShare.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -469,6 +496,9 @@
         private System.Windows.Forms.ListBox listBoxYear;
         private System.Windows.Forms.MonthCalendar monthCalendar;
         private EntryListBox entryListBoxCalendar;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripShare;
+        private System.Windows.Forms.ToolStripMenuItem copyToClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem emailThisEntryToolStripMenuItem;
     }
 }
 

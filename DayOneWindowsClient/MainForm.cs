@@ -504,7 +504,22 @@ namespace DayOneWindowsClient
 
         private void buttonShare_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This is not yet implemented.", "Sorry");
+            Debug.Assert(this.SelectedEntry != null);
+            Debug.Assert(sender == this.buttonShare);
+
+            this.contextMenuStripShare.Show(
+                this.buttonShare,
+                new Point { X = this.buttonShare.Width, Y = this.buttonShare.Height },
+                ToolStripDropDownDirection.BelowLeft
+                );
+        }
+
+        private void copyToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Debug.Assert(this.SelectedEntry != null);
+
+            Clipboard.SetDataObject(this.textEntryText.Text, true);
+            MessageBox.Show(this, "The entry text has been successfully copied to the clipboard.", "Copy to Clipboard", MessageBoxButtons.OK);
         }
     }
 }
