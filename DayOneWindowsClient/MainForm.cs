@@ -173,9 +173,37 @@ namespace DayOneWindowsClient
 
         private void UpdateStats()
         {
-            this.labelEntries.Text = this.Entries.Count.ToString();
-            this.labelDays.Text = this.Entries.Select(x => x.LocalTime.ToString("yyyyMMdd")).Distinct().Count().ToString();
-            this.labelToday.Text = this.Entries.Where(x => x.LocalTime.ToString("yyyyMMdd") == DateTime.Now.ToString("yyyyMMdd")).Count().ToString();
+            this.labelEntries.Text = GetAllEntriesCount().ToString();
+            this.labelDays.Text = GetDaysCount().ToString();
+            this.labelThisWeek.Text = GetThisWeekCount(DateTime.Now).ToString();
+            this.labelToday.Text = GetTodayCount(DateTime.Now).ToString();
+        }
+
+        private int GetAllEntriesCount()
+        {
+            return this.Entries.Count;
+        }
+
+        private int GetDaysCount()
+        {
+            return this.Entries.Select(x => x.LocalTime.Date).Distinct().Count();
+        }
+
+        private int GetThisWeekCount(DateTime now)
+        {
+            Debug.Assert(now.Kind == DateTimeKind.Local);
+
+            int offsetFromSunday = now.DayOfWeek - DayOfWeek.Sunday;
+            DateTime basis = now.AddDays(-offsetFromSunday).Date;
+
+            return this.Entries.Where(x => basis <= x.LocalTime.Date && x.LocalTime <= now).Count();
+        }
+
+        private int GetTodayCount(DateTime now)
+        {
+            Debug.Assert(now.Kind == DateTimeKind.Local);
+
+            return this.Entries.Where(x => x.LocalTime.Date == now.Date).Count();
         }
 
         private void UpdateAllEntryLists()
