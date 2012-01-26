@@ -372,7 +372,7 @@
             this.copyToClipboardToolStripMenuItem,
             this.emailThisEntryToolStripMenuItem});
             this.contextMenuStripShare.Name = "contextMenuStripShare";
-            this.contextMenuStripShare.Size = new System.Drawing.Size(172, 70);
+            this.contextMenuStripShare.Size = new System.Drawing.Size(172, 48);
             // 
             // copyToClipboardToolStripMenuItem
             // 
@@ -450,6 +450,7 @@
             this.Controls.Add(this.tableLayoutStats);
             this.Controls.Add(this.dateTimePicker);
             this.Controls.Add(this.tabLeftPanel);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Day One Windows Client";
