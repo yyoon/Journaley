@@ -84,6 +84,12 @@ namespace DayOneWindowsClient
                             }
                             break;
 
+                        case "Time Zone":
+                            {
+                                newEntry.Timezone = valueNode.InnerText;
+                            }
+                            break;
+
                         default:
                             throw new Exception("Unknown key name in the plist dictionary");
                     }
@@ -138,6 +144,20 @@ namespace DayOneWindowsClient
                 if (_starred != value)
                 {
                     _starred = value;
+                    this.IsDirty = true;
+                }
+            }
+        }
+
+        private string _timezone;
+        public string Timezone
+        {
+            get { return _timezone; }
+            set
+            {
+                if (_timezone != value)
+                {
+                    _timezone = value;
                     this.IsDirty = true;
                 }
             }
