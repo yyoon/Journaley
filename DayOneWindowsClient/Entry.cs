@@ -91,7 +91,7 @@ namespace DayOneWindowsClient
                             break;
 
                         default:
-                            throw new Exception("Unknown key name in the plist dictionary");
+                            throw new Exception("Unknown key name \"" + keyNode.InnerText + "\" in the plist dictionary");
                     }
                 }
 
