@@ -84,14 +84,9 @@ namespace DayOneWindowsClient
                             }
                             break;
 
-                        case "Time Zone":
-                            {
-                                newEntry.Timezone = valueNode.InnerText;
-                            }
-                            break;
-
                         default:
-                            throw new Exception("Unknown key name \"" + keyNode.InnerText + "\" in the plist dictionary");
+                            newEntry.UnknownKeyValues.Add(keyNode.InnerText, new KeyValuePair<string, string>(valueNode.Name, valueNode.InnerText));
+                            break;
                     }
                 }
 
@@ -149,20 +144,6 @@ namespace DayOneWindowsClient
             }
         }
 
-        private string _timezone;
-        public string Timezone
-        {
-            get { return _timezone; }
-            set
-            {
-                if (_timezone != value)
-                {
-                    _timezone = value;
-                    this.IsDirty = true;
-                }
-            }
-        }
-
         // This should never be changed
         public Guid UUID { get; private set; }
 
@@ -198,6 +179,12 @@ namespace DayOneWindowsClient
             }
         }
 
+        private Dictionary<string, KeyValuePair<string, string>> _unknownKeyValues = new Dictionary<string, KeyValuePair<string, string>>();
+        public Dictionary<string, KeyValuePair<string, string>> UnknownKeyValues
+        {
+            get { return _unknownKeyValues; }
+        }
+
         public bool IsDirty { get; private set; }
 
         public void Save(string folderPath)
@@ -230,6 +217,12 @@ namespace DayOneWindowsClient
             AppendKeyValue(doc, dict, "Entry Text", "string", this.EntryText);
             AppendKeyValue(doc, dict, "Starred", this.Starred.ToString().ToLower(), null);
             AppendKeyValue(doc, dict, "UUID", "string", this.UUIDString);
+
+            // Handle unknown key values. (just keep them.)
+            foreach (var kvp in this.UnknownKeyValues)
+            {
+                AppendKeyValue(doc, dict, kvp.Key, kvp.Value.Key, kvp.Value.Value);
+            }
 
             // Write to the stringbuilder first, and then write it to the file.
             StringBuilder builder = new StringBuilder();
