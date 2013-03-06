@@ -527,7 +527,7 @@ namespace DayOneWindowsClient
             DirectoryInfo dinfo = new DirectoryInfo(path);
             FileInfo[] files = dinfo.GetFiles("*.doentry");
 
-            this.Entries = files.Select(x => Entry.LoadFromFile(x.FullName)).ToList();
+            this.Entries = files.Select(x => Entry.LoadFromFile(x.FullName)).Where(x => x != null).ToList();
         }
 
         private void buttonSettings_Click(object sender, EventArgs e)

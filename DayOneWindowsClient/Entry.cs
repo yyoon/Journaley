@@ -42,57 +42,74 @@ namespace DayOneWindowsClient
 
         public static Entry LoadFromFile(string path)
         {
-            using (StreamReader sr = new StreamReader(path, Encoding.UTF8))
+            try
             {
-                Entry newEntry = new Entry();
-
-                XmlDocument doc = new XmlDocument();
-                doc.Load(sr);
-
-                XmlNode dictNode = doc.SelectSingleNode("//dict");
-                Debug.Assert(dictNode.ChildNodes.Count % 2 == 0);
-                for (int i = 0; i < dictNode.ChildNodes.Count; i += 2)
+                using (StreamReader sr = new StreamReader(path, Encoding.UTF8))
                 {
-                    XmlNode keyNode = dictNode.ChildNodes[i];
-                    Debug.Assert(keyNode.Name == "key");
+                    Entry newEntry = new Entry();
 
-                    XmlNode valueNode = dictNode.ChildNodes[i + 1];
+                    string fileContent = sr.ReadToEnd().TrimStart();
 
-                    switch (keyNode.InnerText)
+                    XmlDocument doc = new XmlDocument();
+                    doc.LoadXml(fileContent);
+
+                    XmlNode dictNode = doc.SelectSingleNode("//dict");
+                    Debug.Assert(dictNode.ChildNodes.Count % 2 == 0);
+                    for (int i = 0; i < dictNode.ChildNodes.Count; i += 2)
                     {
-                        case "Creation Date":
-                            {
-                                newEntry.UTCDateTime = DateTime.Parse(valueNode.InnerText).ToUniversalTime();
-                            }
-                            break;
+                        XmlNode keyNode = dictNode.ChildNodes[i];
+                        Debug.Assert(keyNode.Name == "key");
 
-                        case "Entry Text":
-                            {
-                                newEntry.EntryText = valueNode.InnerText;
-                            }
-                            break;
+                        XmlNode valueNode = dictNode.ChildNodes[i + 1];
 
-                        case "Starred":
-                            {
-                                newEntry.Starred = valueNode.Name == "true";
-                            }
-                            break;
+                        switch (keyNode.InnerText)
+                        {
+                            case "Creation Date":
+                                {
+                                    newEntry.UTCDateTime = DateTime.Parse(valueNode.InnerText).ToUniversalTime();
+                                }
+                                break;
 
-                        case "UUID":
-                            {
-                                newEntry.UUID = new Guid(valueNode.InnerText);
-                            }
-                            break;
+                            case "Entry Text":
+                                {
+                                    newEntry.EntryText = valueNode.InnerText;
+                                }
+                                break;
 
-                        default:
-                            newEntry.UnknownKeyValues.Add(keyNode.InnerText, new KeyValuePair<string, string>(valueNode.Name, valueNode.InnerText));
-                            break;
+                            case "Starred":
+                                {
+                                    newEntry.Starred = valueNode.Name == "true";
+                                }
+                                break;
+
+                            case "UUID":
+                                {
+                                    newEntry.UUID = new Guid(valueNode.InnerText);
+                                }
+                                break;
+
+                            default:
+                                newEntry.UnknownKeyValues.Add(keyNode.InnerText, new KeyValuePair<string, string>(valueNode.Name, valueNode.InnerText));
+                                break;
+                        }
                     }
+
+                    newEntry.IsDirty = false;
+
+                    return newEntry;
                 }
+            }
+            catch (Exception e)
+            {
+                // Write to a log file.
+                StringBuilder builder = new StringBuilder();
+                builder.AppendLine("An error occurred while reading entry \"" + path + "\"");
+                builder.AppendLine(e.Message);
+                builder.AppendLine(e.StackTrace);
 
-                newEntry.IsDirty = false;
+                Logger.Log(builder.ToString());
 
-                return newEntry;
+                return null;
             }
         }
 
