@@ -72,7 +72,6 @@
     </Compile>
     <Compile Include="Controls\EntryListBox.cs">
       <SubType>Component</SubType>
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Models\IPasswordVerifier.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
