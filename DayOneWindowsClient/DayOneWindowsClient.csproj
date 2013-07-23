@@ -61,7 +61,6 @@
     </Compile>
     <Compile Include="Forms\EnablePasswordForm.cs">
       <SubType>Form</SubType>
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Forms\EnablePasswordForm.Designer.cs">
       <DependentUpon>EnablePasswordForm.cs</DependentUpon>
