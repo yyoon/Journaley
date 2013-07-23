@@ -6,7 +6,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Xml.Serialization;
 
-namespace DayOneWindowsClient
+namespace DayOneWindowsClient.Models
 {
     [Serializable]
     public class Settings : IEquatable<Settings>, IPasswordVerifier

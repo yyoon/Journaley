@@ -65,12 +65,11 @@
     <Compile Include="Forms\EnablePasswordForm.Designer.cs">
       <DependentUpon>EnablePasswordForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entry.cs" />
+    <Compile Include="Models\Entry.cs" />
     <Compile Include="Controls\EntryListBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\EntryListBox.cs" />
-    <Compile Include="IPasswordVerifier.cs" />
+    <Compile Include="Models\IPasswordVerifier.cs" />
     <Compile Include="Utilities\Logger.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -93,7 +92,7 @@
     <Compile Include="Forms\RemovePasswordForm.Designer.cs">
       <DependentUpon>RemovePasswordForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Settings.cs" />
+    <Compile Include="Models\Settings.cs" />
     <Compile Include="Forms\SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>

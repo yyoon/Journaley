@@ -7,7 +7,7 @@ using System.IO;
 using System.Diagnostics;
 using DayOneWindowsClient.Utilities;
 
-namespace DayOneWindowsClient
+namespace DayOneWindowsClient.Models
 {
     class Entry : IEquatable<Entry>
     {
