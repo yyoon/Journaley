@@ -5,8 +5,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using DayOneWindowsClient.Models;
 
-namespace DayOneWindowsClient
+namespace DayOneWindowsClient.Controls
 {
     class EntryListBox : ListBox
     {

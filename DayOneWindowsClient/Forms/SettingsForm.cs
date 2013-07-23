@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using DayOneWindowsClient.Models;
 
-namespace DayOneWindowsClient
+namespace DayOneWindowsClient.Forms
 {
     public partial class SettingsForm : Form
     {

@@ -7,23 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace DayOneWindowsClient
+namespace DayOneWindowsClient.Forms
 {
-    public partial class ChangePasswordForm : Form
+    public partial class EnablePasswordForm : Form
     {
-        public ChangePasswordForm(IPasswordVerifier passwordVerifier)
+        public EnablePasswordForm()
         {
             InitializeComponent();
-
-            this.PasswordVerifier = passwordVerifier;
-        }
-
-        public string CurrentPassword
-        {
-            get
-            {
-                return this.textCurrentPassword.Text;
-            }
         }
 
         public string NewPassword
@@ -34,20 +24,11 @@ namespace DayOneWindowsClient
             }
         }
 
-        private IPasswordVerifier PasswordVerifier { get; set; }
-
-        private void ChangePasswordForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void EnablePasswordForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.DialogResult == DialogResult.OK)
             {
-                if (!this.PasswordVerifier.VerifyPassword(this.CurrentPassword))
-                {
-                    MessageBox.Show("Current password is wrong!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.textCurrentPassword.SelectAll();
-                    this.textCurrentPassword.Focus();
-                    e.Cancel = true;
-                }
-                else if (this.textNewPassword1.Text != this.textNewPassword2.Text)
+                if (this.textNewPassword1.Text != this.textNewPassword2.Text)
                 {
                     MessageBox.Show("The two passwords are different.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.textNewPassword1.SelectAll();

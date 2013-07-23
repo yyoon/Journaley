@@ -1,6 +1,7 @@
 ﻿using DayOneWindowsClient;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using DayOneWindowsClient.Forms;
 
 namespace DayOneWindowsClient.Test
 {

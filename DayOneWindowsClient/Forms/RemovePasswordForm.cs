@@ -6,8 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using DayOneWindowsClient.Models;
 
-namespace DayOneWindowsClient
+namespace DayOneWindowsClient.Forms
 {
     public partial class RemovePasswordForm : Form
     {

@@ -6,21 +6,23 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using DayOneWindowsClient.Properties;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
 using System.Globalization;
 using MarkdownSharp;
+using DayOneWindowsClient.Utilities;
+using DayOneWindowsClient.Controls;
+using DayOneWindowsClient.Models;
 
-namespace DayOneWindowsClient
+namespace DayOneWindowsClient.Forms
 {
     public partial class MainForm : Form
     {
         public MainForm()
         {
             InitializeComponent();
-            this.Icon = Resources.MainIcon;
+            this.Icon = DayOneWindowsClient.Properties.Resources.MainIcon;
 
             this.FormLoaded = false;
         }
