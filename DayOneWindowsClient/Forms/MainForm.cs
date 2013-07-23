@@ -13,6 +13,7 @@ using System.Threading;
 using System.Globalization;
 using MarkdownSharp;
 using DayOneWindowsClient.Utilities;
+using DayOneWindowsClient.Controls;
 
 namespace DayOneWindowsClient.Forms
 {

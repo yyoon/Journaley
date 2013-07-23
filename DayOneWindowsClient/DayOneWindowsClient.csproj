@@ -66,9 +66,10 @@
       <DependentUpon>EnablePasswordForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Entry.cs" />
-    <Compile Include="EntryListBox.cs">
+    <Compile Include="Controls\EntryListBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\EntryListBox.cs" />
     <Compile Include="IPasswordVerifier.cs" />
     <Compile Include="Utilities\Logger.cs" />
     <Compile Include="Forms\MainForm.cs">

@@ -1,4 +1,5 @@
-﻿namespace DayOneWindowsClient.Forms
+﻿using DayOneWindowsClient.Controls;
+namespace DayOneWindowsClient.Forms
 {
     partial class MainForm
     {
@@ -60,10 +61,10 @@
             this.textEntryText = new System.Windows.Forms.TextBox();
             this.panelWebBrowserWrapper = new System.Windows.Forms.Panel();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
-            this.entryListBoxAll = new DayOneWindowsClient.EntryListBox();
-            this.entryListBoxStarred = new DayOneWindowsClient.EntryListBox();
-            this.entryListBoxYear = new DayOneWindowsClient.EntryListBox();
-            this.entryListBoxCalendar = new DayOneWindowsClient.EntryListBox();
+            this.entryListBoxAll = new DayOneWindowsClient.Controls.EntryListBox();
+            this.entryListBoxStarred = new DayOneWindowsClient.Controls.EntryListBox();
+            this.entryListBoxYear = new DayOneWindowsClient.Controls.EntryListBox();
+            this.entryListBoxCalendar = new DayOneWindowsClient.Controls.EntryListBox();
             label5 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
