@@ -12,6 +12,7 @@ using System.IO;
 using System.Threading;
 using System.Globalization;
 using MarkdownSharp;
+using DayOneWindowsClient.Utilities;
 
 namespace DayOneWindowsClient.Forms
 {

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace DayOneWindowsClient
+namespace DayOneWindowsClient.Utilities
 {
     class PInvoke
     {
