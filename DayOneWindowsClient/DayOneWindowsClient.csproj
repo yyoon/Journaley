@@ -55,7 +55,6 @@
   <ItemGroup>
     <Compile Include="Forms\ChangePasswordForm.cs">
       <SubType>Form</SubType>
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Forms\ChangePasswordForm.Designer.cs">
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>

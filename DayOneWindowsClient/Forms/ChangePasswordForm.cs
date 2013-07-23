@@ -1,24 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using DayOneWindowsClient.Models;
-
-namespace DayOneWindowsClient.Forms
+﻿namespace DayOneWindowsClient.Forms
 {
+    using System.Windows.Forms;
+    using DayOneWindowsClient.Models;
+
+    /// <summary>
+    /// Change Password Form implementation.
+    /// </summary>
     public partial class ChangePasswordForm : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChangePasswordForm"/> class.
+        /// </summary>
+        /// <param name="passwordVerifier">The password verifier.</param>
         public ChangePasswordForm(IPasswordVerifier passwordVerifier)
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             this.PasswordVerifier = passwordVerifier;
         }
 
+        /// <summary>
+        /// Gets the current password from the textbox.
+        /// </summary>
+        /// <value>
+        /// The current password.
+        /// </value>
         public string CurrentPassword
         {
             get
@@ -27,16 +33,33 @@ namespace DayOneWindowsClient.Forms
             }
         }
 
+        /// <summary>
+        /// Gets the new password from the textbox.
+        /// </summary>
+        /// <value>
+        /// The new password.
+        /// </value>
         public string NewPassword
         {
             get
             {
-                return this.textNewPassword1.Text;
+                return this.textNewPassword.Text;
             }
         }
 
+        /// <summary>
+        /// Gets or sets the password verifier.
+        /// </summary>
+        /// <value>
+        /// The password verifier.
+        /// </value>
         private IPasswordVerifier PasswordVerifier { get; set; }
 
+        /// <summary>
+        /// Handles the FormClosing event of the ChangePasswordForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
         private void ChangePasswordForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.DialogResult == DialogResult.OK)
@@ -48,18 +71,18 @@ namespace DayOneWindowsClient.Forms
                     this.textCurrentPassword.Focus();
                     e.Cancel = true;
                 }
-                else if (this.textNewPassword1.Text != this.textNewPassword2.Text)
+                else if (this.textNewPassword.Text != this.textNewPassword2.Text)
                 {
                     MessageBox.Show("The two passwords are different.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.textNewPassword1.SelectAll();
-                    this.textNewPassword1.Focus();
+                    this.textNewPassword.SelectAll();
+                    this.textNewPassword.Focus();
                     e.Cancel = true;
                 }
-                else if (string.IsNullOrEmpty(this.textNewPassword1.Text))
+                else if (string.IsNullOrEmpty(this.textNewPassword.Text))
                 {
                     MessageBox.Show("Please input a password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.textNewPassword1.SelectAll();
-                    this.textNewPassword1.Focus();
+                    this.textNewPassword.SelectAll();
+                    this.textNewPassword.Focus();
                     e.Cancel = true;
                 }
             }
