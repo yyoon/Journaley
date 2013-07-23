@@ -13,7 +13,7 @@ using System.Threading;
 using System.Globalization;
 using MarkdownSharp;
 
-namespace DayOneWindowsClient
+namespace DayOneWindowsClient.Forms
 {
     public partial class MainForm : Form
     {

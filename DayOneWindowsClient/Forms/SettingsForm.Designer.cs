@@ -1,4 +1,4 @@
-﻿namespace DayOneWindowsClient
+﻿namespace DayOneWindowsClient.Forms
 {
     partial class SettingsForm
     {
