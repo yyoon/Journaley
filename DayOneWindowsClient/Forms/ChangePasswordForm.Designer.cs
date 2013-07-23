@@ -34,7 +34,7 @@
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOK = new System.Windows.Forms.Button();
             this.textNewPassword2 = new System.Windows.Forms.TextBox();
-            this.textNewPassword = new System.Windows.Forms.TextBox();
+            this.textNewPassword1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -102,14 +102,14 @@
             // 
             // textNewPassword1
             // 
-            this.textNewPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.textNewPassword1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.textNewPassword.CausesValidation = false;
-            this.textNewPassword.Location = new System.Drawing.Point(12, 64);
-            this.textNewPassword.Name = "textNewPassword1";
-            this.textNewPassword.Size = new System.Drawing.Size(170, 20);
-            this.textNewPassword.TabIndex = 3;
-            this.textNewPassword.UseSystemPasswordChar = true;
+            this.textNewPassword1.CausesValidation = false;
+            this.textNewPassword1.Location = new System.Drawing.Point(12, 64);
+            this.textNewPassword1.Name = "textNewPassword1";
+            this.textNewPassword1.Size = new System.Drawing.Size(170, 20);
+            this.textNewPassword1.TabIndex = 3;
+            this.textNewPassword1.UseSystemPasswordChar = true;
             // 
             // ChangePasswordForm
             // 
@@ -120,7 +120,7 @@
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.textNewPassword2);
-            this.Controls.Add(this.textNewPassword);
+            this.Controls.Add(this.textNewPassword1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textCurrentPassword);
             this.Controls.Add(this.label1);
@@ -146,6 +146,6 @@
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.TextBox textNewPassword2;
-        private System.Windows.Forms.TextBox textNewPassword;
+        private System.Windows.Forms.TextBox textNewPassword1;
     }
 }

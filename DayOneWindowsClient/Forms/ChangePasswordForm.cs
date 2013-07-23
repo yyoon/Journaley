@@ -43,7 +43,7 @@
         {
             get
             {
-                return this.textNewPassword.Text;
+                return this.textNewPassword1.Text;
             }
         }
 
@@ -71,18 +71,18 @@
                     this.textCurrentPassword.Focus();
                     e.Cancel = true;
                 }
-                else if (this.textNewPassword.Text != this.textNewPassword2.Text)
+                else if (this.textNewPassword1.Text != this.textNewPassword2.Text)
                 {
                     MessageBox.Show("The two passwords are different.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.textNewPassword.SelectAll();
-                    this.textNewPassword.Focus();
+                    this.textNewPassword1.SelectAll();
+                    this.textNewPassword1.Focus();
                     e.Cancel = true;
                 }
-                else if (string.IsNullOrEmpty(this.textNewPassword.Text))
+                else if (string.IsNullOrEmpty(this.textNewPassword1.Text))
                 {
                     MessageBox.Show("Please input a password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.textNewPassword.SelectAll();
-                    this.textNewPassword.Focus();
+                    this.textNewPassword1.SelectAll();
+                    this.textNewPassword1.Focus();
                     e.Cancel = true;
                 }
             }
