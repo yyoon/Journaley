@@ -65,9 +65,7 @@
     <Compile Include="Forms\EnablePasswordForm.Designer.cs">
       <DependentUpon>EnablePasswordForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entry.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="Models\Entry.cs" />
     <Compile Include="Controls\EntryListBox.cs">
       <SubType>Component</SubType>
     </Compile>
