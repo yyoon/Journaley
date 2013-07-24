@@ -84,9 +84,7 @@
       <DependentUpon>PasswordInputForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\PInvoke.cs" />
-    <Compile Include="Program.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
