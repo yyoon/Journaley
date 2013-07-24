@@ -85,9 +85,7 @@
     </Compile>
     <Compile Include="Utilities\PInvoke.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\RemovePasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
