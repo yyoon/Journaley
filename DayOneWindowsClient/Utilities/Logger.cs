@@ -1,21 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-
-namespace DayOneWindowsClient.Utilities
+﻿namespace DayOneWindowsClient.Utilities
 {
-    class Logger
-    {
-        private static readonly string LOG_FILE = "error.log";
+    using System;
+    using System.IO;
 
+    /// <summary>
+    /// A utility class used for error logging.
+    /// </summary>
+    internal class Logger
+    {
+        /// <summary>
+        /// The log file name.
+        /// </summary>
+        private static readonly string LogFile = "error.log";
+
+        /// <summary>
+        /// Logs the specified log message.
+        /// </summary>
+        /// <param name="logMessage">The log message.</param>
         public static void Log(string logMessage)
         {
-            using (StreamWriter w = File.AppendText(LOG_FILE))
+            using (StreamWriter w = File.AppendText(LogFile))
             {
                 w.Write("\r\nLog Entry : ");
-                w.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(),
+                w.WriteLine(
+                    "{0} {1}",
+                    DateTime.Now.ToLongTimeString(),
                     DateTime.Now.ToLongDateString());
                 w.WriteLine("  :");
                 w.WriteLine("  :{0}", logMessage);

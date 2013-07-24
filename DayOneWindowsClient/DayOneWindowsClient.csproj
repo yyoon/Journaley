@@ -70,9 +70,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Models\IPasswordVerifier.cs" />
-    <Compile Include="Utilities\Logger.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="Utilities\Logger.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
