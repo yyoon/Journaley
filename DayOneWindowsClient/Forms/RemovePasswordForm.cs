@@ -1,24 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using DayOneWindowsClient.Models;
-
-namespace DayOneWindowsClient.Forms
+﻿namespace DayOneWindowsClient.Forms
 {
+    using System.Windows.Forms;
+    using DayOneWindowsClient.Models;
+
+    /// <summary>
+    /// A form used when the user wants to remove existing password.
+    /// </summary>
     public partial class RemovePasswordForm : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RemovePasswordForm"/> class.
+        /// </summary>
+        /// <param name="passwordVerifier">The password verifier.</param>
         public RemovePasswordForm(IPasswordVerifier passwordVerifier)
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             this.PasswordVerifier = passwordVerifier;
         }
 
+        /// <summary>
+        /// Gets the current password from the textbox.
+        /// </summary>
+        /// <value>
+        /// The current password.
+        /// </value>
         public string CurrentPassword
         {
             get
@@ -27,8 +33,19 @@ namespace DayOneWindowsClient.Forms
             }
         }
 
-        private IPasswordVerifier PasswordVerifier;
+        /// <summary>
+        /// Gets or sets the password verifier.
+        /// </summary>
+        /// <value>
+        /// The password verifier.
+        /// </value>
+        private IPasswordVerifier PasswordVerifier { get; set; }
 
+        /// <summary>
+        /// Handles the FormClosing event of the RemovePasswordForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
         private void RemovePasswordForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)

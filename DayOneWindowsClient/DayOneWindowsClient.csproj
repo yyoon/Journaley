@@ -100,7 +100,6 @@
     </Compile>
     <Compile Include="Forms\RemovePasswordForm.cs">
       <SubType>Form</SubType>
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Forms\RemovePasswordForm.Designer.cs">
       <DependentUpon>RemovePasswordForm.cs</DependentUpon>
