@@ -1,15 +1,18 @@
-﻿using System.Runtime.InteropServices;
-
-namespace DayOneWindowsClient.Utilities
+﻿namespace DayOneWindowsClient.Utilities
 {
-    class PInvoke
+    using System.Runtime.InteropServices;
+
+    /// <summary>
+    /// A utility class for declaring WIN32 API functions
+    /// </summary>
+    internal class PInvoke
     {
         [DllImport("urlmon.dll")]
         [PreserveSig]
         [return: MarshalAs(UnmanagedType.Error)]
         public static extern int CoInternetSetFeatureEnabled(
-        int FeatureEntry,
-        [MarshalAs(UnmanagedType.U4)] int dwFlags,
-        bool fEnable);
+            int featureEntry,
+            [MarshalAs(UnmanagedType.U4)] int flags,
+            bool enable);
     }
 }

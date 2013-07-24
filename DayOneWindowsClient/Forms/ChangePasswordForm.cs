@@ -1,24 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using DayOneWindowsClient.Models;
-
-namespace DayOneWindowsClient.Forms
+﻿namespace DayOneWindowsClient.Forms
 {
+    using System.Windows.Forms;
+    using DayOneWindowsClient.Models;
+
+    /// <summary>
+    /// Change Password Form implementation.
+    /// </summary>
     public partial class ChangePasswordForm : Form
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ChangePasswordForm"/> class.
+        /// </summary>
+        /// <param name="passwordVerifier">The password verifier.</param>
         public ChangePasswordForm(IPasswordVerifier passwordVerifier)
         {
-            InitializeComponent();
+            this.InitializeComponent();
 
             this.PasswordVerifier = passwordVerifier;
         }
 
+        /// <summary>
+        /// Gets the current password from the textbox.
+        /// </summary>
+        /// <value>
+        /// The current password.
+        /// </value>
         public string CurrentPassword
         {
             get
@@ -27,6 +33,12 @@ namespace DayOneWindowsClient.Forms
             }
         }
 
+        /// <summary>
+        /// Gets the new password from the textbox.
+        /// </summary>
+        /// <value>
+        /// The new password.
+        /// </value>
         public string NewPassword
         {
             get
@@ -35,8 +47,19 @@ namespace DayOneWindowsClient.Forms
             }
         }
 
+        /// <summary>
+        /// Gets or sets the password verifier.
+        /// </summary>
+        /// <value>
+        /// The password verifier.
+        /// </value>
         private IPasswordVerifier PasswordVerifier { get; set; }
 
+        /// <summary>
+        /// Handles the FormClosing event of the ChangePasswordForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosingEventArgs"/> instance containing the event data.</param>
         private void ChangePasswordForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.DialogResult == DialogResult.OK)

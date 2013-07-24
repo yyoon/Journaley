@@ -190,7 +190,7 @@ namespace DayOneWindowsClient.Forms
             this.listBoxYear.Name = "listBoxYear";
             this.listBoxYear.Size = new System.Drawing.Size(245, 82);
             this.listBoxYear.TabIndex = 0;
-            this.listBoxYear.SelectedIndexChanged += new System.EventHandler(this.listBoxYear_SelectedIndexChanged);
+            this.listBoxYear.SelectedIndexChanged += new System.EventHandler(this.ListBoxYear_SelectedIndexChanged);
             // 
             // tabPageCalendar
             // 
@@ -210,7 +210,7 @@ namespace DayOneWindowsClient.Forms
             this.monthCalendar.MaxSelectionCount = 1;
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.TabIndex = 0;
-            this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar_DateChanged);
+            this.monthCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.MonthCalendar_DateChanged);
             // 
             // dateTimePicker
             // 
@@ -224,7 +224,7 @@ namespace DayOneWindowsClient.Forms
             this.dateTimePicker.ShowUpDown = true;
             this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker.TabIndex = 4;
-            this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
+            this.dateTimePicker.ValueChanged += new System.EventHandler(this.DateTimePicker_ValueChanged);
             // 
             // tableLayoutStats
             // 
@@ -298,7 +298,7 @@ namespace DayOneWindowsClient.Forms
             this.buttonAddEntry.TabIndex = 0;
             this.toolTip.SetToolTip(this.buttonAddEntry, "Add a new entry");
             this.buttonAddEntry.UseVisualStyleBackColor = true;
-            this.buttonAddEntry.Click += new System.EventHandler(this.buttonAddEntry_Click);
+            this.buttonAddEntry.Click += new System.EventHandler(this.ButtonAddEntry_Click);
             // 
             // buttonDelete
             // 
@@ -310,7 +310,7 @@ namespace DayOneWindowsClient.Forms
             this.buttonDelete.TabIndex = 8;
             this.toolTip.SetToolTip(this.buttonDelete, "Delete");
             this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            this.buttonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
             // 
             // buttonShare
             // 
@@ -322,7 +322,7 @@ namespace DayOneWindowsClient.Forms
             this.buttonShare.TabIndex = 7;
             this.toolTip.SetToolTip(this.buttonShare, "Share");
             this.buttonShare.UseVisualStyleBackColor = true;
-            this.buttonShare.Click += new System.EventHandler(this.buttonShare_Click);
+            this.buttonShare.Click += new System.EventHandler(this.ButtonShare_Click);
             // 
             // buttonEditSave
             // 
@@ -334,7 +334,7 @@ namespace DayOneWindowsClient.Forms
             this.buttonEditSave.TabIndex = 5;
             this.toolTip.SetToolTip(this.buttonEditSave, "Edit");
             this.buttonEditSave.UseVisualStyleBackColor = true;
-            this.buttonEditSave.Click += new System.EventHandler(this.buttonEditSave_Click);
+            this.buttonEditSave.Click += new System.EventHandler(this.ButtonEditSave_Click);
             // 
             // buttonStar
             // 
@@ -346,7 +346,7 @@ namespace DayOneWindowsClient.Forms
             this.buttonStar.TabIndex = 6;
             this.toolTip.SetToolTip(this.buttonStar, "Star");
             this.buttonStar.UseVisualStyleBackColor = true;
-            this.buttonStar.Click += new System.EventHandler(this.buttonStar_Click);
+            this.buttonStar.Click += new System.EventHandler(this.ButtonStar_Click);
             // 
             // buttonSettings
             // 
@@ -357,7 +357,7 @@ namespace DayOneWindowsClient.Forms
             this.buttonSettings.TabIndex = 3;
             this.toolTip.SetToolTip(this.buttonSettings, "Settings");
             this.buttonSettings.UseVisualStyleBackColor = true;
-            this.buttonSettings.Click += new System.EventHandler(this.buttonSettings_Click);
+            this.buttonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
             // 
             // contextMenuStripShare
             // 
@@ -372,14 +372,14 @@ namespace DayOneWindowsClient.Forms
             this.copyToClipboardToolStripMenuItem.Name = "copyToClipboardToolStripMenuItem";
             this.copyToClipboardToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.copyToClipboardToolStripMenuItem.Text = "Copy to Clipboard";
-            this.copyToClipboardToolStripMenuItem.Click += new System.EventHandler(this.copyToClipboardToolStripMenuItem_Click);
+            this.copyToClipboardToolStripMenuItem.Click += new System.EventHandler(this.CopyToClipboardToolStripMenuItem_Click);
             // 
             // emailThisEntryToolStripMenuItem
             // 
             this.emailThisEntryToolStripMenuItem.Name = "emailThisEntryToolStripMenuItem";
             this.emailThisEntryToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.emailThisEntryToolStripMenuItem.Text = "Email this entry";
-            this.emailThisEntryToolStripMenuItem.Click += new System.EventHandler(this.emailThisEntryToolStripMenuItem_Click);
+            this.emailThisEntryToolStripMenuItem.Click += new System.EventHandler(this.EmailThisEntryToolStripMenuItem_Click);
             // 
             // textEntryText
             // 
@@ -423,7 +423,7 @@ namespace DayOneWindowsClient.Forms
             this.entryListBoxAll.ScrollAlwaysVisible = true;
             this.entryListBoxAll.Size = new System.Drawing.Size(245, 435);
             this.entryListBoxAll.TabIndex = 0;
-            this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
+            this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
             // entryListBoxStarred
             // 
@@ -435,7 +435,7 @@ namespace DayOneWindowsClient.Forms
             this.entryListBoxStarred.ScrollAlwaysVisible = true;
             this.entryListBoxStarred.Size = new System.Drawing.Size(245, 435);
             this.entryListBoxStarred.TabIndex = 0;
-            this.entryListBoxStarred.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
+            this.entryListBoxStarred.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
             // entryListBoxYear
             // 
@@ -447,7 +447,7 @@ namespace DayOneWindowsClient.Forms
             this.entryListBoxYear.ScrollAlwaysVisible = true;
             this.entryListBoxYear.Size = new System.Drawing.Size(245, 350);
             this.entryListBoxYear.TabIndex = 0;
-            this.entryListBoxYear.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
+            this.entryListBoxYear.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
             // entryListBoxCalendar
             // 
@@ -459,7 +459,7 @@ namespace DayOneWindowsClient.Forms
             this.entryListBoxCalendar.ScrollAlwaysVisible = true;
             this.entryListBoxCalendar.Size = new System.Drawing.Size(245, 252);
             this.entryListBoxCalendar.TabIndex = 1;
-            this.entryListBoxCalendar.SelectedIndexChanged += new System.EventHandler(this.entryListBox_SelectedIndexChanged);
+            this.entryListBoxCalendar.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
             // MainForm
             // 

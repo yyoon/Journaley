@@ -72,7 +72,7 @@
             this.buttonEnablePassword.TabIndex = 2;
             this.buttonEnablePassword.Text = "Enable";
             this.buttonEnablePassword.UseVisualStyleBackColor = true;
-            this.buttonEnablePassword.Click += new System.EventHandler(this.buttonEnablePassword_Click);
+            this.buttonEnablePassword.Click += new System.EventHandler(this.ButtonEnablePassword_Click);
             // 
             // buttonRemovePassword
             // 
@@ -83,7 +83,7 @@
             this.buttonRemovePassword.TabIndex = 1;
             this.buttonRemovePassword.Text = "Remove";
             this.buttonRemovePassword.UseVisualStyleBackColor = true;
-            this.buttonRemovePassword.Click += new System.EventHandler(this.buttonRemovePassword_Click);
+            this.buttonRemovePassword.Click += new System.EventHandler(this.ButtonRemovePassword_Click);
             // 
             // buttonChangePassword
             // 
@@ -94,7 +94,7 @@
             this.buttonChangePassword.TabIndex = 0;
             this.buttonChangePassword.Text = "Change";
             this.buttonChangePassword.UseVisualStyleBackColor = true;
-            this.buttonChangePassword.Click += new System.EventHandler(this.buttonChangePassword_Click);
+            this.buttonChangePassword.Click += new System.EventHandler(this.ButtonChangePassword_Click);
             // 
             // groupFolder
             // 
@@ -124,7 +124,7 @@
             this.buttonSelectFolder.TabIndex = 0;
             this.buttonSelectFolder.Text = "...";
             this.buttonSelectFolder.UseVisualStyleBackColor = true;
-            this.buttonSelectFolder.Click += new System.EventHandler(this.buttonSelectFolder_Click);
+            this.buttonSelectFolder.Click += new System.EventHandler(this.ButtonSelectFolder_Click);
             // 
             // buttonOK
             // 
