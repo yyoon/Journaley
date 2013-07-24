@@ -100,9 +100,7 @@
     <Compile Include="Forms\RemovePasswordForm.Designer.cs">
       <DependentUpon>RemovePasswordForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Settings.cs">
-      <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
-    </Compile>
+    <Compile Include="Models\Settings.cs" />
     <Compile Include="Forms\SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
