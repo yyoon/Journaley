@@ -479,7 +479,7 @@ namespace Journaley.Forms
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Day One Windows Client";
+            this.Text = "Journaley";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tabLeftPanel.ResumeLayout(false);
             this.tabPageAllEntries.ResumeLayout(false);

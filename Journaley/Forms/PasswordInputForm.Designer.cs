@@ -67,7 +67,7 @@
             this.MinimizeBox = false;
             this.Name = "PasswordInputForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Day One Windows Client";
+            this.Text = "Journaley";
             this.ResumeLayout(false);
             this.PerformLayout();
 

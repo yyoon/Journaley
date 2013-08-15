@@ -46,7 +46,7 @@
                         }
                         else
                         {
-                            MessageBox.Show(this.ParentForm, "Wrong Password!", "Day One Windows Client", MessageBoxButtons.OK);
+                            MessageBox.Show(this.ParentForm, "Wrong Password!", "Journaley", MessageBoxButtons.OK);
                             this.textBoxPassword.SelectAll();
                             this.textBoxPassword.Focus();
                         }
