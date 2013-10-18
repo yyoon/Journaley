@@ -10,3 +10,5 @@ StyleCop.Cache
 **/TestResults/*
 **/Debug/*
 **/Release/*
+packages/*
+!packages/repositories.config
