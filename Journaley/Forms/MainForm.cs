@@ -155,7 +155,7 @@
                 if (this.markdown == null)
                 {
                     this.markdown = new Markdown();
-                    this.markdown.AutoNewLines = true;
+                    ((MarkdownSharp.MarkdownOptions)this.markdown.Options).AutoNewLines = true;
                 }
 
                 return this.markdown;
