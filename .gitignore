@@ -1,0 +1,12 @@
+# syntax: glob
+*.suo
+*.user
+MarkdownSharp.dll
+StyleCop.Cache
+
+# syntax: regexp
+**/bin/*
+**/obj/*
+**/TestResults/*
+**/Debug/*
+**/Release/*
