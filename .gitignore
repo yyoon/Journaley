@@ -1,7 +1,6 @@
 # syntax: glob
 *.suo
 *.user
-MarkdownSharp.dll
 StyleCop.Cache
 
 # syntax: regexp
