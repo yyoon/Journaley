@@ -67,7 +67,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Journaley\Journaley.csproj">
       <Project>{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}</Project>
-      <Name>DayOneWindowsClient</Name>
+      <Name>Journaley</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
