@@ -31,7 +31,7 @@
         /// <summary>
         /// The unknown key values
         /// </summary>
-        private Dictionary<string, KeyValuePair<string, string>> unknownKeyValues = new Dictionary<string, KeyValuePair<string, string>>();
+        private Dictionary<XmlNode, XmlNode> unknownKeyValues = new Dictionary<XmlNode, XmlNode>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Entry"/> class.
@@ -235,7 +235,7 @@
         /// <value>
         /// The unknown key values.
         /// </value>
-        public Dictionary<string, KeyValuePair<string, string>> UnknownKeyValues
+        public Dictionary<XmlNode, XmlNode> UnknownKeyValues
         {
             get
             {
@@ -305,7 +305,7 @@
                                 }
 
                             default:
-                                newEntry.UnknownKeyValues.Add(keyNode.InnerText, new KeyValuePair<string, string>(valueNode.Name, valueNode.InnerText));
+                                newEntry.UnknownKeyValues.Add(keyNode, valueNode);
                                 break;
                         }
                     }
@@ -370,7 +370,7 @@
             // Handle unknown key values. (just keep them.)
             foreach (var kvp in this.UnknownKeyValues)
             {
-                this.AppendKeyValue(doc, dict, kvp.Key, kvp.Value.Key, kvp.Value.Value);
+                this.AppendKeyValue(doc, dict, kvp.Key, kvp.Value);
             }
 
             // Write to the stringbuilder first, and then write it to the file.
@@ -383,6 +383,10 @@
                 // Some tricks to make the result exactly the same as the original one.
                 stringWriter.WriteLine();
                 builder.Replace("utf-8", "UTF-8");
+                builder.Replace("            <", "\t\t\t\t\t<");
+                builder.Replace("          <", "\t\t\t\t<");
+                builder.Replace("        <", "\t\t\t<");
+                builder.Replace("      <", "\t\t<");
                 builder.Replace("    <", "\t<");
                 builder.Replace("  <", "<");
 
@@ -520,6 +524,15 @@
             {
                 value.InnerText = valueString;
             }
+        }
+
+        private void AppendKeyValue(XmlDocument doc, XmlElement dict, XmlNode keyNodeFromOtherDoc, XmlNode valueNodeFromOtherDoc)
+        {
+            var key = doc.ImportNode(keyNodeFromOtherDoc, true);
+            var value = doc.ImportNode(valueNodeFromOtherDoc, true);
+
+            dict.AppendChild(key);
+            dict.AppendChild(value);
         }
     }
 }
