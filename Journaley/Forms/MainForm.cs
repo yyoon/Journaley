@@ -392,6 +392,8 @@
         {
             // Update the bold dates
             this.monthCalendar.BoldedDates = this.Entries.Select(x => x.LocalTime.Date).Distinct().ToArray();
+
+            this.UpdateEntryList(this.Entries.Where(x => x.LocalTime.ToShortDateString() == this.monthCalendar.SelectionStart.ToShortDateString()), this.entryListBoxCalendar);
         }
 
         /// <summary>
