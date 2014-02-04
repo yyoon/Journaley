@@ -35,6 +35,11 @@
         private Markdown markdown;
 
         /// <summary>
+        /// Internal field to indicate whether to suppress the entry update process.
+        /// </summary>
+        private bool suppressEntryUpdate = false;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
         public MainForm()
@@ -835,6 +840,11 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void EntryListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.suppressEntryUpdate)
+            {
+                return;
+            }
+
             // Highlight the entries that represents the currently selected journal entry
             // in all the entry list boxes.
             EntryListBox entryListBox = sender as EntryListBox;
@@ -849,7 +859,11 @@
                 return;
             }
 
+            this.suppressEntryUpdate = true;
+
             this.SelectedEntry = entryListBox.Items[entryListBox.SelectedIndex] as Entry;
+
+            this.suppressEntryUpdate = false;
         }
 
         /// <summary>
