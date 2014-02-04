@@ -113,6 +113,7 @@
                 }
 
                 this.UpdateStar();
+                this.UpdateTag();
                 this.UpdateUI();
 
                 this.HighlightSelectedEntry();
@@ -232,6 +233,7 @@
             this.dateTimePicker.CustomFormat = noEntry ? " " : "MMM d, yyyy hh:mm tt";
             this.buttonEditSave.Enabled = !noEntry;
             this.buttonStar.Enabled = !noEntry;
+            this.buttonTag.Enabled = !noEntry;
             this.buttonShare.Enabled = !noEntry;
             this.buttonDelete.Enabled = !noEntry;
             this.textEntryText.Enabled = !noEntry;
@@ -258,6 +260,15 @@
         {
             this.buttonStar.Image = (this.SelectedEntry != null && this.SelectedEntry.Starred) ?
                 Properties.Resources.StarYellow_32x32 : Properties.Resources.StarGray_32x32;
+        }
+
+        /// <summary>
+        /// Updates the tag button's look.
+        /// </summary>
+        private void UpdateTag()
+        {
+            this.buttonTag.Image = (this.SelectedEntry != null && this.SelectedEntry.Tags.Any()) ?
+                Properties.Resources.TagGreen_32x32 : Properties.Resources.TagWhite_32x32;
         }
 
         /// <summary>

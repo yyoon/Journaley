@@ -64,6 +64,7 @@ namespace Journaley.Forms
             this.textEntryText = new System.Windows.Forms.TextBox();
             this.panelWebBrowserWrapper = new System.Windows.Forms.Panel();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.buttonTag = new System.Windows.Forms.Button();
             this.entryListBoxAll = new Journaley.Controls.EntryListBox();
             this.entryListBoxStarred = new Journaley.Controls.EntryListBox();
             this.entryListBoxTags = new Journaley.Controls.EntryListBox();
@@ -258,7 +259,7 @@ namespace Journaley.Forms
             this.dateTimePicker.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dateTimePicker.Enabled = false;
             this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker.Location = new System.Drawing.Point(522, 32);
+            this.dateTimePicker.Location = new System.Drawing.Point(476, 32);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.ShowUpDown = true;
             this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
@@ -346,7 +347,7 @@ namespace Journaley.Forms
             this.buttonDelete.Location = new System.Drawing.Point(866, 12);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(40, 40);
-            this.buttonDelete.TabIndex = 8;
+            this.buttonDelete.TabIndex = 9;
             this.toolTip.SetToolTip(this.buttonDelete, "Delete");
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
@@ -358,7 +359,7 @@ namespace Journaley.Forms
             this.buttonShare.Location = new System.Drawing.Point(820, 12);
             this.buttonShare.Name = "buttonShare";
             this.buttonShare.Size = new System.Drawing.Size(40, 40);
-            this.buttonShare.TabIndex = 7;
+            this.buttonShare.TabIndex = 8;
             this.toolTip.SetToolTip(this.buttonShare, "Share");
             this.buttonShare.UseVisualStyleBackColor = true;
             this.buttonShare.Click += new System.EventHandler(this.ButtonShare_Click);
@@ -367,7 +368,7 @@ namespace Journaley.Forms
             // 
             this.buttonEditSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonEditSave.Image = global::Journaley.Properties.Resources.Edit_32x32;
-            this.buttonEditSave.Location = new System.Drawing.Point(728, 12);
+            this.buttonEditSave.Location = new System.Drawing.Point(682, 12);
             this.buttonEditSave.Name = "buttonEditSave";
             this.buttonEditSave.Size = new System.Drawing.Size(40, 40);
             this.buttonEditSave.TabIndex = 5;
@@ -379,7 +380,7 @@ namespace Journaley.Forms
             // 
             this.buttonStar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonStar.Image = global::Journaley.Properties.Resources.StarGray_32x32;
-            this.buttonStar.Location = new System.Drawing.Point(774, 12);
+            this.buttonStar.Location = new System.Drawing.Point(728, 12);
             this.buttonStar.Name = "buttonStar";
             this.buttonStar.Size = new System.Drawing.Size(40, 40);
             this.buttonStar.TabIndex = 6;
@@ -450,7 +451,18 @@ namespace Journaley.Forms
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.Size = new System.Drawing.Size(627, 501);
-            this.webBrowser.TabIndex = 11;
+            this.webBrowser.TabIndex = 0;
+            // 
+            // buttonTag
+            // 
+            this.buttonTag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonTag.Image = global::Journaley.Properties.Resources.TagWhite_32x32;
+            this.buttonTag.Location = new System.Drawing.Point(774, 12);
+            this.buttonTag.Name = "buttonTag";
+            this.buttonTag.Size = new System.Drawing.Size(40, 40);
+            this.buttonTag.TabIndex = 7;
+            this.toolTip.SetToolTip(this.buttonTag, "Tag");
+            this.buttonTag.UseVisualStyleBackColor = true;
             // 
             // entryListBoxAll
             // 
@@ -519,6 +531,7 @@ namespace Journaley.Forms
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(918, 573);
+            this.Controls.Add(this.buttonTag);
             this.Controls.Add(this.panelWebBrowserWrapper);
             this.Controls.Add(this.textEntryText);
             this.Controls.Add(this.buttonSettings);
@@ -589,6 +602,7 @@ namespace Journaley.Forms
         private System.Windows.Forms.Panel panelTagsEntryListWrapper;
         private EntryListBox entryListBoxTags;
         private System.Windows.Forms.ListBox listBoxTags;
+        private System.Windows.Forms.Button buttonTag;
     }
 }
 
