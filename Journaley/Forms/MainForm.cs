@@ -328,6 +328,7 @@
         {
             this.UpdateEntryListBoxAll();
             this.UpdateEntryListBoxStarred();
+            this.UpdateEntryListBoxTags();
             this.UpdateEntryListBoxYear();
             this.UpdateEntryListBoxCalendar();
         }
@@ -346,6 +347,34 @@
         private void UpdateEntryListBoxStarred()
         {
             this.UpdateEntryList(this.Entries.Where(x => x.Starred), this.entryListBoxStarred);
+        }
+
+        private void UpdateEntryListBoxTags()
+        {
+            // Clear everything.
+            this.listBoxTags.Items.Clear();
+            this.listBoxTags.SelectedIndex = -1;
+
+            var tags = this.Entries
+                .SelectMany(x => x.Tags)
+                .Distinct();
+
+            var tagsAndCounts = tags
+                .Select(x => new TagCountEntry(x, this.Entries.Count(e => e.Tags.Contains(x))))
+                .OrderByDescending(x => x.Count);
+
+            // If there is any entry,
+            if (tagsAndCounts.Any())
+            {
+                // Add to the top list box first.
+                this.listBoxTags.Items.AddRange(tagsAndCounts.ToArray());
+
+                // Select the first item)
+                this.listBoxTags.SelectedIndex = 0;
+            }
+
+            // Resize the upper list box
+            this.listBoxTags.Height = this.listBoxTags.PreferredHeight;
         }
 
         /// <summary>
@@ -644,6 +673,34 @@
             }
         }
 
+        private void ListBoxTags_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Debug.Assert(sender == this.listBoxTags, "sender must be this.listBoxTags");
+
+            switch (this.listBoxTags.SelectedIndex)
+            {
+                case -1:
+                    this.entryListBoxTags.Items.Clear();
+                    break;
+
+                default:
+                    {
+                        TagCountEntry entry = this.listBoxTags.SelectedItem as TagCountEntry;
+                        if (entry != null)
+                        {
+                            this.UpdateEntryList(this.Entries.Where(x => x.Tags.Contains(entry.Tag)), this.entryListBoxTags);
+                        }
+                        else
+                        {
+                            // This should not happen.
+                            Debug.Assert(false, "Unexpected control flow.");
+                        }
+
+                        break;
+                    }
+            }
+        }
+
         /// <summary>
         /// Handles the DateChanged event of the monthCalendar control.
         /// </summary>
@@ -869,6 +926,50 @@
             public override string ToString()
             {
                 return string.Format("Year of {0} ({1} entries)", this.Year, this.Count);
+            }
+        }
+
+        /// <summary>
+        /// Entry class used in the "Tags" tab.
+        /// </summary>
+        private class TagCountEntry
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="TagCountEntry"/> class.
+            /// </summary>
+            /// <param name="tag">The tag.</param>
+            /// <param name="count">The count.</param>
+            public TagCountEntry(string tag, int count)
+            {
+                this.Tag = tag;
+                this.Count = count;
+            }
+
+            /// <summary>
+            /// Gets or sets the tag.
+            /// </summary>
+            /// <value>
+            /// The tag.
+            /// </value>
+            public string Tag { get; set; }
+
+            /// <summary>
+            /// Gets or sets the count.
+            /// </summary>
+            /// <value>
+            /// The count.
+            /// </value>
+            public int Count { get; set; }
+
+            /// <summary>
+            /// Returns a <see cref="System.String" /> that represents this instance.
+            /// </summary>
+            /// <returns>
+            /// A <see cref="System.String" /> that represents this instance.
+            /// </returns>
+            public override string ToString()
+            {
+                return string.Format("{0} ({1} entries)", this.Tag, this.Count);
             }
         }
 
