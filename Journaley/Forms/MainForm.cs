@@ -939,7 +939,7 @@
             /// </returns>
             public override string ToString()
             {
-                return string.Format("Year of {0} ({1} entries)", this.Year, this.Count);
+                return string.Format("Year of {0} ({1} {2})", this.Year, this.Count, this.Count > 1 ? "entries" : "entry");
             }
         }
 
@@ -983,7 +983,7 @@
             /// </returns>
             public override string ToString()
             {
-                return string.Format("{0} ({1} entries)", this.Tag, this.Count);
+                return string.Format("{0} ({1} {2})", this.Tag, this.Count, this.Count > 1 ? "entries" : "entry");
             }
         }
 
