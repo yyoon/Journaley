@@ -35,6 +35,11 @@
         private Markdown markdown;
 
         /// <summary>
+        /// Internal field to indicate whether to suppress the entry update process.
+        /// </summary>
+        private bool suppressEntryUpdate = false;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
         public MainForm()
@@ -108,6 +113,7 @@
                 }
 
                 this.UpdateStar();
+                this.UpdateTag();
                 this.UpdateUI();
 
                 this.HighlightSelectedEntry();
@@ -227,6 +233,7 @@
             this.dateTimePicker.CustomFormat = noEntry ? " " : "MMM d, yyyy hh:mm tt";
             this.buttonEditSave.Enabled = !noEntry;
             this.buttonStar.Enabled = !noEntry;
+            this.buttonTag.Enabled = !noEntry;
             this.buttonShare.Enabled = !noEntry;
             this.buttonDelete.Enabled = !noEntry;
             this.textEntryText.Enabled = !noEntry;
@@ -253,6 +260,15 @@
         {
             this.buttonStar.Image = (this.SelectedEntry != null && this.SelectedEntry.Starred) ?
                 Properties.Resources.StarYellow_32x32 : Properties.Resources.StarGray_32x32;
+        }
+
+        /// <summary>
+        /// Updates the tag button's look.
+        /// </summary>
+        private void UpdateTag()
+        {
+            this.buttonTag.Image = (this.SelectedEntry != null && this.SelectedEntry.Tags.Any()) ?
+                Properties.Resources.TagGreen_32x32 : Properties.Resources.TagWhite_32x32;
         }
 
         /// <summary>
@@ -328,6 +344,7 @@
         {
             this.UpdateEntryListBoxAll();
             this.UpdateEntryListBoxStarred();
+            this.UpdateEntryListBoxTags();
             this.UpdateEntryListBoxYear();
             this.UpdateEntryListBoxCalendar();
         }
@@ -346,6 +363,34 @@
         private void UpdateEntryListBoxStarred()
         {
             this.UpdateEntryList(this.Entries.Where(x => x.Starred), this.entryListBoxStarred);
+        }
+
+        private void UpdateEntryListBoxTags()
+        {
+            // Clear everything.
+            this.listBoxTags.Items.Clear();
+            this.listBoxTags.SelectedIndex = -1;
+
+            var tags = this.Entries
+                .SelectMany(x => x.Tags)
+                .Distinct();
+
+            var tagsAndCounts = tags
+                .Select(x => new TagCountEntry(x, this.Entries.Count(e => e.Tags.Contains(x))))
+                .OrderByDescending(x => x.Count);
+
+            // If there is any entry,
+            if (tagsAndCounts.Any())
+            {
+                // Add to the top list box first.
+                this.listBoxTags.Items.AddRange(tagsAndCounts.ToArray());
+
+                // Select the first item)
+                this.listBoxTags.SelectedIndex = 0;
+            }
+
+            // Resize the upper list box
+            this.listBoxTags.Height = this.listBoxTags.PreferredHeight;
         }
 
         /// <summary>
@@ -644,6 +689,34 @@
             }
         }
 
+        private void ListBoxTags_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Debug.Assert(sender == this.listBoxTags, "sender must be this.listBoxTags");
+
+            switch (this.listBoxTags.SelectedIndex)
+            {
+                case -1:
+                    this.entryListBoxTags.Items.Clear();
+                    break;
+
+                default:
+                    {
+                        TagCountEntry entry = this.listBoxTags.SelectedItem as TagCountEntry;
+                        if (entry != null)
+                        {
+                            this.UpdateEntryList(this.Entries.Where(x => x.Tags.Contains(entry.Tag)), this.entryListBoxTags);
+                        }
+                        else
+                        {
+                            // This should not happen.
+                            Debug.Assert(false, "Unexpected control flow.");
+                        }
+
+                        break;
+                    }
+            }
+        }
+
         /// <summary>
         /// Handles the DateChanged event of the monthCalendar control.
         /// </summary>
@@ -715,6 +788,49 @@
             this.UpdateEntryListBoxStarred();
         }
 
+        private void ButtonTag_Click(object sender, EventArgs e)
+        {
+            TagEditForm tagEditForm = new TagEditForm();
+            tagEditForm.StartPosition = FormStartPosition.Manual;
+            tagEditForm.Location = this.PointToScreen(
+                new Point(
+                    this.buttonTag.Location.X + this.buttonTag.Width - tagEditForm.Width,
+                    this.buttonTag.Location.Y + this.buttonTag.Height));
+
+            tagEditForm.AssignedTags.AddRange(this.SelectedEntry.Tags.OrderBy(x => x));
+            tagEditForm.OtherTags.AddRange(this.Entries.SelectMany(x => x.Tags).Distinct().Where(x => !this.SelectedEntry.Tags.Contains(x)).OrderBy(x => x));
+
+            // Event handlers.
+            tagEditForm.FormClosed += new FormClosedEventHandler(TagEditForm_FormClosed);
+
+            // Show the form as modeless.
+            tagEditForm.Show(this);
+        }
+
+        private void TagEditForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            TagEditForm tagEditForm = sender as TagEditForm;
+            if (tagEditForm == null)
+            {
+                throw new ArgumentException();
+            }
+
+            if (this.SelectedEntry.Tags.OrderBy(x => x).SequenceEqual(tagEditForm.AssignedTags))
+            {
+                // Tags didn't change.
+                return;
+            }
+
+            this.SelectedEntry.ClearTags();
+            foreach (var tag in tagEditForm.AssignedTags)
+            {
+                this.SelectedEntry.AddTag(tag);
+            }
+
+            this.UpdateEntryListBoxTags();
+            this.UpdateTag();
+        }
+
         /// <summary>
         /// Handles the Click event of the buttonDelete control.
         /// </summary>
@@ -778,6 +894,11 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void EntryListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (this.suppressEntryUpdate)
+            {
+                return;
+            }
+
             // Highlight the entries that represents the currently selected journal entry
             // in all the entry list boxes.
             EntryListBox entryListBox = sender as EntryListBox;
@@ -792,7 +913,11 @@
                 return;
             }
 
+            this.suppressEntryUpdate = true;
+
             this.SelectedEntry = entryListBox.Items[entryListBox.SelectedIndex] as Entry;
+
+            this.suppressEntryUpdate = false;
         }
 
         /// <summary>
@@ -868,7 +993,51 @@
             /// </returns>
             public override string ToString()
             {
-                return string.Format("Year of {0} ({1} entries)", this.Year, this.Count);
+                return string.Format("Year of {0} ({1} {2})", this.Year, this.Count, this.Count > 1 ? "entries" : "entry");
+            }
+        }
+
+        /// <summary>
+        /// Entry class used in the "Tags" tab.
+        /// </summary>
+        private class TagCountEntry
+        {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="TagCountEntry"/> class.
+            /// </summary>
+            /// <param name="tag">The tag.</param>
+            /// <param name="count">The count.</param>
+            public TagCountEntry(string tag, int count)
+            {
+                this.Tag = tag;
+                this.Count = count;
+            }
+
+            /// <summary>
+            /// Gets or sets the tag.
+            /// </summary>
+            /// <value>
+            /// The tag.
+            /// </value>
+            public string Tag { get; set; }
+
+            /// <summary>
+            /// Gets or sets the count.
+            /// </summary>
+            /// <value>
+            /// The count.
+            /// </value>
+            public int Count { get; set; }
+
+            /// <summary>
+            /// Returns a <see cref="System.String" /> that represents this instance.
+            /// </summary>
+            /// <returns>
+            /// A <see cref="System.String" /> that represents this instance.
+            /// </returns>
+            public override string ToString()
+            {
+                return string.Format("{0} ({1} {2})", this.Tag, this.Count, this.Count > 1 ? "entries" : "entry");
             }
         }
 

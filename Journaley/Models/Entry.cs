@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using System.Xml;
     using Journaley.Utilities;
@@ -32,6 +33,11 @@
         /// The unknown key values
         /// </summary>
         private Dictionary<XmlNode, XmlNode> unknownKeyValues = new Dictionary<XmlNode, XmlNode>();
+
+        /// <summary>
+        /// The tags
+        /// </summary>
+        private List<string> tags = new List<string>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Entry"/> class.
@@ -244,6 +250,20 @@
         }
 
         /// <summary>
+        /// Gets the tags.
+        /// </summary>
+        /// <value>
+        /// The tags.
+        /// </value>
+        public IEnumerable<string> Tags
+        {
+            get
+            {
+                return this.tags.AsReadOnly();
+            }
+        }
+
+        /// <summary>
         /// Gets a value indicating whether this instance is dirty.
         /// </summary>
         /// <value>
@@ -304,6 +324,16 @@
                                     break;
                                 }
 
+                            case "Tags":
+                                {
+                                    foreach (XmlNode tagNode in valueNode.ChildNodes)
+                                    {
+                                        newEntry.AddTag(tagNode.InnerText);
+                                    }
+
+                                    break;
+                                }
+
                             default:
                                 newEntry.UnknownKeyValues.Add(keyNode, valueNode);
                                 break;
@@ -326,6 +356,64 @@
                 Logger.Log(builder.ToString());
 
                 return null;
+            }
+        }
+
+        /// <summary>
+        /// Adds the given tag.
+        /// </summary>
+        /// <param name="tag">The tag.</param>
+        /// <returns>true if the tag was successfully added, false if there was already the tag</returns>
+        public bool AddTag(string tag)
+        {
+            if (tag == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (!this.tags.Contains(tag))
+            {
+                this.tags.Add(tag);
+                this.IsDirty = true;
+
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Removes the given tag.
+        /// </summary>
+        /// <param name="tag">The tag.</param>
+        /// <returns>true if the tag was removed successfully, false if the given tag was not found.</returns>
+        public bool RemoveTag(string tag)
+        {
+            if (tag == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            if (this.tags.Contains(tag))
+            {
+                this.tags.Remove(tag);
+                this.IsDirty = true;
+
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Clears the tags list.
+        /// </summary>
+        public void ClearTags()
+        {
+            if (this.tags.Any())
+            {
+                this.tags.Clear();
+                this.IsDirty = true;
             }
         }
 
@@ -366,6 +454,12 @@
             this.AppendKeyValue(doc, dict, "Entry Text", "string", this.EntryText);
             this.AppendKeyValue(doc, dict, "Starred", this.Starred.ToString().ToLower(), null);
             this.AppendKeyValue(doc, dict, "UUID", "string", this.UUIDString);
+
+            // Store the tags
+            if (this.Tags.Any())
+            {
+                this.AppendArrayKeyValue(doc, dict, "Tags", this.Tags);
+            }
 
             // Handle unknown key values. (just keep them.)
             foreach (var kvp in this.UnknownKeyValues)
@@ -526,6 +620,36 @@
             }
         }
 
+        /// <summary>
+        /// Appends the array typed key values.
+        /// </summary>
+        /// <param name="doc">The document.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="keyString">The key string.</param>
+        /// <param name="values">The values.</param>
+        private void AppendArrayKeyValue(XmlDocument doc, XmlElement dict, string keyString, IEnumerable<string> values)
+        {
+            var key = doc.CreateElement("key");
+            dict.AppendChild(key);
+            key.InnerText = keyString;
+
+            var value = doc.CreateElement("array");
+            dict.AppendChild(value);
+            foreach (var s in values)
+            {
+                var stringElem = doc.CreateElement("string");
+                value.AppendChild(stringElem);
+                stringElem.InnerText = s;
+            }
+        }
+
+        /// <summary>
+        /// Appends the key value. Used to preserve the unknown key values existed in the original entries.
+        /// </summary>
+        /// <param name="doc">The document.</param>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="keyNodeFromOtherDoc">The key node from other document.</param>
+        /// <param name="valueNodeFromOtherDoc">The value node from other document.</param>
         private void AppendKeyValue(XmlDocument doc, XmlElement dict, XmlNode keyNodeFromOtherDoc, XmlNode valueNodeFromOtherDoc)
         {
             var key = doc.ImportNode(keyNodeFromOtherDoc, true);
