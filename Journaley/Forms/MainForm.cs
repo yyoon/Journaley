@@ -827,6 +827,8 @@
                 this.SelectedEntry.AddTag(tag);
             }
 
+            this.SaveSelectedEntry();
+
             this.UpdateEntryListBoxTags();
             this.UpdateTag();
         }
