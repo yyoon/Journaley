@@ -788,6 +788,49 @@
             this.UpdateEntryListBoxStarred();
         }
 
+        private void ButtonTag_Click(object sender, EventArgs e)
+        {
+            TagEditForm tagEditForm = new TagEditForm();
+            tagEditForm.StartPosition = FormStartPosition.Manual;
+            tagEditForm.Location = this.PointToScreen(
+                new Point(
+                    this.buttonTag.Location.X + this.buttonTag.Width - tagEditForm.Width,
+                    this.buttonTag.Location.Y + this.buttonTag.Height));
+
+            tagEditForm.AssignedTags.AddRange(this.SelectedEntry.Tags.OrderBy(x => x));
+            tagEditForm.OtherTags.AddRange(this.Entries.SelectMany(x => x.Tags).Distinct().Where(x => !this.SelectedEntry.Tags.Contains(x)).OrderBy(x => x));
+
+            // Event handlers.
+            tagEditForm.FormClosed += new FormClosedEventHandler(TagEditForm_FormClosed);
+
+            // Show the form as modeless.
+            tagEditForm.Show(this);
+        }
+
+        private void TagEditForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            TagEditForm tagEditForm = sender as TagEditForm;
+            if (tagEditForm == null)
+            {
+                throw new ArgumentException();
+            }
+
+            if (this.SelectedEntry.Tags.OrderBy(x => x).SequenceEqual(tagEditForm.AssignedTags))
+            {
+                // Tags didn't change.
+                return;
+            }
+
+            this.SelectedEntry.ClearTags();
+            foreach (var tag in tagEditForm.AssignedTags)
+            {
+                this.SelectedEntry.AddTag(tag);
+            }
+
+            this.UpdateEntryListBoxTags();
+            this.UpdateTag();
+        }
+
         /// <summary>
         /// Handles the Click event of the buttonDelete control.
         /// </summary>

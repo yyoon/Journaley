@@ -406,6 +406,18 @@
         }
 
         /// <summary>
+        /// Clears the tags list.
+        /// </summary>
+        public void ClearTags()
+        {
+            if (this.tags.Any())
+            {
+                this.tags.Clear();
+                this.IsDirty = true;
+            }
+        }
+
+        /// <summary>
         /// Saves this entry into the specified folder path.
         /// </summary>
         /// <param name="folderPath">The folder path.</param>
