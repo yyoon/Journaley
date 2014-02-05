@@ -365,6 +365,9 @@
             this.UpdateEntryList(this.Entries.Where(x => x.Starred), this.entryListBoxStarred);
         }
 
+        /// <summary>
+        /// Updates the entry list box of "Tags" tab.
+        /// </summary>
         private void UpdateEntryListBoxTags()
         {
             // Clear everything.
@@ -689,6 +692,11 @@
             }
         }
 
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the ListBoxTags control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ListBoxTags_SelectedIndexChanged(object sender, EventArgs e)
         {
             Debug.Assert(sender == this.listBoxTags, "sender must be this.listBoxTags");
@@ -788,6 +796,12 @@
             this.UpdateEntryListBoxStarred();
         }
 
+        /// <summary>
+        /// Handles the Click event of the ButtonTag control.
+        /// Creates a TagEditForm instance and show it right below the tag button.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonTag_Click(object sender, EventArgs e)
         {
             TagEditForm tagEditForm = new TagEditForm();
@@ -801,12 +815,19 @@
             tagEditForm.OtherTags.AddRange(this.Entries.SelectMany(x => x.Tags).Distinct().Where(x => !this.SelectedEntry.Tags.Contains(x)).OrderBy(x => x));
 
             // Event handlers.
-            tagEditForm.FormClosed += new FormClosedEventHandler(TagEditForm_FormClosed);
+            tagEditForm.FormClosed += new FormClosedEventHandler(this.TagEditForm_FormClosed);
 
             // Show the form as modeless.
             tagEditForm.Show(this);
         }
 
+        /// <summary>
+        /// Handles the FormClosed event of the TagEditForm.
+        /// Checks if any of the tags were changed. If so, update and save the entry, update the UI status.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="FormClosedEventArgs"/> instance containing the event data.</param>
+        /// <exception cref="System.ArgumentException">Thrown when the sender is not TagEditForm</exception>
         private void TagEditForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             TagEditForm tagEditForm = sender as TagEditForm;
