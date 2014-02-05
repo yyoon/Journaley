@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journaley", "Journaley\Journaley.csproj", "{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journaley.Test", "Journaley.Test\Journaley.Test.csproj", "{795F741D-E4CE-4EA0-A062-56D5EFBD55BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8894D215-BA84-4192-A9DE-535846E722C9}"
+	ProjectSection(SolutionItems) = preProject
+		Journaley.vsmdi = Journaley.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "JournaleySetup", "JournaleySetup\JournaleySetup.vdproj", "{C0D506F3-1669-464B-9052-6B21159ABCEE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{80EE42D2-185A-45F9-933F-F8B2841B53F9}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Journaley.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}.Debug|x86.ActiveCfg = Debug|x86
+		{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}.Debug|x86.Build.0 = Debug|x86
+		{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}.Release|Any CPU.ActiveCfg = Release|x86
+		{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}.Release|Mixed Platforms.Build.0 = Release|x86
+		{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}.Release|x86.ActiveCfg = Release|x86
+		{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}.Release|x86.Build.0 = Release|x86
+		{795F741D-E4CE-4EA0-A062-56D5EFBD55BC}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{795F741D-E4CE-4EA0-A062-56D5EFBD55BC}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{795F741D-E4CE-4EA0-A062-56D5EFBD55BC}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{795F741D-E4CE-4EA0-A062-56D5EFBD55BC}.Debug|x86.ActiveCfg = Debug|x86
+		{795F741D-E4CE-4EA0-A062-56D5EFBD55BC}.Debug|x86.Build.0 = Debug|x86
+		{795F741D-E4CE-4EA0-A062-56D5EFBD55BC}.Release|Any CPU.ActiveCfg = Release|x86
+		{795F741D-E4CE-4EA0-A062-56D5EFBD55BC}.Release|Any CPU.Build.0 = Release|x86
+		{795F741D-E4CE-4EA0-A062-56D5EFBD55BC}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{795F741D-E4CE-4EA0-A062-56D5EFBD55BC}.Release|Mixed Platforms.Build.0 = Release|x86
+		{795F741D-E4CE-4EA0-A062-56D5EFBD55BC}.Release|x86.ActiveCfg = Release|x86
+		{C0D506F3-1669-464B-9052-6B21159ABCEE}.Debug|Any CPU.ActiveCfg = Debug
+		{C0D506F3-1669-464B-9052-6B21159ABCEE}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{C0D506F3-1669-464B-9052-6B21159ABCEE}.Debug|x86.ActiveCfg = Debug
+		{C0D506F3-1669-464B-9052-6B21159ABCEE}.Release|Any CPU.ActiveCfg = Release
+		{C0D506F3-1669-464B-9052-6B21159ABCEE}.Release|Mixed Platforms.ActiveCfg = Release
+		{C0D506F3-1669-464B-9052-6B21159ABCEE}.Release|x86.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

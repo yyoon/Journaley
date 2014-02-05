@@ -1,0 +1,13 @@
+# syntax: glob
+*.suo
+*.user
+StyleCop.Cache
+
+# syntax: regexp
+**/bin/*
+**/obj/*
+**/TestResults/*
+**/Debug/*
+**/Release/*
+packages/*
+!packages/repositories.config
