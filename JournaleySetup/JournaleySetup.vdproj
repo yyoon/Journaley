@@ -15,13 +15,13 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_512588E070D0427AB537AD4D95651713"
+        "MsmKey" = "8:_87F03E69E4A3466EB72E3AEF19D877C5"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_87F03E69E4A3466EB72E3AEF19D877C5"
+        "MsmKey" = "8:_A8F6D596B2B2487080DC31C110CF20B7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -34,7 +34,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_512588E070D0427AB537AD4D95651713"
+        "OwnerKey" = "8:_A8F6D596B2B2487080DC31C110CF20B7"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -55,6 +55,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -71,6 +79,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -100,21 +129,10 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_512588E070D0427AB537AD4D95651713"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_87F03E69E4A3466EB72E3AEF19D877C5"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MarkdownSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_512588E070D0427AB537AD4D95651713"
-                    {
-                    "Name" = "8:MarkdownSharp.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\MarkdownSharp.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\mit-license.rtf"
+            "TargetName" = "8:mit-license.rtf"
             "Tag" = "8:"
             "Folder" = "8:_9E57BA856C604816AB60DC315908F41F"
             "Condition" = "8:"
@@ -131,10 +149,21 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_87F03E69E4A3466EB72E3AEF19D877C5"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A8F6D596B2B2487080DC31C110CF20B7"
             {
-            "SourcePath" = "8:..\\mit-license.rtf"
-            "TargetName" = "8:mit-license.rtf"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MarkdownSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_A8F6D596B2B2487080DC31C110CF20B7"
+                    {
+                    "Name" = "8:MarkdownSharp.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\Journaley\\bin\\Release\\MarkdownSharp.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_9E57BA856C604816AB60DC315908F41F"
             "Condition" = "8:"
@@ -219,7 +248,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Journaley"
         "ProductCode" = "8:{6ED922BB-E860-4A1D-BE6C-62B2E0A98942}"
-        "PackageCode" = "8:{0A47D92C-0804-4C4E-8F30-7A17B84BD454}"
+        "PackageCode" = "8:{28238927-ADC6-44F4-9407-0D3176DB512D}"
         "UpgradeCode" = "8:{2B3B2265-B63C-4E00-9089-183C27092625}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -341,7 +370,7 @@
         {
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_53D4B42C54E9452DB8E714A667C12646"
             {
-            "Name" = "8:Day One Windows Client"
+            "Name" = "8:Journaley"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
