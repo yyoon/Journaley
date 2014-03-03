@@ -303,10 +303,12 @@
         #endregion
 
         /// <summary>
-        /// Gets the settings file path under the %APPDATA% folder.
+        /// Gets the file path under %APPDATA% folder.
+        /// Creates "Journaley" folder if it doesn't exist.
         /// </summary>
-        /// <returns>The settings file path</returns>
-        private static string GetSettingsFilePath()
+        /// <param name="filename">The filename.</param>
+        /// <returns>the full file path combined with the %APPDATA%/Journaley folder.</returns>
+        internal static string GetFilePathUnderApplicationData(string filename)
         {
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), SettingsFolder);
             DirectoryInfo dinfo = new DirectoryInfo(path);
@@ -315,7 +317,17 @@
                 dinfo.Create();
             }
 
-            return Path.Combine(path, SettingsFilename);
+            return Path.Combine(path, filename);
+        }
+
+        /// <summary>
+        /// Gets the settings file path under the %APPDATA% folder.
+        /// Creates "Journaley" folder if it doesn't exist.
+        /// </summary>
+        /// <returns>The settings file path</returns>
+        private static string GetSettingsFilePath()
+        {
+            return GetFilePathUnderApplicationData(SettingsFilename);
         }
     }
 }
