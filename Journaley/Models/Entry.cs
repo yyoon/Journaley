@@ -286,6 +286,9 @@
 
                     string fileContent = sr.ReadToEnd().TrimStart();
 
+                    // Remove all the NULL characters, if any.
+                    fileContent = fileContent.Replace(Convert.ToChar(0x00).ToString(), string.Empty);
+
                     XmlDocument doc = new XmlDocument();
                     doc.LoadXml(fileContent);
 
