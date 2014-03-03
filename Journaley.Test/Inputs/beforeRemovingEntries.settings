@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PasswordHash>5f4dcc3b5aa765d61d8327deb882cf99</PasswordHash>
+  <DayOneFolderPath>P:\앱\Day One\Journal.dayone\entries</DayOneFolderPath>
+</Settings>

@@ -193,7 +193,7 @@
 
             if (this.SelectedEntry.IsDirty)
             {
-                this.SelectedEntry.Save(this.Settings.DayOneFolderPath);
+                this.SelectedEntry.Save(this.Settings.EntryFolderPath);
 
                 // Update the EntryList items as well.
                 foreach (var list in this.GetAllEntryLists())
@@ -563,7 +563,7 @@
         /// </summary>
         private void LoadEntries()
         {
-            this.LoadEntries(this.Settings.DayOneFolderPath);
+            this.LoadEntries(this.Settings.EntryFolderPath);
         }
 
         /// <summary>
@@ -876,7 +876,7 @@
             }
 
             this.Entries.Remove(this.SelectedEntry);
-            this.SelectedEntry.Delete(this.Settings.DayOneFolderPath);
+            this.SelectedEntry.Delete(this.Settings.EntryFolderPath);
 
             this.UpdateFromScratch();
         }

@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using Journaley.Models;
+using System.Xml.Serialization;
+using System.Text;
 
 namespace Journaley.Test
 {
@@ -15,8 +17,6 @@ namespace Journaley.Test
     [TestClass()]
     public class SettingsTest
     {
-
-
         private TestContext testContextInstance;
 
         /// <summary>
@@ -132,6 +132,27 @@ namespace Journaley.Test
             target.Password = "password";
             Assert.IsTrue(target.VerifyPassword("password"));
             Assert.IsFalse(target.VerifyPassword("wrong-password"));
+        }
+
+        [TestMethod]
+        public void StripEntriesTest()
+        {
+            string path = "beforeRemovingEntries.settings";
+
+            Settings expected = new Settings();
+            expected.PasswordHash = "5f4dcc3b5aa765d61d8327deb882cf99";
+            expected.DayOneFolderPath = @"P:\앱\Day One\Journal.dayone";
+
+            Settings loaded = Settings.GetSettingsFile(path);
+            Assert.AreEqual(expected, loaded);
+
+            using (StreamReader sr = new StreamReader(path, Encoding.UTF8))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(Settings));
+                loaded = serializer.Deserialize(sr) as Settings;
+
+                Assert.AreEqual(expected, loaded);
+            }
         }
     }
 }
