@@ -490,13 +490,13 @@ namespace Journaley.Forms
             this.contextMenuStripPhotoWithoutPhoto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.chooseExsistingPhotoToolStripMenuItem});
             this.contextMenuStripPhotoWithoutPhoto.Name = "contextMenuStripPhotoWithoutPhoto";
-            this.contextMenuStripPhotoWithoutPhoto.Size = new System.Drawing.Size(214, 26);
+            this.contextMenuStripPhotoWithoutPhoto.Size = new System.Drawing.Size(223, 26);
             // 
             // chooseExsistingPhotoToolStripMenuItem
             // 
             this.chooseExsistingPhotoToolStripMenuItem.Name = "chooseExsistingPhotoToolStripMenuItem";
-            this.chooseExsistingPhotoToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
-            this.chooseExsistingPhotoToolStripMenuItem.Text = "Choose an Exsisting Photo";
+            this.chooseExsistingPhotoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.chooseExsistingPhotoToolStripMenuItem.Text = "Choose an Exsisting Photo...";
             // 
             // contextMenuStripPhotoWithPhoto
             // 
@@ -504,13 +504,13 @@ namespace Journaley.Forms
             this.replaceWithAnotherPhotoToolStripMenuItem,
             this.deletePhotoToolStripMenuItem});
             this.contextMenuStripPhotoWithPhoto.Name = "contextMenuStripPhotoWithPhoto";
-            this.contextMenuStripPhotoWithPhoto.Size = new System.Drawing.Size(223, 48);
+            this.contextMenuStripPhotoWithPhoto.Size = new System.Drawing.Size(232, 70);
             // 
             // replaceWithAnotherPhotoToolStripMenuItem
             // 
             this.replaceWithAnotherPhotoToolStripMenuItem.Name = "replaceWithAnotherPhotoToolStripMenuItem";
-            this.replaceWithAnotherPhotoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.replaceWithAnotherPhotoToolStripMenuItem.Text = "Replace with Another Photo";
+            this.replaceWithAnotherPhotoToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.replaceWithAnotherPhotoToolStripMenuItem.Text = "Replace with Another Photo...";
             // 
             // deletePhotoToolStripMenuItem
             // 

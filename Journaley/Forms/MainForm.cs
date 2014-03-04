@@ -808,6 +808,11 @@
             this.UpdateEntryListBoxStarred();
         }
 
+        /// <summary>
+        /// Handles the Click event of the buttonPhoto control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonPhoto_Click(object sender, EventArgs e)
         {
             Debug.Assert(this.SelectedEntry != null, "There must be a selectd entry when modifying photo.");
