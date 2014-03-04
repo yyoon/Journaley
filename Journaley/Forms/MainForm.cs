@@ -113,6 +113,7 @@
                 }
 
                 this.UpdateStar();
+                this.UpdatePhoto();
                 this.UpdateTag();
                 this.UpdateUI();
 
@@ -175,7 +176,8 @@
         {
             this.webBrowser.DocumentText =
                 string.Format(
-                "<html style='margin:0;padding:2px'><body style='font-family:sans-serif;font-size:9pt'>{0}</body></html>",
+                @"<html style='margin:0;padding:2px'><body style='font-family:sans-serif;font-size:9pt'>{0}{1}</body></html>",
+                this.SelectedEntry.PhotoPath == null ? string.Empty : "<img src='" + this.SelectedEntry.PhotoPath + "' style='width:100%'><br>",
                 Markdown.Transform(this.SelectedEntry.EntryText));
         }
 
@@ -233,6 +235,7 @@
             this.dateTimePicker.CustomFormat = noEntry ? " " : "MMM d, yyyy hh:mm tt";
             this.buttonEditSave.Enabled = !noEntry;
             this.buttonStar.Enabled = !noEntry;
+            this.buttonPhoto.Enabled = !noEntry;
             this.buttonTag.Enabled = !noEntry;
             this.buttonShare.Enabled = !noEntry;
             this.buttonDelete.Enabled = !noEntry;
@@ -260,6 +263,15 @@
         {
             this.buttonStar.Image = (this.SelectedEntry != null && this.SelectedEntry.Starred) ?
                 Properties.Resources.StarYellow_32x32 : Properties.Resources.StarGray_32x32;
+        }
+
+        /// <summary>
+        /// Updates the photo button's look.
+        /// </summary>
+        private void UpdatePhoto()
+        {
+            this.buttonPhoto.Image = (this.SelectedEntry != null && this.SelectedEntry.PhotoPath != null) ?
+                Properties.Resources.Image_32x32 : Properties.Resources.ImageGray_32x32;
         }
 
         /// <summary>
@@ -575,7 +587,7 @@
             DirectoryInfo dinfo = new DirectoryInfo(path);
             FileInfo[] files = dinfo.GetFiles("*.doentry");
 
-            this.Entries = files.Select(x => Entry.LoadFromFile(x.FullName)).Where(x => x != null).ToList();
+            this.Entries = files.Select(x => Entry.LoadFromFile(x.FullName, this.Settings)).Where(x => x != null).ToList();
         }
 
         /// <summary>

@@ -5,6 +5,7 @@
     using System.Drawing;
     using System.Windows.Forms;
     using Journaley.Models;
+    using Journaley.Properties;
 
     /// <summary>
     /// Customized ListBox control for displaying the list of journal entries prettier.
@@ -169,6 +170,7 @@
         private void DrawEntry(DrawItemEventArgs e, Entry entry)
         {
             this.DrawEntryText(e, entry);
+            this.DrawPhoto(e, entry);
             this.DrawDay(e, entry);
             this.DrawDayOfWeek(e, entry);
             this.DrawStar(e, entry);
@@ -186,11 +188,106 @@
             bounds.Inflate(-EntryPadding, -EntryPadding);
             bounds.Width -= EntryRightWidth + EntryCenterMargin;
 
+            if (entry.PhotoPath != null)
+            {
+                bounds.Width -= bounds.Height + EntryCenterMargin;
+                bounds.X += bounds.Height + EntryCenterMargin;
+            }
+
             StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
             stringFormat.FormatFlags = StringFormatFlags.LineLimit;
             stringFormat.Trimming = StringTrimming.EllipsisCharacter;
 
             e.Graphics.DrawString(entry.EntryText, EntryTextFont, Brushes.Black, bounds, stringFormat);
+        }
+
+        /// <summary>
+        /// Draws the photo. When the image cannot be loaded for some reason, use the default icon instead.
+        /// </summary>
+        /// <param name="e">The <see cref="DrawItemEventArgs"/> instance containing the event data.</param>
+        /// <param name="entry">The entry.</param>
+        private void DrawPhoto(DrawItemEventArgs e, Entry entry)
+        {
+            if (entry.PhotoPath == null)
+            {
+                return;
+            }
+
+            Rectangle bounds = e.Bounds;
+            bounds.Inflate(-EntryPadding, -EntryPadding);
+            bounds.Width = bounds.Height;
+
+            Image image = null;
+            try
+            {
+                image = Image.FromFile(entry.PhotoPath);
+            }
+            catch (Exception)
+            {
+                image = Resources.Image_32x32;
+            }
+
+            this.DrawToFit(e.Graphics, image, bounds);
+        }
+
+        /// <summary>
+        /// Draws to fit in the destination rectangle.
+        /// If the given image is smaller, the image is not stretched and centered in the rectangle.
+        /// Otherwise, the image is scaled down while keeping the aspect ratio.
+        /// </summary>
+        /// <param name="g">The g.</param>
+        /// <param name="image">The image.</param>
+        /// <param name="rect">The destination rectangle.</param>
+        /// <exception cref="System.ArgumentNullException">Thrown when any of the given arguments is null</exception>
+        private void DrawToFit(Graphics g, Image image, Rectangle rect)
+        {
+            if (g == null || image == null || rect == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            // Does the image fits already?
+            if (image.Width <= rect.Width && image.Height <= rect.Height)
+            {
+                // Center the image.
+                g.DrawImage(
+                    image,
+                    new Rectangle(
+                        rect.X + ((rect.Width - image.Width) / 2),
+                        rect.Y + ((rect.Height - image.Height) / 2),
+                        image.Width,
+                        image.Height));
+
+                return;
+            }
+
+            // If not, reduce the size but keep the aspect ratio.
+            if ((double)image.Width / (double)rect.Width >= (double)image.Height / (double)rect.Height)
+            {
+                double ratio = (double)image.Width / (double)rect.Width;
+                int targetHeight = Math.Min((int)(image.Height / ratio), rect.Height);
+
+                g.DrawImage(
+                    image,
+                    new Rectangle(
+                        rect.X,
+                        rect.Y + ((rect.Height - targetHeight) / 2),
+                        rect.Width,
+                        targetHeight));
+            }
+            else
+            {
+                double ratio = (double)image.Height / (double)rect.Height;
+                int targetWidth = Math.Min((int)(image.Width / ratio), rect.Width);
+
+                g.DrawImage(
+                    image,
+                    new Rectangle(
+                        rect.X + ((rect.Width - targetWidth) / 2),
+                        rect.Y,
+                        targetWidth,
+                        rect.Height));
+            }
         }
 
         /// <summary>
