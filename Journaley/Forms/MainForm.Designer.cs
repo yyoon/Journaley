@@ -568,7 +568,7 @@ namespace Journaley.Forms
             this.replaceWithAnotherPhotoToolStripMenuItem,
             this.deletePhotoToolStripMenuItem});
             this.contextMenuStripPhotoWithPhoto.Name = "contextMenuStripPhotoWithPhoto";
-            this.contextMenuStripPhotoWithPhoto.Size = new System.Drawing.Size(232, 70);
+            this.contextMenuStripPhotoWithPhoto.Size = new System.Drawing.Size(232, 48);
             // 
             // replaceWithAnotherPhotoToolStripMenuItem
             // 
@@ -582,6 +582,7 @@ namespace Journaley.Forms
             this.deletePhotoToolStripMenuItem.Name = "deletePhotoToolStripMenuItem";
             this.deletePhotoToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.deletePhotoToolStripMenuItem.Text = "Delete Photo";
+            this.deletePhotoToolStripMenuItem.Click += new System.EventHandler(this.DeletePhotoToolStripMenuItem_Click);
             // 
             // MainForm
             // 

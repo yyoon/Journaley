@@ -114,7 +114,7 @@
                 }
 
                 this.UpdateStar();
-                this.UpdatePhoto();
+                this.UpdatePhotoButton();
                 this.UpdateTag();
                 this.UpdateUI();
 
@@ -278,7 +278,7 @@
         /// <summary>
         /// Updates the photo button's look.
         /// </summary>
-        private void UpdatePhoto()
+        private void UpdatePhotoButton()
         {
             this.buttonPhoto.Image = (this.SelectedEntry != null && this.SelectedEntry.PhotoPath != null) ?
                 Properties.Resources.Image_32x32 : Properties.Resources.ImageGray_32x32;
@@ -1032,8 +1032,8 @@
         {
             DialogResult result = MessageBox.Show(
                 "By choosing another photo, the current photo will be deleted." + Environment.NewLine + "Would you like to continue?",
-                "Replace photo",
-                MessageBoxButtons.YesNoCancel,
+                "Replace Photo",
+                MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
 
             if (result != System.Windows.Forms.DialogResult.Yes)
@@ -1082,10 +1082,7 @@
             }
 
             // Delete the existing photo, if there's any.
-            if (File.Exists(this.SelectedEntry.PhotoPath))
-            {
-                File.Delete(this.SelectedEntry.PhotoPath);
-            }
+            this.DeletePhoto();
 
             // Now copy the file to the photo folder if the file is in JPEG.
             // Otherwise, convert it to JPEG.
@@ -1132,14 +1129,60 @@
             // Assign the photo path to the selected entry.
             this.SelectedEntry.PhotoPath = Path.Combine(this.Settings.PhotoFolderPath, targetFileName);
 
-            // Update the UI.
+            // Update the UIs related to photo.
+            this.UpdatePhotoUIs();
+        }
+
+        /// <summary>
+        /// Updates the photo related UIs.
+        /// </summary>
+        private void UpdatePhotoUIs()
+        {
             if (!this.IsEditing)
             {
                 this.UpdateWebBrowser();
             }
 
-            this.UpdatePhoto();
+            this.UpdatePhotoButton();
             this.InvalidateEntryInEntryList(this.SelectedEntry);
+        }
+
+        /// <summary>
+        /// Deletes the photo associated with this entry, if there's any.
+        /// This method does NOT send the photo to the recycle bin.
+        /// Also, this method only deletes the file,
+        /// and the caller is responsible for maintaining the entry's PhotoPath property up to date.
+        /// </summary>
+        private void DeletePhoto()
+        {
+            if (File.Exists(this.SelectedEntry.PhotoPath))
+            {
+                File.Delete(this.SelectedEntry.PhotoPath);
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the deletePhotoToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void DeletePhotoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Do you really want to delete the photo?",
+                "Delete Photo",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result != System.Windows.Forms.DialogResult.Yes)
+            {
+                return;
+            }
+
+            this.DeletePhoto();
+            this.SelectedEntry.PhotoPath = null;
+
+            this.UpdatePhotoUIs();
         }
 
         #endregion
