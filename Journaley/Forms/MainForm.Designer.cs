@@ -36,14 +36,19 @@ namespace Journaley.Forms
             System.Windows.Forms.Label label8;
             this.tabLeftPanel = new System.Windows.Forms.TabControl();
             this.tabPageAllEntries = new System.Windows.Forms.TabPage();
+            this.entryListBoxAll = new Journaley.Controls.EntryListBox();
             this.tabPageStarred = new System.Windows.Forms.TabPage();
+            this.entryListBoxStarred = new Journaley.Controls.EntryListBox();
             this.tabPageTags = new System.Windows.Forms.TabPage();
             this.panelTagsEntryListWrapper = new System.Windows.Forms.Panel();
+            this.entryListBoxTags = new Journaley.Controls.EntryListBox();
             this.listBoxTags = new System.Windows.Forms.ListBox();
             this.tabPageEntriesByYear = new System.Windows.Forms.TabPage();
             this.panelYearEntryListWrapper = new System.Windows.Forms.Panel();
+            this.entryListBoxYear = new Journaley.Controls.EntryListBox();
             this.listBoxYear = new System.Windows.Forms.ListBox();
             this.tabPageCalendar = new System.Windows.Forms.TabPage();
+            this.entryListBoxCalendar = new Journaley.Controls.EntryListBox();
             this.monthCalendar = new System.Windows.Forms.MonthCalendar();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutStats = new System.Windows.Forms.TableLayoutPanel();
@@ -67,15 +72,10 @@ namespace Journaley.Forms
             this.panelWebBrowserWrapper = new System.Windows.Forms.Panel();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.contextMenuStripPhotoWithoutPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.chooseExsistingPhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chooseExistingPhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripPhotoWithPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.replaceWithAnotherPhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.entryListBoxAll = new Journaley.Controls.EntryListBox();
-            this.entryListBoxStarred = new Journaley.Controls.EntryListBox();
-            this.entryListBoxTags = new Journaley.Controls.EntryListBox();
-            this.entryListBoxYear = new Journaley.Controls.EntryListBox();
-            this.entryListBoxCalendar = new Journaley.Controls.EntryListBox();
             label5 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
@@ -165,6 +165,18 @@ namespace Journaley.Forms
             this.tabPageAllEntries.Text = "All";
             this.tabPageAllEntries.UseVisualStyleBackColor = true;
             // 
+            // entryListBoxAll
+            // 
+            this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxAll.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxAll.FormattingEnabled = true;
+            this.entryListBoxAll.Location = new System.Drawing.Point(3, 3);
+            this.entryListBoxAll.Name = "entryListBoxAll";
+            this.entryListBoxAll.ScrollAlwaysVisible = true;
+            this.entryListBoxAll.Size = new System.Drawing.Size(245, 435);
+            this.entryListBoxAll.TabIndex = 0;
+            this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
+            // 
             // tabPageStarred
             // 
             this.tabPageStarred.Controls.Add(this.entryListBoxStarred);
@@ -175,6 +187,18 @@ namespace Journaley.Forms
             this.tabPageStarred.TabIndex = 1;
             this.tabPageStarred.Text = "Starred";
             this.tabPageStarred.UseVisualStyleBackColor = true;
+            // 
+            // entryListBoxStarred
+            // 
+            this.entryListBoxStarred.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxStarred.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxStarred.FormattingEnabled = true;
+            this.entryListBoxStarred.Location = new System.Drawing.Point(3, 3);
+            this.entryListBoxStarred.Name = "entryListBoxStarred";
+            this.entryListBoxStarred.ScrollAlwaysVisible = true;
+            this.entryListBoxStarred.Size = new System.Drawing.Size(245, 435);
+            this.entryListBoxStarred.TabIndex = 0;
+            this.entryListBoxStarred.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
             // tabPageTags
             // 
@@ -197,6 +221,18 @@ namespace Journaley.Forms
             this.panelTagsEntryListWrapper.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.panelTagsEntryListWrapper.Size = new System.Drawing.Size(245, 353);
             this.panelTagsEntryListWrapper.TabIndex = 1;
+            // 
+            // entryListBoxTags
+            // 
+            this.entryListBoxTags.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxTags.FormattingEnabled = true;
+            this.entryListBoxTags.Location = new System.Drawing.Point(0, 3);
+            this.entryListBoxTags.Name = "entryListBoxTags";
+            this.entryListBoxTags.ScrollAlwaysVisible = true;
+            this.entryListBoxTags.Size = new System.Drawing.Size(245, 350);
+            this.entryListBoxTags.TabIndex = 0;
+            this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
             // listBoxTags
             // 
@@ -230,6 +266,18 @@ namespace Journaley.Forms
             this.panelYearEntryListWrapper.Size = new System.Drawing.Size(245, 353);
             this.panelYearEntryListWrapper.TabIndex = 1;
             // 
+            // entryListBoxYear
+            // 
+            this.entryListBoxYear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxYear.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxYear.FormattingEnabled = true;
+            this.entryListBoxYear.Location = new System.Drawing.Point(0, 3);
+            this.entryListBoxYear.Name = "entryListBoxYear";
+            this.entryListBoxYear.ScrollAlwaysVisible = true;
+            this.entryListBoxYear.Size = new System.Drawing.Size(245, 350);
+            this.entryListBoxYear.TabIndex = 0;
+            this.entryListBoxYear.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
+            // 
             // listBoxYear
             // 
             this.listBoxYear.Dock = System.Windows.Forms.DockStyle.Top;
@@ -250,6 +298,21 @@ namespace Journaley.Forms
             this.tabPageCalendar.TabIndex = 3;
             this.tabPageCalendar.Text = "Calendar";
             this.tabPageCalendar.UseVisualStyleBackColor = true;
+            // 
+            // entryListBoxCalendar
+            // 
+            this.entryListBoxCalendar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.entryListBoxCalendar.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxCalendar.FormattingEnabled = true;
+            this.entryListBoxCalendar.IntegralHeight = false;
+            this.entryListBoxCalendar.Location = new System.Drawing.Point(3, 186);
+            this.entryListBoxCalendar.Name = "entryListBoxCalendar";
+            this.entryListBoxCalendar.ScrollAlwaysVisible = true;
+            this.entryListBoxCalendar.Size = new System.Drawing.Size(245, 252);
+            this.entryListBoxCalendar.TabIndex = 1;
+            this.entryListBoxCalendar.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
             // monthCalendar
             // 
@@ -488,15 +551,16 @@ namespace Journaley.Forms
             // contextMenuStripPhotoWithoutPhoto
             // 
             this.contextMenuStripPhotoWithoutPhoto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.chooseExsistingPhotoToolStripMenuItem});
+            this.chooseExistingPhotoToolStripMenuItem});
             this.contextMenuStripPhotoWithoutPhoto.Name = "contextMenuStripPhotoWithoutPhoto";
             this.contextMenuStripPhotoWithoutPhoto.Size = new System.Drawing.Size(223, 26);
             // 
-            // chooseExsistingPhotoToolStripMenuItem
+            // chooseExistingPhotoToolStripMenuItem
             // 
-            this.chooseExsistingPhotoToolStripMenuItem.Name = "chooseExsistingPhotoToolStripMenuItem";
-            this.chooseExsistingPhotoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.chooseExsistingPhotoToolStripMenuItem.Text = "Choose an Exsisting Photo...";
+            this.chooseExistingPhotoToolStripMenuItem.Name = "chooseExistingPhotoToolStripMenuItem";
+            this.chooseExistingPhotoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.chooseExistingPhotoToolStripMenuItem.Text = "Choose an Exsisting Photo...";
+            this.chooseExistingPhotoToolStripMenuItem.Click += new System.EventHandler(this.ChooseExistingPhotoToolStripMenuItem_Click);
             // 
             // contextMenuStripPhotoWithPhoto
             // 
@@ -511,75 +575,13 @@ namespace Journaley.Forms
             this.replaceWithAnotherPhotoToolStripMenuItem.Name = "replaceWithAnotherPhotoToolStripMenuItem";
             this.replaceWithAnotherPhotoToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.replaceWithAnotherPhotoToolStripMenuItem.Text = "Replace with Another Photo...";
+            this.replaceWithAnotherPhotoToolStripMenuItem.Click += new System.EventHandler(this.ReplaceWithAnotherPhotoToolStripMenuItem_Click);
             // 
             // deletePhotoToolStripMenuItem
             // 
             this.deletePhotoToolStripMenuItem.Name = "deletePhotoToolStripMenuItem";
-            this.deletePhotoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.deletePhotoToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
             this.deletePhotoToolStripMenuItem.Text = "Delete Photo";
-            // 
-            // entryListBoxAll
-            // 
-            this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxAll.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxAll.FormattingEnabled = true;
-            this.entryListBoxAll.Location = new System.Drawing.Point(3, 3);
-            this.entryListBoxAll.Name = "entryListBoxAll";
-            this.entryListBoxAll.ScrollAlwaysVisible = true;
-            this.entryListBoxAll.Size = new System.Drawing.Size(245, 435);
-            this.entryListBoxAll.TabIndex = 0;
-            this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
-            // 
-            // entryListBoxStarred
-            // 
-            this.entryListBoxStarred.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxStarred.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxStarred.FormattingEnabled = true;
-            this.entryListBoxStarred.Location = new System.Drawing.Point(3, 3);
-            this.entryListBoxStarred.Name = "entryListBoxStarred";
-            this.entryListBoxStarred.ScrollAlwaysVisible = true;
-            this.entryListBoxStarred.Size = new System.Drawing.Size(245, 435);
-            this.entryListBoxStarred.TabIndex = 0;
-            this.entryListBoxStarred.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
-            // 
-            // entryListBoxTags
-            // 
-            this.entryListBoxTags.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxTags.FormattingEnabled = true;
-            this.entryListBoxTags.Location = new System.Drawing.Point(0, 3);
-            this.entryListBoxTags.Name = "entryListBoxTags";
-            this.entryListBoxTags.ScrollAlwaysVisible = true;
-            this.entryListBoxTags.Size = new System.Drawing.Size(245, 350);
-            this.entryListBoxTags.TabIndex = 0;
-            this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
-            // 
-            // entryListBoxYear
-            // 
-            this.entryListBoxYear.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxYear.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxYear.FormattingEnabled = true;
-            this.entryListBoxYear.Location = new System.Drawing.Point(0, 3);
-            this.entryListBoxYear.Name = "entryListBoxYear";
-            this.entryListBoxYear.ScrollAlwaysVisible = true;
-            this.entryListBoxYear.Size = new System.Drawing.Size(245, 350);
-            this.entryListBoxYear.TabIndex = 0;
-            this.entryListBoxYear.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
-            // 
-            // entryListBoxCalendar
-            // 
-            this.entryListBoxCalendar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.entryListBoxCalendar.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxCalendar.FormattingEnabled = true;
-            this.entryListBoxCalendar.IntegralHeight = false;
-            this.entryListBoxCalendar.Location = new System.Drawing.Point(3, 186);
-            this.entryListBoxCalendar.Name = "entryListBoxCalendar";
-            this.entryListBoxCalendar.ScrollAlwaysVisible = true;
-            this.entryListBoxCalendar.Size = new System.Drawing.Size(245, 252);
-            this.entryListBoxCalendar.TabIndex = 1;
-            this.entryListBoxCalendar.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -662,7 +664,7 @@ namespace Journaley.Forms
         private System.Windows.Forms.Button buttonTag;
         private System.Windows.Forms.Button buttonPhoto;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripPhotoWithoutPhoto;
-        private System.Windows.Forms.ToolStripMenuItem chooseExsistingPhotoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chooseExistingPhotoToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripPhotoWithPhoto;
         private System.Windows.Forms.ToolStripMenuItem replaceWithAnotherPhotoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deletePhotoToolStripMenuItem;

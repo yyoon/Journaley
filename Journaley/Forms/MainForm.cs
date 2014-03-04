@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
+    using System.Drawing.Imaging;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -198,13 +199,22 @@
                 this.SelectedEntry.Save(this.Settings.EntryFolderPath);
 
                 // Update the EntryList items as well.
-                foreach (var list in this.GetAllEntryLists())
+                this.InvalidateEntryInEntryList(this.SelectedEntry);
+            }
+        }
+
+        /// <summary>
+        /// Invalidates the entry in all the entry lists, and forces the entry to be redrawn.
+        /// </summary>
+        /// <param name="entry">The entry.</param>
+        private void InvalidateEntryInEntryList(Entry entry)
+        {
+            foreach (var list in this.GetAllEntryLists())
+            {
+                int index = list.Items.IndexOf(entry);
+                if (index != -1)
                 {
-                    int index = list.Items.IndexOf(this.SelectedEntry);
-                    if (index != -1)
-                    {
-                        list.Invalidate(list.GetItemRectangle(index));
-                    }
+                    list.Invalidate(list.GetItemRectangle(index));
                 }
             }
         }
@@ -1001,6 +1011,135 @@
 
             Clipboard.SetDataObject(this.textEntryText.Text, true);
             MessageBox.Show(this, "The entry text has been successfully copied to the clipboard.", "Copy to Clipboard", MessageBoxButtons.OK);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the chooseExistingPhotoToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ChooseExistingPhotoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.AskToChooseExistingPhoto();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the replaceWithAnotherPhotoToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ReplaceWithAnotherPhotoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "By choosing another photo, the current photo will be deleted." + Environment.NewLine + "Would you like to continue?",
+                "Replace photo",
+                MessageBoxButtons.YesNoCancel,
+                MessageBoxIcon.Warning);
+
+            if (result != System.Windows.Forms.DialogResult.Yes)
+            {
+                return;
+            }
+
+            this.AskToChooseExistingPhoto();
+        }
+
+        /// <summary>
+        /// Asks the user to choose existing photo.
+        /// </summary>
+        private void AskToChooseExistingPhoto()
+        {
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            openDialog.Filter = "All Supported Images (*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff)|*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff";
+            openDialog.FilterIndex = 1;
+            openDialog.RestoreDirectory = true;
+            openDialog.CheckFileExists = true;
+            openDialog.Multiselect = false;
+
+            if (openDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            // Does the photo folder exist at all?
+            if (!Directory.Exists(this.Settings.PhotoFolderPath))
+            {
+                // If there is a file named the same as the photo folder,
+                // show an error message.
+                if (File.Exists(this.Settings.PhotoFolderPath))
+                {
+                    MessageBox.Show(
+                        "Your Day One folder contains a file named \"photos\", which is preventing Journaley from creating the photo directory.",
+                        "Error creating photo folder",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
+                    return;
+                }
+
+                Directory.CreateDirectory(this.Settings.PhotoFolderPath);
+            }
+
+            // Delete the existing photo, if there's any.
+            if (File.Exists(this.SelectedEntry.PhotoPath))
+            {
+                File.Delete(this.SelectedEntry.PhotoPath);
+            }
+
+            // Now copy the file to the photo folder if the file is in JPEG.
+            // Otherwise, convert it to JPEG.
+            string targetFileName = Path.ChangeExtension(this.SelectedEntry.UUIDString, "jpg");
+            string targetFullPath = Path.Combine(this.Settings.PhotoFolderPath, targetFileName);
+
+            string ext = Path.GetExtension(openDialog.FileName).ToLower();
+            if (ext == ".jpg" || ext == ".jpeg")
+            {
+                FileInfo srcInfo = new FileInfo(openDialog.FileName);
+                srcInfo.CopyTo(targetFullPath);
+            }
+            else
+            {
+                try
+                {
+                    using (Image image = Image.FromFile(openDialog.FileName))
+                    {
+                        using (Bitmap b = new Bitmap(image.Width, image.Height))
+                        {
+                            b.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+                            using (Graphics g = Graphics.FromImage(b))
+                            {
+                                g.Clear(Color.White);
+                                g.DrawImageUnscaled(image, 0, 0);
+                            }
+
+                            b.Save(targetFullPath, ImageFormat.Jpeg);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(
+                        "Error reading the selected photo.",
+                        "Failed to add photo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
+                    return;
+                }
+            }
+
+            // Assign the photo path to the selected entry.
+            this.SelectedEntry.PhotoPath = Path.Combine(this.Settings.PhotoFolderPath, targetFileName);
+
+            // Update the UI.
+            if (!this.IsEditing)
+            {
+                this.UpdateWebBrowser();
+            }
+
+            this.UpdatePhoto();
+            this.InvalidateEntryInEntryList(this.SelectedEntry);
         }
 
         #endregion

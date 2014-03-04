@@ -217,17 +217,17 @@
             bounds.Inflate(-EntryPadding, -EntryPadding);
             bounds.Width = bounds.Height;
 
-            Image image = null;
             try
             {
-                image = Image.FromFile(entry.PhotoPath);
+                using (Image image = Image.FromFile(entry.PhotoPath))
+                {
+                    this.DrawToFit(e.Graphics, image, bounds);
+                }
             }
             catch (Exception)
             {
-                image = Resources.Image_32x32;
+                this.DrawToFit(e.Graphics, Resources.Image_32x32, bounds);
             }
-
-            this.DrawToFit(e.Graphics, image, bounds);
         }
 
         /// <summary>

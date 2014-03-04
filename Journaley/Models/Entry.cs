@@ -17,7 +17,7 @@
         /// <summary>
         /// The supported photo formats
         /// </summary>
-        private static readonly string[] SupportedPhotoFormats = { "png", "jpg" };
+        public static readonly string[] SupportedPhotoFormats = { "bmp", "gif", "jpeg", "jpg", "png", "tiff" };
 
         /// <summary>
         /// The UTC date time
@@ -274,7 +274,7 @@
         }
 
         /// <summary>
-        /// Gets the photo path associated with this entry.
+        /// Gets or sets the photo path associated with this entry.
         /// </summary>
         /// <value>
         /// The photo path.
@@ -284,6 +284,11 @@
             get
             {
                 return this.photoPath;
+            }
+
+            set
+            {
+                this.photoPath = value;
             }
         }
 
