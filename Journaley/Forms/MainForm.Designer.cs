@@ -59,13 +59,18 @@ namespace Journaley.Forms
             this.buttonStar = new System.Windows.Forms.Button();
             this.buttonSettings = new System.Windows.Forms.Button();
             this.buttonTag = new System.Windows.Forms.Button();
+            this.buttonPhoto = new System.Windows.Forms.Button();
             this.contextMenuStripShare = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.emailThisEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textEntryText = new System.Windows.Forms.TextBox();
             this.panelWebBrowserWrapper = new System.Windows.Forms.Panel();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
-            this.buttonPhoto = new System.Windows.Forms.Button();
+            this.contextMenuStripPhotoWithoutPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.chooseExsistingPhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripPhotoWithPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.replaceWithAnotherPhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletePhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.entryListBoxAll = new Journaley.Controls.EntryListBox();
             this.entryListBoxStarred = new Journaley.Controls.EntryListBox();
             this.entryListBoxTags = new Journaley.Controls.EntryListBox();
@@ -86,6 +91,8 @@ namespace Journaley.Forms
             this.tableLayoutStats.SuspendLayout();
             this.contextMenuStripShare.SuspendLayout();
             this.panelWebBrowserWrapper.SuspendLayout();
+            this.contextMenuStripPhotoWithoutPhoto.SuspendLayout();
+            this.contextMenuStripPhotoWithPhoto.SuspendLayout();
             this.SuspendLayout();
             // 
             // label5
@@ -412,6 +419,18 @@ namespace Journaley.Forms
             this.buttonTag.UseVisualStyleBackColor = true;
             this.buttonTag.Click += new System.EventHandler(this.ButtonTag_Click);
             // 
+            // buttonPhoto
+            // 
+            this.buttonPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPhoto.Image = global::Journaley.Properties.Resources.ImageGray_32x32;
+            this.buttonPhoto.Location = new System.Drawing.Point(728, 12);
+            this.buttonPhoto.Name = "buttonPhoto";
+            this.buttonPhoto.Size = new System.Drawing.Size(40, 40);
+            this.buttonPhoto.TabIndex = 7;
+            this.toolTip.SetToolTip(this.buttonPhoto, "Photo");
+            this.buttonPhoto.UseVisualStyleBackColor = true;
+            this.buttonPhoto.Click += new System.EventHandler(this.ButtonPhoto_Click);
+            // 
             // contextMenuStripShare
             // 
             this.contextMenuStripShare.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -466,16 +485,38 @@ namespace Journaley.Forms
             this.webBrowser.Size = new System.Drawing.Size(627, 501);
             this.webBrowser.TabIndex = 0;
             // 
-            // buttonPhoto
+            // contextMenuStripPhotoWithoutPhoto
             // 
-            this.buttonPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonPhoto.Image = global::Journaley.Properties.Resources.ImageGray_32x32;
-            this.buttonPhoto.Location = new System.Drawing.Point(728, 12);
-            this.buttonPhoto.Name = "buttonPhoto";
-            this.buttonPhoto.Size = new System.Drawing.Size(40, 40);
-            this.buttonPhoto.TabIndex = 7;
-            this.toolTip.SetToolTip(this.buttonPhoto, "Photo");
-            this.buttonPhoto.UseVisualStyleBackColor = true;
+            this.contextMenuStripPhotoWithoutPhoto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chooseExsistingPhotoToolStripMenuItem});
+            this.contextMenuStripPhotoWithoutPhoto.Name = "contextMenuStripPhotoWithoutPhoto";
+            this.contextMenuStripPhotoWithoutPhoto.Size = new System.Drawing.Size(214, 26);
+            // 
+            // chooseExsistingPhotoToolStripMenuItem
+            // 
+            this.chooseExsistingPhotoToolStripMenuItem.Name = "chooseExsistingPhotoToolStripMenuItem";
+            this.chooseExsistingPhotoToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
+            this.chooseExsistingPhotoToolStripMenuItem.Text = "Choose an Exsisting Photo";
+            // 
+            // contextMenuStripPhotoWithPhoto
+            // 
+            this.contextMenuStripPhotoWithPhoto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.replaceWithAnotherPhotoToolStripMenuItem,
+            this.deletePhotoToolStripMenuItem});
+            this.contextMenuStripPhotoWithPhoto.Name = "contextMenuStripPhotoWithPhoto";
+            this.contextMenuStripPhotoWithPhoto.Size = new System.Drawing.Size(223, 48);
+            // 
+            // replaceWithAnotherPhotoToolStripMenuItem
+            // 
+            this.replaceWithAnotherPhotoToolStripMenuItem.Name = "replaceWithAnotherPhotoToolStripMenuItem";
+            this.replaceWithAnotherPhotoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.replaceWithAnotherPhotoToolStripMenuItem.Text = "Replace with Another Photo";
+            // 
+            // deletePhotoToolStripMenuItem
+            // 
+            this.deletePhotoToolStripMenuItem.Name = "deletePhotoToolStripMenuItem";
+            this.deletePhotoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.deletePhotoToolStripMenuItem.Text = "Delete Photo";
             // 
             // entryListBoxAll
             // 
@@ -574,6 +615,8 @@ namespace Journaley.Forms
             this.tableLayoutStats.PerformLayout();
             this.contextMenuStripShare.ResumeLayout(false);
             this.panelWebBrowserWrapper.ResumeLayout(false);
+            this.contextMenuStripPhotoWithoutPhoto.ResumeLayout(false);
+            this.contextMenuStripPhotoWithPhoto.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -618,6 +661,11 @@ namespace Journaley.Forms
         private System.Windows.Forms.ListBox listBoxTags;
         private System.Windows.Forms.Button buttonTag;
         private System.Windows.Forms.Button buttonPhoto;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripPhotoWithoutPhoto;
+        private System.Windows.Forms.ToolStripMenuItem chooseExsistingPhotoToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripPhotoWithPhoto;
+        private System.Windows.Forms.ToolStripMenuItem replaceWithAnotherPhotoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deletePhotoToolStripMenuItem;
     }
 }
 

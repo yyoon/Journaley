@@ -808,6 +808,20 @@
             this.UpdateEntryListBoxStarred();
         }
 
+        private void ButtonPhoto_Click(object sender, EventArgs e)
+        {
+            Debug.Assert(this.SelectedEntry != null, "There must be a selectd entry when modifying photo.");
+
+            ContextMenuStrip menuStrip = this.SelectedEntry.PhotoPath != null
+                ? this.contextMenuStripPhotoWithPhoto
+                : this.contextMenuStripPhotoWithoutPhoto;
+
+            menuStrip.Show(
+                this.buttonPhoto,
+                new Point { X = this.buttonPhoto.Width, Y = this.buttonShare.Height },
+                ToolStripDropDownDirection.BelowLeft);
+        }
+
         /// <summary>
         /// Handles the Click event of the ButtonTag control.
         /// Creates a TagEditForm instance and show it right below the tag button.
