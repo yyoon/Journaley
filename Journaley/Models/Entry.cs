@@ -17,7 +17,7 @@
         /// <summary>
         /// The supported photo formats
         /// </summary>
-        public static readonly string[] SupportedPhotoFormats = { "bmp", "gif", "jpeg", "jpg", "png", "tiff" };
+        public static readonly string[] SupportedPhotoFormats = { "jpg" };
 
         /// <summary>
         /// The UTC date time
