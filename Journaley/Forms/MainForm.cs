@@ -1116,7 +1116,22 @@
                                 g.DrawImageUnscaled(image, 0, 0);
                             }
 
-                            b.Save(targetFullPath, ImageFormat.Jpeg);
+                            // Set the JPEG quality to 100L.
+                            ImageCodecInfo jpgEncoder = this.GetEncoder(ImageFormat.Jpeg);
+
+                            if (jpgEncoder != null)
+                            {
+                                Encoder encoder = Encoder.Quality;
+                                EncoderParameters encoderParameters = new EncoderParameters(1);
+                                encoderParameters.Param[0] = new EncoderParameter(encoder, 100L);
+
+                                b.Save(targetFullPath, jpgEncoder, encoderParameters);
+                            }
+                            else
+                            {
+                                // Just use the default save method with 75% quality in case the encoder object is not found.
+                                b.Save(targetFullPath, ImageFormat.Jpeg);
+                            }
                         }
                     }
                 }
@@ -1137,6 +1152,29 @@
 
             // Update the UIs related to photo.
             this.UpdatePhotoUIs();
+        }
+
+        /// <summary>
+        /// Gets the image encoder.
+        /// </summary>
+        /// <param name="format">The image format.</param>
+        /// <returns>The image encoder for the given image format, null if not found.</returns>
+        private ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            // Not sure why GetImageDecoders() is used instead of GetImageEncoders(),
+            // but I'm just following the example in MSDN
+            // http://msdn.microsoft.com/en-us/library/bb882583%28v=vs.110%29.aspx
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
+
+            foreach (var codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+
+            return null;
         }
 
         /// <summary>
