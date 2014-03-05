@@ -64,12 +64,18 @@ namespace Journaley.Forms
             this.buttonStar = new System.Windows.Forms.Button();
             this.buttonSettings = new System.Windows.Forms.Button();
             this.buttonTag = new System.Windows.Forms.Button();
+            this.buttonPhoto = new System.Windows.Forms.Button();
             this.contextMenuStripShare = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.emailThisEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textEntryText = new System.Windows.Forms.TextBox();
             this.panelWebBrowserWrapper = new System.Windows.Forms.Panel();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.contextMenuStripPhotoWithoutPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.chooseExistingPhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripPhotoWithPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.replaceWithAnotherPhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletePhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             label5 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
@@ -85,6 +91,8 @@ namespace Journaley.Forms
             this.tableLayoutStats.SuspendLayout();
             this.contextMenuStripShare.SuspendLayout();
             this.panelWebBrowserWrapper.SuspendLayout();
+            this.contextMenuStripPhotoWithoutPhoto.SuspendLayout();
+            this.contextMenuStripPhotoWithPhoto.SuspendLayout();
             this.SuspendLayout();
             // 
             // label5
@@ -322,7 +330,7 @@ namespace Journaley.Forms
             this.dateTimePicker.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dateTimePicker.Enabled = false;
             this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker.Location = new System.Drawing.Point(476, 32);
+            this.dateTimePicker.Location = new System.Drawing.Point(430, 32);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.ShowUpDown = true;
             this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
@@ -410,7 +418,7 @@ namespace Journaley.Forms
             this.buttonDelete.Location = new System.Drawing.Point(866, 12);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(40, 40);
-            this.buttonDelete.TabIndex = 9;
+            this.buttonDelete.TabIndex = 10;
             this.toolTip.SetToolTip(this.buttonDelete, "Delete");
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
@@ -422,7 +430,7 @@ namespace Journaley.Forms
             this.buttonShare.Location = new System.Drawing.Point(820, 12);
             this.buttonShare.Name = "buttonShare";
             this.buttonShare.Size = new System.Drawing.Size(40, 40);
-            this.buttonShare.TabIndex = 8;
+            this.buttonShare.TabIndex = 9;
             this.toolTip.SetToolTip(this.buttonShare, "Share");
             this.buttonShare.UseVisualStyleBackColor = true;
             this.buttonShare.Click += new System.EventHandler(this.ButtonShare_Click);
@@ -431,7 +439,7 @@ namespace Journaley.Forms
             // 
             this.buttonEditSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonEditSave.Image = global::Journaley.Properties.Resources.Edit_32x32;
-            this.buttonEditSave.Location = new System.Drawing.Point(682, 12);
+            this.buttonEditSave.Location = new System.Drawing.Point(636, 12);
             this.buttonEditSave.Name = "buttonEditSave";
             this.buttonEditSave.Size = new System.Drawing.Size(40, 40);
             this.buttonEditSave.TabIndex = 5;
@@ -443,7 +451,7 @@ namespace Journaley.Forms
             // 
             this.buttonStar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonStar.Image = global::Journaley.Properties.Resources.StarGray_32x32;
-            this.buttonStar.Location = new System.Drawing.Point(728, 12);
+            this.buttonStar.Location = new System.Drawing.Point(682, 12);
             this.buttonStar.Name = "buttonStar";
             this.buttonStar.Size = new System.Drawing.Size(40, 40);
             this.buttonStar.TabIndex = 6;
@@ -469,10 +477,22 @@ namespace Journaley.Forms
             this.buttonTag.Location = new System.Drawing.Point(774, 12);
             this.buttonTag.Name = "buttonTag";
             this.buttonTag.Size = new System.Drawing.Size(40, 40);
-            this.buttonTag.TabIndex = 7;
+            this.buttonTag.TabIndex = 8;
             this.toolTip.SetToolTip(this.buttonTag, "Tag");
             this.buttonTag.UseVisualStyleBackColor = true;
             this.buttonTag.Click += new System.EventHandler(this.ButtonTag_Click);
+            // 
+            // buttonPhoto
+            // 
+            this.buttonPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPhoto.Image = global::Journaley.Properties.Resources.ImageGray_32x32;
+            this.buttonPhoto.Location = new System.Drawing.Point(728, 12);
+            this.buttonPhoto.Name = "buttonPhoto";
+            this.buttonPhoto.Size = new System.Drawing.Size(40, 40);
+            this.buttonPhoto.TabIndex = 7;
+            this.toolTip.SetToolTip(this.buttonPhoto, "Photo");
+            this.buttonPhoto.UseVisualStyleBackColor = true;
+            this.buttonPhoto.Click += new System.EventHandler(this.ButtonPhoto_Click);
             // 
             // contextMenuStripShare
             // 
@@ -528,10 +548,47 @@ namespace Journaley.Forms
             this.webBrowser.Size = new System.Drawing.Size(627, 501);
             this.webBrowser.TabIndex = 0;
             // 
+            // contextMenuStripPhotoWithoutPhoto
+            // 
+            this.contextMenuStripPhotoWithoutPhoto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chooseExistingPhotoToolStripMenuItem});
+            this.contextMenuStripPhotoWithoutPhoto.Name = "contextMenuStripPhotoWithoutPhoto";
+            this.contextMenuStripPhotoWithoutPhoto.Size = new System.Drawing.Size(223, 26);
+            // 
+            // chooseExistingPhotoToolStripMenuItem
+            // 
+            this.chooseExistingPhotoToolStripMenuItem.Name = "chooseExistingPhotoToolStripMenuItem";
+            this.chooseExistingPhotoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.chooseExistingPhotoToolStripMenuItem.Text = "Choose an Exsisting Photo...";
+            this.chooseExistingPhotoToolStripMenuItem.Click += new System.EventHandler(this.ChooseExistingPhotoToolStripMenuItem_Click);
+            // 
+            // contextMenuStripPhotoWithPhoto
+            // 
+            this.contextMenuStripPhotoWithPhoto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.replaceWithAnotherPhotoToolStripMenuItem,
+            this.deletePhotoToolStripMenuItem});
+            this.contextMenuStripPhotoWithPhoto.Name = "contextMenuStripPhotoWithPhoto";
+            this.contextMenuStripPhotoWithPhoto.Size = new System.Drawing.Size(232, 48);
+            // 
+            // replaceWithAnotherPhotoToolStripMenuItem
+            // 
+            this.replaceWithAnotherPhotoToolStripMenuItem.Name = "replaceWithAnotherPhotoToolStripMenuItem";
+            this.replaceWithAnotherPhotoToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.replaceWithAnotherPhotoToolStripMenuItem.Text = "Replace with Another Photo...";
+            this.replaceWithAnotherPhotoToolStripMenuItem.Click += new System.EventHandler(this.ReplaceWithAnotherPhotoToolStripMenuItem_Click);
+            // 
+            // deletePhotoToolStripMenuItem
+            // 
+            this.deletePhotoToolStripMenuItem.Name = "deletePhotoToolStripMenuItem";
+            this.deletePhotoToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
+            this.deletePhotoToolStripMenuItem.Text = "Delete Photo";
+            this.deletePhotoToolStripMenuItem.Click += new System.EventHandler(this.DeletePhotoToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(918, 573);
+            this.Controls.Add(this.buttonPhoto);
             this.Controls.Add(this.buttonTag);
             this.Controls.Add(this.panelWebBrowserWrapper);
             this.Controls.Add(this.textEntryText);
@@ -561,6 +618,8 @@ namespace Journaley.Forms
             this.tableLayoutStats.PerformLayout();
             this.contextMenuStripShare.ResumeLayout(false);
             this.panelWebBrowserWrapper.ResumeLayout(false);
+            this.contextMenuStripPhotoWithoutPhoto.ResumeLayout(false);
+            this.contextMenuStripPhotoWithPhoto.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -604,6 +663,12 @@ namespace Journaley.Forms
         private EntryListBox entryListBoxTags;
         private System.Windows.Forms.ListBox listBoxTags;
         private System.Windows.Forms.Button buttonTag;
+        private System.Windows.Forms.Button buttonPhoto;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripPhotoWithoutPhoto;
+        private System.Windows.Forms.ToolStripMenuItem chooseExistingPhotoToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripPhotoWithPhoto;
+        private System.Windows.Forms.ToolStripMenuItem replaceWithAnotherPhotoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deletePhotoToolStripMenuItem;
     }
 }
 

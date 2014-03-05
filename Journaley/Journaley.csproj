@@ -192,6 +192,12 @@
   <ItemGroup>
     <None Include="images\tag_white.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\Image_32x32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\ImageGray_32x32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(ProgramFiles)\MSBuild\StyleCop\v4.7\StyleCop.Targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
