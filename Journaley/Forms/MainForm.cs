@@ -1051,7 +1051,13 @@
         {
             OpenFileDialog openDialog = new OpenFileDialog();
             openDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            openDialog.Filter = "All Supported Images (*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff)|*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff";
+            openDialog.Filter =
+                "All Supported Images (*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif)|*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif|" +
+                "Bitmap Images (*.bmp)|*.bmp|" +
+                "GIF Images (*.gif)|*.gif|" +
+                "JPEG Images (*.jpeg;*.jpg)|*.jpeg;*.jpg|" +
+                "PNG Images (*.png)|*.png|" +
+                "TIFF Images (*.tiff;*.tif)|*.tiff;*.tif";
             openDialog.FilterIndex = 1;
             openDialog.RestoreDirectory = true;
             openDialog.CheckFileExists = true;
