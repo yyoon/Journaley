@@ -916,8 +916,14 @@
                 return;
             }
 
+            // Cancel the editing mode first.
+            this.IsEditing = false;
+
             this.Entries.Remove(this.SelectedEntry);
             this.SelectedEntry.Delete(this.Settings.EntryFolderPath);
+
+            // After deleting, there shouldn't be any selected entry.
+            this.SelectedEntry = null;
 
             this.UpdateFromScratch();
         }
