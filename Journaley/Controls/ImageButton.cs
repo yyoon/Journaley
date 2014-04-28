@@ -39,6 +39,11 @@
         private bool down = false;
 
         /// <summary>
+        /// Indicates whether this button is currently selected.
+        /// </summary>
+        private bool selected = false;
+
+        /// <summary>
         /// Indicates whether the space bar is held by the user.
         /// </summary>
         private bool holdingSpace = false;
@@ -72,6 +77,53 @@
         [Category("Appearance")]
         [Description("Image to show when the button is not in any other state.")]
         public Image NormalImage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the selected image.
+        /// </summary>
+        /// <value>
+        /// The selected image.
+        /// </value>
+        [Category("Appearance")]
+        [Description("Image to show when the button is currently selected.")]
+        public Image SelectedImage { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [selected].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [selected]; otherwise, <c>false</c>.
+        /// </value>
+        [Category("Behavior")]
+        [Description("Indicate whether this button is currently selected and should be displaying the SelectedImage.")]
+        public bool Selected
+        {
+            get
+            {
+                return this.selected;
+            }
+
+            set
+            {
+                this.selected = value;
+
+                if (this.SelectedImage != null)
+                {
+                    if (this.down && this.DownImage != null)
+                    {
+                        this.Image = this.DownImage;
+                    }
+                    else if (this.hover && this.HoverImage != null)
+                    {
+                        this.Image = this.HoverImage;
+                    }
+                    else
+                    {
+                        this.Image = value ? this.SelectedImage : this.NormalImage;
+                    }
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the value returned to the parent form when the button is clicked.
@@ -160,7 +212,8 @@
             }
             else
             {
-                this.Image = this.HoverImage != null ? this.HoverImage : this.NormalImage;
+                this.Image = this.HoverImage != null ? this.HoverImage :
+                    (this.SelectedImage != null && this.Selected ? this.SelectedImage : this.NormalImage);
             }
 
             base.OnMouseMove(e);
@@ -185,7 +238,7 @@
         protected override void OnMouseLeave(EventArgs e)
         {
             this.hover = false;
-            this.Image = this.NormalImage;
+            this.Image = this.SelectedImage != null && this.Selected ? this.SelectedImage : this.NormalImage;
 
             base.OnMouseLeave(e);
         }
@@ -223,7 +276,7 @@
             }
             else
             {
-                this.Image = this.NormalImage;
+                this.Image = this.SelectedImage != null && this.Selected ? this.SelectedImage : this.NormalImage;
             }
 
             base.OnMouseUp(e);

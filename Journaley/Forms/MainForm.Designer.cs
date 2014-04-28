@@ -166,7 +166,7 @@ namespace Journaley.Forms
             this.tabPageStarred.Location = new System.Drawing.Point(4, 22);
             this.tabPageStarred.Name = "tabPageStarred";
             this.tabPageStarred.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageStarred.Size = new System.Drawing.Size(221, 363);
+            this.tabPageStarred.Size = new System.Drawing.Size(221, 440);
             this.tabPageStarred.TabIndex = 1;
             this.tabPageStarred.Text = "Starred";
             this.tabPageStarred.UseVisualStyleBackColor = true;
@@ -178,7 +178,7 @@ namespace Journaley.Forms
             this.tabPageTags.Location = new System.Drawing.Point(4, 22);
             this.tabPageTags.Name = "tabPageTags";
             this.tabPageTags.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTags.Size = new System.Drawing.Size(221, 363);
+            this.tabPageTags.Size = new System.Drawing.Size(221, 440);
             this.tabPageTags.TabIndex = 4;
             this.tabPageTags.Text = "Tags";
             this.tabPageTags.UseVisualStyleBackColor = true;
@@ -190,7 +190,7 @@ namespace Journaley.Forms
             this.panelTagsEntryListWrapper.Location = new System.Drawing.Point(3, 72);
             this.panelTagsEntryListWrapper.Name = "panelTagsEntryListWrapper";
             this.panelTagsEntryListWrapper.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.panelTagsEntryListWrapper.Size = new System.Drawing.Size(215, 288);
+            this.panelTagsEntryListWrapper.Size = new System.Drawing.Size(215, 365);
             this.panelTagsEntryListWrapper.TabIndex = 1;
             // 
             // listBoxTags
@@ -210,7 +210,7 @@ namespace Journaley.Forms
             this.tabPageEntriesByYear.Location = new System.Drawing.Point(4, 22);
             this.tabPageEntriesByYear.Name = "tabPageEntriesByYear";
             this.tabPageEntriesByYear.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageEntriesByYear.Size = new System.Drawing.Size(221, 363);
+            this.tabPageEntriesByYear.Size = new System.Drawing.Size(221, 440);
             this.tabPageEntriesByYear.TabIndex = 2;
             this.tabPageEntriesByYear.Text = "Years";
             this.tabPageEntriesByYear.UseVisualStyleBackColor = true;
@@ -222,7 +222,7 @@ namespace Journaley.Forms
             this.panelYearEntryListWrapper.Location = new System.Drawing.Point(3, 72);
             this.panelYearEntryListWrapper.Name = "panelYearEntryListWrapper";
             this.panelYearEntryListWrapper.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.panelYearEntryListWrapper.Size = new System.Drawing.Size(215, 288);
+            this.panelYearEntryListWrapper.Size = new System.Drawing.Size(215, 365);
             this.panelYearEntryListWrapper.TabIndex = 1;
             // 
             // listBoxYear
@@ -241,7 +241,7 @@ namespace Journaley.Forms
             this.tabPageCalendar.Controls.Add(this.monthCalendar);
             this.tabPageCalendar.Location = new System.Drawing.Point(4, 22);
             this.tabPageCalendar.Name = "tabPageCalendar";
-            this.tabPageCalendar.Size = new System.Drawing.Size(221, 363);
+            this.tabPageCalendar.Size = new System.Drawing.Size(221, 440);
             this.tabPageCalendar.TabIndex = 3;
             this.tabPageCalendar.Text = "Calendar";
             this.tabPageCalendar.UseVisualStyleBackColor = true;
@@ -518,10 +518,12 @@ namespace Journaley.Forms
             this.buttonMainTags.Margin = new System.Windows.Forms.Padding(0);
             this.buttonMainTags.Name = "buttonMainTags";
             this.buttonMainTags.NormalImage = global::Journaley.Properties.Resources.main_btn_tag_norm;
+            this.buttonMainTags.Selected = false;
+            this.buttonMainTags.SelectedImage = global::Journaley.Properties.Resources.main_btn_tag_down;
             this.buttonMainTags.Size = new System.Drawing.Size(77, 40);
             this.buttonMainTags.TabIndex = 15;
             this.buttonMainTags.TabStop = false;
-            this.buttonMainTags.Click += new System.EventHandler(this.buttonMainTags_Click);
+            this.buttonMainTags.Click += new System.EventHandler(this.ButtonMainTags_Click);
             // 
             // buttonMainCalendar
             // 
@@ -533,25 +535,29 @@ namespace Journaley.Forms
             this.buttonMainCalendar.Margin = new System.Windows.Forms.Padding(0);
             this.buttonMainCalendar.Name = "buttonMainCalendar";
             this.buttonMainCalendar.NormalImage = global::Journaley.Properties.Resources.main_btn_calendar_norm;
+            this.buttonMainCalendar.Selected = false;
+            this.buttonMainCalendar.SelectedImage = global::Journaley.Properties.Resources.main_btn_calendar_down;
             this.buttonMainCalendar.Size = new System.Drawing.Size(76, 40);
             this.buttonMainCalendar.TabIndex = 14;
             this.buttonMainCalendar.TabStop = false;
-            this.buttonMainCalendar.Click += new System.EventHandler(this.buttonMainCalendar_Click);
+            this.buttonMainCalendar.Click += new System.EventHandler(this.ButtonMainCalendar_Click);
             // 
             // buttonMainTimeline
             // 
             this.buttonMainTimeline.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonMainTimeline.DownImage = global::Journaley.Properties.Resources.main_btn_timeline_down;
             this.buttonMainTimeline.HoverImage = global::Journaley.Properties.Resources.main_btn_timeline_over;
-            this.buttonMainTimeline.Image = global::Journaley.Properties.Resources.main_btn_timeline_norm;
+            this.buttonMainTimeline.Image = global::Journaley.Properties.Resources.main_btn_timeline_down;
             this.buttonMainTimeline.Location = new System.Drawing.Point(0, 491);
             this.buttonMainTimeline.Margin = new System.Windows.Forms.Padding(0);
             this.buttonMainTimeline.Name = "buttonMainTimeline";
             this.buttonMainTimeline.NormalImage = global::Journaley.Properties.Resources.main_btn_timeline_norm;
+            this.buttonMainTimeline.Selected = true;
+            this.buttonMainTimeline.SelectedImage = global::Journaley.Properties.Resources.main_btn_timeline_down;
             this.buttonMainTimeline.Size = new System.Drawing.Size(76, 40);
             this.buttonMainTimeline.TabIndex = 13;
             this.buttonMainTimeline.TabStop = false;
-            this.buttonMainTimeline.Click += new System.EventHandler(this.buttonMainTimeline_Click);
+            this.buttonMainTimeline.Click += new System.EventHandler(this.ButtonMainTimeline_Click);
             // 
             // buttonAddEntry
             // 
@@ -564,6 +570,8 @@ namespace Journaley.Forms
             this.buttonAddEntry.Margin = new System.Windows.Forms.Padding(0);
             this.buttonAddEntry.Name = "buttonAddEntry";
             this.buttonAddEntry.NormalImage = global::Journaley.Properties.Resources.main_btn_entry_norm;
+            this.buttonAddEntry.Selected = false;
+            this.buttonAddEntry.SelectedImage = null;
             this.buttonAddEntry.Size = new System.Drawing.Size(229, 42);
             this.buttonAddEntry.TabIndex = 0;
             this.buttonAddEntry.TabStop = false;
@@ -590,7 +598,7 @@ namespace Journaley.Forms
             this.entryListBoxStarred.Location = new System.Drawing.Point(3, 3);
             this.entryListBoxStarred.Name = "entryListBoxStarred";
             this.entryListBoxStarred.ScrollAlwaysVisible = true;
-            this.entryListBoxStarred.Size = new System.Drawing.Size(215, 357);
+            this.entryListBoxStarred.Size = new System.Drawing.Size(215, 434);
             this.entryListBoxStarred.TabIndex = 0;
             this.entryListBoxStarred.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
@@ -602,7 +610,7 @@ namespace Journaley.Forms
             this.entryListBoxTags.Location = new System.Drawing.Point(0, 3);
             this.entryListBoxTags.Name = "entryListBoxTags";
             this.entryListBoxTags.ScrollAlwaysVisible = true;
-            this.entryListBoxTags.Size = new System.Drawing.Size(215, 285);
+            this.entryListBoxTags.Size = new System.Drawing.Size(215, 362);
             this.entryListBoxTags.TabIndex = 0;
             this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
@@ -614,7 +622,7 @@ namespace Journaley.Forms
             this.entryListBoxYear.Location = new System.Drawing.Point(0, 3);
             this.entryListBoxYear.Name = "entryListBoxYear";
             this.entryListBoxYear.ScrollAlwaysVisible = true;
-            this.entryListBoxYear.Size = new System.Drawing.Size(215, 285);
+            this.entryListBoxYear.Size = new System.Drawing.Size(215, 362);
             this.entryListBoxYear.TabIndex = 0;
             this.entryListBoxYear.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
@@ -629,7 +637,7 @@ namespace Journaley.Forms
             this.entryListBoxCalendar.Location = new System.Drawing.Point(3, 186);
             this.entryListBoxCalendar.Name = "entryListBoxCalendar";
             this.entryListBoxCalendar.ScrollAlwaysVisible = true;
-            this.entryListBoxCalendar.Size = new System.Drawing.Size(215, 174);
+            this.entryListBoxCalendar.Size = new System.Drawing.Size(215, 251);
             this.entryListBoxCalendar.TabIndex = 1;
             this.entryListBoxCalendar.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 

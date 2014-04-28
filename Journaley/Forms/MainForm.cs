@@ -1234,6 +1234,45 @@
             this.UpdatePhotoUIs();
         }
 
+        /// <summary>
+        /// Handles the Click event of the ButtonMainTimeline control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonMainTimeline_Click(object sender, EventArgs e)
+        {
+            this.tabLeftPanel.SelectTab("tabPageAllEntries");
+            this.buttonMainTimeline.Selected = true;
+            this.buttonMainCalendar.Selected = false;
+            this.buttonMainTags.Selected = false;
+        }
+
+        /// <summary>
+        /// Handles the Click event of the ButtonMainCalendar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonMainCalendar_Click(object sender, EventArgs e)
+        {
+            this.tabLeftPanel.SelectTab("tabPageCalendar");
+            this.buttonMainTimeline.Selected = false;
+            this.buttonMainCalendar.Selected = true;
+            this.buttonMainTags.Selected = false;
+        }
+
+        /// <summary>
+        /// Handles the Click event of the ButtonMainTags control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonMainTags_Click(object sender, EventArgs e)
+        {
+            this.tabLeftPanel.SelectTab("tabPageTags");
+            this.buttonMainTimeline.Selected = false;
+            this.buttonMainCalendar.Selected = false;
+            this.buttonMainTags.Selected = true;
+        }
+
         #endregion
 
         #region Private Classes
@@ -1327,20 +1366,5 @@
         }
 
         #endregion
-
-        private void buttonMainTimeline_Click(object sender, EventArgs e)
-        {
-            this.tabLeftPanel.SelectTab("tabPageAllEntries");
-        }
-
-        private void buttonMainCalendar_Click(object sender, EventArgs e)
-        {
-            this.tabLeftPanel.SelectTab("tabPageCalendar");
-        }
-
-        private void buttonMainTags_Click(object sender, EventArgs e)
-        {
-            this.tabLeftPanel.SelectTab("tabPageTags");
-        }
     }
 }
