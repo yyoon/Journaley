@@ -309,7 +309,6 @@
         private void UpdateStats()
         {
             this.labelEntries.Text = this.GetAllEntriesCount().ToString();
-            this.labelDays.Text = this.GetDaysCount().ToString();
             this.labelThisWeek.Text = this.GetThisWeekCount(DateTime.Now).ToString();
             this.labelToday.Text = this.GetTodayCount(DateTime.Now).ToString();
         }
@@ -1328,5 +1327,20 @@
         }
 
         #endregion
+
+        private void buttonMainTimeline_Click(object sender, EventArgs e)
+        {
+            this.tabLeftPanel.SelectTab("tabPageAllEntries");
+        }
+
+        private void buttonMainCalendar_Click(object sender, EventArgs e)
+        {
+            this.tabLeftPanel.SelectTab("tabPageCalendar");
+        }
+
+        private void buttonMainTags_Click(object sender, EventArgs e)
+        {
+            this.tabLeftPanel.SelectTab("tabPageTags");
+        }
     }
 }
