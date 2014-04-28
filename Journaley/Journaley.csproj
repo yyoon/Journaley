@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ImageButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\ChangePasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +205,51 @@
     <None Include="images\NewDesign\Journaley.ico" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="images\NewDesign\sidebar_seperator_buttonContainer.png" />
+    <None Include="images\NewDesign\sidebar_pane_buttonContainer_background.png" />
+    <None Include="images\NewDesign\sidebar_btn_tag_over.png" />
+    <None Include="images\NewDesign\sidebar_btn_tag_norm.png" />
+    <None Include="images\NewDesign\sidebar_btn_tag_enabled.png" />
+    <None Include="images\NewDesign\sidebar_btn_tag_down.png" />
+    <None Include="images\NewDesign\sidebar_btn_star_over.png" />
+    <None Include="images\NewDesign\sidebar_btn_star_norm.png" />
+    <None Include="images\NewDesign\sidebar_btn_star_enabled.png" />
+    <None Include="images\NewDesign\sidebar_btn_star_down.png" />
+    <None Include="images\NewDesign\sidebar_btn_setting_over.png" />
+    <None Include="images\NewDesign\sidebar_btn_setting_norm.png" />
+    <None Include="images\NewDesign\sidebar_btn_setting_down.png" />
+    <None Include="images\NewDesign\sidebar_btn_image_over.png" />
+    <None Include="images\NewDesign\sidebar_btn_image_norm.png" />
+    <None Include="images\NewDesign\sidebar_btn_image_enabled.png" />
+    <None Include="images\NewDesign\sidebar_btn_image_down.png" />
+    <None Include="images\NewDesign\sidebar_btn_done_over.png" />
+    <None Include="images\NewDesign\sidebar_btn_done_norm.png" />
+    <None Include="images\NewDesign\sidebar_btn_done_down.png" />
+    <None Include="images\NewDesign\sidebar_btn_delete_over.png" />
+    <None Include="images\NewDesign\sidebar_btn_delete_norm.png" />
+    <None Include="images\NewDesign\sidebar_btn_delete_down.png" />
+    <None Include="images\NewDesign\sidebar_btn_cancel_over.png" />
+    <None Include="images\NewDesign\sidebar_btn_cancel_norm.png" />
+    <None Include="images\NewDesign\sidebar_btn_cancel_down.png" />
+    <None Include="images\NewDesign\main_text_entry_background.png" />
+    <None Include="images\NewDesign\main_pane_sidebar_background.png" />
+    <None Include="images\NewDesign\main_pane_entriesStat_background.png" />
+    <None Include="images\NewDesign\main_pane_date_background.png" />
+    <None Include="images\NewDesign\main_frame_background.png" />
+    <None Include="images\NewDesign\main_btn_timeline_over.png" />
+    <None Include="images\NewDesign\main_btn_timeline_norm.png" />
+    <None Include="images\NewDesign\main_btn_timeline_down.png" />
+    <None Include="images\NewDesign\main_btn_tag_over.png" />
+    <None Include="images\NewDesign\main_btn_tag_norm.png" />
+    <None Include="images\NewDesign\main_btn_tag_down.png" />
+    <None Include="images\NewDesign\main_btn_entry_over.png" />
+    <None Include="images\NewDesign\main_btn_entry_norm.png" />
+    <None Include="images\NewDesign\main_btn_entry_down.png" />
+    <None Include="images\NewDesign\main_btn_calendar_over.png" />
+    <None Include="images\NewDesign\main_btn_calendar_norm.png" />
+    <None Include="images\NewDesign\main_btn_calendar_down.png" />
+    <None Include="images\NewDesign\entries_pane_dateHeader_background.png" />
+    <None Include="images\NewDesign\entires_pane_entryContainer_background.png" />
     <Content Include="Journaley.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
