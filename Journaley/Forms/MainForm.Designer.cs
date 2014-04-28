@@ -276,12 +276,12 @@ namespace Journaley.Forms
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dateTimePicker.CustomFormat = "MMMM dd, yyyy hh:mm tt";
             this.dateTimePicker.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dateTimePicker.Enabled = false;
             this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker.Location = new System.Drawing.Point(368, 32);
+            this.dateTimePicker.Location = new System.Drawing.Point(228, 3);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.ShowUpDown = true;
             this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
@@ -462,11 +462,11 @@ namespace Journaley.Forms
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textEntryText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textEntryText.Location = new System.Drawing.Point(228, 58);
+            this.textEntryText.Location = new System.Drawing.Point(228, 25);
             this.textEntryText.Margin = new System.Windows.Forms.Padding(0);
             this.textEntryText.Multiline = true;
             this.textEntryText.Name = "textEntryText";
-            this.textEntryText.Size = new System.Drawing.Size(656, 474);
+            this.textEntryText.Size = new System.Drawing.Size(656, 507);
             this.textEntryText.TabIndex = 9;
             this.textEntryText.TextChanged += new System.EventHandler(this.TextEntryText_TextChanged);
             // 
@@ -477,10 +477,10 @@ namespace Journaley.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelWebBrowserWrapper.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelWebBrowserWrapper.Controls.Add(this.webBrowser);
-            this.panelWebBrowserWrapper.Location = new System.Drawing.Point(228, 58);
+            this.panelWebBrowserWrapper.Location = new System.Drawing.Point(228, 25);
             this.panelWebBrowserWrapper.Margin = new System.Windows.Forms.Padding(0);
             this.panelWebBrowserWrapper.Name = "panelWebBrowserWrapper";
-            this.panelWebBrowserWrapper.Size = new System.Drawing.Size(656, 474);
+            this.panelWebBrowserWrapper.Size = new System.Drawing.Size(656, 507);
             this.panelWebBrowserWrapper.TabIndex = 11;
             // 
             // webBrowser
@@ -489,7 +489,7 @@ namespace Journaley.Forms
             this.webBrowser.Location = new System.Drawing.Point(0, 0);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(654, 472);
+            this.webBrowser.Size = new System.Drawing.Size(654, 505);
             this.webBrowser.TabIndex = 0;
             // 
             // contextMenuStripPhotoWithoutPhoto
@@ -639,6 +639,7 @@ namespace Journaley.Forms
             this.tableLayoutDate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutDate.Controls.Add(this.panelDateLeft, 0, 0);
             this.tableLayoutDate.Controls.Add(this.panelDateRight, 2, 0);
+            this.tableLayoutDate.Controls.Add(this.dateTimePicker, 1, 0);
             this.tableLayoutDate.Location = new System.Drawing.Point(228, 0);
             this.tableLayoutDate.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutDate.Name = "tableLayoutDate";
@@ -817,7 +818,6 @@ namespace Journaley.Forms
             this.Controls.Add(this.textEntryText);
             this.Controls.Add(this.buttonAddEntry);
             this.Controls.Add(this.tableLayoutStats);
-            this.Controls.Add(this.dateTimePicker);
             this.DoubleBuffered = true;
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "MainForm";
