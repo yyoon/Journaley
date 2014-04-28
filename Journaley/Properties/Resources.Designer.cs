@@ -643,6 +643,16 @@ namespace Journaley.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap sidebar_seperator_bottom {
+            get {
+                object obj = ResourceManager.GetObject("sidebar_seperator_bottom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sidebar_seperator_buttonContainer {
             get {
                 object obj = ResourceManager.GetObject("sidebar_seperator_buttonContainer", resourceCulture);

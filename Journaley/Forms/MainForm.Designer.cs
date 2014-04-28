@@ -54,7 +54,6 @@ namespace Journaley.Forms
             this.buttonEditSave = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.buttonStar = new System.Windows.Forms.Button();
-            this.buttonSettings = new System.Windows.Forms.Button();
             this.buttonTag = new System.Windows.Forms.Button();
             this.buttonPhoto = new System.Windows.Forms.Button();
             this.contextMenuStripShare = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -78,6 +77,8 @@ namespace Journaley.Forms
             this.tableLayoutDate = new System.Windows.Forms.TableLayoutPanel();
             this.panelDateLeft = new System.Windows.Forms.Panel();
             this.panelDateRight = new System.Windows.Forms.Panel();
+            this.pictureBoxSidebarSeperatorBottom = new System.Windows.Forms.PictureBox();
+            this.buttonSettings = new Journaley.Controls.ImageButton();
             this.entryListBoxAll = new Journaley.Controls.EntryListBox();
             this.entryListBoxStarred = new Journaley.Controls.EntryListBox();
             this.entryListBoxTags = new Journaley.Controls.EntryListBox();
@@ -107,6 +108,8 @@ namespace Journaley.Forms
             this.tableLayoutBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).BeginInit();
             this.tableLayoutDate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSidebarSeperatorBottom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTags)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).BeginInit();
@@ -399,17 +402,6 @@ namespace Journaley.Forms
             this.buttonStar.UseVisualStyleBackColor = true;
             this.buttonStar.Click += new System.EventHandler(this.ButtonStar_Click);
             // 
-            // buttonSettings
-            // 
-            this.buttonSettings.Image = global::Journaley.Properties.Resources.Settings_32x32;
-            this.buttonSettings.Location = new System.Drawing.Point(4, 530);
-            this.buttonSettings.Name = "buttonSettings";
-            this.buttonSettings.Size = new System.Drawing.Size(40, 40);
-            this.buttonSettings.TabIndex = 3;
-            this.toolTip.SetToolTip(this.buttonSettings, "Settings");
-            this.buttonSettings.UseVisualStyleBackColor = true;
-            this.buttonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
-            // 
             // buttonTag
             // 
             this.buttonTag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -532,6 +524,7 @@ namespace Journaley.Forms
             // 
             this.panelSidebar.BackgroundImage = global::Journaley.Properties.Resources.main_pane_sidebar_background;
             this.panelSidebar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelSidebar.Controls.Add(this.pictureBoxSidebarSeperatorBottom);
             this.panelSidebar.Controls.Add(this.buttonDelete);
             this.panelSidebar.Controls.Add(this.buttonShare);
             this.panelSidebar.Controls.Add(this.buttonTag);
@@ -667,6 +660,36 @@ namespace Journaley.Forms
             this.panelDateRight.Name = "panelDateRight";
             this.panelDateRight.Size = new System.Drawing.Size(100, 26);
             this.panelDateRight.TabIndex = 1;
+            // 
+            // pictureBoxSidebarSeperatorBottom
+            // 
+            this.pictureBoxSidebarSeperatorBottom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBoxSidebarSeperatorBottom.Image = global::Journaley.Properties.Resources.sidebar_seperator_bottom;
+            this.pictureBoxSidebarSeperatorBottom.Location = new System.Drawing.Point(0, 531);
+            this.pictureBoxSidebarSeperatorBottom.Name = "pictureBoxSidebarSeperatorBottom";
+            this.pictureBoxSidebarSeperatorBottom.Size = new System.Drawing.Size(47, 1);
+            this.pictureBoxSidebarSeperatorBottom.TabIndex = 11;
+            this.pictureBoxSidebarSeperatorBottom.TabStop = false;
+            // 
+            // buttonSettings
+            // 
+            this.buttonSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSettings.BackColor = System.Drawing.Color.Transparent;
+            this.buttonSettings.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonSettings.DownImage = global::Journaley.Properties.Resources.sidebar_btn_setting_down;
+            this.buttonSettings.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_setting_over;
+            this.buttonSettings.Image = global::Journaley.Properties.Resources.sidebar_btn_setting_norm;
+            this.buttonSettings.Location = new System.Drawing.Point(0, 532);
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_setting_norm;
+            this.buttonSettings.Selected = false;
+            this.buttonSettings.SelectedImage = null;
+            this.buttonSettings.Size = new System.Drawing.Size(47, 41);
+            this.buttonSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.buttonSettings.TabIndex = 3;
+            this.buttonSettings.TabStop = false;
+            this.toolTip.SetToolTip(this.buttonSettings, "Settings");
+            this.buttonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
             // 
             // entryListBoxAll
             // 
@@ -846,6 +869,8 @@ namespace Journaley.Forms
             this.tableLayoutBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).EndInit();
             this.tableLayoutDate.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSidebarSeperatorBottom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTags)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).EndInit();
@@ -871,7 +896,7 @@ namespace Journaley.Forms
         private System.Windows.Forms.Button buttonEditSave;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Button buttonStar;
-        private System.Windows.Forms.Button buttonSettings;
+        private Journaley.Controls.ImageButton buttonSettings;
         private System.Windows.Forms.TabPage tabPageEntriesByYear;
         private System.Windows.Forms.TabPage tabPageCalendar;
         private EntryListBox entryListBoxAll;
@@ -911,6 +936,7 @@ namespace Journaley.Forms
         private System.Windows.Forms.TableLayoutPanel tableLayoutDate;
         private System.Windows.Forms.Panel panelDateLeft;
         private System.Windows.Forms.Panel panelDateRight;
+        private System.Windows.Forms.PictureBox pictureBoxSidebarSeperatorBottom;
     }
 }
 
