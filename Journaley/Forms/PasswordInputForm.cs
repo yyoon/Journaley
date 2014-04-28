@@ -16,7 +16,7 @@
         {
             this.InitializeComponent();
 
-            this.Icon = Properties.Resources.MainIcon;
+            this.Icon = Properties.Resources.JournaleyIcon;
             this.PasswordVerifier = passwordVerifier;
         }
 

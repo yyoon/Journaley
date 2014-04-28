@@ -47,7 +47,7 @@
         {
             this.InitializeComponent();
 
-            this.Icon = Journaley.Properties.Resources.MainIcon;
+            this.Icon = Journaley.Properties.Resources.JournaleyIcon;
             this.FormLoaded = false;
         }
 
