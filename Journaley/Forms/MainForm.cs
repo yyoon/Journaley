@@ -503,11 +503,13 @@
  
             if (this.SelectedEntry != null)
             {
-                this.labelWords.Text = this.SelectedEntry.EntryText
+                string entryText = this.IsEditing ? this.textEntryText.Text : this.SelectedEntry.EntryText;
+
+                this.labelWords.Text = entryText
                     .Split(delim, StringSplitOptions.RemoveEmptyEntries)
                     .Length
                     .ToString();
-                this.labelCharacters.Text = this.SelectedEntry.EntryText
+                this.labelCharacters.Text = entryText
                     .Count(x => !delim.Contains(x))
                     .ToString();
             }
@@ -1297,6 +1299,16 @@
             this.buttonMainTimeline.Selected = false;
             this.buttonMainCalendar.Selected = false;
             this.buttonMainTags.Selected = true;
+        }
+
+        /// <summary>
+        /// Handles the TextChanged event of the textEntryText control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TextEntryText_TextChanged(object sender, EventArgs e)
+        {
+            this.UpdateWordCounts();
         }
 
         #endregion

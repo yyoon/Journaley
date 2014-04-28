@@ -303,6 +303,36 @@ namespace Journaley.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap main_pane_date_background_center {
+            get {
+                object obj = ResourceManager.GetObject("main_pane_date_background_center", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap main_pane_date_background_left {
+            get {
+                object obj = ResourceManager.GetObject("main_pane_date_background_left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap main_pane_date_background_right {
+            get {
+                object obj = ResourceManager.GetObject("main_pane_date_background_right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap main_pane_entriesStat_background {
             get {
                 object obj = ResourceManager.GetObject("main_pane_entriesStat_background", resourceCulture);
