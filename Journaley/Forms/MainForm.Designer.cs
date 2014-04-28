@@ -733,6 +733,7 @@ namespace Journaley.Forms
             // 
             // buttonMainTags
             // 
+            this.buttonMainTags.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonMainTags.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonMainTags.DownImage = global::Journaley.Properties.Resources.main_btn_tag_down;
             this.buttonMainTags.HoverImage = global::Journaley.Properties.Resources.main_btn_tag_over;
@@ -750,6 +751,7 @@ namespace Journaley.Forms
             // 
             // buttonMainCalendar
             // 
+            this.buttonMainCalendar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonMainCalendar.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonMainCalendar.DownImage = global::Journaley.Properties.Resources.main_btn_calendar_down;
             this.buttonMainCalendar.HoverImage = global::Journaley.Properties.Resources.main_btn_calendar_over;
@@ -767,6 +769,7 @@ namespace Journaley.Forms
             // 
             // buttonMainTimeline
             // 
+            this.buttonMainTimeline.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonMainTimeline.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonMainTimeline.DownImage = global::Journaley.Properties.Resources.main_btn_timeline_down;
             this.buttonMainTimeline.HoverImage = global::Journaley.Properties.Resources.main_btn_timeline_over;
