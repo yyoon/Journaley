@@ -118,6 +118,8 @@
                 this.UpdateTag();
                 this.UpdateUI();
 
+                this.UpdateWordCounts();
+
                 this.HighlightSelectedEntry();
             }
         }
@@ -493,6 +495,30 @@
         }
 
         /// <summary>
+        /// Updates the word counts.
+        /// </summary>
+        private void UpdateWordCounts()
+        {
+            char[] delim = new char[] { '\n', '\r', '\t', ' ' };
+ 
+            if (this.SelectedEntry != null)
+            {
+                this.labelWords.Text = this.SelectedEntry.EntryText
+                    .Split(delim, StringSplitOptions.RemoveEmptyEntries)
+                    .Length
+                    .ToString();
+                this.labelCharacters.Text = this.SelectedEntry.EntryText
+                    .Count(x => !delim.Contains(x))
+                    .ToString();
+            }
+            else
+            {
+                this.labelWords.Text = string.Empty;
+                this.labelCharacters.Text = string.Empty;
+            }
+        }
+
+        /// <summary>
         /// Highlights the selected entry.
         /// </summary>
         private void HighlightSelectedEntry()
@@ -599,6 +625,8 @@
             this.Entries = files.Select(x => Entry.LoadFromFile(x.FullName, this.Settings)).Where(x => x != null).ToList();
         }
 
+        #region Event Handlers
+
         /// <summary>
         /// Handles the Click event of the emailThisEntryToolStripMenuItem control.
         /// </summary>
@@ -613,8 +641,6 @@
 
             Process.Start(link);
         }
-
-        #region Event Handlers
 
         /// <summary>
         /// Handles the Load event of this form.

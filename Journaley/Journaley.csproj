@@ -251,6 +251,12 @@
     <None Include="images\NewDesign\entries_pane_dateHeader_background.png" />
     <None Include="images\NewDesign\entires_pane_entryContainer_background.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\main_frame_bottom_background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\main_frame_bottom_separator.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets')" />
