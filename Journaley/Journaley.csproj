@@ -250,7 +250,6 @@
     <None Include="images\NewDesign\main_btn_calendar_down.png" />
     <None Include="images\NewDesign\entries_pane_dateHeader_background.png" />
     <None Include="images\NewDesign\entires_pane_entryContainer_background.png" />
-    <Content Include="Journaley.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
