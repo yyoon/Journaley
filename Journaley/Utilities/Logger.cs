@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using Journaley.Models;
 
     /// <summary>
     /// A utility class used for error logging.
@@ -19,7 +20,7 @@
         /// <param name="logMessage">The log message.</param>
         public static void Log(string logMessage)
         {
-            using (StreamWriter w = File.AppendText(LogFile))
+            using (StreamWriter w = File.AppendText(Settings.GetFilePathUnderApplicationData(LogFile)))
             {
                 w.Write("\r\nLog Entry : ");
                 w.WriteLine(

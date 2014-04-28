@@ -64,6 +64,44 @@
         public string DayOneFolderPath { get; set; }
 
         /// <summary>
+        /// Gets the entry folder path under the day one folder.
+        /// </summary>
+        /// <value>
+        /// The entry folder path.
+        /// </value>
+        public string EntryFolderPath
+        {
+            get
+            {
+                if (this.DayOneFolderPath == null)
+                {
+                    return null;
+                }
+
+                return Path.Combine(this.DayOneFolderPath, "entries");
+            }
+        }
+
+        /// <summary>
+        /// Gets the photo folder path under the day one folder.
+        /// </summary>
+        /// <value>
+        /// The photo folder path.
+        /// </value>
+        public string PhotoFolderPath
+        {
+            get
+            {
+                if (this.DayOneFolderPath == null)
+                {
+                    return null;
+                }
+
+                return Path.Combine(this.DayOneFolderPath, "photos");
+            }
+        }
+
+        /// <summary>
         /// Sets the password.
         /// </summary>
         /// <value>
@@ -133,18 +171,33 @@
 
             try
             {
+                Settings settings = null;
+                bool dirty = false;
+
                 using (StreamReader sr = new StreamReader(path, Encoding.UTF8))
                 {
                     XmlSerializer serializer = new XmlSerializer(typeof(Settings));
-                    Settings settings = serializer.Deserialize(sr) as Settings;
+                    settings = serializer.Deserialize(sr) as Settings;
 
                     if (!Directory.Exists(settings.DayOneFolderPath))
                     {
                         return null;
                     }
 
-                    return settings;
+                    // If the folder ends with "entries", remove that one from the path.
+                    if (settings.DayOneFolderPath.EndsWith("entries"))
+                    {
+                        settings.DayOneFolderPath = Directory.GetParent(settings.DayOneFolderPath).FullName;
+                        dirty = true;
+                    }
                 }
+
+                if (dirty)
+                {
+                    settings.Save(path);
+                }
+
+                return settings;
             }
             catch (Exception)
             {
@@ -303,10 +356,12 @@
         #endregion
 
         /// <summary>
-        /// Gets the settings file path under the %APPDATA% folder.
+        /// Gets the file path under %APPDATA% folder.
+        /// Creates "Journaley" folder if it doesn't exist.
         /// </summary>
-        /// <returns>The settings file path</returns>
-        private static string GetSettingsFilePath()
+        /// <param name="filename">The filename.</param>
+        /// <returns>the full file path combined with the %APPDATA%/Journaley folder.</returns>
+        internal static string GetFilePathUnderApplicationData(string filename)
         {
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), SettingsFolder);
             DirectoryInfo dinfo = new DirectoryInfo(path);
@@ -315,7 +370,17 @@
                 dinfo.Create();
             }
 
-            return Path.Combine(path, SettingsFilename);
+            return Path.Combine(path, filename);
+        }
+
+        /// <summary>
+        /// Gets the settings file path under the %APPDATA% folder.
+        /// Creates "Journaley" folder if it doesn't exist.
+        /// </summary>
+        /// <returns>The settings file path</returns>
+        private static string GetSettingsFilePath()
+        {
+            return GetFilePathUnderApplicationData(SettingsFilename);
         }
     }
 }

@@ -3,8 +3,9 @@
   <Description>These are default test settings for a local test run.</Description>
   <Deployment>
     <DeploymentItem filename="Journaley.Test\Inputs\3C5D6CCEABCB43858752E69A1CCF4C4B.doentry" />
-    <DeploymentItem filename="Journaley.Test\Inputs\EntrySet01\" />
     <DeploymentItem filename="Journaley.Test\Inputs\test1.settings" />
+    <DeploymentItem filename="Journaley.Test\Inputs\beforeRemovingEntries.settings" />
+    <DeploymentItem filename="Journaley.Test\Inputs\EntrySet01\" />
   </Deployment>
   <Execution>
     <TestTypeSpecific>

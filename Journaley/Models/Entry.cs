@@ -15,6 +15,11 @@
     internal class Entry : IEquatable<Entry>
     {
         /// <summary>
+        /// The supported photo formats
+        /// </summary>
+        public static readonly string[] SupportedPhotoFormats = { "jpg" };
+
+        /// <summary>
         /// The UTC date time
         /// </summary>
         private DateTime utcDateTime;
@@ -38,6 +43,11 @@
         /// The tags
         /// </summary>
         private List<string> tags = new List<string>();
+
+        /// <summary>
+        /// The path of the associated photo.
+        /// </summary>
+        private string photoPath;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Entry"/> class.
@@ -264,6 +274,25 @@
         }
 
         /// <summary>
+        /// Gets or sets the photo path associated with this entry.
+        /// </summary>
+        /// <value>
+        /// The photo path.
+        /// </value>
+        public string PhotoPath
+        {
+            get
+            {
+                return this.photoPath;
+            }
+
+            set
+            {
+                this.photoPath = value;
+            }
+        }
+
+        /// <summary>
         /// Gets a value indicating whether this instance is dirty.
         /// </summary>
         /// <value>
@@ -278,6 +307,19 @@
         /// <returns>An <see cref="Entry"/> object representing the given file.</returns>
         public static Entry LoadFromFile(string path)
         {
+            return LoadFromFile(path, null);
+        }
+
+        /// <summary>
+        /// Loads an entry from the given filename.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="settings">The settings object, which can be null.</param>
+        /// <returns>
+        /// An <see cref="Entry" /> object representing the given file.
+        /// </returns>
+        public static Entry LoadFromFile(string path, Settings settings)
+        {
             try
             {
                 using (StreamReader sr = new StreamReader(path, Encoding.UTF8))
@@ -285,6 +327,9 @@
                     Entry newEntry = new Entry();
 
                     string fileContent = sr.ReadToEnd().TrimStart();
+
+                    // Remove all the NULL characters, if any.
+                    fileContent = fileContent.Replace(Convert.ToChar(0x00).ToString(), string.Empty);
 
                     XmlDocument doc = new XmlDocument();
                     doc.LoadXml(fileContent);
@@ -338,6 +383,12 @@
                                 newEntry.UnknownKeyValues.Add(keyNode, valueNode);
                                 break;
                         }
+                    }
+
+                    // Check for some existing photo.
+                    if (settings != null)
+                    {
+                        newEntry.CheckExistingPhoto(settings.PhotoFolderPath);
                     }
 
                     newEntry.IsDirty = false;
@@ -506,6 +557,31 @@
             if (finfo.Exists)
             {
                 finfo.Delete();
+            }
+        }
+
+        /// <summary>
+        /// Checks for an existing photo for this entry.
+        /// Meant to be called only when there is no PhotoPath already assigned.
+        /// </summary>
+        /// <param name="photoFolderPath">The photo folder path.</param>
+        public void CheckExistingPhoto(string photoFolderPath)
+        {
+            // If there is a photo already, don't do anything.
+            if (this.PhotoPath != null && new FileInfo(this.PhotoPath).Exists)
+            {
+                return;
+            }
+
+            this.photoPath = null;
+            foreach (var format in SupportedPhotoFormats)
+            {
+                string candidatePhotoPath = Path.Combine(photoFolderPath, this.UUIDString + "." + format);
+                if (new FileInfo(candidatePhotoPath).Exists)
+                {
+                    this.photoPath = candidatePhotoPath;
+                    return;
+                }
             }
         }
 

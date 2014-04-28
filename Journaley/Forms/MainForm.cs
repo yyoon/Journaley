@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
+    using System.Drawing.Imaging;
     using System.Globalization;
     using System.IO;
     using System.Linq;
@@ -113,6 +114,7 @@
                 }
 
                 this.UpdateStar();
+                this.UpdatePhotoButton();
                 this.UpdateTag();
                 this.UpdateUI();
 
@@ -175,7 +177,8 @@
         {
             this.webBrowser.DocumentText =
                 string.Format(
-                "<html style='margin:0;padding:2px'><body style='font-family:sans-serif;font-size:9pt'>{0}</body></html>",
+                @"<html style='margin:0;padding:2px'><body style='font-family:sans-serif;font-size:9pt'>{0}{1}</body></html>",
+                this.SelectedEntry.PhotoPath == null ? string.Empty : "<img src='" + this.SelectedEntry.PhotoPath + "' style='width:100%'><br>",
                 Markdown.Transform(this.SelectedEntry.EntryText));
         }
 
@@ -193,16 +196,25 @@
 
             if (this.SelectedEntry.IsDirty)
             {
-                this.SelectedEntry.Save(this.Settings.DayOneFolderPath);
+                this.SelectedEntry.Save(this.Settings.EntryFolderPath);
 
                 // Update the EntryList items as well.
-                foreach (var list in this.GetAllEntryLists())
+                this.InvalidateEntryInEntryList(this.SelectedEntry);
+            }
+        }
+
+        /// <summary>
+        /// Invalidates the entry in all the entry lists, and forces the entry to be redrawn.
+        /// </summary>
+        /// <param name="entry">The entry.</param>
+        private void InvalidateEntryInEntryList(Entry entry)
+        {
+            foreach (var list in this.GetAllEntryLists())
+            {
+                int index = list.Items.IndexOf(entry);
+                if (index != -1)
                 {
-                    int index = list.Items.IndexOf(this.SelectedEntry);
-                    if (index != -1)
-                    {
-                        list.Invalidate(list.GetItemRectangle(index));
-                    }
+                    list.Invalidate(list.GetItemRectangle(index));
                 }
             }
         }
@@ -233,6 +245,7 @@
             this.dateTimePicker.CustomFormat = noEntry ? " " : "MMM d, yyyy hh:mm tt";
             this.buttonEditSave.Enabled = !noEntry;
             this.buttonStar.Enabled = !noEntry;
+            this.buttonPhoto.Enabled = !noEntry;
             this.buttonTag.Enabled = !noEntry;
             this.buttonShare.Enabled = !noEntry;
             this.buttonDelete.Enabled = !noEntry;
@@ -260,6 +273,15 @@
         {
             this.buttonStar.Image = (this.SelectedEntry != null && this.SelectedEntry.Starred) ?
                 Properties.Resources.StarYellow_32x32 : Properties.Resources.StarGray_32x32;
+        }
+
+        /// <summary>
+        /// Updates the photo button's look.
+        /// </summary>
+        private void UpdatePhotoButton()
+        {
+            this.buttonPhoto.Image = (this.SelectedEntry != null && this.SelectedEntry.PhotoPath != null) ?
+                Properties.Resources.Image_32x32 : Properties.Resources.ImageGray_32x32;
         }
 
         /// <summary>
@@ -563,7 +585,7 @@
         /// </summary>
         private void LoadEntries()
         {
-            this.LoadEntries(this.Settings.DayOneFolderPath);
+            this.LoadEntries(this.Settings.EntryFolderPath);
         }
 
         /// <summary>
@@ -575,7 +597,7 @@
             DirectoryInfo dinfo = new DirectoryInfo(path);
             FileInfo[] files = dinfo.GetFiles("*.doentry");
 
-            this.Entries = files.Select(x => Entry.LoadFromFile(x.FullName)).Where(x => x != null).ToList();
+            this.Entries = files.Select(x => Entry.LoadFromFile(x.FullName, this.Settings)).Where(x => x != null).ToList();
         }
 
         /// <summary>
@@ -797,6 +819,25 @@
         }
 
         /// <summary>
+        /// Handles the Click event of the buttonPhoto control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonPhoto_Click(object sender, EventArgs e)
+        {
+            Debug.Assert(this.SelectedEntry != null, "There must be a selectd entry when modifying photo.");
+
+            ContextMenuStrip menuStrip = this.SelectedEntry.PhotoPath != null
+                ? this.contextMenuStripPhotoWithPhoto
+                : this.contextMenuStripPhotoWithoutPhoto;
+
+            menuStrip.Show(
+                this.buttonPhoto,
+                new Point { X = this.buttonPhoto.Width, Y = this.buttonShare.Height },
+                ToolStripDropDownDirection.BelowLeft);
+        }
+
+        /// <summary>
         /// Handles the Click event of the ButtonTag control.
         /// Creates a TagEditForm instance and show it right below the tag button.
         /// </summary>
@@ -875,8 +916,14 @@
                 return;
             }
 
+            // Cancel the editing mode first.
+            this.IsEditing = false;
+
             this.Entries.Remove(this.SelectedEntry);
-            this.SelectedEntry.Delete(this.Settings.DayOneFolderPath);
+            this.SelectedEntry.Delete(this.Settings.EntryFolderPath);
+
+            // After deleting, there shouldn't be any selected entry.
+            this.SelectedEntry = null;
 
             this.UpdateFromScratch();
         }
@@ -970,6 +1017,222 @@
 
             Clipboard.SetDataObject(this.textEntryText.Text, true);
             MessageBox.Show(this, "The entry text has been successfully copied to the clipboard.", "Copy to Clipboard", MessageBoxButtons.OK);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the chooseExistingPhotoToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ChooseExistingPhotoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.AskToChooseExistingPhoto();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the replaceWithAnotherPhotoToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ReplaceWithAnotherPhotoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "By choosing another photo, the current photo will be deleted." + Environment.NewLine + "Would you like to continue?",
+                "Replace Photo",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result != System.Windows.Forms.DialogResult.Yes)
+            {
+                return;
+            }
+
+            this.AskToChooseExistingPhoto();
+        }
+
+        /// <summary>
+        /// Asks the user to choose existing photo.
+        /// </summary>
+        private void AskToChooseExistingPhoto()
+        {
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            openDialog.Filter =
+                "All Supported Images (*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif)|*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif|" +
+                "Bitmap Images (*.bmp)|*.bmp|" +
+                "GIF Images (*.gif)|*.gif|" +
+                "JPEG Images (*.jpeg;*.jpg)|*.jpeg;*.jpg|" +
+                "PNG Images (*.png)|*.png|" +
+                "TIFF Images (*.tiff;*.tif)|*.tiff;*.tif";
+            openDialog.FilterIndex = 1;
+            openDialog.RestoreDirectory = true;
+            openDialog.CheckFileExists = true;
+            openDialog.Multiselect = false;
+
+            if (openDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            // Does the photo folder exist at all?
+            if (!Directory.Exists(this.Settings.PhotoFolderPath))
+            {
+                // If there is a file named the same as the photo folder,
+                // show an error message.
+                if (File.Exists(this.Settings.PhotoFolderPath))
+                {
+                    MessageBox.Show(
+                        "Your Day One folder contains a file named \"photos\", which is preventing Journaley from creating the photo directory.",
+                        "Error creating photo folder",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
+                    return;
+                }
+
+                Directory.CreateDirectory(this.Settings.PhotoFolderPath);
+            }
+
+            // Delete the existing photo, if there's any.
+            this.DeletePhoto();
+
+            // Now copy the file to the photo folder if the file is in JPEG.
+            // Otherwise, convert it to JPEG.
+            string targetFileName = Path.ChangeExtension(this.SelectedEntry.UUIDString, "jpg");
+            string targetFullPath = Path.Combine(this.Settings.PhotoFolderPath, targetFileName);
+
+            string ext = Path.GetExtension(openDialog.FileName).ToLower();
+            if (ext == ".jpg" || ext == ".jpeg")
+            {
+                FileInfo srcInfo = new FileInfo(openDialog.FileName);
+                srcInfo.CopyTo(targetFullPath);
+            }
+            else
+            {
+                try
+                {
+                    using (Image image = Image.FromFile(openDialog.FileName))
+                    {
+                        using (Bitmap b = new Bitmap(image.Width, image.Height))
+                        {
+                            b.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+                            using (Graphics g = Graphics.FromImage(b))
+                            {
+                                g.Clear(Color.White);
+                                g.DrawImageUnscaled(image, 0, 0);
+                            }
+
+                            // Set the JPEG quality to 100L.
+                            ImageCodecInfo jpgEncoder = this.GetEncoder(ImageFormat.Jpeg);
+
+                            if (jpgEncoder != null)
+                            {
+                                Encoder encoder = Encoder.Quality;
+                                EncoderParameters encoderParameters = new EncoderParameters(1);
+                                encoderParameters.Param[0] = new EncoderParameter(encoder, 100L);
+
+                                b.Save(targetFullPath, jpgEncoder, encoderParameters);
+                            }
+                            else
+                            {
+                                // Just use the default save method with 75% quality in case the encoder object is not found.
+                                b.Save(targetFullPath, ImageFormat.Jpeg);
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(
+                        "Error reading the selected photo.",
+                        "Failed to add photo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
+                    return;
+                }
+            }
+
+            // Assign the photo path to the selected entry.
+            this.SelectedEntry.PhotoPath = Path.Combine(this.Settings.PhotoFolderPath, targetFileName);
+
+            // Update the UIs related to photo.
+            this.UpdatePhotoUIs();
+        }
+
+        /// <summary>
+        /// Gets the image encoder.
+        /// </summary>
+        /// <param name="format">The image format.</param>
+        /// <returns>The image encoder for the given image format, null if not found.</returns>
+        private ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            // Not sure why GetImageDecoders() is used instead of GetImageEncoders(),
+            // but I'm just following the example in MSDN
+            // http://msdn.microsoft.com/en-us/library/bb882583%28v=vs.110%29.aspx
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
+
+            foreach (var codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Updates the photo related UIs.
+        /// </summary>
+        private void UpdatePhotoUIs()
+        {
+            if (!this.IsEditing)
+            {
+                this.UpdateWebBrowser();
+            }
+
+            this.UpdatePhotoButton();
+            this.InvalidateEntryInEntryList(this.SelectedEntry);
+        }
+
+        /// <summary>
+        /// Deletes the photo associated with this entry, if there's any.
+        /// This method does NOT send the photo to the recycle bin.
+        /// Also, this method only deletes the file,
+        /// and the caller is responsible for maintaining the entry's PhotoPath property up to date.
+        /// </summary>
+        private void DeletePhoto()
+        {
+            if (File.Exists(this.SelectedEntry.PhotoPath))
+            {
+                File.Delete(this.SelectedEntry.PhotoPath);
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the deletePhotoToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void DeletePhotoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Do you really want to delete the photo?",
+                "Delete Photo",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result != System.Windows.Forms.DialogResult.Yes)
+            {
+                return;
+            }
+
+            this.DeletePhoto();
+            this.SelectedEntry.PhotoPath = null;
+
+            this.UpdatePhotoUIs();
         }
 
         #endregion
