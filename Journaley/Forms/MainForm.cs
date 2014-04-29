@@ -366,7 +366,6 @@
         private void UpdateAllEntryLists()
         {
             this.UpdateEntryListBoxAll();
-            this.UpdateEntryListBoxStarred();
             this.UpdateEntryListBoxTags();
             this.UpdateEntryListBoxYear();
             this.UpdateEntryListBoxCalendar();
@@ -381,14 +380,6 @@
         }
 
         /// <summary>
-        /// Updates the entry list box of "Starred" tab.
-        /// </summary>
-        private void UpdateEntryListBoxStarred()
-        {
-            this.UpdateEntryList(this.Entries.Where(x => x.Starred), this.entryListBoxStarred);
-        }
-
-        /// <summary>
         /// Updates the entry list box of "Tags" tab.
         /// </summary>
         private void UpdateEntryListBoxTags()
@@ -397,6 +388,14 @@
             this.listBoxTags.Items.Clear();
             this.listBoxTags.SelectedIndex = -1;
 
+            // First, display all the starred entries.
+            int starredCount = this.Entries.Count(e => e.Starred);
+            if (starredCount > 0)
+            {
+                this.listBoxTags.Items.Add(new StarredCountEntry(starredCount));
+            }
+
+            // Then, collect all the tags.
             var tags = this.Entries
                 .SelectMany(x => x.Tags)
                 .Distinct();
@@ -410,8 +409,11 @@
             {
                 // Add to the top list box first.
                 this.listBoxTags.Items.AddRange(tagsAndCounts.ToArray());
+            }
 
-                // Select the first item)
+            // Select the first item.
+            if (this.listBoxTags.Items.Count > 0)
+            {
                 this.listBoxTags.SelectedIndex = 0;
             }
 
@@ -767,7 +769,14 @@
                         TagCountEntry entry = this.listBoxTags.SelectedItem as TagCountEntry;
                         if (entry != null)
                         {
-                            this.UpdateEntryList(this.Entries.Where(x => x.Tags.Contains(entry.Tag)), this.entryListBoxTags);
+                            if (entry is StarredCountEntry)
+                            {
+                                this.UpdateEntryList(this.Entries.Where(x => x.Starred), this.entryListBoxTags);
+                            }
+                            else
+                            {
+                                this.UpdateEntryList(this.Entries.Where(x => x.Tags.Contains(entry.Tag)), this.entryListBoxTags);
+                            }
                         }
                         else
                         {
@@ -848,7 +857,7 @@
             this.SaveSelectedEntry();
 
             this.UpdateStar();
-            this.UpdateEntryListBoxStarred();
+            this.UpdateEntryListBoxTags();
         }
 
         /// <summary>
@@ -1406,6 +1415,17 @@
             public override string ToString()
             {
                 return string.Format("{0} ({1} {2})", this.Tag, this.Count, this.Count > 1 ? "entries" : "entry");
+            }
+        }
+
+        /// <summary>
+        /// Entry class for the "Starred" entry.
+        /// </summary>
+        private class StarredCountEntry : TagCountEntry
+        {
+            public StarredCountEntry(int count)
+                : base("Starred", count)
+            {
             }
         }
 
