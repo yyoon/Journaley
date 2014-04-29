@@ -69,18 +69,18 @@ namespace Journaley.Forms
             this.tableLayoutDate = new System.Windows.Forms.TableLayoutPanel();
             this.panelDateLeft = new System.Windows.Forms.Panel();
             this.panelDateRight = new System.Windows.Forms.Panel();
-            this.buttonSettings = new Journaley.Controls.ImageButton();
-            this.entryListBoxAll = new Journaley.Controls.EntryListBox();
-            this.entryListBoxTags = new Journaley.Controls.EntryListBox();
-            this.entryListBoxCalendar = new Journaley.Controls.EntryListBox();
-            this.buttonMainTags = new Journaley.Controls.ImageButton();
-            this.buttonMainCalendar = new Journaley.Controls.ImageButton();
-            this.buttonMainTimeline = new Journaley.Controls.ImageButton();
-            this.buttonAddEntry = new Journaley.Controls.ImageButton();
             this.panelEntryListArea = new System.Windows.Forms.Panel();
             this.panelTimeline = new System.Windows.Forms.Panel();
             this.panelCalendar = new System.Windows.Forms.Panel();
             this.panelTags = new System.Windows.Forms.Panel();
+            this.buttonSettings = new Journaley.Controls.ImageButton();
+            this.buttonMainTags = new Journaley.Controls.ImageButton();
+            this.buttonMainCalendar = new Journaley.Controls.ImageButton();
+            this.buttonMainTimeline = new Journaley.Controls.ImageButton();
+            this.buttonAddEntry = new Journaley.Controls.ImageButton();
+            this.entryListBoxTags = new Journaley.Controls.EntryListBox();
+            this.entryListBoxCalendar = new Journaley.Controls.EntryListBox();
+            this.entryListBoxAll = new Journaley.Controls.EntryListBox();
             label5 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
             label8 = new System.Windows.Forms.Label();
@@ -94,15 +94,15 @@ namespace Journaley.Forms
             this.tableLayoutBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).BeginInit();
             this.tableLayoutDate.SuspendLayout();
+            this.panelEntryListArea.SuspendLayout();
+            this.panelTimeline.SuspendLayout();
+            this.panelCalendar.SuspendLayout();
+            this.panelTags.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTags)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).BeginInit();
-            this.panelEntryListArea.SuspendLayout();
-            this.panelTimeline.SuspendLayout();
-            this.panelCalendar.SuspendLayout();
-            this.panelTags.SuspendLayout();
             this.SuspendLayout();
             // 
             // label5
@@ -567,6 +567,48 @@ namespace Journaley.Forms
             this.panelDateRight.Size = new System.Drawing.Size(100, 25);
             this.panelDateRight.TabIndex = 1;
             // 
+            // panelEntryListArea
+            // 
+            this.panelEntryListArea.Controls.Add(this.panelTimeline);
+            this.panelEntryListArea.Controls.Add(this.panelCalendar);
+            this.panelEntryListArea.Controls.Add(this.panelTags);
+            this.panelEntryListArea.Location = new System.Drawing.Point(0, 25);
+            this.panelEntryListArea.Margin = new System.Windows.Forms.Padding(0);
+            this.panelEntryListArea.Name = "panelEntryListArea";
+            this.panelEntryListArea.Size = new System.Drawing.Size(229, 466);
+            this.panelEntryListArea.TabIndex = 18;
+            // 
+            // panelTimeline
+            // 
+            this.panelTimeline.Controls.Add(this.entryListBoxAll);
+            this.panelTimeline.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTimeline.Location = new System.Drawing.Point(0, 0);
+            this.panelTimeline.Name = "panelTimeline";
+            this.panelTimeline.Size = new System.Drawing.Size(229, 466);
+            this.panelTimeline.TabIndex = 0;
+            // 
+            // panelCalendar
+            // 
+            this.panelCalendar.Controls.Add(this.entryListBoxCalendar);
+            this.panelCalendar.Controls.Add(this.monthCalendar);
+            this.panelCalendar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelCalendar.Location = new System.Drawing.Point(0, 0);
+            this.panelCalendar.Name = "panelCalendar";
+            this.panelCalendar.Size = new System.Drawing.Size(229, 466);
+            this.panelCalendar.TabIndex = 1;
+            this.panelCalendar.Visible = false;
+            // 
+            // panelTags
+            // 
+            this.panelTags.Controls.Add(this.entryListBoxTags);
+            this.panelTags.Controls.Add(this.listBoxTags);
+            this.panelTags.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTags.Location = new System.Drawing.Point(0, 0);
+            this.panelTags.Name = "panelTags";
+            this.panelTags.Size = new System.Drawing.Size(229, 466);
+            this.panelTags.TabIndex = 2;
+            this.panelTags.Visible = false;
+            // 
             // buttonSettings
             // 
             this.buttonSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -586,43 +628,6 @@ namespace Journaley.Forms
             this.buttonSettings.TabStop = false;
             this.toolTip.SetToolTip(this.buttonSettings, "Settings");
             this.buttonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
-            // 
-            // entryListBoxAll
-            // 
-            this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxAll.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxAll.FormattingEnabled = true;
-            this.entryListBoxAll.Location = new System.Drawing.Point(0, 0);
-            this.entryListBoxAll.Name = "entryListBoxAll";
-            this.entryListBoxAll.ScrollAlwaysVisible = true;
-            this.entryListBoxAll.Size = new System.Drawing.Size(229, 466);
-            this.entryListBoxAll.TabIndex = 0;
-            this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
-            // 
-            // entryListBoxTags
-            // 
-            this.entryListBoxTags.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxTags.FormattingEnabled = true;
-            this.entryListBoxTags.Location = new System.Drawing.Point(0, 56);
-            this.entryListBoxTags.Name = "entryListBoxTags";
-            this.entryListBoxTags.ScrollAlwaysVisible = true;
-            this.entryListBoxTags.Size = new System.Drawing.Size(229, 410);
-            this.entryListBoxTags.TabIndex = 0;
-            this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
-            // 
-            // entryListBoxCalendar
-            // 
-            this.entryListBoxCalendar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxCalendar.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxCalendar.FormattingEnabled = true;
-            this.entryListBoxCalendar.IntegralHeight = false;
-            this.entryListBoxCalendar.Location = new System.Drawing.Point(0, 162);
-            this.entryListBoxCalendar.Name = "entryListBoxCalendar";
-            this.entryListBoxCalendar.ScrollAlwaysVisible = true;
-            this.entryListBoxCalendar.Size = new System.Drawing.Size(229, 304);
-            this.entryListBoxCalendar.TabIndex = 1;
-            this.entryListBoxCalendar.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
             // buttonMainTags
             // 
@@ -697,45 +702,42 @@ namespace Journaley.Forms
             this.toolTip.SetToolTip(this.buttonAddEntry, "Add a new entry");
             this.buttonAddEntry.Click += new System.EventHandler(this.ButtonAddEntry_Click);
             // 
-            // panelEntryListArea
+            // entryListBoxTags
             // 
-            this.panelEntryListArea.Controls.Add(this.panelTags);
-            this.panelEntryListArea.Controls.Add(this.panelCalendar);
-            this.panelEntryListArea.Controls.Add(this.panelTimeline);
-            this.panelEntryListArea.Location = new System.Drawing.Point(0, 25);
-            this.panelEntryListArea.Margin = new System.Windows.Forms.Padding(0);
-            this.panelEntryListArea.Name = "panelEntryListArea";
-            this.panelEntryListArea.Size = new System.Drawing.Size(229, 466);
-            this.panelEntryListArea.TabIndex = 18;
+            this.entryListBoxTags.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxTags.FormattingEnabled = true;
+            this.entryListBoxTags.Location = new System.Drawing.Point(0, 56);
+            this.entryListBoxTags.Name = "entryListBoxTags";
+            this.entryListBoxTags.ScrollAlwaysVisible = true;
+            this.entryListBoxTags.Size = new System.Drawing.Size(229, 410);
+            this.entryListBoxTags.TabIndex = 0;
+            this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
-            // panelTimeline
+            // entryListBoxCalendar
             // 
-            this.panelTimeline.Controls.Add(this.entryListBoxAll);
-            this.panelTimeline.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTimeline.Location = new System.Drawing.Point(0, 0);
-            this.panelTimeline.Name = "panelTimeline";
-            this.panelTimeline.Size = new System.Drawing.Size(229, 466);
-            this.panelTimeline.TabIndex = 0;
+            this.entryListBoxCalendar.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxCalendar.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxCalendar.FormattingEnabled = true;
+            this.entryListBoxCalendar.IntegralHeight = false;
+            this.entryListBoxCalendar.Location = new System.Drawing.Point(0, 162);
+            this.entryListBoxCalendar.Name = "entryListBoxCalendar";
+            this.entryListBoxCalendar.ScrollAlwaysVisible = true;
+            this.entryListBoxCalendar.Size = new System.Drawing.Size(229, 304);
+            this.entryListBoxCalendar.TabIndex = 1;
+            this.entryListBoxCalendar.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
-            // panelCalendar
+            // entryListBoxAll
             // 
-            this.panelCalendar.Controls.Add(this.entryListBoxCalendar);
-            this.panelCalendar.Controls.Add(this.monthCalendar);
-            this.panelCalendar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelCalendar.Location = new System.Drawing.Point(0, 0);
-            this.panelCalendar.Name = "panelCalendar";
-            this.panelCalendar.Size = new System.Drawing.Size(229, 466);
-            this.panelCalendar.TabIndex = 1;
-            // 
-            // panelTags
-            // 
-            this.panelTags.Controls.Add(this.entryListBoxTags);
-            this.panelTags.Controls.Add(this.listBoxTags);
-            this.panelTags.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTags.Location = new System.Drawing.Point(0, 0);
-            this.panelTags.Name = "panelTags";
-            this.panelTags.Size = new System.Drawing.Size(229, 466);
-            this.panelTags.TabIndex = 2;
+            this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxAll.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxAll.FormattingEnabled = true;
+            this.entryListBoxAll.Location = new System.Drawing.Point(0, 0);
+            this.entryListBoxAll.Name = "entryListBoxAll";
+            this.entryListBoxAll.ScrollAlwaysVisible = true;
+            this.entryListBoxAll.Size = new System.Drawing.Size(229, 466);
+            this.entryListBoxAll.TabIndex = 0;
+            this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -772,15 +774,15 @@ namespace Journaley.Forms
             this.tableLayoutBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).EndInit();
             this.tableLayoutDate.ResumeLayout(false);
+            this.panelEntryListArea.ResumeLayout(false);
+            this.panelTimeline.ResumeLayout(false);
+            this.panelCalendar.ResumeLayout(false);
+            this.panelTags.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTags)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).EndInit();
-            this.panelEntryListArea.ResumeLayout(false);
-            this.panelTimeline.ResumeLayout(false);
-            this.panelCalendar.ResumeLayout(false);
-            this.panelTags.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
