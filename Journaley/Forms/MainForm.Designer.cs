@@ -668,9 +668,11 @@ namespace Journaley.Forms
             // 
             // entryListBoxAll
             // 
+            this.entryListBoxAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
             this.entryListBoxAll.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
             this.entryListBoxAll.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxAll.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entryListBoxAll.FormattingEnabled = true;
             this.entryListBoxAll.Location = new System.Drawing.Point(0, 0);
             this.entryListBoxAll.Name = "entryListBoxAll";
@@ -692,9 +694,11 @@ namespace Journaley.Forms
             // 
             // entryListBoxCalendar
             // 
+            this.entryListBoxCalendar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
             this.entryListBoxCalendar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.entryListBoxCalendar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.entryListBoxCalendar.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxCalendar.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entryListBoxCalendar.FormattingEnabled = true;
             this.entryListBoxCalendar.IntegralHeight = false;
             this.entryListBoxCalendar.Location = new System.Drawing.Point(0, 162);
@@ -728,14 +732,16 @@ namespace Journaley.Forms
             // 
             // entryListBoxTags
             // 
+            this.entryListBoxTags.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
             this.entryListBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.entryListBoxTags.Dock = System.Windows.Forms.DockStyle.Fill;
             this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxTags.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entryListBoxTags.FormattingEnabled = true;
-            this.entryListBoxTags.Location = new System.Drawing.Point(0, 52);
+            this.entryListBoxTags.Location = new System.Drawing.Point(0, 48);
             this.entryListBoxTags.Name = "entryListBoxTags";
             this.entryListBoxTags.ScrollAlwaysVisible = true;
-            this.entryListBoxTags.Size = new System.Drawing.Size(227, 414);
+            this.entryListBoxTags.Size = new System.Drawing.Size(227, 418);
             this.entryListBoxTags.TabIndex = 0;
             this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
@@ -744,9 +750,10 @@ namespace Journaley.Forms
             this.listBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxTags.Dock = System.Windows.Forms.DockStyle.Top;
             this.listBoxTags.FormattingEnabled = true;
+            this.listBoxTags.ItemHeight = 12;
             this.listBoxTags.Location = new System.Drawing.Point(0, 0);
             this.listBoxTags.Name = "listBoxTags";
-            this.listBoxTags.Size = new System.Drawing.Size(227, 52);
+            this.listBoxTags.Size = new System.Drawing.Size(227, 48);
             this.listBoxTags.TabIndex = 0;
             this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
             // 

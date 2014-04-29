@@ -15,12 +15,12 @@
         /// <summary>
         /// The month height
         /// </summary>
-        private static readonly int MonthHeight = 22;
+        private static readonly int MonthHeight = 19;
 
         /// <summary>
         /// The entry height
         /// </summary>
-        private static readonly int EntryHeight = 78;
+        private static readonly int EntryHeight = 85;
 
         /// <summary>
         /// The month format
@@ -35,12 +35,7 @@
         /// <summary>
         /// The entry right width
         /// </summary>
-        private static readonly int EntryRightWidth = 80;
-
-        /// <summary>
-        /// The entry right small width
-        /// </summary>
-        private static readonly int EntryRightSmallWidth = 20;
+        private static readonly int EntryRightWidth = 50;
 
         /// <summary>
         /// The entry right small height
@@ -50,27 +45,62 @@
         /// <summary>
         /// The entry center margin
         /// </summary>
-        private static readonly int EntryCenterMargin = 10;
+        private static readonly int EntryCenterMargin = 5;
+
+        /// <summary>
+        /// The photo width including the 1px borders.
+        /// </summary>
+        private static readonly int PhotoWidth = 56;
+
+        /// <summary>
+        /// The photo height including the 1px borders.
+        /// </summary>
+        private static readonly int PhotoHeight = 69;
 
         /// <summary>
         /// The entry text font
         /// </summary>
-        private static readonly Font EntryTextFont = SystemFonts.DefaultFont;
+        private static readonly Font EntryTextFont = new Font("Segoe UI Semilight", 10.0f, System.Drawing.FontStyle.Regular);
 
         /// <summary>
         /// The entry day font
         /// </summary>
-        private static readonly Font EntryDayFont = new Font(SystemFonts.DefaultFont.FontFamily, 28.0f, FontStyle.Bold);
+        private static readonly Font EntryDayFont = new Font(EntryTextFont.FontFamily, 26.0f, FontStyle.Bold);
 
         /// <summary>
         /// The entry day of week font
         /// </summary>
-        private static readonly Font EntryDayOfWeekFont = new Font(SystemFonts.DefaultFont.FontFamily, 11.0f, FontStyle.Bold);
+        private static readonly Font EntryDayOfWeekFont = new Font(EntryTextFont.FontFamily, 11.0f, FontStyle.Regular);
 
         /// <summary>
         /// The entry time font
         /// </summary>
-        private static readonly Font EntryTimeFont = new Font(SystemFonts.DefaultFont.FontFamily, 9.0f);
+        private static readonly Font EntryTimeFont = new Font(EntryTextFont.FontFamily, 9.0f);
+
+        /// <summary>
+        /// Brush for filling the background of month entries
+        /// </summary>
+        private static readonly Brush MonthBackgroundBrush = new SolidBrush(Color.FromArgb(37, 40, 44));
+
+        /// <summary>
+        /// Brush for month text
+        /// </summary>
+        private static readonly Brush MonthTextBrush = new SolidBrush(Color.FromArgb(187, 187, 187));
+
+        /// <summary>
+        /// Brush for filling the background of normal journal entries.
+        /// </summary>
+        private static readonly Brush EntryBackgroundNormalBrush = new SolidBrush(Color.FromArgb(38, 46, 60));
+
+        /// <summary>
+        /// Brush for filling the background of selected journal entries.
+        /// </summary>
+        private static readonly Brush EntryBackgroundSelectedBrush = new SolidBrush(Color.FromArgb(0, 147, 255));
+
+        /// <summary>
+        /// The boundary line pen
+        /// </summary>
+        private static readonly Pen BoundaryLinePen = Pens.Black;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EntryListBox"/> class.
@@ -155,11 +185,18 @@
             string text = dateTime.ToString(MonthFormat);
 
             StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
+            stringFormat.Alignment = StringAlignment.Center;
             stringFormat.LineAlignment = StringAlignment.Center;
             stringFormat.Trimming = StringTrimming.EllipsisCharacter;
 
-            e.Graphics.FillRectangle(Brushes.Black, e.Bounds);
-            e.Graphics.DrawString(text, e.Font, Brushes.White, e.Bounds, stringFormat);
+            Rectangle bounds = e.Bounds;
+            bounds.Height -= 1;
+
+            e.Graphics.FillRectangle(MonthBackgroundBrush, bounds);
+            e.Graphics.DrawString(text, e.Font, MonthTextBrush, bounds, stringFormat);
+
+            // Line at the bottom
+            e.Graphics.DrawLine(BoundaryLinePen, 0, e.Bounds.Bottom - 1, e.Bounds.Right - 1, e.Bounds.Bottom - 1);
         }
 
         /// <summary>
@@ -169,12 +206,29 @@
         /// <param name="entry">The entry.</param>
         private void DrawEntry(DrawItemEventArgs e, Entry entry)
         {
+            this.DrawEntryBackground(e, entry);
             this.DrawEntryText(e, entry);
             this.DrawPhoto(e, entry);
             this.DrawDay(e, entry);
             this.DrawDayOfWeek(e, entry);
-            this.DrawStar(e, entry);
             this.DrawTime(e, entry);
+
+            // Line at the bottom
+            e.Graphics.DrawLine(BoundaryLinePen, 0, e.Bounds.Bottom - 1, e.Bounds.Right - 1, e.Bounds.Bottom - 1);
+        }
+
+        /// <summary>
+        /// Draws the entry background.
+        /// </summary>
+        /// <param name="e">The <see cref="DrawItemEventArgs"/> instance containing the event data.</param>
+        /// <param name="entry">The entry.</param>
+        private void DrawEntryBackground(DrawItemEventArgs e, Entry entry)
+        {
+            Rectangle bounds = e.Bounds;
+            bounds.Height -= 1;
+
+            Brush brush = (e.State & DrawItemState.Selected) == DrawItemState.Selected ? EntryBackgroundSelectedBrush : EntryBackgroundNormalBrush;
+            e.Graphics.FillRectangle(brush, bounds);
         }
 
         /// <summary>
@@ -185,20 +239,24 @@
         private void DrawEntryText(DrawItemEventArgs e, Entry entry)
         {
             Rectangle bounds = e.Bounds;
+            bounds.Height -= 1;
             bounds.Inflate(-EntryPadding, -EntryPadding);
             bounds.Width -= EntryRightWidth + EntryCenterMargin;
 
             if (entry.PhotoPath != null)
             {
-                bounds.Width -= bounds.Height + EntryCenterMargin;
-                bounds.X += bounds.Height + EntryCenterMargin;
+                bounds.X += PhotoWidth + EntryCenterMargin;
+                bounds.Width -= PhotoWidth + EntryCenterMargin;
             }
 
+            Brush brush = (e.State & DrawItemState.Selected) == DrawItemState.Selected ? Brushes.Black : Brushes.White;
+
             StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
+            stringFormat.LineAlignment = StringAlignment.Center;
             stringFormat.FormatFlags = StringFormatFlags.LineLimit;
             stringFormat.Trimming = StringTrimming.EllipsisCharacter;
 
-            e.Graphics.DrawString(entry.EntryText, EntryTextFont, Brushes.Black, bounds, stringFormat);
+            e.Graphics.DrawString(entry.EntryText, EntryTextFont, brush, bounds, stringFormat);
         }
 
         /// <summary>
@@ -214,8 +272,12 @@
             }
 
             Rectangle bounds = e.Bounds;
-            bounds.Inflate(-EntryPadding, -EntryPadding);
-            bounds.Width = bounds.Height;
+            bounds.Height -= 1;
+            bounds.X -= 1;
+            bounds.Y += (bounds.Height - PhotoHeight) / 2;
+            bounds.Width = PhotoWidth;
+            bounds.Height = PhotoHeight;
+            bounds.Inflate(-1, -1);
 
             try
             {
@@ -228,6 +290,9 @@
             {
                 this.DrawToFit(e.Graphics, Resources.Image_32x32, bounds);
             }
+
+            bounds.Inflate(1, 1);
+            e.Graphics.DrawRectangle(BoundaryLinePen, bounds.X, bounds.Y, bounds.Width - 1, bounds.Height - 1);
         }
 
         /// <summary>
@@ -246,47 +311,20 @@
                 throw new ArgumentNullException();
             }
 
-            // Does the image fits already?
-            if (image.Width <= rect.Width && image.Height <= rect.Height)
-            {
-                // Center the image.
-                g.DrawImage(
-                    image,
-                    new Rectangle(
-                        rect.X + ((rect.Width - image.Width) / 2),
-                        rect.Y + ((rect.Height - image.Height) / 2),
-                        image.Width,
-                        image.Height));
-
-                return;
-            }
-
             // If not, reduce the size but keep the aspect ratio.
             if ((double)image.Width / (double)rect.Width >= (double)image.Height / (double)rect.Height)
             {
-                double ratio = (double)image.Width / (double)rect.Width;
-                int targetHeight = Math.Min((int)(image.Height / ratio), rect.Height);
+                double ratio = (double)image.Height / (double)rect.Height;
+                int srcWidth = (int)(rect.Width * ratio);
 
-                g.DrawImage(
-                    image,
-                    new Rectangle(
-                        rect.X,
-                        rect.Y + ((rect.Height - targetHeight) / 2),
-                        rect.Width,
-                        targetHeight));
+                g.DrawImage(image, rect, new Rectangle((image.Width - srcWidth) / 2, 0, srcWidth, image.Height), GraphicsUnit.Pixel);
             }
             else
             {
-                double ratio = (double)image.Height / (double)rect.Height;
-                int targetWidth = Math.Min((int)(image.Width / ratio), rect.Width);
+                double ratio = (double)image.Width / (double)rect.Width;
+                int srcHeight = (int)(rect.Height * ratio);
 
-                g.DrawImage(
-                    image,
-                    new Rectangle(
-                        rect.X + ((rect.Width - targetWidth) / 2),
-                        rect.Y,
-                        targetWidth,
-                        rect.Height));
+                g.DrawImage(image, rect, new Rectangle(0, (image.Height - srcHeight) / 2, image.Width, srcHeight), GraphicsUnit.Pixel);
             }
         }
 
@@ -298,15 +336,21 @@
         private void DrawDay(DrawItemEventArgs e, Entry entry)
         {
             Rectangle bounds = e.Bounds;
+            bounds.Height -= 1;
             bounds.Inflate(-EntryPadding, -EntryPadding);
-            bounds.X += bounds.Width - EntryRightWidth + EntryRightSmallWidth;
-            bounds.Width = EntryRightWidth - EntryRightSmallWidth;
-            bounds.Height -= EntryRightSmallHeight;
+            bounds.X += bounds.Width - EntryRightWidth - 4; // Some offset should be given to make them all aligned.
+            bounds.Y += EntryRightSmallHeight;
+            bounds.Width = EntryRightWidth;
+            bounds.Height -= EntryRightSmallHeight + EntryRightSmallHeight;
+
+            Brush brush = entry.Starred ? Brushes.Yellow :
+                (e.State & DrawItemState.Selected) == DrawItemState.Selected ? Brushes.Black : Brushes.White;
 
             StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
+            stringFormat.Alignment = StringAlignment.Near;
             stringFormat.LineAlignment = StringAlignment.Center;
 
-            e.Graphics.DrawString(entry.LocalTime.ToString("%d"), EntryDayFont, Brushes.Black, bounds, stringFormat);
+            e.Graphics.DrawString(entry.LocalTime.ToString("%d"), EntryDayFont, brush, bounds, stringFormat);
             e.Graphics.ResetTransform();
         }
 
@@ -318,39 +362,19 @@
         private void DrawDayOfWeek(DrawItemEventArgs e, Entry entry)
         {
             Rectangle bounds = e.Bounds;
+            bounds.Height -= 1;
             bounds.Inflate(-EntryPadding, -EntryPadding);
-            bounds.X += bounds.Width - EntryRightWidth + EntryRightSmallWidth - EntryRightSmallHeight;
-            bounds.Y += bounds.Height - EntryRightSmallWidth;
-            bounds.Width = bounds.Height - EntryRightSmallHeight;
-            bounds.Height = EntryRightSmallWidth;
+            bounds.X += bounds.Width - EntryRightWidth;
+            bounds.Width = EntryRightWidth;
+            bounds.Height = EntryRightSmallHeight;
+
+            Brush brush = entry.Starred ? Brushes.Yellow :
+                (e.State & DrawItemState.Selected) == DrawItemState.Selected ? Brushes.Black : Brushes.White;
 
             StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
-            stringFormat.Alignment = StringAlignment.Center;
+            stringFormat.Alignment = StringAlignment.Near;
 
-            e.Graphics.TranslateTransform(bounds.X, bounds.Y);
-            e.Graphics.RotateTransform(270.0f);
-            e.Graphics.TranslateTransform(-bounds.X, -bounds.Y);
-
-            e.Graphics.DrawString(entry.LocalTime.ToString("ddd").ToUpper(), EntryDayOfWeekFont, Brushes.Black, bounds, stringFormat);
-            e.Graphics.ResetTransform();
-        }
-
-        /// <summary>
-        /// Draws the star.
-        /// </summary>
-        /// <param name="e">The <see cref="DrawItemEventArgs"/> instance containing the event data.</param>
-        /// <param name="entry">The entry.</param>
-        private void DrawStar(DrawItemEventArgs e, Entry entry)
-        {
-            Image starImage = entry.Starred ? Properties.Resources.StarYellow_16x16 : Properties.Resources.StarGray_16x16;
-
-            Point p = new Point(e.Bounds.X + e.Bounds.Width, e.Bounds.Y + e.Bounds.Height);
-            p.X -= EntryPadding + EntryRightWidth;
-            p.X += (EntryRightSmallWidth - starImage.Width) / 2;
-            p.Y -= EntryPadding + EntryRightSmallHeight;
-            p.Y += (EntryRightSmallHeight - starImage.Height) / 2;
-
-            e.Graphics.DrawImage(starImage, p);
+            e.Graphics.DrawString(entry.LocalTime.ToString("ddd"), EntryDayOfWeekFont, brush, bounds, stringFormat);
         }
 
         /// <summary>
@@ -361,17 +385,22 @@
         private void DrawTime(DrawItemEventArgs e, Entry entry)
         {
             Rectangle bounds = e.Bounds;
+            bounds.Height -= 1;
+
             bounds.Inflate(-EntryPadding, -EntryPadding);
-            bounds.X += bounds.Width - EntryRightWidth + EntryRightSmallWidth;
-            bounds.Width = EntryRightWidth - EntryRightSmallWidth;
+            bounds.X += bounds.Width - EntryRightWidth;
+            bounds.Width = EntryRightWidth;
             bounds.Y += bounds.Height - EntryRightSmallHeight;
             bounds.Height = EntryRightSmallHeight;
 
+            Brush brush = entry.Starred ? Brushes.Yellow :
+                (e.State & DrawItemState.Selected) == DrawItemState.Selected ? Brushes.Black : Brushes.White;
+
             StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
-            stringFormat.Alignment = StringAlignment.Center;
+            stringFormat.Alignment = StringAlignment.Near;
             stringFormat.LineAlignment = StringAlignment.Center;
 
-            e.Graphics.DrawString(entry.LocalTime.ToString("h:mm tt").ToLower(), EntryTimeFont, Brushes.Black, bounds, stringFormat);
+            e.Graphics.DrawString(entry.LocalTime.ToString("h:mm tt").ToLower(), EntryTimeFont, brush, bounds, stringFormat);
         }
     }
 }
