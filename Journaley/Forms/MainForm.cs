@@ -178,8 +178,9 @@
         {
             this.webBrowser.DocumentText =
                 string.Format(
-                @"<html style='margin:0;padding:2px'><body style='font-family:sans-serif;font-size:9pt'>{0}{1}</body></html>",
-                this.SelectedEntry.PhotoPath == null ? string.Empty : "<img src='" + this.SelectedEntry.PhotoPath + "' style='width:100%'><br>",
+                "<style type=\"text/css\">\n{0}\n</style><html><body>{1}{2}</body></html>",
+                Journaley.Properties.Resources.JournaleyCSS,
+                this.SelectedEntry.PhotoPath == null ? string.Empty : "<img src='" + this.SelectedEntry.PhotoPath + "'><br>",
                 Markdown.Transform(this.SelectedEntry.EntryText));
         }
 

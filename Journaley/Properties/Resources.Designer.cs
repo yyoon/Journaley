@@ -131,6 +131,28 @@ namespace Journaley.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to html {
+        ///margin: 0px;
+        ///padding: 2px;
+        ///}
+        ///
+        ///body {
+        ///font-family: sans-serif;
+        ///font-size: 9pt;
+        ///}
+        ///
+        ///img {
+        ///width: 100%;
+        ///}
+        ///.
+        /// </summary>
+        internal static string JournaleyCSS {
+            get {
+                return ResourceManager.GetString("JournaleyCSS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon JournaleyIcon {
