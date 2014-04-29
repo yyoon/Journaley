@@ -35,7 +35,7 @@
         /// <summary>
         /// The entry right width
         /// </summary>
-        private static readonly int EntryRightWidth = 50;
+        private static readonly int EntryRightWidth = 52;
 
         /// <summary>
         /// The entry right small height
@@ -45,7 +45,7 @@
         /// <summary>
         /// The entry center margin
         /// </summary>
-        private static readonly int EntryCenterMargin = 5;
+        private static readonly int EntryCenterMargin = 0;
 
         /// <summary>
         /// The photo width including the 1px borders.
@@ -60,7 +60,7 @@
         /// <summary>
         /// The entry text font
         /// </summary>
-        private static readonly Font EntryTextFont = new Font("Segoe UI Semilight", 10.0f, System.Drawing.FontStyle.Regular);
+        private static readonly Font EntryTextFont = new Font("Segoe UI Semilight", 9.0f, System.Drawing.FontStyle.Regular);
 
         /// <summary>
         /// The entry day font
@@ -75,7 +75,7 @@
         /// <summary>
         /// The entry time font
         /// </summary>
-        private static readonly Font EntryTimeFont = new Font(EntryTextFont.FontFamily, 9.0f);
+        private static readonly Font EntryTimeFont = new Font(EntryTextFont.FontFamily, 8.9f);
 
         /// <summary>
         /// Brush for filling the background of month entries
