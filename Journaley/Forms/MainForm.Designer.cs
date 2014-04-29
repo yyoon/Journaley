@@ -153,11 +153,12 @@ namespace Journaley.Forms
             this.dateTimePicker.CustomFormat = "MMMM dd, yyyy hh:mm tt";
             this.dateTimePicker.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dateTimePicker.Enabled = false;
+            this.dateTimePicker.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker.Location = new System.Drawing.Point(228, 3);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.ShowUpDown = true;
-            this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker.TabIndex = 4;
             this.dateTimePicker.ValueChanged += new System.EventHandler(this.DateTimePicker_ValueChanged);
             // 
@@ -326,9 +327,12 @@ namespace Journaley.Forms
             this.textEntryText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.textEntryText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.textEntryText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textEntryText.Font = new System.Drawing.Font("Clear Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEntryText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
             this.textEntryText.Location = new System.Drawing.Point(228, 24);
-            this.textEntryText.Margin = new System.Windows.Forms.Padding(0);
+            this.textEntryText.Margin = new System.Windows.Forms.Padding(20, 35, 20, 5);
             this.textEntryText.Multiline = true;
             this.textEntryText.Name = "textEntryText";
             this.textEntryText.Size = new System.Drawing.Size(656, 508);
