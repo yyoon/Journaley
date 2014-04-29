@@ -694,7 +694,7 @@ namespace Journaley.Forms
             // 
             // entryListBoxCalendar
             // 
-            this.entryListBoxCalendar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
+            this.entryListBoxCalendar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(46)))), ((int)(((byte)(49)))));
             this.entryListBoxCalendar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.entryListBoxCalendar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.entryListBoxCalendar.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
@@ -732,7 +732,7 @@ namespace Journaley.Forms
             // 
             // entryListBoxTags
             // 
-            this.entryListBoxTags.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
+            this.entryListBoxTags.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(46)))), ((int)(((byte)(49)))));
             this.entryListBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.entryListBoxTags.Dock = System.Windows.Forms.DockStyle.Fill;
             this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
