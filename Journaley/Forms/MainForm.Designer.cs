@@ -595,7 +595,7 @@ namespace Journaley.Forms
             this.buttonDone.Size = new System.Drawing.Size(37, 37);
             this.buttonDone.TabIndex = 6;
             this.buttonDone.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonDone, "Edit");
+            this.toolTip.SetToolTip(this.buttonDone, "Done");
             this.buttonDone.Click += new System.EventHandler(this.ButtonDone_Click);
             // 
             // buttonCancel
@@ -614,7 +614,7 @@ namespace Journaley.Forms
             this.buttonCancel.Size = new System.Drawing.Size(37, 37);
             this.buttonCancel.TabIndex = 7;
             this.buttonCancel.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonCancel, "Edit");
+            this.toolTip.SetToolTip(this.buttonCancel, "Cancel");
             this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // buttonStar
@@ -862,10 +862,10 @@ namespace Journaley.Forms
             this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.entryListBoxTags.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entryListBoxTags.FormattingEnabled = true;
-            this.entryListBoxTags.Location = new System.Drawing.Point(0, 36);
+            this.entryListBoxTags.Location = new System.Drawing.Point(0, 26);
             this.entryListBoxTags.Name = "entryListBoxTags";
             this.entryListBoxTags.ScrollAlwaysVisible = true;
-            this.entryListBoxTags.Size = new System.Drawing.Size(227, 430);
+            this.entryListBoxTags.Size = new System.Drawing.Size(227, 440);
             this.entryListBoxTags.TabIndex = 0;
             this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
@@ -874,10 +874,9 @@ namespace Journaley.Forms
             this.listBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxTags.Dock = System.Windows.Forms.DockStyle.Top;
             this.listBoxTags.FormattingEnabled = true;
-            this.listBoxTags.ItemHeight = 12;
             this.listBoxTags.Location = new System.Drawing.Point(0, 0);
             this.listBoxTags.Name = "listBoxTags";
-            this.listBoxTags.Size = new System.Drawing.Size(227, 36);
+            this.listBoxTags.Size = new System.Drawing.Size(227, 26);
             this.listBoxTags.TabIndex = 0;
             this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
             // 
