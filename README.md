@@ -1,9 +1,9 @@
-![logo](http://cl.ly/VFVx/logo.png)
+Journaley
 =========
 
 Journaley is an open-source journal keeping software for Windows, which is compatible with Day One app for Mac.
 
-**License**: [MIT License](http://opensource.org/licenses/MIT "MIT License")
+License: MIT License
 
 Installation Guide
 ==================
@@ -12,7 +12,7 @@ System Requirements
 -------------------
 
 * Windows 7 or higher (It might work on previous versions)
-* [.NET Framework 4.0](http://www.microsoft.com/en-ca/download/details.aspx?id=17851 "Download .NET 4.0") or higher
+* .NET Framework 4.0 or higher
 
 Instructions
 ------------
