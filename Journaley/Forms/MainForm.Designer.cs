@@ -121,12 +121,12 @@ namespace Journaley.Forms
             label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             label5.AutoSize = true;
             label5.BackColor = System.Drawing.Color.Transparent;
-            label5.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label5.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
-            label5.Location = new System.Drawing.Point(160, 11);
+            label5.Location = new System.Drawing.Point(159, 11);
             label5.Margin = new System.Windows.Forms.Padding(0);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(50, 14);
+            label5.Size = new System.Drawing.Size(48, 13);
             label5.TabIndex = 4;
             label5.Text = "ENTRIES";
             // 
@@ -135,12 +135,12 @@ namespace Journaley.Forms
             label7.Anchor = System.Windows.Forms.AnchorStyles.Left;
             label7.AutoSize = true;
             label7.BackColor = System.Drawing.Color.Transparent;
-            label7.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label7.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
             label7.Location = new System.Drawing.Point(79, 11);
             label7.Margin = new System.Windows.Forms.Padding(0);
             label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(63, 14);
+            label7.Size = new System.Drawing.Size(61, 13);
             label7.TabIndex = 6;
             label7.Text = "THIS WEEK";
             // 
@@ -149,12 +149,12 @@ namespace Journaley.Forms
             label8.Anchor = System.Windows.Forms.AnchorStyles.Left;
             label8.AutoSize = true;
             label8.BackColor = System.Drawing.Color.Transparent;
-            label8.Font = new System.Drawing.Font("Segoe UI Semilight", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            label8.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
-            label8.Location = new System.Drawing.Point(18, 11);
+            label8.Location = new System.Drawing.Point(19, 11);
             label8.Margin = new System.Windows.Forms.Padding(0);
             label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(43, 14);
+            label8.Size = new System.Drawing.Size(41, 13);
             label8.TabIndex = 7;
             label8.Text = "TODAY";
             // 
@@ -326,8 +326,9 @@ namespace Journaley.Forms
             this.labelEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelEntries.AutoSize = true;
             this.labelEntries.BackColor = System.Drawing.Color.Transparent;
-            this.labelEntries.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEntries.Location = new System.Drawing.Point(160, 0);
+            this.labelEntries.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEntries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
+            this.labelEntries.Location = new System.Drawing.Point(159, 0);
             this.labelEntries.Margin = new System.Windows.Forms.Padding(0);
             this.labelEntries.Name = "labelEntries";
             this.labelEntries.Size = new System.Drawing.Size(0, 11);
@@ -338,7 +339,8 @@ namespace Journaley.Forms
             this.labelThisWeek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelThisWeek.AutoSize = true;
             this.labelThisWeek.BackColor = System.Drawing.Color.Transparent;
-            this.labelThisWeek.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelThisWeek.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelThisWeek.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
             this.labelThisWeek.Location = new System.Drawing.Point(79, 0);
             this.labelThisWeek.Margin = new System.Windows.Forms.Padding(0);
             this.labelThisWeek.Name = "labelThisWeek";
@@ -350,8 +352,9 @@ namespace Journaley.Forms
             this.labelToday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelToday.AutoSize = true;
             this.labelToday.BackColor = System.Drawing.Color.Transparent;
-            this.labelToday.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelToday.Location = new System.Drawing.Point(18, 0);
+            this.labelToday.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelToday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
+            this.labelToday.Location = new System.Drawing.Point(19, 0);
             this.labelToday.Margin = new System.Windows.Forms.Padding(0);
             this.labelToday.Name = "labelToday";
             this.labelToday.Size = new System.Drawing.Size(0, 11);
@@ -617,10 +620,11 @@ namespace Journaley.Forms
             this.labelWords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.labelWords.AutoSize = true;
             this.labelWords.BackColor = System.Drawing.Color.Transparent;
-            this.labelWords.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelWords.Location = new System.Drawing.Point(313, 6);
+            this.labelWords.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
+            this.labelWords.Location = new System.Drawing.Point(313, 7);
             this.labelWords.Name = "labelWords";
-            this.labelWords.Size = new System.Drawing.Size(0, 14);
+            this.labelWords.Size = new System.Drawing.Size(0, 13);
             this.labelWords.TabIndex = 3;
             // 
             // labelCharacters
@@ -628,10 +632,11 @@ namespace Journaley.Forms
             this.labelCharacters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelCharacters.AutoSize = true;
             this.labelCharacters.BackColor = System.Drawing.Color.Transparent;
-            this.labelCharacters.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCharacters.Location = new System.Drawing.Point(340, 6);
+            this.labelCharacters.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCharacters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
+            this.labelCharacters.Location = new System.Drawing.Point(340, 7);
             this.labelCharacters.Name = "labelCharacters";
-            this.labelCharacters.Size = new System.Drawing.Size(0, 14);
+            this.labelCharacters.Size = new System.Drawing.Size(0, 13);
             this.labelCharacters.TabIndex = 4;
             // 
             // tableLayoutDate
