@@ -730,7 +730,11 @@
             else
             {
                 this.IsEditing = true;
+
+                // Puts focus on textbox and moves cursor to end of entry
                 this.textEntryText.Focus();
+                this.textEntryText.DeselectAll();
+                this.textEntryText.Select(textEntryText.Text.Length, 0);
             }
         }
 

@@ -45,8 +45,6 @@ namespace Journaley.Forms
             this.buttonStar = new System.Windows.Forms.Button();
             this.buttonTag = new System.Windows.Forms.Button();
             this.buttonPhoto = new System.Windows.Forms.Button();
-            this.buttonSettings = new Journaley.Controls.ImageButton();
-            this.buttonAddEntry = new Journaley.Controls.ImageButton();
             this.contextMenuStripShare = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.emailThisEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,9 +67,11 @@ namespace Journaley.Forms
             this.tableLayoutDate = new System.Windows.Forms.TableLayoutPanel();
             this.panelDateLeft = new System.Windows.Forms.Panel();
             this.panelDateRight = new System.Windows.Forms.Panel();
+            this.buttonSettings = new Journaley.Controls.ImageButton();
             this.buttonMainTags = new Journaley.Controls.ImageButton();
             this.buttonMainCalendar = new Journaley.Controls.ImageButton();
             this.buttonMainTimeline = new Journaley.Controls.ImageButton();
+            this.buttonAddEntry = new Journaley.Controls.ImageButton();
             this.panelEntryListArea = new Journaley.Controls.EntryListAreaPanel();
             this.panelTimeline = new System.Windows.Forms.Panel();
             this.entryListBoxAll = new Journaley.Controls.EntryListBox();
@@ -85,8 +85,6 @@ namespace Journaley.Forms
             label7 = new System.Windows.Forms.Label();
             label8 = new System.Windows.Forms.Label();
             this.tableLayoutStats.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).BeginInit();
             this.contextMenuStripShare.SuspendLayout();
             this.panelWebBrowserWrapper.SuspendLayout();
             this.contextMenuStripPhotoWithoutPhoto.SuspendLayout();
@@ -96,9 +94,11 @@ namespace Journaley.Forms
             this.tableLayoutBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).BeginInit();
             this.tableLayoutDate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTags)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).BeginInit();
             this.panelEntryListArea.SuspendLayout();
             this.panelTimeline.SuspendLayout();
             this.panelCalendar.SuspendLayout();
@@ -298,45 +298,6 @@ namespace Journaley.Forms
             this.toolTip.SetToolTip(this.buttonPhoto, "Photo");
             this.buttonPhoto.UseVisualStyleBackColor = true;
             this.buttonPhoto.Click += new System.EventHandler(this.ButtonPhoto_Click);
-            // 
-            // buttonSettings
-            // 
-            this.buttonSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSettings.BackColor = System.Drawing.Color.Transparent;
-            this.buttonSettings.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonSettings.DownImage = global::Journaley.Properties.Resources.sidebar_btn_setting_down;
-            this.buttonSettings.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_setting_over;
-            this.buttonSettings.Image = global::Journaley.Properties.Resources.sidebar_btn_setting_norm;
-            this.buttonSettings.Location = new System.Drawing.Point(0, 532);
-            this.buttonSettings.Name = "buttonSettings";
-            this.buttonSettings.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_setting_norm;
-            this.buttonSettings.Selected = false;
-            this.buttonSettings.SelectedImage = null;
-            this.buttonSettings.Size = new System.Drawing.Size(47, 41);
-            this.buttonSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.buttonSettings.TabIndex = 3;
-            this.buttonSettings.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonSettings, "Settings");
-            this.buttonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
-            // 
-            // buttonAddEntry
-            // 
-            this.buttonAddEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonAddEntry.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonAddEntry.DownImage = global::Journaley.Properties.Resources.main_btn_entry_down;
-            this.buttonAddEntry.HoverImage = global::Journaley.Properties.Resources.main_btn_entry_over;
-            this.buttonAddEntry.Image = global::Journaley.Properties.Resources.main_btn_entry_norm;
-            this.buttonAddEntry.Location = new System.Drawing.Point(0, 531);
-            this.buttonAddEntry.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonAddEntry.Name = "buttonAddEntry";
-            this.buttonAddEntry.NormalImage = global::Journaley.Properties.Resources.main_btn_entry_norm;
-            this.buttonAddEntry.Selected = false;
-            this.buttonAddEntry.SelectedImage = null;
-            this.buttonAddEntry.Size = new System.Drawing.Size(229, 42);
-            this.buttonAddEntry.TabIndex = 0;
-            this.buttonAddEntry.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonAddEntry, "Add a new entry");
-            this.buttonAddEntry.Click += new System.EventHandler(this.ButtonAddEntry_Click);
             // 
             // contextMenuStripShare
             // 
@@ -585,6 +546,26 @@ namespace Journaley.Forms
             this.panelDateRight.Size = new System.Drawing.Size(100, 25);
             this.panelDateRight.TabIndex = 1;
             // 
+            // buttonSettings
+            // 
+            this.buttonSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSettings.BackColor = System.Drawing.Color.Transparent;
+            this.buttonSettings.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonSettings.DownImage = global::Journaley.Properties.Resources.sidebar_btn_setting_down;
+            this.buttonSettings.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_setting_over;
+            this.buttonSettings.Image = global::Journaley.Properties.Resources.sidebar_btn_setting_norm;
+            this.buttonSettings.Location = new System.Drawing.Point(0, 532);
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_setting_norm;
+            this.buttonSettings.Selected = false;
+            this.buttonSettings.SelectedImage = null;
+            this.buttonSettings.Size = new System.Drawing.Size(47, 41);
+            this.buttonSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.buttonSettings.TabIndex = 3;
+            this.buttonSettings.TabStop = false;
+            this.toolTip.SetToolTip(this.buttonSettings, "Settings");
+            this.buttonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
+            // 
             // buttonMainTags
             // 
             this.buttonMainTags.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -638,6 +619,25 @@ namespace Journaley.Forms
             this.buttonMainTimeline.TabIndex = 13;
             this.buttonMainTimeline.TabStop = false;
             this.buttonMainTimeline.Click += new System.EventHandler(this.ButtonMainTimeline_Click);
+            // 
+            // buttonAddEntry
+            // 
+            this.buttonAddEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonAddEntry.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonAddEntry.DownImage = global::Journaley.Properties.Resources.main_btn_entry_down;
+            this.buttonAddEntry.HoverImage = global::Journaley.Properties.Resources.main_btn_entry_over;
+            this.buttonAddEntry.Image = global::Journaley.Properties.Resources.main_btn_entry_norm;
+            this.buttonAddEntry.Location = new System.Drawing.Point(0, 531);
+            this.buttonAddEntry.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonAddEntry.Name = "buttonAddEntry";
+            this.buttonAddEntry.NormalImage = global::Journaley.Properties.Resources.main_btn_entry_norm;
+            this.buttonAddEntry.Selected = false;
+            this.buttonAddEntry.SelectedImage = null;
+            this.buttonAddEntry.Size = new System.Drawing.Size(229, 42);
+            this.buttonAddEntry.TabIndex = 0;
+            this.buttonAddEntry.TabStop = false;
+            this.toolTip.SetToolTip(this.buttonAddEntry, "Add a new entry");
+            this.buttonAddEntry.Click += new System.EventHandler(this.ButtonAddEntry_Click);
             // 
             // panelEntryListArea
             // 
@@ -771,8 +771,6 @@ namespace Journaley.Forms
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.tableLayoutStats.ResumeLayout(false);
             this.tableLayoutStats.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).EndInit();
             this.contextMenuStripShare.ResumeLayout(false);
             this.panelWebBrowserWrapper.ResumeLayout(false);
             this.contextMenuStripPhotoWithoutPhoto.ResumeLayout(false);
@@ -783,9 +781,11 @@ namespace Journaley.Forms
             this.tableLayoutBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).EndInit();
             this.tableLayoutDate.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTags)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).EndInit();
             this.panelEntryListArea.ResumeLayout(false);
             this.panelTimeline.ResumeLayout(false);
             this.panelCalendar.ResumeLayout(false);
