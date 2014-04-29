@@ -104,8 +104,7 @@
                 {
                     this.isEditing = this.selectedEntry.IsDirty;
 
-                    this.dateTimePicker.Value = this.selectedEntry.LocalTime;
-                    this.textEntryText.Text = this.selectedEntry.EntryText.Replace("\n", Environment.NewLine);
+                    UpdateDateAndTextFromEntry();
                     this.UpdateWebBrowser();
                 }
                 else
@@ -241,11 +240,12 @@
             bool noEntry = this.SelectedEntry == null;
 
             this.dateTimePicker.CustomFormat = noEntry ? " " : "MMM d, yyyy hh:mm tt";
-            this.buttonEditSave.Enabled = !noEntry;
+            this.buttonEdit.Enabled = !noEntry;
+            this.buttonDone.Enabled = !noEntry;
+            this.buttonCancel.Enabled = !noEntry;
             this.buttonStar.Enabled = !noEntry;
             this.buttonPhoto.Enabled = !noEntry;
             this.buttonTag.Enabled = !noEntry;
-            this.buttonShare.Enabled = !noEntry;
             this.buttonDelete.Enabled = !noEntry;
             this.textEntryText.Enabled = !noEntry;
 
@@ -255,10 +255,23 @@
                 this.webBrowser.DocumentText = string.Empty;
             }
 
+            this.tableLayoutSidebar.Visible = !noEntry;
+
             this.dateTimePicker.Enabled = this.IsEditing;
-            this.buttonEditSave.Image = this.IsEditing ? Properties.Resources.Save_32x32 : Properties.Resources.Edit_32x32;
-            this.toolTip.SetToolTip(this.buttonEditSave, this.IsEditing ? "Save" : "Edit");
+            this.toolTip.SetToolTip(this.buttonEdit, this.IsEditing ? "Save" : "Edit");
             this.textEntryText.ReadOnly = !this.IsEditing;
+
+            if (this.IsEditing && this.flowLayoutSidebarTopButtons.Controls.Contains(this.buttonEdit))
+            {
+                this.flowLayoutSidebarTopButtons.Controls.Clear();
+                this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonDone);
+                this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonCancel);
+            }
+            else if (!this.IsEditing && !this.flowLayoutSidebarTopButtons.Controls.Contains(this.buttonEdit))
+            {
+                this.flowLayoutSidebarTopButtons.Controls.Clear();
+                this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonEdit);
+            }
 
             this.textEntryText.Visible = this.IsEditing;
             this.panelWebBrowserWrapper.Visible = this.webBrowser.Visible = noEntry || !this.IsEditing;
@@ -269,8 +282,7 @@
         /// </summary>
         private void UpdateStar()
         {
-            this.buttonStar.Image = (this.SelectedEntry != null && this.SelectedEntry.Starred) ?
-                Properties.Resources.StarYellow_32x32 : Properties.Resources.StarGray_32x32;
+            this.buttonStar.Selected = this.SelectedEntry != null && this.SelectedEntry.Starred;
         }
 
         /// <summary>
@@ -278,8 +290,7 @@
         /// </summary>
         private void UpdatePhotoButton()
         {
-            this.buttonPhoto.Image = (this.SelectedEntry != null && this.SelectedEntry.PhotoPath != null) ?
-                Properties.Resources.Image_32x32 : Properties.Resources.ImageGray_32x32;
+            this.buttonPhoto.Selected = this.SelectedEntry != null && this.SelectedEntry.PhotoPath != null;
         }
 
         /// <summary>
@@ -287,8 +298,7 @@
         /// </summary>
         private void UpdateTag()
         {
-            this.buttonTag.Image = (this.SelectedEntry != null && this.SelectedEntry.Tags.Any()) ?
-                Properties.Resources.TagGreen_32x32 : Properties.Resources.TagWhite_32x32;
+            this.buttonTag.Selected = this.SelectedEntry != null && this.SelectedEntry.Tags.Any();
         }
 
         /// <summary>
@@ -296,6 +306,8 @@
         /// </summary>
         private void UpdateFromScratch()
         {
+            this.flowLayoutSidebarTopButtons.Controls.Clear();
+
             this.UpdateStats();
             this.UpdateAllEntryLists();
             this.UpdateUI();
@@ -354,6 +366,15 @@
             Debug.Assert(now.Kind == DateTimeKind.Local, "\"now\" parameter must be of DateTimeKind.Local");
 
             return this.Entries.Where(x => x.LocalTime.Date == now.Date).Count();
+        }
+
+        /// <summary>
+        /// Updates the date and text from entry.
+        /// </summary>
+        private void UpdateDateAndTextFromEntry()
+        {
+            this.dateTimePicker.Value = this.selectedEntry.LocalTime;
+            this.textEntryText.Text = this.selectedEntry.EntryText.Replace("\n", Environment.NewLine);
         }
 
         /// <summary>
@@ -565,21 +586,6 @@
         #region Event Handlers
 
         /// <summary>
-        /// Handles the Click event of the emailThisEntryToolStripMenuItem control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void EmailThisEntryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when emailing.");
-
-            string encodedBody = Uri.EscapeUriString(this.textEntryText.Text);
-            string link = string.Format("mailto:?body={0}", encodedBody);
-
-            Process.Start(link);
-        }
-
-        /// <summary>
         /// Handles the Load event of this form.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -711,31 +717,53 @@
         }
 
         /// <summary>
-        /// Handles the Click event of the buttonEditSave control.
+        /// Handles the Click event of the buttonEdit control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void ButtonEditSave_Click(object sender, EventArgs e)
+        private void ButtonEdit_Click(object sender, EventArgs e)
         {
-            Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when saving.");
+            Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when editing/saving.");
+            Debug.Assert(this.IsEditing == false);
 
-            if (this.IsEditing)
-            {
-                this.SaveSelectedEntry();
-                this.IsEditing = false;
+            this.IsEditing = true;
 
-                this.UpdateWebBrowser();
-                this.UpdateUI();
-            }
-            else
-            {
-                this.IsEditing = true;
+            // Puts focus on textbox and moves cursor to end of entry
+            this.textEntryText.Focus();
+            this.textEntryText.DeselectAll();
+            this.textEntryText.Select(textEntryText.Text.Length, 0);
+        }
 
-                // Puts focus on textbox and moves cursor to end of entry
-                this.textEntryText.Focus();
-                this.textEntryText.DeselectAll();
-                this.textEntryText.Select(textEntryText.Text.Length, 0);
-            }
+        /// <summary>
+        /// Handles the Click event of the buttonDone control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonDone_Click(object sender, EventArgs e)
+        {
+            Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when editing/saving.");
+            Debug.Assert(this.IsEditing == true);
+
+            this.SaveSelectedEntry();
+            this.IsEditing = false;
+
+            this.UpdateWebBrowser();
+            this.UpdateUI();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonCancel control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonCancel_Click(object sender, EventArgs e)
+        {
+            Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when cancelling.");
+            Debug.Assert(this.IsEditing == true);
+
+            this.IsEditing = false;
+            this.UpdateDateAndTextFromEntry();
+            this.UpdateUI();
         }
 
         /// <summary>
@@ -769,7 +797,7 @@
 
             menuStrip.Show(
                 this.buttonPhoto,
-                new Point { X = this.buttonPhoto.Width, Y = this.buttonShare.Height },
+                new Point { X = this.buttonPhoto.Width, Y = this.buttonPhoto.Height },
                 ToolStripDropDownDirection.BelowLeft);
         }
 
@@ -879,21 +907,6 @@
         }
 
         /// <summary>
-        /// Handles the Click event of the buttonShare control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void ButtonShare_Click(object sender, EventArgs e)
-        {
-            Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when sharing.");
-
-            this.contextMenuStripShare.Show(
-                this.buttonShare,
-                new Point { X = this.buttonShare.Width, Y = this.buttonShare.Height },
-                ToolStripDropDownDirection.BelowLeft);
-        }
-
-        /// <summary>
         /// Handles the SelectedIndexChanged event of the entryListBox control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -940,19 +953,6 @@
                 this.SelectedEntry.UTCDateTime = this.dateTimePicker.Value.ToUniversalTime();
                 this.UpdateAllEntryLists();
             }
-        }
-
-        /// <summary>
-        /// Handles the Click event of the copyToClipboardToolStripMenuItem control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void CopyToClipboardToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when copying to clipboard.");
-
-            Clipboard.SetDataObject(this.textEntryText.Text, true);
-            MessageBox.Show(this, "The entry text has been successfully copied to the clipboard.", "Copy to Clipboard", MessageBoxButtons.OK);
         }
 
         /// <summary>
@@ -1330,5 +1330,10 @@
         }
 
         #endregion
+
+        private void ButtonEditSave_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

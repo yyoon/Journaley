@@ -175,6 +175,13 @@
             }
         }
 
+        protected override void OnMouseWheel(MouseEventArgs e)
+        {
+            int newDelta = e.Delta == 0 ? 0 : e.Delta / Math.Abs(e.Delta);
+            MouseEventArgs args = new MouseEventArgs(e.Button, e.Clicks, e.X, e.Y, newDelta);
+            base.OnMouseWheel(args);
+        }
+
         /// <summary>
         /// Draws a month line in-between the entries.
         /// </summary>
