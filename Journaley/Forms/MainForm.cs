@@ -1192,8 +1192,8 @@
             this.panelTimeline.Visible = false;
             this.panelCalendar.Visible = true;
             this.panelTags.Visible = false;
-            this.buttonMainTimeline.Selected = true;
-            this.buttonMainCalendar.Selected = false;
+            this.buttonMainTimeline.Selected = false;
+            this.buttonMainCalendar.Selected = true;
             this.buttonMainTags.Selected = false;
         }
 
@@ -1207,9 +1207,9 @@
             this.panelTimeline.Visible = false;
             this.panelCalendar.Visible = false;
             this.panelTags.Visible = true;
-            this.buttonMainTimeline.Selected = true;
+            this.buttonMainTimeline.Selected = false;
             this.buttonMainCalendar.Selected = false;
-            this.buttonMainTags.Selected = false;
+            this.buttonMainTags.Selected = true;
         }
 
         /// <summary>
