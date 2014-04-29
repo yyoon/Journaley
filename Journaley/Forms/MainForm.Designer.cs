@@ -329,10 +329,10 @@ namespace Journaley.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textEntryText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.textEntryText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textEntryText.Font = new System.Drawing.Font("Clear Sans", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEntryText.Font = new System.Drawing.Font("Open Sans", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEntryText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
             this.textEntryText.Location = new System.Drawing.Point(228, 24);
-            this.textEntryText.Margin = new System.Windows.Forms.Padding(20, 35, 20, 5);
+            this.textEntryText.Margin = new System.Windows.Forms.Padding(0);
             this.textEntryText.Multiline = true;
             this.textEntryText.Name = "textEntryText";
             this.textEntryText.Size = new System.Drawing.Size(656, 508);
