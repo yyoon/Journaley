@@ -509,14 +509,20 @@
                     .Split(delim, StringSplitOptions.RemoveEmptyEntries)
                     .Length
                     .ToString();
+                this.labelWordsTitle.Text = "WORDS";
+
                 this.labelCharacters.Text = entryText
                     .Count(x => !delim.Contains(x))
                     .ToString();
+                this.labelCharactersTitle.Text = "CHARACTERS";
             }
             else
             {
                 this.labelWords.Text = string.Empty;
+                this.labelWordsTitle.Text = string.Empty;
+
                 this.labelCharacters.Text = string.Empty;
+                this.labelCharactersTitle.Text = string.Empty;
             }
         }
 
