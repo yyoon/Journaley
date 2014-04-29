@@ -1335,5 +1335,10 @@
         {
 
         }
+
+        private void flowLayoutSidebarTopButtons_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
