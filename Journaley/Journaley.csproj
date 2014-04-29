@@ -54,6 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\EntryListAreaPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\ImageButton.cs">
       <SubType>Component</SubType>
     </Compile>
