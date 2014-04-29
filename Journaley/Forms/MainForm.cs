@@ -227,13 +227,9 @@
         /// <returns>All the EntryList objects</returns>
         private IEnumerable<EntryListBox> GetAllEntryLists()
         {
-            foreach (TabPage page in this.tabLeftPanel.TabPages)
-            {
-                foreach (var list in page.Controls.OfType<EntryListBox>())
-                {
-                    yield return list;
-                }
-            }
+            yield return this.entryListBoxAll;
+            yield return this.entryListBoxCalendar;
+            yield return this.entryListBoxTags;
         }
 
         /// <summary>
@@ -367,7 +363,6 @@
         {
             this.UpdateEntryListBoxAll();
             this.UpdateEntryListBoxTags();
-            this.UpdateEntryListBoxYear();
             this.UpdateEntryListBoxCalendar();
         }
 
@@ -419,43 +414,6 @@
 
             // Resize the upper list box
             this.listBoxTags.Height = this.listBoxTags.PreferredHeight;
-        }
-
-        /// <summary>
-        /// Updates the entry list box of "Entries by Year" tab.
-        /// </summary>
-        private void UpdateEntryListBoxYear()
-        {
-            // Clear everything.
-            this.listBoxYear.Items.Clear();
-            this.listBoxYear.SelectedIndex = -1;
-
-            // First item is always "all years"
-            this.listBoxYear.Items.Add("All Years");
-
-            // Get the years and entry count for each year, in reverse order.
-            var yearsAndCounts = this.Entries
-                .GroupBy(x => x.LocalTime.Year)
-                .Select(x => new YearCountEntry(x.Key, x.Count()))
-                .OrderByDescending(x => x.Year);
-
-            // If there is any entry,
-            if (yearsAndCounts.Any())
-            {
-                // Add to the top list box first.
-                this.listBoxYear.Items.AddRange(yearsAndCounts.ToArray());
-
-                // Select the second item (this will invoke the event handler and eventually the entry list box will be filled)
-                this.listBoxYear.SelectedIndex = 1;
-            }
-            else
-            {
-                // Select the first item
-                this.listBoxYear.SelectedIndex = 0;
-            }
-
-            // Resize the upper list box
-            this.listBoxYear.Height = this.listBoxYear.PreferredHeight;
         }
 
         /// <summary>
@@ -533,42 +491,11 @@
         /// </summary>
         private void HighlightSelectedEntry()
         {
-            this.HighlightSelectedYearInList();
             this.HighlightSelectedEntryInCalendar();
 
             foreach (var list in this.GetAllEntryLists())
             {
                 this.HighlightSelectedEntry(list);
-            }
-        }
-
-        /// <summary>
-        /// Highlights the selected year in list.
-        /// </summary>
-        private void HighlightSelectedYearInList()
-        {
-            if (this.SelectedEntry != null)
-            {
-                int index = -1;
-                for (int i = 1; i < this.listBoxYear.Items.Count; ++i)
-                {
-                    YearCountEntry entry = this.listBoxYear.Items[i] as YearCountEntry;
-                    if (entry == null)
-                    {
-                        continue;
-                    }
-
-                    if (this.SelectedEntry.LocalTime.Year == entry.Year)
-                    {
-                        index = i;
-                        break;
-                    }
-                }
-
-                if (index != -1)
-                {
-                    this.listBoxYear.SelectedIndex = index;
-                }
             }
         }
 
@@ -710,43 +637,6 @@
 
             // Finished Loading
             this.FormLoaded = true;
-        }
-
-        /// <summary>
-        /// Handles the SelectedIndexChanged event of the listBoxYear control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void ListBoxYear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Debug.Assert(sender == this.listBoxYear, "sender must be this.listBoxYear");
-
-            switch (this.listBoxYear.SelectedIndex)
-            {
-                case -1:
-                    this.entryListBoxYear.Items.Clear();
-                    break;
-
-                case 0:
-                    this.UpdateEntryList(this.Entries, this.entryListBoxYear);
-                    break;
-
-                default:
-                    {
-                        YearCountEntry entry = this.listBoxYear.SelectedItem as YearCountEntry;
-                        if (entry != null)
-                        {
-                            this.UpdateEntryList(this.Entries.Where(x => x.LocalTime.Year == entry.Year), this.entryListBoxYear);
-                        }
-                        else
-                        {
-                            // This should not happen.
-                            Debug.Assert(false, "Unexpected control flow.");
-                        }
-
-                        break;
-                    }
-            }
         }
 
         /// <summary>
@@ -1284,7 +1174,9 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonMainTimeline_Click(object sender, EventArgs e)
         {
-            this.tabLeftPanel.SelectTab("tabPageAllEntries");
+            this.panelTimeline.Visible = true;
+            this.panelCalendar.Visible = false;
+            this.panelTags.Visible = false;
             this.buttonMainTimeline.Selected = true;
             this.buttonMainCalendar.Selected = false;
             this.buttonMainTags.Selected = false;
@@ -1297,9 +1189,11 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonMainCalendar_Click(object sender, EventArgs e)
         {
-            this.tabLeftPanel.SelectTab("tabPageCalendar");
-            this.buttonMainTimeline.Selected = false;
-            this.buttonMainCalendar.Selected = true;
+            this.panelTimeline.Visible = false;
+            this.panelCalendar.Visible = true;
+            this.panelTags.Visible = false;
+            this.buttonMainTimeline.Selected = true;
+            this.buttonMainCalendar.Selected = false;
             this.buttonMainTags.Selected = false;
         }
 
@@ -1310,10 +1204,12 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonMainTags_Click(object sender, EventArgs e)
         {
-            this.tabLeftPanel.SelectTab("tabPageTags");
-            this.buttonMainTimeline.Selected = false;
+            this.panelTimeline.Visible = false;
+            this.panelCalendar.Visible = false;
+            this.panelTags.Visible = true;
+            this.buttonMainTimeline.Selected = true;
             this.buttonMainCalendar.Selected = false;
-            this.buttonMainTags.Selected = true;
+            this.buttonMainTags.Selected = false;
         }
 
         /// <summary>
