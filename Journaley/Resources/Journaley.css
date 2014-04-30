@@ -8,6 +8,8 @@ font-family: "Open Sans";
 font-size: 13pt;
 
 background-color: #EFEFEF;
+
+overflow: auto;
 }
 
 div {
