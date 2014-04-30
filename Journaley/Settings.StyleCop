@@ -1,6 +1,7 @@
 <StyleCopSettings Version="105">
   <GlobalSettings>
     <CollectionProperty Name="RecognizedWords">
+      <Value>codeproject</Value>
       <Value>Journaley</Value>
     </CollectionProperty>
   </GlobalSettings>

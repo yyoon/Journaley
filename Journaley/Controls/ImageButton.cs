@@ -58,25 +58,15 @@
         [Description("Image to show when the button is hovered over.")]
         public Image HoverImage { get; set; }
 
+        /// <summary>
+        /// Gets or sets the selected hover image.
+        /// </summary>
+        /// <value>
+        /// The selected hover image.
+        /// </value>
         [Category("Appearance")]
         [Description("Image to show when the button is both selected and hovered over.")]
         public Image SelectedHoverImage { get; set; }
-
-        /// <summary>
-        /// Gets the hover image to display.
-        /// </summary>
-        /// <value>
-        /// The hover image to display.
-        /// </value>
-        private Image HoverImageToDisplay
-        {
-            get
-            {
-                return (this.SelectedImage != null && this.SelectedHoverImage != null && this.Selected)
-                    ? this.SelectedHoverImage
-                    : this.HoverImage;
-            }
-        }
 
         /// <summary>
         /// Gets or sets down image.
@@ -88,25 +78,15 @@
         [Description("Image to show when the button is depressed.")]
         public Image DownImage { get; set; }
 
+        /// <summary>
+        /// Gets or sets the selected down image.
+        /// </summary>
+        /// <value>
+        /// The selected down image.
+        /// </value>
         [Category("Appearance")]
         [Description("Image to show when the button is both selected and depressed.")]
         public Image SelectedDownImage { get; set; }
-
-        /// <summary>
-        /// Gets down image to display.
-        /// </summary>
-        /// <value>
-        /// Down image to display.
-        /// </value>
-        private Image DownImageToDisplay
-        {
-            get
-            {
-                return (this.SelectedImage != null && this.SelectedDownImage != null && this.Selected)
-                    ? this.SelectedDownImage
-                    : this.DownImage;
-            }
-        }
 
         /// <summary>
         /// Gets or sets the normal image.
@@ -170,6 +150,38 @@
         /// </summary>
         /// <returns>One of the <see cref="T:System.Windows.Forms.DialogResult" /> values.</returns>
         public DialogResult DialogResult { get; set; }
+
+        /// <summary>
+        /// Gets the hover image to display.
+        /// </summary>
+        /// <value>
+        /// The hover image to display.
+        /// </value>
+        private Image HoverImageToDisplay
+        {
+            get
+            {
+                return (this.SelectedImage != null && this.SelectedHoverImage != null && this.Selected)
+                    ? this.SelectedHoverImage
+                    : this.HoverImage;
+            }
+        }
+
+        /// <summary>
+        /// Gets down image to display.
+        /// </summary>
+        /// <value>
+        /// Down image to display.
+        /// </value>
+        private Image DownImageToDisplay
+        {
+            get
+            {
+                return (this.SelectedImage != null && this.SelectedDownImage != null && this.Selected)
+                    ? this.SelectedDownImage
+                    : this.DownImage;
+            }
+        }
 
         /// <summary>
         /// Notifies a control that it is the default button so that its appearance and behavior is adjusted accordingly.

@@ -187,16 +187,17 @@
                 }
 
                 // Copy the bufferedGraphics into destination.
-                PInvoke.BitBlt(e.Graphics.GetHdc(), e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height,
-                    bufferedGraphics.Graphics.GetHdc(), 0, 0, PInvoke.TernaryRasterOperations.SRCCOPY);
+                PInvoke.BitBlt(
+                    e.Graphics.GetHdc(),
+                    e.Bounds.X,
+                    e.Bounds.Y,
+                    e.Bounds.Width,
+                    e.Bounds.Height,
+                    bufferedGraphics.Graphics.GetHdc(),
+                    0,
+                    0,
+                    PInvoke.TernaryRasterOperations.SRCCOPY);
             }
-        }
-
-        protected override void OnMouseWheel(MouseEventArgs e)
-        {
-            int newDelta = e.Delta == 0 ? 0 : e.Delta / Math.Abs(e.Delta);
-            MouseEventArgs args = new MouseEventArgs(e.Button, e.Clicks, e.X, e.Y, newDelta);
-            base.OnMouseWheel(args);
         }
 
         /// <summary>
