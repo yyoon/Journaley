@@ -507,10 +507,11 @@ namespace Journaley.Forms
             // pictureBoxSidebarSeperatorBottom
             // 
             this.pictureBoxSidebarSeperatorBottom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBoxSidebarSeperatorBottom.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxSidebarSeperatorBottom.Image = global::Journaley.Properties.Resources.sidebar_seperator_bottom;
-            this.pictureBoxSidebarSeperatorBottom.Location = new System.Drawing.Point(0, 531);
+            this.pictureBoxSidebarSeperatorBottom.Location = new System.Drawing.Point(1, 531);
             this.pictureBoxSidebarSeperatorBottom.Name = "pictureBoxSidebarSeperatorBottom";
-            this.pictureBoxSidebarSeperatorBottom.Size = new System.Drawing.Size(47, 1);
+            this.pictureBoxSidebarSeperatorBottom.Size = new System.Drawing.Size(46, 1);
             this.pictureBoxSidebarSeperatorBottom.TabIndex = 11;
             this.pictureBoxSidebarSeperatorBottom.TabStop = false;
             // 
