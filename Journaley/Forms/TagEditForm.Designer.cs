@@ -121,7 +121,7 @@
             // TagEditForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
             this.ClientSize = new System.Drawing.Size(223, 319);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.textTagInput);
