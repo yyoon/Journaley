@@ -765,7 +765,7 @@
             // Puts focus on textbox and moves cursor to end of entry
             this.textEntryText.Focus();
             this.textEntryText.DeselectAll();
-            this.textEntryText.Select(textEntryText.Text.Length, 0);
+            this.textEntryText.Select(this.textEntryText.Text.Length, 0);
         }
 
         /// <summary>
@@ -846,7 +846,7 @@
         {
             TagEditForm tagEditForm = new TagEditForm();
             tagEditForm.StartPosition = FormStartPosition.Manual;
-            tagEditForm.Location = this.buttonTag.PointToScreen(new Point(- tagEditForm.Width, 0));
+            tagEditForm.Location = this.buttonTag.PointToScreen(new Point(-tagEditForm.Width, 0));
 
             tagEditForm.AssignedTags.AddRange(this.SelectedEntry.Tags.OrderBy(x => x));
             tagEditForm.OtherTags.AddRange(this.Entries.SelectMany(x => x.Tags).Distinct().Where(x => !this.SelectedEntry.Tags.Contains(x)).OrderBy(x => x));

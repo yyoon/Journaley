@@ -17,8 +17,9 @@
         /// <summary>
         /// Reads the embedded font.
         /// </summary>
+        /// <param name="fontName">Name of the font file.</param>
         /// <param name="fontData">The font data.</param>
-        /// <returns></returns>
+        /// <returns>The FontFamily object to be used.</returns>
         public static FontFamily ReadEmbeddedFont(string fontName, byte[] fontData)
         {
             IntPtr memoryData = Marshal.AllocCoTaskMem(fontData.Length);
