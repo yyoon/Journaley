@@ -427,7 +427,7 @@ namespace Journaley.Forms
             this.buttonAddEntry.SelectedDownImage = null;
             this.buttonAddEntry.SelectedHoverImage = null;
             this.buttonAddEntry.SelectedImage = null;
-            this.buttonAddEntry.Size = new System.Drawing.Size(259, 42);
+            this.buttonAddEntry.Size = new System.Drawing.Size(229, 42);
             this.buttonAddEntry.TabIndex = 0;
             this.buttonAddEntry.TabStop = false;
             this.toolTip.SetToolTip(this.buttonAddEntry, "Add a new entry");
