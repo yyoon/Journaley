@@ -58,6 +58,26 @@
         [Description("Image to show when the button is hovered over.")]
         public Image HoverImage { get; set; }
 
+        [Category("Appearance")]
+        [Description("Image to show when the button is both selected and hovered over.")]
+        public Image SelectedHoverImage { get; set; }
+
+        /// <summary>
+        /// Gets the hover image to display.
+        /// </summary>
+        /// <value>
+        /// The hover image to display.
+        /// </value>
+        private Image HoverImageToDisplay
+        {
+            get
+            {
+                return (this.SelectedImage != null && this.SelectedHoverImage != null && this.Selected)
+                    ? this.SelectedHoverImage
+                    : this.HoverImage;
+            }
+        }
+
         /// <summary>
         /// Gets or sets down image.
         /// </summary>
@@ -67,6 +87,26 @@
         [Category("Appearance")]
         [Description("Image to show when the button is depressed.")]
         public Image DownImage { get; set; }
+
+        [Category("Appearance")]
+        [Description("Image to show when the button is both selected and depressed.")]
+        public Image SelectedDownImage { get; set; }
+
+        /// <summary>
+        /// Gets down image to display.
+        /// </summary>
+        /// <value>
+        /// Down image to display.
+        /// </value>
+        private Image DownImageToDisplay
+        {
+            get
+            {
+                return (this.SelectedImage != null && this.SelectedDownImage != null && this.Selected)
+                    ? this.SelectedDownImage
+                    : this.DownImage;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the normal image.
@@ -109,13 +149,13 @@
 
                 if (this.SelectedImage != null)
                 {
-                    if (this.down && this.DownImage != null)
+                    if (this.down && this.DownImageToDisplay != null)
                     {
-                        this.Image = this.DownImage;
+                        this.Image = this.DownImageToDisplay;
                     }
-                    else if (this.hover && this.HoverImage != null)
+                    else if (this.hover && this.HoverImageToDisplay != null)
                     {
-                        this.Image = this.HoverImage;
+                        this.Image = this.HoverImageToDisplay;
                     }
                     else
                     {
@@ -205,14 +245,14 @@
             this.hover = true;
             if (this.down)
             {
-                if (this.DownImage != null && this.Image != this.DownImage)
+                if (this.DownImageToDisplay != null && this.Image != this.DownImageToDisplay)
                 {
-                    this.Image = this.DownImage;
+                    this.Image = this.DownImageToDisplay;
                 }
             }
             else
             {
-                this.Image = this.HoverImage != null ? this.HoverImage :
+                this.Image = this.HoverImageToDisplay != null ? this.HoverImageToDisplay :
                     (this.SelectedImage != null && this.Selected ? this.SelectedImage : this.NormalImage);
             }
 
@@ -252,9 +292,9 @@
             this.Focus();
             this.down = true;
 
-            if (this.DownImage != null)
+            if (this.DownImageToDisplay != null)
             {
-                this.Image = this.DownImage;
+                this.Image = this.DownImageToDisplay;
             }
 
             base.OnMouseDown(e);
@@ -269,9 +309,9 @@
             this.down = false;
             if (this.hover)
             {
-                if (this.HoverImage != null)
+                if (this.HoverImageToDisplay != null)
                 {
-                    this.Image = this.HoverImage;
+                    this.Image = this.HoverImageToDisplay;
                 }
             }
             else

@@ -317,18 +317,6 @@
         private void UpdateStar()
         {
             this.buttonStar.Selected = this.SelectedEntry != null && this.SelectedEntry.Starred;
-
-            // Set enabled states when button selected
-            if (buttonStar.Selected)
-            {
-                buttonStar.DownImage = Journaley.Properties.Resources.sidebar_btn_star_enabled_down;
-                buttonStar.HoverImage = Journaley.Properties.Resources.sidebar_btn_star_enabled_over;
-            }
-            else
-            {
-                buttonStar.DownImage = Journaley.Properties.Resources.sidebar_btn_star_down;
-                buttonStar.HoverImage = Journaley.Properties.Resources.sidebar_btn_star_over;
-            }
         }
 
         /// <summary>
@@ -337,18 +325,6 @@
         private void UpdatePhotoButton()
         {
             this.buttonPhoto.Selected = this.SelectedEntry != null && this.SelectedEntry.PhotoPath != null;
-
-            // Set enabled states when button selected
-            if (buttonPhoto.Selected)
-            {
-                buttonPhoto.DownImage = Journaley.Properties.Resources.sidebar_btn_image_enabled_down;
-                buttonPhoto.HoverImage = Journaley.Properties.Resources.sidebar_btn_image_enabled_over;
-            }
-            else
-            {
-                buttonPhoto.DownImage = Journaley.Properties.Resources.sidebar_btn_image_down;
-                buttonPhoto.HoverImage = Journaley.Properties.Resources.sidebar_btn_image_over;
-            }
         }
 
         /// <summary>
@@ -357,18 +333,6 @@
         private void UpdateTag()
         {
             this.buttonTag.Selected = this.SelectedEntry != null && this.SelectedEntry.Tags.Any();
-
-            // Set enabled states when button selected
-            if (buttonTag.Selected)
-            {
-                buttonTag.DownImage = Journaley.Properties.Resources.sidebar_btn_tag_enabled_down;
-                buttonTag.HoverImage = Journaley.Properties.Resources.sidebar_btn_tag_enabled_over;
-            }
-            else
-            {
-                buttonTag.DownImage = Journaley.Properties.Resources.sidebar_btn_tag_down;
-                buttonTag.HoverImage = Journaley.Properties.Resources.sidebar_btn_tag_over;
-            }
         }
 
         /// <summary>
@@ -861,11 +825,15 @@
         {
             Debug.Assert(this.SelectedEntry != null, "There must be a selectd entry when modifying photo.");
 
-            ContextMenuStrip menuStrip = this.SelectedEntry.PhotoPath != null
-                ? this.contextMenuStripPhotoWithPhoto
-                : this.contextMenuStripPhotoWithoutPhoto;
-
-            menuStrip.Show(this.buttonPhoto, new Point(), ToolStripDropDownDirection.BelowLeft);
+            if (this.SelectedEntry.PhotoPath != null)
+            {
+                this.contextMenuStripPhotoWithPhoto.Show(
+                    this.buttonPhoto, new Point(), ToolStripDropDownDirection.BelowLeft);
+            }
+            else
+            {
+                this.AskToChooseExistingPhoto();
+            }
         }
 
         /// <summary>
@@ -1017,16 +985,6 @@
                 this.SelectedEntry.UTCDateTime = this.dateTimePicker.Value.ToUniversalTime();
                 this.UpdateAllEntryLists();
             }
-        }
-
-        /// <summary>
-        /// Handles the Click event of the chooseExistingPhotoToolStripMenuItem control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void ChooseExistingPhotoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.AskToChooseExistingPhoto();
         }
 
         /// <summary>

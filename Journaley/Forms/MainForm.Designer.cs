@@ -42,8 +42,6 @@ namespace Journaley.Forms
             this.textEntryText = new System.Windows.Forms.TextBox();
             this.panelWebBrowserWrapper = new System.Windows.Forms.Panel();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
-            this.contextMenuStripPhotoWithoutPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.chooseExistingPhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripPhotoWithPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.replaceWithAnotherPhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,7 +88,6 @@ namespace Journaley.Forms
             label8 = new System.Windows.Forms.Label();
             this.tableLayoutStats.SuspendLayout();
             this.panelWebBrowserWrapper.SuspendLayout();
-            this.contextMenuStripPhotoWithoutPhoto.SuspendLayout();
             this.contextMenuStripPhotoWithPhoto.SuspendLayout();
             this.panelSidebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSidebarSeperatorBottom)).BeginInit();
@@ -169,12 +166,13 @@ namespace Journaley.Forms
             this.dateTimePicker.CustomFormat = "MMMM dd, yyyy hh:mm tt";
             this.dateTimePicker.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dateTimePicker.Enabled = false;
-            this.dateTimePicker.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker.Location = new System.Drawing.Point(228, 3);
+            this.dateTimePicker.Location = new System.Drawing.Point(228, 1);
+            this.dateTimePicker.Margin = new System.Windows.Forms.Padding(0);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.ShowUpDown = true;
-            this.dateTimePicker.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 23);
             this.dateTimePicker.TabIndex = 4;
             this.dateTimePicker.ValueChanged += new System.EventHandler(this.DateTimePicker_ValueChanged);
             // 
@@ -280,20 +278,6 @@ namespace Journaley.Forms
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.Size = new System.Drawing.Size(654, 506);
             this.webBrowser.TabIndex = 0;
-            // 
-            // contextMenuStripPhotoWithoutPhoto
-            // 
-            this.contextMenuStripPhotoWithoutPhoto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.chooseExistingPhotoToolStripMenuItem});
-            this.contextMenuStripPhotoWithoutPhoto.Name = "contextMenuStripPhotoWithoutPhoto";
-            this.contextMenuStripPhotoWithoutPhoto.Size = new System.Drawing.Size(223, 26);
-            // 
-            // chooseExistingPhotoToolStripMenuItem
-            // 
-            this.chooseExistingPhotoToolStripMenuItem.Name = "chooseExistingPhotoToolStripMenuItem";
-            this.chooseExistingPhotoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.chooseExistingPhotoToolStripMenuItem.Text = "Choose an Exsisting Photo...";
-            this.chooseExistingPhotoToolStripMenuItem.Click += new System.EventHandler(this.ChooseExistingPhotoToolStripMenuItem_Click);
             // 
             // contextMenuStripPhotoWithPhoto
             // 
@@ -722,6 +706,8 @@ namespace Journaley.Forms
             this.buttonMainTags.Name = "buttonMainTags";
             this.buttonMainTags.NormalImage = global::Journaley.Properties.Resources.main_btn_tag_norm;
             this.buttonMainTags.Selected = false;
+            this.buttonMainTags.SelectedDownImage = global::Journaley.Properties.Resources.main_btn_tag_down;
+            this.buttonMainTags.SelectedHoverImage = global::Journaley.Properties.Resources.main_btn_tag_down;
             this.buttonMainTags.SelectedImage = global::Journaley.Properties.Resources.main_btn_tag_down;
             this.buttonMainTags.Size = new System.Drawing.Size(77, 40);
             this.buttonMainTags.TabIndex = 15;
@@ -740,6 +726,8 @@ namespace Journaley.Forms
             this.buttonMainCalendar.Name = "buttonMainCalendar";
             this.buttonMainCalendar.NormalImage = global::Journaley.Properties.Resources.main_btn_calendar_norm;
             this.buttonMainCalendar.Selected = false;
+            this.buttonMainCalendar.SelectedDownImage = global::Journaley.Properties.Resources.main_btn_calendar_down;
+            this.buttonMainCalendar.SelectedHoverImage = global::Journaley.Properties.Resources.main_btn_calendar_down;
             this.buttonMainCalendar.SelectedImage = global::Journaley.Properties.Resources.main_btn_calendar_down;
             this.buttonMainCalendar.Size = new System.Drawing.Size(76, 40);
             this.buttonMainCalendar.TabIndex = 14;
@@ -758,6 +746,8 @@ namespace Journaley.Forms
             this.buttonMainTimeline.Name = "buttonMainTimeline";
             this.buttonMainTimeline.NormalImage = global::Journaley.Properties.Resources.main_btn_timeline_norm;
             this.buttonMainTimeline.Selected = true;
+            this.buttonMainTimeline.SelectedDownImage = global::Journaley.Properties.Resources.main_btn_timeline_down;
+            this.buttonMainTimeline.SelectedHoverImage = global::Journaley.Properties.Resources.main_btn_timeline_down;
             this.buttonMainTimeline.SelectedImage = global::Journaley.Properties.Resources.main_btn_timeline_down;
             this.buttonMainTimeline.Size = new System.Drawing.Size(76, 40);
             this.buttonMainTimeline.TabIndex = 13;
@@ -860,10 +850,10 @@ namespace Journaley.Forms
             this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.entryListBoxTags.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entryListBoxTags.FormattingEnabled = true;
-            this.entryListBoxTags.Location = new System.Drawing.Point(0, 13);
+            this.entryListBoxTags.Location = new System.Drawing.Point(0, 12);
             this.entryListBoxTags.Name = "entryListBoxTags";
             this.entryListBoxTags.ScrollAlwaysVisible = true;
-            this.entryListBoxTags.Size = new System.Drawing.Size(227, 453);
+            this.entryListBoxTags.Size = new System.Drawing.Size(227, 454);
             this.entryListBoxTags.TabIndex = 0;
             this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
@@ -872,9 +862,10 @@ namespace Journaley.Forms
             this.listBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxTags.Dock = System.Windows.Forms.DockStyle.Top;
             this.listBoxTags.FormattingEnabled = true;
+            this.listBoxTags.ItemHeight = 12;
             this.listBoxTags.Location = new System.Drawing.Point(0, 0);
             this.listBoxTags.Name = "listBoxTags";
-            this.listBoxTags.Size = new System.Drawing.Size(227, 13);
+            this.listBoxTags.Size = new System.Drawing.Size(227, 12);
             this.listBoxTags.TabIndex = 0;
             this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
             // 
@@ -903,9 +894,9 @@ namespace Journaley.Forms
             this.BackgroundImage = global::Journaley.Properties.Resources.main_frame_background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(930, 573);
+            this.Controls.Add(this.tableLayoutBottom);
             this.Controls.Add(this.panelSidebar);
             this.Controls.Add(this.tableLayoutDate);
-            this.Controls.Add(this.tableLayoutBottom);
             this.Controls.Add(this.buttonMainTags);
             this.Controls.Add(this.buttonMainCalendar);
             this.Controls.Add(this.buttonMainTimeline);
@@ -923,7 +914,6 @@ namespace Journaley.Forms
             this.tableLayoutStats.ResumeLayout(false);
             this.tableLayoutStats.PerformLayout();
             this.panelWebBrowserWrapper.ResumeLayout(false);
-            this.contextMenuStripPhotoWithoutPhoto.ResumeLayout(false);
             this.contextMenuStripPhotoWithPhoto.ResumeLayout(false);
             this.panelSidebar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSidebarSeperatorBottom)).EndInit();
@@ -981,8 +971,6 @@ namespace Journaley.Forms
         private System.Windows.Forms.ListBox listBoxTags;
         private Journaley.Controls.ImageButton buttonTag;
         private Journaley.Controls.ImageButton buttonPhoto;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStripPhotoWithoutPhoto;
-        private System.Windows.Forms.ToolStripMenuItem chooseExistingPhotoToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripPhotoWithPhoto;
         private System.Windows.Forms.ToolStripMenuItem replaceWithAnotherPhotoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deletePhotoToolStripMenuItem;
