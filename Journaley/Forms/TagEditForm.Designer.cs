@@ -51,10 +51,10 @@
             // 
             this.listBoxAssignedTags.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxAssignedTags.BackColor = System.Drawing.Color.White;
+            this.listBoxAssignedTags.BackColor = System.Drawing.Color.WhiteSmoke;
             this.listBoxAssignedTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxAssignedTags.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxAssignedTags.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.listBoxAssignedTags.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.listBoxAssignedTags.FormattingEnabled = true;
             this.listBoxAssignedTags.ItemHeight = 15;
             this.listBoxAssignedTags.Location = new System.Drawing.Point(2, 41);
@@ -68,7 +68,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label2.Location = new System.Drawing.Point(-1, 203);
+            this.label2.Location = new System.Drawing.Point(-1, 159);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(156, 15);
             this.label2.TabIndex = 4;
@@ -78,15 +78,15 @@
             // 
             this.listBoxOtherTags.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxOtherTags.BackColor = System.Drawing.Color.White;
+            this.listBoxOtherTags.BackColor = System.Drawing.Color.WhiteSmoke;
             this.listBoxOtherTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxOtherTags.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxOtherTags.ForeColor = System.Drawing.SystemColors.InfoText;
             this.listBoxOtherTags.FormattingEnabled = true;
             this.listBoxOtherTags.ItemHeight = 15;
-            this.listBoxOtherTags.Location = new System.Drawing.Point(2, 222);
+            this.listBoxOtherTags.Location = new System.Drawing.Point(2, 177);
             this.listBoxOtherTags.Name = "listBoxOtherTags";
-            this.listBoxOtherTags.Size = new System.Drawing.Size(219, 75);
+            this.listBoxOtherTags.Size = new System.Drawing.Size(219, 120);
             this.listBoxOtherTags.TabIndex = 5;
             this.listBoxOtherTags.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListBoxOtherTags_MouseClick);
             // 
@@ -94,10 +94,13 @@
             // 
             this.textTagInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textTagInput.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textTagInput.Location = new System.Drawing.Point(2, 144);
+            this.textTagInput.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.textTagInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textTagInput.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textTagInput.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.textTagInput.Location = new System.Drawing.Point(2, 121);
             this.textTagInput.Name = "textTagInput";
-            this.textTagInput.Size = new System.Drawing.Size(151, 23);
+            this.textTagInput.Size = new System.Drawing.Size(153, 23);
             this.textTagInput.TabIndex = 2;
             this.textTagInput.TextChanged += new System.EventHandler(this.TextTagInput_TextChanged);
             this.textTagInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextTagInput_KeyPress);
@@ -107,9 +110,9 @@
             this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonAdd.Enabled = false;
             this.buttonAdd.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd.Location = new System.Drawing.Point(159, 145);
+            this.buttonAdd.Location = new System.Drawing.Point(153, 120);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(60, 24);
+            this.buttonAdd.Size = new System.Drawing.Size(70, 24);
             this.buttonAdd.TabIndex = 3;
             this.buttonAdd.Text = "Add";
             this.buttonAdd.UseVisualStyleBackColor = true;
