@@ -825,11 +825,15 @@
         {
             Debug.Assert(this.SelectedEntry != null, "There must be a selectd entry when modifying photo.");
 
-            ContextMenuStrip menuStrip = this.SelectedEntry.PhotoPath != null
-                ? this.contextMenuStripPhotoWithPhoto
-                : this.contextMenuStripPhotoWithoutPhoto;
-
-            menuStrip.Show(this.buttonPhoto, new Point(), ToolStripDropDownDirection.BelowLeft);
+            if (this.SelectedEntry.PhotoPath != null)
+            {
+                this.contextMenuStripPhotoWithPhoto.Show(
+                    this.buttonPhoto, new Point(), ToolStripDropDownDirection.BelowLeft);
+            }
+            else
+            {
+                this.AskToChooseExistingPhoto();
+            }
         }
 
         /// <summary>
@@ -981,16 +985,6 @@
                 this.SelectedEntry.UTCDateTime = this.dateTimePicker.Value.ToUniversalTime();
                 this.UpdateAllEntryLists();
             }
-        }
-
-        /// <summary>
-        /// Handles the Click event of the chooseExistingPhotoToolStripMenuItem control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void ChooseExistingPhotoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.AskToChooseExistingPhoto();
         }
 
         /// <summary>
