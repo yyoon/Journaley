@@ -422,7 +422,7 @@ namespace Journaley.Forms
             this.textEntryText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.textEntryText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textEntryText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEntryText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEntryText.Font = new System.Drawing.Font("Gulim", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.textEntryText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
             this.textEntryText.Location = new System.Drawing.Point(30, 30);
             this.textEntryText.Margin = new System.Windows.Forms.Padding(0);
@@ -575,7 +575,6 @@ namespace Journaley.Forms
             this.flowLayoutSidebarTopButtons.Name = "flowLayoutSidebarTopButtons";
             this.flowLayoutSidebarTopButtons.Size = new System.Drawing.Size(37, 171);
             this.flowLayoutSidebarTopButtons.TabIndex = 1;
-            this.flowLayoutSidebarTopButtons.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutSidebarTopButtons_Paint);
             // 
             // flowLayoutSidebarBottomButtons
             // 

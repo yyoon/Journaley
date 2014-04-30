@@ -41,6 +41,11 @@
         private bool suppressEntryUpdate = false;
 
         /// <summary>
+        /// The Open Sans font family
+        /// </summary>
+        private FontFamily fontFamilyOpenSansRegular;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
         public MainForm()
@@ -49,6 +54,17 @@
 
             this.Icon = Journaley.Properties.Resources.JournaleyIcon;
             this.FormLoaded = false;
+
+            // Read embedded fonts.
+            this.fontFamilyOpenSansRegular = FontReader.ReadEmbeddedFont(
+                "OpenSans_Regular.ttf",
+                Journaley.Properties.Resources.OpenSans_Regular);
+
+            // Set the font of the text entry box.
+            this.textEntryText.Font = new Font(
+                this.FontFamilyOpenSansRegular,
+                this.textEntryText.Font.Size,
+                this.textEntryText.Font.Style);
         }
 
         /// <summary>
@@ -104,7 +120,7 @@
                 {
                     this.isEditing = this.selectedEntry.IsDirty;
 
-                    UpdateDateAndTextFromEntry();
+                    this.UpdateDateAndTextFromEntry();
                     this.UpdateWebBrowser();
                 }
                 else
@@ -168,6 +184,20 @@
                 }
 
                 return this.markdown;
+            }
+        }
+
+        /// <summary>
+        /// Gets the Open Sans font family.
+        /// </summary>
+        /// <value>
+        /// The Open Sans font family.
+        /// </value>
+        private FontFamily FontFamilyOpenSansRegular
+        {
+            get
+            {
+                return this.fontFamilyOpenSansRegular;
             }
         }
 
@@ -725,7 +755,7 @@
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
             Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when editing/saving.");
-            Debug.Assert(this.IsEditing == false);
+            Debug.Assert(this.IsEditing == false, "Must not be in the edit mode.");
 
             this.IsEditing = true;
 
@@ -743,7 +773,7 @@
         private void ButtonDone_Click(object sender, EventArgs e)
         {
             Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when editing/saving.");
-            Debug.Assert(this.IsEditing == true);
+            Debug.Assert(this.IsEditing == true, "Must be in the edit mode.");
 
             this.SaveSelectedEntry();
             this.IsEditing = false;
@@ -760,7 +790,7 @@
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
             Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when cancelling.");
-            Debug.Assert(this.IsEditing == true);
+            Debug.Assert(this.IsEditing == true, "Must be in the edit mode.");
 
             this.IsEditing = false;
             this.UpdateDateAndTextFromEntry();
@@ -1324,6 +1354,10 @@
         /// </summary>
         private class StarredCountEntry : TagCountEntry
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="StarredCountEntry"/> class.
+            /// </summary>
+            /// <param name="count">The count.</param>
             public StarredCountEntry(int count)
                 : base("Starred", count)
             {
@@ -1331,15 +1365,5 @@
         }
 
         #endregion
-
-        private void ButtonEditSave_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutSidebarTopButtons_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

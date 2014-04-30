@@ -133,12 +133,18 @@ namespace Journaley.Properties {
         /// <summary>
         ///   Looks up a localized string similar to html {
         ///margin: 0px;
-        ///padding: 2px;
+        ///padding: 0px;
         ///}
         ///
         ///body {
         ///font-family: sans-serif;
-        ///font-size: 9pt;
+        ///font-size: 13pt;
+        ///
+        ///background-color: #EFEFEF;
+        ///}
+        ///
+        ///div {
+        ///padding: 0px 30px;
         ///}
         ///
         ///img {
@@ -379,6 +385,16 @@ namespace Journaley.Properties {
             get {
                 object obj = ResourceManager.GetObject("main_text_entry_background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] OpenSans_Regular {
+            get {
+                object obj = ResourceManager.GetObject("OpenSans_Regular", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

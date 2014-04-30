@@ -1,5 +1,6 @@
 ﻿namespace Journaley.Utilities
 {
+    using System;
     using System.Runtime.InteropServices;
 
     /// <summary>
@@ -14,5 +15,8 @@
             int featureEntry,
             [MarshalAs(UnmanagedType.U4)] int flags,
             bool enable);
+
+        [DllImport("gdi32.dll")]
+        public static extern IntPtr AddFontResourceEx(string lpszFilename, uint fl, IntPtr pdv);
     }
 }

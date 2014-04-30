@@ -83,6 +83,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Models\IPasswordVerifier.cs" />
+    <Compile Include="Utilities\FontReader.cs" />
     <Compile Include="Utilities\Logger.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -155,6 +156,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Resources\OpenSans-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="images\moleskine_blue.ico" />
