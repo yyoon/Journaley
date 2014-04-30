@@ -515,7 +515,7 @@
         private void UpdateWordCounts()
         {
             char[] delim = new char[] { '\n', '\r', '\t', ' ' };
- 
+
             if (this.SelectedEntry != null)
             {
                 string entryText = this.IsEditing ? this.textEntryText.Text : this.SelectedEntry.EntryText;
@@ -642,7 +642,7 @@
 
             if (this.Settings == null)
             {
-            // When there is no settings file, show up the settings dialog first.
+                // When there is no settings file, show up the settings dialog first.
                 SettingsForm settingsForm = new SettingsForm();
                 DialogResult result = settingsForm.ShowDialog();
                 Debug.Assert(result == DialogResult.OK, "When running the application for the first time, you must choose the settings.");
@@ -653,7 +653,7 @@
             }
             else if (this.Settings.HasPassword)
             {
-            // If there was a password set, ask it before showing the main form!
+                // If there was a password set, ask it before showing the main form!
                 PasswordInputForm form = new PasswordInputForm(this.Settings);
                 DialogResult result = form.ShowDialog();
 
