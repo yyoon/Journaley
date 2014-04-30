@@ -98,6 +98,11 @@
         private static readonly Brush EntryBackgroundSelectedBrush = new SolidBrush(Color.FromArgb(0, 147, 255));
 
         /// <summary>
+        /// Brush for filling the background of selected and starred journal entries.
+        /// </summary>
+        private static readonly Brush EntryBackgroundSelectedStarredBrush = Brushes.Yellow;
+
+        /// <summary>
         /// The boundary line pen
         /// </summary>
         private static readonly Pen BoundaryLinePen = Pens.Black;
@@ -234,7 +239,9 @@
             Rectangle bounds = e.Bounds;
             bounds.Height -= 1;
 
-            Brush brush = (e.State & DrawItemState.Selected) == DrawItemState.Selected ? EntryBackgroundSelectedBrush : EntryBackgroundNormalBrush;
+            Brush brush = (e.State & DrawItemState.Selected) == DrawItemState.Selected
+                ? (entry.Starred ? EntryBackgroundSelectedStarredBrush : EntryBackgroundSelectedBrush)
+                : EntryBackgroundNormalBrush;
             e.Graphics.FillRectangle(brush, bounds);
         }
 
@@ -350,8 +357,9 @@
             bounds.Width = EntryRightWidth;
             bounds.Height -= EntryRightSmallHeight + EntryRightSmallHeight;
 
-            Brush brush = entry.Starred ? Brushes.Yellow :
-                (e.State & DrawItemState.Selected) == DrawItemState.Selected ? Brushes.Black : Brushes.White;
+            Brush brush = (e.State & DrawItemState.Selected) == DrawItemState.Selected
+                ? Brushes.Black
+                : (entry.Starred ? Brushes.Yellow : Brushes.White);
 
             StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
             stringFormat.Alignment = StringAlignment.Near;
@@ -375,8 +383,9 @@
             bounds.Width = EntryRightWidth;
             bounds.Height = EntryRightSmallHeight;
 
-            Brush brush = entry.Starred ? Brushes.Yellow :
-                (e.State & DrawItemState.Selected) == DrawItemState.Selected ? Brushes.Black : Brushes.White;
+            Brush brush = (e.State & DrawItemState.Selected) == DrawItemState.Selected
+                ? Brushes.Black
+                : (entry.Starred ? Brushes.Yellow : Brushes.White);
 
             StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
             stringFormat.Alignment = StringAlignment.Near;
@@ -400,8 +409,9 @@
             bounds.Y += bounds.Height - EntryRightSmallHeight;
             bounds.Height = EntryRightSmallHeight;
 
-            Brush brush = entry.Starred ? Brushes.Yellow :
-                (e.State & DrawItemState.Selected) == DrawItemState.Selected ? Brushes.Black : Brushes.White;
+            Brush brush = (e.State & DrawItemState.Selected) == DrawItemState.Selected
+                ? Brushes.Black
+                : (entry.Starred ? Brushes.Yellow : Brushes.White);
 
             StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
             stringFormat.Alignment = StringAlignment.Near;
