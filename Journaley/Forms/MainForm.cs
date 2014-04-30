@@ -1246,7 +1246,15 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void TextEntryText_TextChanged(object sender, EventArgs e)
         {
+
             this.UpdateWordCounts();
+
+            // Live update text in entry list
+            if (this.SelectedEntry != null)
+            {
+                this.SelectedEntry.EntryText = this.textEntryText.Text.Replace(Environment.NewLine, "\n");
+                this.InvalidateEntryInEntryList(this.SelectedEntry);
+            }
         }
 
         #endregion
