@@ -936,6 +936,7 @@
 
             this.SelectedEntry = newEntry;
             this.UpdateAllEntryLists();
+            this.textEntryText.Focus();
         }
 
         /// <summary>
