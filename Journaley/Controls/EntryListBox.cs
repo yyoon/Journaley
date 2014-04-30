@@ -120,6 +120,14 @@
         }
 
         /// <summary>
+        /// Gets or sets the entry text provider.
+        /// </summary>
+        /// <value>
+        /// The entry text provider.
+        /// </value>
+        public IEntryTextProvider EntryTextProvider { get; set; }
+
+        /// <summary>
         /// Raises the <see cref="E:System.Windows.Forms.ListBox.MeasureItem" /> event.
         /// </summary>
         /// <param name="e">A <see cref="T:System.Windows.Forms.MeasureItemEventArgs" /> that contains the event data.</param>
@@ -283,7 +291,11 @@
             stringFormat.FormatFlags = StringFormatFlags.LineLimit;
             stringFormat.Trimming = StringTrimming.EllipsisCharacter;
 
-            e.Graphics.DrawString(entry.EntryText, EntryTextFont, brush, bounds, stringFormat);
+            string entryText = this.EntryTextProvider != null
+                ? this.EntryTextProvider.GetTextForEntry(entry)
+                : entry.EntryText;
+
+            e.Graphics.DrawString(entryText, EntryTextFont, brush, bounds, stringFormat);
         }
 
         /// <summary>

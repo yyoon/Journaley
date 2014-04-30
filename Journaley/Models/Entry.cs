@@ -12,7 +12,7 @@
     /// <summary>
     /// A class representing a journal entry.
     /// </summary>
-    internal class Entry : IEquatable<Entry>
+    public class Entry : IEquatable<Entry>
     {
         /// <summary>
         /// The supported photo formats

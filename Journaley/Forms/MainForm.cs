@@ -18,7 +18,7 @@
     /// <summary>
     /// The Main Form of the application. Contains the entry list, preview, buttons, etc.
     /// </summary>
-    public partial class MainForm : Form
+    public partial class MainForm : Form, IEntryTextProvider
     {
         /// <summary>
         /// The backing field of selected entry
@@ -65,6 +65,11 @@
                 this.FontFamilyOpenSansRegular,
                 this.textEntryText.Font.Size,
                 this.textEntryText.Font.Style);
+
+            foreach (var entryListBox in this.GetAllEntryLists())
+            {
+                entryListBox.EntryTextProvider = this;
+            }
         }
 
         /// <summary>
@@ -199,6 +204,32 @@
             get
             {
                 return this.fontFamilyOpenSansRegular;
+            }
+        }
+
+        /// <summary>
+        /// Gets the entry text for the provided journal entry.
+        /// If the entry is currently selected and being edited,
+        /// the text being edited should be returned.
+        /// </summary>
+        /// <param name="entry">The entry.</param>
+        /// <returns>
+        /// The entry text to be previewed.
+        /// </returns>
+        public string GetTextForEntry(Entry entry)
+        {
+            if (entry == null)
+            {
+                return string.Empty;
+            }
+
+            if (this.SelectedEntry == entry && this.IsEditing)
+            {
+                return this.textEntryText.Text.Replace(Environment.NewLine, "\n");
+            }
+            else
+            {
+                return entry.EntryText;
             }
         }
 
@@ -1246,13 +1277,11 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void TextEntryText_TextChanged(object sender, EventArgs e)
         {
-
             this.UpdateWordCounts();
 
             // Live update text in entry list
             if (this.SelectedEntry != null)
             {
-                this.SelectedEntry.EntryText = this.textEntryText.Text.Replace(Environment.NewLine, "\n");
                 this.InvalidateEntryInEntryList(this.SelectedEntry);
             }
         }

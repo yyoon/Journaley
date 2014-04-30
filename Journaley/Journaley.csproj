@@ -57,6 +57,7 @@
     <Compile Include="Controls\EntryListAreaPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\IEntryTextProvider.cs" />
     <Compile Include="Controls\ImageButton.cs">
       <SubType>Component</SubType>
     </Compile>
