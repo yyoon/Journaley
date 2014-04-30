@@ -169,12 +169,13 @@ namespace Journaley.Forms
             this.dateTimePicker.CustomFormat = "MMMM dd, yyyy hh:mm tt";
             this.dateTimePicker.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.dateTimePicker.Enabled = false;
-            this.dateTimePicker.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePicker.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker.Location = new System.Drawing.Point(228, 3);
+            this.dateTimePicker.Location = new System.Drawing.Point(228, 1);
+            this.dateTimePicker.Margin = new System.Windows.Forms.Padding(0);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.ShowUpDown = true;
-            this.dateTimePicker.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 23);
             this.dateTimePicker.TabIndex = 4;
             this.dateTimePicker.ValueChanged += new System.EventHandler(this.DateTimePicker_ValueChanged);
             // 
@@ -709,8 +710,8 @@ namespace Journaley.Forms
             this.buttonMainTags.Name = "buttonMainTags";
             this.buttonMainTags.NormalImage = global::Journaley.Properties.Resources.main_btn_tag_norm;
             this.buttonMainTags.Selected = false;
-            this.buttonMainTags.SelectedDownImage = null;
-            this.buttonMainTags.SelectedHoverImage = null;
+            this.buttonMainTags.SelectedDownImage = global::Journaley.Properties.Resources.main_btn_tag_down;
+            this.buttonMainTags.SelectedHoverImage = global::Journaley.Properties.Resources.main_btn_tag_down;
             this.buttonMainTags.SelectedImage = global::Journaley.Properties.Resources.main_btn_tag_down;
             this.buttonMainTags.Size = new System.Drawing.Size(77, 40);
             this.buttonMainTags.TabIndex = 15;
@@ -729,8 +730,8 @@ namespace Journaley.Forms
             this.buttonMainCalendar.Name = "buttonMainCalendar";
             this.buttonMainCalendar.NormalImage = global::Journaley.Properties.Resources.main_btn_calendar_norm;
             this.buttonMainCalendar.Selected = false;
-            this.buttonMainCalendar.SelectedDownImage = null;
-            this.buttonMainCalendar.SelectedHoverImage = null;
+            this.buttonMainCalendar.SelectedDownImage = global::Journaley.Properties.Resources.main_btn_calendar_down;
+            this.buttonMainCalendar.SelectedHoverImage = global::Journaley.Properties.Resources.main_btn_calendar_down;
             this.buttonMainCalendar.SelectedImage = global::Journaley.Properties.Resources.main_btn_calendar_down;
             this.buttonMainCalendar.Size = new System.Drawing.Size(76, 40);
             this.buttonMainCalendar.TabIndex = 14;
@@ -741,16 +742,16 @@ namespace Journaley.Forms
             // 
             this.buttonMainTimeline.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonMainTimeline.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonMainTimeline.DownImage = null;
-            this.buttonMainTimeline.HoverImage = null;
+            this.buttonMainTimeline.DownImage = global::Journaley.Properties.Resources.main_btn_timeline_down;
+            this.buttonMainTimeline.HoverImage = global::Journaley.Properties.Resources.main_btn_timeline_over;
             this.buttonMainTimeline.Image = global::Journaley.Properties.Resources.main_btn_timeline_down;
             this.buttonMainTimeline.Location = new System.Drawing.Point(0, 491);
             this.buttonMainTimeline.Margin = new System.Windows.Forms.Padding(0);
             this.buttonMainTimeline.Name = "buttonMainTimeline";
             this.buttonMainTimeline.NormalImage = global::Journaley.Properties.Resources.main_btn_timeline_norm;
             this.buttonMainTimeline.Selected = true;
-            this.buttonMainTimeline.SelectedDownImage = null;
-            this.buttonMainTimeline.SelectedHoverImage = null;
+            this.buttonMainTimeline.SelectedDownImage = global::Journaley.Properties.Resources.main_btn_timeline_down;
+            this.buttonMainTimeline.SelectedHoverImage = global::Journaley.Properties.Resources.main_btn_timeline_down;
             this.buttonMainTimeline.SelectedImage = global::Journaley.Properties.Resources.main_btn_timeline_down;
             this.buttonMainTimeline.Size = new System.Drawing.Size(76, 40);
             this.buttonMainTimeline.TabIndex = 13;
@@ -928,9 +929,9 @@ namespace Journaley.Forms
             this.BackgroundImage = global::Journaley.Properties.Resources.main_frame_background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(930, 573);
+            this.Controls.Add(this.tableLayoutBottom);
             this.Controls.Add(this.panelSidebar);
             this.Controls.Add(this.tableLayoutDate);
-            this.Controls.Add(this.tableLayoutBottom);
             this.Controls.Add(this.buttonMainTags);
             this.Controls.Add(this.buttonMainCalendar);
             this.Controls.Add(this.buttonMainTimeline);
