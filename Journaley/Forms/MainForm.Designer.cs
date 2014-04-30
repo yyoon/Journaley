@@ -419,13 +419,13 @@ namespace Journaley.Forms
             this.tableLayoutBottom.Controls.Add(this.labelCharactersTitle, 3, 1);
             this.tableLayoutBottom.Controls.Add(this.labelWords, 1, 0);
             this.tableLayoutBottom.Controls.Add(this.labelCharacters, 3, 0);
-            this.tableLayoutBottom.Location = new System.Drawing.Point(229, 532);
+            this.tableLayoutBottom.Location = new System.Drawing.Point(229, 531);
             this.tableLayoutBottom.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutBottom.Name = "tableLayoutBottom";
             this.tableLayoutBottom.RowCount = 2;
             this.tableLayoutBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutBottom.Size = new System.Drawing.Size(654, 41);
+            this.tableLayoutBottom.Size = new System.Drawing.Size(654, 42);
             this.tableLayoutBottom.TabIndex = 16;
             // 
             // pictureBoxBottomSeparator
@@ -446,7 +446,7 @@ namespace Journaley.Forms
             this.labelWordsTitle.BackColor = System.Drawing.Color.Transparent;
             this.labelWordsTitle.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelWordsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(20)))));
-            this.labelWordsTitle.Location = new System.Drawing.Point(313, 20);
+            this.labelWordsTitle.Location = new System.Drawing.Point(313, 21);
             this.labelWordsTitle.Name = "labelWordsTitle";
             this.labelWordsTitle.Size = new System.Drawing.Size(0, 13);
             this.labelWordsTitle.TabIndex = 1;
@@ -457,7 +457,7 @@ namespace Journaley.Forms
             this.labelCharactersTitle.BackColor = System.Drawing.Color.Transparent;
             this.labelCharactersTitle.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCharactersTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(20)))));
-            this.labelCharactersTitle.Location = new System.Drawing.Point(340, 20);
+            this.labelCharactersTitle.Location = new System.Drawing.Point(340, 21);
             this.labelCharactersTitle.Name = "labelCharactersTitle";
             this.labelCharactersTitle.Size = new System.Drawing.Size(0, 13);
             this.labelCharactersTitle.TabIndex = 2;
@@ -469,7 +469,7 @@ namespace Journaley.Forms
             this.labelWords.BackColor = System.Drawing.Color.Transparent;
             this.labelWords.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelWords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelWords.Location = new System.Drawing.Point(313, 7);
+            this.labelWords.Location = new System.Drawing.Point(313, 8);
             this.labelWords.Name = "labelWords";
             this.labelWords.Size = new System.Drawing.Size(0, 13);
             this.labelWords.TabIndex = 3;
@@ -481,7 +481,7 @@ namespace Journaley.Forms
             this.labelCharacters.BackColor = System.Drawing.Color.Transparent;
             this.labelCharacters.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCharacters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelCharacters.Location = new System.Drawing.Point(340, 7);
+            this.labelCharacters.Location = new System.Drawing.Point(340, 8);
             this.labelCharacters.Name = "labelCharacters";
             this.labelCharacters.Size = new System.Drawing.Size(0, 13);
             this.labelCharacters.TabIndex = 4;
@@ -881,6 +881,27 @@ namespace Journaley.Forms
             this.buttonAddEntry.Name = "buttonAddEntry";
             this.buttonAddEntry.NormalImage = global::Journaley.Properties.Resources.main_btn_entry_norm;
             this.buttonAddEntry.Selected = false;
+            this.buttonAddEntry.SelectedImage = null;
+            this.buttonAddEntry.Size = new System.Drawing.Size(229, 42);
+            this.buttonAddEntry.TabIndex = 0;
+            this.buttonAddEntry.TabStop = false;
+            this.toolTip.SetToolTip(this.buttonAddEntry, "Add a new entry");
+            this.buttonAddEntry.Click += new System.EventHandler(this.ButtonAddEntry_Click);
+            // 
+            // buttonAddEntry
+            // 
+            this.buttonAddEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonAddEntry.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonAddEntry.DownImage = global::Journaley.Properties.Resources.main_btn_entry_down;
+            this.buttonAddEntry.HoverImage = global::Journaley.Properties.Resources.main_btn_entry_over;
+            this.buttonAddEntry.Image = global::Journaley.Properties.Resources.main_btn_entry_norm;
+            this.buttonAddEntry.Location = new System.Drawing.Point(0, 531);
+            this.buttonAddEntry.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonAddEntry.Name = "buttonAddEntry";
+            this.buttonAddEntry.NormalImage = global::Journaley.Properties.Resources.main_btn_entry_norm;
+            this.buttonAddEntry.Selected = false;
+            this.buttonAddEntry.SelectedDownImage = null;
+            this.buttonAddEntry.SelectedHoverImage = null;
             this.buttonAddEntry.SelectedImage = null;
             this.buttonAddEntry.Size = new System.Drawing.Size(229, 42);
             this.buttonAddEntry.TabIndex = 0;
