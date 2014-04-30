@@ -48,12 +48,12 @@
         private static readonly int EntryCenterMargin = 0;
 
         /// <summary>
-        /// The photo width including the 1px borders.
+        /// The photo width including the 1 pixel borders.
         /// </summary>
         private static readonly int PhotoWidth = 56;
 
         /// <summary>
-        /// The photo height including the 1px borders.
+        /// The photo height including the 1 pixel borders.
         /// </summary>
         private static readonly int PhotoHeight = 69;
 
