@@ -333,7 +333,7 @@ namespace Journaley.Forms
             this.buttonStar.Name = "buttonStar";
             this.buttonStar.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_star_norm;
             this.buttonStar.Selected = false;
-            this.buttonStar.SelectedImage = global::Journaley.Properties.Resources.sidebar_btn_star_enabled;
+            this.buttonStar.SelectedImage = global::Journaley.Properties.Resources.sidebar_btn_star_enabled_norm;
             this.buttonStar.Size = new System.Drawing.Size(37, 37);
             this.buttonStar.TabIndex = 6;
             this.buttonStar.TabStop = false;
@@ -353,7 +353,7 @@ namespace Journaley.Forms
             this.buttonPhoto.Name = "buttonPhoto";
             this.buttonPhoto.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_image_norm;
             this.buttonPhoto.Selected = false;
-            this.buttonPhoto.SelectedImage = global::Journaley.Properties.Resources.sidebar_btn_image_enabled;
+            this.buttonPhoto.SelectedImage = global::Journaley.Properties.Resources.sidebar_btn_image_enabled_norm;
             this.buttonPhoto.Size = new System.Drawing.Size(37, 37);
             this.buttonPhoto.TabIndex = 7;
             this.buttonPhoto.TabStop = false;
@@ -372,7 +372,7 @@ namespace Journaley.Forms
             this.buttonTag.Name = "buttonTag";
             this.buttonTag.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_tag_norm;
             this.buttonTag.Selected = false;
-            this.buttonTag.SelectedImage = global::Journaley.Properties.Resources.sidebar_btn_tag_enabled;
+            this.buttonTag.SelectedImage = global::Journaley.Properties.Resources.sidebar_btn_tag_enabled_norm;
             this.buttonTag.Size = new System.Drawing.Size(37, 37);
             this.buttonTag.TabIndex = 8;
             this.buttonTag.TabStop = false;
@@ -879,10 +879,10 @@ namespace Journaley.Forms
             this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.entryListBoxTags.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entryListBoxTags.FormattingEnabled = true;
-            this.entryListBoxTags.Location = new System.Drawing.Point(0, 24);
+            this.entryListBoxTags.Location = new System.Drawing.Point(0, 13);
             this.entryListBoxTags.Name = "entryListBoxTags";
             this.entryListBoxTags.ScrollAlwaysVisible = true;
-            this.entryListBoxTags.Size = new System.Drawing.Size(227, 442);
+            this.entryListBoxTags.Size = new System.Drawing.Size(227, 453);
             this.entryListBoxTags.TabIndex = 0;
             this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
@@ -891,10 +891,9 @@ namespace Journaley.Forms
             this.listBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxTags.Dock = System.Windows.Forms.DockStyle.Top;
             this.listBoxTags.FormattingEnabled = true;
-            this.listBoxTags.ItemHeight = 12;
             this.listBoxTags.Location = new System.Drawing.Point(0, 0);
             this.listBoxTags.Name = "listBoxTags";
-            this.listBoxTags.Size = new System.Drawing.Size(227, 24);
+            this.listBoxTags.Size = new System.Drawing.Size(227, 13);
             this.listBoxTags.TabIndex = 0;
             this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
             // 
