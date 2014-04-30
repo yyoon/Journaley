@@ -846,7 +846,7 @@
         {
             TagEditForm tagEditForm = new TagEditForm();
             tagEditForm.StartPosition = FormStartPosition.Manual;
-            tagEditForm.Location = this.buttonTag.PointToScreen(new Point(-tagEditForm.Width, 0));
+            tagEditForm.Location = this.buttonTag.PointToScreen(new Point(-tagEditForm.Width, -5));
 
             tagEditForm.AssignedTags.AddRange(this.SelectedEntry.Tags.OrderBy(x => x));
             tagEditForm.OtherTags.AddRange(this.Entries.SelectMany(x => x.Tags).Distinct().Where(x => !this.SelectedEntry.Tags.Contains(x)).OrderBy(x => x));

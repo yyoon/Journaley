@@ -552,6 +552,8 @@ namespace Journaley.Forms
             this.buttonSettings.Name = "buttonSettings";
             this.buttonSettings.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_setting_norm;
             this.buttonSettings.Selected = false;
+            this.buttonSettings.SelectedDownImage = null;
+            this.buttonSettings.SelectedHoverImage = null;
             this.buttonSettings.SelectedImage = null;
             this.buttonSettings.Size = new System.Drawing.Size(47, 41);
             this.buttonSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -572,6 +574,8 @@ namespace Journaley.Forms
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_edit_norm;
             this.buttonEdit.Selected = false;
+            this.buttonEdit.SelectedDownImage = null;
+            this.buttonEdit.SelectedHoverImage = null;
             this.buttonEdit.SelectedImage = null;
             this.buttonEdit.Size = new System.Drawing.Size(37, 37);
             this.buttonEdit.TabIndex = 5;
@@ -591,6 +595,8 @@ namespace Journaley.Forms
             this.buttonDone.Name = "buttonDone";
             this.buttonDone.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_done_norm;
             this.buttonDone.Selected = false;
+            this.buttonDone.SelectedDownImage = null;
+            this.buttonDone.SelectedHoverImage = null;
             this.buttonDone.SelectedImage = null;
             this.buttonDone.Size = new System.Drawing.Size(37, 37);
             this.buttonDone.TabIndex = 6;
@@ -610,6 +616,8 @@ namespace Journaley.Forms
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_cancel_norm;
             this.buttonCancel.Selected = false;
+            this.buttonCancel.SelectedDownImage = null;
+            this.buttonCancel.SelectedHoverImage = null;
             this.buttonCancel.SelectedImage = null;
             this.buttonCancel.Size = new System.Drawing.Size(37, 37);
             this.buttonCancel.TabIndex = 7;
@@ -629,6 +637,8 @@ namespace Journaley.Forms
             this.buttonStar.Name = "buttonStar";
             this.buttonStar.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_star_norm;
             this.buttonStar.Selected = false;
+            this.buttonStar.SelectedDownImage = null;
+            this.buttonStar.SelectedHoverImage = null;
             this.buttonStar.SelectedImage = global::Journaley.Properties.Resources.sidebar_btn_star_enabled_norm;
             this.buttonStar.Size = new System.Drawing.Size(37, 37);
             this.buttonStar.TabIndex = 6;
@@ -649,6 +659,8 @@ namespace Journaley.Forms
             this.buttonPhoto.Name = "buttonPhoto";
             this.buttonPhoto.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_image_norm;
             this.buttonPhoto.Selected = false;
+            this.buttonPhoto.SelectedDownImage = null;
+            this.buttonPhoto.SelectedHoverImage = null;
             this.buttonPhoto.SelectedImage = global::Journaley.Properties.Resources.sidebar_btn_image_enabled_norm;
             this.buttonPhoto.Size = new System.Drawing.Size(37, 37);
             this.buttonPhoto.TabIndex = 7;
@@ -668,6 +680,8 @@ namespace Journaley.Forms
             this.buttonTag.Name = "buttonTag";
             this.buttonTag.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_tag_norm;
             this.buttonTag.Selected = false;
+            this.buttonTag.SelectedDownImage = null;
+            this.buttonTag.SelectedHoverImage = null;
             this.buttonTag.SelectedImage = global::Journaley.Properties.Resources.sidebar_btn_tag_enabled_norm;
             this.buttonTag.Size = new System.Drawing.Size(37, 37);
             this.buttonTag.TabIndex = 8;
@@ -687,6 +701,8 @@ namespace Journaley.Forms
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_delete_norm;
             this.buttonDelete.Selected = false;
+            this.buttonDelete.SelectedDownImage = null;
+            this.buttonDelete.SelectedHoverImage = null;
             this.buttonDelete.SelectedImage = null;
             this.buttonDelete.Size = new System.Drawing.Size(37, 37);
             this.buttonDelete.TabIndex = 10;
@@ -850,10 +866,10 @@ namespace Journaley.Forms
             this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.entryListBoxTags.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entryListBoxTags.FormattingEnabled = true;
-            this.entryListBoxTags.Location = new System.Drawing.Point(0, 12);
+            this.entryListBoxTags.Location = new System.Drawing.Point(0, 0);
             this.entryListBoxTags.Name = "entryListBoxTags";
             this.entryListBoxTags.ScrollAlwaysVisible = true;
-            this.entryListBoxTags.Size = new System.Drawing.Size(227, 454);
+            this.entryListBoxTags.Size = new System.Drawing.Size(227, 466);
             this.entryListBoxTags.TabIndex = 0;
             this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
@@ -862,31 +878,11 @@ namespace Journaley.Forms
             this.listBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxTags.Dock = System.Windows.Forms.DockStyle.Top;
             this.listBoxTags.FormattingEnabled = true;
-            this.listBoxTags.ItemHeight = 12;
             this.listBoxTags.Location = new System.Drawing.Point(0, 0);
             this.listBoxTags.Name = "listBoxTags";
-            this.listBoxTags.Size = new System.Drawing.Size(227, 12);
+            this.listBoxTags.Size = new System.Drawing.Size(227, 0);
             this.listBoxTags.TabIndex = 0;
             this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
-            // 
-            // buttonAddEntry
-            // 
-            this.buttonAddEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonAddEntry.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonAddEntry.DownImage = global::Journaley.Properties.Resources.main_btn_entry_down;
-            this.buttonAddEntry.HoverImage = global::Journaley.Properties.Resources.main_btn_entry_over;
-            this.buttonAddEntry.Image = global::Journaley.Properties.Resources.main_btn_entry_norm;
-            this.buttonAddEntry.Location = new System.Drawing.Point(0, 531);
-            this.buttonAddEntry.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonAddEntry.Name = "buttonAddEntry";
-            this.buttonAddEntry.NormalImage = global::Journaley.Properties.Resources.main_btn_entry_norm;
-            this.buttonAddEntry.Selected = false;
-            this.buttonAddEntry.SelectedImage = null;
-            this.buttonAddEntry.Size = new System.Drawing.Size(229, 42);
-            this.buttonAddEntry.TabIndex = 0;
-            this.buttonAddEntry.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonAddEntry, "Add a new entry");
-            this.buttonAddEntry.Click += new System.EventHandler(this.ButtonAddEntry_Click);
             // 
             // buttonAddEntry
             // 
