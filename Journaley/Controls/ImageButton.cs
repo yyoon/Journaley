@@ -48,6 +48,10 @@
         /// </summary>
         private bool holdingSpace = false;
 
+        private Image hoverImage;
+
+        private Image downImage;
+
         /// <summary>
         /// Gets or sets the hover image.
         /// </summary>
@@ -56,7 +60,24 @@
         /// </value>
         [Category("Appearance")]
         [Description("Image to show when the button is hovered over.")]
-        public Image HoverImage { get; set; }
+        public Image HoverImage
+        {
+            get
+            {
+                return (this.SelectedImage != null && this.SelectedHoverImage != null && this.Selected)
+                    ? this.SelectedHoverImage
+                    : this.hoverImage;
+            }
+
+            set
+            {
+                this.hoverImage = value;
+            }
+        }
+
+        [Category("Appearance")]
+        [Description("Image to show when the button is both selected and hovered over.")]
+        public Image SelectedHoverImage { get; set; }
 
         /// <summary>
         /// Gets or sets down image.
@@ -66,7 +87,24 @@
         /// </value>
         [Category("Appearance")]
         [Description("Image to show when the button is depressed.")]
-        public Image DownImage { get; set; }
+        public Image DownImage
+        {
+            get
+            {
+                return (this.SelectedImage != null && this.SelectedDownImage != null && this.Selected)
+                    ? this.SelectedDownImage
+                    : this.downImage;
+            }
+
+            set
+            {
+                this.downImage = value;
+            }
+        }
+
+        [Category("Appearance")]
+        [Description("Image to show when the button is both selected and depressed.")]
+        public Image SelectedDownImage { get; set; }
 
         /// <summary>
         /// Gets or sets the normal image.
