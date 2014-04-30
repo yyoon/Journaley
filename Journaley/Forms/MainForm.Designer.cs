@@ -72,6 +72,7 @@ namespace Journaley.Forms
             this.tableLayoutDate = new System.Windows.Forms.TableLayoutPanel();
             this.panelDateLeft = new System.Windows.Forms.Panel();
             this.panelDateRight = new System.Windows.Forms.Panel();
+            this.panelEntryTextWrapper = new System.Windows.Forms.Panel();
             this.buttonMainTags = new Journaley.Controls.ImageButton();
             this.buttonMainCalendar = new Journaley.Controls.ImageButton();
             this.buttonMainTimeline = new Journaley.Controls.ImageButton();
@@ -110,6 +111,7 @@ namespace Journaley.Forms
             this.tableLayoutBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).BeginInit();
             this.tableLayoutDate.SuspendLayout();
+            this.panelEntryTextWrapper.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTags)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).BeginInit();
@@ -417,18 +419,16 @@ namespace Journaley.Forms
             // 
             // textEntryText
             // 
-            this.textEntryText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.textEntryText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.textEntryText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textEntryText.Font = new System.Drawing.Font("Open Sans", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textEntryText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textEntryText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textEntryText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textEntryText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
-            this.textEntryText.Location = new System.Drawing.Point(228, 24);
+            this.textEntryText.Location = new System.Drawing.Point(30, 30);
             this.textEntryText.Margin = new System.Windows.Forms.Padding(0);
             this.textEntryText.Multiline = true;
             this.textEntryText.Name = "textEntryText";
-            this.textEntryText.Size = new System.Drawing.Size(656, 508);
+            this.textEntryText.Size = new System.Drawing.Size(596, 448);
             this.textEntryText.TabIndex = 9;
             this.textEntryText.TextChanged += new System.EventHandler(this.TextEntryText_TextChanged);
             // 
@@ -715,6 +715,20 @@ namespace Journaley.Forms
             this.panelDateRight.Size = new System.Drawing.Size(100, 25);
             this.panelDateRight.TabIndex = 1;
             // 
+            // panelEntryTextWrapper
+            // 
+            this.panelEntryTextWrapper.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelEntryTextWrapper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.panelEntryTextWrapper.Controls.Add(this.textEntryText);
+            this.panelEntryTextWrapper.Location = new System.Drawing.Point(228, 24);
+            this.panelEntryTextWrapper.Margin = new System.Windows.Forms.Padding(0);
+            this.panelEntryTextWrapper.Name = "panelEntryTextWrapper";
+            this.panelEntryTextWrapper.Padding = new System.Windows.Forms.Padding(30);
+            this.panelEntryTextWrapper.Size = new System.Drawing.Size(656, 508);
+            this.panelEntryTextWrapper.TabIndex = 1;
+            // 
             // buttonMainTags
             // 
             this.buttonMainTags.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -865,10 +879,10 @@ namespace Journaley.Forms
             this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.entryListBoxTags.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entryListBoxTags.FormattingEnabled = true;
-            this.entryListBoxTags.Location = new System.Drawing.Point(0, 26);
+            this.entryListBoxTags.Location = new System.Drawing.Point(0, 24);
             this.entryListBoxTags.Name = "entryListBoxTags";
             this.entryListBoxTags.ScrollAlwaysVisible = true;
-            this.entryListBoxTags.Size = new System.Drawing.Size(227, 440);
+            this.entryListBoxTags.Size = new System.Drawing.Size(227, 442);
             this.entryListBoxTags.TabIndex = 0;
             this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
@@ -877,9 +891,10 @@ namespace Journaley.Forms
             this.listBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxTags.Dock = System.Windows.Forms.DockStyle.Top;
             this.listBoxTags.FormattingEnabled = true;
+            this.listBoxTags.ItemHeight = 12;
             this.listBoxTags.Location = new System.Drawing.Point(0, 0);
             this.listBoxTags.Name = "listBoxTags";
-            this.listBoxTags.Size = new System.Drawing.Size(227, 26);
+            this.listBoxTags.Size = new System.Drawing.Size(227, 24);
             this.listBoxTags.TabIndex = 0;
             this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
             // 
@@ -895,11 +910,11 @@ namespace Journaley.Forms
             this.Controls.Add(this.buttonMainTags);
             this.Controls.Add(this.buttonMainCalendar);
             this.Controls.Add(this.buttonMainTimeline);
+            this.Controls.Add(this.panelEntryListArea);
             this.Controls.Add(this.panelWebBrowserWrapper);
-            this.Controls.Add(this.textEntryText);
+            this.Controls.Add(this.panelEntryTextWrapper);
             this.Controls.Add(this.buttonAddEntry);
             this.Controls.Add(this.tableLayoutStats);
-            this.Controls.Add(this.panelEntryListArea);
             this.DoubleBuffered = true;
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "MainForm";
@@ -932,6 +947,8 @@ namespace Journaley.Forms
             this.tableLayoutBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).EndInit();
             this.tableLayoutDate.ResumeLayout(false);
+            this.panelEntryTextWrapper.ResumeLayout(false);
+            this.panelEntryTextWrapper.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTags)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).EndInit();
@@ -940,7 +957,6 @@ namespace Journaley.Forms
             this.panelCalendar.ResumeLayout(false);
             this.panelTags.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -997,6 +1013,7 @@ namespace Journaley.Forms
         private System.Windows.Forms.FlowLayoutPanel flowLayoutSidebarBottomButtons;
         private ImageButton buttonDone;
         private ImageButton buttonCancel;
+        private System.Windows.Forms.Panel panelEntryTextWrapper;
     }
 }
 

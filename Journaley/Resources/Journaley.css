@@ -1,11 +1,17 @@
 html {
 margin: 0px;
-padding: 2px;
+padding: 0px;
 }
 
 body {
 font-family: sans-serif;
-font-size: 9pt;
+font-size: 13pt;
+
+background-color: #EFEFEF;
+}
+
+div {
+padding: 0px 30px;
 }
 
 img {
