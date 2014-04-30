@@ -208,10 +208,10 @@
         {
             this.webBrowser.DocumentText =
                 string.Format(
-                "<style type=\"text/css\">\n{0}\n</style><html><body>{1}<br><div>{2}</div></body></html>",
-                Journaley.Properties.Resources.JournaleyCSS,
-                this.SelectedEntry.PhotoPath == null ? string.Empty : "<img src='" + this.SelectedEntry.PhotoPath + "'>",
-                Markdown.Transform(this.SelectedEntry.EntryText));
+                    "<style type=\"text/css\">\n{0}\n</style><html><body>{1}<br><div>{2}</div></body></html>",
+                    Journaley.Properties.Resources.JournaleyCSS,
+                    this.SelectedEntry.PhotoPath == null ? string.Empty : "<img src='" + this.SelectedEntry.PhotoPath + "'>",
+                    Markdown.Transform(this.SelectedEntry.EntryText));
         }
 
         /// <summary>
@@ -283,7 +283,9 @@
             if (noEntry)
             {
                 this.textEntryText.Text = string.Empty;
-                this.webBrowser.DocumentText = string.Empty;
+                this.webBrowser.DocumentText = string.Format(
+                    "<style type=\"text/css\">\n{0}\n</style><html><body></body></html>",
+                    Journaley.Properties.Resources.JournaleyCSS);
             }
 
             this.tableLayoutSidebar.Visible = !noEntry;
