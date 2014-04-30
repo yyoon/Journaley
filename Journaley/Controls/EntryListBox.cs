@@ -6,6 +6,7 @@
     using System.Windows.Forms;
     using Journaley.Models;
     using Journaley.Properties;
+    using Journaley.Utilities;
 
     /// <summary>
     /// Customized ListBox control for displaying the list of journal entries prettier.
@@ -156,27 +157,38 @@
         /// <param name="e">A <see cref="T:System.Windows.Forms.DrawItemEventArgs" /> that contains the event data.</param>
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
-            e.DrawBackground();
+            BufferedGraphicsContext currentContext = BufferedGraphicsManager.Current;
 
-            if (e.Index < 0 || e.Index >= this.Items.Count)
+            Rectangle bounds = new Rectangle(0, 0, e.Bounds.Width, e.Bounds.Height);
+            using (BufferedGraphics bufferedGraphics = currentContext.Allocate(e.Graphics, bounds))
             {
-                return;
-            }
+                DrawItemEventArgs args = new DrawItemEventArgs(
+                    bufferedGraphics.Graphics, e.Font, bounds, e.Index, e.State, e.ForeColor, e.BackColor);
 
-            object obj = this.Items[e.Index];
+                if (e.Index < 0 || e.Index >= this.Items.Count)
+                {
+                    return;
+                }
 
-            // Draw the item
-            if (obj is DateTime)
-            {
-                this.DrawMonth(e, (DateTime)obj);
-            }
-            else if (obj is Entry)
-            {
-                this.DrawEntry(e, (Entry)obj);
-            }
-            else
-            {
-                // Unknown type. do nothing.
+                object obj = this.Items[e.Index];
+
+                // Draw the item
+                if (obj is DateTime)
+                {
+                    this.DrawMonth(args, (DateTime)obj);
+                }
+                else if (obj is Entry)
+                {
+                    this.DrawEntry(args, (Entry)obj);
+                }
+                else
+                {
+                    // Unknown type. do nothing.
+                }
+
+                // Copy the bufferedGraphics into destination.
+                PInvoke.BitBlt(e.Graphics.GetHdc(), e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height,
+                    bufferedGraphics.Graphics.GetHdc(), 0, 0, PInvoke.TernaryRasterOperations.SRCCOPY);
             }
         }
 
