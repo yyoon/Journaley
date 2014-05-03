@@ -222,5 +222,7 @@
                 this.UpdateAssignedTags();
             }
         }
+
+       
     }
 }
