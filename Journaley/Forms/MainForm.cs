@@ -41,9 +41,9 @@
         private bool suppressEntryUpdate = false;
 
         /// <summary>
-        /// The Open Sans font family
+        /// The Noto Sans font family
         /// </summary>
-        private FontFamily fontFamilyOpenSansRegular;
+        private FontFamily fontFamilyNotoSansRegular;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
@@ -56,9 +56,9 @@
             this.FormLoaded = false;
 
             // Read embedded fonts.
-            this.fontFamilyOpenSansRegular = FontReader.ReadEmbeddedFont(
-                "OpenSans_Regular.ttf",
-                Journaley.Properties.Resources.OpenSans_Regular);
+            this.fontFamilyNotoSansRegular = FontReader.ReadEmbeddedFont(
+                "NotoSans_Regular.ttf",
+                Journaley.Properties.Resources.NotoSans_Regular);
 
             // Set the font of the text entry box.
             this.textEntryText.Font = new Font(
@@ -203,7 +203,7 @@
         {
             get
             {
-                return this.fontFamilyOpenSansRegular;
+                return this.fontFamilyNotoSansRegular;
             }
         }
 

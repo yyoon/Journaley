@@ -160,6 +160,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Resources\OpenSans-Regular.ttf" />
+    <None Include="Resources\NotoSans-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="images\moleskine_blue.ico" />

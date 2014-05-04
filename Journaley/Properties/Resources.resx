@@ -265,9 +265,6 @@
   <data name="sidebar_btn_image_norm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\NewDesign\sidebar_btn_image_norm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="OpenSans_Regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\OpenSans-Regular.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="TagWhite_32x32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\tag_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -348,5 +345,8 @@
   </data>
   <data name="sidebar_btn_star_enabled_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\images\NewDesign\sidebar_btn_star_enabled_over.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NotoSans_Regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NotoSans-Regular.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
