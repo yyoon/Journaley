@@ -125,7 +125,7 @@ namespace Journaley.Forms
             label5.BackColor = System.Drawing.Color.Transparent;
             label5.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
-            label5.Location = new System.Drawing.Point(159, 11);
+            label5.Location = new System.Drawing.Point(186, 11);
             label5.Margin = new System.Windows.Forms.Padding(0);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(48, 13);
@@ -139,7 +139,7 @@ namespace Journaley.Forms
             label7.BackColor = System.Drawing.Color.Transparent;
             label7.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
-            label7.Location = new System.Drawing.Point(79, 11);
+            label7.Location = new System.Drawing.Point(97, 11);
             label7.Margin = new System.Windows.Forms.Padding(0);
             label7.Name = "label7";
             label7.Size = new System.Drawing.Size(61, 13);
@@ -153,7 +153,7 @@ namespace Journaley.Forms
             label8.BackColor = System.Drawing.Color.Transparent;
             label8.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
-            label8.Location = new System.Drawing.Point(19, 11);
+            label8.Location = new System.Drawing.Point(28, 11);
             label8.Margin = new System.Windows.Forms.Padding(0);
             label8.Name = "label8";
             label8.Size = new System.Drawing.Size(41, 13);
@@ -168,7 +168,7 @@ namespace Journaley.Forms
             this.dateTimePicker.Enabled = false;
             this.dateTimePicker.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker.Location = new System.Drawing.Point(228, 1);
+            this.dateTimePicker.Location = new System.Drawing.Point(211, 1);
             this.dateTimePicker.Margin = new System.Windows.Forms.Padding(0);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.ShowUpDown = true;
@@ -200,7 +200,7 @@ namespace Journaley.Forms
             this.tableLayoutStats.RowCount = 2;
             this.tableLayoutStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 44F));
             this.tableLayoutStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56F));
-            this.tableLayoutStats.Size = new System.Drawing.Size(229, 25);
+            this.tableLayoutStats.Size = new System.Drawing.Size(262, 25);
             this.tableLayoutStats.TabIndex = 1;
             // 
             // labelEntries
@@ -210,7 +210,7 @@ namespace Journaley.Forms
             this.labelEntries.BackColor = System.Drawing.Color.Transparent;
             this.labelEntries.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelEntries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelEntries.Location = new System.Drawing.Point(159, 0);
+            this.labelEntries.Location = new System.Drawing.Point(186, 0);
             this.labelEntries.Margin = new System.Windows.Forms.Padding(0);
             this.labelEntries.Name = "labelEntries";
             this.labelEntries.Size = new System.Drawing.Size(0, 11);
@@ -223,7 +223,7 @@ namespace Journaley.Forms
             this.labelThisWeek.BackColor = System.Drawing.Color.Transparent;
             this.labelThisWeek.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelThisWeek.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelThisWeek.Location = new System.Drawing.Point(79, 0);
+            this.labelThisWeek.Location = new System.Drawing.Point(97, 0);
             this.labelThisWeek.Margin = new System.Windows.Forms.Padding(0);
             this.labelThisWeek.Name = "labelThisWeek";
             this.labelThisWeek.Size = new System.Drawing.Size(0, 11);
@@ -236,7 +236,7 @@ namespace Journaley.Forms
             this.labelToday.BackColor = System.Drawing.Color.Transparent;
             this.labelToday.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelToday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelToday.Location = new System.Drawing.Point(19, 0);
+            this.labelToday.Location = new System.Drawing.Point(28, 0);
             this.labelToday.Margin = new System.Windows.Forms.Padding(0);
             this.labelToday.Name = "labelToday";
             this.labelToday.Size = new System.Drawing.Size(0, 11);
@@ -427,7 +427,7 @@ namespace Journaley.Forms
             this.buttonAddEntry.SelectedDownImage = null;
             this.buttonAddEntry.SelectedHoverImage = null;
             this.buttonAddEntry.SelectedImage = null;
-            this.buttonAddEntry.Size = new System.Drawing.Size(229, 42);
+            this.buttonAddEntry.Size = new System.Drawing.Size(262, 42);
             this.buttonAddEntry.TabIndex = 0;
             this.buttonAddEntry.TabStop = false;
             this.toolTip.SetToolTip(this.buttonAddEntry, "Add a new entry");
@@ -444,7 +444,7 @@ namespace Journaley.Forms
             this.textEntryText.Margin = new System.Windows.Forms.Padding(0);
             this.textEntryText.Multiline = true;
             this.textEntryText.Name = "textEntryText";
-            this.textEntryText.Size = new System.Drawing.Size(596, 448);
+            this.textEntryText.Size = new System.Drawing.Size(563, 448);
             this.textEntryText.TabIndex = 9;
             this.textEntryText.TextChanged += new System.EventHandler(this.TextEntryText_TextChanged);
             // 
@@ -455,10 +455,10 @@ namespace Journaley.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelWebBrowserWrapper.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelWebBrowserWrapper.Controls.Add(this.webBrowser);
-            this.panelWebBrowserWrapper.Location = new System.Drawing.Point(228, 24);
+            this.panelWebBrowserWrapper.Location = new System.Drawing.Point(261, 24);
             this.panelWebBrowserWrapper.Margin = new System.Windows.Forms.Padding(0);
             this.panelWebBrowserWrapper.Name = "panelWebBrowserWrapper";
-            this.panelWebBrowserWrapper.Size = new System.Drawing.Size(656, 508);
+            this.panelWebBrowserWrapper.Size = new System.Drawing.Size(623, 508);
             this.panelWebBrowserWrapper.TabIndex = 11;
             // 
             // webBrowser
@@ -467,7 +467,7 @@ namespace Journaley.Forms
             this.webBrowser.Location = new System.Drawing.Point(0, 0);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(654, 506);
+            this.webBrowser.Size = new System.Drawing.Size(621, 506);
             this.webBrowser.TabIndex = 0;
             // 
             // contextMenuStripPhotoWithPhoto
@@ -614,20 +614,20 @@ namespace Journaley.Forms
             this.tableLayoutBottom.Controls.Add(this.labelCharactersTitle, 3, 1);
             this.tableLayoutBottom.Controls.Add(this.labelWords, 1, 0);
             this.tableLayoutBottom.Controls.Add(this.labelCharacters, 3, 0);
-            this.tableLayoutBottom.Location = new System.Drawing.Point(229, 531);
+            this.tableLayoutBottom.Location = new System.Drawing.Point(262, 531);
             this.tableLayoutBottom.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutBottom.Name = "tableLayoutBottom";
             this.tableLayoutBottom.RowCount = 2;
             this.tableLayoutBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutBottom.Size = new System.Drawing.Size(654, 42);
+            this.tableLayoutBottom.Size = new System.Drawing.Size(621, 42);
             this.tableLayoutBottom.TabIndex = 16;
             // 
             // pictureBoxBottomSeparator
             // 
             this.pictureBoxBottomSeparator.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBoxBottomSeparator.Image = global::Journaley.Properties.Resources.main_frame_bottom_separator;
-            this.pictureBoxBottomSeparator.Location = new System.Drawing.Point(326, 6);
+            this.pictureBoxBottomSeparator.Location = new System.Drawing.Point(310, 6);
             this.pictureBoxBottomSeparator.Name = "pictureBoxBottomSeparator";
             this.tableLayoutBottom.SetRowSpan(this.pictureBoxBottomSeparator, 2);
             this.pictureBoxBottomSeparator.Size = new System.Drawing.Size(1, 29);
@@ -641,7 +641,7 @@ namespace Journaley.Forms
             this.labelWordsTitle.BackColor = System.Drawing.Color.Transparent;
             this.labelWordsTitle.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelWordsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(20)))));
-            this.labelWordsTitle.Location = new System.Drawing.Point(313, 21);
+            this.labelWordsTitle.Location = new System.Drawing.Point(297, 21);
             this.labelWordsTitle.Name = "labelWordsTitle";
             this.labelWordsTitle.Size = new System.Drawing.Size(0, 13);
             this.labelWordsTitle.TabIndex = 1;
@@ -652,7 +652,7 @@ namespace Journaley.Forms
             this.labelCharactersTitle.BackColor = System.Drawing.Color.Transparent;
             this.labelCharactersTitle.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCharactersTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(20)))));
-            this.labelCharactersTitle.Location = new System.Drawing.Point(340, 21);
+            this.labelCharactersTitle.Location = new System.Drawing.Point(324, 21);
             this.labelCharactersTitle.Name = "labelCharactersTitle";
             this.labelCharactersTitle.Size = new System.Drawing.Size(0, 13);
             this.labelCharactersTitle.TabIndex = 2;
@@ -664,7 +664,7 @@ namespace Journaley.Forms
             this.labelWords.BackColor = System.Drawing.Color.Transparent;
             this.labelWords.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelWords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelWords.Location = new System.Drawing.Point(313, 8);
+            this.labelWords.Location = new System.Drawing.Point(297, 8);
             this.labelWords.Name = "labelWords";
             this.labelWords.Size = new System.Drawing.Size(0, 13);
             this.labelWords.TabIndex = 3;
@@ -676,7 +676,7 @@ namespace Journaley.Forms
             this.labelCharacters.BackColor = System.Drawing.Color.Transparent;
             this.labelCharacters.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCharacters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelCharacters.Location = new System.Drawing.Point(340, 8);
+            this.labelCharacters.Location = new System.Drawing.Point(324, 8);
             this.labelCharacters.Name = "labelCharacters";
             this.labelCharacters.Size = new System.Drawing.Size(0, 13);
             this.labelCharacters.TabIndex = 4;
@@ -693,12 +693,12 @@ namespace Journaley.Forms
             this.tableLayoutDate.Controls.Add(this.panelDateLeft, 0, 0);
             this.tableLayoutDate.Controls.Add(this.panelDateRight, 2, 0);
             this.tableLayoutDate.Controls.Add(this.dateTimePicker, 1, 0);
-            this.tableLayoutDate.Location = new System.Drawing.Point(228, 0);
+            this.tableLayoutDate.Location = new System.Drawing.Point(261, 0);
             this.tableLayoutDate.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutDate.Name = "tableLayoutDate";
             this.tableLayoutDate.RowCount = 1;
             this.tableLayoutDate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutDate.Size = new System.Drawing.Size(656, 25);
+            this.tableLayoutDate.Size = new System.Drawing.Size(623, 25);
             this.tableLayoutDate.TabIndex = 17;
             // 
             // panelDateLeft
@@ -715,7 +715,7 @@ namespace Journaley.Forms
             // 
             this.panelDateRight.BackgroundImage = global::Journaley.Properties.Resources.main_pane_date_background_right;
             this.panelDateRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDateRight.Location = new System.Drawing.Point(556, 0);
+            this.panelDateRight.Location = new System.Drawing.Point(523, 0);
             this.panelDateRight.Margin = new System.Windows.Forms.Padding(0);
             this.panelDateRight.Name = "panelDateRight";
             this.panelDateRight.Size = new System.Drawing.Size(100, 25);
@@ -728,11 +728,11 @@ namespace Journaley.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelEntryTextWrapper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.panelEntryTextWrapper.Controls.Add(this.textEntryText);
-            this.panelEntryTextWrapper.Location = new System.Drawing.Point(228, 24);
+            this.panelEntryTextWrapper.Location = new System.Drawing.Point(261, 24);
             this.panelEntryTextWrapper.Margin = new System.Windows.Forms.Padding(0);
             this.panelEntryTextWrapper.Name = "panelEntryTextWrapper";
             this.panelEntryTextWrapper.Padding = new System.Windows.Forms.Padding(30);
-            this.panelEntryTextWrapper.Size = new System.Drawing.Size(656, 508);
+            this.panelEntryTextWrapper.Size = new System.Drawing.Size(623, 508);
             this.panelEntryTextWrapper.TabIndex = 1;
             // 
             // buttonMainTags
@@ -742,7 +742,7 @@ namespace Journaley.Forms
             this.buttonMainTags.DownImage = global::Journaley.Properties.Resources.main_btn_tag_down;
             this.buttonMainTags.HoverImage = global::Journaley.Properties.Resources.main_btn_tag_over;
             this.buttonMainTags.Image = global::Journaley.Properties.Resources.main_btn_tag_norm;
-            this.buttonMainTags.Location = new System.Drawing.Point(152, 491);
+            this.buttonMainTags.Location = new System.Drawing.Point(174, 491);
             this.buttonMainTags.Margin = new System.Windows.Forms.Padding(0);
             this.buttonMainTags.Name = "buttonMainTags";
             this.buttonMainTags.NormalImage = global::Journaley.Properties.Resources.main_btn_tag_norm;
@@ -750,7 +750,7 @@ namespace Journaley.Forms
             this.buttonMainTags.SelectedDownImage = global::Journaley.Properties.Resources.main_btn_tag_down;
             this.buttonMainTags.SelectedHoverImage = global::Journaley.Properties.Resources.main_btn_tag_down;
             this.buttonMainTags.SelectedImage = global::Journaley.Properties.Resources.main_btn_tag_down;
-            this.buttonMainTags.Size = new System.Drawing.Size(77, 40);
+            this.buttonMainTags.Size = new System.Drawing.Size(88, 40);
             this.buttonMainTags.TabIndex = 15;
             this.buttonMainTags.TabStop = false;
             this.buttonMainTags.Click += new System.EventHandler(this.ButtonMainTags_Click);
@@ -762,7 +762,7 @@ namespace Journaley.Forms
             this.buttonMainCalendar.DownImage = global::Journaley.Properties.Resources.main_btn_calendar_down;
             this.buttonMainCalendar.HoverImage = global::Journaley.Properties.Resources.main_btn_calendar_over;
             this.buttonMainCalendar.Image = global::Journaley.Properties.Resources.main_btn_calendar_norm;
-            this.buttonMainCalendar.Location = new System.Drawing.Point(76, 491);
+            this.buttonMainCalendar.Location = new System.Drawing.Point(87, 491);
             this.buttonMainCalendar.Margin = new System.Windows.Forms.Padding(0);
             this.buttonMainCalendar.Name = "buttonMainCalendar";
             this.buttonMainCalendar.NormalImage = global::Journaley.Properties.Resources.main_btn_calendar_norm;
@@ -770,7 +770,7 @@ namespace Journaley.Forms
             this.buttonMainCalendar.SelectedDownImage = global::Journaley.Properties.Resources.main_btn_calendar_down;
             this.buttonMainCalendar.SelectedHoverImage = global::Journaley.Properties.Resources.main_btn_calendar_down;
             this.buttonMainCalendar.SelectedImage = global::Journaley.Properties.Resources.main_btn_calendar_down;
-            this.buttonMainCalendar.Size = new System.Drawing.Size(76, 40);
+            this.buttonMainCalendar.Size = new System.Drawing.Size(87, 40);
             this.buttonMainCalendar.TabIndex = 14;
             this.buttonMainCalendar.TabStop = false;
             this.buttonMainCalendar.Click += new System.EventHandler(this.ButtonMainCalendar_Click);
@@ -790,7 +790,7 @@ namespace Journaley.Forms
             this.buttonMainTimeline.SelectedDownImage = global::Journaley.Properties.Resources.main_btn_timeline_down;
             this.buttonMainTimeline.SelectedHoverImage = global::Journaley.Properties.Resources.main_btn_timeline_down;
             this.buttonMainTimeline.SelectedImage = global::Journaley.Properties.Resources.main_btn_timeline_down;
-            this.buttonMainTimeline.Size = new System.Drawing.Size(76, 40);
+            this.buttonMainTimeline.Size = new System.Drawing.Size(87, 40);
             this.buttonMainTimeline.TabIndex = 13;
             this.buttonMainTimeline.TabStop = false;
             this.buttonMainTimeline.Click += new System.EventHandler(this.ButtonMainTimeline_Click);
@@ -806,7 +806,7 @@ namespace Journaley.Forms
             this.panelEntryListArea.Margin = new System.Windows.Forms.Padding(0);
             this.panelEntryListArea.Name = "panelEntryListArea";
             this.panelEntryListArea.Padding = new System.Windows.Forms.Padding(1);
-            this.panelEntryListArea.Size = new System.Drawing.Size(229, 468);
+            this.panelEntryListArea.Size = new System.Drawing.Size(262, 468);
             this.panelEntryListArea.TabIndex = 18;
             // 
             // panelTimeline
@@ -815,7 +815,7 @@ namespace Journaley.Forms
             this.panelTimeline.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTimeline.Location = new System.Drawing.Point(1, 1);
             this.panelTimeline.Name = "panelTimeline";
-            this.panelTimeline.Size = new System.Drawing.Size(227, 466);
+            this.panelTimeline.Size = new System.Drawing.Size(260, 466);
             this.panelTimeline.TabIndex = 0;
             // 
             // entryListBoxAll
@@ -824,13 +824,14 @@ namespace Journaley.Forms
             this.entryListBoxAll.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
             this.entryListBoxAll.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxAll.EntryTextProvider = null;
             this.entryListBoxAll.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entryListBoxAll.FormattingEnabled = true;
             this.entryListBoxAll.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.entryListBoxAll.Location = new System.Drawing.Point(0, 0);
             this.entryListBoxAll.Name = "entryListBoxAll";
             this.entryListBoxAll.ScrollAlwaysVisible = true;
-            this.entryListBoxAll.Size = new System.Drawing.Size(227, 466);
+            this.entryListBoxAll.Size = new System.Drawing.Size(260, 466);
             this.entryListBoxAll.TabIndex = 0;
             this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
@@ -841,7 +842,7 @@ namespace Journaley.Forms
             this.panelCalendar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCalendar.Location = new System.Drawing.Point(1, 1);
             this.panelCalendar.Name = "panelCalendar";
-            this.panelCalendar.Size = new System.Drawing.Size(227, 466);
+            this.panelCalendar.Size = new System.Drawing.Size(260, 466);
             this.panelCalendar.TabIndex = 1;
             this.panelCalendar.Visible = false;
             // 
@@ -851,13 +852,14 @@ namespace Journaley.Forms
             this.entryListBoxCalendar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.entryListBoxCalendar.Dock = System.Windows.Forms.DockStyle.Fill;
             this.entryListBoxCalendar.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxCalendar.EntryTextProvider = null;
             this.entryListBoxCalendar.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entryListBoxCalendar.FormattingEnabled = true;
             this.entryListBoxCalendar.IntegralHeight = false;
             this.entryListBoxCalendar.Location = new System.Drawing.Point(0, 162);
             this.entryListBoxCalendar.Name = "entryListBoxCalendar";
             this.entryListBoxCalendar.ScrollAlwaysVisible = true;
-            this.entryListBoxCalendar.Size = new System.Drawing.Size(227, 304);
+            this.entryListBoxCalendar.Size = new System.Drawing.Size(260, 304);
             this.entryListBoxCalendar.TabIndex = 1;
             this.entryListBoxCalendar.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
@@ -879,7 +881,7 @@ namespace Journaley.Forms
             this.panelTags.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTags.Location = new System.Drawing.Point(1, 1);
             this.panelTags.Name = "panelTags";
-            this.panelTags.Size = new System.Drawing.Size(227, 466);
+            this.panelTags.Size = new System.Drawing.Size(260, 466);
             this.panelTags.TabIndex = 2;
             this.panelTags.Visible = false;
             // 
@@ -889,12 +891,13 @@ namespace Journaley.Forms
             this.entryListBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.entryListBoxTags.Dock = System.Windows.Forms.DockStyle.Fill;
             this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxTags.EntryTextProvider = null;
             this.entryListBoxTags.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.entryListBoxTags.FormattingEnabled = true;
             this.entryListBoxTags.Location = new System.Drawing.Point(0, 0);
             this.entryListBoxTags.Name = "entryListBoxTags";
             this.entryListBoxTags.ScrollAlwaysVisible = true;
-            this.entryListBoxTags.Size = new System.Drawing.Size(227, 466);
+            this.entryListBoxTags.Size = new System.Drawing.Size(260, 466);
             this.entryListBoxTags.TabIndex = 0;
             this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
@@ -903,9 +906,10 @@ namespace Journaley.Forms
             this.listBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxTags.Dock = System.Windows.Forms.DockStyle.Top;
             this.listBoxTags.FormattingEnabled = true;
+            this.listBoxTags.ItemHeight = 12;
             this.listBoxTags.Location = new System.Drawing.Point(0, 0);
             this.listBoxTags.Name = "listBoxTags";
-            this.listBoxTags.Size = new System.Drawing.Size(227, 0);
+            this.listBoxTags.Size = new System.Drawing.Size(260, 0);
             this.listBoxTags.TabIndex = 0;
             this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
             // 
