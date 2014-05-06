@@ -896,6 +896,7 @@ namespace Journaley.Forms
             this.spellCheckedEntryText.ReadOnly = false;
             this.spellCheckedEntryText.Size = new System.Drawing.Size(620, 508);
             this.spellCheckedEntryText.TabIndex = 1;
+            this.spellCheckedEntryText.TextChanged += new System.EventHandler(this.SpellCheckedEntryText_TextChanged);
             this.spellCheckedEntryText.Child = null;
             // 
             // MainForm

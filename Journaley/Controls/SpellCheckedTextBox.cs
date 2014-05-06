@@ -38,6 +38,24 @@
         }
 
         /// <summary>
+        /// Occurs when the <see cref="P:System.Windows.Forms.Control.Text" /> property value changes.
+        /// </summary>
+        [Browsable(true)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        public new event EventHandler TextChanged
+        {
+            add
+            {
+                base.TextChanged += value;
+            }
+
+            remove
+            {
+                base.TextChanged -= value;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the text associated with this control.
         /// </summary>
         /// <returns>The text associated with this control.</returns>
