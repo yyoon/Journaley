@@ -150,6 +150,13 @@
                     this.box.FontStyle = FontStyles.Normal;
                     break;
             }
+
+            // Setup the padding value.
+            this.box.Padding = new Thickness(
+                this.Padding.Left,
+                this.Padding.Top,
+                this.Padding.Right,
+                this.Padding.Bottom);
         }
 
         /// <summary>

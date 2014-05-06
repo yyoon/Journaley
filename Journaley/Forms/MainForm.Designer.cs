@@ -60,7 +60,6 @@ namespace Journaley.Forms
             this.tableLayoutDate = new System.Windows.Forms.TableLayoutPanel();
             this.panelDateLeft = new System.Windows.Forms.Panel();
             this.panelDateRight = new System.Windows.Forms.Panel();
-            this.panelEntryTextWrapper = new System.Windows.Forms.Panel();
             this.buttonAddEntry = new Journaley.Controls.ImageButton();
             this.buttonSettings = new Journaley.Controls.ImageButton();
             this.buttonEdit = new Journaley.Controls.ImageButton();
@@ -99,7 +98,6 @@ namespace Journaley.Forms
             this.tableLayoutBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).BeginInit();
             this.tableLayoutDate.SuspendLayout();
-            this.panelEntryTextWrapper.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).BeginInit();
@@ -516,20 +514,6 @@ namespace Journaley.Forms
             this.panelDateRight.Size = new System.Drawing.Size(100, 25);
             this.panelDateRight.TabIndex = 1;
             // 
-            // panelEntryTextWrapper
-            // 
-            this.panelEntryTextWrapper.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelEntryTextWrapper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.panelEntryTextWrapper.Controls.Add(this.spellCheckedEntryText);
-            this.panelEntryTextWrapper.Location = new System.Drawing.Point(264, 24);
-            this.panelEntryTextWrapper.Margin = new System.Windows.Forms.Padding(0);
-            this.panelEntryTextWrapper.Name = "panelEntryTextWrapper";
-            this.panelEntryTextWrapper.Padding = new System.Windows.Forms.Padding(30);
-            this.panelEntryTextWrapper.Size = new System.Drawing.Size(620, 508);
-            this.panelEntryTextWrapper.TabIndex = 1;
-            // 
             // buttonAddEntry
             // 
             this.buttonAddEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -900,14 +884,17 @@ namespace Journaley.Forms
             // 
             // spellCheckedEntryText
             // 
-            this.spellCheckedEntryText.BackColor = System.Drawing.Color.Transparent;
-            this.spellCheckedEntryText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellCheckedEntryText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.spellCheckedEntryText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
             this.spellCheckedEntryText.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.spellCheckedEntryText.Location = new System.Drawing.Point(30, 30);
+            this.spellCheckedEntryText.Location = new System.Drawing.Point(264, 24);
             this.spellCheckedEntryText.Multiline = true;
             this.spellCheckedEntryText.Name = "spellCheckedEntryText";
+            this.spellCheckedEntryText.Padding = new System.Windows.Forms.Padding(30);
             this.spellCheckedEntryText.ReadOnly = false;
-            this.spellCheckedEntryText.Size = new System.Drawing.Size(560, 448);
+            this.spellCheckedEntryText.Size = new System.Drawing.Size(620, 508);
             this.spellCheckedEntryText.TabIndex = 1;
             this.spellCheckedEntryText.Child = null;
             // 
@@ -926,7 +913,7 @@ namespace Journaley.Forms
             this.Controls.Add(this.buttonMainTimeline);
             this.Controls.Add(this.panelEntryListArea);
             this.Controls.Add(this.panelWebBrowserWrapper);
-            this.Controls.Add(this.panelEntryTextWrapper);
+            this.Controls.Add(this.spellCheckedEntryText);
             this.Controls.Add(this.tableLayoutStats);
             this.DoubleBuffered = true;
             this.MinimumSize = new System.Drawing.Size(800, 600);
@@ -950,7 +937,6 @@ namespace Journaley.Forms
             this.tableLayoutBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).EndInit();
             this.tableLayoutDate.ResumeLayout(false);
-            this.panelEntryTextWrapper.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).EndInit();
@@ -1020,7 +1006,6 @@ namespace Journaley.Forms
         private System.Windows.Forms.FlowLayoutPanel flowLayoutSidebarBottomButtons;
         private ImageButton buttonDone;
         private ImageButton buttonCancel;
-        private System.Windows.Forms.Panel panelEntryTextWrapper;
         private System.Windows.Forms.WebBrowser webBrowser;
         private SpellCheckedTextBox spellCheckedEntryText;
     }
