@@ -61,10 +61,12 @@
                 Journaley.Properties.Resources.NotoSans_Regular);
 
             // Set the font of the text entry box.
-            this.textEntryText.Font = new Font(
+            this.spellCheckedEntryText.Font = new Font(
                 this.FontFamilyOpenSansRegular,
-                this.textEntryText.Font.Size,
-                this.textEntryText.Font.Style);
+                this.spellCheckedEntryText.Font.Size,
+                this.spellCheckedEntryText.Font.Style);
+
+            this.spellCheckedEntryText.Initialize();
 
             foreach (var entryListBox in this.GetAllEntryLists())
             {
@@ -225,7 +227,7 @@
 
             if (this.SelectedEntry == entry && this.IsEditing)
             {
-                return this.textEntryText.Text.Replace(Environment.NewLine, "\n");
+                return this.spellCheckedEntryText.Text.Replace(Environment.NewLine, "\n");
             }
             else
             {
@@ -256,7 +258,7 @@
                 return;
             }
 
-            this.SelectedEntry.EntryText = this.textEntryText.Text.Replace(Environment.NewLine, "\n");
+            this.SelectedEntry.EntryText = this.spellCheckedEntryText.Text.Replace(Environment.NewLine, "\n");
 
             if (this.SelectedEntry.IsDirty)
             {
@@ -310,11 +312,11 @@
             this.buttonPhoto.Enabled = !noEntry;
             this.buttonTag.Enabled = !noEntry;
             this.buttonDelete.Enabled = !noEntry;
-            this.textEntryText.Enabled = !noEntry;
+            this.spellCheckedEntryText.Enabled = !noEntry;
 
             if (noEntry)
             {
-                this.textEntryText.Text = string.Empty;
+                this.spellCheckedEntryText.Text = string.Empty;
                 this.webBrowser.DocumentText = string.Format(
                     "<style type=\"text/css\">\n{0}\n</style><html><body></body></html>",
                     Journaley.Properties.Resources.JournaleyCSS);
@@ -324,7 +326,7 @@
 
             this.dateTimePicker.Enabled = this.IsEditing;
             this.toolTip.SetToolTip(this.buttonEdit, this.IsEditing ? "Save" : "Edit");
-            this.textEntryText.ReadOnly = !this.IsEditing;
+            this.spellCheckedEntryText.ReadOnly = !this.IsEditing;
 
             if (this.IsEditing && this.flowLayoutSidebarTopButtons.Controls.Contains(this.buttonEdit))
             {
@@ -338,7 +340,7 @@
                 this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonEdit);
             }
 
-            this.textEntryText.Visible = this.IsEditing;
+            this.spellCheckedEntryText.Visible = this.IsEditing;
             this.panelWebBrowserWrapper.Visible = this.webBrowser.Visible = noEntry || !this.IsEditing;
         }
 
@@ -439,7 +441,7 @@
         private void UpdateDateAndTextFromEntry()
         {
             this.dateTimePicker.Value = this.selectedEntry.LocalTime;
-            this.textEntryText.Text = this.selectedEntry.EntryText.Replace("\n", Environment.NewLine);
+            this.spellCheckedEntryText.Text = this.selectedEntry.EntryText.Replace("\n", Environment.NewLine);
         }
 
         /// <summary>
@@ -549,7 +551,7 @@
 
             if (this.SelectedEntry != null)
             {
-                string entryText = this.IsEditing ? this.textEntryText.Text : this.SelectedEntry.EntryText;
+                string entryText = this.IsEditing ? this.spellCheckedEntryText.Text : this.SelectedEntry.EntryText;
 
                 this.labelWords.Text = entryText
                     .Split(delim, StringSplitOptions.RemoveEmptyEntries)
@@ -794,9 +796,8 @@
             this.IsEditing = true;
 
             // Puts focus on textbox and moves cursor to end of entry
-            this.textEntryText.Focus();
-            this.textEntryText.DeselectAll();
-            this.textEntryText.Select(this.textEntryText.Text.Length, 0);
+            this.spellCheckedEntryText.Focus();
+            this.spellCheckedEntryText.Select(this.spellCheckedEntryText.Text.Length, 0);
         }
 
         /// <summary>
@@ -967,7 +968,7 @@
 
             this.SelectedEntry = newEntry;
             this.UpdateAllEntryLists();
-            this.textEntryText.Focus();
+            this.spellCheckedEntryText.Focus();
         }
 
         /// <summary>

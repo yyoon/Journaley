@@ -39,7 +39,6 @@ namespace Journaley.Forms
             this.labelThisWeek = new System.Windows.Forms.Label();
             this.labelToday = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.textEntryText = new System.Windows.Forms.TextBox();
             this.panelWebBrowserWrapper = new System.Windows.Forms.Panel();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.contextMenuStripPhotoWithPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -83,6 +82,7 @@ namespace Journaley.Forms
             this.panelTags = new System.Windows.Forms.Panel();
             this.entryListBoxTags = new Journaley.Controls.EntryListBox();
             this.listBoxTags = new System.Windows.Forms.ListBox();
+            this.spellCheckedEntryText = new Journaley.Controls.SpellCheckedTextBox();
             label5 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
             label8 = new System.Windows.Forms.Label();
@@ -241,21 +241,6 @@ namespace Journaley.Forms
             this.labelToday.Name = "labelToday";
             this.labelToday.Size = new System.Drawing.Size(0, 11);
             this.labelToday.TabIndex = 3;
-            // 
-            // textEntryText
-            // 
-            this.textEntryText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.textEntryText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textEntryText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEntryText.Font = new System.Drawing.Font("Gulim", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.textEntryText.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(14)))), ((int)(((byte)(14)))));
-            this.textEntryText.Location = new System.Drawing.Point(30, 30);
-            this.textEntryText.Margin = new System.Windows.Forms.Padding(0);
-            this.textEntryText.Multiline = true;
-            this.textEntryText.Name = "textEntryText";
-            this.textEntryText.Size = new System.Drawing.Size(560, 448);
-            this.textEntryText.TabIndex = 9;
-            this.textEntryText.TextChanged += new System.EventHandler(this.TextEntryText_TextChanged);
             // 
             // panelWebBrowserWrapper
             // 
@@ -537,7 +522,7 @@ namespace Journaley.Forms
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelEntryTextWrapper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.panelEntryTextWrapper.Controls.Add(this.textEntryText);
+            this.panelEntryTextWrapper.Controls.Add(this.spellCheckedEntryText);
             this.panelEntryTextWrapper.Location = new System.Drawing.Point(264, 24);
             this.panelEntryTextWrapper.Margin = new System.Windows.Forms.Padding(0);
             this.panelEntryTextWrapper.Name = "panelEntryTextWrapper";
@@ -913,6 +898,19 @@ namespace Journaley.Forms
             this.listBoxTags.TabIndex = 0;
             this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
             // 
+            // spellCheckedEntryText
+            // 
+            this.spellCheckedEntryText.BackColor = System.Drawing.Color.Transparent;
+            this.spellCheckedEntryText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellCheckedEntryText.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.spellCheckedEntryText.Location = new System.Drawing.Point(30, 30);
+            this.spellCheckedEntryText.Multiline = true;
+            this.spellCheckedEntryText.Name = "spellCheckedEntryText";
+            this.spellCheckedEntryText.ReadOnly = false;
+            this.spellCheckedEntryText.Size = new System.Drawing.Size(560, 448);
+            this.spellCheckedEntryText.TabIndex = 1;
+            this.spellCheckedEntryText.Child = null;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -953,7 +951,6 @@ namespace Journaley.Forms
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).EndInit();
             this.tableLayoutDate.ResumeLayout(false);
             this.panelEntryTextWrapper.ResumeLayout(false);
-            this.panelEntryTextWrapper.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).EndInit();
@@ -990,7 +987,6 @@ namespace Journaley.Forms
         private EntryListBox entryListBoxAll;
         private System.Windows.Forms.MonthCalendar monthCalendar;
         private EntryListBox entryListBoxCalendar;
-        private System.Windows.Forms.TextBox textEntryText;
         private System.Windows.Forms.Panel panelWebBrowserWrapper;
         private EntryListBox entryListBoxTags;
         private System.Windows.Forms.ListBox listBoxTags;
@@ -1026,6 +1022,7 @@ namespace Journaley.Forms
         private ImageButton buttonCancel;
         private System.Windows.Forms.Panel panelEntryTextWrapper;
         private System.Windows.Forms.WebBrowser webBrowser;
+        private SpellCheckedTextBox spellCheckedEntryText;
     }
 }
 
