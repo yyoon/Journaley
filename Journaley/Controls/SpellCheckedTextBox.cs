@@ -7,6 +7,7 @@
     using System.Windows.Controls;
     using System.Windows.Forms.Design;
     using System.Windows.Forms.Integration;
+    using System.Windows.Input;
 
     /// <summary>
     /// Spell-checker enabled TextBox derived from WPF TextBox.
@@ -35,6 +36,36 @@
 
             // TODO: Is there a way to make this support multiple languages?
             this.box.Language = System.Windows.Markup.XmlLanguage.GetLanguage("en-us");
+
+            this.box.KeyDown += (s, e) =>
+            {
+                System.Windows.Input.Key wpfKey = e.Key;
+                System.Windows.Forms.Keys formsKey = (System.Windows.Forms.Keys)KeyInterop.VirtualKeyFromKey(wpfKey);
+
+                if ((Keyboard.Modifiers & System.Windows.Input.ModifierKeys.Control) == System.Windows.Input.ModifierKeys.Control)
+                {
+                    formsKey |= System.Windows.Forms.Keys.Control;
+                }
+
+                if ((Keyboard.Modifiers & System.Windows.Input.ModifierKeys.Shift) == System.Windows.Input.ModifierKeys.Shift)
+                {
+                    formsKey |= System.Windows.Forms.Keys.Shift;
+                }
+
+                if ((Keyboard.Modifiers & System.Windows.Input.ModifierKeys.Alt) == System.Windows.Input.ModifierKeys.Alt)
+                {
+                    formsKey |= System.Windows.Forms.Keys.Alt;
+                }
+
+                System.Windows.Forms.KeyEventArgs args = new System.Windows.Forms.KeyEventArgs(formsKey);
+
+                this.OnKeyDown(args);
+
+                if (args.Handled == true)
+                {
+                    e.Handled = true;
+                }
+            };
         }
 
         /// <summary>
@@ -52,6 +83,24 @@
             remove
             {
                 base.TextChanged -= value;
+            }
+        }
+
+        /// <summary>
+        /// Occurs when a key is pressed while the control has focus.
+        /// </summary>
+        [Browsable(true)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        public new event System.Windows.Forms.KeyEventHandler KeyDown
+        {
+            add
+            {
+                base.KeyDown += value;
+            }
+
+            remove
+            {
+                base.KeyDown -= value;
             }
         }
 

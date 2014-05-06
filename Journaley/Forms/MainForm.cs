@@ -650,6 +650,21 @@
             this.Entries = files.Select(x => Entry.LoadFromFile(x.FullName, this.Settings)).Where(x => x != null).ToList();
         }
 
+        /// <summary>
+        /// Saves the entry and finish editing.
+        /// </summary>
+        private void SaveAndFinishEditing()
+        {
+            Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when editing/saving.");
+            Debug.Assert(this.IsEditing == true, "Must be in the edit mode.");
+
+            this.SaveSelectedEntry();
+            this.IsEditing = false;
+
+            this.UpdateWebBrowser();
+            this.UpdateUI();
+        }
+
         #region Event Handlers
 
         /// <summary>
@@ -807,14 +822,7 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonDone_Click(object sender, EventArgs e)
         {
-            Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when editing/saving.");
-            Debug.Assert(this.IsEditing == true, "Must be in the edit mode.");
-
-            this.SaveSelectedEntry();
-            this.IsEditing = false;
-
-            this.UpdateWebBrowser();
-            this.UpdateUI();
+            this.SaveAndFinishEditing();
         }
 
         /// <summary>
@@ -1284,6 +1292,20 @@
             if (this.SelectedEntry != null)
             {
                 this.InvalidateEntryInEntryList(this.SelectedEntry);
+            }
+        }
+
+        /// <summary>
+        /// Handles the KeyDown event of the spellCheckedEntryText control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
+        private void SpellCheckedEntryText_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && e.Control)
+            {
+                this.SaveAndFinishEditing();
+                e.Handled = true;
             }
         }
 
