@@ -266,6 +266,9 @@
 
                 // Update the EntryList items as well.
                 this.InvalidateEntryInEntryList(this.SelectedEntry);
+
+                // Update the stats, too.
+                this.UpdateStats();
             }
         }
 
@@ -976,6 +979,7 @@
 
             this.SelectedEntry = newEntry;
             this.UpdateAllEntryLists();
+            this.UpdateStats();
             this.spellCheckedEntryText.Focus();
         }
 
