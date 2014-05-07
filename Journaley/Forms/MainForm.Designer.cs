@@ -918,6 +918,7 @@ namespace Journaley.Forms
             this.spellCheckedEntryText.ReadOnly = false;
             this.spellCheckedEntryText.Size = new System.Drawing.Size(620, 508);
             this.spellCheckedEntryText.TabIndex = 1;
+            this.spellCheckedEntryText.WordWrap = true;
             this.spellCheckedEntryText.TextChanged += new System.EventHandler(this.SpellCheckedEntryText_TextChanged);
             this.spellCheckedEntryText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SpellCheckedEntryText_KeyDown);
             this.spellCheckedEntryText.Child = null;
