@@ -1,6 +1,7 @@
 ﻿namespace Journaley.Controls
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
     using System.Windows.Forms;
@@ -109,6 +110,11 @@
         private static readonly Pen BoundaryLinePen = Pens.Black;
 
         /// <summary>
+        /// The thumbnail cache
+        /// </summary>
+        private ImageCache thumbnailCache = new ImageCache();
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="EntryListBox"/> class.
         /// </summary>
         public EntryListBox()
@@ -126,6 +132,20 @@
         /// The entry text provider.
         /// </value>
         public IEntryTextProvider EntryTextProvider { get; set; }
+
+        /// <summary>
+        /// Gets the thumbnail cache.
+        /// </summary>
+        /// <value>
+        /// The thumbnail cache.
+        /// </value>
+        private ImageCache ThumbnailCache
+        {
+            get
+            {
+                return this.thumbnailCache;
+            }
+        }
 
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Forms.ListBox.MeasureItem" /> event.
@@ -320,9 +340,26 @@
 
             try
             {
-                using (Image image = Image.FromFile(entry.PhotoPath))
+                if (!this.ThumbnailCache.HasCachedImage(entry))
                 {
-                    this.DrawToFit(e.Graphics, image, bounds);
+                    Image thumbnailImage = new Bitmap(bounds.Width, bounds.Height);
+
+                    using (Image image = Image.FromFile(entry.PhotoPath))
+                    {
+                        this.DrawToFit(Graphics.FromImage(thumbnailImage), image, new Rectangle(0, 0, bounds.Width, bounds.Height));
+                    }
+
+                    this.ThumbnailCache.AddCachedImage(entry, thumbnailImage);
+                }
+
+                Image cachedImage = this.ThumbnailCache.GetCachedImage(entry);
+                if (cachedImage != null)
+                {
+                    e.Graphics.DrawImage(cachedImage, bounds.X, bounds.Y);
+                }
+                else
+                {
+                    this.DrawToFit(e.Graphics, Resources.Image_32x32, bounds);
                 }
             }
             catch (Exception)
@@ -443,6 +480,73 @@
             stringFormat.LineAlignment = StringAlignment.Center;
 
             e.Graphics.DrawString(entry.LocalTime.ToString("h:mm tt").ToLower(), EntryTimeFont, brush, bounds, stringFormat);
+        }
+
+        /// <summary>
+        /// Class for caching thumbnail images. Avoid reading the images from the file over and over again.
+        /// </summary>
+        private class ImageCache
+        {
+            /// <summary>
+            /// The thumbnail cache dictionary. The keys are UUIDString of the entry,
+            /// and the values are the corresponding thumbnail images.
+            /// </summary>
+            private IDictionary<string, Image> thumbnailCache = new Dictionary<string, Image>();
+
+            /// <summary>
+            /// Determines whether there is a cached thumbnail image for the given entry.
+            /// </summary>
+            /// <param name="entry">The entry.</param>
+            /// <returns>true if there is a cached thumbnail image, false otherwise.</returns>
+            public bool HasCachedImage(Entry entry)
+            {
+                return this.thumbnailCache.ContainsKey(entry.UUIDString);
+            }
+
+            /// <summary>
+            /// Adds the cached image.
+            /// </summary>
+            /// <param name="entry">The entry.</param>
+            /// <param name="thumbnail">The thumbnail.</param>
+            public void AddCachedImage(Entry entry, Image thumbnail)
+            {
+                if (this.thumbnailCache.ContainsKey(entry.UUIDString))
+                {
+                    this.thumbnailCache.Remove(entry.UUIDString);
+                }
+
+                this.thumbnailCache.Add(entry.UUIDString, thumbnail);
+
+                // Make sure the clear the cache whe the photo is changed.
+                entry.PhotoChanged += new Entry.PhotoChangedHandler(this.Entry_PhotoChanged);
+            }
+
+            /// <summary>
+            /// Gets the cached image.
+            /// </summary>
+            /// <param name="entry">The entry.</param>
+            /// <returns>The cached image object, or null if there is no cached image.</returns>
+            public Image GetCachedImage(Entry entry)
+            {
+                if (this.HasCachedImage(entry))
+                {
+                    return this.thumbnailCache[entry.UUIDString];
+                }
+
+                return null;
+            }
+
+            /// <summary>
+            /// Called when a PhotoPath is changed for an entry.
+            /// </summary>
+            /// <param name="sender">The sender.</param>
+            private void Entry_PhotoChanged(Entry sender)
+            {
+                if (this.thumbnailCache.ContainsKey(sender.UUIDString))
+                {
+                    this.thumbnailCache.Remove(sender.UUIDString);
+                }
+            }
         }
     }
 }

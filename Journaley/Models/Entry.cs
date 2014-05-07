@@ -109,6 +109,17 @@
         }
 
         /// <summary>
+        /// Event handler for PhotoChanged.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        public delegate void PhotoChangedHandler(Entry sender);
+
+        /// <summary>
+        /// Occurs when the attached photo is changed.
+        /// </summary>
+        public event PhotoChangedHandler PhotoChanged; 
+
+        /// <summary>
         /// Gets or sets the UTC date time.
         /// </summary>
         /// <value>
@@ -294,6 +305,7 @@
             set
             {
                 this.photoPath = value;
+                this.OnPhotoChanged();
             }
         }
 
@@ -679,6 +691,17 @@
         }
 
         #endregion
+
+        /// <summary>
+        /// Called when the attached photo is changed.
+        /// </summary>
+        protected virtual void OnPhotoChanged()
+        {
+            if (this.PhotoChanged != null)
+            {
+                this.PhotoChanged(this);
+            }
+        }
 
         #endregion
 
