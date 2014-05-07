@@ -20,6 +20,11 @@
         public static readonly string[] SupportedPhotoFormats = { "jpg" };
 
         /// <summary>
+        /// The invalid characters not allowed in XML.
+        /// </summary>
+        private static readonly char[] InvalidCharacters = { '\u0000', '\u001C', '\u001D' };
+
+        /// <summary>
         /// The UTC date time
         /// </summary>
         private DateTime utcDateTime;
@@ -328,8 +333,11 @@
 
                     string fileContent = sr.ReadToEnd().TrimStart();
 
-                    // Remove all the NULL characters, if any.
-                    fileContent = fileContent.Replace(Convert.ToChar(0x00).ToString(), string.Empty);
+                    // Remove all the invalid characters, if any.
+                    foreach (char ch in InvalidCharacters)
+                    {
+                        fileContent = fileContent.Replace(ch.ToString(), string.Empty);
+                    }
 
                     XmlDocument doc = new XmlDocument();
                     doc.LoadXml(fileContent);
