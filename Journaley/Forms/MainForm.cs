@@ -1421,10 +1421,5 @@
         }
 
         #endregion
-
-        private void spellCheckedEntryText_KeyDown(object sender, KeyEventArgs e)
-        {
-
-        }
     }
 }

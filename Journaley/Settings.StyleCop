@@ -3,6 +3,7 @@
     <CollectionProperty Name="RecognizedWords">
       <Value>codeproject</Value>
       <Value>Journaley</Value>
+      <Value>Noto</Value>
     </CollectionProperty>
   </GlobalSettings>
   <Parsers>
