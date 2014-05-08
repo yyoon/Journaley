@@ -134,6 +134,7 @@ namespace Journaley.Test
             Assert.IsFalse(target.VerifyPassword("wrong-password"));
         }
 
+        /*
         [TestMethod]
         public void StripEntriesTest()
         {
@@ -154,5 +155,6 @@ namespace Journaley.Test
                 Assert.AreEqual(expected, loaded);
             }
         }
+        */
     }
 }
