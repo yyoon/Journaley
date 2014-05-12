@@ -654,6 +654,21 @@
         }
 
         /// <summary>
+        /// Starts editing the currently selected item.
+        /// </summary>
+        private void StartEditing()
+        {
+            Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when editing/saving.");
+            Debug.Assert(this.IsEditing == false, "Must not be in the edit mode.");
+
+            this.IsEditing = true;
+
+            // Puts focus on textbox and moves cursor to end of entry
+            this.spellCheckedEntryText.Focus();
+            this.spellCheckedEntryText.Select(this.spellCheckedEntryText.Text.Length, 0);
+        }
+
+        /// <summary>
         /// Saves the entry and finish editing.
         /// </summary>
         private void SaveAndFinishEditing()
@@ -728,6 +743,22 @@
 
             // Finished Loading
             this.FormLoaded = true;
+        }
+
+        /// <summary>
+        /// Handles the KeyDown event of the MainForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && e.Control)
+            {
+                if (this.SelectedEntry != null && this.IsEditing == false)
+                {
+                    this.StartEditing();
+                }
+            }
         }
 
         /// <summary>
@@ -808,14 +839,7 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonEdit_Click(object sender, EventArgs e)
         {
-            Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when editing/saving.");
-            Debug.Assert(this.IsEditing == false, "Must not be in the edit mode.");
-
-            this.IsEditing = true;
-
-            // Puts focus on textbox and moves cursor to end of entry
-            this.spellCheckedEntryText.Focus();
-            this.spellCheckedEntryText.Select(this.spellCheckedEntryText.Text.Length, 0);
+            this.StartEditing();
         }
 
         /// <summary>
