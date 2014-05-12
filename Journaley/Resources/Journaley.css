@@ -13,7 +13,11 @@ overflow: auto;
 }
 
 div {
-padding: 0px 30px;
+padding: 0px 30px 20px 30px;
+}
+
+div p {
+margin: 20px 0px 0px 0px;
 }
 
 img {
