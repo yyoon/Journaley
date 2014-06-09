@@ -735,6 +735,12 @@
 
             this.LoadEntries();
 
+            // Select the latest entry by default.
+            if (this.Entries.Any())
+            {
+                this.SelectedEntry = this.Entries.OrderByDescending(x => x.UTCDateTime).First();
+            }
+
             this.UpdateFromScratch();
 
             // Trick to bring this form to the front
