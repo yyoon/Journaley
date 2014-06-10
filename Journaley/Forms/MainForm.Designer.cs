@@ -60,6 +60,9 @@ namespace Journaley.Forms
             this.tableLayoutDate = new System.Windows.Forms.TableLayoutPanel();
             this.panelDateLeft = new System.Windows.Forms.Panel();
             this.panelDateRight = new System.Windows.Forms.Panel();
+            this.panelEntryArea = new System.Windows.Forms.Panel();
+            this.tableLayoutEntryArea = new System.Windows.Forms.TableLayoutPanel();
+            this.pictureBoxEntryPicture = new System.Windows.Forms.PictureBox();
             this.buttonAddEntry = new Journaley.Controls.ImageButton();
             this.buttonSettings = new Journaley.Controls.ImageButton();
             this.buttonEdit = new Journaley.Controls.ImageButton();
@@ -99,6 +102,9 @@ namespace Journaley.Forms
             this.tableLayoutBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).BeginInit();
             this.tableLayoutDate.SuspendLayout();
+            this.panelEntryArea.SuspendLayout();
+            this.tableLayoutEntryArea.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEntryPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).BeginInit();
@@ -244,15 +250,13 @@ namespace Journaley.Forms
             // 
             // panelWebBrowserWrapper
             // 
-            this.panelWebBrowserWrapper.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelWebBrowserWrapper.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelWebBrowserWrapper.Controls.Add(this.webBrowser);
-            this.panelWebBrowserWrapper.Location = new System.Drawing.Point(264, 24);
+            this.panelWebBrowserWrapper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelWebBrowserWrapper.Location = new System.Drawing.Point(0, 0);
             this.panelWebBrowserWrapper.Margin = new System.Windows.Forms.Padding(0);
             this.panelWebBrowserWrapper.Name = "panelWebBrowserWrapper";
-            this.panelWebBrowserWrapper.Size = new System.Drawing.Size(620, 508);
+            this.panelWebBrowserWrapper.Size = new System.Drawing.Size(620, 356);
             this.panelWebBrowserWrapper.TabIndex = 11;
             // 
             // webBrowser
@@ -261,7 +265,7 @@ namespace Journaley.Forms
             this.webBrowser.Location = new System.Drawing.Point(0, 0);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(618, 506);
+            this.webBrowser.Size = new System.Drawing.Size(618, 354);
             this.webBrowser.TabIndex = 0;
             // 
             // contextMenuStripPhotoWithPhoto
@@ -515,6 +519,44 @@ namespace Journaley.Forms
             this.panelDateRight.Name = "panelDateRight";
             this.panelDateRight.Size = new System.Drawing.Size(100, 25);
             this.panelDateRight.TabIndex = 1;
+            // 
+            // panelEntryArea
+            // 
+            this.panelEntryArea.Controls.Add(this.panelWebBrowserWrapper);
+            this.panelEntryArea.Controls.Add(this.spellCheckedEntryText);
+            this.panelEntryArea.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelEntryArea.Location = new System.Drawing.Point(0, 152);
+            this.panelEntryArea.Margin = new System.Windows.Forms.Padding(0);
+            this.panelEntryArea.Name = "panelEntryArea";
+            this.panelEntryArea.Size = new System.Drawing.Size(620, 356);
+            this.panelEntryArea.TabIndex = 1;
+            // 
+            // tableLayoutEntryArea
+            // 
+            this.tableLayoutEntryArea.ColumnCount = 1;
+            this.tableLayoutEntryArea.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutEntryArea.Controls.Add(this.pictureBoxEntryPicture, 0, 0);
+            this.tableLayoutEntryArea.Controls.Add(this.panelEntryArea, 0, 1);
+            this.tableLayoutEntryArea.Location = new System.Drawing.Point(264, 24);
+            this.tableLayoutEntryArea.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutEntryArea.Name = "tableLayoutEntryArea";
+            this.tableLayoutEntryArea.RowCount = 2;
+            this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutEntryArea.Size = new System.Drawing.Size(620, 508);
+            this.tableLayoutEntryArea.TabIndex = 1;
+            // 
+            // pictureBoxEntryPicture
+            // 
+            this.pictureBoxEntryPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBoxEntryPicture.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxEntryPicture.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxEntryPicture.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBoxEntryPicture.Name = "pictureBoxEntryPicture";
+            this.pictureBoxEntryPicture.Size = new System.Drawing.Size(620, 152);
+            this.pictureBoxEntryPicture.TabIndex = 2;
+            this.pictureBoxEntryPicture.TabStop = false;
+            this.pictureBoxEntryPicture.DoubleClick += new System.EventHandler(this.PictureBoxEntryPicture_DoubleClick);
             // 
             // buttonAddEntry
             // 
@@ -907,17 +949,15 @@ namespace Journaley.Forms
             // 
             // spellCheckedEntryText
             // 
-            this.spellCheckedEntryText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.spellCheckedEntryText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.spellCheckedEntryText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spellCheckedEntryText.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.spellCheckedEntryText.Location = new System.Drawing.Point(264, 24);
+            this.spellCheckedEntryText.Location = new System.Drawing.Point(0, 0);
             this.spellCheckedEntryText.Multiline = true;
             this.spellCheckedEntryText.Name = "spellCheckedEntryText";
             this.spellCheckedEntryText.Padding = new System.Windows.Forms.Padding(30);
             this.spellCheckedEntryText.ReadOnly = false;
-            this.spellCheckedEntryText.Size = new System.Drawing.Size(620, 508);
+            this.spellCheckedEntryText.Size = new System.Drawing.Size(620, 356);
             this.spellCheckedEntryText.TabIndex = 1;
             this.spellCheckedEntryText.WordWrap = true;
             this.spellCheckedEntryText.TextChanged += new System.EventHandler(this.SpellCheckedEntryText_TextChanged);
@@ -938,8 +978,7 @@ namespace Journaley.Forms
             this.Controls.Add(this.buttonMainCalendar);
             this.Controls.Add(this.buttonMainTimeline);
             this.Controls.Add(this.panelEntryListArea);
-            this.Controls.Add(this.panelWebBrowserWrapper);
-            this.Controls.Add(this.spellCheckedEntryText);
+            this.Controls.Add(this.tableLayoutEntryArea);
             this.Controls.Add(this.tableLayoutStats);
             this.DoubleBuffered = true;
             this.KeyPreview = true;
@@ -965,6 +1004,9 @@ namespace Journaley.Forms
             this.tableLayoutBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).EndInit();
             this.tableLayoutDate.ResumeLayout(false);
+            this.panelEntryArea.ResumeLayout(false);
+            this.tableLayoutEntryArea.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEntryPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).EndInit();
@@ -1038,6 +1080,9 @@ namespace Journaley.Forms
         private System.Windows.Forms.WebBrowser webBrowser;
         private SpellCheckedTextBox spellCheckedEntryText;
         private System.Windows.Forms.TableLayoutPanel tableLayoutCalendar;
+        private System.Windows.Forms.Panel panelEntryArea;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutEntryArea;
+        private System.Windows.Forms.PictureBox pictureBoxEntryPicture;
     }
 }
 

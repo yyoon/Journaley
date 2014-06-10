@@ -137,6 +137,7 @@
 
                 this.UpdateStar();
                 this.UpdatePhotoButton();
+                this.UpdatePhotoArea();
                 this.UpdateTag();
 
                 this.UpdateUI();
@@ -242,9 +243,8 @@
         {
             this.webBrowser.DocumentText =
                 string.Format(
-                    "<style type=\"text/css\">\n{0}\n</style><html><body>{1}<br><div>{2}</div></body></html>",
+                    "<style type=\"text/css\">\n{0}\n</style><html><body><div>{1}</div></body></html>",
                     Journaley.Properties.Resources.JournaleyCSS,
-                    this.SelectedEntry.PhotoPath == null ? string.Empty : "<img src='" + this.SelectedEntry.PhotoPath + "'>",
                     Markdown.Transform(this.SelectedEntry.EntryText));
         }
 
@@ -1227,7 +1227,31 @@
             }
 
             this.UpdatePhotoButton();
+            this.UpdatePhotoArea();
             this.InvalidateEntryInEntryList(this.SelectedEntry);
+        }
+
+        /// <summary>
+        /// Updates the photo area layout.
+        /// </summary>
+        private void UpdatePhotoArea()
+        {
+            if (this.SelectedEntry == null || this.SelectedEntry.PhotoPath == null)
+            {
+                this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 0, SizeType = SizeType.Absolute };
+                this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 100, SizeType = SizeType.Percent };
+            }
+            else
+            {
+                this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 30, SizeType = SizeType.Percent };
+                this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 70, SizeType = SizeType.Percent };
+
+                using (Image image = Image.FromFile(this.SelectedEntry.PhotoPath))
+                {
+                    Image copyImage = new Bitmap(image);
+                    this.pictureBoxEntryPicture.BackgroundImage = copyImage;
+                }
+            }
         }
 
         /// <summary>
@@ -1341,6 +1365,34 @@
                 this.SaveAndFinishEditing();
                 e.Handled = true;
             }
+        }
+
+        /// <summary>
+        /// Handles the DoubleClick event of the pictureBoxEntryPicture control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void PictureBoxEntryPicture_DoubleClick(object sender, EventArgs e)
+        {
+            PhotoDisplayForm photoForm = new PhotoDisplayForm();
+
+            Image image = new Bitmap(Image.FromFile(this.SelectedEntry.PhotoPath));
+            photoForm.Image = image;
+            photoForm.ClientSize = new System.Drawing.Size(image.Width, image.Height);
+
+            Screen currentScreen = Screen.FromControl(this);
+            int screenWidth = currentScreen.Bounds.Width;
+            int screenHeight = currentScreen.Bounds.Height;
+
+            double threshold = 0.8;
+            int maxWidth = (int)(screenWidth * threshold);
+            int maxHeight = (int)(screenHeight * threshold);
+
+            photoForm.Width = Math.Min(photoForm.Width, maxWidth);
+            photoForm.Height = Math.Min(photoForm.Height, maxHeight);
+
+            photoForm.StartPosition = FormStartPosition.CenterScreen;
+            photoForm.Show();
         }
 
         #endregion
