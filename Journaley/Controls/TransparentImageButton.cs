@@ -7,10 +7,19 @@
     using System.Windows.Forms;
 
     /// <summary>
-    /// TableLayoutPanel with a transparent background.
+    /// Transparent Image Button
     /// </summary>
-    public class TransparentTableLayoutPanel : TableLayoutPanel
+    public class TransparentImageButton : ImageButton
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransparentImageButton"/> class.
+        /// </summary>
+        public TransparentImageButton()
+        {
+            this.SetStyle(ControlStyles.Opaque, true);
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, false);
+        }
+
         /// <summary>
         /// Gets the create parameters object.
         /// </summary>
@@ -26,11 +35,6 @@
 
                 return cp;
             }
-        }
-
-        protected override void OnPaintBackground(PaintEventArgs e)
-        {
-            // Do nothing.
         }
     }
 }

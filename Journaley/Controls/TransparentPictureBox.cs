@@ -7,10 +7,19 @@
     using System.Windows.Forms;
 
     /// <summary>
-    /// TableLayoutPanel with a transparent background.
+    /// Transparent PictureBox control.
     /// </summary>
-    public class TransparentTableLayoutPanel : TableLayoutPanel
+    public class TransparentPictureBox : PictureBox
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransparentPictureBox"/> class.
+        /// </summary>
+        public TransparentPictureBox()
+        {
+            //this.SetStyle(ControlStyles.Opaque, true);
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, false);
+        }
+
         /// <summary>
         /// Gets the create parameters object.
         /// </summary>
@@ -28,9 +37,9 @@
             }
         }
 
-        protected override void OnPaintBackground(PaintEventArgs e)
+        protected override void OnPaintBackground(PaintEventArgs pevent)
         {
-            // Do nothing.
+            //base.OnPaintBackground(pevent);
         }
     }
 }

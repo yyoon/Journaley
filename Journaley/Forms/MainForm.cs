@@ -72,6 +72,29 @@
             {
                 entryListBox.EntryTextProvider = this;
             }
+
+            // Back / Popout button labels.
+            this.transparentImageButtonBack.PropertyChanged += (e, args) =>
+                {
+                    this.transparentPictureBoxLabelBack.Image = this.transparentImageButtonBack.Hover
+                        ? Journaley.Properties.Resources.picture_lbl_back
+                        : null;
+
+                    // Repaint the background?
+                    this.panelEntryPhotoArea.Invalidate(this.transparentPictureBoxLabelBack.Bounds, true);
+                    this.panelEntryPhotoArea.Invalidate(this.transparentImageButtonBack.Bounds, true);
+                };
+
+            this.transparentImageButtonPopout.PropertyChanged += (e, args) =>
+            {
+                this.transparentPictureBoxLabelPopout.Image = this.transparentImageButtonPopout.Hover
+                    ? Journaley.Properties.Resources.picture_lbl_popout
+                    : null;
+
+                // Repaint the background?
+                this.panelEntryPhotoArea.Invalidate(this.transparentPictureBoxLabelPopout.Bounds, true);
+                this.panelEntryPhotoArea.Invalidate(this.transparentImageButtonPopout.Bounds, true);
+            };
         }
 
         /// <summary>

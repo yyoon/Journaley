@@ -70,6 +70,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\SpellCheckedTextBox.cs" />
+    <Compile Include="Controls\TransparentImageButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TransparentPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\TransparentTableLayoutPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -334,6 +340,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\NewDesign\sidebar_btn_star_enabled_over.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\picture_btn_back_norm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\picture_btn_back_over.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\picture_btn_popout_norm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\picture_btn_popout_over.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\picture_lbl_back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\picture_lbl_popout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\picture_pane_hoverMask.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets')" />
