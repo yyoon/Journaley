@@ -16,7 +16,7 @@
         /// </summary>
         public TransparentPictureBox()
         {
-            //this.SetStyle(ControlStyles.Opaque, true);
+            this.SetStyle(ControlStyles.Opaque, true);
             this.SetStyle(ControlStyles.OptimizedDoubleBuffer, false);
         }
 
@@ -35,11 +35,6 @@
 
                 return cp;
             }
-        }
-
-        protected override void OnPaintBackground(PaintEventArgs pevent)
-        {
-            //base.OnPaintBackground(pevent);
         }
     }
 }

@@ -12,6 +12,14 @@
     public class TransparentTableLayoutPanel : TableLayoutPanel
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="TransparentTableLayoutPanel"/> class.
+        /// </summary>
+        public TransparentTableLayoutPanel()
+        {
+            this.SetStyle(ControlStyles.Opaque, true);
+        }
+
+        /// <summary>
         /// Gets the create parameters object.
         /// </summary>
         /// <value>
@@ -26,11 +34,6 @@
 
                 return cp;
             }
-        }
-
-        protected override void OnPaintBackground(PaintEventArgs e)
-        {
-            // Do nothing.
         }
     }
 }
