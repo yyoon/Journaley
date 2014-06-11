@@ -30,6 +30,8 @@
         /// </summary>
         private bool isEditing;
 
+        private bool photoExpanded;
+
         /// <summary>
         /// The backing field for markdown object.
         /// </summary>
@@ -160,7 +162,9 @@
 
                 this.UpdateStar();
                 this.UpdatePhotoButton();
-                this.UpdatePhotoArea();
+
+                this.PhotoExpanded = false;
+
                 this.UpdateTag();
 
                 this.UpdateUI();
@@ -188,6 +192,20 @@
             {
                 this.isEditing = value;
                 this.UpdateUI();
+            }
+        }
+
+        private bool PhotoExpanded
+        {
+            get
+            {
+                return this.photoExpanded;
+            }
+
+            set
+            {
+                this.photoExpanded = value;
+                this.UpdatePhotoArea();
             }
         }
 
@@ -1266,13 +1284,25 @@
             }
             else
             {
-                this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 38, SizeType = SizeType.Percent };
-                this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 62, SizeType = SizeType.Percent };
-
                 using (Image image = Image.FromFile(this.SelectedEntry.PhotoPath))
                 {
                     Image copyImage = new Bitmap(image);
                     this.pictureBoxEntryPicture.BackgroundImage = copyImage;
+                }
+
+                if (this.PhotoExpanded)
+                {
+                    this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 100, SizeType = SizeType.Percent };
+                    this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 0, SizeType = SizeType.Absolute };
+
+                    this.transparentTableLayoutPanel1.Visible = true;
+                }
+                else
+                {
+                    this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 38, SizeType = SizeType.Percent };
+                    this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 62, SizeType = SizeType.Percent };
+
+                    this.transparentTableLayoutPanel1.Visible = false;
                 }
             }
         }
@@ -1391,11 +1421,34 @@
         }
 
         /// <summary>
-        /// Handles the DoubleClick event of the pictureBoxEntryPicture control.
+        /// Handles the Click event of the pictureBoxEntryPicture control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void PictureBoxEntryPicture_DoubleClick(object sender, EventArgs e)
+        private void PictureBoxEntryPicture_Click(object sender, EventArgs e)
+        {
+            if (this.PhotoExpanded == false)
+            {
+                this.PhotoExpanded = true;
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the transparentImageButtonBack control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TransparentImageButtonBack_Click(object sender, EventArgs e)
+        {
+            this.PhotoExpanded = false;
+        }
+
+        /// <summary>
+        /// Handles the Click event of the transparentImageButtonPopout control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TransparentImageButtonPopout_Click(object sender, EventArgs e)
         {
             PhotoDisplayForm photoForm = new PhotoDisplayForm();
 
@@ -1416,6 +1469,8 @@
 
             photoForm.StartPosition = FormStartPosition.CenterScreen;
             photoForm.Show();
+
+            this.PhotoExpanded = false;
         }
 
         #endregion
