@@ -263,6 +263,14 @@
         }
 
         /// <summary>
+        /// Gets or sets the first day of week.
+        /// </summary>
+        /// <value>
+        /// The first day of week.
+        /// </value>
+        private DayOfWeek FirstDayOfWeek { get; set; }
+
+        /// <summary>
         /// Gets the entry text for the provided journal entry.
         /// If the entry is currently selected and being edited,
         /// the text being edited should be returned.
@@ -472,8 +480,13 @@
         {
             Debug.Assert(now.Kind == DateTimeKind.Local, "\"now\" parameter must be of DateTimeKind.Local");
 
-            int offsetFromSunday = now.DayOfWeek - DayOfWeek.Sunday;
-            DateTime basis = now.AddDays(-offsetFromSunday).Date;
+            int diff = now.DayOfWeek - this.FirstDayOfWeek;
+            if (diff < 0)
+            {
+                diff += 7;
+            }
+
+            DateTime basis = now.AddDays(-diff).Date;
 
             return this.Entries.Where(x => basis <= x.LocalTime.Date && x.LocalTime <= now).Count();
         }
@@ -744,7 +757,10 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Set Current Culture
+            // Remembre the system settings.
+            this.FirstDayOfWeek = Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+
+            // Set Current Culture for the spell checking.
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
 
