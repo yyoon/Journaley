@@ -46,6 +46,11 @@
         private bool suppressEntryUpdate = false;
 
         /// <summary>
+        /// Indicates whether to add new entry on form load
+        /// </summary>
+        private bool addNewEntryOnLoad = false;
+
+        /// <summary>
         /// The Noto Sans font family
         /// </summary>
         private FontFamily fontFamilyNotoSansRegular;
@@ -53,7 +58,15 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
-        public MainForm()
+        public MainForm() : this(false)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainForm"/> class.
+        /// </summary>
+        /// <param name="newEntry">if set to <c>true</c> [new entry].</param>
+        public MainForm(bool newEntry)
         {
             this.InitializeComponent();
 
@@ -80,16 +93,16 @@
 
             // Back / Popout button labels.
             this.transparentImageButtonBack.PropertyChanged += (e, args) =>
-                {
-                    this.transparentPictureBoxLabelBack.Image = this.transparentImageButtonBack.Hover
-                        ? Journaley.Properties.Resources.picture_lbl_back
-                        : null;
+            {
+                this.transparentPictureBoxLabelBack.Image = this.transparentImageButtonBack.Hover
+                    ? Journaley.Properties.Resources.picture_lbl_back
+                    : null;
 
-                    // Repaint the background?
-                    this.panelEntryPhotoArea.Invalidate(this.transparentPictureBoxLabelBack.Bounds, true);
-                    this.panelEntryPhotoArea.Invalidate(this.transparentImageButtonBack.Bounds, true);
-                    this.panelEntryPhotoArea.Update();
-                };
+                // Repaint the background?
+                this.panelEntryPhotoArea.Invalidate(this.transparentPictureBoxLabelBack.Bounds, true);
+                this.panelEntryPhotoArea.Invalidate(this.transparentImageButtonBack.Bounds, true);
+                this.panelEntryPhotoArea.Update();
+            };
 
             this.transparentImageButtonPopout.PropertyChanged += (e, args) =>
             {
@@ -102,7 +115,20 @@
                 this.panelEntryPhotoArea.Invalidate(this.transparentImageButtonPopout.Bounds, true);
                 this.panelEntryPhotoArea.Update();
             };
+
+            // Jump List
+            JumpListBuilder.BuildJumpList(this.Handle);
+
+            this.addNewEntryOnLoad = newEntry;
         }
+
+        /// <summary>
+        /// Gets or sets the new entry message ID to be used by the JumpList communication.
+        /// </summary>
+        /// <value>
+        /// The new entry message.
+        /// </value>
+        public static int NewEntryMessage { get; set; }
 
         /// <summary>
         /// Gets or sets the settings.
@@ -293,6 +319,23 @@
             else
             {
                 return entry.EntryText;
+            }
+        }
+
+        /// <summary>
+        /// For capturing NewEntry Message.
+        /// </summary>
+        /// <param name="m">The Windows <see cref="T:System.Windows.Forms.Message" /> to process.</param>
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == NewEntryMessage)
+            {
+                this.AddNewEntry();
+                this.Activate();
+            }
+            else
+            {
+                base.WndProc(ref m);
             }
         }
 
@@ -754,6 +797,218 @@
             this.UpdateUI();
         }
 
+        /// <summary>
+        /// Adds a new entry.
+        /// </summary>
+        private void AddNewEntry()
+        {
+            Entry newEntry = new Entry();
+            this.Entries.Add(newEntry);
+
+            this.SelectedEntry = newEntry;
+            this.UpdateAllEntryLists();
+            this.UpdateStats();
+            this.spellCheckedEntryText.Focus();
+        }
+
+        /// <summary>
+        /// Asks the user to choose existing photo.
+        /// </summary>
+        private void AskToChooseExistingPhoto()
+        {
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            openDialog.Filter =
+                "All Supported Images (*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif)|*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif|" +
+                "Bitmap Images (*.bmp)|*.bmp|" +
+                "GIF Images (*.gif)|*.gif|" +
+                "JPEG Images (*.jpeg;*.jpg)|*.jpeg;*.jpg|" +
+                "PNG Images (*.png)|*.png|" +
+                "TIFF Images (*.tiff;*.tif)|*.tiff;*.tif";
+            openDialog.FilterIndex = 1;
+            openDialog.RestoreDirectory = true;
+            openDialog.CheckFileExists = true;
+            openDialog.Multiselect = false;
+
+            if (openDialog.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            // Does the photo folder exist at all?
+            if (!Directory.Exists(this.Settings.PhotoFolderPath))
+            {
+                // If there is a file named the same as the photo folder,
+                // show an error message.
+                if (File.Exists(this.Settings.PhotoFolderPath))
+                {
+                    MessageBox.Show(
+                        "Your Day One folder contains a file named \"photos\", which is preventing Journaley from creating the photo directory.",
+                        "Error creating photo folder",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
+                    return;
+                }
+
+                Directory.CreateDirectory(this.Settings.PhotoFolderPath);
+            }
+
+            // Delete the existing photo, if there's any.
+            this.DeletePhoto();
+
+            // Now copy the file to the photo folder if the file is in JPEG.
+            // Otherwise, convert it to JPEG.
+            string targetFileName = Path.ChangeExtension(this.SelectedEntry.UUIDString, "jpg");
+            string targetFullPath = Path.Combine(this.Settings.PhotoFolderPath, targetFileName);
+
+            string ext = Path.GetExtension(openDialog.FileName).ToLower();
+            if (ext == ".jpg" || ext == ".jpeg")
+            {
+                FileInfo srcInfo = new FileInfo(openDialog.FileName);
+                srcInfo.CopyTo(targetFullPath);
+            }
+            else
+            {
+                try
+                {
+                    using (Image image = Image.FromFile(openDialog.FileName))
+                    {
+                        using (Bitmap b = new Bitmap(image.Width, image.Height))
+                        {
+                            b.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+                            using (Graphics g = Graphics.FromImage(b))
+                            {
+                                g.Clear(Color.White);
+                                g.DrawImageUnscaled(image, 0, 0);
+                            }
+
+                            // Set the JPEG quality to 100L.
+                            ImageCodecInfo jpgEncoder = this.GetEncoder(ImageFormat.Jpeg);
+
+                            if (jpgEncoder != null)
+                            {
+                                Encoder encoder = Encoder.Quality;
+                                EncoderParameters encoderParameters = new EncoderParameters(1);
+                                encoderParameters.Param[0] = new EncoderParameter(encoder, 100L);
+
+                                b.Save(targetFullPath, jpgEncoder, encoderParameters);
+                            }
+                            else
+                            {
+                                // Just use the default save method with 75% quality in case the encoder object is not found.
+                                b.Save(targetFullPath, ImageFormat.Jpeg);
+                            }
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show(
+                        "Error reading the selected photo.",
+                        "Failed to add photo",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
+                    return;
+                }
+            }
+
+            // Assign the photo path to the selected entry.
+            this.SelectedEntry.PhotoPath = Path.Combine(this.Settings.PhotoFolderPath, targetFileName);
+
+            // Update the UIs related to photo.
+            this.UpdatePhotoUIs();
+        }
+
+        /// <summary>
+        /// Gets the image encoder.
+        /// </summary>
+        /// <param name="format">The image format.</param>
+        /// <returns>The image encoder for the given image format, null if not found.</returns>
+        private ImageCodecInfo GetEncoder(ImageFormat format)
+        {
+            // Not sure why GetImageDecoders() is used instead of GetImageEncoders(),
+            // but I'm just following the example in MSDN
+            // http://msdn.microsoft.com/en-us/library/bb882583%28v=vs.110%29.aspx
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
+
+            foreach (var codec in codecs)
+            {
+                if (codec.FormatID == format.Guid)
+                {
+                    return codec;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Updates the photo related UIs.
+        /// </summary>
+        private void UpdatePhotoUIs()
+        {
+            if (!this.IsEditing)
+            {
+                this.UpdateWebBrowser();
+            }
+
+            this.UpdatePhotoButton();
+            this.UpdatePhotoArea();
+            this.InvalidateEntryInEntryList(this.SelectedEntry);
+        }
+
+        /// <summary>
+        /// Updates the photo area layout.
+        /// </summary>
+        private void UpdatePhotoArea()
+        {
+            if (this.SelectedEntry == null || this.SelectedEntry.PhotoPath == null)
+            {
+                this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 0, SizeType = SizeType.Absolute };
+                this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 100, SizeType = SizeType.Percent };
+            }
+            else
+            {
+                using (Image image = Image.FromFile(this.SelectedEntry.PhotoPath))
+                {
+                    Image copyImage = new Bitmap(image);
+                    this.pictureBoxEntryPhoto.BackgroundImage = copyImage;
+                }
+
+                if (this.PhotoExpanded)
+                {
+                    this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 100, SizeType = SizeType.Percent };
+                    this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 0, SizeType = SizeType.Absolute };
+
+                    this.tableLayoutPanelEntryPhotoButtons.Visible = true;
+                    this.panelEntryPhotoArea.Refresh();
+                }
+                else
+                {
+                    this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 38, SizeType = SizeType.Percent };
+                    this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 62, SizeType = SizeType.Percent };
+
+                    this.tableLayoutPanelEntryPhotoButtons.Visible = false;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deletes the photo associated with this entry, if there's any.
+        /// This method does NOT send the photo to the recycle bin.
+        /// Also, this method only deletes the file,
+        /// and the caller is responsible for maintaining the entry's PhotoPath property up to date.
+        /// </summary>
+        private void DeletePhoto()
+        {
+            if (File.Exists(this.SelectedEntry.PhotoPath))
+            {
+                File.Delete(this.SelectedEntry.PhotoPath);
+            }
+        }
+
         #region Event Handlers
 
         /// <summary>
@@ -823,6 +1078,12 @@
 
             // Finished Loading
             this.FormLoaded = true;
+
+            // Show new entry?
+            if (this.addNewEntryOnLoad)
+            {
+                this.AddNewEntry();
+            }
         }
 
         /// <summary>
@@ -1078,13 +1339,7 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonAddEntry_Click(object sender, EventArgs e)
         {
-            Entry newEntry = new Entry();
-            this.Entries.Add(newEntry);
-
-            this.SelectedEntry = newEntry;
-            this.UpdateAllEntryLists();
-            this.UpdateStats();
-            this.spellCheckedEntryText.Focus();
+            this.AddNewEntry();
         }
 
         /// <summary>
@@ -1155,204 +1410,6 @@
             }
 
             this.AskToChooseExistingPhoto();
-        }
-
-        /// <summary>
-        /// Asks the user to choose existing photo.
-        /// </summary>
-        private void AskToChooseExistingPhoto()
-        {
-            OpenFileDialog openDialog = new OpenFileDialog();
-            openDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            openDialog.Filter =
-                "All Supported Images (*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif)|*.bmp;*.gif;*.jpeg;*.jpg;*.png;*.tiff;*.tif|" +
-                "Bitmap Images (*.bmp)|*.bmp|" +
-                "GIF Images (*.gif)|*.gif|" +
-                "JPEG Images (*.jpeg;*.jpg)|*.jpeg;*.jpg|" +
-                "PNG Images (*.png)|*.png|" +
-                "TIFF Images (*.tiff;*.tif)|*.tiff;*.tif";
-            openDialog.FilterIndex = 1;
-            openDialog.RestoreDirectory = true;
-            openDialog.CheckFileExists = true;
-            openDialog.Multiselect = false;
-
-            if (openDialog.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
-
-            // Does the photo folder exist at all?
-            if (!Directory.Exists(this.Settings.PhotoFolderPath))
-            {
-                // If there is a file named the same as the photo folder,
-                // show an error message.
-                if (File.Exists(this.Settings.PhotoFolderPath))
-                {
-                    MessageBox.Show(
-                        "Your Day One folder contains a file named \"photos\", which is preventing Journaley from creating the photo directory.",
-                        "Error creating photo folder",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-
-                    return;
-                }
-
-                Directory.CreateDirectory(this.Settings.PhotoFolderPath);
-            }
-
-            // Delete the existing photo, if there's any.
-            this.DeletePhoto();
-
-            // Now copy the file to the photo folder if the file is in JPEG.
-            // Otherwise, convert it to JPEG.
-            string targetFileName = Path.ChangeExtension(this.SelectedEntry.UUIDString, "jpg");
-            string targetFullPath = Path.Combine(this.Settings.PhotoFolderPath, targetFileName);
-
-            string ext = Path.GetExtension(openDialog.FileName).ToLower();
-            if (ext == ".jpg" || ext == ".jpeg")
-            {
-                FileInfo srcInfo = new FileInfo(openDialog.FileName);
-                srcInfo.CopyTo(targetFullPath);
-            }
-            else
-            {
-                try
-                {
-                    using (Image image = Image.FromFile(openDialog.FileName))
-                    {
-                        using (Bitmap b = new Bitmap(image.Width, image.Height))
-                        {
-                            b.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-                            using (Graphics g = Graphics.FromImage(b))
-                            {
-                                g.Clear(Color.White);
-                                g.DrawImageUnscaled(image, 0, 0);
-                            }
-
-                            // Set the JPEG quality to 100L.
-                            ImageCodecInfo jpgEncoder = this.GetEncoder(ImageFormat.Jpeg);
-
-                            if (jpgEncoder != null)
-                            {
-                                Encoder encoder = Encoder.Quality;
-                                EncoderParameters encoderParameters = new EncoderParameters(1);
-                                encoderParameters.Param[0] = new EncoderParameter(encoder, 100L);
-
-                                b.Save(targetFullPath, jpgEncoder, encoderParameters);
-                            }
-                            else
-                            {
-                                // Just use the default save method with 75% quality in case the encoder object is not found.
-                                b.Save(targetFullPath, ImageFormat.Jpeg);
-                            }
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show(
-                        "Error reading the selected photo.",
-                        "Failed to add photo",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-
-                    return;
-                }
-            }
-
-            // Assign the photo path to the selected entry.
-            this.SelectedEntry.PhotoPath = Path.Combine(this.Settings.PhotoFolderPath, targetFileName);
-
-            // Update the UIs related to photo.
-            this.UpdatePhotoUIs();
-        }
-
-        /// <summary>
-        /// Gets the image encoder.
-        /// </summary>
-        /// <param name="format">The image format.</param>
-        /// <returns>The image encoder for the given image format, null if not found.</returns>
-        private ImageCodecInfo GetEncoder(ImageFormat format)
-        {
-            // Not sure why GetImageDecoders() is used instead of GetImageEncoders(),
-            // but I'm just following the example in MSDN
-            // http://msdn.microsoft.com/en-us/library/bb882583%28v=vs.110%29.aspx
-            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
-
-            foreach (var codec in codecs)
-            {
-                if (codec.FormatID == format.Guid)
-                {
-                    return codec;
-                }
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Updates the photo related UIs.
-        /// </summary>
-        private void UpdatePhotoUIs()
-        {
-            if (!this.IsEditing)
-            {
-                this.UpdateWebBrowser();
-            }
-
-            this.UpdatePhotoButton();
-            this.UpdatePhotoArea();
-            this.InvalidateEntryInEntryList(this.SelectedEntry);
-        }
-
-        /// <summary>
-        /// Updates the photo area layout.
-        /// </summary>
-        private void UpdatePhotoArea()
-        {
-            if (this.SelectedEntry == null || this.SelectedEntry.PhotoPath == null)
-            {
-                this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 0, SizeType = SizeType.Absolute };
-                this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 100, SizeType = SizeType.Percent };
-            }
-            else
-            {
-                using (Image image = Image.FromFile(this.SelectedEntry.PhotoPath))
-                {
-                    Image copyImage = new Bitmap(image);
-                    this.pictureBoxEntryPhoto.BackgroundImage = copyImage;
-                }
-
-                if (this.PhotoExpanded)
-                {
-                    this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 100, SizeType = SizeType.Percent };
-                    this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 0, SizeType = SizeType.Absolute };
-
-                    this.tableLayoutPanelEntryPhotoButtons.Visible = true;
-                    this.panelEntryPhotoArea.Refresh();
-                }
-                else
-                {
-                    this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 38, SizeType = SizeType.Percent };
-                    this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 62, SizeType = SizeType.Percent };
-
-                    this.tableLayoutPanelEntryPhotoButtons.Visible = false;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Deletes the photo associated with this entry, if there's any.
-        /// This method does NOT send the photo to the recycle bin.
-        /// Also, this method only deletes the file,
-        /// and the caller is responsible for maintaining the entry's PhotoPath property up to date.
-        /// </summary>
-        private void DeletePhoto()
-        {
-            if (File.Exists(this.SelectedEntry.PhotoPath))
-            {
-                File.Delete(this.SelectedEntry.PhotoPath);
-            }
         }
 
         /// <summary>

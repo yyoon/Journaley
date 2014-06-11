@@ -23,6 +23,15 @@
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool BitBlt([In] IntPtr hdc, int nXDest, int nYDest, int nWidth, int nHeight, [In] IntPtr hdcSrc, int nXSrc, int nYSrc, TernaryRasterOperations dwRop);
 
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        public static extern int SendMessage(IntPtr hWnd, int wMsg, IntPtr wParam, IntPtr lParam);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        [DllImport("user32.dll")]
+        public static extern int RegisterWindowMessage(string msgName);
+
         /// <summary>
         ///     Specifies a raster-operation code. These codes define how the color data for the
         ///     source rectangle is to be combined with the color data for the destination
