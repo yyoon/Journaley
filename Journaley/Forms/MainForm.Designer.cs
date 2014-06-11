@@ -60,6 +60,10 @@ namespace Journaley.Forms
             this.tableLayoutDate = new System.Windows.Forms.TableLayoutPanel();
             this.panelDateLeft = new System.Windows.Forms.Panel();
             this.panelDateRight = new System.Windows.Forms.Panel();
+            this.panelEntryArea = new System.Windows.Forms.Panel();
+            this.tableLayoutEntryArea = new System.Windows.Forms.TableLayoutPanel();
+            this.panelEntryPhotoArea = new System.Windows.Forms.Panel();
+            this.tableLayoutPanelEntryPhoto = new System.Windows.Forms.TableLayoutPanel();
             this.buttonAddEntry = new Journaley.Controls.ImageButton();
             this.buttonSettings = new Journaley.Controls.ImageButton();
             this.buttonEdit = new Journaley.Controls.ImageButton();
@@ -82,6 +86,12 @@ namespace Journaley.Forms
             this.panelTags = new System.Windows.Forms.Panel();
             this.entryListBoxTags = new Journaley.Controls.EntryListBox();
             this.listBoxTags = new System.Windows.Forms.ListBox();
+            this.tableLayoutPanelEntryPhotoButtons = new Journaley.Controls.TransparentTableLayoutPanel();
+            this.transparentPictureBoxLabelPopout = new Journaley.Controls.TransparentPictureBox();
+            this.transparentImageButtonPopout = new Journaley.Controls.TransparentImageButton();
+            this.transparentPictureBoxLabelBack = new Journaley.Controls.TransparentPictureBox();
+            this.transparentImageButtonBack = new Journaley.Controls.TransparentImageButton();
+            this.pictureBoxEntryPhoto = new Journaley.Controls.FixedWidthPictureBox();
             this.spellCheckedEntryText = new Journaley.Controls.SpellCheckedTextBox();
             label5 = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
@@ -99,6 +109,10 @@ namespace Journaley.Forms
             this.tableLayoutBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).BeginInit();
             this.tableLayoutDate.SuspendLayout();
+            this.panelEntryArea.SuspendLayout();
+            this.tableLayoutEntryArea.SuspendLayout();
+            this.panelEntryPhotoArea.SuspendLayout();
+            this.tableLayoutPanelEntryPhoto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).BeginInit();
@@ -116,6 +130,12 @@ namespace Journaley.Forms
             this.tableLayoutCalendar.SuspendLayout();
             this.panelTimeline.SuspendLayout();
             this.panelTags.SuspendLayout();
+            this.tableLayoutPanelEntryPhotoButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.transparentPictureBoxLabelPopout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transparentImageButtonPopout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transparentPictureBoxLabelBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transparentImageButtonBack)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEntryPhoto)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -244,15 +264,13 @@ namespace Journaley.Forms
             // 
             // panelWebBrowserWrapper
             // 
-            this.panelWebBrowserWrapper.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelWebBrowserWrapper.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelWebBrowserWrapper.Controls.Add(this.webBrowser);
-            this.panelWebBrowserWrapper.Location = new System.Drawing.Point(264, 24);
+            this.panelWebBrowserWrapper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelWebBrowserWrapper.Location = new System.Drawing.Point(0, 0);
             this.panelWebBrowserWrapper.Margin = new System.Windows.Forms.Padding(0);
             this.panelWebBrowserWrapper.Name = "panelWebBrowserWrapper";
-            this.panelWebBrowserWrapper.Size = new System.Drawing.Size(620, 508);
+            this.panelWebBrowserWrapper.Size = new System.Drawing.Size(620, 315);
             this.panelWebBrowserWrapper.TabIndex = 11;
             // 
             // webBrowser
@@ -261,7 +279,7 @@ namespace Journaley.Forms
             this.webBrowser.Location = new System.Drawing.Point(0, 0);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(618, 506);
+            this.webBrowser.Size = new System.Drawing.Size(618, 313);
             this.webBrowser.TabIndex = 0;
             // 
             // contextMenuStripPhotoWithPhoto
@@ -515,6 +533,63 @@ namespace Journaley.Forms
             this.panelDateRight.Name = "panelDateRight";
             this.panelDateRight.Size = new System.Drawing.Size(100, 25);
             this.panelDateRight.TabIndex = 1;
+            // 
+            // panelEntryArea
+            // 
+            this.panelEntryArea.Controls.Add(this.panelWebBrowserWrapper);
+            this.panelEntryArea.Controls.Add(this.spellCheckedEntryText);
+            this.panelEntryArea.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelEntryArea.Location = new System.Drawing.Point(0, 193);
+            this.panelEntryArea.Margin = new System.Windows.Forms.Padding(0);
+            this.panelEntryArea.Name = "panelEntryArea";
+            this.panelEntryArea.Size = new System.Drawing.Size(620, 315);
+            this.panelEntryArea.TabIndex = 1;
+            // 
+            // tableLayoutEntryArea
+            // 
+            this.tableLayoutEntryArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutEntryArea.ColumnCount = 1;
+            this.tableLayoutEntryArea.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutEntryArea.Controls.Add(this.panelEntryPhotoArea, 0, 0);
+            this.tableLayoutEntryArea.Controls.Add(this.panelEntryArea, 0, 1);
+            this.tableLayoutEntryArea.Location = new System.Drawing.Point(264, 24);
+            this.tableLayoutEntryArea.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutEntryArea.Name = "tableLayoutEntryArea";
+            this.tableLayoutEntryArea.RowCount = 2;
+            this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38F));
+            this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62F));
+            this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutEntryArea.Size = new System.Drawing.Size(620, 508);
+            this.tableLayoutEntryArea.TabIndex = 1;
+            // 
+            // panelEntryPhotoArea
+            // 
+            this.panelEntryPhotoArea.Controls.Add(this.tableLayoutPanelEntryPhotoButtons);
+            this.panelEntryPhotoArea.Controls.Add(this.tableLayoutPanelEntryPhoto);
+            this.panelEntryPhotoArea.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelEntryPhotoArea.Location = new System.Drawing.Point(0, 0);
+            this.panelEntryPhotoArea.Margin = new System.Windows.Forms.Padding(0);
+            this.panelEntryPhotoArea.Name = "panelEntryPhotoArea";
+            this.panelEntryPhotoArea.Size = new System.Drawing.Size(620, 193);
+            this.panelEntryPhotoArea.TabIndex = 3;
+            // 
+            // tableLayoutPanelEntryPhoto
+            // 
+            this.tableLayoutPanelEntryPhoto.BackgroundImage = global::Journaley.Properties.Resources.picture_pane_background_tile;
+            this.tableLayoutPanelEntryPhoto.ColumnCount = 1;
+            this.tableLayoutPanelEntryPhoto.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelEntryPhoto.Controls.Add(this.pictureBoxEntryPhoto, 0, 1);
+            this.tableLayoutPanelEntryPhoto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelEntryPhoto.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelEntryPhoto.Name = "tableLayoutPanelEntryPhoto";
+            this.tableLayoutPanelEntryPhoto.RowCount = 3;
+            this.tableLayoutPanelEntryPhoto.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelEntryPhoto.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelEntryPhoto.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanelEntryPhoto.Size = new System.Drawing.Size(620, 193);
+            this.tableLayoutPanelEntryPhoto.TabIndex = 4;
             // 
             // buttonAddEntry
             // 
@@ -905,19 +980,113 @@ namespace Journaley.Forms
             this.listBoxTags.TabIndex = 0;
             this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
             // 
+            // tableLayoutPanelEntryPhotoButtons
+            // 
+            this.tableLayoutPanelEntryPhotoButtons.ColumnCount = 1;
+            this.tableLayoutPanelEntryPhotoButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelEntryPhotoButtons.Controls.Add(this.transparentPictureBoxLabelPopout, 0, 4);
+            this.tableLayoutPanelEntryPhotoButtons.Controls.Add(this.transparentImageButtonPopout, 0, 3);
+            this.tableLayoutPanelEntryPhotoButtons.Controls.Add(this.transparentPictureBoxLabelBack, 0, 0);
+            this.tableLayoutPanelEntryPhotoButtons.Controls.Add(this.transparentImageButtonBack, 0, 1);
+            this.tableLayoutPanelEntryPhotoButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelEntryPhotoButtons.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanelEntryPhotoButtons.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanelEntryPhotoButtons.Name = "tableLayoutPanelEntryPhotoButtons";
+            this.tableLayoutPanelEntryPhotoButtons.RowCount = 5;
+            this.tableLayoutPanelEntryPhotoButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
+            this.tableLayoutPanelEntryPhotoButtons.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelEntryPhotoButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelEntryPhotoButtons.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanelEntryPhotoButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
+            this.tableLayoutPanelEntryPhotoButtons.Size = new System.Drawing.Size(620, 193);
+            this.tableLayoutPanelEntryPhotoButtons.TabIndex = 3;
+            // 
+            // transparentPictureBoxLabelPopout
+            // 
+            this.transparentPictureBoxLabelPopout.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.transparentPictureBoxLabelPopout.BackColor = System.Drawing.Color.Transparent;
+            this.transparentPictureBoxLabelPopout.Location = new System.Drawing.Point(290, 178);
+            this.transparentPictureBoxLabelPopout.Margin = new System.Windows.Forms.Padding(0, 4, 0, 1);
+            this.transparentPictureBoxLabelPopout.Name = "transparentPictureBoxLabelPopout";
+            this.transparentPictureBoxLabelPopout.Size = new System.Drawing.Size(40, 14);
+            this.transparentPictureBoxLabelPopout.TabIndex = 3;
+            this.transparentPictureBoxLabelPopout.TabStop = false;
+            // 
+            // transparentImageButtonPopout
+            // 
+            this.transparentImageButtonPopout.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.transparentImageButtonPopout.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.transparentImageButtonPopout.DownImage = global::Journaley.Properties.Resources.picture_btn_popout_over;
+            this.transparentImageButtonPopout.HoverImage = global::Journaley.Properties.Resources.picture_btn_popout_over;
+            this.transparentImageButtonPopout.Image = global::Journaley.Properties.Resources.picture_btn_popout_norm;
+            this.transparentImageButtonPopout.Location = new System.Drawing.Point(294, 142);
+            this.transparentImageButtonPopout.Margin = new System.Windows.Forms.Padding(0);
+            this.transparentImageButtonPopout.Name = "transparentImageButtonPopout";
+            this.transparentImageButtonPopout.NormalImage = global::Journaley.Properties.Resources.picture_btn_popout_norm;
+            this.transparentImageButtonPopout.Selected = false;
+            this.transparentImageButtonPopout.SelectedDownImage = null;
+            this.transparentImageButtonPopout.SelectedHoverImage = null;
+            this.transparentImageButtonPopout.SelectedImage = null;
+            this.transparentImageButtonPopout.Size = new System.Drawing.Size(32, 32);
+            this.transparentImageButtonPopout.TabIndex = 2;
+            this.transparentImageButtonPopout.TabStop = false;
+            this.transparentImageButtonPopout.Click += new System.EventHandler(this.TransparentImageButtonPopout_Click);
+            // 
+            // transparentPictureBoxLabelBack
+            // 
+            this.transparentPictureBoxLabelBack.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.transparentPictureBoxLabelBack.BackColor = System.Drawing.Color.Transparent;
+            this.transparentPictureBoxLabelBack.Location = new System.Drawing.Point(296, 3);
+            this.transparentPictureBoxLabelBack.Margin = new System.Windows.Forms.Padding(0, 3, 0, 4);
+            this.transparentPictureBoxLabelBack.Name = "transparentPictureBoxLabelBack";
+            this.transparentPictureBoxLabelBack.Size = new System.Drawing.Size(27, 12);
+            this.transparentPictureBoxLabelBack.TabIndex = 0;
+            this.transparentPictureBoxLabelBack.TabStop = false;
+            // 
+            // transparentImageButtonBack
+            // 
+            this.transparentImageButtonBack.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.transparentImageButtonBack.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.transparentImageButtonBack.DownImage = global::Journaley.Properties.Resources.picture_btn_back_over;
+            this.transparentImageButtonBack.HoverImage = global::Journaley.Properties.Resources.picture_btn_back_over;
+            this.transparentImageButtonBack.Image = global::Journaley.Properties.Resources.picture_btn_back_norm;
+            this.transparentImageButtonBack.Location = new System.Drawing.Point(294, 19);
+            this.transparentImageButtonBack.Margin = new System.Windows.Forms.Padding(0);
+            this.transparentImageButtonBack.Name = "transparentImageButtonBack";
+            this.transparentImageButtonBack.NormalImage = global::Journaley.Properties.Resources.picture_btn_back_norm;
+            this.transparentImageButtonBack.Selected = false;
+            this.transparentImageButtonBack.SelectedDownImage = null;
+            this.transparentImageButtonBack.SelectedHoverImage = null;
+            this.transparentImageButtonBack.SelectedImage = null;
+            this.transparentImageButtonBack.Size = new System.Drawing.Size(32, 32);
+            this.transparentImageButtonBack.TabIndex = 1;
+            this.transparentImageButtonBack.TabStop = false;
+            this.transparentImageButtonBack.Click += new System.EventHandler(this.TransparentImageButtonBack_Click);
+            // 
+            // pictureBoxEntryPhoto
+            // 
+            this.pictureBoxEntryPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxEntryPhoto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBoxEntryPhoto.Location = new System.Drawing.Point(0, 96);
+            this.pictureBoxEntryPhoto.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBoxEntryPhoto.Name = "pictureBoxEntryPhoto";
+            this.pictureBoxEntryPhoto.Size = new System.Drawing.Size(620, 0);
+            this.pictureBoxEntryPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxEntryPhoto.TabIndex = 2;
+            this.pictureBoxEntryPhoto.TabStop = false;
+            this.pictureBoxEntryPhoto.Click += new System.EventHandler(this.PictureBoxEntryPicture_Click);
+            // 
             // spellCheckedEntryText
             // 
-            this.spellCheckedEntryText.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.spellCheckedEntryText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.spellCheckedEntryText.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spellCheckedEntryText.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.spellCheckedEntryText.Location = new System.Drawing.Point(264, 24);
+            this.spellCheckedEntryText.Location = new System.Drawing.Point(0, 0);
             this.spellCheckedEntryText.Multiline = true;
             this.spellCheckedEntryText.Name = "spellCheckedEntryText";
             this.spellCheckedEntryText.Padding = new System.Windows.Forms.Padding(30);
             this.spellCheckedEntryText.ReadOnly = false;
-            this.spellCheckedEntryText.Size = new System.Drawing.Size(620, 508);
+            this.spellCheckedEntryText.Size = new System.Drawing.Size(620, 315);
             this.spellCheckedEntryText.TabIndex = 1;
             this.spellCheckedEntryText.WordWrap = true;
             this.spellCheckedEntryText.TextChanged += new System.EventHandler(this.SpellCheckedEntryText_TextChanged);
@@ -938,8 +1107,7 @@ namespace Journaley.Forms
             this.Controls.Add(this.buttonMainCalendar);
             this.Controls.Add(this.buttonMainTimeline);
             this.Controls.Add(this.panelEntryListArea);
-            this.Controls.Add(this.panelWebBrowserWrapper);
-            this.Controls.Add(this.spellCheckedEntryText);
+            this.Controls.Add(this.tableLayoutEntryArea);
             this.Controls.Add(this.tableLayoutStats);
             this.DoubleBuffered = true;
             this.KeyPreview = true;
@@ -965,6 +1133,10 @@ namespace Journaley.Forms
             this.tableLayoutBottom.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).EndInit();
             this.tableLayoutDate.ResumeLayout(false);
+            this.panelEntryArea.ResumeLayout(false);
+            this.tableLayoutEntryArea.ResumeLayout(false);
+            this.panelEntryPhotoArea.ResumeLayout(false);
+            this.tableLayoutPanelEntryPhoto.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).EndInit();
@@ -982,6 +1154,12 @@ namespace Journaley.Forms
             this.tableLayoutCalendar.ResumeLayout(false);
             this.panelTimeline.ResumeLayout(false);
             this.panelTags.ResumeLayout(false);
+            this.tableLayoutPanelEntryPhotoButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.transparentPictureBoxLabelPopout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transparentImageButtonPopout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transparentPictureBoxLabelBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transparentImageButtonBack)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEntryPhoto)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1038,6 +1216,16 @@ namespace Journaley.Forms
         private System.Windows.Forms.WebBrowser webBrowser;
         private SpellCheckedTextBox spellCheckedEntryText;
         private System.Windows.Forms.TableLayoutPanel tableLayoutCalendar;
+        private System.Windows.Forms.Panel panelEntryArea;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutEntryArea;
+        private Journaley.Controls.FixedWidthPictureBox pictureBoxEntryPhoto;
+        private System.Windows.Forms.Panel panelEntryPhotoArea;
+        private TransparentTableLayoutPanel tableLayoutPanelEntryPhotoButtons;
+        private TransparentPictureBox transparentPictureBoxLabelBack;
+        private TransparentImageButton transparentImageButtonBack;
+        private TransparentImageButton transparentImageButtonPopout;
+        private TransparentPictureBox transparentPictureBoxLabelPopout;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelEntryPhoto;
     }
 }
 

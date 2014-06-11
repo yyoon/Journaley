@@ -11,7 +11,7 @@
     /// <summary>
     /// Part of this code was taken from: http://www.codeproject.com/Articles/29010/WinForm-ImageButton.
     /// </summary>
-    public class ImageButton : PictureBox, IButtonControl
+    public class ImageButton : PictureBox, IButtonControl, INotifyPropertyChanged
     {
         /// <summary>
         /// WM_KEYDOWN code
@@ -47,6 +47,36 @@
         /// Indicates whether the space bar is held by the user.
         /// </summary>
         private bool holdingSpace = false;
+
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Gets a value indicating whether the mouse is currently over this button.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if hover; otherwise, <c>false</c>.
+        /// </value>
+        public bool Hover
+        {
+            get
+            {
+                return this.hover;
+            }
+
+            private set
+            {
+                bool prev = this.hover;
+                this.hover = value;
+
+                if (prev != value && this.PropertyChanged != null)
+                {
+                    this.PropertyChanged(this, new PropertyChangedEventArgs("Hover"));
+                }
+            }
+        }
 
         /// <summary>
         /// Gets or sets the hover image.
@@ -133,7 +163,7 @@
                     {
                         this.Image = this.DownImageToDisplay;
                     }
-                    else if (this.hover && this.HoverImageToDisplay != null)
+                    else if (this.Hover && this.HoverImageToDisplay != null)
                     {
                         this.Image = this.HoverImageToDisplay;
                     }
@@ -254,7 +284,7 @@
         /// <param name="e">A <see cref="T:System.Windows.Forms.MouseEventArgs" /> that contains the event data.</param>
         protected override void OnMouseMove(MouseEventArgs e)
         {
-            this.hover = true;
+            this.Hover = true;
             if (this.down)
             {
                 if (this.DownImageToDisplay != null && this.Image != this.DownImageToDisplay)
@@ -289,7 +319,7 @@
         /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
         protected override void OnMouseLeave(EventArgs e)
         {
-            this.hover = false;
+            this.Hover = false;
             this.Image = this.SelectedImage != null && this.Selected ? this.SelectedImage : this.NormalImage;
 
             base.OnMouseLeave(e);
@@ -319,7 +349,7 @@
         protected override void OnMouseUp(MouseEventArgs e)
         {
             this.down = false;
-            if (this.hover)
+            if (this.Hover)
             {
                 if (this.HoverImageToDisplay != null)
                 {

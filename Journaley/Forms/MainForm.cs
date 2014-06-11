@@ -31,6 +31,11 @@
         private bool isEditing;
 
         /// <summary>
+        /// The backing field for PhotoExpanded.
+        /// </summary>
+        private bool photoExpanded;
+
+        /// <summary>
         /// The backing field for markdown object.
         /// </summary>
         private Markdown markdown;
@@ -72,6 +77,31 @@
             {
                 entryListBox.EntryTextProvider = this;
             }
+
+            // Back / Popout button labels.
+            this.transparentImageButtonBack.PropertyChanged += (e, args) =>
+                {
+                    this.transparentPictureBoxLabelBack.Image = this.transparentImageButtonBack.Hover
+                        ? Journaley.Properties.Resources.picture_lbl_back
+                        : null;
+
+                    // Repaint the background?
+                    this.panelEntryPhotoArea.Invalidate(this.transparentPictureBoxLabelBack.Bounds, true);
+                    this.panelEntryPhotoArea.Invalidate(this.transparentImageButtonBack.Bounds, true);
+                    this.panelEntryPhotoArea.Update();
+                };
+
+            this.transparentImageButtonPopout.PropertyChanged += (e, args) =>
+            {
+                this.transparentPictureBoxLabelPopout.Image = this.transparentImageButtonPopout.Hover
+                    ? Journaley.Properties.Resources.picture_lbl_popout
+                    : null;
+
+                // Repaint the background?
+                this.panelEntryPhotoArea.Invalidate(this.transparentPictureBoxLabelPopout.Bounds, true);
+                this.panelEntryPhotoArea.Invalidate(this.transparentImageButtonPopout.Bounds, true);
+                this.panelEntryPhotoArea.Update();
+            };
         }
 
         /// <summary>
@@ -137,6 +167,9 @@
 
                 this.UpdateStar();
                 this.UpdatePhotoButton();
+
+                this.PhotoExpanded = false;
+
                 this.UpdateTag();
 
                 this.UpdateUI();
@@ -164,6 +197,26 @@
             {
                 this.isEditing = value;
                 this.UpdateUI();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [photo expanded].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [photo expanded]; otherwise, <c>false</c>.
+        /// </value>
+        private bool PhotoExpanded
+        {
+            get
+            {
+                return this.photoExpanded;
+            }
+
+            set
+            {
+                this.photoExpanded = value;
+                this.UpdatePhotoArea();
             }
         }
 
@@ -242,9 +295,8 @@
         {
             this.webBrowser.DocumentText =
                 string.Format(
-                    "<style type=\"text/css\">\n{0}\n</style><html><body>{1}<br><div>{2}</div></body></html>",
+                    "<style type=\"text/css\">\n{0}\n</style><html><body><div>{1}</div></body></html>",
                     Journaley.Properties.Resources.JournaleyCSS,
-                    this.SelectedEntry.PhotoPath == null ? string.Empty : "<img src='" + this.SelectedEntry.PhotoPath + "'>",
                     Markdown.Transform(this.SelectedEntry.EntryText));
         }
 
@@ -1227,7 +1279,44 @@
             }
 
             this.UpdatePhotoButton();
+            this.UpdatePhotoArea();
             this.InvalidateEntryInEntryList(this.SelectedEntry);
+        }
+
+        /// <summary>
+        /// Updates the photo area layout.
+        /// </summary>
+        private void UpdatePhotoArea()
+        {
+            if (this.SelectedEntry == null || this.SelectedEntry.PhotoPath == null)
+            {
+                this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 0, SizeType = SizeType.Absolute };
+                this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 100, SizeType = SizeType.Percent };
+            }
+            else
+            {
+                using (Image image = Image.FromFile(this.SelectedEntry.PhotoPath))
+                {
+                    Image copyImage = new Bitmap(image);
+                    this.pictureBoxEntryPhoto.BackgroundImage = copyImage;
+                }
+
+                if (this.PhotoExpanded)
+                {
+                    this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 100, SizeType = SizeType.Percent };
+                    this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 0, SizeType = SizeType.Absolute };
+
+                    this.tableLayoutPanelEntryPhotoButtons.Visible = true;
+                    this.panelEntryPhotoArea.Refresh();
+                }
+                else
+                {
+                    this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 38, SizeType = SizeType.Percent };
+                    this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 62, SizeType = SizeType.Percent };
+
+                    this.tableLayoutPanelEntryPhotoButtons.Visible = false;
+                }
+            }
         }
 
         /// <summary>
@@ -1341,6 +1430,59 @@
                 this.SaveAndFinishEditing();
                 e.Handled = true;
             }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the pictureBoxEntryPicture control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void PictureBoxEntryPicture_Click(object sender, EventArgs e)
+        {
+            if (this.PhotoExpanded == false)
+            {
+                this.PhotoExpanded = true;
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the transparentImageButtonBack control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TransparentImageButtonBack_Click(object sender, EventArgs e)
+        {
+            this.PhotoExpanded = false;
+        }
+
+        /// <summary>
+        /// Handles the Click event of the transparentImageButtonPopout control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TransparentImageButtonPopout_Click(object sender, EventArgs e)
+        {
+            PhotoDisplayForm photoForm = new PhotoDisplayForm();
+
+            Image image = new Bitmap(Image.FromFile(this.SelectedEntry.PhotoPath));
+            photoForm.Image = image;
+            photoForm.ClientSize = new System.Drawing.Size(image.Width, image.Height);
+
+            Screen currentScreen = Screen.FromControl(this);
+            int screenWidth = currentScreen.Bounds.Width;
+            int screenHeight = currentScreen.Bounds.Height;
+
+            double threshold = 0.8;
+            int maxWidth = (int)(screenWidth * threshold);
+            int maxHeight = (int)(screenHeight * threshold);
+
+            photoForm.Width = Math.Min(photoForm.Width, maxWidth);
+            photoForm.Height = Math.Min(photoForm.Height, maxHeight);
+
+            photoForm.StartPosition = FormStartPosition.CenterScreen;
+            photoForm.Show();
+
+            this.PhotoExpanded = false;
         }
 
         #endregion
