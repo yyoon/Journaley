@@ -448,7 +448,12 @@
         /// </summary>
         private void UpdateStats()
         {
-            this.labelEntries.Text = this.GetAllEntriesCount().ToString();
+            // Entries count first.
+            int entriesCount = this.GetAllEntriesCount();
+            this.labelEntries.Text = entriesCount.ToString();
+            this.labelEntriesLabel.Text = entriesCount == 1 ? "ENTRY" : "ENTRIES";
+
+            // Others.
             this.labelThisWeek.Text = this.GetThisWeekCount(DateTime.Now).ToString();
             this.labelToday.Text = this.GetTodayCount(DateTime.Now).ToString();
         }
@@ -621,16 +626,17 @@
             {
                 string entryText = this.IsEditing ? this.spellCheckedEntryText.Text : this.SelectedEntry.EntryText;
 
-                this.labelWords.Text = entryText
-                    .Split(delim, StringSplitOptions.RemoveEmptyEntries)
-                    .Length
-                    .ToString();
-                this.labelWordsTitle.Text = "WORDS";
+                // Words Count.
+                int wordsCount = entryText.Split(delim, StringSplitOptions.RemoveEmptyEntries).Length;
+                this.labelWords.Text = wordsCount.ToString();
 
-                this.labelCharacters.Text = entryText
-                    .Count(x => !delim.Contains(x))
-                    .ToString();
-                this.labelCharactersTitle.Text = "CHARACTERS";
+                this.labelWordsTitle.Text = wordsCount == 1 ? "WORD" : "WORDS";
+
+                // Characters Count.
+                int charactersCount = entryText.Count(x => !delim.Contains(x));
+                this.labelCharacters.Text = charactersCount.ToString();
+
+                this.labelCharactersTitle.Text = charactersCount == 1 ? "CHARACTER" : "CHARACTERS";
             }
             else
             {
