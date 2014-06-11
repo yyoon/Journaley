@@ -729,7 +729,13 @@
                 {
                     if (index != -1)
                     {
+                        bool prevSuppressEntryUpdate = this.suppressEntryUpdate;
+                        this.suppressEntryUpdate = true;
+
                         list.SelectedIndex = index;
+
+                        this.suppressEntryUpdate = prevSuppressEntryUpdate;
+
                         if (index > 0 && list.Items[index - 1] is DateTime)
                         {
                             list.TopIndex = index - 1;
@@ -1009,6 +1015,26 @@
             }
         }
 
+        /// <summary>
+        /// Reloads the entries from the currently specified folder, and updates everything from scratch.
+        /// </summary>
+        private void ReloadEntries()
+        {
+            this.SelectedEntry = null;
+            this.Entries = Enumerable.Empty<Entry>().ToList();
+            this.UpdateAllEntryLists();
+
+            this.LoadEntries();
+
+            // Select the latest entry by default.
+            if (this.Entries.Any())
+            {
+                this.SelectedEntry = this.Entries.OrderByDescending(x => x.UTCDateTime).First();
+            }
+
+            this.UpdateFromScratch();
+        }
+
         #region Event Handlers
 
         /// <summary>
@@ -1062,15 +1088,7 @@
 
             Debug.Assert(this.Settings != null, "At this point, a valid Settings object must be present.");
 
-            this.LoadEntries();
-
-            // Select the latest entry by default.
-            if (this.Entries.Any())
-            {
-                this.SelectedEntry = this.Entries.OrderByDescending(x => x.UTCDateTime).First();
-            }
-
-            this.UpdateFromScratch();
+            this.ReloadEntries();
 
             // Trick to bring this form to the front
             this.TopMost = true;
@@ -1167,9 +1185,15 @@
             DialogResult result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {
-                // TODO: Update something. maybe load everything from scratch if the directory has been changed.
+                bool dayOneFolderChanged = this.Settings.DayOneFolderPath != form.Settings.DayOneFolderPath;
+
                 this.Settings = form.Settings;
                 this.Settings.Save();
+
+                if (dayOneFolderChanged)
+                {
+                    this.ReloadEntries();
+                }
             }
         }
 
@@ -1368,11 +1392,13 @@
                 return;
             }
 
+            bool prevSuppressEntryUpdate = this.suppressEntryUpdate;
+
             this.suppressEntryUpdate = true;
 
             this.SelectedEntry = entryListBox.Items[entryListBox.SelectedIndex] as Entry;
 
-            this.suppressEntryUpdate = false;
+            this.suppressEntryUpdate = prevSuppressEntryUpdate;
         }
 
         /// <summary>
