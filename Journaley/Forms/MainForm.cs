@@ -10,6 +10,7 @@
     using System.Linq;
     using System.Threading;
     using System.Windows.Forms;
+    using BlackBeltCoder;
     using Journaley.Controls;
     using Journaley.Models;
     using Journaley.Utilities;
@@ -39,6 +40,11 @@
         /// The backing field for markdown object.
         /// </summary>
         private Markdown markdown;
+
+        /// <summary>
+        /// The backing field for html to text object.
+        /// </summary>
+        private HtmlToText htmlToText;
 
         /// <summary>
         /// Internal field to indicate whether to suppress the entry update process.
@@ -279,6 +285,25 @@
         }
 
         /// <summary>
+        /// Gets the HTML to text object.
+        /// </summary>
+        /// <value>
+        /// The HTML to text object.
+        /// </value>
+        private HtmlToText HtmlToText
+        {
+            get
+            {
+                if (this.htmlToText == null)
+                {
+                    this.htmlToText = new HtmlToText();
+                }
+
+                return this.htmlToText;
+            }
+        }
+
+        /// <summary>
         /// Gets the Open Sans font family.
         /// </summary>
         /// <value>
@@ -316,14 +341,11 @@
                 return string.Empty;
             }
 
-            if (this.SelectedEntry == entry && this.IsEditing)
-            {
-                return this.spellCheckedEntryText.Text.Replace(Environment.NewLine, "\n");
-            }
-            else
-            {
-                return entry.EntryText;
-            }
+            string sourceText = (this.SelectedEntry == entry && this.IsEditing)
+                ? this.spellCheckedEntryText.Text.Replace(Environment.NewLine, "\n")
+                : entry.EntryText;
+
+            return HtmlToText.Convert(Markdown.Transform(sourceText));
         }
 
         /// <summary>
