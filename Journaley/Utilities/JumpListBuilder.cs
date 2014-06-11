@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Reflection;
     using System.Text;
+    using Microsoft.WindowsAPICodePack.Shell;
     using Microsoft.WindowsAPICodePack.Taskbar;
 
     /// <summary>
@@ -23,9 +24,9 @@
 
             JumpListLink newEntryLink = new JumpListLink(Assembly.GetExecutingAssembly().Location, "New Entry");
             newEntryLink.Arguments = "NewEntry";
+            newEntryLink.IconReference = new IconReference(Assembly.GetExecutingAssembly().Location, 1);
 
             list.AddUserTasks(newEntryLink);
-
             list.Refresh();
         }
     }
