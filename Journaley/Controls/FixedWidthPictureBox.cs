@@ -48,6 +48,21 @@
         }
 
         /// <summary>
+        /// Raises the <see cref="E:System.Windows.Forms.Control.Paint" /> event.
+        /// </summary>
+        /// <param name="pe">A <see cref="T:System.Windows.Forms.PaintEventArgs" /> that contains the event data.</param>
+        protected override void OnPaint(PaintEventArgs pe)
+        {
+            base.OnPaint(pe);
+
+            using (Pen pen = new Pen(Brushes.Black))
+            {
+                pe.Graphics.DrawLine(pen, 0, 0, this.Width - 1, 0);
+                pe.Graphics.DrawLine(pen, 0, this.Height - 1, this.Width - 1, this.Height - 1);
+            }
+        }
+
+        /// <summary>
         /// Recalculates the height of this image.
         /// </summary>
         private void RecalculateHeight()
@@ -58,7 +73,8 @@
                 return;
             }
 
-            this.Height = this.BackgroundImage.Height * this.Width / this.BackgroundImage.Width;
+            // 2 pixels are added for the border.
+            this.Height = (this.BackgroundImage.Height * this.Width / this.BackgroundImage.Width) + 2;
         }
     }
 }

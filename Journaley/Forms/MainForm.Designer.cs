@@ -1075,6 +1075,8 @@ namespace Journaley.Forms
             this.pictureBoxEntryPhoto.TabIndex = 2;
             this.pictureBoxEntryPhoto.TabStop = false;
             this.pictureBoxEntryPhoto.Click += new System.EventHandler(this.PictureBoxEntryPicture_Click);
+            this.pictureBoxEntryPhoto.MouseLeave += new System.EventHandler(this.PictureBoxEntryPhoto_MouseLeave);
+            this.pictureBoxEntryPhoto.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBoxEntryPhoto_MouseMove);
             // 
             // spellCheckedEntryText
             // 

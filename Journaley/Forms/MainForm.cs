@@ -1485,6 +1485,32 @@
             this.PhotoExpanded = false;
         }
 
+        /// <summary>
+        /// Handles the MouseMove event of the pictureBoxEntryPhoto control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PictureBoxEntryPhoto_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (this.pictureBoxEntryPhoto.Image == null)
+            {
+                this.pictureBoxEntryPhoto.Image = Journaley.Properties.Resources.picture_pane_hoverMask;
+            }
+        }
+
+        /// <summary>
+        /// Handles the MouseLeave event of the pictureBoxEntryPhoto control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void PictureBoxEntryPhoto_MouseLeave(object sender, EventArgs e)
+        {
+            if (this.pictureBoxEntryPhoto.Image != null)
+            {
+                this.pictureBoxEntryPhoto.Image = null;
+            }
+        }
+
         #endregion
 
         #region Private Classes
