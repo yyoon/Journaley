@@ -88,6 +88,7 @@
                     // Repaint the background?
                     this.panelEntryPhotoArea.Invalidate(this.transparentPictureBoxLabelBack.Bounds, true);
                     this.panelEntryPhotoArea.Invalidate(this.transparentImageButtonBack.Bounds, true);
+                    this.panelEntryPhotoArea.Update();
                 };
 
             this.transparentImageButtonPopout.PropertyChanged += (e, args) =>
@@ -99,6 +100,7 @@
                 // Repaint the background?
                 this.panelEntryPhotoArea.Invalidate(this.transparentPictureBoxLabelPopout.Bounds, true);
                 this.panelEntryPhotoArea.Invalidate(this.transparentImageButtonPopout.Bounds, true);
+                this.panelEntryPhotoArea.Update();
             };
         }
 
@@ -1304,14 +1306,15 @@
                     this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 100, SizeType = SizeType.Percent };
                     this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 0, SizeType = SizeType.Absolute };
 
-                    this.transparentTableLayoutPanelEntryPhoto.Visible = true;
+                    this.tableLayoutPanelEntryPhotoButtons.Visible = true;
+                    this.panelEntryPhotoArea.Refresh();
                 }
                 else
                 {
                     this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 38, SizeType = SizeType.Percent };
                     this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 62, SizeType = SizeType.Percent };
 
-                    this.transparentTableLayoutPanelEntryPhoto.Visible = false;
+                    this.tableLayoutPanelEntryPhotoButtons.Visible = false;
                 }
             }
         }

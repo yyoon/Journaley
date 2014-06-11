@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PhotoDisplayForm));
             this.panelPhoto = new System.Windows.Forms.Panel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.panelPhoto.SuspendLayout();
@@ -62,12 +63,11 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.panelPhoto);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PhotoDisplayForm";
-            this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.Text = "Photo";
+            this.Text = "Image Viewer";
             this.panelPhoto.ResumeLayout(false);
             this.panelPhoto.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
