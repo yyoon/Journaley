@@ -1243,8 +1243,8 @@
             }
             else
             {
-                this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 30, SizeType = SizeType.Percent };
-                this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 70, SizeType = SizeType.Percent };
+                this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 38, SizeType = SizeType.Percent };
+                this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 62, SizeType = SizeType.Percent };
 
                 using (Image image = Image.FromFile(this.SelectedEntry.PhotoPath))
                 {

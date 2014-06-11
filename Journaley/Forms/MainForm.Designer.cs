@@ -447,7 +447,7 @@ namespace Journaley.Forms
             this.panelWebBrowserWrapper.Location = new System.Drawing.Point(0, 0);
             this.panelWebBrowserWrapper.Margin = new System.Windows.Forms.Padding(0);
             this.panelWebBrowserWrapper.Name = "panelWebBrowserWrapper";
-            this.panelWebBrowserWrapper.Size = new System.Drawing.Size(620, 356);
+            this.panelWebBrowserWrapper.Size = new System.Drawing.Size(620, 315);
             this.panelWebBrowserWrapper.TabIndex = 11;
             // 
             // webBrowser
@@ -456,7 +456,7 @@ namespace Journaley.Forms
             this.webBrowser.Location = new System.Drawing.Point(0, 0);
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(618, 354);
+            this.webBrowser.Size = new System.Drawing.Size(618, 313);
             this.webBrowser.TabIndex = 0;
             // 
             // contextMenuStripPhotoWithPhoto
@@ -716,10 +716,10 @@ namespace Journaley.Forms
             this.panelEntryArea.Controls.Add(this.panelWebBrowserWrapper);
             this.panelEntryArea.Controls.Add(this.spellCheckedEntryText);
             this.panelEntryArea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEntryArea.Location = new System.Drawing.Point(0, 152);
+            this.panelEntryArea.Location = new System.Drawing.Point(0, 193);
             this.panelEntryArea.Margin = new System.Windows.Forms.Padding(0);
             this.panelEntryArea.Name = "panelEntryArea";
-            this.panelEntryArea.Size = new System.Drawing.Size(620, 356);
+            this.panelEntryArea.Size = new System.Drawing.Size(620, 315);
             this.panelEntryArea.TabIndex = 1;
             // 
             // spellCheckedEntryText
@@ -732,7 +732,7 @@ namespace Journaley.Forms
             this.spellCheckedEntryText.Name = "spellCheckedEntryText";
             this.spellCheckedEntryText.Padding = new System.Windows.Forms.Padding(30);
             this.spellCheckedEntryText.ReadOnly = false;
-            this.spellCheckedEntryText.Size = new System.Drawing.Size(620, 356);
+            this.spellCheckedEntryText.Size = new System.Drawing.Size(620, 315);
             this.spellCheckedEntryText.TabIndex = 1;
             this.spellCheckedEntryText.WordWrap = true;
             this.spellCheckedEntryText.TextChanged += new System.EventHandler(this.SpellCheckedEntryText_TextChanged);
@@ -752,8 +752,8 @@ namespace Journaley.Forms
             this.tableLayoutEntryArea.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutEntryArea.Name = "tableLayoutEntryArea";
             this.tableLayoutEntryArea.RowCount = 2;
-            this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38F));
+            this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62F));
             this.tableLayoutEntryArea.Size = new System.Drawing.Size(620, 508);
             this.tableLayoutEntryArea.TabIndex = 1;
             // 
@@ -764,7 +764,7 @@ namespace Journaley.Forms
             this.pictureBoxEntryPicture.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxEntryPicture.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxEntryPicture.Name = "pictureBoxEntryPicture";
-            this.pictureBoxEntryPicture.Size = new System.Drawing.Size(620, 152);
+            this.pictureBoxEntryPicture.Size = new System.Drawing.Size(620, 193);
             this.pictureBoxEntryPicture.TabIndex = 2;
             this.pictureBoxEntryPicture.TabStop = false;
             this.pictureBoxEntryPicture.DoubleClick += new System.EventHandler(this.PictureBoxEntryPicture_DoubleClick);
