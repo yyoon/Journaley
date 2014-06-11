@@ -30,6 +30,9 @@
         /// </summary>
         private bool isEditing;
 
+        /// <summary>
+        /// The backing field for PhotoExpanded.
+        /// </summary>
         private bool photoExpanded;
 
         /// <summary>
@@ -195,6 +198,12 @@
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether [photo expanded].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [photo expanded]; otherwise, <c>false</c>.
+        /// </value>
         private bool PhotoExpanded
         {
             get
@@ -1287,7 +1296,7 @@
                 using (Image image = Image.FromFile(this.SelectedEntry.PhotoPath))
                 {
                     Image copyImage = new Bitmap(image);
-                    this.pictureBoxEntryPicture.BackgroundImage = copyImage;
+                    this.pictureBoxEntryPhoto.BackgroundImage = copyImage;
                 }
 
                 if (this.PhotoExpanded)
@@ -1295,14 +1304,14 @@
                     this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 100, SizeType = SizeType.Percent };
                     this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 0, SizeType = SizeType.Absolute };
 
-                    this.transparentTableLayoutPanel1.Visible = true;
+                    this.transparentTableLayoutPanelEntryPhoto.Visible = true;
                 }
                 else
                 {
                     this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 38, SizeType = SizeType.Percent };
                     this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 62, SizeType = SizeType.Percent };
 
-                    this.transparentTableLayoutPanel1.Visible = false;
+                    this.transparentTableLayoutPanelEntryPhoto.Visible = false;
                 }
             }
         }
