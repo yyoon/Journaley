@@ -35,8 +35,6 @@
                 }
             }
 
-            MessageBox.Show("NewEntry: " + newEntry);
-
             if (firstInstance)
             {
                 Application.EnableVisualStyles();
