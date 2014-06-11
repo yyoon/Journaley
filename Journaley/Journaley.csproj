@@ -70,6 +70,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\SpellCheckedTextBox.cs" />
+    <Compile Include="Controls\TransparentTableLayoutPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\ChangePasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
