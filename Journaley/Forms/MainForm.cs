@@ -58,7 +58,7 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
-        public MainForm() : this(false)
+        public MainForm() : this(false, false)
         {
         }
 
@@ -66,7 +66,7 @@
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
         /// <param name="newEntry">if set to <c>true</c> [new entry].</param>
-        public MainForm(bool newEntry)
+        public MainForm(bool newEntry, bool createJumpList)
         {
             this.InitializeComponent();
 
@@ -117,8 +117,12 @@
             };
 
             // Jump List
-            JumpListBuilder.BuildJumpList(this.Handle);
+            if (createJumpList)
+            {
+                JumpListBuilder.BuildJumpList(this.Handle);
+            }
 
+            // Remember to create a new entry!
             this.addNewEntryOnLoad = newEntry;
         }
 

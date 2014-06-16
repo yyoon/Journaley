@@ -39,7 +39,7 @@
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new MainForm(newEntry));
+                Application.Run(new MainForm(newEntry, true));
             }
             else
             {
