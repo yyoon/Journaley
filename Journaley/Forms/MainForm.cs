@@ -1138,6 +1138,21 @@
             this.UpdateFromScratch();
         }
 
+        /// <summary>
+        /// Toggles the maximize state.
+        /// </summary>
+        private void ToggleMaximize()
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
+
         #region Event Handlers
 
         /// <summary>
@@ -1240,14 +1255,7 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ImageButtonFormMaximize_Click(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Maximized)
-            {
-                this.WindowState = FormWindowState.Normal;
-            }
-            else
-            {
-                this.WindowState = FormWindowState.Maximized;
-            }
+            this.ToggleMaximize();
         }
 
         /// <summary>

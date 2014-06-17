@@ -66,6 +66,7 @@ namespace Journaley.Forms
             this.tableLayoutPanelEntryPhoto = new System.Windows.Forms.TableLayoutPanel();
             this.panelTitlebar = new System.Windows.Forms.Panel();
             this.pictureBoxFormIcon = new System.Windows.Forms.PictureBox();
+            this.labelFormCaption = new System.Windows.Forms.Label();
             this.buttonSettings = new Journaley.Controls.ImageButton();
             this.buttonEdit = new Journaley.Controls.ImageButton();
             this.buttonDone = new Journaley.Controls.ImageButton();
@@ -603,6 +604,7 @@ namespace Journaley.Forms
             // panelTitlebar
             // 
             this.panelTitlebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
+            this.panelTitlebar.Controls.Add(this.labelFormCaption);
             this.panelTitlebar.Controls.Add(this.pictureBoxFormIcon);
             this.panelTitlebar.Controls.Add(this.imageButtonFormMinimize);
             this.panelTitlebar.Controls.Add(this.imageButtonFormMaximize);
@@ -618,14 +620,24 @@ namespace Journaley.Forms
             // pictureBoxFormIcon
             // 
             this.pictureBoxFormIcon.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxFormIcon.Dock = System.Windows.Forms.DockStyle.Left;
             this.pictureBoxFormIcon.Image = global::Journaley.Properties.Resources.Journaley_16x16;
-            this.pictureBoxFormIcon.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxFormIcon.Location = new System.Drawing.Point(8, 0);
             this.pictureBoxFormIcon.Name = "pictureBoxFormIcon";
             this.pictureBoxFormIcon.Size = new System.Drawing.Size(20, 20);
             this.pictureBoxFormIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxFormIcon.TabIndex = 3;
             this.pictureBoxFormIcon.TabStop = false;
+            // 
+            // labelFormCaption
+            // 
+            this.labelFormCaption.AutoSize = true;
+            this.labelFormCaption.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFormCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
+            this.labelFormCaption.Location = new System.Drawing.Point(40, 0);
+            this.labelFormCaption.Name = "labelFormCaption";
+            this.labelFormCaption.Size = new System.Drawing.Size(67, 19);
+            this.labelFormCaption.TabIndex = 4;
+            this.labelFormCaption.Text = "Journaley";
             // 
             // buttonSettings
             // 
@@ -1239,6 +1251,7 @@ namespace Journaley.Forms
             this.panelEntryPhotoArea.ResumeLayout(false);
             this.tableLayoutPanelEntryPhoto.ResumeLayout(false);
             this.panelTitlebar.ResumeLayout(false);
+            this.panelTitlebar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).EndInit();
@@ -1338,6 +1351,7 @@ namespace Journaley.Forms
         private ImageButton imageButtonFormMaximize;
         private ImageButton imageButtonFormMinimize;
         private System.Windows.Forms.PictureBox pictureBoxFormIcon;
+        private System.Windows.Forms.Label labelFormCaption;
     }
 }
 
