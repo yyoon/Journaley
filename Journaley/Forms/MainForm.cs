@@ -10,6 +10,7 @@
     using System.Linq;
     using System.Threading;
     using System.Windows.Forms;
+    using BlackBeltCoder;
     using Journaley.Controls;
     using Journaley.Models;
     using Journaley.Utilities;
@@ -41,6 +42,11 @@
         private Markdown markdown;
 
         /// <summary>
+        /// The backing field for html to text object.
+        /// </summary>
+        private HtmlToText htmlToText;
+
+        /// <summary>
         /// Internal field to indicate whether to suppress the entry update process.
         /// </summary>
         private bool suppressEntryUpdate = false;
@@ -63,9 +69,10 @@
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MainForm"/> class.
+        /// Initializes a new instance of the <see cref="MainForm" /> class.
         /// </summary>
         /// <param name="newEntry">if set to <c>true</c> [new entry].</param>
+        /// <param name="createJumpList">if set to <c>true</c> [create jump list].</param>
         public MainForm(bool newEntry, bool createJumpList)
         {
             this.InitializeComponent();
@@ -279,6 +286,25 @@
         }
 
         /// <summary>
+        /// Gets the HTML to text object.
+        /// </summary>
+        /// <value>
+        /// The HTML to text object.
+        /// </value>
+        private HtmlToText HtmlToText
+        {
+            get
+            {
+                if (this.htmlToText == null)
+                {
+                    this.htmlToText = new HtmlToText();
+                }
+
+                return this.htmlToText;
+            }
+        }
+
+        /// <summary>
         /// Gets the Open Sans font family.
         /// </summary>
         /// <value>
@@ -316,14 +342,11 @@
                 return string.Empty;
             }
 
-            if (this.SelectedEntry == entry && this.IsEditing)
-            {
-                return this.spellCheckedEntryText.Text.Replace(Environment.NewLine, "\n");
-            }
-            else
-            {
-                return entry.EntryText;
-            }
+            string sourceText = (this.SelectedEntry == entry && this.IsEditing)
+                ? this.spellCheckedEntryText.Text.Replace(Environment.NewLine, "\n")
+                : entry.EntryText;
+
+            return FirstSentenceExtractor.ExtractFirstSentence(HtmlToText.Convert(Markdown.Transform(sourceText)));
         }
 
         /// <summary>
