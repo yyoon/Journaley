@@ -8,6 +8,7 @@
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Runtime.InteropServices;
     using System.Threading;
     using System.Windows.Forms;
     using BlackBeltCoder;
@@ -140,6 +141,24 @@
         /// The new entry message.
         /// </value>
         public static int NewEntryMessage { get; set; }
+
+        /// <summary>
+        /// Adds the sizing borders to the frame.
+        /// </summary>
+        /// <returns>A <see cref="T:System.Windows.Forms.CreateParams" /> that contains the required creation parameters when the handle to the control is created.</returns>
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                // Enable the sizing borders, just so that Aero Snap works.
+                // The actual border will not be drawn in any case.
+                // See how the WM_NCCALCSIZE is processed.
+                CreateParams cp = base.CreateParams;
+                cp.Style |= 0x40000;
+
+                return cp;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the settings.
@@ -359,11 +378,68 @@
             {
                 this.AddNewEntry();
                 this.Activate();
+
+                return;
+            }
+
+            switch ((PInvoke.WindowsMessages)m.Msg)
+            {
+                case PInvoke.WindowsMessages.WM_NCHITTEST:
+                    this.OnNCHitTest(ref m);
+                    break;
+
+                case PInvoke.WindowsMessages.WM_NCCALCSIZE:
+                case PInvoke.WindowsMessages.WM_NCPAINT:
+                case PInvoke.WindowsMessages.WM_NCACTIVATE:
+                    m.Result = IntPtr.Zero;
+                    break;
+
+                case PInvoke.WindowsMessages.WM_GETMINMAXINFO:
+                    this.OnGetMinMaxInfo(ref m);
+                    break;
+
+                default:
+                    base.WndProc(ref m);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Processes the WM_NCHITTEST message.
+        /// This is needed to specify the caption area / resize area.
+        /// </summary>
+        /// <param name="m">The Windows message object.</param>
+        private void OnNCHitTest(ref Message m)
+        {
+            int screenX = (int)m.LParam & 0xFFFF;
+            int screenY = (int)m.LParam >> 16;
+
+            Point p = this.PointToClient(new Point(screenX, screenY));
+            if (p.Y < 20)
+            {
+                m.Result = (IntPtr)PInvoke.HitTestValues.HTCAPTION;
             }
             else
             {
                 base.WndProc(ref m);
             }
+        }
+
+        /// <summary>
+        /// Processes the WM_GETMINMAXINFO message.
+        /// This is needed to correctly specify the maximized window size.
+        /// </summary>
+        /// <param name="m">The Windows message object.</param>
+        private void OnGetMinMaxInfo(ref Message m)
+        {
+            // Here, adjust the maximized window position / size to be the entire working area of the primary monitor.
+            // Otherwise, Windows will assume that there is the sizing border, and clip some portion of the client rectangle unexpectedly.
+            PInvoke.MINMAXINFO mm = (PInvoke.MINMAXINFO)m.GetLParam(typeof(PInvoke.MINMAXINFO));
+
+            mm.ptMaxPosition = new PInvoke.POINT(0, 0);
+            mm.ptMaxSize = new PInvoke.POINT(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
+
+            Marshal.StructureToPtr(mm, m.LParam, true);
         }
 
         /// <summary>
@@ -1677,6 +1753,21 @@
             if (this.pictureBoxEntryPhoto.Image != null)
             {
                 this.pictureBoxEntryPhoto.Image = null;
+            }
+        }
+
+        /// <summary>
+        /// Handles the MouseDown event of the panel title bar control.
+        /// Pretends like the caption area is clicked.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PanelTitlebar_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                PInvoke.ReleaseCapture();
+                PInvoke.SendMessage(this.Handle, (int)PInvoke.WindowsMessages.WM_NCLBUTTONDOWN, (IntPtr)PInvoke.HitTestValues.HTCAPTION, IntPtr.Zero);
             }
         }
 

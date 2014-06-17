@@ -2,6 +2,7 @@
 {
     using System;
     using System.Runtime.InteropServices;
+    using System.Drawing;
 
     /// <summary>
     /// A utility class for declaring WIN32 API functions
@@ -18,7 +19,7 @@
 
         [DllImport("gdi32.dll")]
         public static extern IntPtr AddFontResourceEx(string lpszFilename, uint fl, IntPtr pdv);
-        
+
         [DllImport("gdi32.dll", EntryPoint = "BitBlt", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool BitBlt([In] IntPtr hdc, int nXDest, int nYDest, int nWidth, int nHeight, [In] IntPtr hdcSrc, int nXSrc, int nYSrc, TernaryRasterOperations dwRop);
@@ -79,7 +80,15 @@
             CAPTUREBLT = 0x40000000
         }
 
-        public static readonly int WM_NCLBUTTONDOWN = 0x00A1;
+        public enum WindowsMessages : int
+        {
+            WM_GETMINMAXINFO = 0x0024,
+            WM_NCCALCSIZE = 0x0083,
+            WM_NCHITTEST = 0x0084,
+            WM_NCPAINT = 0x0085,
+            WM_NCACTIVATE = 0x0086,
+            WM_NCLBUTTONDOWN = 0x00A1,
+        }
 
         public enum HitTestValues : int
         {
@@ -107,6 +116,75 @@
             HTOBJECT = 19,
             HTCLOSE = 20,
             HTHELP = 21
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RECT
+        {
+            public int left, top, right, bottom;
+
+            public RECT(Rectangle rc)
+            {
+                this.left = rc.Left;
+                this.top = rc.Top;
+                this.right = rc.Right;
+                this.bottom = rc.Bottom;
+            }
+
+            public Rectangle ToRectangle()
+            {
+                return Rectangle.FromLTRB(left, top, right, bottom);
+            }
+
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct NCCALCSIZE_PARAMS
+        {
+            public RECT rgrc0, rgrc1, rgrc2;
+            public WINDOWPOS lppos;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct WINDOWPOS
+        {
+            public IntPtr hWnd, hWndInsertAfter;
+            public int x, y, cx, cy, flags;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct MINMAXINFO
+        {
+            public POINT ptReserved;
+            public POINT ptMaxSize;
+            public POINT ptMaxPosition;
+            public POINT ptMinTrackSize;
+            public POINT ptMaxTrackSize;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct POINT
+        {
+            public int X;
+            public int Y;
+
+            public POINT(int x, int y)
+            {
+                this.X = x;
+                this.Y = y;
+            }
+
+            public POINT(System.Drawing.Point pt) : this(pt.X, pt.Y) { }
+
+            public static implicit operator System.Drawing.Point(POINT p)
+            {
+                return new System.Drawing.Point(p.X, p.Y);
+            }
+
+            public static implicit operator POINT(System.Drawing.Point p)
+            {
+                return new POINT(p.X, p.Y);
+            }
         }
     }
 }
