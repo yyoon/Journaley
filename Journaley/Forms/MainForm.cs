@@ -1779,6 +1779,20 @@
             }
         }
 
+        /// <summary>
+        /// Handles the MouseDown event of the pictureBoxResize control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PictureBoxResize_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            {
+                PInvoke.ReleaseCapture();
+                PInvoke.SendMessage(this.Handle, (int)PInvoke.WindowsMessages.WM_NCLBUTTONDOWN, (IntPtr)PInvoke.HitTestValues.HTBOTTOMRIGHT, IntPtr.Zero);
+            }
+        }
+
         #endregion
 
         #region Private Classes

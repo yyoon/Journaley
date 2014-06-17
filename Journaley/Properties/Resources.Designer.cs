@@ -203,6 +203,16 @@ namespace Journaley.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap frame_pane_resize {
+            get {
+                object obj = ResourceManager.GetObject("frame_pane_resize", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Image_32x32 {
             get {
                 object obj = ResourceManager.GetObject("Image_32x32", resourceCulture);
