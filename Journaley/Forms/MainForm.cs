@@ -69,9 +69,10 @@
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MainForm"/> class.
+        /// Initializes a new instance of the <see cref="MainForm" /> class.
         /// </summary>
         /// <param name="newEntry">if set to <c>true</c> [new entry].</param>
+        /// <param name="createJumpList">if set to <c>true</c> [create jump list].</param>
         public MainForm(bool newEntry, bool createJumpList)
         {
             this.InitializeComponent();
@@ -345,7 +346,7 @@
                 ? this.spellCheckedEntryText.Text.Replace(Environment.NewLine, "\n")
                 : entry.EntryText;
 
-            return HtmlToText.Convert(Markdown.Transform(sourceText));
+            return FirstSentenceExtractor.ExtractFirstSentence(HtmlToText.Convert(Markdown.Transform(sourceText)));
         }
 
         /// <summary>

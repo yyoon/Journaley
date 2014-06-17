@@ -132,6 +132,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\FirstSentenceExtractor.cs" />
     <Compile Include="Utilities\FontReader.cs" />
     <Compile Include="Utilities\HtmlToText.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
