@@ -952,6 +952,7 @@ namespace Journaley.Forms
             this.imageButtonFormMinimize.Size = new System.Drawing.Size(40, 20);
             this.imageButtonFormMinimize.TabIndex = 2;
             this.imageButtonFormMinimize.TabStop = false;
+            this.imageButtonFormMinimize.Click += new System.EventHandler(this.ImageButtonFormMinimize_Click);
             // 
             // imageButtonFormMaximize
             // 
@@ -971,6 +972,7 @@ namespace Journaley.Forms
             this.imageButtonFormMaximize.Size = new System.Drawing.Size(40, 20);
             this.imageButtonFormMaximize.TabIndex = 1;
             this.imageButtonFormMaximize.TabStop = false;
+            this.imageButtonFormMaximize.Click += new System.EventHandler(this.ImageButtonFormMaximize_Click);
             // 
             // imageButtonFormClose
             // 
@@ -990,6 +992,7 @@ namespace Journaley.Forms
             this.imageButtonFormClose.Size = new System.Drawing.Size(41, 20);
             this.imageButtonFormClose.TabIndex = 0;
             this.imageButtonFormClose.TabStop = false;
+            this.imageButtonFormClose.Click += new System.EventHandler(this.ImageButtonFormClose_Click);
             // 
             // buttonMainTags
             // 
