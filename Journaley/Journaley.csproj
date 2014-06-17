@@ -389,6 +389,39 @@
   <ItemGroup>
     <None Include="images\NewDesign\picture_pane_background_tile.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\frame_btn_close_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\frame_btn_close_norm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\frame_btn_close_over.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\frame_btn_maximize_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\frame_btn_maximize_norm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\frame_btn_maximize_over.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\frame_btn_minimize_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\frame_btn_minimize_norm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\frame_btn_minimize_over.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\Journaley_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\frame_pane_resize.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
