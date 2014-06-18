@@ -43,8 +43,8 @@
         /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
         protected override void OnResize(EventArgs e)
         {
-            base.OnResize(e);
             this.RecalculateHeight();
+            base.OnResize(e);
         }
 
         /// <summary>

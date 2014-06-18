@@ -63,6 +63,11 @@
         private FontFamily fontFamilyNotoSansRegular;
 
         /// <summary>
+        /// Private field to indicate whether to suppress the table layout for entry photo.
+        /// </summary>
+        private bool suppressTableLayout = false;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
         public MainForm() : this(false, false)
@@ -1778,6 +1783,25 @@
                 PInvoke.ReleaseCapture();
                 PInvoke.SendMessage(this.Handle, (int)PInvoke.WindowsMessages.WM_NCLBUTTONDOWN, (IntPtr)PInvoke.HitTestValues.HTBOTTOMRIGHT, IntPtr.Zero);
             }
+        }
+
+        /// <summary>
+        /// Handles the Resize event of the tableLayoutPanelEntryPhoto control.
+        /// Forces this table layout to perform layout again.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TableLayoutPanelEntryPhoto_Resize(object sender, EventArgs e)
+        {
+            // http://stackoverflow.com/questions/7908330/programmatically-adding-controls-to-tablelayoutpanel-behaves-differently-based-o
+            if (this.suppressTableLayout)
+            {
+                return;
+            }
+
+            this.suppressTableLayout = true;
+            this.tableLayoutPanelEntryPhoto.BeginInvoke(new Action(() => this.tableLayoutPanelEntryPhoto.PerformLayout()));
+            this.suppressTableLayout = false;
         }
 
         #endregion
