@@ -76,6 +76,16 @@
         /// <param name="createJumpList">if set to <c>true</c> [create jump list].</param>
         public MainForm(bool newEntry, bool createJumpList)
         {
+            int val = 2;
+            PInvoke.DwmSetWindowAttribute(this.Handle, 2, ref val, 4);  // Enabling the DWM-based NC painting.
+
+            PInvoke.MARGINS margins = new PInvoke.MARGINS();
+            margins.leftWidth = 1;
+            margins.topHeight = 1;
+            margins.rightWidth = 1;
+            margins.bottomHeight = 1;
+            PInvoke.DwmExtendFrameIntoClientArea(this.Handle, ref margins);
+
             this.InitializeComponent();
 
             this.Icon = Journaley.Properties.Resources.JournaleyIcon;
@@ -141,25 +151,6 @@
         /// The new entry message.
         /// </value>
         public static int NewEntryMessage { get; set; }
-
-        /// <summary>
-        /// Adds the sizing borders to the frame.
-        /// </summary>
-        /// <returns>A <see cref="T:System.Windows.Forms.CreateParams" /> that contains the required creation parameters when the handle to the control is created.</returns>
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                // Enable the sizing borders, just so that Aero Snap works.
-                // The actual border will not be drawn in any case.
-                // See how the WM_NCCALCSIZE is processed.
-                CreateParams cp = base.CreateParams;
-                cp.Style |= 0x40000;        // WS_BORDER
-                cp.ClassStyle |= 0x20000;   // CS_DROPSHADOW
-
-                return cp;
-            }
-        }
 
         /// <summary>
         /// Gets or sets the settings.
@@ -387,12 +378,6 @@
             {
                 case PInvoke.WindowsMessages.WM_NCHITTEST:
                     this.OnNCHitTest(ref m);
-                    break;
-
-                case PInvoke.WindowsMessages.WM_NCCALCSIZE:
-                case PInvoke.WindowsMessages.WM_NCPAINT:
-                case PInvoke.WindowsMessages.WM_NCACTIVATE:
-                    m.Result = IntPtr.Zero;
                     break;
 
                 case PInvoke.WindowsMessages.WM_GETMINMAXINFO:
