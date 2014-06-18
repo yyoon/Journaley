@@ -1148,7 +1148,7 @@ namespace Journaley.Forms
             this.transparentImageButtonPopout.DialogResult = System.Windows.Forms.DialogResult.None;
             this.transparentImageButtonPopout.DownImage = global::Journaley.Properties.Resources.picture_btn_popout_over;
             this.transparentImageButtonPopout.HoverImage = global::Journaley.Properties.Resources.picture_btn_popout_over;
-            this.transparentImageButtonPopout.Image = global::Journaley.Properties.Resources.picture_btn_popout_over;
+            this.transparentImageButtonPopout.Image = global::Journaley.Properties.Resources.picture_btn_popout_norm;
             this.transparentImageButtonPopout.Location = new System.Drawing.Point(294, 144);
             this.transparentImageButtonPopout.Margin = new System.Windows.Forms.Padding(0);
             this.transparentImageButtonPopout.Name = "transparentImageButtonPopout";
