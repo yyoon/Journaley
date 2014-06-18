@@ -439,6 +439,7 @@
 
             mm.ptMaxPosition = new PInvoke.POINT(0, 0);
             mm.ptMaxSize = new PInvoke.POINT(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
+            mm.ptMinTrackSize = new PInvoke.POINT(this.MinimumSize.Width, this.MinimumSize.Height);
 
             Marshal.StructureToPtr(mm, m.LParam, true);
         }
