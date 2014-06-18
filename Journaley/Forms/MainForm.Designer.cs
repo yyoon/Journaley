@@ -621,7 +621,6 @@ namespace Journaley.Forms
             // panelTitlebar
             // 
             this.panelTitlebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
-            this.panelTitlebar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelTitlebar.Controls.Add(this.labelFormCaption);
             this.panelTitlebar.Controls.Add(this.pictureBoxFormIcon);
             this.panelTitlebar.Controls.Add(this.imageButtonFormMinimize);
@@ -834,7 +833,7 @@ namespace Journaley.Forms
             this.imageButtonFormMinimize.DownImage = global::Journaley.Properties.Resources.frame_btn_minimize_down;
             this.imageButtonFormMinimize.HoverImage = global::Journaley.Properties.Resources.frame_btn_minimize_over;
             this.imageButtonFormMinimize.Image = global::Journaley.Properties.Resources.frame_btn_minimize_norm;
-            this.imageButtonFormMinimize.Location = new System.Drawing.Point(787, 0);
+            this.imageButtonFormMinimize.Location = new System.Drawing.Point(791, 0);
             this.imageButtonFormMinimize.Margin = new System.Windows.Forms.Padding(0);
             this.imageButtonFormMinimize.Name = "imageButtonFormMinimize";
             this.imageButtonFormMinimize.NormalImage = global::Journaley.Properties.Resources.frame_btn_minimize_norm;
@@ -842,7 +841,7 @@ namespace Journaley.Forms
             this.imageButtonFormMinimize.SelectedDownImage = null;
             this.imageButtonFormMinimize.SelectedHoverImage = null;
             this.imageButtonFormMinimize.SelectedImage = null;
-            this.imageButtonFormMinimize.Size = new System.Drawing.Size(47, 18);
+            this.imageButtonFormMinimize.Size = new System.Drawing.Size(46, 20);
             this.imageButtonFormMinimize.TabIndex = 2;
             this.imageButtonFormMinimize.TabStop = false;
             this.imageButtonFormMinimize.Click += new System.EventHandler(this.ImageButtonFormMinimize_Click);
@@ -854,7 +853,7 @@ namespace Journaley.Forms
             this.imageButtonFormMaximize.DownImage = global::Journaley.Properties.Resources.frame_btn_maximize_down;
             this.imageButtonFormMaximize.HoverImage = global::Journaley.Properties.Resources.frame_btn_maximize_over;
             this.imageButtonFormMaximize.Image = global::Journaley.Properties.Resources.frame_btn_maximize_norm;
-            this.imageButtonFormMaximize.Location = new System.Drawing.Point(834, 0);
+            this.imageButtonFormMaximize.Location = new System.Drawing.Point(837, 0);
             this.imageButtonFormMaximize.Margin = new System.Windows.Forms.Padding(0);
             this.imageButtonFormMaximize.Name = "imageButtonFormMaximize";
             this.imageButtonFormMaximize.NormalImage = global::Journaley.Properties.Resources.frame_btn_maximize_norm;
@@ -862,7 +861,7 @@ namespace Journaley.Forms
             this.imageButtonFormMaximize.SelectedDownImage = null;
             this.imageButtonFormMaximize.SelectedHoverImage = null;
             this.imageButtonFormMaximize.SelectedImage = null;
-            this.imageButtonFormMaximize.Size = new System.Drawing.Size(47, 18);
+            this.imageButtonFormMaximize.Size = new System.Drawing.Size(46, 20);
             this.imageButtonFormMaximize.TabIndex = 1;
             this.imageButtonFormMaximize.TabStop = false;
             this.imageButtonFormMaximize.Click += new System.EventHandler(this.ImageButtonFormMaximize_Click);
@@ -874,7 +873,7 @@ namespace Journaley.Forms
             this.imageButtonFormClose.DownImage = global::Journaley.Properties.Resources.frame_btn_close_down;
             this.imageButtonFormClose.HoverImage = global::Journaley.Properties.Resources.frame_btn_close_over;
             this.imageButtonFormClose.Image = global::Journaley.Properties.Resources.frame_btn_close_norm;
-            this.imageButtonFormClose.Location = new System.Drawing.Point(881, 0);
+            this.imageButtonFormClose.Location = new System.Drawing.Point(883, 0);
             this.imageButtonFormClose.Margin = new System.Windows.Forms.Padding(0);
             this.imageButtonFormClose.Name = "imageButtonFormClose";
             this.imageButtonFormClose.NormalImage = global::Journaley.Properties.Resources.frame_btn_close_norm;
@@ -882,7 +881,7 @@ namespace Journaley.Forms
             this.imageButtonFormClose.SelectedDownImage = null;
             this.imageButtonFormClose.SelectedHoverImage = null;
             this.imageButtonFormClose.SelectedImage = null;
-            this.imageButtonFormClose.Size = new System.Drawing.Size(47, 18);
+            this.imageButtonFormClose.Size = new System.Drawing.Size(47, 20);
             this.imageButtonFormClose.TabIndex = 0;
             this.imageButtonFormClose.TabStop = false;
             this.imageButtonFormClose.Click += new System.EventHandler(this.ImageButtonFormClose_Click);
