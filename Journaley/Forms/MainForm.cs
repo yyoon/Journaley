@@ -154,7 +154,8 @@
                 // The actual border will not be drawn in any case.
                 // See how the WM_NCCALCSIZE is processed.
                 CreateParams cp = base.CreateParams;
-                cp.Style |= 0x40000;
+                cp.Style |= 0x40000;        // WS_BORDER
+                cp.ClassStyle |= 0x20000;   // CS_DROPSHADOW
 
                 return cp;
             }
