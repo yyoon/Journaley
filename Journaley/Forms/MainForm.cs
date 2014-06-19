@@ -23,6 +23,11 @@
     public partial class MainForm : Form, IEntryTextProvider
     {
         /// <summary>
+        /// The auto save threshold in milliseconds.
+        /// </summary>
+        private static readonly int AutoSaveThreshold = 3000;
+
+        /// <summary>
         /// The backing field of selected entry
         /// </summary>
         private Entry selectedEntry;
@@ -108,6 +113,8 @@
             {
                 entryListBox.EntryTextProvider = this;
             }
+
+            this.SetupAutoSaveTimer();
 
             // Jump List
             if (createJumpList)
@@ -219,7 +226,22 @@
 
             set
             {
-                this.isEditing = value;
+                if (this.isEditing != value)
+                {
+                    this.isEditing = value;
+
+                    if (value && this.SelectedEntry != null)
+                    {
+                        this.OldEntryText = this.SelectedEntry.EntryText;
+                        this.OldEntryDate = this.SelectedEntry.UTCDateTime;
+                    }
+                    else
+                    {
+                        this.OldEntryText = null;
+                        this.OldEntryDate = DateTime.MinValue;
+                    }
+                }
+
                 this.UpdateUI();
             }
         }
@@ -316,6 +338,30 @@
         /// The first day of week.
         /// </value>
         private DayOfWeek FirstDayOfWeek { get; set; }
+
+        /// <summary>
+        /// Gets or sets the old entry text, which is the entry text immediately before starting to edit.
+        /// </summary>
+        /// <value>
+        /// The old entry text.
+        /// </value>
+        private string OldEntryText { get; set; }
+
+        /// <summary>
+        /// Gets or sets the old entry date.
+        /// </summary>
+        /// <value>
+        /// The old entry date.
+        /// </value>
+        private DateTime OldEntryDate { get; set; }
+
+        /// <summary>
+        /// Gets or sets the auto save timer.
+        /// </summary>
+        /// <value>
+        /// The auto save timer.
+        /// </value>
+        private System.Timers.Timer AutoSaveTimer { get; set; }
 
         /// <summary>
         /// Gets the entry text for the provided journal entry.
@@ -426,12 +472,24 @@
         /// </summary>
         private void SaveSelectedEntry()
         {
+            this.SaveSelectedEntry(true);
+        }
+
+        /// <summary>
+        /// Saves the selected entry.
+        /// </summary>
+        /// <param name="applyTextFromTextBox">if set to <c>true</c> [apply text from text box].</param>
+        private void SaveSelectedEntry(bool applyTextFromTextBox)
+        {
             if (this.SelectedEntry == null)
             {
                 return;
             }
 
-            this.SelectedEntry.EntryText = this.spellCheckedEntryText.Text.Replace(Environment.NewLine, "\n");
+            if (applyTextFromTextBox)
+            {
+                this.SelectedEntry.EntryText = this.spellCheckedEntryText.Text.Replace(Environment.NewLine, "\n");
+            }
 
             if (this.SelectedEntry.IsDirty)
             {
@@ -997,6 +1055,10 @@
 
             // Update the UIs related to photo.
             this.UpdatePhotoUIs();
+
+            // Reset the auto save timer.
+            this.AutoSaveTimer.Stop();
+            this.AutoSaveTimer.Start();
         }
 
         /// <summary>
@@ -1130,6 +1192,17 @@
             {
                 this.WindowState = FormWindowState.Maximized;
             }
+        }
+
+        /// <summary>
+        /// Sets up the auto save timer.
+        /// </summary>
+        private void SetupAutoSaveTimer()
+        {
+            this.AutoSaveTimer = new System.Timers.Timer(AutoSaveThreshold);
+            this.AutoSaveTimer.AutoReset = false;
+            this.AutoSaveTimer.SynchronizingObject = this;
+            this.AutoSaveTimer.Elapsed += this.AutoSaveTimer_Elapsed;
         }
 
         #region Event Handlers
@@ -1354,7 +1427,29 @@
             Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when cancelling.");
             Debug.Assert(this.IsEditing == true, "Must be in the edit mode.");
 
+            string oldEntryText = this.OldEntryText;
+            DateTime oldEntryDate = this.OldEntryDate;
+
             this.IsEditing = false;
+
+            bool changed = false;
+            if (oldEntryText != this.SelectedEntry.EntryText)
+            {
+                this.SelectedEntry.EntryText = oldEntryText;
+                changed = true;
+            }
+
+            if (oldEntryDate != this.SelectedEntry.UTCDateTime)
+            {
+                this.SelectedEntry.UTCDateTime = oldEntryDate;
+                changed = true;
+            }
+
+            if (changed)
+            {
+                this.SaveSelectedEntry(false);
+            }
+
             this.UpdateDateAndTextFromEntry();
             this.UpdateUI();
         }
@@ -1541,6 +1636,9 @@
             {
                 this.SelectedEntry.UTCDateTime = this.dateTimePicker.Value.ToUniversalTime();
                 this.UpdateAllEntryLists();
+
+                this.AutoSaveTimer.Stop();
+                this.AutoSaveTimer.Start();
             }
         }
 
@@ -1587,6 +1685,10 @@
             this.SelectedEntry.PhotoPath = null;
 
             this.UpdatePhotoUIs();
+
+            // Reset the auto save timer.
+            this.AutoSaveTimer.Stop();
+            this.AutoSaveTimer.Start();
         }
 
         /// <summary>
@@ -1647,6 +1749,9 @@
             if (this.SelectedEntry != null)
             {
                 this.InvalidateEntryInEntryList(this.SelectedEntry);
+
+                this.AutoSaveTimer.Stop();
+                this.AutoSaveTimer.Start();
             }
         }
 
@@ -1744,6 +1849,19 @@
             photoForm.Show();
 
             this.PhotoExpanded = false;
+        }
+
+        /// <summary>
+        /// Handles the Elapsed event of the AutoSaveTimer control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Timers.ElapsedEventArgs"/> instance containing the event data.</param>
+        private void AutoSaveTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            if (this.SelectedEntry != null && this.IsEditing)
+            {
+                this.SaveSelectedEntry();
+            }
         }
 
         #endregion
