@@ -79,6 +79,26 @@
         }
 
         /// <summary>
+        /// Gets or sets the image that is displayed by <see cref="T:System.Windows.Forms.PictureBox" />.
+        /// </summary>
+        /// <returns>The <see cref="T:System.Drawing.Image" /> to display.</returns>
+        public virtual new Image Image
+        {
+            get
+            {
+                return base.Image;
+            }
+
+            set
+            {
+                if (base.Image != value)
+                {
+                    base.Image = value;
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the hover image.
         /// </summary>
         /// <value>
