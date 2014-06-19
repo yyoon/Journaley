@@ -189,6 +189,7 @@
                 }
 
                 this.UpdateStar();
+                this.UpdatePhoto();
                 this.UpdatePhotoButton();
 
                 this.PhotoExpanded = false;
@@ -871,6 +872,7 @@
 
             this.UpdateWebBrowser();
             this.UpdateUI();
+            this.UpdatePhotoArea();
         }
 
         /// <summary>
@@ -1030,6 +1032,7 @@
                 this.UpdateWebBrowser();
             }
 
+            this.UpdatePhoto();
             this.UpdatePhotoButton();
             this.UpdatePhotoArea();
             this.InvalidateEntryInEntryList(this.SelectedEntry);
@@ -1047,12 +1050,6 @@
             }
             else
             {
-                using (Image image = Image.FromFile(this.SelectedEntry.PhotoPath))
-                {
-                    Image copyImage = new Bitmap(image);
-                    this.entryPhotoArea.Image = copyImage;
-                }
-
                 if (this.PhotoExpanded)
                 {
                     this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 100, SizeType = SizeType.Percent };
@@ -1060,9 +1057,29 @@
                 }
                 else
                 {
-                    this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 38, SizeType = SizeType.Percent };
-                    this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 62, SizeType = SizeType.Percent };
+                    bool imageEmphasize = this.SelectedEntry.EntryText.Trim() == string.Empty;
+                    this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = imageEmphasize ? 62 : 38, SizeType = SizeType.Percent };
+                    this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = imageEmphasize ? 38 : 62, SizeType = SizeType.Percent };
                 }
+            }
+        }
+
+        /// <summary>
+        /// Updates the photo.
+        /// </summary>
+        private void UpdatePhoto()
+        {
+            if (this.SelectedEntry != null && this.SelectedEntry.PhotoPath != null)
+            {
+                using (Image image = Image.FromFile(this.SelectedEntry.PhotoPath))
+                {
+                    Image copyImage = new Bitmap(image);
+                    this.entryPhotoArea.Image = copyImage;
+                }
+            }
+            else
+            {
+                this.entryPhotoArea.Image = null;
             }
         }
 

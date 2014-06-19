@@ -55,6 +55,11 @@
         private static readonly int PhotoWidth = 56;
 
         /// <summary>
+        /// The wide photo width including the 1 pixel borders.
+        /// </summary>
+        private static readonly int WidePhotoWidth = 155;
+
+        /// <summary>
         /// The photo height including the 1 pixel borders.
         /// </summary>
         private static readonly int PhotoHeight = 69;
@@ -115,6 +120,11 @@
         private ImageCache thumbnailCache = new ImageCache();
 
         /// <summary>
+        /// The wide thumbnail cache
+        /// </summary>
+        private ImageCache wideThumbnailCache = new ImageCache();
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="EntryListBox"/> class.
         /// </summary>
         public EntryListBox()
@@ -144,6 +154,20 @@
             get
             {
                 return this.thumbnailCache;
+            }
+        }
+
+        /// <summary>
+        /// Gets the wide thumbnail cache.
+        /// </summary>
+        /// <value>
+        /// The wide thumbnail cache.
+        /// </value>
+        private ImageCache WideThumbnailCache
+        {
+            get
+            {
+                return this.wideThumbnailCache;
             }
         }
 
@@ -330,17 +354,21 @@
                 return;
             }
 
+            bool wide = this.EntryTextProvider.GetTextForEntry(entry).Trim() == string.Empty;
+
             Rectangle bounds = e.Bounds;
             bounds.Height -= 1;
             bounds.X -= 1;
             bounds.Y += (bounds.Height - PhotoHeight) / 2;
-            bounds.Width = PhotoWidth;
+            bounds.Width = wide ? WidePhotoWidth : PhotoWidth;
             bounds.Height = PhotoHeight;
             bounds.Inflate(-1, -1);
 
+            ImageCache cache = wide ? this.WideThumbnailCache : this.ThumbnailCache;
+
             try
             {
-                if (!this.ThumbnailCache.HasCachedImage(entry))
+                if (!cache.HasCachedImage(entry))
                 {
                     Image thumbnailImage = new Bitmap(bounds.Width, bounds.Height);
 
@@ -349,10 +377,10 @@
                         this.DrawToFit(Graphics.FromImage(thumbnailImage), image, new Rectangle(0, 0, bounds.Width, bounds.Height));
                     }
 
-                    this.ThumbnailCache.AddCachedImage(entry, thumbnailImage);
+                    cache.AddCachedImage(entry, thumbnailImage);
                 }
 
-                Image cachedImage = this.ThumbnailCache.GetCachedImage(entry);
+                Image cachedImage = cache.GetCachedImage(entry);
                 if (cachedImage != null)
                 {
                     e.Graphics.DrawImage(cachedImage, bounds.X, bounds.Y);
