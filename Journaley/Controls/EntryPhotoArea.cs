@@ -15,11 +15,31 @@
     {
         private Image image;
 
+        private Image backButtonNormalImage;
+
+        private int backButtonYPos;
+
+        private Image backButtonLabelImage;
+
+        private int backButtonLabelYPos;
+
+        private Image popoutButtonNormalImage;
+
+        private int popoutButtonYPos;
+
+        private Image popoutButtonLabelImage;
+
+        private int popoutButtonLabelYPos;
+
         private bool expanded;
 
         private bool hover;
 
         private bool imageHover;
+
+        private bool backButtonHover;
+
+        private bool popoutButtonHover;
 
         public EntryPhotoArea()
         {
@@ -32,12 +52,15 @@
         [Category("Action")]
         public event EventHandler ImageClick;
 
+        [Category("Action")]
         public event EventHandler BackButtonClick;
 
+        [Category("Action")]
         public event EventHandler PopoutButtonClick;
 
         /// <summary>
         /// Gets or sets the mask image.
+        /// Not intended to be changed at runtime.
         /// </summary>
         /// <value>
         /// The mask image.
@@ -45,6 +68,166 @@
         [Category("Appearance")]
         [Description("Mask image to show when the mouse is over the image.")]
         public Image MaskImage { get; set; }
+
+        [Category("Appearance")]
+        [Description("Back button normal image.")]
+        public Image BackButtonNormalImage
+        {
+            get
+            {
+                return this.backButtonNormalImage;
+            }
+
+            set
+            {
+                if (this.backButtonNormalImage != value)
+                {
+                    this.backButtonNormalImage = value;
+                    this.RecalculateBackButtonBounds();
+                }
+            }
+        }
+
+        [Category("Appearance")]
+        [Description("Back button hover image.")]
+        public Image BackButtonHoverImage { get; set; }
+
+        [Category("Appearance")]
+        [Description("Back button's y position relative to the photo area.")]
+        public int BackButtonYPos
+        {
+            get
+            {
+                return this.backButtonYPos;
+            }
+
+            set
+            {
+                if (this.backButtonYPos != value)
+                {
+                    this.backButtonYPos = value;
+                    this.RecalculateBackButtonBounds();
+                }
+            }
+        }
+
+        [Category("Appearance")]
+        [Description("Back button label image.")]
+        public Image BackButtonLabelImage
+        {
+            get
+            {
+                return this.backButtonLabelImage;
+            }
+
+            set
+            {
+                if (this.backButtonLabelImage != value)
+                {
+                    this.backButtonLabelImage = value;
+                    this.RecalculateBackButtonLabelBounds();
+                }
+            }
+        }
+
+        [Category("Appearance")]
+        [Description("Back button label y position relative to the photo area.")]
+        public int BackButtonLabelYPos
+        {
+            get
+            {
+                return this.backButtonLabelYPos;
+            }
+
+            set
+            {
+                if (this.backButtonLabelYPos != value)
+                {
+                    this.backButtonLabelYPos = value;
+                    this.RecalculateBackButtonLabelBounds();
+                }
+            }
+        }
+
+        [Category("Appearance")]
+        [Description("Popout button normal image.")]
+        public Image PopoutButtonNormalImage
+        {
+            get
+            {
+                return this.popoutButtonNormalImage;
+            }
+
+            set
+            {
+                if (this.popoutButtonNormalImage != value)
+                {
+                    this.popoutButtonNormalImage = value;
+                    this.RecalculatePopoutButtonBounds();
+                }
+            }
+        }
+
+        [Category("Appearance")]
+        [Description("Popout button hover image.")]
+        public Image PopoutButtonHoverImage { get; set; }
+
+        [Category("Appearance")]
+        [Description("Popout button's y position relative to the photo area.")]
+        public int PopoutButtonYPos
+        {
+            get
+            {
+                return this.popoutButtonYPos;
+            }
+
+            set
+            {
+                if (this.popoutButtonYPos != value)
+                {
+                    this.popoutButtonYPos = value;
+                    this.RecalculatePopoutButtonBounds();
+                }
+            }
+        }
+
+        [Category("Appearance")]
+        [Description("Popout button label image.")]
+        public Image PopoutButtonLabelImage
+        {
+            get
+            {
+                return this.popoutButtonLabelImage;
+            }
+
+            set
+            {
+                if (this.popoutButtonLabelImage != value)
+                {
+                    this.popoutButtonLabelImage = value;
+                    this.RecalculatePopoutButtonLabelBounds();
+                }
+            }
+        }
+
+        [Category("Appearance")]
+        [Description("Popout button label y position relative to the photo area.")]
+        public int PopoutButtonLabelYPos
+        {
+            get
+            {
+                return this.popoutButtonLabelYPos;
+            }
+
+            set
+            {
+                if (this.popoutButtonLabelYPos != value)
+                {
+                    this.popoutButtonLabelYPos = value;
+                    this.RecalculatePopoutButtonLabelBounds();
+                }
+            }
+        }
 
         public Image Image
         {
@@ -116,11 +299,66 @@
             }
         }
 
+        public bool BackButtonHover
+        {
+            get
+            {
+                return this.backButtonHover;
+            }
+
+            set
+            {
+                if (this.backButtonHover != value)
+                {
+                    this.backButtonHover = value;
+                    this.Invalidate(this.BackButtonBounds);
+                    this.Invalidate(this.BackButtonLabelBounds);
+                    this.Update();
+                }
+            }
+        }
+
+        public bool PopoutButtonHover
+        {
+            get
+            {
+                return this.popoutButtonHover;
+            }
+
+            set
+            {
+                if (this.popoutButtonHover != value)
+                {
+                    this.popoutButtonHover = value;
+                    this.Invalidate(this.PopoutButtonBounds);
+                    this.Invalidate(this.PopoutButtonLabelBounds);
+                    this.Update();
+                }
+            }
+        }
+
         private Rectangle DestImageBounds { get; set; }
+
+        private Rectangle BackButtonBounds { get; set; }
+
+        private Rectangle BackButtonLabelBounds { get; set; }
+
+        private Rectangle PopoutButtonBounds { get; set; }
+
+        private Rectangle PopoutButtonLabelBounds { get; set; }
+
+        private bool ButtonsVisible
+        {
+            get
+            {
+                return this.Expanded && this.Hover;
+            }
+        }
 
         protected override void OnResize(EventArgs e)
         {
             this.RecalculateDestImageBounds();
+            this.RecalculateButtonBounds();
 
             base.OnResize(e);
         }
@@ -129,6 +367,8 @@
         {
             this.Hover = true;
             this.ImageHover = this.DestImageBounds.Contains(e.Location);
+            this.BackButtonHover = this.BackButtonBounds.Contains(e.Location);
+            this.PopoutButtonHover = this.PopoutButtonBounds.Contains(e.Location);
 
             base.OnMouseMove(e);
         }
@@ -143,7 +383,23 @@
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            if (this.DestImageBounds.Contains(e.Location))
+            if (this.BackButtonHover)
+            {
+                // Raise the BackButtonClick event.
+                if (this.BackButtonClick != null)
+                {
+                    this.BackButtonClick(this, EventArgs.Empty);
+                }
+            }
+            else if (this.PopoutButtonHover)
+            {
+                // Raise the PopoutButtonClick event.
+                if (this.PopoutButtonClick != null)
+                {
+                    this.PopoutButtonClick(this, EventArgs.Empty);
+                }
+            }
+            else if (this.ImageHover)
             {
                 // Raise the ImageClick event.
                 if (this.ImageClick != null)
@@ -175,6 +431,38 @@
 
             if (this.Expanded)
             {
+                if (this.Hover)
+                {
+                    // Back button
+                    if (this.BackButtonHover)
+                    {
+                        // Draw the label.
+                        e.Graphics.DrawImage(this.BackButtonLabelImage, this.BackButtonLabelBounds);
+
+                        // Draw the hover button.
+                        e.Graphics.DrawImage(this.BackButtonHoverImage, this.BackButtonBounds);
+                    }
+                    else
+                    {
+                        // Draw the normal button.
+                        e.Graphics.DrawImage(this.BackButtonNormalImage, this.BackButtonBounds);
+                    }
+
+                    // Popout button
+                    if (this.PopoutButtonHover)
+                    {
+                        // Draw the label.
+                        e.Graphics.DrawImage(this.PopoutButtonLabelImage, this.PopoutButtonLabelBounds);
+
+                        // Draw the hover button.
+                        e.Graphics.DrawImage(this.PopoutButtonHoverImage, this.PopoutButtonBounds);
+                    }
+                    else
+                    {
+                        // Draw the normal button.
+                        e.Graphics.DrawImage(this.PopoutButtonNormalImage, this.PopoutButtonBounds);
+                    }
+                }
             }
             else
             {
@@ -203,6 +491,53 @@
                 (this.Height - destHeight) / 2,
                 this.Width,
                 destHeight);
+        }
+
+        private void RecalculateButtonBounds()
+        {
+            this.RecalculateBackButtonBounds();
+            this.RecalculateBackButtonLabelBounds();
+            this.RecalculatePopoutButtonBounds();
+            this.RecalculatePopoutButtonLabelBounds();
+        }
+
+        private void RecalculateBackButtonBounds()
+        {
+            this.BackButtonBounds = this.RecalculateBoundsHelper(this.BackButtonNormalImage, this.BackButtonYPos);
+        }
+
+        private void RecalculateBackButtonLabelBounds()
+        {
+            this.BackButtonLabelBounds = this.RecalculateBoundsHelper(this.BackButtonLabelImage, this.BackButtonLabelYPos);
+        }
+
+        private void RecalculatePopoutButtonBounds()
+        {
+            this.PopoutButtonBounds = this.RecalculateBoundsHelper(this.PopoutButtonNormalImage, this.PopoutButtonYPos);
+        }
+
+        private void RecalculatePopoutButtonLabelBounds()
+        {
+            this.PopoutButtonLabelBounds = this.RecalculateBoundsHelper(this.PopoutButtonLabelImage, this.PopoutButtonLabelYPos);
+        }
+
+        private Rectangle RecalculateBoundsHelper(Image image, int ypos)
+        {
+            if (image == null)
+            {
+                return Rectangle.Empty;
+            }
+
+            return new Rectangle(
+                (this.Width - image.Width) / 2,
+                this.GetActualYPos(ypos, image.Height),
+                image.Width,
+                image.Height);
+        }
+
+        private int GetActualYPos(int ypos, int imageHeight)
+        {
+            return ypos >= 0 ? ypos : this.Height + ypos - imageHeight + 1;
         }
     }
 }
