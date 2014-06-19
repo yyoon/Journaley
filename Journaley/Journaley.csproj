@@ -81,6 +81,9 @@
     <Compile Include="Controls\EntryListAreaPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\EntryPhotoArea.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\FixedWidthPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -90,15 +93,6 @@
     </Compile>
     <Compile Include="Controls\SpellCheckedTextBox.cs" />
     <Compile Include="Controls\TitleLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\TransparentImageButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\TransparentPictureBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\TransparentTableLayoutPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms\ChangePasswordForm.cs">
