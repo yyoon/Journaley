@@ -1098,6 +1098,7 @@ namespace Journaley.Forms
             this.entryPhotoArea.Size = new System.Drawing.Size(620, 195);
             this.entryPhotoArea.TabIndex = 2;
             this.entryPhotoArea.Text = "entryPhotoArea1";
+            this.entryPhotoArea.ImageClick += new System.EventHandler(this.EntryPhotoArea_ImageClick);
             // 
             // MainForm
             // 

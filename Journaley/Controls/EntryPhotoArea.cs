@@ -2,11 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Drawing;
     using System.Linq;
     using System.Text;
     using System.Windows.Forms;
-    using System.ComponentModel;
 
     /// <summary>
     /// Control for displaying an entry photo.
@@ -29,6 +29,7 @@
             this.SetStyle(ControlStyles.ResizeRedraw, true);
         }
 
+        [Category("Action")]
         public event EventHandler ImageClick;
 
         public event EventHandler BackButtonClick;
@@ -138,6 +139,20 @@
             this.ImageHover = false;
 
             base.OnMouseLeave(e);
+        }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            if (this.DestImageBounds.Contains(e.Location))
+            {
+                // Raise the ImageClick event.
+                if (this.ImageClick != null)
+                {
+                    this.ImageClick(this, EventArgs.Empty);
+                }
+            }
+
+            base.OnMouseDown(e);
         }
 
         protected override void OnPaint(PaintEventArgs e)

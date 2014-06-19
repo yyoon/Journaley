@@ -1671,6 +1671,19 @@
             }
         }
 
+        /// <summary>
+        /// Handles the ImageClick event of the entryPhotoArea control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void EntryPhotoArea_ImageClick(object sender, EventArgs e)
+        {
+            if (this.PhotoExpanded == false)
+            {
+                this.PhotoExpanded = true;
+            }
+        }
+
         #endregion
 
         #region Private Classes
