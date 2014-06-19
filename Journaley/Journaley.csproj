@@ -95,15 +95,6 @@
     <Compile Include="Controls\TitleLabel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\TransparentImageButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\TransparentPictureBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\TransparentTableLayoutPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Forms\ChangePasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
