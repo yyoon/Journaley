@@ -17,7 +17,7 @@
         /// the text being edited should be returned.
         /// </summary>
         /// <param name="entry">The entry.</param>
-        /// <returns>The entry text to be previewed.</returns>
-        string GetTextForEntry(Entry entry);
+        /// <returns>The entry text to be previewed. The first one is the optional title, and the second one is the entry.</returns>
+        Tuple<string, string> GetTextForEntry(Entry entry);
     }
 }

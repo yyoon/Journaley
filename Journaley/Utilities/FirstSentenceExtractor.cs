@@ -24,13 +24,36 @@
         /// Extracts the first sentence.
         /// </summary>
         /// <param name="fullText">The entry text, after processing Markdown / htmlToText.</param>
-        /// <returns>The extracted first sentence of the full text.</returns>
-        public static string ExtractFirstSentence(string fullText)
+        /// <returns>The extracted (optional) title and the first sentence of the full text.</returns>
+        public static Tuple<string, string> ExtractTitleAndFirstSentence(string fullText)
         {
-            string firstLine = ExtractFirstLine(fullText);
+            string[] lines = fullText.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
+            if (lines.Length == 0)
+            {
+                return new Tuple<string, string>(null, string.Empty);
+            }
+
+            string firstLine = lines[0];
             int pos = IndexOfPunctuationMark(firstLine, 0);
-            return pos == -1 ? firstLine : firstLine.Substring(0, pos + 1);
+
+            // If there is a punctuation mark, just return the first sentence without title.
+            if (pos != -1)
+            {
+                return new Tuple<string, string>(null, firstLine.Substring(0, pos + 1));
+            }
+
+            // If not, then the first line becomes the title.
+            if (lines.Length == 1)
+            {
+                return new Tuple<string, string>(firstLine, string.Empty);
+            }
+
+            string secondLine = lines[1];
+            pos = IndexOfPunctuationMark(secondLine, 0);
+
+            string firstSentence = pos == -1 ? secondLine : secondLine.Substring(0, pos + 1);
+            return new Tuple<string, string>(firstLine, firstSentence);
         }
 
         /// <summary>
@@ -66,6 +89,11 @@
                 throw new ArgumentNullException();
             }
 
+            if (startIndex >= line.Length)
+            {
+                return -1;
+            }
+
             int pos = line.IndexOfAny(PunctuationMarks, startIndex);
             if (pos == -1)
             {
@@ -93,7 +121,7 @@
                 return pos;
             }
 
-            return -1;
+            return IndexOfPunctuationMark(line, pos + 1);
         }
     }
 }

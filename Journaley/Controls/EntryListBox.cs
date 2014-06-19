@@ -70,6 +70,11 @@
         private static readonly Font EntryTextFont = new Font("Segoe UI Semilight", 9.0f, System.Drawing.FontStyle.Regular);
 
         /// <summary>
+        /// The entry title font
+        /// </summary>
+        private static readonly Font EntryTitleFont = new Font("Segoe UI Semilight", 9.0f, System.Drawing.FontStyle.Bold);
+
+        /// <summary>
         /// The entry day font
         /// </summary>
         private static readonly Font EntryDayFont = new Font(EntryTextFont.FontFamily, 26.0f, FontStyle.Bold);
@@ -283,9 +288,13 @@
         /// <param name="entry">The entry.</param>
         private void DrawEntry(DrawItemEventArgs e, Entry entry)
         {
+            Tuple<string, string> previewText = this.EntryTextProvider != null
+                ? this.EntryTextProvider.GetTextForEntry(entry)
+                : new Tuple<string, string>(null, entry.EntryText);
+
             this.DrawEntryBackground(e, entry);
-            this.DrawEntryText(e, entry);
-            this.DrawPhoto(e, entry);
+            this.DrawEntryText(e, entry, previewText);
+            this.DrawPhoto(e, entry, previewText);
             this.DrawDay(e, entry);
             this.DrawDayOfWeek(e, entry);
             this.DrawTime(e, entry);
@@ -313,9 +322,10 @@
         /// <summary>
         /// Draws the entry text.
         /// </summary>
-        /// <param name="e">The <see cref="DrawItemEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="DrawItemEventArgs" /> instance containing the event data.</param>
         /// <param name="entry">The entry.</param>
-        private void DrawEntryText(DrawItemEventArgs e, Entry entry)
+        /// <param name="previewText">The preview text.</param>
+        private void DrawEntryText(DrawItemEventArgs e, Entry entry, Tuple<string, string> previewText)
         {
             Rectangle bounds = e.Bounds;
             bounds.Height -= 1;
@@ -335,26 +345,54 @@
             stringFormat.FormatFlags = StringFormatFlags.LineLimit;
             stringFormat.Trimming = StringTrimming.EllipsisCharacter;
 
-            string entryText = this.EntryTextProvider != null
-                ? this.EntryTextProvider.GetTextForEntry(entry)
-                : entry.EntryText;
+            string entryTitle = previewText.Item1;
+            string entryText = previewText.Item2;
 
-            e.Graphics.DrawString(entryText, EntryTextFont, brush, bounds, stringFormat);
+            if (string.IsNullOrEmpty(previewText.Item1))
+            {
+                e.Graphics.DrawString(entryText, EntryTextFont, brush, bounds, stringFormat);
+            }
+            else
+            {
+                // Measure.
+                var titleMeasure = e.Graphics.MeasureString(entryTitle, EntryTitleFont);
+                int titleHeight = (int)Math.Ceiling(titleMeasure.Height);
+
+                var textMeasure = e.Graphics.MeasureString(entryText, EntryTextFont, new SizeF(bounds.Width, bounds.Height - titleHeight));
+                int textHeight = (int)Math.Ceiling(textMeasure.Height);
+
+                int totalHeight = Math.Min(titleHeight + textHeight, bounds.Height);
+
+                // Draw title
+                Rectangle titleBounds = bounds;
+                titleBounds.Y += (bounds.Height - totalHeight) / 2;
+                titleBounds.Height = titleHeight;
+
+                e.Graphics.DrawString(entryTitle, EntryTitleFont, brush, titleBounds, stringFormat);
+
+                // Draw first sentence
+                Rectangle textBounds = bounds;
+                textBounds.Y = titleBounds.Bottom;
+                textBounds.Height = totalHeight - titleHeight;
+
+                e.Graphics.DrawString(entryText, EntryTextFont, brush, textBounds, stringFormat);
+            }
         }
 
         /// <summary>
         /// Draws the photo. When the image cannot be loaded for some reason, use the default icon instead.
         /// </summary>
-        /// <param name="e">The <see cref="DrawItemEventArgs"/> instance containing the event data.</param>
+        /// <param name="e">The <see cref="DrawItemEventArgs" /> instance containing the event data.</param>
         /// <param name="entry">The entry.</param>
-        private void DrawPhoto(DrawItemEventArgs e, Entry entry)
+        /// <param name="previewText">The preview text.</param>
+        private void DrawPhoto(DrawItemEventArgs e, Entry entry, Tuple<string, string> previewText)
         {
             if (entry.PhotoPath == null)
             {
                 return;
             }
 
-            bool wide = this.EntryTextProvider.GetTextForEntry(entry).Trim() == string.Empty;
+            bool wide = string.IsNullOrEmpty(previewText.Item1) && string.IsNullOrEmpty(previewText.Item2);
 
             Rectangle bounds = e.Bounds;
             bounds.Height -= 1;

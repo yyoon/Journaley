@@ -372,18 +372,18 @@
         /// <returns>
         /// The entry text to be previewed.
         /// </returns>
-        public string GetTextForEntry(Entry entry)
+        public Tuple<string, string> GetTextForEntry(Entry entry)
         {
             if (entry == null)
             {
-                return string.Empty;
+                return new Tuple<string, string>(null, string.Empty);
             }
 
             string sourceText = (this.SelectedEntry == entry && this.IsEditing)
                 ? this.spellCheckedEntryText.Text.Replace(Environment.NewLine, "\n")
                 : entry.EntryText;
 
-            return FirstSentenceExtractor.ExtractFirstSentence(HtmlToText.Convert(Markdown.Transform(sourceText)));
+            return FirstSentenceExtractor.ExtractTitleAndFirstSentence(HtmlToText.Convert(Markdown.Transform(sourceText)));
         }
 
         /// <summary>
