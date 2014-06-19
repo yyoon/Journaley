@@ -1087,10 +1087,13 @@ namespace Journaley.Forms
             // 
             this.entryPhotoArea.BackgroundImage = global::Journaley.Properties.Resources.picture_pane_background_tile;
             this.entryPhotoArea.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryPhotoArea.Expanded = false;
+            this.entryPhotoArea.Hover = false;
             this.entryPhotoArea.Image = null;
+            this.entryPhotoArea.ImageHover = false;
             this.entryPhotoArea.Location = new System.Drawing.Point(0, 0);
             this.entryPhotoArea.Margin = new System.Windows.Forms.Padding(0);
-            this.entryPhotoArea.MaskImage = null;
+            this.entryPhotoArea.MaskImage = global::Journaley.Properties.Resources.picture_pane_hoverMask;
             this.entryPhotoArea.Name = "entryPhotoArea";
             this.entryPhotoArea.Size = new System.Drawing.Size(620, 195);
             this.entryPhotoArea.TabIndex = 2;

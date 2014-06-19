@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Text;
     using System.Windows.Forms;
+    using System.ComponentModel;
 
     /// <summary>
     /// Control for displaying an entry photo.
@@ -34,6 +35,14 @@
 
         public event EventHandler PopoutButtonClick;
 
+        /// <summary>
+        /// Gets or sets the mask image.
+        /// </summary>
+        /// <value>
+        /// The mask image.
+        /// </value>
+        [Category("Appearance")]
+        [Description("Mask image to show when the mouse is over the image.")]
         public Image MaskImage { get; set; }
 
         public Image Image
@@ -110,9 +119,25 @@
 
         protected override void OnResize(EventArgs e)
         {
-            base.OnResize(e);
-
             this.RecalculateDestImageBounds();
+
+            base.OnResize(e);
+        }
+
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            this.Hover = true;
+            this.ImageHover = this.DestImageBounds.Contains(e.Location);
+
+            base.OnMouseMove(e);
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            this.Hover = false;
+            this.ImageHover = false;
+
+            base.OnMouseLeave(e);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -139,8 +164,9 @@
             else
             {
                 // Draw the hover mask, if needed.
-                if (this.ImageHover)
+                if (this.ImageHover && this.MaskImage != null)
                 {
+                    e.Graphics.DrawImage(this.MaskImage, this.DestImageBounds);
                 }
             }
 
