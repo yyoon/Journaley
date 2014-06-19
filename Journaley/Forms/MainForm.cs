@@ -135,6 +135,21 @@
         public static int NewEntryMessage { get; set; }
 
         /// <summary>
+        /// Adds the sizing borders to the frame.
+        /// </summary>
+        /// <returns>A <see cref="T:System.Windows.Forms.CreateParams" /> that contains the required creation parameters when the handle to the control is created.</returns>
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.Style |= 0x20000;        // WS_MINIMIZEBOX
+
+                return cp;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the settings.
         /// </summary>
         /// <value>
