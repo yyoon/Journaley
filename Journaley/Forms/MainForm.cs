@@ -553,6 +553,7 @@
             this.UpdateStats();
             this.UpdateAllEntryLists();
             this.UpdateUI();
+            this.UpdatePhotoArea();
         }
 
         /// <summary>
