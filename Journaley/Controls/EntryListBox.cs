@@ -177,6 +177,24 @@
         }
 
         /// <summary>
+        /// The list's window procedure.
+        /// </summary>
+        /// <param name="m">A Windows Message Object.</param>
+        protected override void WndProc(ref Message m)
+        {
+            switch ((PInvoke.WindowsMessages)m.Msg)
+            {
+                case PInvoke.WindowsMessages.WM_MOUSEWHEEL:
+                    this.OnMouseWheel(ref m);
+                    break;
+
+                default:
+                    base.WndProc(ref m);
+                    break;
+            }
+        }
+
+        /// <summary>
         /// Raises the <see cref="E:System.Windows.Forms.ListBox.MeasureItem" /> event.
         /// </summary>
         /// <param name="e">A <see cref="T:System.Windows.Forms.MeasureItemEventArgs" /> that contains the event data.</param>
@@ -254,6 +272,27 @@
                     0,
                     0,
                     PInvoke.TernaryRasterOperations.SRCCOPY);
+            }
+        }
+
+        /// <summary>
+        /// Called when [mouse wheel].
+        /// Eat the mouse wheel event, and send the SB_LINEUP / SB_LINEDOWN message instead.
+        /// </summary>
+        /// <param name="m">The windows message object.</param>
+        private void OnMouseWheel(ref Message m)
+        {
+            int wheelDelta = (int)m.WParam >> 16;
+
+            if (wheelDelta > 0)
+            {
+                // Positive value: wheel rotating forward, away from the user.
+                PInvoke.SendMessage(this.Handle, (int)PInvoke.WindowsMessages.WM_VSCROLL, (IntPtr)PInvoke.ScrollBarCommands.SB_LINEUP, IntPtr.Zero);
+            }
+            else if (wheelDelta < 0)
+            {
+                // Negative value: wheel rotating backward, toward the user.
+                PInvoke.SendMessage(this.Handle, (int)PInvoke.WindowsMessages.WM_VSCROLL, (IntPtr)PInvoke.ScrollBarCommands.SB_LINEDOWN, IntPtr.Zero);
             }
         }
 
