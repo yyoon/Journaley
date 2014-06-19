@@ -787,7 +787,6 @@ namespace Journaley.Forms
             // 
             // entryPhotoArea
             // 
-            this.entryPhotoArea.BackButtonHover = false;
             this.entryPhotoArea.BackButtonHoverImage = global::Journaley.Properties.Resources.picture_btn_back_over;
             this.entryPhotoArea.BackButtonLabelImage = global::Journaley.Properties.Resources.picture_lbl_back;
             this.entryPhotoArea.BackButtonLabelYPos = 3;
@@ -796,14 +795,11 @@ namespace Journaley.Forms
             this.entryPhotoArea.BackgroundImage = global::Journaley.Properties.Resources.picture_pane_background_tile;
             this.entryPhotoArea.Dock = System.Windows.Forms.DockStyle.Fill;
             this.entryPhotoArea.Expanded = false;
-            this.entryPhotoArea.Hover = false;
             this.entryPhotoArea.Image = null;
-            this.entryPhotoArea.ImageHover = false;
             this.entryPhotoArea.Location = new System.Drawing.Point(0, 0);
             this.entryPhotoArea.Margin = new System.Windows.Forms.Padding(0);
             this.entryPhotoArea.MaskImage = global::Journaley.Properties.Resources.picture_pane_hoverMask;
             this.entryPhotoArea.Name = "entryPhotoArea";
-            this.entryPhotoArea.PopoutButtonHover = false;
             this.entryPhotoArea.PopoutButtonHoverImage = global::Journaley.Properties.Resources.picture_btn_popout_over;
             this.entryPhotoArea.PopoutButtonLabelImage = global::Journaley.Properties.Resources.picture_lbl_popout;
             this.entryPhotoArea.PopoutButtonLabelYPos = -2;
