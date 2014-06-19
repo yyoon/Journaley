@@ -63,11 +63,6 @@
         private FontFamily fontFamilyNotoSansRegular;
 
         /// <summary>
-        /// Private field to indicate whether to suppress the table layout for entry photo.
-        /// </summary>
-        private bool suppressTableLayout = false;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
         public MainForm() : this(false, false)
@@ -113,31 +108,6 @@
             {
                 entryListBox.EntryTextProvider = this;
             }
-
-            // Back / Popout button labels.
-            this.transparentImageButtonBack.PropertyChanged += (e, args) =>
-            {
-                this.transparentPictureBoxLabelBack.Image = this.transparentImageButtonBack.Hover
-                    ? Journaley.Properties.Resources.picture_lbl_back
-                    : null;
-
-                // Repaint the background?
-                this.panelEntryPhotoArea.Invalidate(this.transparentPictureBoxLabelBack.Bounds, true);
-                this.panelEntryPhotoArea.Invalidate(this.transparentImageButtonBack.Bounds, true);
-                this.panelEntryPhotoArea.Update();
-            };
-
-            this.transparentImageButtonPopout.PropertyChanged += (e, args) =>
-            {
-                this.transparentPictureBoxLabelPopout.Image = this.transparentImageButtonPopout.Hover
-                    ? Journaley.Properties.Resources.picture_lbl_popout
-                    : null;
-
-                // Repaint the background?
-                this.panelEntryPhotoArea.Invalidate(this.transparentPictureBoxLabelPopout.Bounds, true);
-                this.panelEntryPhotoArea.Invalidate(this.transparentImageButtonPopout.Bounds, true);
-                this.panelEntryPhotoArea.Update();
-            };
 
             // Jump List
             if (createJumpList)
@@ -1075,23 +1045,18 @@
                 using (Image image = Image.FromFile(this.SelectedEntry.PhotoPath))
                 {
                     Image copyImage = new Bitmap(image);
-                    this.pictureBoxEntryPhoto.BackgroundImage = copyImage;
+                    this.entryPhotoArea.Image = copyImage;
                 }
 
                 if (this.PhotoExpanded)
                 {
                     this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 100, SizeType = SizeType.Percent };
                     this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 0, SizeType = SizeType.Absolute };
-
-                    this.tableLayoutPanelEntryPhotoButtons.Visible = true;
-                    this.panelEntryPhotoArea.Refresh();
                 }
                 else
                 {
                     this.tableLayoutEntryArea.RowStyles[0] = new RowStyle { Height = 38, SizeType = SizeType.Percent };
                     this.tableLayoutEntryArea.RowStyles[1] = new RowStyle { Height = 62, SizeType = SizeType.Percent };
-
-                    this.tableLayoutPanelEntryPhotoButtons.Visible = false;
                 }
             }
         }
@@ -1678,85 +1643,6 @@
         }
 
         /// <summary>
-        /// Handles the Click event of the pictureBoxEntryPicture control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void PictureBoxEntryPicture_Click(object sender, EventArgs e)
-        {
-            if (this.PhotoExpanded == false)
-            {
-                this.PhotoExpanded = true;
-            }
-        }
-
-        /// <summary>
-        /// Handles the Click event of the transparentImageButtonBack control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void TransparentImageButtonBack_Click(object sender, EventArgs e)
-        {
-            this.PhotoExpanded = false;
-        }
-
-        /// <summary>
-        /// Handles the Click event of the transparentImageButtonPopout control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void TransparentImageButtonPopout_Click(object sender, EventArgs e)
-        {
-            PhotoDisplayForm photoForm = new PhotoDisplayForm();
-
-            Image image = new Bitmap(Image.FromFile(this.SelectedEntry.PhotoPath));
-            photoForm.Image = image;
-            photoForm.ClientSize = new System.Drawing.Size(image.Width, image.Height);
-
-            Screen currentScreen = Screen.FromControl(this);
-            int screenWidth = currentScreen.Bounds.Width;
-            int screenHeight = currentScreen.Bounds.Height;
-
-            double threshold = 0.8;
-            int maxWidth = (int)(screenWidth * threshold);
-            int maxHeight = (int)(screenHeight * threshold);
-
-            photoForm.Width = Math.Min(photoForm.Width, maxWidth);
-            photoForm.Height = Math.Min(photoForm.Height, maxHeight);
-
-            photoForm.StartPosition = FormStartPosition.CenterScreen;
-            photoForm.Show();
-
-            this.PhotoExpanded = false;
-        }
-
-        /// <summary>
-        /// Handles the MouseMove event of the pictureBoxEntryPhoto control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
-        private void PictureBoxEntryPhoto_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (this.pictureBoxEntryPhoto.Image == null)
-            {
-                this.pictureBoxEntryPhoto.Image = Journaley.Properties.Resources.picture_pane_hoverMask;
-            }
-        }
-
-        /// <summary>
-        /// Handles the MouseLeave event of the pictureBoxEntryPhoto control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void PictureBoxEntryPhoto_MouseLeave(object sender, EventArgs e)
-        {
-            if (this.pictureBoxEntryPhoto.Image != null)
-            {
-                this.pictureBoxEntryPhoto.Image = null;
-            }
-        }
-
-        /// <summary>
         /// Handles the MouseDown event of the panel title bar control.
         /// Pretends like the caption area is clicked.
         /// </summary>
@@ -1783,25 +1669,6 @@
                 PInvoke.ReleaseCapture();
                 PInvoke.SendMessage(this.Handle, (int)PInvoke.WindowsMessages.WM_NCLBUTTONDOWN, (IntPtr)PInvoke.HitTestValues.HTBOTTOMRIGHT, IntPtr.Zero);
             }
-        }
-
-        /// <summary>
-        /// Handles the Resize event of the tableLayoutPanelEntryPhoto control.
-        /// Forces this table layout to perform layout again.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void TableLayoutPanelEntryPhoto_Resize(object sender, EventArgs e)
-        {
-            // http://stackoverflow.com/questions/7908330/programmatically-adding-controls-to-tablelayoutpanel-behaves-differently-based-o
-            if (this.suppressTableLayout)
-            {
-                return;
-            }
-
-            this.suppressTableLayout = true;
-            this.tableLayoutPanelEntryPhoto.BeginInvoke(new Action(() => this.tableLayoutPanelEntryPhoto.PerformLayout()));
-            this.suppressTableLayout = false;
         }
 
         #endregion
