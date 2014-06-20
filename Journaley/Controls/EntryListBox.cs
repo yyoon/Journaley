@@ -72,7 +72,7 @@
         /// <summary>
         /// The entry title font
         /// </summary>
-        private static readonly Font EntryTitleFont = new Font("Segoe UI Semilight", 9.0f, System.Drawing.FontStyle.Bold);
+        private static readonly Font EntryTitleFont = new Font("Segoe UI Semibold", 9.0f, System.Drawing.FontStyle.Regular);
 
         /// <summary>
         /// The entry day font
