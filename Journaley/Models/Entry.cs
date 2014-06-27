@@ -352,6 +352,7 @@
                     }
 
                     XmlDocument doc = new XmlDocument();
+                    doc.XmlResolver = null;
                     doc.LoadXml(fileContent);
 
                     XmlNode dictNode = doc.SelectSingleNode("//dict");
