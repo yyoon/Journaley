@@ -496,6 +496,7 @@
         public void Save(string folderPath)
         {
             XmlDocument doc = new XmlDocument();
+            doc.XmlResolver = null;
 
             // <?xml ...?>
             var decl = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
