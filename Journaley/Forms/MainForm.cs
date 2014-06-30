@@ -405,7 +405,7 @@
             {
                 if (this.draggingTitleBar == true && value == false)
                 {
-                    if (this.Location.Y < 0)
+                    if (this.WindowState != FormWindowState.Maximized && this.Location.Y < 0)
                     {
                         this.Location = new Point(this.Location.X, 0);
                     }
@@ -1841,7 +1841,33 @@
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 this.DraggingTitleBar = true;
-                this.draggingOffset = e.Location;
+
+                if (this.WindowState == FormWindowState.Maximized)
+                {
+                    Point offset = new Point();
+                    if (this.RestoreBounds.Width >= this.Width)
+                    {
+                        offset = e.Location;
+                    }
+                    else if (e.X < this.RestoreBounds.Width / 2)
+                    {
+                        offset = e.Location;
+                    }
+                    else if (e.X >= this.Width - (this.RestoreBounds.Width / 2))
+                    {
+                        offset = new Point(e.Location.X - (this.Width - this.RestoreBounds.Width), e.Location.Y);
+                    }
+                    else
+                    {
+                        offset = new Point(this.RestoreBounds.Width / 2, e.Location.Y);
+                    }
+
+                    this.draggingOffset = offset;
+                }
+                else
+                {
+                    this.draggingOffset = e.Location;
+                }
             }
         }
 
@@ -1852,8 +1878,14 @@
         /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
         private void PanelTitlebar_MouseMove(object sender, MouseEventArgs e)
         {
-            if (this.DraggingTitleBar && this.WindowState != FormWindowState.Maximized)
+            if (this.DraggingTitleBar)
             {
+                // Make it normal state before moving.
+                if (this.WindowState == FormWindowState.Maximized)
+                {
+                    this.WindowState = FormWindowState.Normal;
+                }
+
                 Point curScreenPos = this.PointToScreen(e.Location);
                 this.Location = new Point(curScreenPos.X - this.draggingOffset.X, curScreenPos.Y - this.draggingOffset.Y);
             }
@@ -1866,6 +1898,11 @@
         /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
         private void PanelTitlebar_MouseUp(object sender, MouseEventArgs e)
         {
+            if (this.PointToScreen(e.Location).Y == 0 && this.WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+
             this.DraggingTitleBar = false;
         }
 
