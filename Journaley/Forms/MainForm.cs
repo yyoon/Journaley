@@ -589,7 +589,7 @@
                 this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonEdit);
             }
 
-            this.spellCheckedEntryText.Visible = this.IsEditing;
+            this.panelEntryTextWrapper.Visible = this.IsEditing;
             this.panelWebBrowserWrapper.Visible = this.webBrowser.Visible = noEntry || !this.IsEditing;
         }
 
