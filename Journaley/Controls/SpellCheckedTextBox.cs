@@ -66,6 +66,14 @@
                     e.Handled = true;
                 }
             };
+
+            this.box.PreviewKeyDown += (s, e) =>
+            {
+                if (e.Key == Key.Insert && e.KeyboardDevice.Modifiers == System.Windows.Input.ModifierKeys.None)
+                {
+                    e.Handled = true;
+                }
+            };
         }
 
         /// <summary>
