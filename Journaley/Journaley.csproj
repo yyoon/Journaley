@@ -91,6 +91,9 @@
     <Compile Include="Controls\ImageButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\MouseFallThroughLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\SpellCheckedTextBox.cs" />
     <Compile Include="Controls\TitleLabel.cs">
       <SubType>Component</SubType>
