@@ -840,6 +840,28 @@
         }
 
         /// <summary>
+        /// Gets the active entry list.
+        /// </summary>
+        /// <returns>the currently active entry list box object.</returns>
+        private EntryListBox GetActiveEntryList()
+        {
+            if (this.panelTimeline.Visible)
+            {
+                return this.entryListBoxAll;
+            }
+            else if (this.panelCalendar.Visible)
+            {
+                return this.entryListBoxCalendar;
+            }
+            else if (this.panelTags.Visible)
+            {
+                return this.entryListBoxTags;
+            }
+
+            return null;
+        }
+
+        /// <summary>
         /// Updates the word counts.
         /// </summary>
         private void UpdateWordCounts()
@@ -2000,6 +2022,24 @@
             if (this.SelectedEntry != null && this.IsEditing)
             {
                 this.SaveSelectedEntry();
+            }
+        }
+
+        /// <summary>
+        /// Handles the MouseDown event of the tableLayoutStats control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void TableLayoutStats_MouseDown(object sender, MouseEventArgs e)
+        {
+            EntryListBox activeEntryList = this.GetActiveEntryList();
+            if (activeEntryList != null)
+            {
+                PInvoke.SendMessage(
+                    activeEntryList.Handle,
+                    (int)PInvoke.WindowsMessages.WM_VSCROLL,
+                    (IntPtr)PInvoke.ScrollBarCommands.SB_TOP,
+                    IntPtr.Zero);
             }
         }
 

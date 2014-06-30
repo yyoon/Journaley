@@ -30,14 +30,10 @@ namespace Journaley.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label labelThisWeekLabel;
-            System.Windows.Forms.Label labelTodayLabel;
-            this.labelEntriesLabel = new System.Windows.Forms.Label();
+            Journaley.Controls.MouseFallThroughLabel labelThisWeekLabel;
+            Journaley.Controls.MouseFallThroughLabel labelTodayLabel;
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutStats = new System.Windows.Forms.TableLayoutPanel();
-            this.labelEntries = new System.Windows.Forms.Label();
-            this.labelThisWeek = new System.Windows.Forms.Label();
-            this.labelToday = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.panelWebBrowserWrapper = new System.Windows.Forms.Panel();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
@@ -94,8 +90,12 @@ namespace Journaley.Forms
             this.listBoxTags = new System.Windows.Forms.ListBox();
             this.spellCheckedEntryText = new Journaley.Controls.SpellCheckedTextBox();
             this.entryPhotoArea = new Journaley.Controls.EntryPhotoArea();
-            labelThisWeekLabel = new System.Windows.Forms.Label();
-            labelTodayLabel = new System.Windows.Forms.Label();
+            this.labelEntries = new Journaley.Controls.MouseFallThroughLabel();
+            this.labelThisWeek = new Journaley.Controls.MouseFallThroughLabel();
+            this.labelToday = new Journaley.Controls.MouseFallThroughLabel();
+            this.labelEntriesLabel = new Journaley.Controls.MouseFallThroughLabel();
+            labelThisWeekLabel = new Journaley.Controls.MouseFallThroughLabel();
+            labelTodayLabel = new Journaley.Controls.MouseFallThroughLabel();
             this.tableLayoutStats.SuspendLayout();
             this.panelWebBrowserWrapper.SuspendLayout();
             this.contextMenuStripPhotoWithPhoto.SuspendLayout();
@@ -136,48 +136,6 @@ namespace Journaley.Forms
             this.panelTimeline.SuspendLayout();
             this.panelTags.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // labelThisWeekLabel
-            // 
-            labelThisWeekLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            labelThisWeekLabel.AutoSize = true;
-            labelThisWeekLabel.BackColor = System.Drawing.Color.Transparent;
-            labelThisWeekLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            labelThisWeekLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
-            labelThisWeekLabel.Location = new System.Drawing.Point(176, 11);
-            labelThisWeekLabel.Margin = new System.Windows.Forms.Padding(0);
-            labelThisWeekLabel.Name = "labelThisWeekLabel";
-            labelThisWeekLabel.Size = new System.Drawing.Size(61, 13);
-            labelThisWeekLabel.TabIndex = 6;
-            labelThisWeekLabel.Text = "THIS WEEK";
-            // 
-            // labelTodayLabel
-            // 
-            labelTodayLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            labelTodayLabel.AutoSize = true;
-            labelTodayLabel.BackColor = System.Drawing.Color.Transparent;
-            labelTodayLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            labelTodayLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
-            labelTodayLabel.Location = new System.Drawing.Point(106, 11);
-            labelTodayLabel.Margin = new System.Windows.Forms.Padding(0);
-            labelTodayLabel.Name = "labelTodayLabel";
-            labelTodayLabel.Size = new System.Drawing.Size(41, 13);
-            labelTodayLabel.TabIndex = 7;
-            labelTodayLabel.Text = "TODAY";
-            // 
-            // labelEntriesLabel
-            // 
-            this.labelEntriesLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelEntriesLabel.AutoSize = true;
-            this.labelEntriesLabel.BackColor = System.Drawing.Color.Transparent;
-            this.labelEntriesLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEntriesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
-            this.labelEntriesLabel.Location = new System.Drawing.Point(29, 11);
-            this.labelEntriesLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.labelEntriesLabel.Name = "labelEntriesLabel";
-            this.labelEntriesLabel.Size = new System.Drawing.Size(48, 13);
-            this.labelEntriesLabel.TabIndex = 4;
-            this.labelEntriesLabel.Text = "ENTRIES";
             // 
             // dateTimePicker
             // 
@@ -221,45 +179,7 @@ namespace Journaley.Forms
             this.tableLayoutStats.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56F));
             this.tableLayoutStats.Size = new System.Drawing.Size(266, 25);
             this.tableLayoutStats.TabIndex = 1;
-            // 
-            // labelEntries
-            // 
-            this.labelEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelEntries.AutoSize = true;
-            this.labelEntries.BackColor = System.Drawing.Color.Transparent;
-            this.labelEntries.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEntries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelEntries.Location = new System.Drawing.Point(29, 0);
-            this.labelEntries.Margin = new System.Windows.Forms.Padding(0);
-            this.labelEntries.Name = "labelEntries";
-            this.labelEntries.Size = new System.Drawing.Size(0, 11);
-            this.labelEntries.TabIndex = 0;
-            // 
-            // labelThisWeek
-            // 
-            this.labelThisWeek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelThisWeek.AutoSize = true;
-            this.labelThisWeek.BackColor = System.Drawing.Color.Transparent;
-            this.labelThisWeek.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelThisWeek.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelThisWeek.Location = new System.Drawing.Point(176, 0);
-            this.labelThisWeek.Margin = new System.Windows.Forms.Padding(0);
-            this.labelThisWeek.Name = "labelThisWeek";
-            this.labelThisWeek.Size = new System.Drawing.Size(0, 11);
-            this.labelThisWeek.TabIndex = 2;
-            // 
-            // labelToday
-            // 
-            this.labelToday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelToday.AutoSize = true;
-            this.labelToday.BackColor = System.Drawing.Color.Transparent;
-            this.labelToday.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelToday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelToday.Location = new System.Drawing.Point(106, 0);
-            this.labelToday.Margin = new System.Windows.Forms.Padding(0);
-            this.labelToday.Name = "labelToday";
-            this.labelToday.Size = new System.Drawing.Size(0, 11);
-            this.labelToday.TabIndex = 3;
+            this.tableLayoutStats.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TableLayoutStats_MouseDown);
             // 
             // panelWebBrowserWrapper
             // 
@@ -1125,6 +1045,87 @@ namespace Journaley.Forms
             this.entryPhotoArea.BackButtonClick += new System.EventHandler(this.EntryPhotoArea_BackButtonClick);
             this.entryPhotoArea.PopoutButtonClick += new System.EventHandler(this.EntryPhotoArea_PopoutButtonClick);
             // 
+            // labelEntries
+            // 
+            this.labelEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelEntries.AutoSize = true;
+            this.labelEntries.BackColor = System.Drawing.Color.Transparent;
+            this.labelEntries.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEntries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
+            this.labelEntries.Location = new System.Drawing.Point(29, 0);
+            this.labelEntries.Margin = new System.Windows.Forms.Padding(0);
+            this.labelEntries.Name = "labelEntries";
+            this.labelEntries.Size = new System.Drawing.Size(0, 11);
+            this.labelEntries.TabIndex = 0;
+            // 
+            // labelThisWeek
+            // 
+            this.labelThisWeek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelThisWeek.AutoSize = true;
+            this.labelThisWeek.BackColor = System.Drawing.Color.Transparent;
+            this.labelThisWeek.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelThisWeek.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
+            this.labelThisWeek.Location = new System.Drawing.Point(176, 0);
+            this.labelThisWeek.Margin = new System.Windows.Forms.Padding(0);
+            this.labelThisWeek.Name = "labelThisWeek";
+            this.labelThisWeek.Size = new System.Drawing.Size(0, 11);
+            this.labelThisWeek.TabIndex = 2;
+            // 
+            // labelToday
+            // 
+            this.labelToday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelToday.AutoSize = true;
+            this.labelToday.BackColor = System.Drawing.Color.Transparent;
+            this.labelToday.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelToday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
+            this.labelToday.Location = new System.Drawing.Point(106, 0);
+            this.labelToday.Margin = new System.Windows.Forms.Padding(0);
+            this.labelToday.Name = "labelToday";
+            this.labelToday.Size = new System.Drawing.Size(0, 11);
+            this.labelToday.TabIndex = 3;
+            // 
+            // labelEntriesLabel
+            // 
+            this.labelEntriesLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelEntriesLabel.AutoSize = true;
+            this.labelEntriesLabel.BackColor = System.Drawing.Color.Transparent;
+            this.labelEntriesLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEntriesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
+            this.labelEntriesLabel.Location = new System.Drawing.Point(29, 11);
+            this.labelEntriesLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.labelEntriesLabel.Name = "labelEntriesLabel";
+            this.labelEntriesLabel.Size = new System.Drawing.Size(48, 13);
+            this.labelEntriesLabel.TabIndex = 4;
+            this.labelEntriesLabel.Text = "ENTRIES";
+            // 
+            // labelThisWeekLabel
+            // 
+            labelThisWeekLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            labelThisWeekLabel.AutoSize = true;
+            labelThisWeekLabel.BackColor = System.Drawing.Color.Transparent;
+            labelThisWeekLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            labelThisWeekLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
+            labelThisWeekLabel.Location = new System.Drawing.Point(176, 11);
+            labelThisWeekLabel.Margin = new System.Windows.Forms.Padding(0);
+            labelThisWeekLabel.Name = "labelThisWeekLabel";
+            labelThisWeekLabel.Size = new System.Drawing.Size(61, 13);
+            labelThisWeekLabel.TabIndex = 6;
+            labelThisWeekLabel.Text = "THIS WEEK";
+            // 
+            // labelTodayLabel
+            // 
+            labelTodayLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            labelTodayLabel.AutoSize = true;
+            labelTodayLabel.BackColor = System.Drawing.Color.Transparent;
+            labelTodayLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            labelTodayLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
+            labelTodayLabel.Location = new System.Drawing.Point(106, 11);
+            labelTodayLabel.Margin = new System.Windows.Forms.Padding(0);
+            labelTodayLabel.Name = "labelTodayLabel";
+            labelTodayLabel.Size = new System.Drawing.Size(41, 13);
+            labelTodayLabel.TabIndex = 7;
+            labelTodayLabel.Text = "TODAY";
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1203,9 +1204,6 @@ namespace Journaley.Forms
 
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.TableLayoutPanel tableLayoutStats;
-        private System.Windows.Forms.Label labelEntries;
-        private System.Windows.Forms.Label labelThisWeek;
-        private System.Windows.Forms.Label labelToday;
         private Journaley.Controls.ImageButton buttonAddEntry;
         private Journaley.Controls.ImageButton buttonDelete;
         private Journaley.Controls.ImageButton buttonEdit;
@@ -1253,7 +1251,6 @@ namespace Journaley.Forms
         private System.Windows.Forms.TableLayoutPanel tableLayoutCalendar;
         private System.Windows.Forms.Panel panelEntryArea;
         private System.Windows.Forms.TableLayoutPanel tableLayoutEntryArea;
-        private System.Windows.Forms.Label labelEntriesLabel;
         private Journaley.Controls.EntryListAreaPanel panelTitlebar;
         private ImageButton imageButtonFormClose;
         private ImageButton imageButtonFormMaximize;
@@ -1263,6 +1260,10 @@ namespace Journaley.Forms
         private TitleLabel labelFormCaption;
         private EntryPhotoArea entryPhotoArea;
         private System.Windows.Forms.Panel panelEntryTextWrapper;
+        private MouseFallThroughLabel labelEntries;
+        private MouseFallThroughLabel labelThisWeek;
+        private MouseFallThroughLabel labelToday;
+        private MouseFallThroughLabel labelEntriesLabel;
     }
 }
 
