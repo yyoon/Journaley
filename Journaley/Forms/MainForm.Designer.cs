@@ -62,6 +62,7 @@ namespace Journaley.Forms
             this.panelDateLeft = new System.Windows.Forms.Panel();
             this.panelDateRight = new System.Windows.Forms.Panel();
             this.panelEntryArea = new System.Windows.Forms.Panel();
+            this.panelEntryTextWrapper = new System.Windows.Forms.Panel();
             this.tableLayoutEntryArea = new System.Windows.Forms.TableLayoutPanel();
             this.buttonSettings = new Journaley.Controls.ImageButton();
             this.buttonEdit = new Journaley.Controls.ImageButton();
@@ -93,7 +94,6 @@ namespace Journaley.Forms
             this.listBoxTags = new System.Windows.Forms.ListBox();
             this.spellCheckedEntryText = new Journaley.Controls.SpellCheckedTextBox();
             this.entryPhotoArea = new Journaley.Controls.EntryPhotoArea();
-            this.panelEntryTextWrapper = new System.Windows.Forms.Panel();
             labelThisWeekLabel = new System.Windows.Forms.Label();
             labelTodayLabel = new System.Windows.Forms.Label();
             this.tableLayoutStats.SuspendLayout();
@@ -111,6 +111,7 @@ namespace Journaley.Forms
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).BeginInit();
             this.tableLayoutDate.SuspendLayout();
             this.panelEntryArea.SuspendLayout();
+            this.panelEntryTextWrapper.SuspendLayout();
             this.tableLayoutEntryArea.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).BeginInit();
@@ -134,7 +135,6 @@ namespace Journaley.Forms
             this.tableLayoutCalendar.SuspendLayout();
             this.panelTimeline.SuspendLayout();
             this.panelTags.SuspendLayout();
-            this.panelEntryTextWrapper.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelThisWeekLabel
@@ -560,6 +560,16 @@ namespace Journaley.Forms
             this.panelEntryArea.Size = new System.Drawing.Size(620, 320);
             this.panelEntryArea.TabIndex = 1;
             // 
+            // panelEntryTextWrapper
+            // 
+            this.panelEntryTextWrapper.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelEntryTextWrapper.Controls.Add(this.spellCheckedEntryText);
+            this.panelEntryTextWrapper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelEntryTextWrapper.Location = new System.Drawing.Point(0, 0);
+            this.panelEntryTextWrapper.Name = "panelEntryTextWrapper";
+            this.panelEntryTextWrapper.Size = new System.Drawing.Size(620, 320);
+            this.panelEntryTextWrapper.TabIndex = 1;
+            // 
             // tableLayoutEntryArea
             // 
             this.tableLayoutEntryArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -765,7 +775,10 @@ namespace Journaley.Forms
             this.panelTitlebar.Name = "panelTitlebar";
             this.panelTitlebar.Size = new System.Drawing.Size(930, 20);
             this.panelTitlebar.TabIndex = 19;
+            this.panelTitlebar.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseDoubleClick);
             this.panelTitlebar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseDown);
+            this.panelTitlebar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseMove);
+            this.panelTitlebar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseUp);
             // 
             // labelFormCaption
             // 
@@ -1111,16 +1124,6 @@ namespace Journaley.Forms
             this.entryPhotoArea.BackButtonClick += new System.EventHandler(this.EntryPhotoArea_BackButtonClick);
             this.entryPhotoArea.PopoutButtonClick += new System.EventHandler(this.EntryPhotoArea_PopoutButtonClick);
             // 
-            // panelEntryTextWrapper
-            // 
-            this.panelEntryTextWrapper.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelEntryTextWrapper.Controls.Add(this.spellCheckedEntryText);
-            this.panelEntryTextWrapper.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEntryTextWrapper.Location = new System.Drawing.Point(0, 0);
-            this.panelEntryTextWrapper.Name = "panelEntryTextWrapper";
-            this.panelEntryTextWrapper.Size = new System.Drawing.Size(620, 320);
-            this.panelEntryTextWrapper.TabIndex = 1;
-            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1145,6 +1148,7 @@ namespace Journaley.Forms
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Journaley";
+            this.Deactivate += new System.EventHandler(this.MainForm_Deactivate);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.tableLayoutStats.ResumeLayout(false);
@@ -1165,6 +1169,7 @@ namespace Journaley.Forms
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBottomSeparator)).EndInit();
             this.tableLayoutDate.ResumeLayout(false);
             this.panelEntryArea.ResumeLayout(false);
+            this.panelEntryTextWrapper.ResumeLayout(false);
             this.tableLayoutEntryArea.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).EndInit();
@@ -1189,7 +1194,6 @@ namespace Journaley.Forms
             this.tableLayoutCalendar.ResumeLayout(false);
             this.panelTimeline.ResumeLayout(false);
             this.panelTags.ResumeLayout(false);
-            this.panelEntryTextWrapper.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
