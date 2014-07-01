@@ -2035,11 +2035,32 @@
             EntryListBox activeEntryList = this.GetActiveEntryList();
             if (activeEntryList != null)
             {
-                PInvoke.SendMessage(
-                    activeEntryList.Handle,
-                    (int)PInvoke.WindowsMessages.WM_VSCROLL,
-                    (IntPtr)PInvoke.ScrollBarCommands.SB_TOP,
-                    IntPtr.Zero);
+                PInvoke.SCROLLINFO scrollInfo = new PInvoke.SCROLLINFO();
+                scrollInfo.fMask = (int)PInvoke.ScrollInfoMask.SIF_ALL;
+
+                PInvoke.GetScrollInfo(activeEntryList.Handle, (int)PInvoke.SBFlags.SB_VERT, ref scrollInfo);
+
+                // Divide into 100 scrolls.
+                for (int i = 1; i <= 100; ++i)
+                {
+                    if (i == 100)
+                    {
+                        PInvoke.SendMessage(
+                            activeEntryList.Handle,
+                            (int)PInvoke.WindowsMessages.WM_VSCROLL,
+                            (IntPtr)PInvoke.ScrollBarCommands.SB_TOP,
+                            IntPtr.Zero);
+                    }
+                    else
+                    {
+                        int pos = (int)(scrollInfo.nPos - (scrollInfo.nPos * i / 100.0));
+                        PInvoke.SendMessage(
+                            activeEntryList.Handle,
+                            (int)PInvoke.WindowsMessages.WM_VSCROLL,
+                            (IntPtr)((pos << 16) | (int)PInvoke.ScrollBarCommands.SB_THUMBPOSITION),
+                            IntPtr.Zero);
+                    }
+                }
             }
         }
 
