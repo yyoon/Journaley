@@ -17,11 +17,11 @@ namespace Journaley.Models
             PlaceName          = string.Empty;
         }
         public string AdministrativeArea { get; set; }
-        public string Country { get; set; }
-        public string Latitude { get; set; }
-        public string Locality { get; set; }
-        public string Longitude { get; set; }
-        public string PlaceName { get; set; }
+        public string Country            { get; set; }
+        public string Latitude           { get; set; }
+        public string Locality           { get; set; }
+        public string Longitude          { get; set; }
+        public string PlaceName          { get; set; }
 
         public override string ToString()
         {

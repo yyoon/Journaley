@@ -138,7 +138,9 @@
     <Compile Include="Controls\EntryListBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Models\EntryCreator.cs" />
     <Compile Include="Models\EntryLocation.cs" />
+    <Compile Include="Models\EntryWeather.cs" />
     <Compile Include="Models\IPasswordVerifier.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

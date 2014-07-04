@@ -319,6 +319,10 @@
 
         public EntryLocation Location { get; private set; }
 
+        public EntryWeather Weather { get; private set; }
+
+        public EntryCreator Creator { get; private set; }
+
         /// <summary>
         /// Loads an entry from the given filename.
         /// </summary>
@@ -418,6 +422,40 @@
 
                                     break;
                                 }
+
+                            case "Weather":
+                                {
+                                    newEntry.Weather = new EntryWeather();
+                                    foreach (XmlNode tagNode in valueNode.ChildNodes)
+                                    {
+                                        if (tagNode.Name.ToLower() == "key")
+                                        {
+                                            string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
+                                            string value = tagNode.NextSibling.InnerText;
+                                            newEntry.Weather.GetType().GetProperty(propertyName).SetValue(newEntry.Weather, value, null);
+                                            newEntry.AddTag(tagNode.InnerText);
+                                        }
+                                    }
+
+                                    break;
+                                }     
+
+                            case "Creator":
+                                {
+                                    newEntry.Creator = new EntryCreator();
+                                    foreach (XmlNode tagNode in valueNode.ChildNodes)
+                                    {
+                                        if (tagNode.Name.ToLower() == "key")
+                                        {
+                                            string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
+                                            string value = tagNode.NextSibling.InnerText;
+                                            newEntry.Creator.GetType().GetProperty(propertyName).SetValue(newEntry.Creator, value, null);
+                                            newEntry.AddTag(tagNode.InnerText);
+                                        }
+                                    }
+
+                                    break;
+                                }                                                              
 
                             default:
                                 newEntry.UnknownKeyValues.Add(keyNode, valueNode);
