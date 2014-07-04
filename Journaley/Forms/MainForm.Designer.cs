@@ -68,6 +68,7 @@ namespace Journaley.Forms
             this.buttonPhoto = new Journaley.Controls.ImageButton();
             this.buttonTag = new Journaley.Controls.ImageButton();
             this.buttonDelete = new Journaley.Controls.ImageButton();
+            this.buttonLocation = new Journaley.Controls.ImageButton();
             this.panelTitlebar = new Journaley.Controls.EntryListAreaPanel();
             this.labelFormCaption = new Journaley.Controls.TitleLabel();
             this.pictureBoxFormIcon = new System.Windows.Forms.PictureBox();
@@ -121,6 +122,7 @@ namespace Journaley.Forms
             ((System.ComponentModel.ISupportInitialize)(this.buttonPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonTag)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonLocation)).BeginInit();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -280,7 +282,7 @@ namespace Journaley.Forms
             this.tableLayoutSidebarWrapper.Name = "tableLayoutSidebarWrapper";
             this.tableLayoutSidebarWrapper.RowCount = 3;
             this.tableLayoutSidebarWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutSidebarWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 400F));
+            this.tableLayoutSidebarWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 510F));
             this.tableLayoutSidebarWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutSidebarWrapper.Size = new System.Drawing.Size(47, 580);
             this.tableLayoutSidebarWrapper.TabIndex = 12;
@@ -295,14 +297,16 @@ namespace Journaley.Forms
             this.tableLayoutSidebar.Controls.Add(this.pictureBoxSidebarButtonsSeparator, 0, 1);
             this.tableLayoutSidebar.Controls.Add(this.flowLayoutSidebarTopButtons, 0, 0);
             this.tableLayoutSidebar.Controls.Add(this.flowLayoutSidebarBottomButtons, 0, 2);
-            this.tableLayoutSidebar.Location = new System.Drawing.Point(0, 90);
+            this.tableLayoutSidebar.Location = new System.Drawing.Point(0, 35);
             this.tableLayoutSidebar.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutSidebar.Name = "tableLayoutSidebar";
             this.tableLayoutSidebar.RowCount = 3;
             this.tableLayoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
             this.tableLayoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutSidebar.Size = new System.Drawing.Size(37, 322);
+            this.tableLayoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutSidebar.Size = new System.Drawing.Size(37, 450);
             this.tableLayoutSidebar.TabIndex = 0;
             // 
             // pictureBoxSidebarButtonsSeparator
@@ -338,11 +342,12 @@ namespace Journaley.Forms
             this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonPhoto);
             this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonTag);
             this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonDelete);
+            this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonLocation);
             this.flowLayoutSidebarBottomButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutSidebarBottomButtons.Location = new System.Drawing.Point(0, 172);
             this.flowLayoutSidebarBottomButtons.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutSidebarBottomButtons.Name = "flowLayoutSidebarBottomButtons";
-            this.flowLayoutSidebarBottomButtons.Size = new System.Drawing.Size(37, 150);
+            this.flowLayoutSidebarBottomButtons.Size = new System.Drawing.Size(37, 278);
             this.flowLayoutSidebarBottomButtons.TabIndex = 2;
             // 
             // tableLayoutBottom
@@ -679,6 +684,28 @@ namespace Journaley.Forms
             this.buttonDelete.TabStop = false;
             this.toolTip.SetToolTip(this.buttonDelete, "Delete");
             this.buttonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
+            // 
+            // buttonLocation
+            // 
+            this.buttonLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonLocation.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonLocation.DownImage = global::Journaley.Properties.Resources.sidebar_btn_delete_down;
+            this.buttonLocation.HoverImage = global::Journaley.Properties.Resources.TagGreen_32x32;
+            this.buttonLocation.Image = global::Journaley.Properties.Resources.TagWhite_32x32;
+            this.buttonLocation.Location = new System.Drawing.Point(0, 208);
+            this.buttonLocation.Margin = new System.Windows.Forms.Padding(0, 6, 0, 6);
+            this.buttonLocation.Name = "buttonLocation";
+            this.buttonLocation.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_delete_norm;
+            this.buttonLocation.Selected = false;
+            this.buttonLocation.SelectedDownImage = null;
+            this.buttonLocation.SelectedHoverImage = null;
+            this.buttonLocation.SelectedImage = null;
+            this.buttonLocation.Size = new System.Drawing.Size(37, 37);
+            this.buttonLocation.TabIndex = 11;
+            this.buttonLocation.TabStop = false;
+            this.toolTip.SetToolTip(this.buttonLocation, "Delete");
+            this.buttonLocation.Visible = false;
+            this.buttonLocation.Click += new System.EventHandler(this.buttonLocation_Click);
             // 
             // panelTitlebar
             // 
@@ -1181,6 +1208,7 @@ namespace Journaley.Forms
             ((System.ComponentModel.ISupportInitialize)(this.buttonPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonTag)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonLocation)).EndInit();
             this.panelTitlebar.ResumeLayout(false);
             this.panelTitlebar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).EndInit();
@@ -1264,6 +1292,7 @@ namespace Journaley.Forms
         private MouseFallThroughLabel labelThisWeek;
         private MouseFallThroughLabel labelToday;
         private MouseFallThroughLabel labelEntriesLabel;
+        private ImageButton buttonLocation;
     }
 }
 

@@ -110,6 +110,12 @@
     <Compile Include="Forms\EnablePasswordForm.Designer.cs">
       <DependentUpon>EnablePasswordForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\LocationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LocationForm.Designer.cs">
+      <DependentUpon>LocationForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PhotoDisplayForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +132,7 @@
     <Compile Include="Controls\EntryListBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Models\EntryLocation.cs" />
     <Compile Include="Models\IPasswordVerifier.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -176,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\EnablePasswordForm.resx">
       <DependentUpon>EnablePasswordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LocationForm.resx">
+      <DependentUpon>LocationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
