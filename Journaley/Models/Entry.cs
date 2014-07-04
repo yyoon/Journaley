@@ -317,6 +317,8 @@
         /// </value>
         public bool IsDirty { get; private set; }
 
+        public EntryLocation Location { get; private set; }
+
         /// <summary>
         /// Loads an entry from the given filename.
         /// </summary>
@@ -395,6 +397,23 @@
                                     foreach (XmlNode tagNode in valueNode.ChildNodes)
                                     {
                                         newEntry.AddTag(tagNode.InnerText);
+                                    }
+
+                                    break;
+                                }
+
+                            case "Location":
+                                {
+                                    newEntry.Location = new EntryLocation();
+                                    foreach (XmlNode tagNode in valueNode.ChildNodes)
+                                    {
+                                        if (tagNode.Name.ToLower() == "key")
+                                        {
+                                            string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
+                                            string value = tagNode.NextSibling.InnerText;
+                                            newEntry.Location.GetType().GetProperty(propertyName).SetValue(newEntry.Location, value, null);
+                                            newEntry.AddTag(tagNode.InnerText);
+                                        }
                                     }
 
                                     break;

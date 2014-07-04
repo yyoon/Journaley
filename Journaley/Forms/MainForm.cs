@@ -1705,6 +1705,8 @@
             this.SelectedEntry = entryListBox.Items[entryListBox.SelectedIndex] as Entry;
 
             this.suppressEntryUpdate = prevSuppressEntryUpdate;
+
+            buttonLocation.Visible = this.SelectedEntry.Location != null;
         }
 
         /// <summary>
@@ -2157,5 +2159,10 @@
         }
 
         #endregion
+
+        private void buttonLocation_Click(object sender, EventArgs e)
+        {
+            (new LocationForm(this.SelectedEntry.Location)).ShowDialog();
+        }
     }
 }
