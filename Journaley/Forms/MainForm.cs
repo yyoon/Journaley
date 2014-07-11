@@ -14,9 +14,11 @@
     using BlackBeltCoder;
     using Journaley.Controls;
     using Journaley.Core.Models;
+    using Journaley.Core.Utilities;
     using Journaley.Utilities;
     using MarkdownSharp;
-    using Journaley.Core.Utilities;
+    using System.Reflection;
+    using System.ComponentModel;
 
     /// <summary>
     /// The Main Form of the application. Contains the entry list, preview, buttons, etc.
@@ -1707,7 +1709,33 @@
 
             this.suppressEntryUpdate = prevSuppressEntryUpdate;
 
-            buttonLocation.Visible = this.SelectedEntry.Location != null;
+            
+            if (this.SelectedEntry.Location != null)
+            {
+                linkLabelLocation.Text = this.SelectedEntry.Location.ToString();
+                string link = string.Format("https://www.google.com/maps/preview?q={0},{1}&z={2}",
+                    this.SelectedEntry.Location.Latitude,
+                    this.SelectedEntry.Location.Longitude,
+                    "16");
+                RemoveClickEvent(linkLabelLocation);
+                linkLabelLocation.Click += (s, eargs) =>
+                    {
+                        Process.Start(link);
+                    };
+            }
+            linkLabelLocation.Visible = this.SelectedEntry.Location != null;
+            labelLocation.Visible = linkLabelLocation.Visible;
+        }
+
+        private void RemoveClickEvent(LinkLabel b)
+        {
+            FieldInfo f1 = typeof(Control).GetField("EventClick",
+                BindingFlags.Static | BindingFlags.NonPublic);
+            object obj = f1.GetValue(b);
+            PropertyInfo pi = b.GetType().GetProperty("Events",
+                BindingFlags.NonPublic | BindingFlags.Instance);
+            EventHandlerList list = (EventHandlerList)pi.GetValue(b, null);
+            list.RemoveHandler(obj, list[obj]);
         }
 
         /// <summary>
@@ -2175,10 +2203,5 @@
         }
 
         #endregion
-
-        private void buttonLocation_Click(object sender, EventArgs e)
-        {
-            (new LocationForm(this.SelectedEntry.Location)).ShowDialog();
-        }
     }
 }
