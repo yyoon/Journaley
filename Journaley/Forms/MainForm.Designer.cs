@@ -34,20 +34,7 @@ namespace Journaley.Forms
             Journaley.Controls.MouseFallThroughLabel labelTodayLabel;
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutStats = new System.Windows.Forms.TableLayoutPanel();
-            this.labelEntries = new Journaley.Controls.MouseFallThroughLabel();
-            this.labelThisWeek = new Journaley.Controls.MouseFallThroughLabel();
-            this.labelToday = new Journaley.Controls.MouseFallThroughLabel();
-            this.labelEntriesLabel = new Journaley.Controls.MouseFallThroughLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.buttonSettings = new Journaley.Controls.ImageButton();
-            this.buttonEdit = new Journaley.Controls.ImageButton();
-            this.buttonDone = new Journaley.Controls.ImageButton();
-            this.buttonCancel = new Journaley.Controls.ImageButton();
-            this.buttonStar = new Journaley.Controls.ImageButton();
-            this.buttonPhoto = new Journaley.Controls.ImageButton();
-            this.buttonTag = new Journaley.Controls.ImageButton();
-            this.buttonDelete = new Journaley.Controls.ImageButton();
-            this.buttonAddEntry = new Journaley.Controls.ImageButton();
             this.panelWebBrowserWrapper = new System.Windows.Forms.Panel();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.contextMenuStripPhotoWithPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -67,20 +54,29 @@ namespace Journaley.Forms
             this.labelCharactersTitle = new System.Windows.Forms.Label();
             this.labelWords = new System.Windows.Forms.Label();
             this.labelCharacters = new System.Windows.Forms.Label();
+            this.linkLabelLocation = new System.Windows.Forms.LinkLabel();
             this.tableLayoutDate = new System.Windows.Forms.TableLayoutPanel();
             this.panelDateLeft = new System.Windows.Forms.Panel();
             this.panelDateRight = new System.Windows.Forms.Panel();
             this.panelEntryArea = new System.Windows.Forms.Panel();
             this.panelEntryTextWrapper = new System.Windows.Forms.Panel();
-            this.spellCheckedEntryText = new Journaley.Controls.SpellCheckedTextBox();
             this.tableLayoutEntryArea = new System.Windows.Forms.TableLayoutPanel();
-            this.entryPhotoArea = new Journaley.Controls.EntryPhotoArea();
+            this.labelLocation = new System.Windows.Forms.Label();
+            this.buttonSettings = new Journaley.Controls.ImageButton();
+            this.buttonEdit = new Journaley.Controls.ImageButton();
+            this.buttonDone = new Journaley.Controls.ImageButton();
+            this.buttonCancel = new Journaley.Controls.ImageButton();
+            this.buttonStar = new Journaley.Controls.ImageButton();
+            this.buttonPhoto = new Journaley.Controls.ImageButton();
+            this.buttonTag = new Journaley.Controls.ImageButton();
+            this.buttonDelete = new Journaley.Controls.ImageButton();
             this.panelTitlebar = new Journaley.Controls.EntryListAreaPanel();
             this.labelFormCaption = new Journaley.Controls.TitleLabel();
             this.pictureBoxFormIcon = new System.Windows.Forms.PictureBox();
             this.imageButtonFormMinimize = new Journaley.Controls.ImageButton();
             this.imageButtonFormMaximize = new Journaley.Controls.ImageButton();
             this.imageButtonFormClose = new Journaley.Controls.ImageButton();
+            this.buttonAddEntry = new Journaley.Controls.ImageButton();
             this.buttonMainTags = new Journaley.Controls.ImageButton();
             this.buttonMainCalendar = new Journaley.Controls.ImageButton();
             this.buttonMainTimeline = new Journaley.Controls.ImageButton();
@@ -94,18 +90,15 @@ namespace Journaley.Forms
             this.panelTags = new System.Windows.Forms.Panel();
             this.entryListBoxTags = new Journaley.Controls.EntryListBox();
             this.listBoxTags = new System.Windows.Forms.ListBox();
+            this.spellCheckedEntryText = new Journaley.Controls.SpellCheckedTextBox();
+            this.entryPhotoArea = new Journaley.Controls.EntryPhotoArea();
+            this.labelEntries = new Journaley.Controls.MouseFallThroughLabel();
+            this.labelThisWeek = new Journaley.Controls.MouseFallThroughLabel();
+            this.labelToday = new Journaley.Controls.MouseFallThroughLabel();
+            this.labelEntriesLabel = new Journaley.Controls.MouseFallThroughLabel();
             labelThisWeekLabel = new Journaley.Controls.MouseFallThroughLabel();
             labelTodayLabel = new Journaley.Controls.MouseFallThroughLabel();
             this.tableLayoutStats.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonDone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonStar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonPhoto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonTag)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonDelete)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).BeginInit();
             this.panelWebBrowserWrapper.SuspendLayout();
             this.contextMenuStripPhotoWithPhoto.SuspendLayout();
             this.panelSidebar.SuspendLayout();
@@ -122,11 +115,20 @@ namespace Journaley.Forms
             this.panelEntryArea.SuspendLayout();
             this.panelEntryTextWrapper.SuspendLayout();
             this.tableLayoutEntryArea.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonStar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonPhoto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonTag)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDelete)).BeginInit();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTags)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).BeginInit();
@@ -136,34 +138,6 @@ namespace Journaley.Forms
             this.panelTimeline.SuspendLayout();
             this.panelTags.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // labelThisWeekLabel
-            // 
-            labelThisWeekLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            labelThisWeekLabel.AutoSize = true;
-            labelThisWeekLabel.BackColor = System.Drawing.Color.Transparent;
-            labelThisWeekLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            labelThisWeekLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
-            labelThisWeekLabel.Location = new System.Drawing.Point(176, 11);
-            labelThisWeekLabel.Margin = new System.Windows.Forms.Padding(0);
-            labelThisWeekLabel.Name = "labelThisWeekLabel";
-            labelThisWeekLabel.Size = new System.Drawing.Size(61, 13);
-            labelThisWeekLabel.TabIndex = 6;
-            labelThisWeekLabel.Text = "THIS WEEK";
-            // 
-            // labelTodayLabel
-            // 
-            labelTodayLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            labelTodayLabel.AutoSize = true;
-            labelTodayLabel.BackColor = System.Drawing.Color.Transparent;
-            labelTodayLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            labelTodayLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
-            labelTodayLabel.Location = new System.Drawing.Point(106, 11);
-            labelTodayLabel.Margin = new System.Windows.Forms.Padding(0);
-            labelTodayLabel.Name = "labelTodayLabel";
-            labelTodayLabel.Size = new System.Drawing.Size(41, 13);
-            labelTodayLabel.TabIndex = 7;
-            labelTodayLabel.Text = "TODAY";
             // 
             // dateTimePicker
             // 
@@ -209,58 +183,363 @@ namespace Journaley.Forms
             this.tableLayoutStats.TabIndex = 1;
             this.tableLayoutStats.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TableLayoutStats_MouseDown);
             // 
-            // labelEntries
+            // panelWebBrowserWrapper
             // 
-            this.labelEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelEntries.AutoSize = true;
-            this.labelEntries.BackColor = System.Drawing.Color.Transparent;
-            this.labelEntries.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEntries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelEntries.Location = new System.Drawing.Point(29, 0);
-            this.labelEntries.Margin = new System.Windows.Forms.Padding(0);
-            this.labelEntries.Name = "labelEntries";
-            this.labelEntries.Size = new System.Drawing.Size(0, 11);
-            this.labelEntries.TabIndex = 0;
+            this.panelWebBrowserWrapper.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelWebBrowserWrapper.Controls.Add(this.webBrowser);
+            this.panelWebBrowserWrapper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelWebBrowserWrapper.Location = new System.Drawing.Point(0, 0);
+            this.panelWebBrowserWrapper.Margin = new System.Windows.Forms.Padding(0);
+            this.panelWebBrowserWrapper.Name = "panelWebBrowserWrapper";
+            this.panelWebBrowserWrapper.Size = new System.Drawing.Size(620, 320);
+            this.panelWebBrowserWrapper.TabIndex = 11;
             // 
-            // labelThisWeek
+            // webBrowser
             // 
-            this.labelThisWeek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelThisWeek.AutoSize = true;
-            this.labelThisWeek.BackColor = System.Drawing.Color.Transparent;
-            this.labelThisWeek.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelThisWeek.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelThisWeek.Location = new System.Drawing.Point(176, 0);
-            this.labelThisWeek.Margin = new System.Windows.Forms.Padding(0);
-            this.labelThisWeek.Name = "labelThisWeek";
-            this.labelThisWeek.Size = new System.Drawing.Size(0, 11);
-            this.labelThisWeek.TabIndex = 2;
+            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser.Name = "webBrowser";
+            this.webBrowser.Size = new System.Drawing.Size(618, 318);
+            this.webBrowser.TabIndex = 0;
             // 
-            // labelToday
+            // contextMenuStripPhotoWithPhoto
             // 
-            this.labelToday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelToday.AutoSize = true;
-            this.labelToday.BackColor = System.Drawing.Color.Transparent;
-            this.labelToday.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelToday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelToday.Location = new System.Drawing.Point(106, 0);
-            this.labelToday.Margin = new System.Windows.Forms.Padding(0);
-            this.labelToday.Name = "labelToday";
-            this.labelToday.Size = new System.Drawing.Size(0, 11);
-            this.labelToday.TabIndex = 3;
+            this.contextMenuStripPhotoWithPhoto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
+            this.contextMenuStripPhotoWithPhoto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.replaceWithAnotherPhotoToolStripMenuItem,
+            this.deletePhotoToolStripMenuItem});
+            this.contextMenuStripPhotoWithPhoto.Name = "contextMenuStripPhotoWithPhoto";
+            this.contextMenuStripPhotoWithPhoto.ShowImageMargin = false;
+            this.contextMenuStripPhotoWithPhoto.Size = new System.Drawing.Size(207, 48);
             // 
-            // labelEntriesLabel
+            // replaceWithAnotherPhotoToolStripMenuItem
             // 
-            this.labelEntriesLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelEntriesLabel.AutoSize = true;
-            this.labelEntriesLabel.BackColor = System.Drawing.Color.Transparent;
-            this.labelEntriesLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEntriesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
-            this.labelEntriesLabel.Location = new System.Drawing.Point(29, 11);
-            this.labelEntriesLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.labelEntriesLabel.Name = "labelEntriesLabel";
-            this.labelEntriesLabel.Size = new System.Drawing.Size(48, 13);
-            this.labelEntriesLabel.TabIndex = 4;
-            this.labelEntriesLabel.Text = "ENTRIES";
+            this.replaceWithAnotherPhotoToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.replaceWithAnotherPhotoToolStripMenuItem.Name = "replaceWithAnotherPhotoToolStripMenuItem";
+            this.replaceWithAnotherPhotoToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.replaceWithAnotherPhotoToolStripMenuItem.Text = "Replace with Another Photo...";
+            this.replaceWithAnotherPhotoToolStripMenuItem.Click += new System.EventHandler(this.ReplaceWithAnotherPhotoToolStripMenuItem_Click);
+            // 
+            // deletePhotoToolStripMenuItem
+            // 
+            this.deletePhotoToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.deletePhotoToolStripMenuItem.Name = "deletePhotoToolStripMenuItem";
+            this.deletePhotoToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.deletePhotoToolStripMenuItem.Text = "Delete Photo";
+            this.deletePhotoToolStripMenuItem.Click += new System.EventHandler(this.DeletePhotoToolStripMenuItem_Click);
+            // 
+            // panelSidebar
+            // 
+            this.panelSidebar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
+            this.panelSidebar.BackgroundImage = global::Journaley.Properties.Resources.main_pane_sidebar_background;
+            this.panelSidebar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panelSidebar.Controls.Add(this.pictureBoxSidebarSeperatorBottom);
+            this.panelSidebar.Controls.Add(this.pictureBoxResize);
+            this.panelSidebar.Controls.Add(this.buttonSettings);
+            this.panelSidebar.Controls.Add(this.tableLayoutSidebarWrapper);
+            this.panelSidebar.Location = new System.Drawing.Point(883, 20);
+            this.panelSidebar.Margin = new System.Windows.Forms.Padding(0);
+            this.panelSidebar.Name = "panelSidebar";
+            this.panelSidebar.Size = new System.Drawing.Size(47, 580);
+            this.panelSidebar.TabIndex = 12;
+            // 
+            // pictureBoxSidebarSeperatorBottom
+            // 
+            this.pictureBoxSidebarSeperatorBottom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBoxSidebarSeperatorBottom.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxSidebarSeperatorBottom.Image = global::Journaley.Properties.Resources.sidebar_seperator_bottom;
+            this.pictureBoxSidebarSeperatorBottom.Location = new System.Drawing.Point(1, 538);
+            this.pictureBoxSidebarSeperatorBottom.Name = "pictureBoxSidebarSeperatorBottom";
+            this.pictureBoxSidebarSeperatorBottom.Size = new System.Drawing.Size(46, 1);
+            this.pictureBoxSidebarSeperatorBottom.TabIndex = 11;
+            this.pictureBoxSidebarSeperatorBottom.TabStop = false;
+            // 
+            // pictureBoxResize
+            // 
+            this.pictureBoxResize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxResize.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxResize.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
+            this.pictureBoxResize.Image = global::Journaley.Properties.Resources.frame_pane_resize;
+            this.pictureBoxResize.Location = new System.Drawing.Point(37, 570);
+            this.pictureBoxResize.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBoxResize.Name = "pictureBoxResize";
+            this.pictureBoxResize.Size = new System.Drawing.Size(10, 10);
+            this.pictureBoxResize.TabIndex = 1;
+            this.pictureBoxResize.TabStop = false;
+            this.pictureBoxResize.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBoxResize_MouseDown);
+            // 
+            // tableLayoutSidebarWrapper
+            // 
+            this.tableLayoutSidebarWrapper.BackColor = System.Drawing.Color.Transparent;
+            this.tableLayoutSidebarWrapper.ColumnCount = 1;
+            this.tableLayoutSidebarWrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutSidebarWrapper.Controls.Add(this.tableLayoutSidebar, 0, 1);
+            this.tableLayoutSidebarWrapper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutSidebarWrapper.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutSidebarWrapper.Name = "tableLayoutSidebarWrapper";
+            this.tableLayoutSidebarWrapper.RowCount = 3;
+            this.tableLayoutSidebarWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutSidebarWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 400F));
+            this.tableLayoutSidebarWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutSidebarWrapper.Size = new System.Drawing.Size(47, 580);
+            this.tableLayoutSidebarWrapper.TabIndex = 12;
+            // 
+            // tableLayoutSidebar
+            // 
+            this.tableLayoutSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
+            this.tableLayoutSidebar.BackgroundImage = global::Journaley.Properties.Resources.sidebar_pane_buttonContainer_background;
+            this.tableLayoutSidebar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tableLayoutSidebar.ColumnCount = 1;
+            this.tableLayoutSidebar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutSidebar.Controls.Add(this.pictureBoxSidebarButtonsSeparator, 0, 1);
+            this.tableLayoutSidebar.Controls.Add(this.flowLayoutSidebarTopButtons, 0, 0);
+            this.tableLayoutSidebar.Controls.Add(this.flowLayoutSidebarBottomButtons, 0, 2);
+            this.tableLayoutSidebar.Location = new System.Drawing.Point(0, 90);
+            this.tableLayoutSidebar.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutSidebar.Name = "tableLayoutSidebar";
+            this.tableLayoutSidebar.RowCount = 3;
+            this.tableLayoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
+            this.tableLayoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutSidebar.Size = new System.Drawing.Size(37, 322);
+            this.tableLayoutSidebar.TabIndex = 0;
+            // 
+            // pictureBoxSidebarButtonsSeparator
+            // 
+            this.pictureBoxSidebarButtonsSeparator.Image = global::Journaley.Properties.Resources.sidebar_seperator_buttonContainer;
+            this.pictureBoxSidebarButtonsSeparator.Location = new System.Drawing.Point(0, 171);
+            this.pictureBoxSidebarButtonsSeparator.Margin = new System.Windows.Forms.Padding(0);
+            this.pictureBoxSidebarButtonsSeparator.Name = "pictureBoxSidebarButtonsSeparator";
+            this.pictureBoxSidebarButtonsSeparator.Size = new System.Drawing.Size(37, 1);
+            this.pictureBoxSidebarButtonsSeparator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxSidebarButtonsSeparator.TabIndex = 0;
+            this.pictureBoxSidebarButtonsSeparator.TabStop = false;
+            // 
+            // flowLayoutSidebarTopButtons
+            // 
+            this.flowLayoutSidebarTopButtons.AutoSize = true;
+            this.flowLayoutSidebarTopButtons.BackColor = System.Drawing.Color.Transparent;
+            this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonEdit);
+            this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonDone);
+            this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonCancel);
+            this.flowLayoutSidebarTopButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutSidebarTopButtons.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutSidebarTopButtons.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutSidebarTopButtons.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutSidebarTopButtons.Name = "flowLayoutSidebarTopButtons";
+            this.flowLayoutSidebarTopButtons.Size = new System.Drawing.Size(37, 171);
+            this.flowLayoutSidebarTopButtons.TabIndex = 1;
+            // 
+            // flowLayoutSidebarBottomButtons
+            // 
+            this.flowLayoutSidebarBottomButtons.BackColor = System.Drawing.Color.Transparent;
+            this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonStar);
+            this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonPhoto);
+            this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonTag);
+            this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonDelete);
+            this.flowLayoutSidebarBottomButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutSidebarBottomButtons.Location = new System.Drawing.Point(0, 172);
+            this.flowLayoutSidebarBottomButtons.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutSidebarBottomButtons.Name = "flowLayoutSidebarBottomButtons";
+            this.flowLayoutSidebarBottomButtons.Size = new System.Drawing.Size(37, 150);
+            this.flowLayoutSidebarBottomButtons.TabIndex = 2;
+            // 
+            // tableLayoutBottom
+            // 
+            this.tableLayoutBottom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutBottom.BackgroundImage = global::Journaley.Properties.Resources.main_frame_bottom_background;
+            this.tableLayoutBottom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tableLayoutBottom.ColumnCount = 5;
+            this.tableLayoutBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
+            this.tableLayoutBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutBottom.Controls.Add(this.pictureBoxBottomSeparator, 2, 0);
+            this.tableLayoutBottom.Controls.Add(this.labelWordsTitle, 1, 1);
+            this.tableLayoutBottom.Controls.Add(this.labelCharactersTitle, 3, 1);
+            this.tableLayoutBottom.Controls.Add(this.labelWords, 1, 0);
+            this.tableLayoutBottom.Controls.Add(this.labelCharacters, 3, 0);
+            this.tableLayoutBottom.Controls.Add(this.linkLabelLocation, 4, 0);
+            this.tableLayoutBottom.Controls.Add(this.labelLocation, 4, 1);
+            this.tableLayoutBottom.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.tableLayoutBottom.Location = new System.Drawing.Point(265, 558);
+            this.tableLayoutBottom.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutBottom.Name = "tableLayoutBottom";
+            this.tableLayoutBottom.RowCount = 2;
+            this.tableLayoutBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutBottom.Size = new System.Drawing.Size(618, 42);
+            this.tableLayoutBottom.TabIndex = 16;
+            // 
+            // pictureBoxBottomSeparator
+            // 
+            this.pictureBoxBottomSeparator.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBoxBottomSeparator.Image = global::Journaley.Properties.Resources.main_frame_bottom_separator;
+            this.pictureBoxBottomSeparator.Location = new System.Drawing.Point(308, 6);
+            this.pictureBoxBottomSeparator.Name = "pictureBoxBottomSeparator";
+            this.tableLayoutBottom.SetRowSpan(this.pictureBoxBottomSeparator, 2);
+            this.pictureBoxBottomSeparator.Size = new System.Drawing.Size(1, 29);
+            this.pictureBoxBottomSeparator.TabIndex = 0;
+            this.pictureBoxBottomSeparator.TabStop = false;
+            // 
+            // labelWordsTitle
+            // 
+            this.labelWordsTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelWordsTitle.AutoSize = true;
+            this.labelWordsTitle.BackColor = System.Drawing.Color.Transparent;
+            this.labelWordsTitle.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWordsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(20)))));
+            this.labelWordsTitle.Location = new System.Drawing.Point(295, 21);
+            this.labelWordsTitle.Name = "labelWordsTitle";
+            this.labelWordsTitle.Size = new System.Drawing.Size(0, 13);
+            this.labelWordsTitle.TabIndex = 1;
+            // 
+            // labelCharactersTitle
+            // 
+            this.labelCharactersTitle.AutoSize = true;
+            this.labelCharactersTitle.BackColor = System.Drawing.Color.Transparent;
+            this.labelCharactersTitle.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCharactersTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(20)))));
+            this.labelCharactersTitle.Location = new System.Drawing.Point(322, 21);
+            this.labelCharactersTitle.Name = "labelCharactersTitle";
+            this.labelCharactersTitle.Size = new System.Drawing.Size(0, 13);
+            this.labelCharactersTitle.TabIndex = 2;
+            // 
+            // labelWords
+            // 
+            this.labelWords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelWords.AutoSize = true;
+            this.labelWords.BackColor = System.Drawing.Color.Transparent;
+            this.labelWords.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
+            this.labelWords.Location = new System.Drawing.Point(295, 8);
+            this.labelWords.Name = "labelWords";
+            this.labelWords.Size = new System.Drawing.Size(0, 13);
+            this.labelWords.TabIndex = 3;
+            // 
+            // labelCharacters
+            // 
+            this.labelCharacters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelCharacters.AutoSize = true;
+            this.labelCharacters.BackColor = System.Drawing.Color.Transparent;
+            this.labelCharacters.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCharacters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
+            this.labelCharacters.Location = new System.Drawing.Point(322, 8);
+            this.labelCharacters.Name = "labelCharacters";
+            this.labelCharacters.Size = new System.Drawing.Size(0, 13);
+            this.labelCharacters.TabIndex = 4;
+            // 
+            // linkLabelLocation
+            // 
+            this.linkLabelLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.linkLabelLocation.AutoSize = true;
+            this.linkLabelLocation.BackColor = System.Drawing.Color.Transparent;
+            this.linkLabelLocation.Location = new System.Drawing.Point(525, 8);
+            this.linkLabelLocation.Name = "linkLabelLocation";
+            this.linkLabelLocation.Size = new System.Drawing.Size(90, 13);
+            this.linkLabelLocation.TabIndex = 5;
+            this.linkLabelLocation.TabStop = true;
+            this.linkLabelLocation.Text = "linkLabelLocation";
+            this.linkLabelLocation.Visible = false;
+            // 
+            // tableLayoutDate
+            // 
+            this.tableLayoutDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutDate.BackgroundImage = global::Journaley.Properties.Resources.main_pane_date_background_center;
+            this.tableLayoutDate.ColumnCount = 3;
+            this.tableLayoutDate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutDate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutDate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutDate.Controls.Add(this.panelDateLeft, 0, 0);
+            this.tableLayoutDate.Controls.Add(this.panelDateRight, 2, 0);
+            this.tableLayoutDate.Controls.Add(this.dateTimePicker, 1, 0);
+            this.tableLayoutDate.Location = new System.Drawing.Point(265, 20);
+            this.tableLayoutDate.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutDate.Name = "tableLayoutDate";
+            this.tableLayoutDate.RowCount = 1;
+            this.tableLayoutDate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutDate.Size = new System.Drawing.Size(619, 25);
+            this.tableLayoutDate.TabIndex = 17;
+            // 
+            // panelDateLeft
+            // 
+            this.panelDateLeft.BackgroundImage = global::Journaley.Properties.Resources.main_pane_date_background_left;
+            this.panelDateLeft.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDateLeft.Location = new System.Drawing.Point(0, 0);
+            this.panelDateLeft.Margin = new System.Windows.Forms.Padding(0);
+            this.panelDateLeft.Name = "panelDateLeft";
+            this.panelDateLeft.Size = new System.Drawing.Size(100, 25);
+            this.panelDateLeft.TabIndex = 0;
+            // 
+            // panelDateRight
+            // 
+            this.panelDateRight.BackgroundImage = global::Journaley.Properties.Resources.main_pane_date_background_right;
+            this.panelDateRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDateRight.Location = new System.Drawing.Point(519, 0);
+            this.panelDateRight.Margin = new System.Windows.Forms.Padding(0);
+            this.panelDateRight.Name = "panelDateRight";
+            this.panelDateRight.Size = new System.Drawing.Size(100, 25);
+            this.panelDateRight.TabIndex = 1;
+            // 
+            // panelEntryArea
+            // 
+            this.panelEntryArea.Controls.Add(this.panelWebBrowserWrapper);
+            this.panelEntryArea.Controls.Add(this.panelEntryTextWrapper);
+            this.panelEntryArea.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelEntryArea.Location = new System.Drawing.Point(0, 195);
+            this.panelEntryArea.Margin = new System.Windows.Forms.Padding(0);
+            this.panelEntryArea.Name = "panelEntryArea";
+            this.panelEntryArea.Size = new System.Drawing.Size(620, 320);
+            this.panelEntryArea.TabIndex = 1;
+            // 
+            // panelEntryTextWrapper
+            // 
+            this.panelEntryTextWrapper.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelEntryTextWrapper.Controls.Add(this.spellCheckedEntryText);
+            this.panelEntryTextWrapper.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelEntryTextWrapper.Location = new System.Drawing.Point(0, 0);
+            this.panelEntryTextWrapper.Name = "panelEntryTextWrapper";
+            this.panelEntryTextWrapper.Size = new System.Drawing.Size(620, 320);
+            this.panelEntryTextWrapper.TabIndex = 1;
+            // 
+            // tableLayoutEntryArea
+            // 
+            this.tableLayoutEntryArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutEntryArea.ColumnCount = 1;
+            this.tableLayoutEntryArea.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutEntryArea.Controls.Add(this.panelEntryArea, 0, 1);
+            this.tableLayoutEntryArea.Controls.Add(this.entryPhotoArea, 0, 0);
+            this.tableLayoutEntryArea.Location = new System.Drawing.Point(264, 44);
+            this.tableLayoutEntryArea.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutEntryArea.Name = "tableLayoutEntryArea";
+            this.tableLayoutEntryArea.RowCount = 2;
+            this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38F));
+            this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62F));
+            this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutEntryArea.Size = new System.Drawing.Size(620, 515);
+            this.tableLayoutEntryArea.TabIndex = 1;
+            // 
+            // labelLocation
+            // 
+            this.labelLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelLocation.AutoSize = true;
+            this.labelLocation.BackColor = System.Drawing.Color.Transparent;
+            this.labelLocation.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLocation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(20)))));
+            this.labelLocation.Location = new System.Drawing.Point(557, 21);
+            this.labelLocation.Name = "labelLocation";
+            this.labelLocation.Size = new System.Drawing.Size(58, 13);
+            this.labelLocation.TabIndex = 6;
+            this.labelLocation.Text = "LOCATION";
+            this.labelLocation.Visible = false;
             // 
             // buttonSettings
             // 
@@ -432,402 +711,6 @@ namespace Journaley.Forms
             this.toolTip.SetToolTip(this.buttonDelete, "Delete");
             this.buttonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
             // 
-            // buttonAddEntry
-            // 
-            this.buttonAddEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonAddEntry.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonAddEntry.DownImage = global::Journaley.Properties.Resources.main_btn_entry_down;
-            this.buttonAddEntry.HoverImage = global::Journaley.Properties.Resources.main_btn_entry_over;
-            this.buttonAddEntry.Image = global::Journaley.Properties.Resources.main_btn_entry_norm;
-            this.buttonAddEntry.Location = new System.Drawing.Point(0, 558);
-            this.buttonAddEntry.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonAddEntry.Name = "buttonAddEntry";
-            this.buttonAddEntry.NormalImage = global::Journaley.Properties.Resources.main_btn_entry_norm;
-            this.buttonAddEntry.Selected = false;
-            this.buttonAddEntry.SelectedDownImage = null;
-            this.buttonAddEntry.SelectedHoverImage = null;
-            this.buttonAddEntry.SelectedImage = null;
-            this.buttonAddEntry.Size = new System.Drawing.Size(266, 42);
-            this.buttonAddEntry.TabIndex = 0;
-            this.buttonAddEntry.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonAddEntry, "Add a new entry");
-            this.buttonAddEntry.Click += new System.EventHandler(this.ButtonAddEntry_Click);
-            // 
-            // panelWebBrowserWrapper
-            // 
-            this.panelWebBrowserWrapper.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelWebBrowserWrapper.Controls.Add(this.webBrowser);
-            this.panelWebBrowserWrapper.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelWebBrowserWrapper.Location = new System.Drawing.Point(0, 0);
-            this.panelWebBrowserWrapper.Margin = new System.Windows.Forms.Padding(0);
-            this.panelWebBrowserWrapper.Name = "panelWebBrowserWrapper";
-            this.panelWebBrowserWrapper.Size = new System.Drawing.Size(620, 320);
-            this.panelWebBrowserWrapper.TabIndex = 11;
-            // 
-            // webBrowser
-            // 
-            this.webBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser.Name = "webBrowser";
-            this.webBrowser.Size = new System.Drawing.Size(618, 318);
-            this.webBrowser.TabIndex = 0;
-            // 
-            // contextMenuStripPhotoWithPhoto
-            // 
-            this.contextMenuStripPhotoWithPhoto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
-            this.contextMenuStripPhotoWithPhoto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.replaceWithAnotherPhotoToolStripMenuItem,
-            this.deletePhotoToolStripMenuItem});
-            this.contextMenuStripPhotoWithPhoto.Name = "contextMenuStripPhotoWithPhoto";
-            this.contextMenuStripPhotoWithPhoto.ShowImageMargin = false;
-            this.contextMenuStripPhotoWithPhoto.Size = new System.Drawing.Size(207, 48);
-            // 
-            // replaceWithAnotherPhotoToolStripMenuItem
-            // 
-            this.replaceWithAnotherPhotoToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.replaceWithAnotherPhotoToolStripMenuItem.Name = "replaceWithAnotherPhotoToolStripMenuItem";
-            this.replaceWithAnotherPhotoToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.replaceWithAnotherPhotoToolStripMenuItem.Text = "Replace with Another Photo...";
-            this.replaceWithAnotherPhotoToolStripMenuItem.Click += new System.EventHandler(this.ReplaceWithAnotherPhotoToolStripMenuItem_Click);
-            // 
-            // deletePhotoToolStripMenuItem
-            // 
-            this.deletePhotoToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.deletePhotoToolStripMenuItem.Name = "deletePhotoToolStripMenuItem";
-            this.deletePhotoToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.deletePhotoToolStripMenuItem.Text = "Delete Photo";
-            this.deletePhotoToolStripMenuItem.Click += new System.EventHandler(this.DeletePhotoToolStripMenuItem_Click);
-            // 
-            // panelSidebar
-            // 
-            this.panelSidebar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
-            this.panelSidebar.BackgroundImage = global::Journaley.Properties.Resources.main_pane_sidebar_background;
-            this.panelSidebar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panelSidebar.Controls.Add(this.pictureBoxSidebarSeperatorBottom);
-            this.panelSidebar.Controls.Add(this.pictureBoxResize);
-            this.panelSidebar.Controls.Add(this.buttonSettings);
-            this.panelSidebar.Controls.Add(this.tableLayoutSidebarWrapper);
-            this.panelSidebar.Location = new System.Drawing.Point(883, 20);
-            this.panelSidebar.Margin = new System.Windows.Forms.Padding(0);
-            this.panelSidebar.Name = "panelSidebar";
-            this.panelSidebar.Size = new System.Drawing.Size(47, 580);
-            this.panelSidebar.TabIndex = 12;
-            // 
-            // pictureBoxSidebarSeperatorBottom
-            // 
-            this.pictureBoxSidebarSeperatorBottom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pictureBoxSidebarSeperatorBottom.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxSidebarSeperatorBottom.Image = global::Journaley.Properties.Resources.sidebar_seperator_bottom;
-            this.pictureBoxSidebarSeperatorBottom.Location = new System.Drawing.Point(1, 538);
-            this.pictureBoxSidebarSeperatorBottom.Name = "pictureBoxSidebarSeperatorBottom";
-            this.pictureBoxSidebarSeperatorBottom.Size = new System.Drawing.Size(46, 1);
-            this.pictureBoxSidebarSeperatorBottom.TabIndex = 11;
-            this.pictureBoxSidebarSeperatorBottom.TabStop = false;
-            // 
-            // pictureBoxResize
-            // 
-            this.pictureBoxResize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxResize.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxResize.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
-            this.pictureBoxResize.Image = global::Journaley.Properties.Resources.frame_pane_resize;
-            this.pictureBoxResize.Location = new System.Drawing.Point(37, 570);
-            this.pictureBoxResize.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBoxResize.Name = "pictureBoxResize";
-            this.pictureBoxResize.Size = new System.Drawing.Size(10, 10);
-            this.pictureBoxResize.TabIndex = 1;
-            this.pictureBoxResize.TabStop = false;
-            this.pictureBoxResize.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBoxResize_MouseDown);
-            // 
-            // tableLayoutSidebarWrapper
-            // 
-            this.tableLayoutSidebarWrapper.BackColor = System.Drawing.Color.Transparent;
-            this.tableLayoutSidebarWrapper.ColumnCount = 1;
-            this.tableLayoutSidebarWrapper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutSidebarWrapper.Controls.Add(this.tableLayoutSidebar, 0, 1);
-            this.tableLayoutSidebarWrapper.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutSidebarWrapper.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutSidebarWrapper.Name = "tableLayoutSidebarWrapper";
-            this.tableLayoutSidebarWrapper.RowCount = 3;
-            this.tableLayoutSidebarWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutSidebarWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 510F));
-            this.tableLayoutSidebarWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutSidebarWrapper.Size = new System.Drawing.Size(47, 580);
-            this.tableLayoutSidebarWrapper.TabIndex = 12;
-            // 
-            // tableLayoutSidebar
-            // 
-            this.tableLayoutSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
-            this.tableLayoutSidebar.BackgroundImage = global::Journaley.Properties.Resources.sidebar_pane_buttonContainer_background;
-            this.tableLayoutSidebar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tableLayoutSidebar.ColumnCount = 1;
-            this.tableLayoutSidebar.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutSidebar.Controls.Add(this.pictureBoxSidebarButtonsSeparator, 0, 1);
-            this.tableLayoutSidebar.Controls.Add(this.flowLayoutSidebarTopButtons, 0, 0);
-            this.tableLayoutSidebar.Controls.Add(this.flowLayoutSidebarBottomButtons, 0, 2);
-            this.tableLayoutSidebar.Location = new System.Drawing.Point(0, 35);
-            this.tableLayoutSidebar.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutSidebar.Name = "tableLayoutSidebar";
-            this.tableLayoutSidebar.RowCount = 3;
-            this.tableLayoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.tableLayoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutSidebar.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutSidebar.Size = new System.Drawing.Size(37, 450);
-            this.tableLayoutSidebar.TabIndex = 0;
-            // 
-            // pictureBoxSidebarButtonsSeparator
-            // 
-            this.pictureBoxSidebarButtonsSeparator.Image = global::Journaley.Properties.Resources.sidebar_seperator_buttonContainer;
-            this.pictureBoxSidebarButtonsSeparator.Location = new System.Drawing.Point(0, 171);
-            this.pictureBoxSidebarButtonsSeparator.Margin = new System.Windows.Forms.Padding(0);
-            this.pictureBoxSidebarButtonsSeparator.Name = "pictureBoxSidebarButtonsSeparator";
-            this.pictureBoxSidebarButtonsSeparator.Size = new System.Drawing.Size(37, 1);
-            this.pictureBoxSidebarButtonsSeparator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBoxSidebarButtonsSeparator.TabIndex = 0;
-            this.pictureBoxSidebarButtonsSeparator.TabStop = false;
-            // 
-            // flowLayoutSidebarTopButtons
-            // 
-            this.flowLayoutSidebarTopButtons.AutoSize = true;
-            this.flowLayoutSidebarTopButtons.BackColor = System.Drawing.Color.Transparent;
-            this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonEdit);
-            this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonDone);
-            this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonCancel);
-            this.flowLayoutSidebarTopButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutSidebarTopButtons.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutSidebarTopButtons.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutSidebarTopButtons.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutSidebarTopButtons.Name = "flowLayoutSidebarTopButtons";
-            this.flowLayoutSidebarTopButtons.Size = new System.Drawing.Size(37, 171);
-            this.flowLayoutSidebarTopButtons.TabIndex = 1;
-            // 
-            // flowLayoutSidebarBottomButtons
-            // 
-            this.flowLayoutSidebarBottomButtons.BackColor = System.Drawing.Color.Transparent;
-            this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonStar);
-            this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonPhoto);
-            this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonTag);
-            this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonDelete);
-            this.flowLayoutSidebarBottomButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutSidebarBottomButtons.Location = new System.Drawing.Point(0, 172);
-            this.flowLayoutSidebarBottomButtons.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutSidebarBottomButtons.Name = "flowLayoutSidebarBottomButtons";
-            this.flowLayoutSidebarBottomButtons.Size = new System.Drawing.Size(37, 278);
-            this.flowLayoutSidebarBottomButtons.TabIndex = 2;
-            // 
-            // tableLayoutBottom
-            // 
-            this.tableLayoutBottom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutBottom.BackgroundImage = global::Journaley.Properties.Resources.main_frame_bottom_background;
-            this.tableLayoutBottom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.tableLayoutBottom.ColumnCount = 5;
-            this.tableLayoutBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tableLayoutBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
-            this.tableLayoutBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tableLayoutBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutBottom.Controls.Add(this.pictureBoxBottomSeparator, 2, 0);
-            this.tableLayoutBottom.Controls.Add(this.labelWordsTitle, 1, 1);
-            this.tableLayoutBottom.Controls.Add(this.labelCharactersTitle, 3, 1);
-            this.tableLayoutBottom.Controls.Add(this.labelWords, 1, 0);
-            this.tableLayoutBottom.Controls.Add(this.labelCharacters, 3, 0);
-            this.tableLayoutBottom.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.tableLayoutBottom.Location = new System.Drawing.Point(265, 558);
-            this.tableLayoutBottom.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutBottom.Name = "tableLayoutBottom";
-            this.tableLayoutBottom.RowCount = 2;
-            this.tableLayoutBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutBottom.Size = new System.Drawing.Size(618, 42);
-            this.tableLayoutBottom.TabIndex = 16;
-            // 
-            // pictureBoxBottomSeparator
-            // 
-            this.pictureBoxBottomSeparator.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBoxBottomSeparator.Image = global::Journaley.Properties.Resources.main_frame_bottom_separator;
-            this.pictureBoxBottomSeparator.Location = new System.Drawing.Point(308, 6);
-            this.pictureBoxBottomSeparator.Name = "pictureBoxBottomSeparator";
-            this.tableLayoutBottom.SetRowSpan(this.pictureBoxBottomSeparator, 2);
-            this.pictureBoxBottomSeparator.Size = new System.Drawing.Size(1, 29);
-            this.pictureBoxBottomSeparator.TabIndex = 0;
-            this.pictureBoxBottomSeparator.TabStop = false;
-            // 
-            // labelWordsTitle
-            // 
-            this.labelWordsTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelWordsTitle.AutoSize = true;
-            this.labelWordsTitle.BackColor = System.Drawing.Color.Transparent;
-            this.labelWordsTitle.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelWordsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(20)))));
-            this.labelWordsTitle.Location = new System.Drawing.Point(295, 21);
-            this.labelWordsTitle.Name = "labelWordsTitle";
-            this.labelWordsTitle.Size = new System.Drawing.Size(0, 13);
-            this.labelWordsTitle.TabIndex = 1;
-            // 
-            // labelCharactersTitle
-            // 
-            this.labelCharactersTitle.AutoSize = true;
-            this.labelCharactersTitle.BackColor = System.Drawing.Color.Transparent;
-            this.labelCharactersTitle.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCharactersTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(20)))));
-            this.labelCharactersTitle.Location = new System.Drawing.Point(322, 21);
-            this.labelCharactersTitle.Name = "labelCharactersTitle";
-            this.labelCharactersTitle.Size = new System.Drawing.Size(0, 13);
-            this.labelCharactersTitle.TabIndex = 2;
-            // 
-            // labelWords
-            // 
-            this.labelWords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelWords.AutoSize = true;
-            this.labelWords.BackColor = System.Drawing.Color.Transparent;
-            this.labelWords.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelWords.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelWords.Location = new System.Drawing.Point(295, 8);
-            this.labelWords.Name = "labelWords";
-            this.labelWords.Size = new System.Drawing.Size(0, 13);
-            this.labelWords.TabIndex = 3;
-            // 
-            // labelCharacters
-            // 
-            this.labelCharacters.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelCharacters.AutoSize = true;
-            this.labelCharacters.BackColor = System.Drawing.Color.Transparent;
-            this.labelCharacters.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCharacters.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelCharacters.Location = new System.Drawing.Point(322, 8);
-            this.labelCharacters.Name = "labelCharacters";
-            this.labelCharacters.Size = new System.Drawing.Size(0, 13);
-            this.labelCharacters.TabIndex = 4;
-            // 
-            // tableLayoutDate
-            // 
-            this.tableLayoutDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutDate.BackgroundImage = global::Journaley.Properties.Resources.main_pane_date_background_center;
-            this.tableLayoutDate.ColumnCount = 3;
-            this.tableLayoutDate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutDate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutDate.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutDate.Controls.Add(this.panelDateLeft, 0, 0);
-            this.tableLayoutDate.Controls.Add(this.panelDateRight, 2, 0);
-            this.tableLayoutDate.Controls.Add(this.dateTimePicker, 1, 0);
-            this.tableLayoutDate.Location = new System.Drawing.Point(265, 20);
-            this.tableLayoutDate.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutDate.Name = "tableLayoutDate";
-            this.tableLayoutDate.RowCount = 1;
-            this.tableLayoutDate.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutDate.Size = new System.Drawing.Size(619, 25);
-            this.tableLayoutDate.TabIndex = 17;
-            // 
-            // panelDateLeft
-            // 
-            this.panelDateLeft.BackgroundImage = global::Journaley.Properties.Resources.main_pane_date_background_left;
-            this.panelDateLeft.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDateLeft.Location = new System.Drawing.Point(0, 0);
-            this.panelDateLeft.Margin = new System.Windows.Forms.Padding(0);
-            this.panelDateLeft.Name = "panelDateLeft";
-            this.panelDateLeft.Size = new System.Drawing.Size(100, 25);
-            this.panelDateLeft.TabIndex = 0;
-            // 
-            // panelDateRight
-            // 
-            this.panelDateRight.BackgroundImage = global::Journaley.Properties.Resources.main_pane_date_background_right;
-            this.panelDateRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDateRight.Location = new System.Drawing.Point(519, 0);
-            this.panelDateRight.Margin = new System.Windows.Forms.Padding(0);
-            this.panelDateRight.Name = "panelDateRight";
-            this.panelDateRight.Size = new System.Drawing.Size(100, 25);
-            this.panelDateRight.TabIndex = 1;
-            // 
-            // panelEntryArea
-            // 
-            this.panelEntryArea.Controls.Add(this.panelWebBrowserWrapper);
-            this.panelEntryArea.Controls.Add(this.panelEntryTextWrapper);
-            this.panelEntryArea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEntryArea.Location = new System.Drawing.Point(0, 195);
-            this.panelEntryArea.Margin = new System.Windows.Forms.Padding(0);
-            this.panelEntryArea.Name = "panelEntryArea";
-            this.panelEntryArea.Size = new System.Drawing.Size(620, 320);
-            this.panelEntryArea.TabIndex = 1;
-            // 
-            // panelEntryTextWrapper
-            // 
-            this.panelEntryTextWrapper.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelEntryTextWrapper.Controls.Add(this.spellCheckedEntryText);
-            this.panelEntryTextWrapper.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelEntryTextWrapper.Location = new System.Drawing.Point(0, 0);
-            this.panelEntryTextWrapper.Name = "panelEntryTextWrapper";
-            this.panelEntryTextWrapper.Size = new System.Drawing.Size(620, 320);
-            this.panelEntryTextWrapper.TabIndex = 1;
-            // 
-            // spellCheckedEntryText
-            // 
-            this.spellCheckedEntryText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.spellCheckedEntryText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spellCheckedEntryText.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.spellCheckedEntryText.Location = new System.Drawing.Point(0, 0);
-            this.spellCheckedEntryText.Multiline = true;
-            this.spellCheckedEntryText.Name = "spellCheckedEntryText";
-            this.spellCheckedEntryText.Padding = new System.Windows.Forms.Padding(30);
-            this.spellCheckedEntryText.ReadOnly = false;
-            this.spellCheckedEntryText.Size = new System.Drawing.Size(618, 318);
-            this.spellCheckedEntryText.TabIndex = 1;
-            this.spellCheckedEntryText.WordWrap = true;
-            this.spellCheckedEntryText.TextChanged += new System.EventHandler(this.SpellCheckedEntryText_TextChanged);
-            this.spellCheckedEntryText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SpellCheckedEntryText_KeyDown);
-            this.spellCheckedEntryText.Child = null;
-            // 
-            // tableLayoutEntryArea
-            // 
-            this.tableLayoutEntryArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutEntryArea.ColumnCount = 1;
-            this.tableLayoutEntryArea.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutEntryArea.Controls.Add(this.panelEntryArea, 0, 1);
-            this.tableLayoutEntryArea.Controls.Add(this.entryPhotoArea, 0, 0);
-            this.tableLayoutEntryArea.Location = new System.Drawing.Point(264, 44);
-            this.tableLayoutEntryArea.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutEntryArea.Name = "tableLayoutEntryArea";
-            this.tableLayoutEntryArea.RowCount = 2;
-            this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 38F));
-            this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 62F));
-            this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutEntryArea.Size = new System.Drawing.Size(620, 515);
-            this.tableLayoutEntryArea.TabIndex = 1;
-            // 
-            // entryPhotoArea
-            // 
-            this.entryPhotoArea.BackButtonHoverImage = global::Journaley.Properties.Resources.picture_btn_back_over;
-            this.entryPhotoArea.BackButtonLabelImage = global::Journaley.Properties.Resources.picture_lbl_back;
-            this.entryPhotoArea.BackButtonLabelYPos = 3;
-            this.entryPhotoArea.BackButtonNormalImage = global::Journaley.Properties.Resources.picture_btn_back_norm;
-            this.entryPhotoArea.BackButtonYPos = 19;
-            this.entryPhotoArea.BackgroundImage = global::Journaley.Properties.Resources.picture_pane_background_tile;
-            this.entryPhotoArea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryPhotoArea.Expanded = false;
-            this.entryPhotoArea.Image = null;
-            this.entryPhotoArea.Location = new System.Drawing.Point(0, 0);
-            this.entryPhotoArea.Margin = new System.Windows.Forms.Padding(0);
-            this.entryPhotoArea.MaskImage = global::Journaley.Properties.Resources.picture_pane_hoverMask;
-            this.entryPhotoArea.Name = "entryPhotoArea";
-            this.entryPhotoArea.PopoutButtonHoverImage = global::Journaley.Properties.Resources.picture_btn_popout_over;
-            this.entryPhotoArea.PopoutButtonLabelImage = global::Journaley.Properties.Resources.picture_lbl_popout;
-            this.entryPhotoArea.PopoutButtonLabelYPos = -2;
-            this.entryPhotoArea.PopoutButtonNormalImage = global::Journaley.Properties.Resources.picture_btn_popout_norm;
-            this.entryPhotoArea.PopoutButtonYPos = -20;
-            this.entryPhotoArea.Size = new System.Drawing.Size(620, 195);
-            this.entryPhotoArea.TabIndex = 2;
-            this.entryPhotoArea.Text = "entryPhotoArea1";
-            this.entryPhotoArea.ImageClick += new System.EventHandler(this.EntryPhotoArea_ImageClick);
-            this.entryPhotoArea.BackButtonClick += new System.EventHandler(this.EntryPhotoArea_BackButtonClick);
-            this.entryPhotoArea.PopoutButtonClick += new System.EventHandler(this.EntryPhotoArea_PopoutButtonClick);
-            // 
             // panelTitlebar
             // 
             this.panelTitlebar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -930,6 +813,27 @@ namespace Journaley.Forms
             this.imageButtonFormClose.TabIndex = 0;
             this.imageButtonFormClose.TabStop = false;
             this.imageButtonFormClose.Click += new System.EventHandler(this.ImageButtonFormClose_Click);
+            // 
+            // buttonAddEntry
+            // 
+            this.buttonAddEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonAddEntry.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonAddEntry.DownImage = global::Journaley.Properties.Resources.main_btn_entry_down;
+            this.buttonAddEntry.HoverImage = global::Journaley.Properties.Resources.main_btn_entry_over;
+            this.buttonAddEntry.Image = global::Journaley.Properties.Resources.main_btn_entry_norm;
+            this.buttonAddEntry.Location = new System.Drawing.Point(0, 558);
+            this.buttonAddEntry.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonAddEntry.Name = "buttonAddEntry";
+            this.buttonAddEntry.NormalImage = global::Journaley.Properties.Resources.main_btn_entry_norm;
+            this.buttonAddEntry.Selected = false;
+            this.buttonAddEntry.SelectedDownImage = null;
+            this.buttonAddEntry.SelectedHoverImage = null;
+            this.buttonAddEntry.SelectedImage = null;
+            this.buttonAddEntry.Size = new System.Drawing.Size(266, 42);
+            this.buttonAddEntry.TabIndex = 0;
+            this.buttonAddEntry.TabStop = false;
+            this.toolTip.SetToolTip(this.buttonAddEntry, "Add a new entry");
+            this.buttonAddEntry.Click += new System.EventHandler(this.ButtonAddEntry_Click);
             // 
             // buttonMainTags
             // 
@@ -1128,6 +1032,131 @@ namespace Journaley.Forms
             this.listBoxTags.TabIndex = 0;
             this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
             // 
+            // spellCheckedEntryText
+            // 
+            this.spellCheckedEntryText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.spellCheckedEntryText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellCheckedEntryText.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.spellCheckedEntryText.Location = new System.Drawing.Point(0, 0);
+            this.spellCheckedEntryText.Multiline = true;
+            this.spellCheckedEntryText.Name = "spellCheckedEntryText";
+            this.spellCheckedEntryText.Padding = new System.Windows.Forms.Padding(30);
+            this.spellCheckedEntryText.ReadOnly = false;
+            this.spellCheckedEntryText.Size = new System.Drawing.Size(618, 318);
+            this.spellCheckedEntryText.TabIndex = 1;
+            this.spellCheckedEntryText.WordWrap = true;
+            this.spellCheckedEntryText.TextChanged += new System.EventHandler(this.SpellCheckedEntryText_TextChanged);
+            this.spellCheckedEntryText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SpellCheckedEntryText_KeyDown);
+            this.spellCheckedEntryText.Child = null;
+            // 
+            // entryPhotoArea
+            // 
+            this.entryPhotoArea.BackButtonHoverImage = global::Journaley.Properties.Resources.picture_btn_back_over;
+            this.entryPhotoArea.BackButtonLabelImage = global::Journaley.Properties.Resources.picture_lbl_back;
+            this.entryPhotoArea.BackButtonLabelYPos = 3;
+            this.entryPhotoArea.BackButtonNormalImage = global::Journaley.Properties.Resources.picture_btn_back_norm;
+            this.entryPhotoArea.BackButtonYPos = 19;
+            this.entryPhotoArea.BackgroundImage = global::Journaley.Properties.Resources.picture_pane_background_tile;
+            this.entryPhotoArea.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryPhotoArea.Expanded = false;
+            this.entryPhotoArea.Image = null;
+            this.entryPhotoArea.Location = new System.Drawing.Point(0, 0);
+            this.entryPhotoArea.Margin = new System.Windows.Forms.Padding(0);
+            this.entryPhotoArea.MaskImage = global::Journaley.Properties.Resources.picture_pane_hoverMask;
+            this.entryPhotoArea.Name = "entryPhotoArea";
+            this.entryPhotoArea.PopoutButtonHoverImage = global::Journaley.Properties.Resources.picture_btn_popout_over;
+            this.entryPhotoArea.PopoutButtonLabelImage = global::Journaley.Properties.Resources.picture_lbl_popout;
+            this.entryPhotoArea.PopoutButtonLabelYPos = -2;
+            this.entryPhotoArea.PopoutButtonNormalImage = global::Journaley.Properties.Resources.picture_btn_popout_norm;
+            this.entryPhotoArea.PopoutButtonYPos = -20;
+            this.entryPhotoArea.Size = new System.Drawing.Size(620, 195);
+            this.entryPhotoArea.TabIndex = 2;
+            this.entryPhotoArea.Text = "entryPhotoArea1";
+            this.entryPhotoArea.ImageClick += new System.EventHandler(this.EntryPhotoArea_ImageClick);
+            this.entryPhotoArea.BackButtonClick += new System.EventHandler(this.EntryPhotoArea_BackButtonClick);
+            this.entryPhotoArea.PopoutButtonClick += new System.EventHandler(this.EntryPhotoArea_PopoutButtonClick);
+            // 
+            // labelEntries
+            // 
+            this.labelEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelEntries.AutoSize = true;
+            this.labelEntries.BackColor = System.Drawing.Color.Transparent;
+            this.labelEntries.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEntries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
+            this.labelEntries.Location = new System.Drawing.Point(29, 0);
+            this.labelEntries.Margin = new System.Windows.Forms.Padding(0);
+            this.labelEntries.Name = "labelEntries";
+            this.labelEntries.Size = new System.Drawing.Size(0, 11);
+            this.labelEntries.TabIndex = 0;
+            // 
+            // labelThisWeek
+            // 
+            this.labelThisWeek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelThisWeek.AutoSize = true;
+            this.labelThisWeek.BackColor = System.Drawing.Color.Transparent;
+            this.labelThisWeek.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelThisWeek.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
+            this.labelThisWeek.Location = new System.Drawing.Point(176, 0);
+            this.labelThisWeek.Margin = new System.Windows.Forms.Padding(0);
+            this.labelThisWeek.Name = "labelThisWeek";
+            this.labelThisWeek.Size = new System.Drawing.Size(0, 11);
+            this.labelThisWeek.TabIndex = 2;
+            // 
+            // labelToday
+            // 
+            this.labelToday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelToday.AutoSize = true;
+            this.labelToday.BackColor = System.Drawing.Color.Transparent;
+            this.labelToday.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelToday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
+            this.labelToday.Location = new System.Drawing.Point(106, 0);
+            this.labelToday.Margin = new System.Windows.Forms.Padding(0);
+            this.labelToday.Name = "labelToday";
+            this.labelToday.Size = new System.Drawing.Size(0, 11);
+            this.labelToday.TabIndex = 3;
+            // 
+            // labelEntriesLabel
+            // 
+            this.labelEntriesLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelEntriesLabel.AutoSize = true;
+            this.labelEntriesLabel.BackColor = System.Drawing.Color.Transparent;
+            this.labelEntriesLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEntriesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
+            this.labelEntriesLabel.Location = new System.Drawing.Point(29, 11);
+            this.labelEntriesLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.labelEntriesLabel.Name = "labelEntriesLabel";
+            this.labelEntriesLabel.Size = new System.Drawing.Size(48, 13);
+            this.labelEntriesLabel.TabIndex = 4;
+            this.labelEntriesLabel.Text = "ENTRIES";
+            // 
+            // labelThisWeekLabel
+            // 
+            labelThisWeekLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            labelThisWeekLabel.AutoSize = true;
+            labelThisWeekLabel.BackColor = System.Drawing.Color.Transparent;
+            labelThisWeekLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            labelThisWeekLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
+            labelThisWeekLabel.Location = new System.Drawing.Point(176, 11);
+            labelThisWeekLabel.Margin = new System.Windows.Forms.Padding(0);
+            labelThisWeekLabel.Name = "labelThisWeekLabel";
+            labelThisWeekLabel.Size = new System.Drawing.Size(61, 13);
+            labelThisWeekLabel.TabIndex = 6;
+            labelThisWeekLabel.Text = "THIS WEEK";
+            // 
+            // labelTodayLabel
+            // 
+            labelTodayLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            labelTodayLabel.AutoSize = true;
+            labelTodayLabel.BackColor = System.Drawing.Color.Transparent;
+            labelTodayLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            labelTodayLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
+            labelTodayLabel.Location = new System.Drawing.Point(106, 11);
+            labelTodayLabel.Margin = new System.Windows.Forms.Padding(0);
+            labelTodayLabel.Name = "labelTodayLabel";
+            labelTodayLabel.Size = new System.Drawing.Size(41, 13);
+            labelTodayLabel.TabIndex = 7;
+            labelTodayLabel.Text = "TODAY";
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1157,15 +1186,6 @@ namespace Journaley.Forms
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.tableLayoutStats.ResumeLayout(false);
             this.tableLayoutStats.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonDone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonStar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonPhoto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonTag)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonDelete)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).EndInit();
             this.panelWebBrowserWrapper.ResumeLayout(false);
             this.contextMenuStripPhotoWithPhoto.ResumeLayout(false);
             this.panelSidebar.ResumeLayout(false);
@@ -1184,12 +1204,21 @@ namespace Journaley.Forms
             this.panelEntryArea.ResumeLayout(false);
             this.panelEntryTextWrapper.ResumeLayout(false);
             this.tableLayoutEntryArea.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonStar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonPhoto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonTag)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDelete)).EndInit();
             this.panelTitlebar.ResumeLayout(false);
             this.panelTitlebar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTags)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).EndInit();
@@ -1266,6 +1295,8 @@ namespace Journaley.Forms
         private MouseFallThroughLabel labelThisWeek;
         private MouseFallThroughLabel labelToday;
         private MouseFallThroughLabel labelEntriesLabel;
+        private System.Windows.Forms.LinkLabel linkLabelLocation;
+        private System.Windows.Forms.Label labelLocation;
     }
 }
 
