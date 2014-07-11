@@ -1,4 +1,4 @@
-﻿namespace Journaley.Models
+﻿namespace Journaley.Core.Models
 {
     /// <summary>
     /// An interface for verifying password.

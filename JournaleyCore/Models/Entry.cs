@@ -1,6 +1,6 @@
-﻿namespace Journaley.Models
+﻿namespace Journaley.Core.Models
 {
-    using Journaley.Utilities;
+    using Journaley.Core.Utilities;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
