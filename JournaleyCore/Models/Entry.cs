@@ -6,6 +6,7 @@
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Text;
     using System.Xml;
 
@@ -323,6 +324,8 @@
 
         public EntryCreator Creator { get; private set; }
 
+        public string Activity { get; set; }
+
         /// <summary>
         /// Loads an entry from the given filename.
         /// </summary>
@@ -368,7 +371,7 @@
                         XmlNode keyNode = dictNode.ChildNodes[i];
                         Debug.Assert(keyNode.Name == "key", "key element must appear");
 
-                        XmlNode valueNode = dictNode.ChildNodes[i + 1];
+                        XmlNode valueNode = keyNode.NextSibling;
 
                         switch (keyNode.InnerText)
                         {
@@ -405,7 +408,7 @@
 
                                     break;
                                 }
-
+                               
                             case "Location":
                                 {
                                     newEntry.Location = new EntryLocation();
@@ -416,7 +419,6 @@
                                             string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
                                             string value = tagNode.NextSibling.InnerText;
                                             newEntry.Location.GetType().GetProperty(propertyName).SetValue(newEntry.Location, value, null);
-                                            newEntry.AddTag(tagNode.InnerText);
                                         }
                                     }
 
@@ -433,7 +435,6 @@
                                             string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
                                             string value = tagNode.NextSibling.InnerText;
                                             newEntry.Weather.GetType().GetProperty(propertyName).SetValue(newEntry.Weather, value, null);
-                                            newEntry.AddTag(tagNode.InnerText);
                                         }
                                     }
 
@@ -450,12 +451,11 @@
                                             string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
                                             string value = tagNode.NextSibling.InnerText;
                                             newEntry.Creator.GetType().GetProperty(propertyName).SetValue(newEntry.Creator, value, null);
-                                            newEntry.AddTag(tagNode.InnerText);
                                         }
                                     }
 
                                     break;
-                                }                                                              
+                                }                                                             
 
                             default:
                                 newEntry.UnknownKeyValues.Add(keyNode, valueNode);
