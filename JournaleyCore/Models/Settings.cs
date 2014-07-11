@@ -1,4 +1,4 @@
-﻿namespace Journaley.Models
+﻿namespace Journaley.Core.Models
 {
     using System;
     using System.IO;

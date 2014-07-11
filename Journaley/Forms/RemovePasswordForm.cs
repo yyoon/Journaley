@@ -1,7 +1,7 @@
 ﻿namespace Journaley.Forms
 {
     using System.Windows.Forms;
-    using Journaley.Models;
+    using Journaley.Core.Models;
 
     /// <summary>
     /// A form used when the user wants to remove existing password.

@@ -7,8 +7,8 @@
     <ProjectGuid>{562E2182-FA60-423F-B06E-F776BB958A8A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JournaleyCore</RootNamespace>
-    <AssemblyName>JournaleyCore</AssemblyName>
+    <RootNamespace>Journaley.Core</RootNamespace>
+    <AssemblyName>Journaley.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

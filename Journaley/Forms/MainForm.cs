@@ -13,9 +13,10 @@
     using System.Windows.Forms;
     using BlackBeltCoder;
     using Journaley.Controls;
-    using Journaley.Models;
+    using Journaley.Core.Models;
     using Journaley.Utilities;
     using MarkdownSharp;
+    using Journaley.Core.Utilities;
 
     /// <summary>
     /// The Main Form of the application. Contains the entry list, preview, buttons, etc.

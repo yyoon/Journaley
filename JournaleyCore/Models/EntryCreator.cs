@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Journaley.Models
+namespace Journaley.Core.Models
 {
     public class EntryCreator
     {

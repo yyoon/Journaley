@@ -1,8 +1,8 @@
-﻿namespace Journaley.Utilities
+﻿namespace Journaley.Core.Utilities
 {
     using System;
     using System.IO;
-    using Journaley.Models;
+    using Journaley.Core.Models;
 
     /// <summary>
     /// A utility class used for error logging.

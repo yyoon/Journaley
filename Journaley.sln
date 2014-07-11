@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30626.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journaley", "Journaley\Journaley.csproj", "{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}"
 EndProject
@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "JournaleySetup", "JournaleySetup\JournaleySetup.vdproj", "{C0D506F3-1669-464B-9052-6B21159ABCEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JournaleyCore", "JournaleyCore\JournaleyCore.csproj", "{562E2182-FA60-423F-B06E-F776BB958A8A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journaley.Core", "JournaleyCore\Journaley.Core.csproj", "{562E2182-FA60-423F-B06E-F776BB958A8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

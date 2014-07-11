@@ -435,9 +435,9 @@
     <None Include="images\NewDesign\frame_pane_resize.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JournaleyCore\JournaleyCore.csproj">
+    <ProjectReference Include="..\JournaleyCore\Journaley.Core.csproj">
       <Project>{562e2182-fa60-423f-b06e-f776bb958a8a}</Project>
-      <Name>JournaleyCore</Name>
+      <Name>Journaley.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

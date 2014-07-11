@@ -1,4 +1,4 @@
-﻿namespace Journaley.Utilities
+﻿namespace Journaley.Core.Utilities
 {
     using System;
     using System.IO;
