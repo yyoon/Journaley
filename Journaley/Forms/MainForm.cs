@@ -2,12 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Diagnostics;
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Runtime.InteropServices;
     using System.Threading;
     using System.Windows.Forms;
@@ -17,8 +19,6 @@
     using Journaley.Core.Utilities;
     using Journaley.Utilities;
     using MarkdownSharp;
-    using System.Reflection;
-    using System.ComponentModel;
 
     /// <summary>
     /// The Main Form of the application. Contains the entry list, preview, buttons, etc.
@@ -1708,32 +1708,35 @@
             this.SelectedEntry = entryListBox.Items[entryListBox.SelectedIndex] as Entry;
 
             this.suppressEntryUpdate = prevSuppressEntryUpdate;
-
             
             if (this.SelectedEntry.Location != null)
             {
-                linkLabelLocation.Text = this.SelectedEntry.Location.ToString();
-                string link = string.Format("https://www.google.com/maps/preview?q={0},{1}&z={2}",
+                this.linkLabelLocation.Text = this.SelectedEntry.Location.ToString();
+                string link = string.Format(
+                    "https://www.google.com/maps/preview?q={0},{1}&z={2}",
                     this.SelectedEntry.Location.Latitude,
                     this.SelectedEntry.Location.Longitude,
                     "16");
-                RemoveClickEvent(linkLabelLocation);
-                linkLabelLocation.Click += (s, eargs) =>
+                this.RemoveClickEvent(this.linkLabelLocation);
+                this.linkLabelLocation.Click += (s, eargs) =>
                     {
                         Process.Start(link);
                     };
             }
-            linkLabelLocation.Visible = this.SelectedEntry.Location != null;
-            labelLocation.Visible = linkLabelLocation.Visible;
+
+            this.linkLabelLocation.Visible = this.SelectedEntry.Location != null;
+            this.labelLocation.Visible = this.linkLabelLocation.Visible;
         }
 
+        /// <summary>
+        /// Removes all attached delegates to the click event of a LinkLabel object.
+        /// </summary>
+        /// <param name="b">LinkLabel object</param>
         private void RemoveClickEvent(LinkLabel b)
         {
-            FieldInfo f1 = typeof(Control).GetField("EventClick",
-                BindingFlags.Static | BindingFlags.NonPublic);
+            FieldInfo f1 = typeof(Control).GetField("EventClick", BindingFlags.Static | BindingFlags.NonPublic);
             object obj = f1.GetValue(b);
-            PropertyInfo pi = b.GetType().GetProperty("Events",
-                BindingFlags.NonPublic | BindingFlags.Instance);
+            PropertyInfo pi = b.GetType().GetProperty("Events", BindingFlags.NonPublic | BindingFlags.Instance);
             EventHandlerList list = (EventHandlerList)pi.GetValue(b, null);
             list.RemoveHandler(obj, list[obj]);
         }
