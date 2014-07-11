@@ -74,6 +74,13 @@
       <Name>Journaley</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="TestResources\entries\0111D75F839C43F68812F646D9DEE946.doentry" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestResources\photos\0111D75F839C43F68812F646D9DEE946.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
