@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Creation Date</key>
+	<date>2011-06-20T16:00:00Z</date>
+	<key>Entry Text</key>
+	<string>Lorem ipsum dolor sit amet, 
+Consectetur adipiscing elit. Phasellus ac magna non augue porttitor scelerisque ac id diam.</string>
+	<key>Starred</key>
+	<false />
+	<key>UUID</key>
+	<string>0111D75F839C43F68812F646D9DEE946</string>
+	<key>Tags</key>
+	<array>
+		<string>TestTag1</string>
+		<string>TestTag2</string>
+	</array>
+	<key>Activity</key>
+	<string>Stationary</string>
+	<key>Creator</key>
+	<dict>
+		<key>Device Agent</key>
+		<string>iPad/iPad4,4</string>
+		<key>Generation Date</key>
+		<date>2014-05-07T18:40:17Z</date>
+		<key>Host Name</key>
+		<string>iPad mini</string>
+		<key>OS Agent</key>
+		<string>iOS/7.1.1</string>
+		<key>Software Agent</key>
+		<string>Day One iOS/1.14</string>
+	</dict>
+	<key>Location</key>
+	<dict>
+		<key>Latitude</key>
+		<real>29.769543</real>
+		<key>Longitude</key>
+		<real>-95.324190</real>
+	</dict>
+	<key>Time Zone</key>
+	<string>America/West</string>
+	<key>Weather</key>
+	<dict>
+		<key>Celsius</key>
+		<string>29</string>
+		<key>Description</key>
+		<string>Partly Cloudy</string>
+		<key>Fahrenheit</key>
+		<string>84</string>
+		<key>IconName</key>
+		<string>pcloudy.png</string>
+		<key>Pressure MB</key>
+		<real>1012.6799999999999</real>
+		<key>Relative Humidity</key>
+		<real>20</real>
+		<key>Service</key>
+		<string>Forecast.io</string>
+		<key>Visibility KM</key>
+		<real>12.710000000000001</real>
+		<key>Wind Bearing</key>
+		<integer>271</integer>
+		<key>Wind Speed KPH</key>
+		<real>8.3000000000000007</real>
+	</dict>
+</dict>
+</plist>
