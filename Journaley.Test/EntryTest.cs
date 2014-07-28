@@ -3,12 +3,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using System.Text;
-using Journaley.Models;
+using System.Linq;
+using Journaley.Core.Models;
+using System.Collections.Generic;
 
 namespace Journaley.Test
 {
-    
-    
     /// <summary>
     ///This is a test class for EntryTest and is intended
     ///to contain all EntryTest Unit Tests
@@ -73,20 +73,36 @@ namespace Journaley.Test
         [TestMethod()]
         public void LoadFromFileTest()
         {
-            string path = "3C5D6CCEABCB43858752E69A1CCF4C4B.doentry";
+            string path = @"..\..\..\TestResources\entries\0111D75F839C43F68812F646D9DEE946.doentry";
+
+            FileInfo file = new FileInfo(path);
+            Assert.IsTrue(file.Exists, "Test file doesn't exists");
 
             Entry expected = new Entry(
                 new DateTime(2011, 6, 20, 16, 0, 0, DateTimeKind.Utc),            // Creation Date
-                "This is the body. 나는 바디다.",                 // Entry Text
+                @"Lorem ipsum dolor sit amet, 
+Consectetur adipiscing elit. Phasellus ac magna non augue porttitor scelerisque ac id diam.", // Entry Text
                 false,                                          // Starred
-                new Guid("3C5D6CCEABCB43858752E69A1CCF4C4B"),   // UUID
+                new Guid("0111D75F839C43F68812F646D9DEE946"),   // UUID
                 false                                           // IsDirty
                 );
 
             Entry actual;
             actual = Entry.LoadFromFile(path);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual, "Loaded data is not equal to Expected");
             Assert.IsFalse(actual.IsDirty);
+        }
+
+        [TestMethod()]
+        public void LoadAllFilesTest()
+        {
+            Settings settings = new Settings();
+            settings.DayOneFolderPath = @"..\..\..\TestResources\";
+            DirectoryInfo dinfo = new DirectoryInfo(settings.EntryFolderPath);
+            FileInfo[] files = dinfo.GetFiles("*.doentry");
+
+            List<Entry> entries = files.Select(x => Entry.LoadFromFile(x.FullName, settings)).Where(x => x != null).ToList();
+            Assert.AreEqual(entries.Count, files.Count());
         }
 
         /// <summary>

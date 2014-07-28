@@ -1,7 +1,7 @@
 ﻿namespace Journaley.Forms
 {
     using System.Windows.Forms;
-    using Journaley.Models;
+    using Journaley.Core.Models;
 
     /// <summary>
     /// The password input form shown when the user returns from other applications.

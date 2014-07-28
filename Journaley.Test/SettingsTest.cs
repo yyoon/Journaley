@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
-using Journaley.Models;
+using Journaley.Core.Models;
 using System.Xml.Serialization;
 using System.Text;
 

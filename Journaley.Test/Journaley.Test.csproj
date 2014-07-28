@@ -65,10 +65,21 @@
     <Shadow Include="Test References\Journaley.accessor" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JournaleyCore\Journaley.Core.csproj">
+      <Project>{562e2182-fa60-423f-b06e-f776bb958a8a}</Project>
+      <Name>Journaley.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Journaley\Journaley.csproj">
       <Project>{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}</Project>
       <Name>Journaley</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="TestResources\entries\0111D75F839C43F68812F646D9DEE946.doentry" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestResources\photos\0111D75F839C43F68812F646D9DEE946.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
