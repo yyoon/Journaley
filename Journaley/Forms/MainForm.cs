@@ -1993,20 +1993,7 @@
 
             Image image = new Bitmap(Image.FromFile(this.SelectedEntry.PhotoPath));
             photoForm.Image = image;
-            photoForm.RealClientSize = new System.Drawing.Size(image.Width, image.Height);
-
-            Screen currentScreen = Screen.FromControl(this);
-            int screenWidth = currentScreen.Bounds.Width;
-            int screenHeight = currentScreen.Bounds.Height;
-
-            double threshold = 0.8;
-            int maxWidth = (int)(screenWidth * threshold);
-            int maxHeight = (int)(screenHeight * threshold);
-
-            photoForm.Width = Math.Min(photoForm.Width, maxWidth);
-            photoForm.Height = Math.Min(photoForm.Height, maxHeight);
-
-            photoForm.StartPosition = FormStartPosition.CenterScreen;
+            photoForm.InitializeSize(Screen.FromControl(this));
             photoForm.Show();
 
             this.PhotoExpanded = false;
