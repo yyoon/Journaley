@@ -1993,7 +1993,7 @@
 
             Image image = new Bitmap(Image.FromFile(this.SelectedEntry.PhotoPath));
             photoForm.Image = image;
-            photoForm.ClientSize = new System.Drawing.Size(image.Width, image.Height);
+            photoForm.RealClientSize = new System.Drawing.Size(image.Width, image.Height);
 
             Screen currentScreen = Screen.FromControl(this);
             int screenWidth = currentScreen.Bounds.Width;

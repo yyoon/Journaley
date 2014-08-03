@@ -54,6 +54,30 @@
         public bool CanBeMaximized { get; set; }
 
         /// <summary>
+        /// Gets or sets the real client size, which is the client area size - title bar size.
+        /// </summary>
+        /// <value>
+        /// The size of the real client.
+        /// </value>
+        public virtual Size RealClientSize
+        {
+            get
+            {
+                Size result = this.ClientSize;
+                result.Height -= this.panelTitlebar.Height;
+
+                return result;
+            }
+
+            set
+            {
+                value.Height += this.panelTitlebar.Height;
+
+                this.ClientSize = value;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether [dragging title bar].
         /// </summary>
         /// <value>

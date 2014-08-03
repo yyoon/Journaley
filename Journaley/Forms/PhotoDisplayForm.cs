@@ -40,5 +40,31 @@
                 this.pictureBox.Image = value;
             }
         }
+
+        /// <summary>
+        /// Gets or sets the real client size, which excludes the 1 pixel border as well.
+        /// </summary>
+        /// <value>
+        /// The size of the real client.
+        /// </value>
+        public override Size RealClientSize
+        {
+            get
+            {
+                Size result = base.RealClientSize;
+                result.Width -= 2;
+                result.Height -= 2;
+
+                return result;
+            }
+
+            set
+            {
+                value.Width += 2;
+                value.Height += 2;
+
+                base.RealClientSize = value;
+            }
+        }
     }
 }
