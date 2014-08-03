@@ -8,6 +8,7 @@
     using System.Linq;
     using System.Text;
     using System.Windows.Forms;
+    using Journaley.Utilities;
 
     /// <summary>
     /// The base form class for providing custom title bar dragging capability.
@@ -29,6 +30,16 @@
         /// </summary>
         public BaseJournaleyForm()
         {
+            int val = 2;
+            PInvoke.DwmSetWindowAttribute(this.Handle, 2, ref val, 4);  // Enabling the DWM-based NC painting.
+
+            PInvoke.MARGINS margins = new PInvoke.MARGINS();
+            margins.leftWidth = 1;
+            margins.topHeight = 1;
+            margins.rightWidth = 1;
+            margins.bottomHeight = 1;
+            PInvoke.DwmExtendFrameIntoClientArea(this.Handle, ref margins);
+
             this.InitializeComponent();
         }
 
