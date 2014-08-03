@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PhotoDisplayForm));
+            this.panelBorder = new Journaley.Controls.EntryListAreaPanel();
             this.panelPhoto = new System.Windows.Forms.Panel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.labelFormCaption = new Journaley.Controls.TitleLabel();
             this.panelTitlebar.SuspendLayout();
+            this.panelBorder.SuspendLayout();
             this.panelPhoto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
@@ -43,19 +45,30 @@
             this.panelTitlebar.Size = new System.Drawing.Size(243, 20);
             this.panelTitlebar.Controls.SetChildIndex(this.labelFormCaption, 0);
             // 
-            // panelPhoto
+            // panelBorder
             // 
-            this.panelPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panelBorder.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelBorder.AutoScroll = true;
+            this.panelBorder.Controls.Add(this.panelPhoto);
+            this.panelBorder.ForeColor = System.Drawing.Color.Black;
+            this.panelBorder.Location = new System.Drawing.Point(0, 20);
+            this.panelBorder.Margin = new System.Windows.Forms.Padding(0);
+            this.panelBorder.Name = "panelBorder";
+            this.panelBorder.Padding = new System.Windows.Forms.Padding(1);
+            this.panelBorder.Size = new System.Drawing.Size(243, 263);
+            this.panelBorder.TabIndex = 0;
+            // 
+            // panelPhoto
+            // 
             this.panelPhoto.AutoScroll = true;
-            this.panelPhoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelPhoto.Controls.Add(this.pictureBox);
-            this.panelPhoto.Location = new System.Drawing.Point(0, 20);
-            this.panelPhoto.Margin = new System.Windows.Forms.Padding(0);
+            this.panelPhoto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelPhoto.Location = new System.Drawing.Point(1, 1);
             this.panelPhoto.Name = "panelPhoto";
-            this.panelPhoto.Size = new System.Drawing.Size(243, 263);
-            this.panelPhoto.TabIndex = 0;
+            this.panelPhoto.Size = new System.Drawing.Size(241, 261);
+            this.panelPhoto.TabIndex = 1;
             // 
             // pictureBox
             // 
@@ -83,14 +96,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(243, 283);
-            this.Controls.Add(this.panelPhoto);
+            this.Controls.Add(this.panelBorder);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PhotoDisplayForm";
             this.Text = "Image Viewer";
-            this.Controls.SetChildIndex(this.panelPhoto, 0);
+            this.Controls.SetChildIndex(this.panelBorder, 0);
             this.Controls.SetChildIndex(this.panelTitlebar, 0);
             this.panelTitlebar.ResumeLayout(false);
             this.panelTitlebar.PerformLayout();
+            this.panelBorder.ResumeLayout(false);
             this.panelPhoto.ResumeLayout(false);
             this.panelPhoto.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
@@ -100,8 +114,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panelPhoto;
+        private Controls.EntryListAreaPanel panelBorder;
         private System.Windows.Forms.PictureBox pictureBox;
         protected Controls.TitleLabel labelFormCaption;
+        private System.Windows.Forms.Panel panelPhoto;
     }
 }
