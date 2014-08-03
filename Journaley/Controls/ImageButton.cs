@@ -253,7 +253,8 @@
         /// <summary>
         /// Preprocesses keyboard or input messages within the message loop before they are dispatched.
         /// </summary>
-        /// <param name="msg">A <see cref="T:System.Windows.Forms.Message" />, passed by reference, that represents the message to process. The possible values are WM_KEYDOWN, WM_SYSKEYDOWN, WM_CHAR, and WM_SYSCHAR.</param>
+        /// <param name="msg">A <see cref="T:System.Windows.Forms.Message" />, passed by reference, that represents the message to process.
+        /// The possible values are WM_KEYDOWN, WM_SYSKEYDOWN, WM_CHAR, and WM_SYSCHAR.</param>
         /// <returns>
         /// true if the message was processed by the control; otherwise, false.
         /// </returns>
