@@ -51,10 +51,10 @@
             this.panelPhoto.AutoScroll = true;
             this.panelPhoto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelPhoto.Controls.Add(this.pictureBox);
-            this.panelPhoto.Location = new System.Drawing.Point(0, 19);
+            this.panelPhoto.Location = new System.Drawing.Point(0, 20);
             this.panelPhoto.Margin = new System.Windows.Forms.Padding(0);
             this.panelPhoto.Name = "panelPhoto";
-            this.panelPhoto.Size = new System.Drawing.Size(243, 264);
+            this.panelPhoto.Size = new System.Drawing.Size(243, 263);
             this.panelPhoto.TabIndex = 0;
             // 
             // pictureBox
