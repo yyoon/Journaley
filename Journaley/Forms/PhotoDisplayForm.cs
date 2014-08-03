@@ -12,7 +12,7 @@
     /// <summary>
     /// Photo Display Form to be displayed when the photo is double-clicked.
     /// </summary>
-    public partial class PhotoDisplayForm : Form
+    public partial class PhotoDisplayForm : BaseJournaleyForm
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PhotoDisplayForm"/> class.
