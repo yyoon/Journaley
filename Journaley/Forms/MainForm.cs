@@ -1989,11 +1989,9 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void EntryPhotoArea_PopoutButtonClick(object sender, EventArgs e)
         {
-            PhotoDisplayForm photoForm = new PhotoDisplayForm();
-
             Image image = new Bitmap(Image.FromFile(this.SelectedEntry.PhotoPath));
-            photoForm.Image = image;
-            photoForm.InitializeSize(Screen.FromControl(this));
+
+            PhotoDisplayForm photoForm = new PhotoDisplayForm(image, Screen.FromControl(this));
             photoForm.Show();
 
             this.PhotoExpanded = false;

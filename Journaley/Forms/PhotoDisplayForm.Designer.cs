@@ -42,7 +42,6 @@
             // panelTitlebar
             // 
             this.panelTitlebar.Controls.Add(this.labelFormCaption);
-            this.panelTitlebar.Size = new System.Drawing.Size(243, 20);
             this.panelTitlebar.Controls.SetChildIndex(this.labelFormCaption, 0);
             // 
             // panelBorder
@@ -57,7 +56,7 @@
             this.panelBorder.Margin = new System.Windows.Forms.Padding(0);
             this.panelBorder.Name = "panelBorder";
             this.panelBorder.Padding = new System.Windows.Forms.Padding(1);
-            this.panelBorder.Size = new System.Drawing.Size(243, 263);
+            this.panelBorder.Size = new System.Drawing.Size(284, 241);
             this.panelBorder.TabIndex = 0;
             // 
             // panelPhoto
@@ -67,7 +66,7 @@
             this.panelPhoto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelPhoto.Location = new System.Drawing.Point(1, 1);
             this.panelPhoto.Name = "panelPhoto";
-            this.panelPhoto.Size = new System.Drawing.Size(241, 261);
+            this.panelPhoto.Size = new System.Drawing.Size(282, 239);
             this.panelPhoto.TabIndex = 1;
             // 
             // pictureBox
@@ -79,6 +78,7 @@
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
+            this.pictureBox.Click += new System.EventHandler(this.PictureBox_Click);
             // 
             // labelFormCaption
             // 
@@ -93,9 +93,8 @@
             // 
             // PhotoDisplayForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(243, 283);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.panelBorder);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PhotoDisplayForm";

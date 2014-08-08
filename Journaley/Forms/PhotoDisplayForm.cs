@@ -35,6 +35,23 @@
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="PhotoDisplayForm"/> class.
+        /// </summary>
+        /// <param name="image">The image.</param>
+        /// <param name="screen">The screen.</param>
+        public PhotoDisplayForm(Image image, Screen screen)
+        {
+            this.InitializeComponent();
+
+            this.Image = image;
+            this.InitializeSize(screen);
+
+            this.Location = new Point(
+                screen.WorkingArea.Left + ((screen.WorkingArea.Width - this.Width) / 2),
+                screen.WorkingArea.Top + ((screen.WorkingArea.Height - this.Height) / 2));
+        }
+
+        /// <summary>
         /// Enumeration for indicating whether the photo is resized to fit or not.
         /// </summary>
         private enum PhotoState : int
@@ -144,8 +161,8 @@
         {
             this.RealClientSize = new Size(this.Image.Width, this.Image.Height);
 
-            int screenWidth = currentScreen.Bounds.Width;
-            int screenHeight = currentScreen.Bounds.Height;
+            int screenWidth = currentScreen.WorkingArea.Width;
+            int screenHeight = currentScreen.WorkingArea.Height;
 
             double threshold = 0.8;
             int maxWidth = (int)(screenWidth * threshold);
@@ -172,9 +189,26 @@
 
                 this.State = PhotoState.Shrunk;
             }
+        }
 
-            this.Width = Math.Min(this.Width, maxWidth);
-            this.Height = Math.Min(this.Height, maxHeight);
+        /// <summary>
+        /// Handles the Click event of the pictureBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void PictureBox_Click(object sender, EventArgs e)
+        {
+            switch (this.State)
+            {
+                case PhotoState.Fit:
+                    break;
+
+                case PhotoState.Shrunk:
+                    break;
+
+                case PhotoState.Expanded:
+                    break;
+            }
         }
     }
 }
