@@ -63,17 +63,12 @@
         {
             get
             {
-                Size result = this.ClientSize;
-                result.Height -= this.panelTitlebar.Height;
-
-                return result;
+                return this.ClientSizeToRealClientSize(this.ClientSize);
             }
 
             set
             {
-                value.Height += this.panelTitlebar.Height;
-
-                this.ClientSize = value;
+                this.ClientSize = this.RealClientSizeToClientSize(value);
             }
         }
 
@@ -102,6 +97,28 @@
 
                 this.draggingTitleBar = value;
             }
+        }
+
+        /// <summary>
+        /// Converts the real client size (without the title bar) to the client size.
+        /// </summary>
+        /// <param name="realClientSize">Size of the real client.</param>
+        /// <returns>Size of the client area, including the custom title bar.</returns>
+        protected virtual Size RealClientSizeToClientSize(Size realClientSize)
+        {
+            realClientSize.Height += this.panelTitlebar.Height;
+            return realClientSize;
+        }
+
+        /// <summary>
+        /// Converts the client size to the real client size (without the title bar).
+        /// </summary>
+        /// <param name="clientSize">Size of the client area, including the custom title bar.</param>
+        /// <returns>Size of the real client.</returns>
+        protected virtual Size ClientSizeToRealClientSize(Size clientSize)
+        {
+            clientSize.Height -= this.panelTitlebar.Height;
+            return clientSize;
         }
 
         /// <summary>

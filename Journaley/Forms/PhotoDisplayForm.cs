@@ -96,32 +96,6 @@
         }
 
         /// <summary>
-        /// Gets or sets the real client size, which excludes the 1 pixel border as well.
-        /// </summary>
-        /// <value>
-        /// The size of the real client.
-        /// </value>
-        public override Size RealClientSize
-        {
-            get
-            {
-                Size result = base.RealClientSize;
-                result.Width -= 2;
-                result.Height -= 2;
-
-                return result;
-            }
-
-            set
-            {
-                value.Width += 2;
-                value.Height += 2;
-
-                base.RealClientSize = value;
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the photo state.
         /// </summary>
         /// <value>
@@ -173,6 +147,36 @@
         }
 
         /// <summary>
+        /// Converts the real client size (without the title bar and the border) to the client size.
+        /// </summary>
+        /// <param name="realClientSize">Size of the real client.</param>
+        /// <returns>
+        /// Size of the client area, including the custom title bar.
+        /// </returns>
+        protected override Size RealClientSizeToClientSize(Size realClientSize)
+        {
+            realClientSize = base.RealClientSizeToClientSize(realClientSize);
+            realClientSize.Width += 2;
+            realClientSize.Height += 2;
+            return realClientSize;
+        }
+
+        /// <summary>
+        /// Converts the client size to the real client size (without the title bar and the border).
+        /// </summary>
+        /// <param name="clientSize">Size of the client area, including the custom title bar.</param>
+        /// <returns>
+        /// Size of the real client.
+        /// </returns>
+        protected override Size ClientSizeToRealClientSize(Size clientSize)
+        {
+            clientSize = base.ClientSizeToRealClientSize(clientSize);
+            clientSize.Width -= 2;
+            clientSize.Height -= 2;
+            return clientSize;
+        }
+
+        /// <summary>
         /// Calculates the maximum size of this form.
         /// </summary>
         /// <param name="screen">The screen.</param>
@@ -186,25 +190,6 @@
             int maxHeight = (int)(screenHeight * ScreenPortion);
 
             return new Size(maxWidth, maxHeight);
-        }
-
-        /// <summary>
-        /// Handles the Click event of the pictureBox control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void PictureBox_Click(object sender, EventArgs e)
-        {
-            switch (this.State)
-            {
-                case PhotoState.Shrunk:
-                    this.Expand(Screen.FromControl(this));
-                    break;
-
-                case PhotoState.Expanded:
-                    this.Shrink(Screen.FromControl(this));
-                    break;
-            }
         }
 
         /// <summary>
@@ -239,11 +224,10 @@
             this.pictureBox.Dock = DockStyle.Fill;
             this.pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            this.RealClientSize = new Size(this.Image.Width, this.Image.Height);
-
+            Size estimatedSize = this.RealClientSizeToClientSize(new Size(this.Image.Width, this.Image.Height));
             Size maxSize = this.CalculateMaxSize(screen);
 
-            if ((double)this.Width / (double)maxSize.Width >= (double)this.Height / (double)maxSize.Height)
+            if ((double)estimatedSize.Width / (double)maxSize.Width >= (double)estimatedSize.Height / (double)maxSize.Height)
             {
                 // Wider
                 double ratio = (double)this.Image.Width / (double)(maxSize.Width - 2);
@@ -270,16 +254,39 @@
             this.pictureBox.Dock = DockStyle.None;
             this.pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
 
-            this.RealClientSize = new Size(this.Image.Width, this.Image.Height);
-
+            Size estimatedSize = this.RealClientSizeToClientSize(new Size(this.Image.Width, this.Image.Height));
             Size maxSize = this.CalculateMaxSize(screen);
 
-            this.Width = Math.Min(this.Width, maxSize.Width);
-            this.Height = Math.Min(this.Height, maxSize.Height);
+            this.Width = Math.Min(estimatedSize.Width, maxSize.Width);
+            this.Height = Math.Min(estimatedSize.Height, maxSize.Height);
 
             this.MoveToCenterIfNotFullyEnclosed(screen);
 
             this.State = PhotoState.Expanded;
+        }
+
+        /// <summary>
+        /// Handles the MouseClick event of the pictureBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PictureBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button != System.Windows.Forms.MouseButtons.Left)
+            {
+                return;
+            }
+
+            switch (this.State)
+            {
+                case PhotoState.Shrunk:
+                    this.Expand(Screen.FromControl(this));
+                    break;
+
+                case PhotoState.Expanded:
+                    this.Shrink(Screen.FromControl(this));
+                    break;
+            }
         }
     }
 }
