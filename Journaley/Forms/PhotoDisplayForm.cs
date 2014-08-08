@@ -46,9 +46,7 @@
             this.Image = image;
             this.InitializeSize(screen);
 
-            this.Location = new Point(
-                screen.WorkingArea.Left + ((screen.WorkingArea.Width - this.Width) / 2),
-                screen.WorkingArea.Top + ((screen.WorkingArea.Height - this.Height) / 2));
+            this.MoveToCenter(screen);
         }
 
         /// <summary>
@@ -209,6 +207,17 @@
                 case PhotoState.Expanded:
                     break;
             }
+        }
+
+        /// <summary>
+        /// Moves this form to the center of the given screen.
+        /// </summary>
+        /// <param name="screen">The screen.</param>
+        private void MoveToCenter(Screen screen)
+        {
+            this.Location = new Point(
+                screen.WorkingArea.Left + ((screen.WorkingArea.Width - this.Width) / 2),
+                screen.WorkingArea.Top + ((screen.WorkingArea.Height - this.Height) / 2));
         }
     }
 }
