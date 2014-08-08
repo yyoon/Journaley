@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Journaley.Models;
+    using Journaley.Core.Models;
 
     /// <summary>
     /// An entry text provider interface to be used by EntryListBox.

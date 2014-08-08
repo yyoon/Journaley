@@ -13,7 +13,8 @@
     using System.Windows.Forms;
     using BlackBeltCoder;
     using Journaley.Controls;
-    using Journaley.Models;
+    using Journaley.Core.Models;
+    using Journaley.Core.Utilities;
     using Journaley.Utilities;
     using MarkdownSharp;
 

@@ -128,23 +128,19 @@
     <Compile Include="Forms\TagEditForm.Designer.cs">
       <DependentUpon>TagEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Entry.cs" />
     <Compile Include="Controls\EntryListBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Models\IPasswordVerifier.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\FirstSentenceExtractor.cs" />
     <Compile Include="Utilities\FontReader.cs" />
     <Compile Include="Utilities\HtmlToText.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Utilities\JumpListBuilder.cs" />
-    <Compile Include="Utilities\Logger.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,14 +164,12 @@
     <Compile Include="Forms\RemovePasswordForm.Designer.cs">
       <DependentUpon>RemovePasswordForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Settings.cs" />
     <Compile Include="Forms\SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\UTF8StringWriter.cs" />
     <EmbeddedResource Include="Forms\BaseJournaleyForm.resx">
       <DependentUpon>BaseJournaleyForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -430,6 +424,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="images\NewDesign\frame_pane_resize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Journaley.Core\Journaley.Core.csproj">
+      <Project>{562e2182-fa60-423f-b06e-f776bb958a8a}</Project>
+      <Name>Journaley.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets')" />

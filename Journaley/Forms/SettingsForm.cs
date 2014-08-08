@@ -3,7 +3,7 @@
     using System;
     using System.IO;
     using System.Windows.Forms;
-    using Journaley.Models;
+    using Journaley.Core.Models;
 
     /// <summary>
     /// A form used for adjusting various settings.
