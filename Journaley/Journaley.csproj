@@ -430,6 +430,10 @@
       <Project>{562e2182-fa60-423f-b06e-f776bb958a8a}</Project>
       <Name>Journaley.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MonthCalendar\MonthCalendar.csproj">
+      <Project>{898ECB12-D464-4514-AE2E-45FE430FE04E}</Project>
+      <Name>MonthCalendar</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets')" />

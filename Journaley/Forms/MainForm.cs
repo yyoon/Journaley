@@ -17,6 +17,7 @@
     using Journaley.Core.Utilities;
     using Journaley.Utilities;
     using MarkdownSharp;
+    using Pabo.Calendar;
 
     /// <summary>
     /// The Main Form of the application. Contains the entry list, preview, buttons, etc.
@@ -808,9 +809,9 @@
         private void UpdateEntryListBoxCalendar()
         {
             // Update the bold dates
-            this.monthCalendar.BoldedDates = this.Entries.Select(x => x.LocalTime.Date).Distinct().ToArray();
+            this.monthCalendar.Refresh();
 
-            this.UpdateEntryList(this.Entries.Where(x => x.LocalTime.ToShortDateString() == this.monthCalendar.SelectionStart.ToShortDateString()), this.entryListBoxCalendar);
+            this.UpdateEntryList(this.Entries.Where(x => x.LocalTime.ToShortDateString() == this.monthCalendar.SelectedDates[0].ToShortDateString()), this.entryListBoxCalendar);
         }
 
         /// <summary>
@@ -915,7 +916,8 @@
         {
             if (this.SelectedEntry != null)
             {
-                this.monthCalendar.SelectionStart = this.monthCalendar.SelectionEnd = this.SelectedEntry.LocalTime.Date;
+                this.monthCalendar.ClearSelection();
+                this.monthCalendar.SelectDate(this.SelectedEntry.LocalTime);
             }
         }
 
@@ -1446,16 +1448,25 @@
         }
 
         /// <summary>
-        /// Handles the DateChanged event of the monthCalendar control.
+        /// Handles the DaySelected event of the monthCalendar control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="DateRangeEventArgs"/> instance containing the event data.</param>
-        private void MonthCalendar_DateChanged(object sender, DateRangeEventArgs e)
+        /// <param name="e">The <see cref="DaySelectedEventArgs"/> instance containing the event data.</param>
+        private void MonthCalendar_DaySelected(object sender, DaySelectedEventArgs e)
         {
-            Debug.Assert(sender == this.monthCalendar, "sender must be this.monthCalendar");
-            Debug.Assert(e.Start.ToShortDateString() == e.End.ToShortDateString(), "e.Start must be the same as e.End");
+            Debug.Assert(this.monthCalendar.SelectedDates.Count == 1, "There must be a single selected date.");
+            this.UpdateEntryList(this.Entries.Where(x => x.LocalTime.ToShortDateString() == e.Days[0]), this.entryListBoxCalendar);
+        }
 
-            this.UpdateEntryList(this.Entries.Where(x => x.LocalTime.ToShortDateString() == e.Start.ToShortDateString()), this.entryListBoxCalendar);
+        /// <summary>
+        /// Handles the DayQueryInfo event of the monthCalendar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="DayQueryInfoEventArgs"/> instance containing the event data.</param>
+        private void MonthCalendar_DayQueryInfo(object sender, DayQueryInfoEventArgs e)
+        {
+            e.Info.BoldedDate = this.Entries.Any(x => x.LocalTime.Date == e.Date);
+            e.OwnerDraw = true;
         }
 
         /// <summary>
