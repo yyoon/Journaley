@@ -1,6 +1,5 @@
 ﻿namespace Journaley.Core.Models
 {
-    using Journaley.Core.Utilities;
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -9,6 +8,7 @@
     using System.Reflection;
     using System.Text;
     using System.Xml;
+    using Journaley.Core.Utilities;
 
     /// <summary>
     /// A class representing a journal entry.
@@ -311,20 +311,36 @@
         }
 
         /// <summary>
+        /// Gets the location where the entry was written.
+        /// </summary>
+        /// <value>
+        /// The location.
+        /// </value>
+        public EntryLocation Location { get; private set; }
+
+        /// <summary>
+        /// Gets the weather information.
+        /// </summary>
+        /// <value>
+        /// The weather.
+        /// </value>
+        public EntryWeather Weather { get; private set; }
+
+        /// <summary>
+        /// Gets the creator information.
+        /// </summary>
+        /// <value>
+        /// The creator.
+        /// </value>
+        public EntryCreator Creator { get; private set; }
+
+        /// <summary>
         /// Gets a value indicating whether this instance is dirty.
         /// </summary>
         /// <value>
         ///   <c>true</c> if this instance is dirty; otherwise, <c>false</c>.
         /// </value>
         public bool IsDirty { get; private set; }
-
-        public EntryLocation Location { get; private set; }
-
-        public EntryWeather Weather { get; private set; }
-
-        public EntryCreator Creator { get; private set; }
-
-        public string Activity { get; set; }
 
         /// <summary>
         /// Loads an entry from the given filename.
