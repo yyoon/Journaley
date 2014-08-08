@@ -65,7 +65,7 @@
     <Shadow Include="Test References\Journaley.accessor" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JournaleyCore\Journaley.Core.csproj">
+    <ProjectReference Include="..\Journaley.Core\Journaley.Core.csproj">
       <Project>{562e2182-fa60-423f-b06e-f776bb958a8a}</Project>
       <Name>Journaley.Core</Name>
     </ProjectReference>
