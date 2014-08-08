@@ -15,6 +15,11 @@
     public partial class PhotoDisplayForm : BaseJournaleyForm
     {
         /// <summary>
+        /// Indicates how much of the screen space should be used for the photo display form
+        /// </summary>
+        private static readonly double ScreenPortion = 0.8;
+
+        /// <summary>
         /// The image
         /// </summary>
         private Image image;
@@ -136,13 +141,9 @@
                 switch (value)
                 {
                     case PhotoState.Shrunk:
-                        this.pictureBox.Dock = DockStyle.Fill;
-                        this.pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                         break;
 
                     case PhotoState.Expanded:
-                        this.pictureBox.Dock = DockStyle.None;
-                        this.pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
                         break;
 
                     default:
@@ -154,39 +155,37 @@
         /// <summary>
         /// Initializes the size.
         /// </summary>
-        /// <param name="currentScreen">The current screen.</param>
-        public void InitializeSize(Screen currentScreen)
+        /// <param name="screen">The screen.</param>
+        public void InitializeSize(Screen screen)
         {
             this.RealClientSize = new Size(this.Image.Width, this.Image.Height);
 
-            int screenWidth = currentScreen.WorkingArea.Width;
-            int screenHeight = currentScreen.WorkingArea.Height;
+            Size maxSize = this.CalculateMaxSize(screen);
 
-            double threshold = 0.8;
-            int maxWidth = (int)(screenWidth * threshold);
-            int maxHeight = (int)(screenHeight * threshold);
-
-            if (this.Width <= maxWidth && this.Height <= maxHeight)
+            if (this.Width <= maxSize.Width && this.Height <= maxSize.Height)
             {
                 this.State = PhotoState.Fit;
             }
             else
             {
-                if ((double)this.Width / (double)maxWidth >= (double)this.Height / (double)maxHeight)
-                {
-                    // Wider
-                    double ratio = (double)this.Image.Width / (double)(maxWidth - 2);
-                    this.RealClientSize = new Size(maxWidth - 2, (int)(this.Image.Height / ratio));
-                }
-                else
-                {
-                    // Taller
-                    double ratio = (double)this.Image.Height / (double)(maxHeight - this.panelTitlebar.Height - 2);
-                    this.RealClientSize = new Size((int)(this.Image.Width / ratio), maxHeight - this.panelTitlebar.Height - 2);
-                }
-
-                this.State = PhotoState.Shrunk;
+                this.Shrink(screen);
             }
+        }
+
+        /// <summary>
+        /// Calculates the maximum size of this form.
+        /// </summary>
+        /// <param name="screen">The screen.</param>
+        /// <returns>the maximum size</returns>
+        private Size CalculateMaxSize(Screen screen)
+        {
+            int screenWidth = screen.WorkingArea.Width;
+            int screenHeight = screen.WorkingArea.Height;
+
+            int maxWidth = (int)(screenWidth * ScreenPortion);
+            int maxHeight = (int)(screenHeight * ScreenPortion);
+
+            return new Size(maxWidth, maxHeight);
         }
 
         /// <summary>
@@ -198,13 +197,12 @@
         {
             switch (this.State)
             {
-                case PhotoState.Fit:
-                    break;
-
                 case PhotoState.Shrunk:
+                    this.Expand(Screen.FromControl(this));
                     break;
 
                 case PhotoState.Expanded:
+                    this.Shrink(Screen.FromControl(this));
                     break;
             }
         }
@@ -218,6 +216,70 @@
             this.Location = new Point(
                 screen.WorkingArea.Left + ((screen.WorkingArea.Width - this.Width) / 2),
                 screen.WorkingArea.Top + ((screen.WorkingArea.Height - this.Height) / 2));
+        }
+
+        /// <summary>
+        /// Moves to center if this form is not fully enclosed in the working area.
+        /// </summary>
+        /// <param name="screen">The screen.</param>
+        private void MoveToCenterIfNotFullyEnclosed(Screen screen)
+        {
+            if (!screen.WorkingArea.Contains(this.Bounds))
+            {
+                this.MoveToCenter(screen);
+            }
+        }
+
+        /// <summary>
+        /// Shrinks the photo.
+        /// </summary>
+        /// <param name="screen">The screen.</param>
+        private void Shrink(Screen screen)
+        {
+            this.pictureBox.Dock = DockStyle.Fill;
+            this.pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+
+            this.RealClientSize = new Size(this.Image.Width, this.Image.Height);
+
+            Size maxSize = this.CalculateMaxSize(screen);
+
+            if ((double)this.Width / (double)maxSize.Width >= (double)this.Height / (double)maxSize.Height)
+            {
+                // Wider
+                double ratio = (double)this.Image.Width / (double)(maxSize.Width - 2);
+                this.RealClientSize = new Size(maxSize.Width - 2, (int)(this.Image.Height / ratio));
+            }
+            else
+            {
+                // Taller
+                double ratio = (double)this.Image.Height / (double)(maxSize.Height - this.panelTitlebar.Height - 2);
+                this.RealClientSize = new Size((int)(this.Image.Width / ratio), maxSize.Height - this.panelTitlebar.Height - 2);
+            }
+
+            this.MoveToCenterIfNotFullyEnclosed(screen);
+
+            this.State = PhotoState.Shrunk;
+        }
+
+        /// <summary>
+        /// Expands the photo.
+        /// </summary>
+        /// <param name="screen">The screen.</param>
+        private void Expand(Screen screen)
+        {
+            this.pictureBox.Dock = DockStyle.None;
+            this.pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
+
+            this.RealClientSize = new Size(this.Image.Width, this.Image.Height);
+
+            Size maxSize = this.CalculateMaxSize(screen);
+
+            this.Width = Math.Min(this.Width, maxSize.Width);
+            this.Height = Math.Min(this.Height, maxSize.Height);
+
+            this.MoveToCenterIfNotFullyEnclosed(screen);
+
+            this.State = PhotoState.Expanded;
         }
     }
 }
