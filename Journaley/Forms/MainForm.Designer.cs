@@ -54,14 +54,12 @@ namespace Journaley.Forms
             this.labelCharactersTitle = new System.Windows.Forms.Label();
             this.labelWords = new System.Windows.Forms.Label();
             this.labelCharacters = new System.Windows.Forms.Label();
-            this.linkLabelLocation = new System.Windows.Forms.LinkLabel();
             this.tableLayoutDate = new System.Windows.Forms.TableLayoutPanel();
             this.panelDateLeft = new System.Windows.Forms.Panel();
             this.panelDateRight = new System.Windows.Forms.Panel();
             this.panelEntryArea = new System.Windows.Forms.Panel();
             this.panelEntryTextWrapper = new System.Windows.Forms.Panel();
             this.tableLayoutEntryArea = new System.Windows.Forms.TableLayoutPanel();
-            this.labelLocation = new System.Windows.Forms.Label();
             this.buttonSettings = new Journaley.Controls.ImageButton();
             this.buttonEdit = new Journaley.Controls.ImageButton();
             this.buttonDone = new Journaley.Controls.ImageButton();
@@ -364,8 +362,6 @@ namespace Journaley.Forms
             this.tableLayoutBottom.Controls.Add(this.labelCharactersTitle, 3, 1);
             this.tableLayoutBottom.Controls.Add(this.labelWords, 1, 0);
             this.tableLayoutBottom.Controls.Add(this.labelCharacters, 3, 0);
-            this.tableLayoutBottom.Controls.Add(this.linkLabelLocation, 4, 0);
-            this.tableLayoutBottom.Controls.Add(this.labelLocation, 4, 1);
             this.tableLayoutBottom.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.tableLayoutBottom.Location = new System.Drawing.Point(265, 558);
             this.tableLayoutBottom.Margin = new System.Windows.Forms.Padding(0);
@@ -433,19 +429,6 @@ namespace Journaley.Forms
             this.labelCharacters.Name = "labelCharacters";
             this.labelCharacters.Size = new System.Drawing.Size(0, 13);
             this.labelCharacters.TabIndex = 4;
-            // 
-            // linkLabelLocation
-            // 
-            this.linkLabelLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.linkLabelLocation.AutoSize = true;
-            this.linkLabelLocation.BackColor = System.Drawing.Color.Transparent;
-            this.linkLabelLocation.Location = new System.Drawing.Point(525, 8);
-            this.linkLabelLocation.Name = "linkLabelLocation";
-            this.linkLabelLocation.Size = new System.Drawing.Size(90, 13);
-            this.linkLabelLocation.TabIndex = 5;
-            this.linkLabelLocation.TabStop = true;
-            this.linkLabelLocation.Text = "linkLabelLocation";
-            this.linkLabelLocation.Visible = false;
             // 
             // tableLayoutDate
             // 
@@ -526,20 +509,6 @@ namespace Journaley.Forms
             this.tableLayoutEntryArea.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutEntryArea.Size = new System.Drawing.Size(620, 515);
             this.tableLayoutEntryArea.TabIndex = 1;
-            // 
-            // labelLocation
-            // 
-            this.labelLocation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelLocation.AutoSize = true;
-            this.labelLocation.BackColor = System.Drawing.Color.Transparent;
-            this.labelLocation.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLocation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(20)))));
-            this.labelLocation.Location = new System.Drawing.Point(557, 21);
-            this.labelLocation.Name = "labelLocation";
-            this.labelLocation.Size = new System.Drawing.Size(58, 13);
-            this.labelLocation.TabIndex = 6;
-            this.labelLocation.Text = "LOCATION";
-            this.labelLocation.Visible = false;
             // 
             // buttonSettings
             // 
@@ -1295,8 +1264,6 @@ namespace Journaley.Forms
         private MouseFallThroughLabel labelThisWeek;
         private MouseFallThroughLabel labelToday;
         private MouseFallThroughLabel labelEntriesLabel;
-        private System.Windows.Forms.LinkLabel linkLabelLocation;
-        private System.Windows.Forms.Label labelLocation;
     }
 }
 
