@@ -2169,10 +2169,5 @@
         }
 
         #endregion
-
-        private void monthCalendar_MonthChanged(object sender, MonthChangedEventArgs e)
-        {
-
-        }
     }
 }
