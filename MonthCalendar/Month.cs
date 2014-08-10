@@ -1322,12 +1322,9 @@ namespace Pabo.Calendar
 					((m_calendar.ShowTrailingDates) || (m_days[today].Date.Month == m_calendar.ActiveMonth.Month)) )  
 				{
 
-                    RectangleF dateRect = m_days[today].DateRegion[0].GetBounds(e);
+                    RectangleF dateRect = m_days[today].Rectangle;
 
-                    dateRect.Inflate(5, 5);
-                    e.DrawEllipse(todayPen, dateRect); 
-	  
-                    
+                    e.DrawRectangle(todayPen, dateRect.X, dateRect.Y, dateRect.Width, dateRect.Height);
                 }
 
 				// Check if a selection exist

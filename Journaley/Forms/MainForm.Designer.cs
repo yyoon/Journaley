@@ -943,7 +943,7 @@ namespace Journaley.Forms
             this.monthCalendar.SelectionMode = Pabo.Calendar.mcSelectionMode.One;
             this.monthCalendar.Size = new System.Drawing.Size(264, 184);
             this.monthCalendar.TabIndex = 0;
-            this.monthCalendar.TodayColor = System.Drawing.Color.LimeGreen;
+            this.monthCalendar.TodayColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(223)))));
             this.monthCalendar.Weekdays.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.monthCalendar.Weekdays.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monthCalendar.Weekdays.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
