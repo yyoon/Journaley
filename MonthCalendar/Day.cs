@@ -332,8 +332,10 @@ namespace Pabo.Calendar
             Color bgColor2 = m_month.Colors.Days.BackColor2;
             mcGradientMode gradientMode = m_month.Colors.Days.GradientMode;
             Color textColor = m_month.Colors.Days.Text;
+            Color boldDateColor = Color.FromArgb(0, 127, 223); 
             Color dateColor = m_month.Colors.Days.Date;
             Brush dateBrush = new SolidBrush(dateColor);
+            Brush boldDateBrush = new SolidBrush(boldDateColor);
             Brush textBrush = new SolidBrush(textColor);
             Brush bgBrush = new SolidBrush(bgColor1);
            
@@ -372,7 +374,8 @@ namespace Pabo.Calendar
 				bgColor1 =  m_month.Colors.Trailing.BackColor1;
                 bgColor2 = m_month.Colors.Trailing.BackColor2;
                 gradientMode = m_month.Colors.Trailing.GradientMode;
-                dateColor = m_month.Colors.Trailing.Date; 
+                dateColor = m_month.Colors.Trailing.Date;
+                boldDateColor = m_month.Colors.Trailing.Date;
 				textColor = m_month.Colors.Trailing.Text; 
 			}
 				
@@ -483,6 +486,9 @@ namespace Pabo.Calendar
                     if (dateColor != Color.Transparent)
                     {
                         dateBrush = new SolidBrush(Color.FromArgb(m_month.Transparency.Text, dateColor));
+                        // To show blue colour in selected dates with preserved transparency
+                        boldDateBrush = new SolidBrush(Color.FromArgb(m_month.Transparency.Text, boldDateColor));
+
                         CharacterRange[] characterRanges = { new CharacterRange(0, dateString.Length) };
                         dateAlign.SetMeasurableCharacterRanges(characterRanges);
                         m_dateRgn = new Region[1]; 
@@ -494,7 +500,7 @@ namespace Pabo.Calendar
                         }
                         else
                         {
-                            e.DrawString(dateString, boldFont, dateBrush, m_rect, dateAlign);
+                            e.DrawString(dateString, boldFont, boldDateBrush, m_rect, dateAlign);
                             m_dateRgn = e.MeasureCharacterRanges(dateString, boldFont, m_rect, dateAlign);                        
                         }
 					      
@@ -510,8 +516,9 @@ namespace Pabo.Calendar
                     }
 					i++;	
 				}
-			} 
-								
+			}
+
+            boldDateBrush.Dispose();
 			dateBrush.Dispose();
 			bgBrush.Dispose();
 			textBrush.Dispose();

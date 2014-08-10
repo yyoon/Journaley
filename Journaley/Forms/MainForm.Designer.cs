@@ -90,11 +90,11 @@ namespace Journaley.Forms
             this.entryListBoxTags = new Journaley.Controls.EntryListBox();
             this.listBoxTags = new System.Windows.Forms.ListBox();
             this.spellCheckedEntryText = new Journaley.Controls.SpellCheckedTextBox();
-            this.entryPhotoArea = new Journaley.Controls.EntryPhotoArea();
             this.labelEntries = new Journaley.Controls.MouseFallThroughLabel();
             this.labelThisWeek = new Journaley.Controls.MouseFallThroughLabel();
             this.labelToday = new Journaley.Controls.MouseFallThroughLabel();
             this.labelEntriesLabel = new Journaley.Controls.MouseFallThroughLabel();
+            this.entryPhotoArea = new Journaley.Controls.EntryPhotoArea();
             labelThisWeekLabel = new Journaley.Controls.MouseFallThroughLabel();
             labelTodayLabel = new Journaley.Controls.MouseFallThroughLabel();
             this.tableLayoutStats.SuspendLayout();
@@ -939,6 +939,7 @@ namespace Journaley.Forms
             this.monthCalendar.Month.TextFont = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.SelectionMode = Pabo.Calendar.mcSelectionMode.One;
+            this.monthCalendar.ShowFooter = false;
             this.monthCalendar.Size = new System.Drawing.Size(264, 184);
             this.monthCalendar.TabIndex = 0;
             this.monthCalendar.TodayColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(163)))), ((int)(((byte)(0)))));
@@ -1062,33 +1063,6 @@ namespace Journaley.Forms
             this.spellCheckedEntryText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SpellCheckedEntryText_KeyDown);
             this.spellCheckedEntryText.Child = null;
             // 
-            // entryPhotoArea
-            // 
-            this.entryPhotoArea.BackButtonHoverImage = global::Journaley.Properties.Resources.picture_btn_back_over;
-            this.entryPhotoArea.BackButtonLabelImage = global::Journaley.Properties.Resources.picture_lbl_back;
-            this.entryPhotoArea.BackButtonLabelYPos = 3;
-            this.entryPhotoArea.BackButtonNormalImage = global::Journaley.Properties.Resources.picture_btn_back_norm;
-            this.entryPhotoArea.BackButtonYPos = 19;
-            this.entryPhotoArea.BackgroundImage = global::Journaley.Properties.Resources.picture_pane_background_tile;
-            this.entryPhotoArea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryPhotoArea.Expanded = false;
-            this.entryPhotoArea.Image = null;
-            this.entryPhotoArea.Location = new System.Drawing.Point(0, 0);
-            this.entryPhotoArea.Margin = new System.Windows.Forms.Padding(0);
-            this.entryPhotoArea.MaskImage = global::Journaley.Properties.Resources.picture_pane_hoverMask;
-            this.entryPhotoArea.Name = "entryPhotoArea";
-            this.entryPhotoArea.PopoutButtonHoverImage = global::Journaley.Properties.Resources.picture_btn_popout_over;
-            this.entryPhotoArea.PopoutButtonLabelImage = global::Journaley.Properties.Resources.picture_lbl_popout;
-            this.entryPhotoArea.PopoutButtonLabelYPos = -2;
-            this.entryPhotoArea.PopoutButtonNormalImage = global::Journaley.Properties.Resources.picture_btn_popout_norm;
-            this.entryPhotoArea.PopoutButtonYPos = -20;
-            this.entryPhotoArea.Size = new System.Drawing.Size(620, 195);
-            this.entryPhotoArea.TabIndex = 2;
-            this.entryPhotoArea.Text = "entryPhotoArea1";
-            this.entryPhotoArea.ImageClick += new System.EventHandler(this.EntryPhotoArea_ImageClick);
-            this.entryPhotoArea.BackButtonClick += new System.EventHandler(this.EntryPhotoArea_BackButtonClick);
-            this.entryPhotoArea.PopoutButtonClick += new System.EventHandler(this.EntryPhotoArea_PopoutButtonClick);
-            // 
             // labelEntries
             // 
             this.labelEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1169,6 +1143,33 @@ namespace Journaley.Forms
             labelTodayLabel.Size = new System.Drawing.Size(41, 13);
             labelTodayLabel.TabIndex = 7;
             labelTodayLabel.Text = "TODAY";
+            // 
+            // entryPhotoArea
+            // 
+            this.entryPhotoArea.BackButtonHoverImage = global::Journaley.Properties.Resources.picture_btn_back_over;
+            this.entryPhotoArea.BackButtonLabelImage = global::Journaley.Properties.Resources.picture_lbl_back;
+            this.entryPhotoArea.BackButtonLabelYPos = 3;
+            this.entryPhotoArea.BackButtonNormalImage = global::Journaley.Properties.Resources.picture_btn_back_norm;
+            this.entryPhotoArea.BackButtonYPos = 19;
+            this.entryPhotoArea.BackgroundImage = global::Journaley.Properties.Resources.picture_pane_background_tile;
+            this.entryPhotoArea.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryPhotoArea.Expanded = false;
+            this.entryPhotoArea.Image = null;
+            this.entryPhotoArea.Location = new System.Drawing.Point(0, 0);
+            this.entryPhotoArea.Margin = new System.Windows.Forms.Padding(0);
+            this.entryPhotoArea.MaskImage = global::Journaley.Properties.Resources.picture_pane_hoverMask;
+            this.entryPhotoArea.Name = "entryPhotoArea";
+            this.entryPhotoArea.PopoutButtonHoverImage = global::Journaley.Properties.Resources.picture_btn_popout_over;
+            this.entryPhotoArea.PopoutButtonLabelImage = global::Journaley.Properties.Resources.picture_lbl_popout;
+            this.entryPhotoArea.PopoutButtonLabelYPos = -2;
+            this.entryPhotoArea.PopoutButtonNormalImage = global::Journaley.Properties.Resources.picture_btn_popout_norm;
+            this.entryPhotoArea.PopoutButtonYPos = -20;
+            this.entryPhotoArea.Size = new System.Drawing.Size(620, 195);
+            this.entryPhotoArea.TabIndex = 2;
+            this.entryPhotoArea.Text = "entryPhotoArea1";
+            this.entryPhotoArea.ImageClick += new System.EventHandler(this.EntryPhotoArea_ImageClick);
+            this.entryPhotoArea.BackButtonClick += new System.EventHandler(this.EntryPhotoArea_BackButtonClick);
+            this.entryPhotoArea.PopoutButtonClick += new System.EventHandler(this.EntryPhotoArea_PopoutButtonClick);
             // 
             // MainForm
             // 
@@ -1301,7 +1302,6 @@ namespace Journaley.Forms
         private System.Windows.Forms.PictureBox pictureBoxFormIcon;
         private System.Windows.Forms.PictureBox pictureBoxResize;
         private TitleLabel labelFormCaption;
-        private EntryPhotoArea entryPhotoArea;
         private System.Windows.Forms.Panel panelEntryTextWrapper;
         private MouseFallThroughLabel labelEntries;
         private MouseFallThroughLabel labelThisWeek;
@@ -1309,6 +1309,7 @@ namespace Journaley.Forms
         private MouseFallThroughLabel labelEntriesLabel;
         private Pabo.Calendar.MonthCalendar monthCalendar;
         private System.Windows.Forms.Panel panelCalendarSeparator;
+        private EntryPhotoArea entryPhotoArea;
     }
 }
 
