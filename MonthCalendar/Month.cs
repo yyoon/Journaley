@@ -148,8 +148,8 @@ namespace Pabo.Calendar
 		public Month(MonthCalendar calendar)
 		{
 			m_calendar = calendar;
-			m_dateFont = new Font("Microsoft Sans Serif",(float)8.25);
-			m_textFont = new Font("Microsoft Sans Serif",(float)8.25);
+            m_dateFont = new Font("Segoe UI", (float)8.25);
+			m_textFont = new Font("Segoe UI",(float)8.25);
 
 			m_dayInFocus = -1;
 			m_selArea.Clear();
@@ -1249,9 +1249,9 @@ namespace Pabo.Calendar
 			string[] selectedDays;
 
             Brush bgBrush = new SolidBrush(Colors.BackColor1);    
-			Brush selBrush = new SolidBrush(Color.FromArgb(125,Colors.Selected.BackColor));   
-			Brush focusBrush = new SolidBrush(Color.FromArgb(125,Colors.Focus.BackColor));
-			Pen todayPen = new Pen(Color.FromArgb(150,Calendar.TodayColor),2);
+			Brush selBrush = new SolidBrush(Color.FromArgb(25,Colors.Selected.BackColor));   
+			Brush focusBrush = new SolidBrush(Color.FromArgb(35,Colors.Focus.BackColor));
+            Brush todayBrush = new SolidBrush(Color.FromArgb(90, Calendar.TodayColor));
 			
 			try
 			{
@@ -1324,7 +1324,7 @@ namespace Pabo.Calendar
 
                     RectangleF dateRect = m_days[today].Rectangle;
 
-                    e.DrawRectangle(todayPen, dateRect.X, dateRect.Y, dateRect.Width, dateRect.Height);
+                    e.FillRectangle(todayBrush, dateRect);
                 }
 
 				// Check if a selection exist
@@ -1377,7 +1377,7 @@ namespace Pabo.Calendar
 		
 			bgBrush.Dispose();
 			selBrush.Dispose();
-			todayPen.Dispose();
+			todayBrush.Dispose();
 			focusBrush.Dispose();
 		}
 
@@ -2045,7 +2045,7 @@ namespace Pabo.Calendar
                 m_parent = parent;
                 m_textColor = Color.Black;
                 m_dateColor = Color.Black;
-                m_backColor = Color.FromArgb(193, 210, 238);
+                m_backColor = Color.FromArgb(200, 200, 200);
                 m_borderColor = Color.FromArgb(49, 106, 197);
              
             
@@ -2160,7 +2160,7 @@ namespace Pabo.Calendar
                 m_parent = parent;
                 m_textColor = Color.Black;
                 m_dateColor = Color.Black;
-                m_backColor = Color.FromArgb(224, 232, 246);
+                m_backColor = Color.FromArgb(200, 200, 200);
                 m_borderColor = Color.FromArgb(152, 180, 226);
 				
             }
@@ -2592,7 +2592,7 @@ namespace Pabo.Calendar
                 m_month = month;
                 // Default values
                 m_background = 175;
-                m_text = 175;
+                m_text = 255;
             }
 
             [RefreshProperties(System.ComponentModel.RefreshProperties.All)]

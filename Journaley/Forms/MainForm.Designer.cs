@@ -917,11 +917,9 @@ namespace Journaley.Forms
             this.monthCalendar.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(198)))), ((int)(((byte)(214)))));
             this.monthCalendar.BorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this.monthCalendar.Culture = new System.Globalization.CultureInfo("en-US");
-            this.monthCalendar.Footer.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.monthCalendar.Footer.BackColor2 = System.Drawing.Color.Gainsboro;
             this.monthCalendar.Footer.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.monthCalendar.Footer.Format = Pabo.Calendar.mcTodayFormat.Long;
-            this.monthCalendar.Footer.Text = "Today ";
+            this.monthCalendar.Footer.ShowToday = false;
             this.monthCalendar.Footer.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(223)))));
             this.monthCalendar.Header.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(46)))), ((int)(((byte)(49)))));
             this.monthCalendar.Header.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -943,7 +941,7 @@ namespace Journaley.Forms
             this.monthCalendar.SelectionMode = Pabo.Calendar.mcSelectionMode.One;
             this.monthCalendar.Size = new System.Drawing.Size(264, 184);
             this.monthCalendar.TabIndex = 0;
-            this.monthCalendar.TodayColor = System.Drawing.Color.LimeGreen;
+            this.monthCalendar.TodayColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(163)))), ((int)(((byte)(0)))));
             this.monthCalendar.Weekdays.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.monthCalendar.Weekdays.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monthCalendar.Weekdays.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
