@@ -811,10 +811,17 @@
             // Update the bold dates
             this.monthCalendar.Refresh();
 
-            this.UpdateEntryList(
-                this.Entries.Where(x => x.LocalTime.ToShortDateString() == this.monthCalendar.SelectedDates[0].ToShortDateString()),
-                this.entryListBoxCalendar,
-                false);
+            if (this.monthCalendar.SelectedDates.Count == 0)
+            {
+                this.entryListBoxCalendar.Items.Clear();
+            }
+            else
+            {
+                this.UpdateEntryList(
+                    this.Entries.Where(x => x.LocalTime.ToShortDateString() == this.monthCalendar.SelectedDates[0].ToShortDateString()),
+                    this.entryListBoxCalendar,
+                    false);
+            }
         }
 
         /// <summary>
@@ -949,6 +956,11 @@
             {
                 this.monthCalendar.ClearSelection();
                 this.monthCalendar.SelectDate(this.SelectedEntry.LocalTime);
+            }
+            else
+            {
+                this.monthCalendar.ClearSelection();
+                this.monthCalendar.SelectDate(DateTime.Now);
             }
         }
 
