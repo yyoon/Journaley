@@ -886,6 +886,15 @@
         }
 
         /// <summary>
+        /// Determines whether the main form is in calendar view.
+        /// </summary>
+        /// <returns>true if in calendar mode, false otherwise.</returns>
+        private bool IsInCalendarView()
+        {
+            return this.GetActiveEntryList() == this.entryListBoxCalendar;
+        }
+
+        /// <summary>
         /// Updates the word counts.
         /// </summary>
         private void UpdateWordCounts()
@@ -1037,7 +1046,31 @@
         /// </summary>
         private void AddNewEntry()
         {
-            Entry newEntry = new Entry();
+            Entry newEntry = null;
+
+            if (this.IsInCalendarView() && this.monthCalendar.SelectedDates.Count == 1)
+            {
+                DateTime now = DateTime.Now;
+                DateTime selected = this.monthCalendar.SelectedDates[0];
+
+                // Overwrite the "Date" portion of the entry with the currently selected date.
+                DateTime date = new DateTime(
+                    selected.Year,
+                    selected.Month,
+                    selected.Day,
+                    now.Hour,
+                    now.Minute,
+                    now.Second,
+                    now.Millisecond,
+                    DateTimeKind.Local);
+
+                newEntry = new Entry(date.ToUniversalTime());
+            }
+            else
+            {
+                newEntry = new Entry();
+            }
+
             this.Entries.Add(newEntry);
 
             this.SelectedEntry = newEntry;
