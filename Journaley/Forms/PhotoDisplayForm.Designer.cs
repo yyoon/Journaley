@@ -82,14 +82,15 @@
             // 
             // labelFormCaption
             // 
-            this.labelFormCaption.AutoSize = true;
+            this.labelFormCaption.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelFormCaption.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labelFormCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.labelFormCaption.Location = new System.Drawing.Point(3, 3);
+            this.labelFormCaption.Location = new System.Drawing.Point(0, 0);
             this.labelFormCaption.Name = "labelFormCaption";
-            this.labelFormCaption.Size = new System.Drawing.Size(78, 15);
+            this.labelFormCaption.Size = new System.Drawing.Size(237, 20);
             this.labelFormCaption.TabIndex = 5;
             this.labelFormCaption.Text = "Image Viewer";
+            this.labelFormCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PhotoDisplayForm
             // 
@@ -103,7 +104,6 @@
             this.Controls.SetChildIndex(this.panelBorder, 0);
             this.Controls.SetChildIndex(this.panelTitlebar, 0);
             this.panelTitlebar.ResumeLayout(false);
-            this.panelTitlebar.PerformLayout();
             this.panelBorder.ResumeLayout(false);
             this.panelPhoto.ResumeLayout(false);
             this.panelPhoto.PerformLayout();
