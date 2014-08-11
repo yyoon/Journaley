@@ -811,7 +811,10 @@
             // Update the bold dates
             this.monthCalendar.Refresh();
 
-            this.UpdateEntryList(this.Entries.Where(x => x.LocalTime.ToShortDateString() == this.monthCalendar.SelectedDates[0].ToShortDateString()), this.entryListBoxCalendar);
+            this.UpdateEntryList(
+                this.Entries.Where(x => x.LocalTime.ToShortDateString() == this.monthCalendar.SelectedDates[0].ToShortDateString()),
+                this.entryListBoxCalendar,
+                false);
         }
 
         /// <summary>
@@ -822,20 +825,39 @@
         /// <param name="list">The EntryListBox list.</param>
         private void UpdateEntryList(IEnumerable<Entry> entries, EntryListBox list)
         {
+            this.UpdateEntryList(entries, list, true);
+        }
+
+        /// <summary>
+        /// Updates the given entry list with the given entries.
+        /// Used by other Update methods.
+        /// </summary>
+        /// <param name="entries">The entries to be filled in the list.</param>
+        /// <param name="list">The EntryListBox list.</param>
+        /// <param name="dateSeparator">if set to <c>true</c> display the date separators.</param>
+        private void UpdateEntryList(IEnumerable<Entry> entries, EntryListBox list, bool dateSeparator)
+        {
             // Clear everything.
             list.Items.Clear();
 
-            // Reverse sort and group by month.
-            var groupedEntries = entries
-                .OrderByDescending(x => x.UTCDateTime)
-                .GroupBy(x => new DateTime(x.LocalTime.Year, x.LocalTime.Month, 1));
-
-            // Add the list items
-            foreach (var group in groupedEntries)
+            if (dateSeparator)
             {
-                // Add the month group bar
-                list.Items.Add(group.Key);
-                list.Items.AddRange(group.ToArray());
+                // Reverse sort and group by month.
+                var groupedEntries = entries
+                    .OrderByDescending(x => x.UTCDateTime)
+                    .GroupBy(x => new DateTime(x.LocalTime.Year, x.LocalTime.Month, 1));
+
+                // Add the list items
+                foreach (var group in groupedEntries)
+                {
+                    // Add the month group bar
+                    list.Items.Add(group.Key);
+                    list.Items.AddRange(group.ToArray());
+                }
+            }
+            else
+            {
+                list.Items.AddRange(entries.ToArray());
             }
 
             this.HighlightSelectedEntry(list);
@@ -1455,7 +1477,7 @@
         private void MonthCalendar_DaySelected(object sender, DaySelectedEventArgs e)
         {
             Debug.Assert(this.monthCalendar.SelectedDates.Count == 1, "There must be a single selected date.");
-            this.UpdateEntryList(this.Entries.Where(x => x.LocalTime.ToShortDateString() == e.Days[0]), this.entryListBoxCalendar);
+            this.UpdateEntryListBoxCalendar();
         }
 
         /// <summary>
