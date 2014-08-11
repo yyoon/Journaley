@@ -34,7 +34,20 @@ namespace Journaley.Forms
             Journaley.Controls.MouseFallThroughLabel labelTodayLabel;
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tableLayoutStats = new System.Windows.Forms.TableLayoutPanel();
+            this.labelEntries = new Journaley.Controls.MouseFallThroughLabel();
+            this.labelThisWeek = new Journaley.Controls.MouseFallThroughLabel();
+            this.labelToday = new Journaley.Controls.MouseFallThroughLabel();
+            this.labelEntriesLabel = new Journaley.Controls.MouseFallThroughLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.buttonSettings = new Journaley.Controls.ImageButton();
+            this.buttonEdit = new Journaley.Controls.ImageButton();
+            this.buttonDone = new Journaley.Controls.ImageButton();
+            this.buttonCancel = new Journaley.Controls.ImageButton();
+            this.buttonStar = new Journaley.Controls.ImageButton();
+            this.buttonPhoto = new Journaley.Controls.ImageButton();
+            this.buttonTag = new Journaley.Controls.ImageButton();
+            this.buttonDelete = new Journaley.Controls.ImageButton();
+            this.buttonAddEntry = new Journaley.Controls.ImageButton();
             this.panelWebBrowserWrapper = new System.Windows.Forms.Panel();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.contextMenuStripPhotoWithPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -59,22 +72,15 @@ namespace Journaley.Forms
             this.panelDateRight = new System.Windows.Forms.Panel();
             this.panelEntryArea = new System.Windows.Forms.Panel();
             this.panelEntryTextWrapper = new System.Windows.Forms.Panel();
+            this.spellCheckedEntryText = new Journaley.Controls.SpellCheckedTextBox();
             this.tableLayoutEntryArea = new System.Windows.Forms.TableLayoutPanel();
-            this.buttonSettings = new Journaley.Controls.ImageButton();
-            this.buttonEdit = new Journaley.Controls.ImageButton();
-            this.buttonDone = new Journaley.Controls.ImageButton();
-            this.buttonCancel = new Journaley.Controls.ImageButton();
-            this.buttonStar = new Journaley.Controls.ImageButton();
-            this.buttonPhoto = new Journaley.Controls.ImageButton();
-            this.buttonTag = new Journaley.Controls.ImageButton();
-            this.buttonDelete = new Journaley.Controls.ImageButton();
+            this.entryPhotoArea = new Journaley.Controls.EntryPhotoArea();
             this.panelTitlebar = new Journaley.Controls.EntryListAreaPanel();
             this.labelFormCaption = new Journaley.Controls.TitleLabel();
             this.pictureBoxFormIcon = new System.Windows.Forms.PictureBox();
             this.imageButtonFormMinimize = new Journaley.Controls.ImageButton();
             this.imageButtonFormMaximize = new Journaley.Controls.ImageButton();
             this.imageButtonFormClose = new Journaley.Controls.ImageButton();
-            this.buttonAddEntry = new Journaley.Controls.ImageButton();
             this.buttonMainTags = new Journaley.Controls.ImageButton();
             this.buttonMainCalendar = new Journaley.Controls.ImageButton();
             this.buttonMainTimeline = new Journaley.Controls.ImageButton();
@@ -89,15 +95,18 @@ namespace Journaley.Forms
             this.panelTags = new System.Windows.Forms.Panel();
             this.entryListBoxTags = new Journaley.Controls.EntryListBox();
             this.listBoxTags = new System.Windows.Forms.ListBox();
-            this.spellCheckedEntryText = new Journaley.Controls.SpellCheckedTextBox();
-            this.labelEntries = new Journaley.Controls.MouseFallThroughLabel();
-            this.labelThisWeek = new Journaley.Controls.MouseFallThroughLabel();
-            this.labelToday = new Journaley.Controls.MouseFallThroughLabel();
-            this.labelEntriesLabel = new Journaley.Controls.MouseFallThroughLabel();
-            this.entryPhotoArea = new Journaley.Controls.EntryPhotoArea();
             labelThisWeekLabel = new Journaley.Controls.MouseFallThroughLabel();
             labelTodayLabel = new Journaley.Controls.MouseFallThroughLabel();
             this.tableLayoutStats.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonStar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonPhoto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonTag)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).BeginInit();
             this.panelWebBrowserWrapper.SuspendLayout();
             this.contextMenuStripPhotoWithPhoto.SuspendLayout();
             this.panelSidebar.SuspendLayout();
@@ -114,20 +123,11 @@ namespace Journaley.Forms
             this.panelEntryArea.SuspendLayout();
             this.panelEntryTextWrapper.SuspendLayout();
             this.tableLayoutEntryArea.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonDone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonStar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonPhoto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonTag)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonDelete)).BeginInit();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTags)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).BeginInit();
@@ -137,6 +137,34 @@ namespace Journaley.Forms
             this.panelTimeline.SuspendLayout();
             this.panelTags.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // labelThisWeekLabel
+            // 
+            labelThisWeekLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            labelThisWeekLabel.AutoSize = true;
+            labelThisWeekLabel.BackColor = System.Drawing.Color.Transparent;
+            labelThisWeekLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            labelThisWeekLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
+            labelThisWeekLabel.Location = new System.Drawing.Point(176, 11);
+            labelThisWeekLabel.Margin = new System.Windows.Forms.Padding(0);
+            labelThisWeekLabel.Name = "labelThisWeekLabel";
+            labelThisWeekLabel.Size = new System.Drawing.Size(61, 13);
+            labelThisWeekLabel.TabIndex = 6;
+            labelThisWeekLabel.Text = "THIS WEEK";
+            // 
+            // labelTodayLabel
+            // 
+            labelTodayLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            labelTodayLabel.AutoSize = true;
+            labelTodayLabel.BackColor = System.Drawing.Color.Transparent;
+            labelTodayLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            labelTodayLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
+            labelTodayLabel.Location = new System.Drawing.Point(106, 11);
+            labelTodayLabel.Margin = new System.Windows.Forms.Padding(0);
+            labelTodayLabel.Name = "labelTodayLabel";
+            labelTodayLabel.Size = new System.Drawing.Size(41, 13);
+            labelTodayLabel.TabIndex = 7;
+            labelTodayLabel.Text = "TODAY";
             // 
             // dateTimePicker
             // 
@@ -181,6 +209,250 @@ namespace Journaley.Forms
             this.tableLayoutStats.Size = new System.Drawing.Size(266, 25);
             this.tableLayoutStats.TabIndex = 1;
             this.tableLayoutStats.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TableLayoutStats_MouseDown);
+            // 
+            // labelEntries
+            // 
+            this.labelEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelEntries.AutoSize = true;
+            this.labelEntries.BackColor = System.Drawing.Color.Transparent;
+            this.labelEntries.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEntries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
+            this.labelEntries.Location = new System.Drawing.Point(29, 0);
+            this.labelEntries.Margin = new System.Windows.Forms.Padding(0);
+            this.labelEntries.Name = "labelEntries";
+            this.labelEntries.Size = new System.Drawing.Size(0, 11);
+            this.labelEntries.TabIndex = 0;
+            // 
+            // labelThisWeek
+            // 
+            this.labelThisWeek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelThisWeek.AutoSize = true;
+            this.labelThisWeek.BackColor = System.Drawing.Color.Transparent;
+            this.labelThisWeek.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelThisWeek.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
+            this.labelThisWeek.Location = new System.Drawing.Point(176, 0);
+            this.labelThisWeek.Margin = new System.Windows.Forms.Padding(0);
+            this.labelThisWeek.Name = "labelThisWeek";
+            this.labelThisWeek.Size = new System.Drawing.Size(0, 11);
+            this.labelThisWeek.TabIndex = 2;
+            // 
+            // labelToday
+            // 
+            this.labelToday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelToday.AutoSize = true;
+            this.labelToday.BackColor = System.Drawing.Color.Transparent;
+            this.labelToday.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelToday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
+            this.labelToday.Location = new System.Drawing.Point(106, 0);
+            this.labelToday.Margin = new System.Windows.Forms.Padding(0);
+            this.labelToday.Name = "labelToday";
+            this.labelToday.Size = new System.Drawing.Size(0, 11);
+            this.labelToday.TabIndex = 3;
+            // 
+            // labelEntriesLabel
+            // 
+            this.labelEntriesLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelEntriesLabel.AutoSize = true;
+            this.labelEntriesLabel.BackColor = System.Drawing.Color.Transparent;
+            this.labelEntriesLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEntriesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
+            this.labelEntriesLabel.Location = new System.Drawing.Point(29, 11);
+            this.labelEntriesLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.labelEntriesLabel.Name = "labelEntriesLabel";
+            this.labelEntriesLabel.Size = new System.Drawing.Size(48, 13);
+            this.labelEntriesLabel.TabIndex = 4;
+            this.labelEntriesLabel.Text = "ENTRIES";
+            // 
+            // buttonSettings
+            // 
+            this.buttonSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSettings.BackColor = System.Drawing.Color.Transparent;
+            this.buttonSettings.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonSettings.DownImage = global::Journaley.Properties.Resources.sidebar_btn_setting_down;
+            this.buttonSettings.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_setting_over;
+            this.buttonSettings.Image = global::Journaley.Properties.Resources.sidebar_btn_setting_norm;
+            this.buttonSettings.Location = new System.Drawing.Point(0, 539);
+            this.buttonSettings.Name = "buttonSettings";
+            this.buttonSettings.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_setting_norm;
+            this.buttonSettings.Selected = false;
+            this.buttonSettings.SelectedDownImage = null;
+            this.buttonSettings.SelectedHoverImage = null;
+            this.buttonSettings.SelectedImage = null;
+            this.buttonSettings.Size = new System.Drawing.Size(47, 41);
+            this.buttonSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.buttonSettings.TabIndex = 3;
+            this.buttonSettings.TabStop = false;
+            this.toolTip.SetToolTip(this.buttonSettings, "Settings");
+            this.buttonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
+            // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonEdit.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonEdit.DownImage = global::Journaley.Properties.Resources.sidebar_btn_edit_down;
+            this.buttonEdit.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_edit_over;
+            this.buttonEdit.Image = global::Journaley.Properties.Resources.sidebar_btn_edit_norm;
+            this.buttonEdit.Location = new System.Drawing.Point(0, 12);
+            this.buttonEdit.Margin = new System.Windows.Forms.Padding(0, 12, 0, 12);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_edit_norm;
+            this.buttonEdit.Selected = false;
+            this.buttonEdit.SelectedDownImage = null;
+            this.buttonEdit.SelectedHoverImage = null;
+            this.buttonEdit.SelectedImage = null;
+            this.buttonEdit.Size = new System.Drawing.Size(37, 37);
+            this.buttonEdit.TabIndex = 5;
+            this.buttonEdit.TabStop = false;
+            this.toolTip.SetToolTip(this.buttonEdit, "Edit");
+            this.buttonEdit.Click += new System.EventHandler(this.ButtonEdit_Click);
+            // 
+            // buttonDone
+            // 
+            this.buttonDone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDone.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonDone.DownImage = global::Journaley.Properties.Resources.sidebar_btn_done_down;
+            this.buttonDone.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_done_over;
+            this.buttonDone.Image = global::Journaley.Properties.Resources.sidebar_btn_done_norm;
+            this.buttonDone.Location = new System.Drawing.Point(0, 73);
+            this.buttonDone.Margin = new System.Windows.Forms.Padding(0, 12, 0, 6);
+            this.buttonDone.Name = "buttonDone";
+            this.buttonDone.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_done_norm;
+            this.buttonDone.Selected = false;
+            this.buttonDone.SelectedDownImage = null;
+            this.buttonDone.SelectedHoverImage = null;
+            this.buttonDone.SelectedImage = null;
+            this.buttonDone.Size = new System.Drawing.Size(37, 37);
+            this.buttonDone.TabIndex = 6;
+            this.buttonDone.TabStop = false;
+            this.toolTip.SetToolTip(this.buttonDone, "Done");
+            this.buttonDone.Click += new System.EventHandler(this.ButtonDone_Click);
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonCancel.DownImage = global::Journaley.Properties.Resources.sidebar_btn_cancel_down;
+            this.buttonCancel.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_cancel_over;
+            this.buttonCancel.Image = global::Journaley.Properties.Resources.sidebar_btn_cancel_norm;
+            this.buttonCancel.Location = new System.Drawing.Point(0, 122);
+            this.buttonCancel.Margin = new System.Windows.Forms.Padding(0, 6, 0, 12);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_cancel_norm;
+            this.buttonCancel.Selected = false;
+            this.buttonCancel.SelectedDownImage = null;
+            this.buttonCancel.SelectedHoverImage = null;
+            this.buttonCancel.SelectedImage = null;
+            this.buttonCancel.Size = new System.Drawing.Size(37, 37);
+            this.buttonCancel.TabIndex = 7;
+            this.buttonCancel.TabStop = false;
+            this.toolTip.SetToolTip(this.buttonCancel, "Cancel");
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
+            // 
+            // buttonStar
+            // 
+            this.buttonStar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonStar.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonStar.DownImage = global::Journaley.Properties.Resources.sidebar_btn_star_down;
+            this.buttonStar.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_star_over;
+            this.buttonStar.Image = global::Journaley.Properties.Resources.sidebar_btn_star_norm;
+            this.buttonStar.Location = new System.Drawing.Point(0, 12);
+            this.buttonStar.Margin = new System.Windows.Forms.Padding(0, 12, 0, 6);
+            this.buttonStar.Name = "buttonStar";
+            this.buttonStar.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_star_norm;
+            this.buttonStar.Selected = false;
+            this.buttonStar.SelectedDownImage = global::Journaley.Properties.Resources.sidebar_btn_star_enabled_down;
+            this.buttonStar.SelectedHoverImage = global::Journaley.Properties.Resources.sidebar_btn_star_enabled_over;
+            this.buttonStar.SelectedImage = global::Journaley.Properties.Resources.sidebar_btn_star_enabled_norm;
+            this.buttonStar.Size = new System.Drawing.Size(37, 37);
+            this.buttonStar.TabIndex = 6;
+            this.buttonStar.TabStop = false;
+            this.toolTip.SetToolTip(this.buttonStar, "Star");
+            this.buttonStar.Click += new System.EventHandler(this.ButtonStar_Click);
+            // 
+            // buttonPhoto
+            // 
+            this.buttonPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonPhoto.BackColor = System.Drawing.Color.Transparent;
+            this.buttonPhoto.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonPhoto.DownImage = global::Journaley.Properties.Resources.sidebar_btn_image_down;
+            this.buttonPhoto.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_image_over;
+            this.buttonPhoto.Image = global::Journaley.Properties.Resources.sidebar_btn_image_norm;
+            this.buttonPhoto.Location = new System.Drawing.Point(0, 61);
+            this.buttonPhoto.Margin = new System.Windows.Forms.Padding(0, 6, 0, 6);
+            this.buttonPhoto.Name = "buttonPhoto";
+            this.buttonPhoto.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_image_norm;
+            this.buttonPhoto.Selected = false;
+            this.buttonPhoto.SelectedDownImage = global::Journaley.Properties.Resources.sidebar_btn_image_enabled_down;
+            this.buttonPhoto.SelectedHoverImage = global::Journaley.Properties.Resources.sidebar_btn_image_enabled_over;
+            this.buttonPhoto.SelectedImage = global::Journaley.Properties.Resources.sidebar_btn_image_enabled_norm;
+            this.buttonPhoto.Size = new System.Drawing.Size(37, 37);
+            this.buttonPhoto.TabIndex = 7;
+            this.buttonPhoto.TabStop = false;
+            this.toolTip.SetToolTip(this.buttonPhoto, "Photo");
+            this.buttonPhoto.Click += new System.EventHandler(this.ButtonPhoto_Click);
+            // 
+            // buttonTag
+            // 
+            this.buttonTag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonTag.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonTag.DownImage = global::Journaley.Properties.Resources.sidebar_btn_tag_down;
+            this.buttonTag.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_tag_over;
+            this.buttonTag.Image = global::Journaley.Properties.Resources.sidebar_btn_tag_norm;
+            this.buttonTag.Location = new System.Drawing.Point(0, 110);
+            this.buttonTag.Margin = new System.Windows.Forms.Padding(0, 6, 0, 6);
+            this.buttonTag.Name = "buttonTag";
+            this.buttonTag.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_tag_norm;
+            this.buttonTag.Selected = false;
+            this.buttonTag.SelectedDownImage = global::Journaley.Properties.Resources.sidebar_btn_tag_enabled_down;
+            this.buttonTag.SelectedHoverImage = global::Journaley.Properties.Resources.sidebar_btn_tag_enabled_over;
+            this.buttonTag.SelectedImage = global::Journaley.Properties.Resources.sidebar_btn_tag_enabled_norm;
+            this.buttonTag.Size = new System.Drawing.Size(37, 37);
+            this.buttonTag.TabIndex = 8;
+            this.buttonTag.TabStop = false;
+            this.toolTip.SetToolTip(this.buttonTag, "Tag");
+            this.buttonTag.Click += new System.EventHandler(this.ButtonTag_Click);
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDelete.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonDelete.DownImage = global::Journaley.Properties.Resources.sidebar_btn_delete_down;
+            this.buttonDelete.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_delete_over;
+            this.buttonDelete.Image = global::Journaley.Properties.Resources.sidebar_btn_delete_norm;
+            this.buttonDelete.Location = new System.Drawing.Point(0, 159);
+            this.buttonDelete.Margin = new System.Windows.Forms.Padding(0, 6, 0, 6);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_delete_norm;
+            this.buttonDelete.Selected = false;
+            this.buttonDelete.SelectedDownImage = null;
+            this.buttonDelete.SelectedHoverImage = null;
+            this.buttonDelete.SelectedImage = null;
+            this.buttonDelete.Size = new System.Drawing.Size(37, 37);
+            this.buttonDelete.TabIndex = 10;
+            this.buttonDelete.TabStop = false;
+            this.toolTip.SetToolTip(this.buttonDelete, "Delete");
+            this.buttonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
+            // 
+            // buttonAddEntry
+            // 
+            this.buttonAddEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonAddEntry.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonAddEntry.DownImage = global::Journaley.Properties.Resources.main_btn_entry_down;
+            this.buttonAddEntry.HoverImage = global::Journaley.Properties.Resources.main_btn_entry_over;
+            this.buttonAddEntry.Image = global::Journaley.Properties.Resources.main_btn_entry_norm;
+            this.buttonAddEntry.Location = new System.Drawing.Point(0, 558);
+            this.buttonAddEntry.Margin = new System.Windows.Forms.Padding(0);
+            this.buttonAddEntry.Name = "buttonAddEntry";
+            this.buttonAddEntry.NormalImage = global::Journaley.Properties.Resources.main_btn_entry_norm;
+            this.buttonAddEntry.Selected = false;
+            this.buttonAddEntry.SelectedDownImage = null;
+            this.buttonAddEntry.SelectedHoverImage = null;
+            this.buttonAddEntry.SelectedImage = null;
+            this.buttonAddEntry.Size = new System.Drawing.Size(266, 42);
+            this.buttonAddEntry.TabIndex = 0;
+            this.buttonAddEntry.TabStop = false;
+            this.toolTip.SetToolTip(this.buttonAddEntry, "Add a new entry");
+            this.buttonAddEntry.Click += new System.EventHandler(this.ButtonAddEntry_Click);
             // 
             // panelWebBrowserWrapper
             // 
@@ -491,6 +763,23 @@ namespace Journaley.Forms
             this.panelEntryTextWrapper.Size = new System.Drawing.Size(620, 320);
             this.panelEntryTextWrapper.TabIndex = 1;
             // 
+            // spellCheckedEntryText
+            // 
+            this.spellCheckedEntryText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.spellCheckedEntryText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spellCheckedEntryText.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.spellCheckedEntryText.Location = new System.Drawing.Point(0, 0);
+            this.spellCheckedEntryText.Multiline = true;
+            this.spellCheckedEntryText.Name = "spellCheckedEntryText";
+            this.spellCheckedEntryText.Padding = new System.Windows.Forms.Padding(30);
+            this.spellCheckedEntryText.ReadOnly = false;
+            this.spellCheckedEntryText.Size = new System.Drawing.Size(618, 318);
+            this.spellCheckedEntryText.TabIndex = 1;
+            this.spellCheckedEntryText.WordWrap = true;
+            this.spellCheckedEntryText.TextChanged += new System.EventHandler(this.SpellCheckedEntryText_TextChanged);
+            this.spellCheckedEntryText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SpellCheckedEntryText_KeyDown);
+            this.spellCheckedEntryText.Child = null;
+            // 
             // tableLayoutEntryArea
             // 
             this.tableLayoutEntryArea.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -510,175 +799,32 @@ namespace Journaley.Forms
             this.tableLayoutEntryArea.Size = new System.Drawing.Size(620, 515);
             this.tableLayoutEntryArea.TabIndex = 1;
             // 
-            // buttonSettings
+            // entryPhotoArea
             // 
-            this.buttonSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSettings.BackColor = System.Drawing.Color.Transparent;
-            this.buttonSettings.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonSettings.DownImage = global::Journaley.Properties.Resources.sidebar_btn_setting_down;
-            this.buttonSettings.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_setting_over;
-            this.buttonSettings.Image = global::Journaley.Properties.Resources.sidebar_btn_setting_norm;
-            this.buttonSettings.Location = new System.Drawing.Point(0, 539);
-            this.buttonSettings.Name = "buttonSettings";
-            this.buttonSettings.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_setting_norm;
-            this.buttonSettings.Selected = false;
-            this.buttonSettings.SelectedDownImage = null;
-            this.buttonSettings.SelectedHoverImage = null;
-            this.buttonSettings.SelectedImage = null;
-            this.buttonSettings.Size = new System.Drawing.Size(47, 41);
-            this.buttonSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.buttonSettings.TabIndex = 3;
-            this.buttonSettings.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonSettings, "Settings");
-            this.buttonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
-            // 
-            // buttonEdit
-            // 
-            this.buttonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonEdit.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonEdit.DownImage = global::Journaley.Properties.Resources.sidebar_btn_edit_down;
-            this.buttonEdit.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_edit_over;
-            this.buttonEdit.Image = global::Journaley.Properties.Resources.sidebar_btn_edit_norm;
-            this.buttonEdit.Location = new System.Drawing.Point(0, 12);
-            this.buttonEdit.Margin = new System.Windows.Forms.Padding(0, 12, 0, 12);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_edit_norm;
-            this.buttonEdit.Selected = false;
-            this.buttonEdit.SelectedDownImage = null;
-            this.buttonEdit.SelectedHoverImage = null;
-            this.buttonEdit.SelectedImage = null;
-            this.buttonEdit.Size = new System.Drawing.Size(37, 37);
-            this.buttonEdit.TabIndex = 5;
-            this.buttonEdit.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonEdit, "Edit");
-            this.buttonEdit.Click += new System.EventHandler(this.ButtonEdit_Click);
-            // 
-            // buttonDone
-            // 
-            this.buttonDone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonDone.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonDone.DownImage = global::Journaley.Properties.Resources.sidebar_btn_done_down;
-            this.buttonDone.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_done_over;
-            this.buttonDone.Image = global::Journaley.Properties.Resources.sidebar_btn_done_norm;
-            this.buttonDone.Location = new System.Drawing.Point(0, 73);
-            this.buttonDone.Margin = new System.Windows.Forms.Padding(0, 12, 0, 6);
-            this.buttonDone.Name = "buttonDone";
-            this.buttonDone.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_done_norm;
-            this.buttonDone.Selected = false;
-            this.buttonDone.SelectedDownImage = null;
-            this.buttonDone.SelectedHoverImage = null;
-            this.buttonDone.SelectedImage = null;
-            this.buttonDone.Size = new System.Drawing.Size(37, 37);
-            this.buttonDone.TabIndex = 6;
-            this.buttonDone.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonDone, "Done");
-            this.buttonDone.Click += new System.EventHandler(this.ButtonDone_Click);
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonCancel.DownImage = global::Journaley.Properties.Resources.sidebar_btn_cancel_down;
-            this.buttonCancel.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_cancel_over;
-            this.buttonCancel.Image = global::Journaley.Properties.Resources.sidebar_btn_cancel_norm;
-            this.buttonCancel.Location = new System.Drawing.Point(0, 122);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(0, 6, 0, 12);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_cancel_norm;
-            this.buttonCancel.Selected = false;
-            this.buttonCancel.SelectedDownImage = null;
-            this.buttonCancel.SelectedHoverImage = null;
-            this.buttonCancel.SelectedImage = null;
-            this.buttonCancel.Size = new System.Drawing.Size(37, 37);
-            this.buttonCancel.TabIndex = 7;
-            this.buttonCancel.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonCancel, "Cancel");
-            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
-            // 
-            // buttonStar
-            // 
-            this.buttonStar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonStar.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonStar.DownImage = global::Journaley.Properties.Resources.sidebar_btn_star_down;
-            this.buttonStar.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_star_over;
-            this.buttonStar.Image = global::Journaley.Properties.Resources.sidebar_btn_star_norm;
-            this.buttonStar.Location = new System.Drawing.Point(0, 12);
-            this.buttonStar.Margin = new System.Windows.Forms.Padding(0, 12, 0, 6);
-            this.buttonStar.Name = "buttonStar";
-            this.buttonStar.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_star_norm;
-            this.buttonStar.Selected = false;
-            this.buttonStar.SelectedDownImage = global::Journaley.Properties.Resources.sidebar_btn_star_enabled_down;
-            this.buttonStar.SelectedHoverImage = global::Journaley.Properties.Resources.sidebar_btn_star_enabled_over;
-            this.buttonStar.SelectedImage = global::Journaley.Properties.Resources.sidebar_btn_star_enabled_norm;
-            this.buttonStar.Size = new System.Drawing.Size(37, 37);
-            this.buttonStar.TabIndex = 6;
-            this.buttonStar.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonStar, "Star");
-            this.buttonStar.Click += new System.EventHandler(this.ButtonStar_Click);
-            // 
-            // buttonPhoto
-            // 
-            this.buttonPhoto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonPhoto.BackColor = System.Drawing.Color.Transparent;
-            this.buttonPhoto.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonPhoto.DownImage = global::Journaley.Properties.Resources.sidebar_btn_image_down;
-            this.buttonPhoto.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_image_over;
-            this.buttonPhoto.Image = global::Journaley.Properties.Resources.sidebar_btn_image_norm;
-            this.buttonPhoto.Location = new System.Drawing.Point(0, 61);
-            this.buttonPhoto.Margin = new System.Windows.Forms.Padding(0, 6, 0, 6);
-            this.buttonPhoto.Name = "buttonPhoto";
-            this.buttonPhoto.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_image_norm;
-            this.buttonPhoto.Selected = false;
-            this.buttonPhoto.SelectedDownImage = global::Journaley.Properties.Resources.sidebar_btn_image_enabled_down;
-            this.buttonPhoto.SelectedHoverImage = global::Journaley.Properties.Resources.sidebar_btn_image_enabled_over;
-            this.buttonPhoto.SelectedImage = global::Journaley.Properties.Resources.sidebar_btn_image_enabled_norm;
-            this.buttonPhoto.Size = new System.Drawing.Size(37, 37);
-            this.buttonPhoto.TabIndex = 7;
-            this.buttonPhoto.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonPhoto, "Photo");
-            this.buttonPhoto.Click += new System.EventHandler(this.ButtonPhoto_Click);
-            // 
-            // buttonTag
-            // 
-            this.buttonTag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonTag.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonTag.DownImage = global::Journaley.Properties.Resources.sidebar_btn_tag_down;
-            this.buttonTag.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_tag_over;
-            this.buttonTag.Image = global::Journaley.Properties.Resources.sidebar_btn_tag_norm;
-            this.buttonTag.Location = new System.Drawing.Point(0, 110);
-            this.buttonTag.Margin = new System.Windows.Forms.Padding(0, 6, 0, 6);
-            this.buttonTag.Name = "buttonTag";
-            this.buttonTag.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_tag_norm;
-            this.buttonTag.Selected = false;
-            this.buttonTag.SelectedDownImage = global::Journaley.Properties.Resources.sidebar_btn_tag_enabled_down;
-            this.buttonTag.SelectedHoverImage = global::Journaley.Properties.Resources.sidebar_btn_tag_enabled_over;
-            this.buttonTag.SelectedImage = global::Journaley.Properties.Resources.sidebar_btn_tag_enabled_norm;
-            this.buttonTag.Size = new System.Drawing.Size(37, 37);
-            this.buttonTag.TabIndex = 8;
-            this.buttonTag.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonTag, "Tag");
-            this.buttonTag.Click += new System.EventHandler(this.ButtonTag_Click);
-            // 
-            // buttonDelete
-            // 
-            this.buttonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonDelete.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonDelete.DownImage = global::Journaley.Properties.Resources.sidebar_btn_delete_down;
-            this.buttonDelete.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_delete_over;
-            this.buttonDelete.Image = global::Journaley.Properties.Resources.sidebar_btn_delete_norm;
-            this.buttonDelete.Location = new System.Drawing.Point(0, 159);
-            this.buttonDelete.Margin = new System.Windows.Forms.Padding(0, 6, 0, 6);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_delete_norm;
-            this.buttonDelete.Selected = false;
-            this.buttonDelete.SelectedDownImage = null;
-            this.buttonDelete.SelectedHoverImage = null;
-            this.buttonDelete.SelectedImage = null;
-            this.buttonDelete.Size = new System.Drawing.Size(37, 37);
-            this.buttonDelete.TabIndex = 10;
-            this.buttonDelete.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonDelete, "Delete");
-            this.buttonDelete.Click += new System.EventHandler(this.ButtonDelete_Click);
+            this.entryPhotoArea.BackButtonHoverImage = global::Journaley.Properties.Resources.picture_btn_back_over;
+            this.entryPhotoArea.BackButtonLabelImage = global::Journaley.Properties.Resources.picture_lbl_back;
+            this.entryPhotoArea.BackButtonLabelYPos = 3;
+            this.entryPhotoArea.BackButtonNormalImage = global::Journaley.Properties.Resources.picture_btn_back_norm;
+            this.entryPhotoArea.BackButtonYPos = 19;
+            this.entryPhotoArea.BackgroundImage = global::Journaley.Properties.Resources.picture_pane_background_tile;
+            this.entryPhotoArea.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryPhotoArea.Expanded = false;
+            this.entryPhotoArea.Image = null;
+            this.entryPhotoArea.Location = new System.Drawing.Point(0, 0);
+            this.entryPhotoArea.Margin = new System.Windows.Forms.Padding(0);
+            this.entryPhotoArea.MaskImage = global::Journaley.Properties.Resources.picture_pane_hoverMask;
+            this.entryPhotoArea.Name = "entryPhotoArea";
+            this.entryPhotoArea.PopoutButtonHoverImage = global::Journaley.Properties.Resources.picture_btn_popout_over;
+            this.entryPhotoArea.PopoutButtonLabelImage = global::Journaley.Properties.Resources.picture_lbl_popout;
+            this.entryPhotoArea.PopoutButtonLabelYPos = -2;
+            this.entryPhotoArea.PopoutButtonNormalImage = global::Journaley.Properties.Resources.picture_btn_popout_norm;
+            this.entryPhotoArea.PopoutButtonYPos = -20;
+            this.entryPhotoArea.Size = new System.Drawing.Size(620, 195);
+            this.entryPhotoArea.TabIndex = 2;
+            this.entryPhotoArea.Text = "entryPhotoArea1";
+            this.entryPhotoArea.ImageClick += new System.EventHandler(this.EntryPhotoArea_ImageClick);
+            this.entryPhotoArea.BackButtonClick += new System.EventHandler(this.EntryPhotoArea_BackButtonClick);
+            this.entryPhotoArea.PopoutButtonClick += new System.EventHandler(this.EntryPhotoArea_PopoutButtonClick);
             // 
             // panelTitlebar
             // 
@@ -782,27 +928,6 @@ namespace Journaley.Forms
             this.imageButtonFormClose.TabIndex = 0;
             this.imageButtonFormClose.TabStop = false;
             this.imageButtonFormClose.Click += new System.EventHandler(this.ImageButtonFormClose_Click);
-            // 
-            // buttonAddEntry
-            // 
-            this.buttonAddEntry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.buttonAddEntry.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonAddEntry.DownImage = global::Journaley.Properties.Resources.main_btn_entry_down;
-            this.buttonAddEntry.HoverImage = global::Journaley.Properties.Resources.main_btn_entry_over;
-            this.buttonAddEntry.Image = global::Journaley.Properties.Resources.main_btn_entry_norm;
-            this.buttonAddEntry.Location = new System.Drawing.Point(0, 558);
-            this.buttonAddEntry.Margin = new System.Windows.Forms.Padding(0);
-            this.buttonAddEntry.Name = "buttonAddEntry";
-            this.buttonAddEntry.NormalImage = global::Journaley.Properties.Resources.main_btn_entry_norm;
-            this.buttonAddEntry.Selected = false;
-            this.buttonAddEntry.SelectedDownImage = null;
-            this.buttonAddEntry.SelectedHoverImage = null;
-            this.buttonAddEntry.SelectedImage = null;
-            this.buttonAddEntry.Size = new System.Drawing.Size(266, 42);
-            this.buttonAddEntry.TabIndex = 0;
-            this.buttonAddEntry.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonAddEntry, "Add a new entry");
-            this.buttonAddEntry.Click += new System.EventHandler(this.ButtonAddEntry_Click);
             // 
             // buttonMainTags
             // 
@@ -928,8 +1053,8 @@ namespace Journaley.Forms
             this.monthCalendar.ImageList = null;
             this.monthCalendar.Location = new System.Drawing.Point(0, 0);
             this.monthCalendar.Margin = new System.Windows.Forms.Padding(0);
-            this.monthCalendar.MaxDate = new System.DateTime(2024, 8, 8, 4, 10, 12, 565);
-            this.monthCalendar.MinDate = new System.DateTime(2004, 8, 8, 4, 10, 12, 565);
+            this.monthCalendar.MaxDate = new System.DateTime(9999, 12, 31, 0, 0, 0, 0);
+            this.monthCalendar.MinDate = new System.DateTime(((long)(0)));
             this.monthCalendar.Month.BackgroundImage = null;
             this.monthCalendar.Month.Colors.Focus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(213)))), ((int)(((byte)(224)))));
             this.monthCalendar.Month.Colors.Focus.Border = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(198)))), ((int)(((byte)(214)))));
@@ -1046,131 +1171,6 @@ namespace Journaley.Forms
             this.listBoxTags.TabIndex = 0;
             this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
             // 
-            // spellCheckedEntryText
-            // 
-            this.spellCheckedEntryText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.spellCheckedEntryText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spellCheckedEntryText.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.spellCheckedEntryText.Location = new System.Drawing.Point(0, 0);
-            this.spellCheckedEntryText.Multiline = true;
-            this.spellCheckedEntryText.Name = "spellCheckedEntryText";
-            this.spellCheckedEntryText.Padding = new System.Windows.Forms.Padding(30);
-            this.spellCheckedEntryText.ReadOnly = false;
-            this.spellCheckedEntryText.Size = new System.Drawing.Size(618, 318);
-            this.spellCheckedEntryText.TabIndex = 1;
-            this.spellCheckedEntryText.WordWrap = true;
-            this.spellCheckedEntryText.TextChanged += new System.EventHandler(this.SpellCheckedEntryText_TextChanged);
-            this.spellCheckedEntryText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SpellCheckedEntryText_KeyDown);
-            this.spellCheckedEntryText.Child = null;
-            // 
-            // labelEntries
-            // 
-            this.labelEntries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelEntries.AutoSize = true;
-            this.labelEntries.BackColor = System.Drawing.Color.Transparent;
-            this.labelEntries.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEntries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelEntries.Location = new System.Drawing.Point(29, 0);
-            this.labelEntries.Margin = new System.Windows.Forms.Padding(0);
-            this.labelEntries.Name = "labelEntries";
-            this.labelEntries.Size = new System.Drawing.Size(0, 11);
-            this.labelEntries.TabIndex = 0;
-            // 
-            // labelThisWeek
-            // 
-            this.labelThisWeek.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelThisWeek.AutoSize = true;
-            this.labelThisWeek.BackColor = System.Drawing.Color.Transparent;
-            this.labelThisWeek.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelThisWeek.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelThisWeek.Location = new System.Drawing.Point(176, 0);
-            this.labelThisWeek.Margin = new System.Windows.Forms.Padding(0);
-            this.labelThisWeek.Name = "labelThisWeek";
-            this.labelThisWeek.Size = new System.Drawing.Size(0, 11);
-            this.labelThisWeek.TabIndex = 2;
-            // 
-            // labelToday
-            // 
-            this.labelToday.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.labelToday.AutoSize = true;
-            this.labelToday.BackColor = System.Drawing.Color.Transparent;
-            this.labelToday.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelToday.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(128)))), ((int)(((byte)(225)))));
-            this.labelToday.Location = new System.Drawing.Point(106, 0);
-            this.labelToday.Margin = new System.Windows.Forms.Padding(0);
-            this.labelToday.Name = "labelToday";
-            this.labelToday.Size = new System.Drawing.Size(0, 11);
-            this.labelToday.TabIndex = 3;
-            // 
-            // labelEntriesLabel
-            // 
-            this.labelEntriesLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelEntriesLabel.AutoSize = true;
-            this.labelEntriesLabel.BackColor = System.Drawing.Color.Transparent;
-            this.labelEntriesLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEntriesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
-            this.labelEntriesLabel.Location = new System.Drawing.Point(29, 11);
-            this.labelEntriesLabel.Margin = new System.Windows.Forms.Padding(0);
-            this.labelEntriesLabel.Name = "labelEntriesLabel";
-            this.labelEntriesLabel.Size = new System.Drawing.Size(48, 13);
-            this.labelEntriesLabel.TabIndex = 4;
-            this.labelEntriesLabel.Text = "ENTRIES";
-            // 
-            // labelThisWeekLabel
-            // 
-            labelThisWeekLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            labelThisWeekLabel.AutoSize = true;
-            labelThisWeekLabel.BackColor = System.Drawing.Color.Transparent;
-            labelThisWeekLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            labelThisWeekLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
-            labelThisWeekLabel.Location = new System.Drawing.Point(176, 11);
-            labelThisWeekLabel.Margin = new System.Windows.Forms.Padding(0);
-            labelThisWeekLabel.Name = "labelThisWeekLabel";
-            labelThisWeekLabel.Size = new System.Drawing.Size(61, 13);
-            labelThisWeekLabel.TabIndex = 6;
-            labelThisWeekLabel.Text = "THIS WEEK";
-            // 
-            // labelTodayLabel
-            // 
-            labelTodayLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            labelTodayLabel.AutoSize = true;
-            labelTodayLabel.BackColor = System.Drawing.Color.Transparent;
-            labelTodayLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            labelTodayLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(19)))), ((int)(((byte)(21)))));
-            labelTodayLabel.Location = new System.Drawing.Point(106, 11);
-            labelTodayLabel.Margin = new System.Windows.Forms.Padding(0);
-            labelTodayLabel.Name = "labelTodayLabel";
-            labelTodayLabel.Size = new System.Drawing.Size(41, 13);
-            labelTodayLabel.TabIndex = 7;
-            labelTodayLabel.Text = "TODAY";
-            // 
-            // entryPhotoArea
-            // 
-            this.entryPhotoArea.BackButtonHoverImage = global::Journaley.Properties.Resources.picture_btn_back_over;
-            this.entryPhotoArea.BackButtonLabelImage = global::Journaley.Properties.Resources.picture_lbl_back;
-            this.entryPhotoArea.BackButtonLabelYPos = 3;
-            this.entryPhotoArea.BackButtonNormalImage = global::Journaley.Properties.Resources.picture_btn_back_norm;
-            this.entryPhotoArea.BackButtonYPos = 19;
-            this.entryPhotoArea.BackgroundImage = global::Journaley.Properties.Resources.picture_pane_background_tile;
-            this.entryPhotoArea.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryPhotoArea.Expanded = false;
-            this.entryPhotoArea.Image = null;
-            this.entryPhotoArea.Location = new System.Drawing.Point(0, 0);
-            this.entryPhotoArea.Margin = new System.Windows.Forms.Padding(0);
-            this.entryPhotoArea.MaskImage = global::Journaley.Properties.Resources.picture_pane_hoverMask;
-            this.entryPhotoArea.Name = "entryPhotoArea";
-            this.entryPhotoArea.PopoutButtonHoverImage = global::Journaley.Properties.Resources.picture_btn_popout_over;
-            this.entryPhotoArea.PopoutButtonLabelImage = global::Journaley.Properties.Resources.picture_lbl_popout;
-            this.entryPhotoArea.PopoutButtonLabelYPos = -2;
-            this.entryPhotoArea.PopoutButtonNormalImage = global::Journaley.Properties.Resources.picture_btn_popout_norm;
-            this.entryPhotoArea.PopoutButtonYPos = -20;
-            this.entryPhotoArea.Size = new System.Drawing.Size(620, 195);
-            this.entryPhotoArea.TabIndex = 2;
-            this.entryPhotoArea.Text = "entryPhotoArea1";
-            this.entryPhotoArea.ImageClick += new System.EventHandler(this.EntryPhotoArea_ImageClick);
-            this.entryPhotoArea.BackButtonClick += new System.EventHandler(this.EntryPhotoArea_BackButtonClick);
-            this.entryPhotoArea.PopoutButtonClick += new System.EventHandler(this.EntryPhotoArea_PopoutButtonClick);
-            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1200,6 +1200,15 @@ namespace Journaley.Forms
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.tableLayoutStats.ResumeLayout(false);
             this.tableLayoutStats.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonStar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonPhoto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonTag)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).EndInit();
             this.panelWebBrowserWrapper.ResumeLayout(false);
             this.contextMenuStripPhotoWithPhoto.ResumeLayout(false);
             this.panelSidebar.ResumeLayout(false);
@@ -1218,21 +1227,12 @@ namespace Journaley.Forms
             this.panelEntryArea.ResumeLayout(false);
             this.panelEntryTextWrapper.ResumeLayout(false);
             this.tableLayoutEntryArea.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonDone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonStar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonPhoto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonTag)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonDelete)).EndInit();
             this.panelTitlebar.ResumeLayout(false);
             this.panelTitlebar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTags)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).EndInit();
