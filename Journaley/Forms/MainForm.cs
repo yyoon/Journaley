@@ -1373,7 +1373,7 @@
                 true);  // Enable
 
             // Get the settings file.
-            this.Settings = Settings.GetSettingsFile();
+            this.Settings = Settings.Default;
 
             if (this.Settings == null)
             {

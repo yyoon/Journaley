@@ -389,94 +389,7 @@
 
                         XmlNode valueNode = keyNode.NextSibling;
 
-                        switch (keyNode.InnerText)
-                        {
-                            case "Creation Date":
-                                {
-                                    newEntry.UTCDateTime = DateTime.Parse(valueNode.InnerText).ToUniversalTime();
-                                    break;
-                                }
-
-                            case "Entry Text":
-                                {
-                                    newEntry.EntryText = valueNode.InnerText;
-                                    break;
-                                }
-
-                            case "Starred":
-                                {
-                                    newEntry.Starred = valueNode.Name == "true";
-                                    break;
-                                }
-
-                            case "UUID":
-                                {
-                                    newEntry.UUID = new Guid(valueNode.InnerText);
-                                    break;
-                                }
-
-                            case "Tags":
-                                {
-                                    foreach (XmlNode tagNode in valueNode.ChildNodes)
-                                    {
-                                        newEntry.AddTag(tagNode.InnerText);
-                                    }
-
-                                    break;
-                                }
-                               
-                            case "Location":
-                                {
-                                    newEntry.Location = new EntryLocation();
-                                    foreach (XmlNode tagNode in valueNode.ChildNodes)
-                                    {
-                                        if (tagNode.Name.ToLower() == "key")
-                                        {
-                                            string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
-                                            string value = tagNode.NextSibling.InnerText;
-                                            newEntry.Location.GetType().GetProperty(propertyName).SetValue(newEntry.Location, value, null);
-                                        }
-                                    }
-
-                                    break;
-                                }
-
-                            case "Weather":
-                                {
-                                    newEntry.Weather = new EntryWeather();
-                                    foreach (XmlNode tagNode in valueNode.ChildNodes)
-                                    {
-                                        if (tagNode.Name.ToLower() == "key")
-                                        {
-                                            string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
-                                            string value = tagNode.NextSibling.InnerText;
-                                            newEntry.Weather.GetType().GetProperty(propertyName).SetValue(newEntry.Weather, value, null);
-                                        }
-                                    }
-
-                                    break;
-                                }     
-
-                            case "Creator":
-                                {
-                                    newEntry.Creator = new EntryCreator();
-                                    foreach (XmlNode tagNode in valueNode.ChildNodes)
-                                    {
-                                        if (tagNode.Name.ToLower() == "key")
-                                        {
-                                            string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
-                                            string value = tagNode.NextSibling.InnerText;
-                                            newEntry.Creator.GetType().GetProperty(propertyName).SetValue(newEntry.Creator, value, null);
-                                        }
-                                    }
-
-                                    break;
-                                }                                                             
-
-                            default:
-                                newEntry.UnknownKeyValues.Add(keyNode, valueNode);
-                                break;
-                        }
+                        LoadKeyValue(newEntry, keyNode, valueNode);
                     }
 
                     // Check for some existing photo.
@@ -513,7 +426,7 @@
         {
             if (tag == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("tag");
             }
 
             if (!this.tags.Contains(tag))
@@ -536,7 +449,7 @@
         {
             if (tag == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("tag");
             }
 
             if (this.tags.Contains(tag))
@@ -779,6 +692,124 @@
         }
 
         #endregion
+
+        /// <summary>
+        /// Loads the key value pair and store the information in the entry object..
+        /// </summary>
+        /// <param name="newEntry">The new entry object.</param>
+        /// <param name="keyNode">The key node.</param>
+        /// <param name="valueNode">The value node.</param>
+        private static void LoadKeyValue(Entry newEntry, XmlNode keyNode, XmlNode valueNode)
+        {
+            switch (keyNode.InnerText)
+            {
+                case "Creation Date":
+                    newEntry.UTCDateTime = DateTime.Parse(valueNode.InnerText).ToUniversalTime();
+                    break;
+
+                case "Entry Text":
+                    newEntry.EntryText = valueNode.InnerText;
+                    break;
+
+                case "Starred":
+                    newEntry.Starred = valueNode.Name == "true";
+                    break;
+
+                case "UUID":
+                    newEntry.UUID = new Guid(valueNode.InnerText);
+                    break;
+
+                case "Tags":
+                    LoadTags(newEntry, valueNode);
+                    break;
+
+                case "Location":
+                    LoadLocation(newEntry, valueNode);
+                    break;
+
+                case "Weather":
+                    LoadWeather(newEntry, valueNode);
+                    break;
+
+                case "Creator":
+                    LoadCreator(newEntry, valueNode);
+                    break;
+
+                default:
+                    newEntry.UnknownKeyValues.Add(keyNode, valueNode);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Loads the tags.
+        /// </summary>
+        /// <param name="newEntry">The new entry object.</param>
+        /// <param name="valueNode">The value node.</param>
+        private static void LoadTags(Entry newEntry, XmlNode valueNode)
+        {
+            foreach (XmlNode tagNode in valueNode.ChildNodes)
+            {
+                newEntry.AddTag(tagNode.InnerText);
+            }
+        }
+
+        /// <summary>
+        /// Loads the location.
+        /// </summary>
+        /// <param name="newEntry">The new entry object.</param>
+        /// <param name="valueNode">The value node.</param>
+        private static void LoadLocation(Entry newEntry, XmlNode valueNode)
+        {
+            newEntry.Location = new EntryLocation();
+            foreach (XmlNode tagNode in valueNode.ChildNodes)
+            {
+                if (tagNode.Name.ToLower() == "key")
+                {
+                    string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
+                    string value = tagNode.NextSibling.InnerText;
+                    newEntry.Location.GetType().GetProperty(propertyName).SetValue(newEntry.Location, value, null);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Loads the weather.
+        /// </summary>
+        /// <param name="newEntry">The new entry object.</param>
+        /// <param name="valueNode">The value node.</param>
+        private static void LoadWeather(Entry newEntry, XmlNode valueNode)
+        {
+            newEntry.Weather = new EntryWeather();
+            foreach (XmlNode tagNode in valueNode.ChildNodes)
+            {
+                if (tagNode.Name.ToLower() == "key")
+                {
+                    string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
+                    string value = tagNode.NextSibling.InnerText;
+                    newEntry.Weather.GetType().GetProperty(propertyName).SetValue(newEntry.Weather, value, null);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Loads the creator.
+        /// </summary>
+        /// <param name="newEntry">The new entry object.</param>
+        /// <param name="valueNode">The value node.</param>
+        private static void LoadCreator(Entry newEntry, XmlNode valueNode)
+        {
+            newEntry.Creator = new EntryCreator();
+            foreach (XmlNode tagNode in valueNode.ChildNodes)
+            {
+                if (tagNode.Name.ToLower() == "key")
+                {
+                    string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
+                    string value = tagNode.NextSibling.InnerText;
+                    newEntry.Creator.GetType().GetProperty(propertyName).SetValue(newEntry.Creator, value, null);
+                }
+            }
+        }
 
         /// <summary>
         /// Appends the key value.

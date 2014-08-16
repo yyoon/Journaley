@@ -8,7 +8,7 @@
     /// A convenient subclass of <see cref="System.IO.StringWriter"/> which uses UTF-8 encoding by default.
     /// </summary>
     [Serializable]
-    internal class UTF8StringWriter : StringWriter
+    public class UTF8StringWriter : StringWriter
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UTF8StringWriter"/> class.

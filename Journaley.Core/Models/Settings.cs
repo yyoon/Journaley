@@ -48,6 +48,20 @@
         }
 
         /// <summary>
+        /// Gets the default Settings object.
+        /// </summary>
+        /// <value>
+        /// The default Settings object.
+        /// </value>
+        public static Settings Default
+        {
+            get
+            {
+                return GetSettingsFile(DefaultSettingsFilePath);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the password hash.
         /// </summary>
         /// <value>
@@ -149,12 +163,18 @@
         }
 
         /// <summary>
-        /// Gets the settings file using the default settings file path.
+        /// Gets the default settings file path under the %APPDATA% folder.
+        /// Creates "Journaley" folder if it doesn't exist.
         /// </summary>
-        /// <returns>The settings object read from the settings file</returns>
-        public static Settings GetSettingsFile()
+        /// <value>
+        /// The default settings file path.
+        /// </value>
+        private static string DefaultSettingsFilePath
         {
-            return GetSettingsFile(GetSettingsFilePath());
+            get
+            {
+                return GetFilePathUnderApplicationData(SettingsFilename);
+            }
         }
 
         /// <summary>
@@ -213,7 +233,7 @@
         /// </returns>
         public bool Save()
         {
-            return this.Save(GetSettingsFilePath());
+            return this.Save(DefaultSettingsFilePath);
         }
 
         /// <summary>
@@ -371,16 +391,6 @@
             }
 
             return Path.Combine(path, filename);
-        }
-
-        /// <summary>
-        /// Gets the settings file path under the %APPDATA% folder.
-        /// Creates "Journaley" folder if it doesn't exist.
-        /// </summary>
-        /// <returns>The settings file path</returns>
-        private static string GetSettingsFilePath()
-        {
-            return GetFilePathUnderApplicationData(SettingsFilename);
         }
     }
 }
