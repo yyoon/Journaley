@@ -1251,7 +1251,7 @@ namespace Pabo.Calendar
             Brush bgBrush = new SolidBrush(Colors.BackColor1);    
 			Brush selBrush = new SolidBrush(Color.FromArgb(25,Colors.Selected.BackColor));   
 			Brush focusBrush = new SolidBrush(Color.FromArgb(35,Colors.Focus.BackColor));
-            Brush todayBrush = new SolidBrush(Color.FromArgb(90, Calendar.TodayColor));
+            Brush todayBrush = new SolidBrush(Color.FromArgb(50, Calendar.TodayColor));
 			
 			try
 			{
