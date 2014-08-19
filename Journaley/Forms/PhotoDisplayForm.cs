@@ -144,6 +144,9 @@
             {
                 this.Shrink(screen);
             }
+
+            // Set the minimum window size to the current size.
+            this.MinimumSize = this.Size;
         }
 
         /// <summary>
@@ -224,6 +227,20 @@
             this.pictureBox.Dock = DockStyle.Fill;
             this.pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
+            this.ClientSize = this.GetShrunkClientSize(screen);
+
+            this.MoveToCenterIfNotFullyEnclosed(screen);
+
+            this.State = PhotoState.Shrunk;
+        }
+
+        /// <summary>
+        /// Gets the size of the shrunk client.
+        /// </summary>
+        /// <param name="screen">The screen.</param>
+        /// <returns>The resulting client size of the shrunk mode.</returns>
+        private Size GetShrunkClientSize(Screen screen)
+        {
             Size estimatedSize = this.RealClientSizeToClientSize(new Size(this.Image.Width, this.Image.Height));
             Size maxSize = this.CalculateMaxSize(screen);
 
@@ -231,18 +248,14 @@
             {
                 // Wider
                 double ratio = (double)this.Image.Width / (double)(maxSize.Width - 2);
-                this.RealClientSize = new Size(maxSize.Width - 2, (int)(this.Image.Height / ratio));
+                return this.RealClientSizeToClientSize(new Size(maxSize.Width - 2, (int)(this.Image.Height / ratio)));
             }
             else
             {
                 // Taller
                 double ratio = (double)this.Image.Height / (double)(maxSize.Height - this.panelTitlebar.Height - 2);
-                this.RealClientSize = new Size((int)(this.Image.Width / ratio), maxSize.Height - this.panelTitlebar.Height - 2);
+                return this.RealClientSizeToClientSize(new Size((int)(this.Image.Width / ratio), maxSize.Height - this.panelTitlebar.Height - 2));
             }
-
-            this.MoveToCenterIfNotFullyEnclosed(screen);
-
-            this.State = PhotoState.Shrunk;
         }
 
         /// <summary>
