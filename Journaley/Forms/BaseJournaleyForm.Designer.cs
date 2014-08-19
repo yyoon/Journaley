@@ -61,6 +61,7 @@
             this.panelTitlebar.Name = "panelTitlebar";
             this.panelTitlebar.Size = new System.Drawing.Size(284, 20);
             this.panelTitlebar.TabIndex = 20;
+            this.panelTitlebar.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseDoubleClick);
             this.panelTitlebar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseDown);
             this.panelTitlebar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseMove);
             this.panelTitlebar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseUp);

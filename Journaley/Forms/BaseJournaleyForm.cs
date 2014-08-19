@@ -179,6 +179,16 @@
         }
 
         /// <summary>
+        /// Handles the MouseDoubleClick event of the panel title bar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PanelTitlebar_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.ToggleMaximize();
+        }
+
+        /// <summary>
         /// Handles the MouseMove event of the panel title bar control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
