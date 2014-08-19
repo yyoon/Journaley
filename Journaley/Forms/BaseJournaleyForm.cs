@@ -118,24 +118,26 @@
         }
 
         /// <summary>
-        /// Converts the real client size (without the title bar) to the client size.
+        /// Converts the real client size (excluding the title bar and the borders) to the client size.
         /// </summary>
         /// <param name="realClientSize">Size of the real client.</param>
-        /// <returns>Size of the client area, including the custom title bar.</returns>
+        /// <returns>Size of the client area, including the title bar and the borders.</returns>
         protected virtual Size RealClientSizeToClientSize(Size realClientSize)
         {
-            realClientSize.Height += this.panelTitlebar.Height;
+            realClientSize.Height += this.panelTitlebar.Height + this.panelContent.Padding.Vertical;
+            realClientSize.Width += this.panelContent.Padding.Horizontal;
             return realClientSize;
         }
 
         /// <summary>
-        /// Converts the client size to the real client size (without the title bar).
+        /// Converts the client size to the real client size (excluding the title bar and the borders).
         /// </summary>
-        /// <param name="clientSize">Size of the client area, including the custom title bar.</param>
+        /// <param name="clientSize">Size of the client area, including the title bar and the borders.</param>
         /// <returns>Size of the real client.</returns>
         protected virtual Size ClientSizeToRealClientSize(Size clientSize)
         {
-            clientSize.Height -= this.panelTitlebar.Height;
+            clientSize.Height -= this.panelTitlebar.Height + this.panelContent.Padding.Vertical;
+            clientSize.Width -= this.panelContent.Padding.Horizontal;
             return clientSize;
         }
 

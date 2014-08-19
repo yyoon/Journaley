@@ -153,36 +153,6 @@
         }
 
         /// <summary>
-        /// Converts the real client size (without the title bar and the border) to the client size.
-        /// </summary>
-        /// <param name="realClientSize">Size of the real client.</param>
-        /// <returns>
-        /// Size of the client area, including the custom title bar.
-        /// </returns>
-        protected override Size RealClientSizeToClientSize(Size realClientSize)
-        {
-            realClientSize = base.RealClientSizeToClientSize(realClientSize);
-            realClientSize.Width += 2;
-            realClientSize.Height += 2;
-            return realClientSize;
-        }
-
-        /// <summary>
-        /// Converts the client size to the real client size (without the title bar and the border).
-        /// </summary>
-        /// <param name="clientSize">Size of the client area, including the custom title bar.</param>
-        /// <returns>
-        /// Size of the real client.
-        /// </returns>
-        protected override Size ClientSizeToRealClientSize(Size clientSize)
-        {
-            clientSize = base.ClientSizeToRealClientSize(clientSize);
-            clientSize.Width -= 2;
-            clientSize.Height -= 2;
-            return clientSize;
-        }
-
-        /// <summary>
         /// Calculates the maximum size of this form.
         /// </summary>
         /// <param name="screen">The screen.</param>
