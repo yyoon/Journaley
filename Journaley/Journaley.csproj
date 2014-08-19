@@ -78,6 +78,9 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\PaddingBorderPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\EntryListAreaPanel.cs">
       <SubType>Component</SubType>
     </Compile>

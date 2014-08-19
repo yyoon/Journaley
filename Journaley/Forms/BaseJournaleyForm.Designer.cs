@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.panelContent = new Journaley.Controls.PaddingBorderPanel();
             this.panelTitlebar = new Journaley.Controls.EntryListAreaPanel();
             this.imageButtonFormMinimize = new Journaley.Controls.ImageButton();
             this.imageButtonFormMaximize = new Journaley.Controls.ImageButton();
@@ -37,6 +38,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             this.SuspendLayout();
+            // 
+            // panelContent
+            // 
+            this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContent.Location = new System.Drawing.Point(0, 20);
+            this.panelContent.Margin = new System.Windows.Forms.Padding(0);
+            this.panelContent.Name = "panelContent";
+            this.panelContent.Size = new System.Drawing.Size(284, 241);
+            this.panelContent.TabIndex = 21;
             // 
             // panelTitlebar
             // 
@@ -119,6 +129,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.panelContent);
             this.Controls.Add(this.panelTitlebar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "BaseJournaleyForm";
@@ -138,5 +149,6 @@
         protected Controls.ImageButton imageButtonFormClose;
         protected Controls.ImageButton imageButtonFormMinimize;
         protected Controls.ImageButton imageButtonFormMaximize;
+        protected Controls.PaddingBorderPanel panelContent;
     }
 }

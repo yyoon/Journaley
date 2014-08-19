@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PhotoDisplayForm));
-            this.panelBorder = new Journaley.Controls.EntryListAreaPanel();
             this.panelPhoto = new System.Windows.Forms.Panel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.labelFormCaption = new Journaley.Controls.TitleLabel();
@@ -37,7 +36,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
-            this.panelBorder.SuspendLayout();
+            this.panelContent.SuspendLayout();
             this.panelPhoto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
@@ -54,20 +53,10 @@
             // 
             this.imageButtonFormMinimize.Visible = false;
             // 
-            // panelBorder
+            // panelContent
             // 
-            this.panelBorder.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelBorder.AutoScroll = true;
-            this.panelBorder.Controls.Add(this.panelPhoto);
-            this.panelBorder.ForeColor = System.Drawing.Color.Black;
-            this.panelBorder.Location = new System.Drawing.Point(0, 20);
-            this.panelBorder.Margin = new System.Windows.Forms.Padding(0);
-            this.panelBorder.Name = "panelBorder";
-            this.panelBorder.Padding = new System.Windows.Forms.Padding(1);
-            this.panelBorder.Size = new System.Drawing.Size(284, 241);
-            this.panelBorder.TabIndex = 0;
+            this.panelContent.Controls.Add(this.panelPhoto);
+            this.panelContent.Padding = new System.Windows.Forms.Padding(1);
             // 
             // panelPhoto
             // 
@@ -106,18 +95,15 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.panelBorder);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "PhotoDisplayForm";
             this.Text = "Image Viewer";
-            this.Controls.SetChildIndex(this.panelBorder, 0);
-            this.Controls.SetChildIndex(this.panelTitlebar, 0);
             this.panelTitlebar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).EndInit();
-            this.panelBorder.ResumeLayout(false);
+            this.panelContent.ResumeLayout(false);
             this.panelPhoto.ResumeLayout(false);
             this.panelPhoto.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
@@ -127,7 +113,6 @@
 
         #endregion
 
-        private Controls.EntryListAreaPanel panelBorder;
         private System.Windows.Forms.PictureBox pictureBox;
         protected Controls.TitleLabel labelFormCaption;
         private System.Windows.Forms.Panel panelPhoto;
