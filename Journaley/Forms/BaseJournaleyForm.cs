@@ -426,6 +426,7 @@
                     break;
 
                 default:
+                    Cursor.Current = this.Cursor;
                     break;
             }
         }
