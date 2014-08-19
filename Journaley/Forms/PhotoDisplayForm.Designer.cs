@@ -34,6 +34,9 @@
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.labelFormCaption = new Journaley.Controls.TitleLabel();
             this.panelTitlebar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
             this.panelBorder.SuspendLayout();
             this.panelPhoto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -42,7 +45,14 @@
             // panelTitlebar
             // 
             this.panelTitlebar.Controls.Add(this.labelFormCaption);
+            this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormClose, 0);
+            this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormMaximize, 0);
+            this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormMinimize, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.labelFormCaption, 0);
+            // 
+            // imageButtonFormMinimize
+            // 
+            this.imageButtonFormMinimize.Visible = false;
             // 
             // panelBorder
             // 
@@ -87,7 +97,7 @@
             this.labelFormCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.labelFormCaption.Location = new System.Drawing.Point(0, 0);
             this.labelFormCaption.Name = "labelFormCaption";
-            this.labelFormCaption.Size = new System.Drawing.Size(237, 20);
+            this.labelFormCaption.Size = new System.Drawing.Size(145, 20);
             this.labelFormCaption.TabIndex = 5;
             this.labelFormCaption.Text = "Image Viewer";
             this.labelFormCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -104,6 +114,9 @@
             this.Controls.SetChildIndex(this.panelBorder, 0);
             this.Controls.SetChildIndex(this.panelTitlebar, 0);
             this.panelTitlebar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).EndInit();
             this.panelBorder.ResumeLayout(false);
             this.panelPhoto.ResumeLayout(false);
             this.panelPhoto.PerformLayout();

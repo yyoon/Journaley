@@ -29,14 +29,20 @@
         private void InitializeComponent()
         {
             this.panelTitlebar = new Journaley.Controls.EntryListAreaPanel();
+            this.imageButtonFormMinimize = new Journaley.Controls.ImageButton();
+            this.imageButtonFormMaximize = new Journaley.Controls.ImageButton();
             this.imageButtonFormClose = new Journaley.Controls.ImageButton();
             this.panelTitlebar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTitlebar
             // 
             this.panelTitlebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
+            this.panelTitlebar.Controls.Add(this.imageButtonFormMinimize);
+            this.panelTitlebar.Controls.Add(this.imageButtonFormMaximize);
             this.panelTitlebar.Controls.Add(this.imageButtonFormClose);
             this.panelTitlebar.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitlebar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
@@ -48,6 +54,46 @@
             this.panelTitlebar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseDown);
             this.panelTitlebar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseMove);
             this.panelTitlebar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseUp);
+            // 
+            // imageButtonFormMinimize
+            // 
+            this.imageButtonFormMinimize.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.imageButtonFormMinimize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.imageButtonFormMinimize.DownImage = global::Journaley.Properties.Resources.frame_btn_minimize_down;
+            this.imageButtonFormMinimize.HoverImage = global::Journaley.Properties.Resources.frame_btn_minimize_over;
+            this.imageButtonFormMinimize.Image = global::Journaley.Properties.Resources.frame_btn_minimize_norm;
+            this.imageButtonFormMinimize.Location = new System.Drawing.Point(145, 0);
+            this.imageButtonFormMinimize.Margin = new System.Windows.Forms.Padding(0);
+            this.imageButtonFormMinimize.Name = "imageButtonFormMinimize";
+            this.imageButtonFormMinimize.NormalImage = global::Journaley.Properties.Resources.frame_btn_minimize_norm;
+            this.imageButtonFormMinimize.Selected = false;
+            this.imageButtonFormMinimize.SelectedDownImage = null;
+            this.imageButtonFormMinimize.SelectedHoverImage = null;
+            this.imageButtonFormMinimize.SelectedImage = null;
+            this.imageButtonFormMinimize.Size = new System.Drawing.Size(46, 20);
+            this.imageButtonFormMinimize.TabIndex = 3;
+            this.imageButtonFormMinimize.TabStop = false;
+            this.imageButtonFormMinimize.Click += new System.EventHandler(this.ImageButtonFormMinimize_Click);
+            // 
+            // imageButtonFormMaximize
+            // 
+            this.imageButtonFormMaximize.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.imageButtonFormMaximize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.imageButtonFormMaximize.DownImage = global::Journaley.Properties.Resources.frame_btn_maximize_down;
+            this.imageButtonFormMaximize.HoverImage = global::Journaley.Properties.Resources.frame_btn_maximize_over;
+            this.imageButtonFormMaximize.Image = global::Journaley.Properties.Resources.frame_btn_maximize_norm;
+            this.imageButtonFormMaximize.Location = new System.Drawing.Point(191, 0);
+            this.imageButtonFormMaximize.Margin = new System.Windows.Forms.Padding(0);
+            this.imageButtonFormMaximize.Name = "imageButtonFormMaximize";
+            this.imageButtonFormMaximize.NormalImage = global::Journaley.Properties.Resources.frame_btn_maximize_norm;
+            this.imageButtonFormMaximize.Selected = false;
+            this.imageButtonFormMaximize.SelectedDownImage = null;
+            this.imageButtonFormMaximize.SelectedHoverImage = null;
+            this.imageButtonFormMaximize.SelectedImage = null;
+            this.imageButtonFormMaximize.Size = new System.Drawing.Size(46, 20);
+            this.imageButtonFormMaximize.TabIndex = 2;
+            this.imageButtonFormMaximize.TabStop = false;
+            this.imageButtonFormMaximize.Click += new System.EventHandler(this.ImageButtonFormMaximize_Click);
             // 
             // imageButtonFormClose
             // 
@@ -79,6 +125,8 @@
             this.Text = "BaseJournaleyForm";
             this.Deactivate += new System.EventHandler(this.BaseJournaleyForm_Deactivate);
             this.panelTitlebar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();
             this.ResumeLayout(false);
 
@@ -87,6 +135,8 @@
         #endregion
 
         protected Controls.EntryListAreaPanel panelTitlebar;
-        private Controls.ImageButton imageButtonFormClose;
+        protected Controls.ImageButton imageButtonFormClose;
+        protected Controls.ImageButton imageButtonFormMinimize;
+        protected Controls.ImageButton imageButtonFormMaximize;
     }
 }

@@ -44,16 +44,6 @@
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether this instance can be maximized.
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if this instance can be maximized; otherwise, <c>false</c>.
-        /// </value>
-        [Category("Layout")]
-        [Description("Specify whether the form can be maximized or not.")]
-        public bool CanBeMaximized { get; set; }
-
-        /// <summary>
         /// Gets or sets the real client size, which is the client area size - title bar size.
         /// </summary>
         /// <value>
@@ -120,6 +110,23 @@
             clientSize.Height -= this.panelTitlebar.Height;
             return clientSize;
         }
+
+        /// <summary>
+        /// Toggles the maximize state.
+        /// </summary>
+        private void ToggleMaximize()
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+        }
+
+        #region Event Handlers
 
         /// <summary>
         /// Handles the Deactivate event of the BaseJournaleyForm control.
@@ -198,12 +205,32 @@
         /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
         private void PanelTitlebar_MouseUp(object sender, MouseEventArgs e)
         {
-            if (this.CanBeMaximized && this.PointToScreen(e.Location).Y == 0 && this.WindowState == FormWindowState.Normal)
+            if (this.imageButtonFormMaximize.Visible && this.PointToScreen(e.Location).Y == 0 && this.WindowState == FormWindowState.Normal)
             {
                 this.WindowState = FormWindowState.Maximized;
             }
 
             this.DraggingTitleBar = false;
+        }
+
+        /// <summary>
+        /// Handles the Click event of the imageButtonFormMinimize control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ImageButtonFormMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        /// <summary>
+        /// Handles the Click event of the imageButtonFormMaximize control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ImageButtonFormMaximize_Click(object sender, EventArgs e)
+        {
+            this.ToggleMaximize();
         }
 
         /// <summary>
@@ -215,5 +242,7 @@
         {
             this.Close();
         }
+
+        #endregion
     }
 }
