@@ -47,6 +47,8 @@
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(284, 241);
             this.panelContent.TabIndex = 21;
+            this.panelContent.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelContent_MouseDown);
+            this.panelContent.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelContent_MouseMove);
             // 
             // panelTitlebar
             // 

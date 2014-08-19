@@ -37,6 +37,7 @@
             this.InitializeComponent();
 
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.Resizable = true;
         }
 
         /// <summary>
@@ -52,6 +53,8 @@
             this.InitializeSize(screen);
 
             this.MoveToCenter(screen);
+
+            this.Resizable = true;
         }
 
         /// <summary>

@@ -6,6 +6,7 @@
     using System.Linq;
     using System.Text;
     using System.Windows.Forms;
+    using Journaley.Utilities;
 
     /// <summary>
     /// A custom panel class for displaying border with custom color.
@@ -20,6 +21,24 @@
         public PaddingBorderPanel()
         {
             this.SetStyle(ControlStyles.UserPaint | ControlStyles.ResizeRedraw | ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+        }
+
+        /// <summary>
+        /// Override the message loop.
+        /// </summary>
+        /// <param name="m">The Windows <see cref="T:System.Windows.Forms.Message" /> to process.</param>
+        protected override void WndProc(ref Message m)
+        {
+            switch ((PInvoke.WindowsMessages)m.Msg)
+            {
+                case PInvoke.WindowsMessages.WM_SETCURSOR:
+                    // Eat this.
+                    break;
+
+                default:
+                    base.WndProc(ref m);
+                    break;
+            }
         }
 
         /// <summary>

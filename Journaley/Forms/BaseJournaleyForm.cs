@@ -16,6 +16,11 @@
     public partial class BaseJournaleyForm : Form
     {
         /// <summary>
+        /// The default corner size
+        /// </summary>
+        private const int DefaultCornerSize = 10;
+
+        /// <summary>
         /// Indicates whether the title bar is being dragged.
         /// </summary>
         private bool draggingTitleBar = false;
@@ -40,8 +45,31 @@
             margins.bottomHeight = 1;
             PInvoke.DwmExtendFrameIntoClientArea(this.Handle, ref margins);
 
+            this.CornerSize = DefaultCornerSize;
+
             this.InitializeComponent();
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this form can be resized.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this form can be resized; otherwise, <c>false</c>.
+        /// </value>
+        [Category("Layout")]
+        [Description("Specify whether the form can be resized or not.")]
+        public bool Resizable { get; set; }
+
+        /// <summary>
+        /// Gets or sets the size of the corner.
+        /// </summary>
+        /// <value>
+        /// The size of the corner.
+        /// </value>
+        [Category("Layout")]
+        [Description("Specify the corner size which is used for determining resize direction.")]
+        [DefaultValue(DefaultCornerSize)]
+        public int CornerSize { get; set; }
 
         /// <summary>
         /// Gets or sets the real client size, which is the client area size - title bar size.
@@ -124,6 +152,72 @@
             {
                 this.WindowState = FormWindowState.Maximized;
             }
+        }
+
+        /// <summary>
+        /// Hit test against the border (padding) area.
+        /// </summary>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        /// <param name="pad">The pad.</param>
+        /// <param name="panelSize">Size of the panel.</param>
+        /// <returns>The border position value in the HitTestValues enumeration. HTNOWHERE if not in any of the border area.</returns>
+        private PInvoke.HitTestValues BorderHitTest(MouseEventArgs e, Padding pad, Size panelSize)
+        {
+            PInvoke.HitTestValues val = PInvoke.HitTestValues.HTNOWHERE;
+
+            pad.Top = Math.Max(pad.Top, this.CornerSize);
+            pad.Right = Math.Max(pad.Right, this.CornerSize);
+            pad.Bottom = Math.Max(pad.Bottom, this.CornerSize);
+            pad.Left = Math.Max(pad.Left, this.CornerSize);
+
+            bool top = 0 <= e.Y && e.Y < pad.Top;
+            bool right = (panelSize.Width - pad.Right) <= e.X && e.X < panelSize.Width;
+            bool bottom = (panelSize.Height - pad.Bottom) <= e.Y && e.Y < panelSize.Height;
+            bool left = 0 <= e.X && e.X < pad.Left;
+
+            if (top)
+            {
+                if (left)
+                {
+                    val = PInvoke.HitTestValues.HTTOPLEFT;
+                }
+                else if (right)
+                {
+                    val = PInvoke.HitTestValues.HTTOPRIGHT;
+                }
+                else
+                {
+                    val = PInvoke.HitTestValues.HTTOP;
+                }
+            }
+            else if (bottom)
+            {
+                if (left)
+                {
+                    val = PInvoke.HitTestValues.HTBOTTOMLEFT;
+                }
+                else if (right)
+                {
+                    val = PInvoke.HitTestValues.HTBOTTOMRIGHT;
+                }
+                else
+                {
+                    val = PInvoke.HitTestValues.HTBOTTOM;
+                }
+            }
+            else
+            {
+                if (left)
+                {
+                    val = PInvoke.HitTestValues.HTLEFT;
+                }
+                else if (right)
+                {
+                    val = PInvoke.HitTestValues.HTRIGHT;
+                }
+            }
+
+            return val;
         }
 
         #region Event Handlers
@@ -251,6 +345,87 @@
         private void ImageButtonFormClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        /// <summary>
+        /// Handles the MouseDown event of the PanelContent control.
+        /// Specifically, this handles the resizing of the form.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PanelContent_MouseDown(object sender, MouseEventArgs e)
+        {
+            // If the resizing is disabled, don't bother to check.
+            if (!this.Resizable)
+            {
+                return;
+            }
+
+            // Only handle left button click.
+            if (e.Button != System.Windows.Forms.MouseButtons.Left)
+            {
+                return;
+            }
+
+            // Determine if the border is clicked.
+            Padding pad = this.panelContent.Padding;
+            Size panelSize = this.panelContent.Size;
+            if (pad.Left <= e.X && e.X < (panelSize.Width - pad.Right) &&
+                pad.Top <= e.Y && e.Y < (panelSize.Height - pad.Bottom))
+            {
+                return;
+            }
+
+            PInvoke.HitTestValues val = this.BorderHitTest(e, pad, panelSize);
+
+            if (val != PInvoke.HitTestValues.HTNOWHERE)
+            {
+                PInvoke.ReleaseCapture();
+                PInvoke.SendMessage(this.Handle, (int)PInvoke.WindowsMessages.WM_NCLBUTTONDOWN, (IntPtr)val, IntPtr.Zero);
+            }
+        }
+
+        /// <summary>
+        /// Handles the MouseMove event of the PanelContent control.
+        /// Used for changing the cursor dynamically.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PanelContent_MouseMove(object sender, MouseEventArgs e)
+        {
+            // If the resizing is disabled, don't bother to check.
+            if (!this.Resizable)
+            {
+                return;
+            }
+
+            PInvoke.HitTestValues val = this.BorderHitTest(e, this.panelContent.Padding, this.panelContent.Size);
+
+            switch (val)
+            {
+                case PInvoke.HitTestValues.HTTOP:
+                case PInvoke.HitTestValues.HTBOTTOM:
+                    Cursor.Current = Cursors.SizeNS;
+                    break;
+
+                case PInvoke.HitTestValues.HTTOPRIGHT:
+                case PInvoke.HitTestValues.HTBOTTOMLEFT:
+                    Cursor.Current = Cursors.SizeNESW;
+                    break;
+
+                case PInvoke.HitTestValues.HTLEFT:
+                case PInvoke.HitTestValues.HTRIGHT:
+                    Cursor.Current = Cursors.SizeWE;
+                    break;
+
+                case PInvoke.HitTestValues.HTBOTTOMRIGHT:
+                case PInvoke.HitTestValues.HTTOPLEFT:
+                    Cursor.Current = Cursors.SizeNWSE;
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         #endregion

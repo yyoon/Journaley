@@ -90,6 +90,7 @@
             WM_NCLBUTTONDOWN = 0x00A1,
             WM_VSCROLL = 0x0115,
             WM_MOUSEWHEEL = 0x020A,
+            WM_SETCURSOR = 0x0020,
         }
 
         public enum HitTestValues : int
