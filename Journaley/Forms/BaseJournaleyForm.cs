@@ -364,7 +364,7 @@
         private void ControlButton_MouseMove(object sender, MouseEventArgs e)
         {
             // If the resizing is disabled, don't bother to check.
-            if (this.Resizable && this.WindowState != FormWindowState.Maximized)
+            if (this.Resizable && this.WindowState != FormWindowState.Maximized && !this.DraggingTitleBar)
             {
                 Point p = this.PointToClient(((Control)sender).PointToScreen(e.Location));
                 PInvoke.HitTestValues val = this.BorderHitTest(p);
@@ -445,7 +445,7 @@
         private void PanelTitlebar_MouseMove(object sender, MouseEventArgs e)
         {
             // If the resizing is disabled, don't bother to check.
-            if (this.Resizable && this.WindowState != FormWindowState.Maximized)
+            if (this.Resizable && this.WindowState != FormWindowState.Maximized && !this.DraggingTitleBar)
             {
                 Point p = this.PointToClient(this.panelTitlebar.PointToScreen(e.Location));
                 PInvoke.HitTestValues val = this.BorderHitTest(p);
@@ -558,15 +558,13 @@
         private void PanelContent_MouseMove(object sender, MouseEventArgs e)
         {
             // If the resizing is disabled, don't bother to check.
-            if (!this.Resizable || this.WindowState == FormWindowState.Maximized)
+            if (this.Resizable && this.WindowState != FormWindowState.Maximized && !this.DraggingTitleBar)
             {
-                return;
+                Point p = this.PointToClient(this.panelContent.PointToScreen(e.Location));
+                PInvoke.HitTestValues val = this.BorderHitTest(p);
+
+                this.SetCursorOnBorder(val);
             }
-
-            Point p = this.PointToClient(this.panelContent.PointToScreen(e.Location));
-            PInvoke.HitTestValues val = this.BorderHitTest(p);
-
-            this.SetCursorOnBorder(val);
         }
 
         #endregion
