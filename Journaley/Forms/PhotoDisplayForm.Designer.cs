@@ -44,10 +44,10 @@
             // panelTitlebar
             // 
             this.panelTitlebar.Controls.Add(this.labelFormCaption);
+            this.panelTitlebar.Controls.SetChildIndex(this.labelFormCaption, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormClose, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormMaximize, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormMinimize, 0);
-            this.panelTitlebar.Controls.SetChildIndex(this.labelFormCaption, 0);
             // 
             // imageButtonFormMinimize
             // 
@@ -81,12 +81,13 @@
             // 
             // labelFormCaption
             // 
-            this.labelFormCaption.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelFormCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFormCaption.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labelFormCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.labelFormCaption.Location = new System.Drawing.Point(0, 0);
             this.labelFormCaption.Name = "labelFormCaption";
-            this.labelFormCaption.Size = new System.Drawing.Size(145, 20);
+            this.labelFormCaption.Size = new System.Drawing.Size(284, 20);
             this.labelFormCaption.TabIndex = 5;
             this.labelFormCaption.Text = "Image Viewer";
             this.labelFormCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -98,6 +99,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "PhotoDisplayForm";
+            this.RealClientSize = new System.Drawing.Size(282, 239);
             this.Text = "Image Viewer";
             this.panelTitlebar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();
