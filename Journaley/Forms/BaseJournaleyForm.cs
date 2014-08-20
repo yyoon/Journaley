@@ -289,6 +289,40 @@
             return val;
         }
 
+        /// <summary>
+        /// Sets the cursor depending on whether the mouse cursor is on border.
+        /// </summary>
+        /// <param name="val">The hit test result.</param>
+        private void SetCursorOnBorder(PInvoke.HitTestValues val)
+        {
+            switch (val)
+            {
+                case PInvoke.HitTestValues.HTTOP:
+                case PInvoke.HitTestValues.HTBOTTOM:
+                    Cursor.Current = Cursors.SizeNS;
+                    break;
+
+                case PInvoke.HitTestValues.HTTOPRIGHT:
+                case PInvoke.HitTestValues.HTBOTTOMLEFT:
+                    Cursor.Current = Cursors.SizeNESW;
+                    break;
+
+                case PInvoke.HitTestValues.HTLEFT:
+                case PInvoke.HitTestValues.HTRIGHT:
+                    Cursor.Current = Cursors.SizeWE;
+                    break;
+
+                case PInvoke.HitTestValues.HTBOTTOMRIGHT:
+                case PInvoke.HitTestValues.HTTOPLEFT:
+                    Cursor.Current = Cursors.SizeNWSE;
+                    break;
+
+                default:
+                    Cursor.Current = this.Cursor;
+                    break;
+            }
+        }
+
         #region Event Handlers
 
         /// <summary>
@@ -308,7 +342,7 @@
         /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
         private void ControlButton_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left && this.Resizable)
+            if (e.Button == System.Windows.Forms.MouseButtons.Left && this.Resizable && this.WindowState != FormWindowState.Maximized)
             {
                 // Determine if the border is clicked.
                 Point p = this.PointToClient(((Control)sender).PointToScreen(e.Location));
@@ -330,7 +364,7 @@
         private void ControlButton_MouseMove(object sender, MouseEventArgs e)
         {
             // If the resizing is disabled, don't bother to check.
-            if (this.Resizable)
+            if (this.Resizable && this.WindowState != FormWindowState.Maximized)
             {
                 Point p = this.PointToClient(((Control)sender).PointToScreen(e.Location));
                 PInvoke.HitTestValues val = this.BorderHitTest(p);
@@ -349,7 +383,7 @@
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 // Determine if the resizing border is clicked.
-                if (this.Resizable)
+                if (this.Resizable && this.WindowState != FormWindowState.Maximized)
                 {
                     Point p = this.PointToClient(this.panelTitlebar.PointToScreen(e.Location));
                     PInvoke.HitTestValues val = this.BorderHitTest(p);
@@ -411,7 +445,7 @@
         private void PanelTitlebar_MouseMove(object sender, MouseEventArgs e)
         {
             // If the resizing is disabled, don't bother to check.
-            if (this.Resizable)
+            if (this.Resizable && this.WindowState != FormWindowState.Maximized)
             {
                 Point p = this.PointToClient(this.panelTitlebar.PointToScreen(e.Location));
                 PInvoke.HitTestValues val = this.BorderHitTest(p);
@@ -498,6 +532,12 @@
                 return;
             }
 
+            // Disable when maximized
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                return;
+            }
+
             // Determine if the border is clicked.
             Point p = this.PointToClient(this.panelContent.PointToScreen(e.Location));
             PInvoke.HitTestValues val = this.BorderHitTest(p);
@@ -518,7 +558,7 @@
         private void PanelContent_MouseMove(object sender, MouseEventArgs e)
         {
             // If the resizing is disabled, don't bother to check.
-            if (!this.Resizable)
+            if (!this.Resizable || this.WindowState == FormWindowState.Maximized)
             {
                 return;
             }
@@ -527,40 +567,6 @@
             PInvoke.HitTestValues val = this.BorderHitTest(p);
 
             this.SetCursorOnBorder(val);
-        }
-
-        /// <summary>
-        /// Sets the cursor depending on whether the mouse cursor is on border.
-        /// </summary>
-        /// <param name="val">The hit test result.</param>
-        private void SetCursorOnBorder(PInvoke.HitTestValues val)
-        {
-            switch (val)
-            {
-                case PInvoke.HitTestValues.HTTOP:
-                case PInvoke.HitTestValues.HTBOTTOM:
-                    Cursor.Current = Cursors.SizeNS;
-                    break;
-
-                case PInvoke.HitTestValues.HTTOPRIGHT:
-                case PInvoke.HitTestValues.HTBOTTOMLEFT:
-                    Cursor.Current = Cursors.SizeNESW;
-                    break;
-
-                case PInvoke.HitTestValues.HTLEFT:
-                case PInvoke.HitTestValues.HTRIGHT:
-                    Cursor.Current = Cursors.SizeWE;
-                    break;
-
-                case PInvoke.HitTestValues.HTBOTTOMRIGHT:
-                case PInvoke.HitTestValues.HTTOPLEFT:
-                    Cursor.Current = Cursors.SizeNWSE;
-                    break;
-
-                default:
-                    Cursor.Current = this.Cursor;
-                    break;
-            }
         }
 
         #endregion
