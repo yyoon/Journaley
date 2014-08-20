@@ -308,5 +308,15 @@
                     break;
             }
         }
+
+        /// <summary>
+        /// Handles the MouseMove event of the pictureBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.panelPhoto.Focus();
+        }
     }
 }
