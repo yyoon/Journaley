@@ -5,9 +5,11 @@
     using System.ComponentModel;
     using System.Data;
     using System.Drawing;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using System.Windows.Forms;
+    using Journaley.Utilities;
 
     /// <summary>
     /// Photo Display Form to be displayed when the photo is double-clicked.
@@ -18,6 +20,16 @@
         /// Indicates how much of the screen space should be used for the photo display form
         /// </summary>
         private static readonly double ScreenPortion = 0.8;
+
+        /// <summary>
+        /// The zoom in cursor
+        /// </summary>
+        private static Cursor zoomInCursor;
+
+        /// <summary>
+        /// The zoom out cursor
+        /// </summary>
+        private static Cursor zoomOutCursor;
 
         /// <summary>
         /// The image
@@ -97,6 +109,44 @@
             {
                 this.image = value;
                 this.pictureBox.Image = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the zoom in cursor.
+        /// </summary>
+        /// <value>
+        /// The zoom in cursor.
+        /// </value>
+        private static Cursor ZoomInCursor
+        {
+            get
+            {
+                if (zoomInCursor == null)
+                {
+                    zoomInCursor = CursorReader.LoadCursorFromResource(Properties.Resources.ZoomInCursor);
+                }
+
+                return zoomInCursor;
+            }
+        }
+
+        /// <summary>
+        /// Gets the zoom out cursor.
+        /// </summary>
+        /// <value>
+        /// The zoom out cursor.
+        /// </value>
+        private static Cursor ZoomOutCursor
+        {
+            get
+            {
+                if (zoomOutCursor == null)
+                {
+                    zoomOutCursor = CursorReader.LoadCursorFromResource(Properties.Resources.ZoomOutCursor);
+                }
+
+                return zoomOutCursor;
             }
         }
 
@@ -317,6 +367,17 @@
         private void PictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             this.panelPhoto.Focus();
+
+            if (this.State == PhotoState.Resized)
+            {
+                this.pictureBox.Cursor = this.IsCurrentImageSmallerThanActual() ? ZoomInCursor : this.Cursor;
+            }
+            else if (this.State == PhotoState.Actual)
+            {
+                this.pictureBox.Cursor = ZoomOutCursor;
+            }
+
+            Cursor.Current = this.pictureBox.Cursor;
         }
     }
 }

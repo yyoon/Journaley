@@ -1043,5 +1043,25 @@ namespace Journaley.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZoomInCursor {
+            get {
+                object obj = ResourceManager.GetObject("ZoomInCursor", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] ZoomOutCursor {
+            get {
+                object obj = ResourceManager.GetObject("ZoomOutCursor", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

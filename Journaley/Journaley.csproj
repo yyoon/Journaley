@@ -139,6 +139,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\CursorReader.cs" />
     <Compile Include="Utilities\FontReader.cs" />
     <Compile Include="Utilities\HtmlToText.cs">
       <ExcludeFromStyleCop>true</ExcludeFromStyleCop>
@@ -437,6 +438,12 @@
       <Project>{898ECB12-D464-4514-AE2E-45FE430FE04E}</Project>
       <Name>MonthCalendar</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\zoom_in.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\zoom_out.cur" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets')" />
