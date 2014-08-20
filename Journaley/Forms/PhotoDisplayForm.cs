@@ -68,14 +68,14 @@
             Fit = 0,
 
             /// <summary>
-            /// The image is currently shrunk to fit on the screen.
+            /// The image is currently resized to fit in the form.
             /// </summary>
-            Shrunk = 1,
+            Resized = 1,
 
             /// <summary>
             /// The image is currently expanded.
             /// </summary>
-            Expanded = 2,
+            Actual = 2,
         }
 
         /// <summary>
@@ -117,10 +117,10 @@
 
                 switch (value)
                 {
-                    case PhotoState.Shrunk:
+                    case PhotoState.Resized:
                         break;
 
-                    case PhotoState.Expanded:
+                    case PhotoState.Actual:
                         break;
 
                     default:
@@ -198,13 +198,13 @@
         private void Shrink(Screen screen)
         {
             this.pictureBox.Dock = DockStyle.Fill;
-            this.pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            this.pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
             this.ClientSize = this.GetShrunkClientSize(screen);
 
             this.MoveToCenterIfNotFullyEnclosed(screen);
 
-            this.State = PhotoState.Shrunk;
+            this.State = PhotoState.Resized;
         }
 
         /// <summary>
@@ -248,7 +248,7 @@
 
             this.MoveToCenterIfNotFullyEnclosed(screen);
 
-            this.State = PhotoState.Expanded;
+            this.State = PhotoState.Actual;
         }
 
         /// <summary>
@@ -265,11 +265,12 @@
 
             switch (this.State)
             {
-                case PhotoState.Shrunk:
+                case PhotoState.Resized:
                     this.Expand(Screen.FromControl(this));
                     break;
 
-                case PhotoState.Expanded:
+                case PhotoState.Actual:
+                    // This is always possible.
                     this.Shrink(Screen.FromControl(this));
                     break;
             }
