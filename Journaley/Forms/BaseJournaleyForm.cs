@@ -18,7 +18,12 @@
         /// <summary>
         /// The default corner size
         /// </summary>
-        private const int DefaultCornerSize = 10;
+        private const int DefaultCornerSize = 5;
+
+        /// <summary>
+        /// The default resizing border width to be used for the title bar area
+        /// </summary>
+        private const int DefaultResizingBorderWidth = 1;
 
         /// <summary>
         /// Indicates whether the title bar is being dragged.
@@ -46,6 +51,7 @@
             PInvoke.DwmExtendFrameIntoClientArea(this.Handle, ref margins);
 
             this.CornerSize = DefaultCornerSize;
+            this.ResizingBorderWidth = DefaultResizingBorderWidth;
 
             this.InitializeComponent();
         }
@@ -70,6 +76,17 @@
         [Description("Specify the corner size which is used for determining resize direction.")]
         [DefaultValue(DefaultCornerSize)]
         public int CornerSize { get; set; }
+
+        /// <summary>
+        /// Gets or sets the width of the resizing border.
+        /// </summary>
+        /// <value>
+        /// The width of the resizing border.
+        /// </value>
+        [Category("Layout")]
+        [Description("Specify the resizing border width to be used for the title bar area.")]
+        [DefaultValue(DefaultResizingBorderWidth)]
+        public int ResizingBorderWidth { get; set; }
 
         /// <summary>
         /// Gets or sets the real client size, which is the client area size - title bar size.
@@ -118,6 +135,26 @@
         }
 
         /// <summary>
+        /// Overrides the message loop.
+        /// </summary>
+        /// <param name="m">The Windows <see cref="T:System.Windows.Forms.Message" /> to process.</param>
+        protected override void WndProc(ref Message m)
+        {
+            switch ((PInvoke.WindowsMessages)m.Msg)
+            {
+                case PInvoke.WindowsMessages.WM_SETCURSOR:
+                    PInvoke.HitTestValues val = this.BorderHitTest(this.PointToClient(Cursor.Position));
+                    this.SetCursorOnBorder(val);
+                    m.Result = (IntPtr)1;
+                    break;
+
+                default:
+                    base.WndProc(ref m);
+                    break;
+            }
+        }
+
+        /// <summary>
         /// Converts the real client size (excluding the title bar and the borders) to the client size.
         /// </summary>
         /// <param name="realClientSize">Size of the real client.</param>
@@ -159,23 +196,53 @@
         /// <summary>
         /// Hit test against the border (padding) area.
         /// </summary>
-        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
-        /// <param name="pad">The pad.</param>
-        /// <param name="panelSize">Size of the panel.</param>
-        /// <returns>The border position value in the HitTestValues enumeration. HTNOWHERE if not in any of the border area.</returns>
-        private PInvoke.HitTestValues BorderHitTest(MouseEventArgs e, Padding pad, Size panelSize)
+        /// <param name="p">The position of the mouse cursor relative to the form.</param>
+        /// <returns>
+        /// The border position value in the HitTestValues enumeration. HTNOWHERE if not in any of the border area.
+        /// </returns>
+        private PInvoke.HitTestValues BorderHitTest(Point p)
         {
             PInvoke.HitTestValues val = PInvoke.HitTestValues.HTNOWHERE;
 
-            pad.Top = Math.Max(pad.Top, this.CornerSize);
-            pad.Right = Math.Max(pad.Right, this.CornerSize);
-            pad.Bottom = Math.Max(pad.Bottom, this.CornerSize);
-            pad.Left = Math.Max(pad.Left, this.CornerSize);
+            Padding pad = this.panelContent.Padding;
+            Size size = this.ClientSize;
 
-            bool top = 0 <= e.Y && e.Y < pad.Top;
-            bool right = (panelSize.Width - pad.Right) <= e.X && e.X < panelSize.Width;
-            bool bottom = (panelSize.Height - pad.Bottom) <= e.Y && e.Y < panelSize.Height;
-            bool left = 0 <= e.X && e.X < pad.Left;
+            // Outside the form.
+            if (p.X < 0 || p.X >= size.Width || p.Y < 0 || p.Y >= size.Height)
+            {
+                return val;
+            }
+
+            // Within the titlebar area
+            if (0 <= p.Y && p.Y < this.panelTitlebar.Height)
+            {
+                if (pad.Left <= p.X && p.X < (size.Width - this.ResizingBorderWidth) && this.ResizingBorderWidth <= p.Y)
+                {
+                    return val;
+                }
+
+                pad.Top = Math.Max(this.ResizingBorderWidth, this.CornerSize);
+                pad.Right = Math.Max(this.ResizingBorderWidth, this.CornerSize);
+                pad.Bottom = Math.Max(pad.Bottom, this.CornerSize);
+                pad.Left = Math.Max(pad.Left, this.CornerSize);
+            }
+            else
+            {
+                if (pad.Left <= p.X && p.X < (size.Width - pad.Right) && p.Y < (size.Height - pad.Bottom))
+                {
+                    return val;
+                }
+
+                pad.Top = Math.Max(this.ResizingBorderWidth, this.CornerSize);
+                pad.Right = Math.Max(pad.Right, this.CornerSize);
+                pad.Bottom = Math.Max(pad.Bottom, this.CornerSize);
+                pad.Left = Math.Max(pad.Left, this.CornerSize);
+            }
+
+            bool top = 0 <= p.Y && p.Y < pad.Top;
+            bool right = (size.Width - pad.Right) <= p.X && p.X < size.Width;
+            bool bottom = (size.Height - pad.Bottom) <= p.Y && p.Y < size.Height;
+            bool left = 0 <= p.X && p.X < pad.Left;
 
             if (top)
             {
@@ -235,6 +302,44 @@
         }
 
         /// <summary>
+        /// Handles the MouseDown event of the control buttons on the right hand side of the title bar.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void ControlButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Left && this.Resizable)
+            {
+                // Determine if the border is clicked.
+                Point p = this.PointToClient(((Control)sender).PointToScreen(e.Location));
+                PInvoke.HitTestValues val = this.BorderHitTest(p);
+
+                if (val != PInvoke.HitTestValues.HTNOWHERE)
+                {
+                    PInvoke.ReleaseCapture();
+                    PInvoke.SendMessage(this.Handle, (int)PInvoke.WindowsMessages.WM_NCLBUTTONDOWN, (IntPtr)val, IntPtr.Zero);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Handles the MouseMove event of the control buttons on the right hand side of the title bar.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void ControlButton_MouseMove(object sender, MouseEventArgs e)
+        {
+            // If the resizing is disabled, don't bother to check.
+            if (this.Resizable)
+            {
+                Point p = this.PointToClient(((Control)sender).PointToScreen(e.Location));
+                PInvoke.HitTestValues val = this.BorderHitTest(p);
+
+                this.SetCursorOnBorder(val);
+            }
+        }
+
+        /// <summary>
         /// Handles the MouseDown event of the panel title bar control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -243,6 +348,20 @@
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
+                // Determine if the resizing border is clicked.
+                if (this.Resizable)
+                {
+                    Point p = this.PointToClient(this.panelTitlebar.PointToScreen(e.Location));
+                    PInvoke.HitTestValues val = this.BorderHitTest(p);
+
+                    if (val != PInvoke.HitTestValues.HTNOWHERE)
+                    {
+                        PInvoke.ReleaseCapture();
+                        PInvoke.SendMessage(this.Handle, (int)PInvoke.WindowsMessages.WM_NCLBUTTONDOWN, (IntPtr)val, IntPtr.Zero);
+                        return;
+                    }
+                }
+
                 this.DraggingTitleBar = true;
 
                 if (this.WindowState == FormWindowState.Maximized)
@@ -291,6 +410,16 @@
         /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
         private void PanelTitlebar_MouseMove(object sender, MouseEventArgs e)
         {
+            // If the resizing is disabled, don't bother to check.
+            if (this.Resizable)
+            {
+                Point p = this.PointToClient(this.panelTitlebar.PointToScreen(e.Location));
+                PInvoke.HitTestValues val = this.BorderHitTest(p);
+
+                this.SetCursorOnBorder(val);
+            }
+
+            // Title Bar Dragging.
             if (this.DraggingTitleBar)
             {
                 // Make it normal state before moving.
@@ -370,15 +499,8 @@
             }
 
             // Determine if the border is clicked.
-            Padding pad = this.panelContent.Padding;
-            Size panelSize = this.panelContent.Size;
-            if (pad.Left <= e.X && e.X < (panelSize.Width - pad.Right) &&
-                pad.Top <= e.Y && e.Y < (panelSize.Height - pad.Bottom))
-            {
-                return;
-            }
-
-            PInvoke.HitTestValues val = this.BorderHitTest(e, pad, panelSize);
+            Point p = this.PointToClient(this.panelContent.PointToScreen(e.Location));
+            PInvoke.HitTestValues val = this.BorderHitTest(p);
 
             if (val != PInvoke.HitTestValues.HTNOWHERE)
             {
@@ -401,8 +523,18 @@
                 return;
             }
 
-            PInvoke.HitTestValues val = this.BorderHitTest(e, this.panelContent.Padding, this.panelContent.Size);
+            Point p = this.PointToClient(this.panelContent.PointToScreen(e.Location));
+            PInvoke.HitTestValues val = this.BorderHitTest(p);
 
+            this.SetCursorOnBorder(val);
+        }
+
+        /// <summary>
+        /// Sets the cursor depending on whether the mouse cursor is on border.
+        /// </summary>
+        /// <param name="val">The hit test result.</param>
+        private void SetCursorOnBorder(PInvoke.HitTestValues val)
+        {
             switch (val)
             {
                 case PInvoke.HitTestValues.HTTOP:

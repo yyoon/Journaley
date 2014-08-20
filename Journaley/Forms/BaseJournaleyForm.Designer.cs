@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panelContent = new Journaley.Controls.PaddingBorderPanel();
-            this.panelTitlebar = new Journaley.Controls.EntryListAreaPanel();
+            this.panelTitlebar = new Journaley.Controls.PaddingBorderPanel();
             this.imageButtonFormMinimize = new Journaley.Controls.ImageButton();
             this.imageButtonFormMaximize = new Journaley.Controls.ImageButton();
             this.imageButtonFormClose = new Journaley.Controls.ImageButton();
@@ -87,6 +87,8 @@
             this.imageButtonFormMinimize.TabIndex = 3;
             this.imageButtonFormMinimize.TabStop = false;
             this.imageButtonFormMinimize.Click += new System.EventHandler(this.ImageButtonFormMinimize_Click);
+            this.imageButtonFormMinimize.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseDown);
+            this.imageButtonFormMinimize.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseMove);
             // 
             // imageButtonFormMaximize
             // 
@@ -107,6 +109,8 @@
             this.imageButtonFormMaximize.TabIndex = 2;
             this.imageButtonFormMaximize.TabStop = false;
             this.imageButtonFormMaximize.Click += new System.EventHandler(this.ImageButtonFormMaximize_Click);
+            this.imageButtonFormMaximize.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseDown);
+            this.imageButtonFormMaximize.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseMove);
             // 
             // imageButtonFormClose
             // 
@@ -127,6 +131,8 @@
             this.imageButtonFormClose.TabIndex = 1;
             this.imageButtonFormClose.TabStop = false;
             this.imageButtonFormClose.Click += new System.EventHandler(this.ImageButtonFormClose_Click);
+            this.imageButtonFormClose.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseDown);
+            this.imageButtonFormClose.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseMove);
             // 
             // BaseJournaleyForm
             // 
@@ -148,7 +154,7 @@
 
         #endregion
 
-        protected Controls.EntryListAreaPanel panelTitlebar;
+        protected Controls.PaddingBorderPanel panelTitlebar;
         protected Controls.ImageButton imageButtonFormClose;
         protected Controls.ImageButton imageButtonFormMinimize;
         protected Controls.ImageButton imageButtonFormMaximize;
