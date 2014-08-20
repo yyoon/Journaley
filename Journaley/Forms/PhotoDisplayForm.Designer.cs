@@ -71,7 +71,9 @@
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             this.pictureBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseClick);
+            this.pictureBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseDown);
             this.pictureBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseMove);
+            this.pictureBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBox_MouseUp);
             // 
             // labelFormCaption
             // 
@@ -105,6 +107,7 @@
             this.Name = "PhotoDisplayForm";
             this.RealClientSize = new System.Drawing.Size(282, 239);
             this.Text = "Image Viewer";
+            this.Deactivate += new System.EventHandler(this.PhotoDisplayForm_Deactivate);
             this.panelTitlebar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).EndInit();

@@ -182,6 +182,30 @@
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether [panning image].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [panning image]; otherwise, <c>false</c>.
+        /// </value>
+        private bool PanningImage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the panning start scroll position.
+        /// </summary>
+        /// <value>
+        /// The panning start scroll position.
+        /// </value>
+        private Point PanningStartScrollPosition { get; set; }
+
+        /// <summary>
+        /// Gets or sets the panning start mouse position.
+        /// </summary>
+        /// <value>
+        /// The panning start mouse position.
+        /// </value>
+        private Point PanningStartMousePosition { get; set; }
+
+        /// <summary>
         /// Initializes the size.
         /// </summary>
         /// <param name="screen">The screen.</param>
@@ -330,32 +354,57 @@
         }
 
         /// <summary>
+        /// Handles the Deactivate event of the PhotoDisplayForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void PhotoDisplayForm_Deactivate(object sender, EventArgs e)
+        {
+            this.PanningImage = false;
+        }
+
+        /// <summary>
         /// Handles the MouseClick event of the pictureBox control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
         private void PictureBox_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button != System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                return;
+                switch (this.State)
+                {
+                    case PhotoState.Resized:
+                        // This is only possible when either dimension of the current image is smaller than the actual size.
+                        if (this.IsCurrentImageSmallerThanActual())
+                        {
+                            this.Expand(Screen.FromControl(this));
+                        }
+
+                        break;
+
+                    case PhotoState.Actual:
+                        // This is always possible.
+                        this.Shrink(Screen.FromControl(this));
+                        break;
+                }
             }
+        }
 
-            switch (this.State)
+        /// <summary>
+        /// Handles the MouseDown event of the pictureBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PictureBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Middle)
             {
-                case PhotoState.Resized:
-                    // This is only possible when either dimension of the current image is smaller than the actual size.
-                    if (this.IsCurrentImageSmallerThanActual())
-                    {
-                        this.Expand(Screen.FromControl(this));
-                    }
-
-                    break;
-
-                case PhotoState.Actual:
-                    // This is always possible.
-                    this.Shrink(Screen.FromControl(this));
-                    break;
+                this.PanningImage = true;
+                this.PanningStartMousePosition = this.pictureBox.PointToScreen(e.Location);
+                this.PanningStartScrollPosition = new Point(
+                    -this.panelPhoto.AutoScrollPosition.X,
+                    -this.panelPhoto.AutoScrollPosition.Y);
             }
         }
 
@@ -368,6 +417,7 @@
         {
             this.panelPhoto.Focus();
 
+            // Change the cursor.
             if (this.State == PhotoState.Resized)
             {
                 this.pictureBox.Cursor = this.IsCurrentImageSmallerThanActual() ? ZoomInCursor : this.Cursor;
@@ -378,6 +428,41 @@
             }
 
             Cursor.Current = this.pictureBox.Cursor;
+
+            // Panning
+            if (this.PanningImage)
+            {
+                Point screen = this.pictureBox.PointToScreen(e.Location);
+
+                Point newScrollPosition = new Point(
+                    this.PanningStartScrollPosition.X + this.PanningStartMousePosition.X - screen.X,
+                    this.PanningStartScrollPosition.Y + this.PanningStartMousePosition.Y - screen.Y);
+
+                if (newScrollPosition.X < 0)
+                {
+                    newScrollPosition.X = 0;
+                }
+
+                if (newScrollPosition.Y < 0)
+                {
+                    newScrollPosition.Y = 0;
+                }
+
+                if (this.panelPhoto.AutoScrollPosition != newScrollPosition)
+                {
+                    this.panelPhoto.AutoScrollPosition = newScrollPosition;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Handles the MouseUp event of the pictureBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            this.PanningImage = false;
         }
     }
 }
