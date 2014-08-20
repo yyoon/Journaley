@@ -56,6 +56,7 @@
             // panelContent
             // 
             this.panelContent.Controls.Add(this.panelPhoto);
+            this.panelContent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
             this.panelContent.Padding = new System.Windows.Forms.Padding(1);
             // 
             // pictureBox
