@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PhotoDisplayForm));
-            this.panelPhoto = new System.Windows.Forms.Panel();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.labelFormCaption = new Journaley.Controls.TitleLabel();
+            this.panelPhoto = new System.Windows.Forms.Panel();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
             this.panelContent.SuspendLayout();
-            this.panelPhoto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.panelPhoto.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTitlebar
@@ -57,16 +57,6 @@
             // 
             this.panelContent.Controls.Add(this.panelPhoto);
             this.panelContent.Padding = new System.Windows.Forms.Padding(1);
-            // 
-            // panelPhoto
-            // 
-            this.panelPhoto.AutoScroll = true;
-            this.panelPhoto.Controls.Add(this.pictureBox);
-            this.panelPhoto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelPhoto.Location = new System.Drawing.Point(1, 1);
-            this.panelPhoto.Name = "panelPhoto";
-            this.panelPhoto.Size = new System.Drawing.Size(282, 239);
-            this.panelPhoto.TabIndex = 1;
             // 
             // pictureBox
             // 
@@ -94,6 +84,16 @@
             this.labelFormCaption.Text = "Image Viewer";
             this.labelFormCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panelPhoto
+            // 
+            this.panelPhoto.AutoScroll = true;
+            this.panelPhoto.Controls.Add(this.pictureBox);
+            this.panelPhoto.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelPhoto.Location = new System.Drawing.Point(1, 1);
+            this.panelPhoto.Name = "panelPhoto";
+            this.panelPhoto.Size = new System.Drawing.Size(282, 239);
+            this.panelPhoto.TabIndex = 1;
+            // 
             // PhotoDisplayForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -108,8 +108,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).EndInit();
             this.panelContent.ResumeLayout(false);
-            this.panelPhoto.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.panelPhoto.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -49,6 +49,8 @@
         {
             this.InitializeComponent();
 
+            this.AdjustBorderSize();
+
             this.Image = image;
             this.InitializeSize(screen);
 
@@ -135,13 +137,13 @@
         /// <param name="screen">The screen.</param>
         public void InitializeSize(Screen screen)
         {
-            this.RealClientSize = new Size(this.Image.Width, this.Image.Height);
-
+            Size estimatedSize = this.RealClientSizeToClientSize(new Size(this.Image.Width, this.Image.Height));
             Size maxSize = this.CalculateMaxSize(screen);
 
-            if (this.Width <= maxSize.Width && this.Height <= maxSize.Height)
+            if (estimatedSize.Width <= maxSize.Width && estimatedSize.Height <= maxSize.Height)
             {
                 this.State = PhotoState.Fit;
+                this.ClientSize = estimatedSize;
             }
             else
             {
@@ -249,6 +251,23 @@
             this.MoveToCenterIfNotFullyEnclosed(screen);
 
             this.State = PhotoState.Actual;
+        }
+
+        /// <summary>
+        /// Adjust the border size depending on the windows version.
+        /// On Windows 8+, use the border size of 2 pixels.
+        /// Otherwise, use 1 pixel.
+        /// </summary>
+        private void AdjustBorderSize()
+        {
+            if (Environment.OSVersion.Version >= new Version(6, 2))
+            {
+                this.panelContent.Padding = new Padding(2, 0, 2, 2);
+            }
+            else
+            {
+                this.panelContent.Padding = new Padding(1, 0, 1, 1);
+            }
         }
 
         /// <summary>
