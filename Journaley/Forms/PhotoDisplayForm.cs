@@ -271,6 +271,15 @@
         }
 
         /// <summary>
+        /// Determines whether if the currently displayed image is smaller than its actual size.
+        /// </summary>
+        /// <returns>true if the currently displayed image is smaller than its actual size. false otherwise.</returns>
+        private bool IsCurrentImageSmallerThanActual()
+        {
+            return this.pictureBox.Width < this.Image.Width || this.pictureBox.Height < this.Image.Height;
+        }
+
+        /// <summary>
         /// Handles the MouseClick event of the pictureBox control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -285,7 +294,12 @@
             switch (this.State)
             {
                 case PhotoState.Resized:
-                    this.Expand(Screen.FromControl(this));
+                    // This is only possible when either dimension of the current image is smaller than the actual size.
+                    if (this.IsCurrentImageSmallerThanActual())
+                    {
+                        this.Expand(Screen.FromControl(this));
+                    }
+
                     break;
 
                 case PhotoState.Actual:
