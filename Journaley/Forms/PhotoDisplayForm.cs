@@ -5,9 +5,11 @@
     using System.ComponentModel;
     using System.Data;
     using System.Drawing;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using System.Windows.Forms;
+    using Journaley.Utilities;
 
     /// <summary>
     /// Photo Display Form to be displayed when the photo is double-clicked.
@@ -18,6 +20,16 @@
         /// Indicates how much of the screen space should be used for the photo display form
         /// </summary>
         private static readonly double ScreenPortion = 0.8;
+
+        /// <summary>
+        /// The zoom in cursor
+        /// </summary>
+        private static Cursor zoomInCursor;
+
+        /// <summary>
+        /// The zoom out cursor
+        /// </summary>
+        private static Cursor zoomOutCursor;
 
         /// <summary>
         /// The image
@@ -37,6 +49,7 @@
             this.InitializeComponent();
 
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.Resizable = true;
         }
 
         /// <summary>
@@ -48,10 +61,14 @@
         {
             this.InitializeComponent();
 
+            this.AdjustBorderSize();
+
             this.Image = image;
             this.InitializeSize(screen);
 
             this.MoveToCenter(screen);
+
+            this.Resizable = true;
         }
 
         /// <summary>
@@ -65,14 +82,14 @@
             Fit = 0,
 
             /// <summary>
-            /// The image is currently shrunk to fit on the screen.
+            /// The image is currently resized to fit in the form.
             /// </summary>
-            Shrunk = 1,
+            Resized = 1,
 
             /// <summary>
             /// The image is currently expanded.
             /// </summary>
-            Expanded = 2,
+            Actual = 2,
         }
 
         /// <summary>
@@ -96,6 +113,44 @@
         }
 
         /// <summary>
+        /// Gets the zoom in cursor.
+        /// </summary>
+        /// <value>
+        /// The zoom in cursor.
+        /// </value>
+        private static Cursor ZoomInCursor
+        {
+            get
+            {
+                if (zoomInCursor == null)
+                {
+                    zoomInCursor = CursorReader.LoadCursorFromResource(Properties.Resources.ZoomInCursor);
+                }
+
+                return zoomInCursor;
+            }
+        }
+
+        /// <summary>
+        /// Gets the zoom out cursor.
+        /// </summary>
+        /// <value>
+        /// The zoom out cursor.
+        /// </value>
+        private static Cursor ZoomOutCursor
+        {
+            get
+            {
+                if (zoomOutCursor == null)
+                {
+                    zoomOutCursor = CursorReader.LoadCursorFromResource(Properties.Resources.ZoomOutCursor);
+                }
+
+                return zoomOutCursor;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the photo state.
         /// </summary>
         /// <value>
@@ -114,10 +169,10 @@
 
                 switch (value)
                 {
-                    case PhotoState.Shrunk:
+                    case PhotoState.Resized:
                         break;
 
-                    case PhotoState.Expanded:
+                    case PhotoState.Actual:
                         break;
 
                     default:
@@ -127,53 +182,50 @@
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether [panning image].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [panning image]; otherwise, <c>false</c>.
+        /// </value>
+        private bool PanningImage { get; set; }
+
+        /// <summary>
+        /// Gets or sets the panning start scroll position.
+        /// </summary>
+        /// <value>
+        /// The panning start scroll position.
+        /// </value>
+        private Point PanningStartScrollPosition { get; set; }
+
+        /// <summary>
+        /// Gets or sets the panning start mouse position.
+        /// </summary>
+        /// <value>
+        /// The panning start mouse position.
+        /// </value>
+        private Point PanningStartMousePosition { get; set; }
+
+        /// <summary>
         /// Initializes the size.
         /// </summary>
         /// <param name="screen">The screen.</param>
         public void InitializeSize(Screen screen)
         {
-            this.RealClientSize = new Size(this.Image.Width, this.Image.Height);
-
+            Size estimatedSize = this.RealClientSizeToClientSize(new Size(this.Image.Width, this.Image.Height));
             Size maxSize = this.CalculateMaxSize(screen);
 
-            if (this.Width <= maxSize.Width && this.Height <= maxSize.Height)
+            if (estimatedSize.Width <= maxSize.Width && estimatedSize.Height <= maxSize.Height)
             {
                 this.State = PhotoState.Fit;
+                this.ClientSize = estimatedSize;
             }
             else
             {
                 this.Shrink(screen);
             }
-        }
 
-        /// <summary>
-        /// Converts the real client size (without the title bar and the border) to the client size.
-        /// </summary>
-        /// <param name="realClientSize">Size of the real client.</param>
-        /// <returns>
-        /// Size of the client area, including the custom title bar.
-        /// </returns>
-        protected override Size RealClientSizeToClientSize(Size realClientSize)
-        {
-            realClientSize = base.RealClientSizeToClientSize(realClientSize);
-            realClientSize.Width += 2;
-            realClientSize.Height += 2;
-            return realClientSize;
-        }
-
-        /// <summary>
-        /// Converts the client size to the real client size (without the title bar and the border).
-        /// </summary>
-        /// <param name="clientSize">Size of the client area, including the custom title bar.</param>
-        /// <returns>
-        /// Size of the real client.
-        /// </returns>
-        protected override Size ClientSizeToRealClientSize(Size clientSize)
-        {
-            clientSize = base.ClientSizeToRealClientSize(clientSize);
-            clientSize.Width -= 2;
-            clientSize.Height -= 2;
-            return clientSize;
+            // Set the minimum window size to the current size.
+            this.MinimumSize = this.Size;
         }
 
         /// <summary>
@@ -222,8 +274,22 @@
         private void Shrink(Screen screen)
         {
             this.pictureBox.Dock = DockStyle.Fill;
-            this.pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            this.pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
+            this.ClientSize = this.GetShrunkClientSize(screen);
+
+            this.MoveToCenterIfNotFullyEnclosed(screen);
+
+            this.State = PhotoState.Resized;
+        }
+
+        /// <summary>
+        /// Gets the size of the shrunk client.
+        /// </summary>
+        /// <param name="screen">The screen.</param>
+        /// <returns>The resulting client size of the shrunk mode.</returns>
+        private Size GetShrunkClientSize(Screen screen)
+        {
             Size estimatedSize = this.RealClientSizeToClientSize(new Size(this.Image.Width, this.Image.Height));
             Size maxSize = this.CalculateMaxSize(screen);
 
@@ -231,18 +297,14 @@
             {
                 // Wider
                 double ratio = (double)this.Image.Width / (double)(maxSize.Width - 2);
-                this.RealClientSize = new Size(maxSize.Width - 2, (int)(this.Image.Height / ratio));
+                return this.RealClientSizeToClientSize(new Size(maxSize.Width - 2, (int)(this.Image.Height / ratio)));
             }
             else
             {
                 // Taller
                 double ratio = (double)this.Image.Height / (double)(maxSize.Height - this.panelTitlebar.Height - 2);
-                this.RealClientSize = new Size((int)(this.Image.Width / ratio), maxSize.Height - this.panelTitlebar.Height - 2);
+                return this.RealClientSizeToClientSize(new Size((int)(this.Image.Width / ratio), maxSize.Height - this.panelTitlebar.Height - 2));
             }
-
-            this.MoveToCenterIfNotFullyEnclosed(screen);
-
-            this.State = PhotoState.Shrunk;
         }
 
         /// <summary>
@@ -262,7 +324,43 @@
 
             this.MoveToCenterIfNotFullyEnclosed(screen);
 
-            this.State = PhotoState.Expanded;
+            this.State = PhotoState.Actual;
+        }
+
+        /// <summary>
+        /// Adjust the border size depending on the windows version.
+        /// On Windows 8+, use the border size of 2 pixels.
+        /// Otherwise, use 1 pixel.
+        /// </summary>
+        private void AdjustBorderSize()
+        {
+            if (Environment.OSVersion.Version >= new Version(6, 2))
+            {
+                this.panelContent.Padding = new Padding(2, 0, 2, 2);
+            }
+            else
+            {
+                this.panelContent.Padding = new Padding(1, 0, 1, 1);
+            }
+        }
+
+        /// <summary>
+        /// Determines whether if the currently displayed image is smaller than its actual size.
+        /// </summary>
+        /// <returns>true if the currently displayed image is smaller than its actual size. false otherwise.</returns>
+        private bool IsCurrentImageSmallerThanActual()
+        {
+            return this.pictureBox.Width < this.Image.Width || this.pictureBox.Height < this.Image.Height;
+        }
+
+        /// <summary>
+        /// Handles the Deactivate event of the PhotoDisplayForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void PhotoDisplayForm_Deactivate(object sender, EventArgs e)
+        {
+            this.PanningImage = false;
         }
 
         /// <summary>
@@ -272,21 +370,99 @@
         /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
         private void PictureBox_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button != System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
-                return;
+                switch (this.State)
+                {
+                    case PhotoState.Resized:
+                        // This is only possible when either dimension of the current image is smaller than the actual size.
+                        if (this.IsCurrentImageSmallerThanActual())
+                        {
+                            this.Expand(Screen.FromControl(this));
+                        }
+
+                        break;
+
+                    case PhotoState.Actual:
+                        // This is always possible.
+                        this.Shrink(Screen.FromControl(this));
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Handles the MouseDown event of the pictureBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PictureBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Middle)
+            {
+                this.PanningImage = true;
+                this.PanningStartMousePosition = this.pictureBox.PointToScreen(e.Location);
+                this.PanningStartScrollPosition = new Point(
+                    -this.panelPhoto.AutoScrollPosition.X,
+                    -this.panelPhoto.AutoScrollPosition.Y);
+            }
+        }
+
+        /// <summary>
+        /// Handles the MouseMove event of the pictureBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PictureBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            this.panelPhoto.Focus();
+
+            // Change the cursor.
+            if (this.State == PhotoState.Resized)
+            {
+                this.pictureBox.Cursor = this.IsCurrentImageSmallerThanActual() ? ZoomInCursor : this.Cursor;
+            }
+            else if (this.State == PhotoState.Actual)
+            {
+                this.pictureBox.Cursor = ZoomOutCursor;
             }
 
-            switch (this.State)
-            {
-                case PhotoState.Shrunk:
-                    this.Expand(Screen.FromControl(this));
-                    break;
+            Cursor.Current = this.pictureBox.Cursor;
 
-                case PhotoState.Expanded:
-                    this.Shrink(Screen.FromControl(this));
-                    break;
+            // Panning
+            if (this.PanningImage)
+            {
+                Point screen = this.pictureBox.PointToScreen(e.Location);
+
+                Point newScrollPosition = new Point(
+                    this.PanningStartScrollPosition.X + this.PanningStartMousePosition.X - screen.X,
+                    this.PanningStartScrollPosition.Y + this.PanningStartMousePosition.Y - screen.Y);
+
+                if (newScrollPosition.X < 0)
+                {
+                    newScrollPosition.X = 0;
+                }
+
+                if (newScrollPosition.Y < 0)
+                {
+                    newScrollPosition.Y = 0;
+                }
+
+                if (this.panelPhoto.AutoScrollPosition != newScrollPosition)
+                {
+                    this.panelPhoto.AutoScrollPosition = newScrollPosition;
+                }
             }
+        }
+
+        /// <summary>
+        /// Handles the MouseUp event of the pictureBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PictureBox_MouseUp(object sender, MouseEventArgs e)
+        {
+            this.PanningImage = false;
         }
     }
 }

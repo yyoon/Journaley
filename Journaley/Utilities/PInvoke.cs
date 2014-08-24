@@ -36,6 +36,9 @@
         [DllImport("user32.dll")]
         public static extern int RegisterWindowMessage(string msgName);
 
+        [DllImport("User32.dll", CharSet = CharSet.Ansi, BestFitMapping = false, ThrowOnUnmappableChar = true)]
+        public static extern IntPtr LoadCursorFromFile(String str);
+
         /// <summary>
         ///     Specifies a raster-operation code. These codes define how the color data for the
         ///     source rectangle is to be combined with the color data for the destination
@@ -90,6 +93,7 @@
             WM_NCLBUTTONDOWN = 0x00A1,
             WM_VSCROLL = 0x0115,
             WM_MOUSEWHEEL = 0x020A,
+            WM_SETCURSOR = 0x0020,
         }
 
         public enum HitTestValues : int
