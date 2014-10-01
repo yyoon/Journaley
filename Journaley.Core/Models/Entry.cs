@@ -768,7 +768,12 @@
                 {
                     string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
                     string value = tagNode.NextSibling.InnerText;
-                    newEntry.Location.GetType().GetProperty(propertyName).SetValue(newEntry.Location, value, null);
+
+                    PropertyInfo pinfo = newEntry.Location.GetType().GetProperty(propertyName);
+                    if (pinfo != null)
+                    {
+                        pinfo.SetValue(newEntry.Location, value, null);
+                    }
                 }
             }
         }
@@ -787,7 +792,12 @@
                 {
                     string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
                     string value = tagNode.NextSibling.InnerText;
-                    newEntry.Weather.GetType().GetProperty(propertyName).SetValue(newEntry.Weather, value, null);
+
+                    PropertyInfo pinfo = newEntry.Weather.GetType().GetProperty(propertyName);
+                    if (pinfo != null)
+                    {
+                        pinfo.SetValue(newEntry.Weather, value, null);
+                    }
                 }
             }
         }
@@ -806,7 +816,12 @@
                 {
                     string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
                     string value = tagNode.NextSibling.InnerText;
-                    newEntry.Creator.GetType().GetProperty(propertyName).SetValue(newEntry.Creator, value, null);
+
+                    PropertyInfo pinfo = newEntry.Creator.GetType().GetProperty(propertyName);
+                    if (pinfo != null)
+                    {
+                        pinfo.SetValue(newEntry.Creator, value, null);
+                    }
                 }
             }
         }
