@@ -108,6 +108,7 @@
             this.Name = "PhotoDisplayForm";
             this.RealClientSize = new System.Drawing.Size(282, 239);
             this.Text = "Image Viewer";
+            this.Activated += new System.EventHandler(this.PhotoDisplayForm_Activated);
             this.Deactivate += new System.EventHandler(this.PhotoDisplayForm_Deactivate);
             this.panelTitlebar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();

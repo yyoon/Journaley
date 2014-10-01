@@ -478,7 +478,11 @@
         /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
         private void PictureBox_MouseMove(object sender, MouseEventArgs e)
         {
-            this.panelPhoto.Focus();
+            // Only give focus to the photo panel when the photo panel is active.
+            if (Form.ActiveForm == this)
+            {
+                this.panelPhoto.Focus();
+            }
 
             // Change the cursor.
             this.SetCursorOverPicture();
@@ -528,6 +532,17 @@
         private void PanelTitlebar_MouseMove(object sender, MouseEventArgs e)
         {
             Cursor.Current = this.Cursor;
+        }
+
+        /// <summary>
+        /// Handles the Activated event of the PhotoDisplayForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void PhotoDisplayForm_Activated(object sender, EventArgs e)
+        {
+            // Give focus to the photo panel to enable scrolling.
+            this.panelPhoto.Focus();
         }
     }
 }
