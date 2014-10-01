@@ -44,6 +44,7 @@
             // panelTitlebar
             // 
             this.panelTitlebar.Controls.Add(this.labelFormCaption);
+            this.panelTitlebar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseMove);
             this.panelTitlebar.Controls.SetChildIndex(this.labelFormCaption, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormClose, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormMaximize, 0);

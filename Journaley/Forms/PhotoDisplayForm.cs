@@ -42,6 +42,11 @@
         private PhotoState state;
 
         /// <summary>
+        /// Indicates whether the user is panning the image.
+        /// </summary>
+        private bool panningImage;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="PhotoDisplayForm"/> class.
         /// </summary>
         public PhotoDisplayForm()
@@ -187,7 +192,19 @@
         /// <value>
         ///   <c>true</c> if [panning image]; otherwise, <c>false</c>.
         /// </value>
-        private bool PanningImage { get; set; }
+        private bool PanningImage
+        {
+            get
+            {
+                return this.panningImage;
+            }
+
+            set
+            {
+                this.panningImage = value;
+                this.SetCursorOverPicture();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the panning start scroll position.
@@ -276,9 +293,24 @@
             this.pictureBox.Dock = DockStyle.Fill;
             this.pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
+            // TODO This makes the window flicker a bit.
+            // Find a better way to do this when the window is maximized.
+            FormWindowState prevWindowState = this.WindowState;
+            this.WindowState = FormWindowState.Normal;
+
+            Size prevSize = this.Size;
+
             this.ClientSize = this.GetShrunkClientSize(screen);
 
+            // Try to center the resulting dialog w.r.t. the previous expanded dialog.
+            this.Location = new Point(
+                this.Location.X + ((prevSize.Width - this.Width) / 2),
+                this.Location.Y + ((prevSize.Height - this.Height) / 2));
+
+            // If it's out of screen, center w.r.t. the screen working space.
             this.MoveToCenterIfNotFullyEnclosed(screen);
+
+            this.WindowState = prevWindowState;
 
             this.State = PhotoState.Resized;
         }
@@ -316,6 +348,11 @@
             this.pictureBox.Dock = DockStyle.None;
             this.pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
 
+            // TODO This makes the window flicker a bit.
+            // Find a better way to do this when the window is maximized.
+            FormWindowState prevWindowState = this.WindowState;
+            this.WindowState = FormWindowState.Normal;
+
             Size estimatedSize = this.RealClientSizeToClientSize(new Size(this.Image.Width, this.Image.Height));
             Size maxSize = this.CalculateMaxSize(screen);
 
@@ -323,6 +360,8 @@
             this.Height = Math.Min(estimatedSize.Height, maxSize.Height);
 
             this.MoveToCenterIfNotFullyEnclosed(screen);
+
+            this.WindowState = prevWindowState;
 
             this.State = PhotoState.Actual;
         }
@@ -351,6 +390,30 @@
         private bool IsCurrentImageSmallerThanActual()
         {
             return this.pictureBox.Width < this.Image.Width || this.pictureBox.Height < this.Image.Height;
+        }
+
+        /// <summary>
+        /// Sets an appropriate mouse cursor when the mouse is over picture.
+        /// </summary>
+        private void SetCursorOverPicture()
+        {
+            if (this.PanningImage)
+            {
+                this.pictureBox.Cursor = Cursors.SizeAll;
+            }
+            else
+            {
+                if (this.State == PhotoState.Resized)
+                {
+                    this.pictureBox.Cursor = this.IsCurrentImageSmallerThanActual() ? ZoomInCursor : this.Cursor;
+                }
+                else if (this.State == PhotoState.Actual)
+                {
+                    this.pictureBox.Cursor = ZoomOutCursor;
+                }
+            }
+
+            Cursor.Current = this.pictureBox.Cursor;
         }
 
         /// <summary>
@@ -398,7 +461,7 @@
         /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Middle)
+            if (e.Button == System.Windows.Forms.MouseButtons.Middle && this.State == PhotoState.Actual)
             {
                 this.PanningImage = true;
                 this.PanningStartMousePosition = this.pictureBox.PointToScreen(e.Location);
@@ -418,16 +481,7 @@
             this.panelPhoto.Focus();
 
             // Change the cursor.
-            if (this.State == PhotoState.Resized)
-            {
-                this.pictureBox.Cursor = this.IsCurrentImageSmallerThanActual() ? ZoomInCursor : this.Cursor;
-            }
-            else if (this.State == PhotoState.Actual)
-            {
-                this.pictureBox.Cursor = ZoomOutCursor;
-            }
-
-            Cursor.Current = this.pictureBox.Cursor;
+            this.SetCursorOverPicture();
 
             // Panning
             if (this.PanningImage)
@@ -463,6 +517,17 @@
         private void PictureBox_MouseUp(object sender, MouseEventArgs e)
         {
             this.PanningImage = false;
+        }
+
+        /// <summary>
+        /// Handles the MouseMove event of the panel title bar control.
+        /// Sets the cursor back to default, in case it displays a wrong cursor (e.g., zoom cursor)
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs" /> instance containing the event data.</param>
+        private void PanelTitlebar_MouseMove(object sender, MouseEventArgs e)
+        {
+            Cursor.Current = this.Cursor;
         }
     }
 }
