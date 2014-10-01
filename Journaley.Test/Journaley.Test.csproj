@@ -56,8 +56,8 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntryListTest.cs" />
     <Compile Include="EntryTest.cs" />
-    <Compile Include="MainFormTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsTest.cs" />
   </ItemGroup>
@@ -73,6 +73,9 @@
       <Project>{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}</Project>
       <Name>Journaley</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Shadow Include="Test References\Journaley.Core.accessor" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

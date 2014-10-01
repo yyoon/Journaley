@@ -93,6 +93,8 @@
         /// <param name="createJumpList">if set to <c>true</c> [create jump list].</param>
         public MainForm(bool newEntry, bool createJumpList)
         {
+            this.EntryList = new EntryList();
+
             int val = 2;
             PInvoke.DwmSetWindowAttribute(this.Handle, 2, ref val, 4);  // Enabling the DWM-based NC painting.
 
@@ -170,12 +172,26 @@
         private Settings Settings { get; set; }
 
         /// <summary>
-        /// Gets or sets the entries.
+        /// Gets or sets the entry list.
+        /// </summary>
+        /// <value>
+        /// The entry list.
+        /// </value>
+        private EntryList EntryList { get; set; }
+
+        /// <summary>
+        /// Gets the entries.
         /// </summary>
         /// <value>
         /// The entries.
         /// </value>
-        private List<Entry> Entries { get; set; }
+        private List<Entry> Entries
+        {
+            get
+            {
+                return this.EntryList.Entries;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the selected entry.
@@ -675,63 +691,13 @@
         private void UpdateStats()
         {
             // Entries count first.
-            int entriesCount = this.GetAllEntriesCount();
+            int entriesCount = this.EntryList.GetAllEntriesCount();
             this.labelEntries.Text = entriesCount.ToString();
             this.labelEntriesLabel.Text = entriesCount == 1 ? "ENTRY" : "ENTRIES";
 
             // Others.
-            this.labelThisWeek.Text = this.GetThisWeekCount(DateTime.Now).ToString();
-            this.labelToday.Text = this.GetTodayCount(DateTime.Now).ToString();
-        }
-
-        /// <summary>
-        /// Gets the number of all entries.
-        /// </summary>
-        /// <returns>The number of all entries</returns>
-        private int GetAllEntriesCount()
-        {
-            return this.Entries.Count;
-        }
-
-        /// <summary>
-        /// Gets the number of all days which have one or more entries.
-        /// </summary>
-        /// <returns>The number of all days which have one or more entries</returns>
-        private int GetDaysCount()
-        {
-            return this.Entries.Select(x => x.LocalTime.Date).Distinct().Count();
-        }
-
-        /// <summary>
-        /// Gets the number of entries written within this week count.
-        /// </summary>
-        /// <param name="now">A DateTime object of which kind is DateTimeKind.Local (Usually, just use DateTime.Now)</param>
-        /// <returns>The number of entries written within this week count</returns>
-        private int GetThisWeekCount(DateTime now)
-        {
-            Debug.Assert(now.Kind == DateTimeKind.Local, "\"now\" parameter must be of DateTimeKind.Local");
-
-            int diff = now.DayOfWeek - this.FirstDayOfWeek;
-            if (diff < 0)
-            {
-                diff += 7;
-            }
-
-            DateTime basis = now.AddDays(-diff).Date;
-
-            return this.Entries.Where(x => basis <= x.LocalTime.Date && x.LocalTime <= now).Count();
-        }
-
-        /// <summary>
-        /// Gets the number of entries of today.
-        /// </summary>
-        /// <param name="now">A DateTime object of which kind is DateTimeKind.Local (Usually, just use DateTime.Now)</param>
-        /// <returns>The number of entries of today</returns>
-        private int GetTodayCount(DateTime now)
-        {
-            Debug.Assert(now.Kind == DateTimeKind.Local, "\"now\" parameter must be of DateTimeKind.Local");
-
-            return this.Entries.Where(x => x.LocalTime.Date == now.Date).Count();
+            this.labelThisWeek.Text = this.EntryList.GetThisWeekCount(DateTime.Now, this.FirstDayOfWeek).ToString();
+            this.labelToday.Text = this.EntryList.GetTodayCount(DateTime.Now).ToString();
         }
 
         /// <summary>
@@ -999,26 +965,6 @@
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// Loads the entries.
-        /// </summary>
-        private void LoadEntries()
-        {
-            this.LoadEntries(this.Settings.EntryFolderPath);
-        }
-
-        /// <summary>
-        /// Loads the entries.
-        /// </summary>
-        /// <param name="path">The path to the entry files.</param>
-        private void LoadEntries(string path)
-        {
-            DirectoryInfo dinfo = new DirectoryInfo(path);
-            FileInfo[] files = dinfo.GetFiles("*.doentry");
-
-            this.Entries = files.Select(x => Entry.LoadFromFile(x.FullName, this.Settings)).Where(x => x != null).ToList();
         }
 
         /// <summary>
@@ -1308,10 +1254,10 @@
         private void ReloadEntries()
         {
             this.SelectedEntry = null;
-            this.Entries = Enumerable.Empty<Entry>().ToList();
+            this.EntryList.ResetEntries();
             this.UpdateAllEntryLists();
 
-            this.LoadEntries();
+            this.EntryList.LoadEntries(this.Settings);
 
             // Select the latest entry by default.
             if (this.Entries.Any())
