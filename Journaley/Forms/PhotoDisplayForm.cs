@@ -464,5 +464,16 @@
         {
             this.PanningImage = false;
         }
+
+        /// <summary>
+        /// Handles the MouseMove event of the panel title bar control.
+        /// Sets the cursor back to default, in case it displays a wrong cursor (e.g., zoom cursor)
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs" /> instance containing the event data.</param>
+        private void PanelTitlebar_MouseMove(object sender, MouseEventArgs e)
+        {
+            Cursor.Current = this.Cursor;
+        }
     }
 }
