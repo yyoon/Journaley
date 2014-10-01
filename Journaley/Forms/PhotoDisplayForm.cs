@@ -42,6 +42,11 @@
         private PhotoState state;
 
         /// <summary>
+        /// Indicates whether the user is panning the image.
+        /// </summary>
+        private bool panningImage;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="PhotoDisplayForm"/> class.
         /// </summary>
         public PhotoDisplayForm()
@@ -187,7 +192,19 @@
         /// <value>
         ///   <c>true</c> if [panning image]; otherwise, <c>false</c>.
         /// </value>
-        private bool PanningImage { get; set; }
+        private bool PanningImage
+        {
+            get
+            {
+                return this.panningImage;
+            }
+
+            set
+            {
+                this.panningImage = value;
+                this.SetCursorOverPicture();
+            }
+        }
 
         /// <summary>
         /// Gets or sets the panning start scroll position.
@@ -354,6 +371,30 @@
         }
 
         /// <summary>
+        /// Sets an appropriate mouse cursor when the mouse is over picture.
+        /// </summary>
+        private void SetCursorOverPicture()
+        {
+            if (this.PanningImage)
+            {
+                this.pictureBox.Cursor = Cursors.SizeAll;
+            }
+            else
+            {
+                if (this.State == PhotoState.Resized)
+                {
+                    this.pictureBox.Cursor = this.IsCurrentImageSmallerThanActual() ? ZoomInCursor : this.Cursor;
+                }
+                else if (this.State == PhotoState.Actual)
+                {
+                    this.pictureBox.Cursor = ZoomOutCursor;
+                }
+            }
+
+            Cursor.Current = this.pictureBox.Cursor;
+        }
+
+        /// <summary>
         /// Handles the Deactivate event of the PhotoDisplayForm control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -398,7 +439,7 @@
         /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
         private void PictureBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Middle)
+            if (e.Button == System.Windows.Forms.MouseButtons.Middle && this.State == PhotoState.Actual)
             {
                 this.PanningImage = true;
                 this.PanningStartMousePosition = this.pictureBox.PointToScreen(e.Location);
@@ -418,16 +459,7 @@
             this.panelPhoto.Focus();
 
             // Change the cursor.
-            if (this.State == PhotoState.Resized)
-            {
-                this.pictureBox.Cursor = this.IsCurrentImageSmallerThanActual() ? ZoomInCursor : this.Cursor;
-            }
-            else if (this.State == PhotoState.Actual)
-            {
-                this.pictureBox.Cursor = ZoomOutCursor;
-            }
-
-            Cursor.Current = this.pictureBox.Cursor;
+            this.SetCursorOverPicture();
 
             // Panning
             if (this.PanningImage)
