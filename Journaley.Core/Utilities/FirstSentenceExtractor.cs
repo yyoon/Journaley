@@ -13,7 +13,7 @@
         /// <summary>
         /// The punctuation marks
         /// </summary>
-        private static readonly char[] PunctuationMarks = new char[] { '.', '!', '?', ':', ';' };
+        private static readonly char[] PunctuationMarks = new char[] { '.', '!', '?' };
 
         /// <summary>
         /// The popular abbreviations
