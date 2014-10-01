@@ -819,8 +819,7 @@
             {
                 this.UpdateEntryList(
                     this.Entries.Where(x => x.LocalTime.ToShortDateString() == this.monthCalendar.SelectedDates[0].ToShortDateString()),
-                    this.entryListBoxCalendar,
-                    false);
+                    this.entryListBoxCalendar);
             }
         }
 
