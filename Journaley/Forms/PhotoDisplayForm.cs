@@ -293,6 +293,11 @@
             this.pictureBox.Dock = DockStyle.Fill;
             this.pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
+            // TODO This makes the window flicker a bit.
+            // Find a better way to do this when the window is maximized.
+            FormWindowState prevWindowState = this.WindowState;
+            this.WindowState = FormWindowState.Normal;
+
             Size prevSize = this.Size;
 
             this.ClientSize = this.GetShrunkClientSize(screen);
@@ -304,6 +309,8 @@
 
             // If it's out of screen, center w.r.t. the screen working space.
             this.MoveToCenterIfNotFullyEnclosed(screen);
+
+            this.WindowState = prevWindowState;
 
             this.State = PhotoState.Resized;
         }
@@ -341,6 +348,11 @@
             this.pictureBox.Dock = DockStyle.None;
             this.pictureBox.SizeMode = PictureBoxSizeMode.AutoSize;
 
+            // TODO This makes the window flicker a bit.
+            // Find a better way to do this when the window is maximized.
+            FormWindowState prevWindowState = this.WindowState;
+            this.WindowState = FormWindowState.Normal;
+
             Size estimatedSize = this.RealClientSizeToClientSize(new Size(this.Image.Width, this.Image.Height));
             Size maxSize = this.CalculateMaxSize(screen);
 
@@ -348,6 +360,8 @@
             this.Height = Math.Min(estimatedSize.Height, maxSize.Height);
 
             this.MoveToCenterIfNotFullyEnclosed(screen);
+
+            this.WindowState = prevWindowState;
 
             this.State = PhotoState.Actual;
         }
