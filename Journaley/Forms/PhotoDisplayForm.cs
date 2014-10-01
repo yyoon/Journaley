@@ -293,8 +293,16 @@
             this.pictureBox.Dock = DockStyle.Fill;
             this.pictureBox.SizeMode = PictureBoxSizeMode.Zoom;
 
+            Size prevSize = this.Size;
+
             this.ClientSize = this.GetShrunkClientSize(screen);
 
+            // Try to center the resulting dialog w.r.t. the previous expanded dialog.
+            this.Location = new Point(
+                this.Location.X + ((prevSize.Width - this.Width) / 2),
+                this.Location.Y + ((prevSize.Height - this.Height) / 2));
+
+            // If it's out of screen, center w.r.t. the screen working space.
             this.MoveToCenterIfNotFullyEnclosed(screen);
 
             this.State = PhotoState.Resized;
