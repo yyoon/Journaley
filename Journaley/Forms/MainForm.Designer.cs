@@ -42,7 +42,6 @@ namespace Journaley.Forms
             this.buttonSettings = new Journaley.Controls.ImageButton();
             this.buttonEdit = new Journaley.Controls.ImageButton();
             this.buttonDone = new Journaley.Controls.ImageButton();
-            this.buttonCancel = new Journaley.Controls.ImageButton();
             this.buttonStar = new Journaley.Controls.ImageButton();
             this.buttonPhoto = new Journaley.Controls.ImageButton();
             this.buttonTag = new Journaley.Controls.ImageButton();
@@ -101,7 +100,6 @@ namespace Journaley.Forms
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonDone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonStar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonTag)).BeginInit();
@@ -326,27 +324,6 @@ namespace Journaley.Forms
             this.buttonDone.TabStop = false;
             this.toolTip.SetToolTip(this.buttonDone, "Done");
             this.buttonDone.Click += new System.EventHandler(this.ButtonDone_Click);
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonCancel.DownImage = global::Journaley.Properties.Resources.sidebar_btn_cancel_down;
-            this.buttonCancel.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_cancel_over;
-            this.buttonCancel.Image = global::Journaley.Properties.Resources.sidebar_btn_cancel_norm;
-            this.buttonCancel.Location = new System.Drawing.Point(0, 122);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(0, 6, 0, 12);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_cancel_norm;
-            this.buttonCancel.Selected = false;
-            this.buttonCancel.SelectedDownImage = null;
-            this.buttonCancel.SelectedHoverImage = null;
-            this.buttonCancel.SelectedImage = null;
-            this.buttonCancel.Size = new System.Drawing.Size(37, 37);
-            this.buttonCancel.TabIndex = 7;
-            this.buttonCancel.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonCancel, "Cancel");
-            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // buttonStar
             // 
@@ -580,7 +557,7 @@ namespace Journaley.Forms
             // pictureBoxSidebarButtonsSeparator
             // 
             this.pictureBoxSidebarButtonsSeparator.Image = global::Journaley.Properties.Resources.sidebar_seperator_buttonContainer;
-            this.pictureBoxSidebarButtonsSeparator.Location = new System.Drawing.Point(0, 171);
+            this.pictureBoxSidebarButtonsSeparator.Location = new System.Drawing.Point(0, 116);
             this.pictureBoxSidebarButtonsSeparator.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxSidebarButtonsSeparator.Name = "pictureBoxSidebarButtonsSeparator";
             this.pictureBoxSidebarButtonsSeparator.Size = new System.Drawing.Size(37, 1);
@@ -594,13 +571,12 @@ namespace Journaley.Forms
             this.flowLayoutSidebarTopButtons.BackColor = System.Drawing.Color.Transparent;
             this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonEdit);
             this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonDone);
-            this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonCancel);
             this.flowLayoutSidebarTopButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutSidebarTopButtons.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutSidebarTopButtons.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutSidebarTopButtons.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutSidebarTopButtons.Name = "flowLayoutSidebarTopButtons";
-            this.flowLayoutSidebarTopButtons.Size = new System.Drawing.Size(37, 171);
+            this.flowLayoutSidebarTopButtons.Size = new System.Drawing.Size(37, 116);
             this.flowLayoutSidebarTopButtons.TabIndex = 1;
             // 
             // flowLayoutSidebarBottomButtons
@@ -611,10 +587,10 @@ namespace Journaley.Forms
             this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonTag);
             this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonDelete);
             this.flowLayoutSidebarBottomButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutSidebarBottomButtons.Location = new System.Drawing.Point(0, 172);
+            this.flowLayoutSidebarBottomButtons.Location = new System.Drawing.Point(0, 117);
             this.flowLayoutSidebarBottomButtons.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutSidebarBottomButtons.Name = "flowLayoutSidebarBottomButtons";
-            this.flowLayoutSidebarBottomButtons.Size = new System.Drawing.Size(37, 150);
+            this.flowLayoutSidebarBottomButtons.Size = new System.Drawing.Size(37, 205);
             this.flowLayoutSidebarBottomButtons.TabIndex = 2;
             // 
             // tableLayoutBottom
@@ -1203,7 +1179,6 @@ namespace Journaley.Forms
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonDone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonStar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonTag)).EndInit();
@@ -1289,7 +1264,6 @@ namespace Journaley.Forms
         private System.Windows.Forms.FlowLayoutPanel flowLayoutSidebarTopButtons;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutSidebarBottomButtons;
         private ImageButton buttonDone;
-        private ImageButton buttonCancel;
         private System.Windows.Forms.WebBrowser webBrowser;
         private SpellCheckedTextBox spellCheckedEntryText;
         private System.Windows.Forms.TableLayoutPanel tableLayoutCalendar;

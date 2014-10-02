@@ -272,17 +272,6 @@
                 if (this.isEditing != value)
                 {
                     this.isEditing = value;
-
-                    if (value && this.SelectedEntry != null)
-                    {
-                        this.OldEntryText = this.SelectedEntry.EntryText;
-                        this.OldEntryDate = this.SelectedEntry.UTCDateTime;
-                    }
-                    else
-                    {
-                        this.OldEntryText = null;
-                        this.OldEntryDate = DateTime.MinValue;
-                    }
                 }
 
                 this.UpdateUI();
@@ -381,22 +370,6 @@
         /// The first day of week.
         /// </value>
         private DayOfWeek FirstDayOfWeek { get; set; }
-
-        /// <summary>
-        /// Gets or sets the old entry text, which is the entry text immediately before starting to edit.
-        /// </summary>
-        /// <value>
-        /// The old entry text.
-        /// </value>
-        private string OldEntryText { get; set; }
-
-        /// <summary>
-        /// Gets or sets the old entry date.
-        /// </summary>
-        /// <value>
-        /// The old entry date.
-        /// </value>
-        private DateTime OldEntryDate { get; set; }
 
         /// <summary>
         /// Gets or sets the auto save timer.
@@ -611,7 +584,6 @@
             this.dateTimePicker.CustomFormat = noEntry ? " " : "MMM d, yyyy hh:mm tt";
             this.buttonEdit.Enabled = !noEntry;
             this.buttonDone.Enabled = !noEntry;
-            this.buttonCancel.Enabled = !noEntry;
             this.buttonStar.Enabled = !noEntry;
             this.buttonPhoto.Enabled = !noEntry;
             this.buttonTag.Enabled = !noEntry;
@@ -636,7 +608,6 @@
             {
                 this.flowLayoutSidebarTopButtons.Controls.Clear();
                 this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonDone);
-                this.flowLayoutSidebarTopButtons.Controls.Add(this.buttonCancel);
             }
             else if (!this.IsEditing && !this.flowLayoutSidebarTopButtons.Controls.Contains(this.buttonEdit))
             {
@@ -1538,43 +1509,6 @@
         private void ButtonDone_Click(object sender, EventArgs e)
         {
             this.SaveAndFinishEditing();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the buttonCancel control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void ButtonCancel_Click(object sender, EventArgs e)
-        {
-            Debug.Assert(this.SelectedEntry != null, "There must be a selected entry when cancelling.");
-            Debug.Assert(this.IsEditing == true, "Must be in the edit mode.");
-
-            string oldEntryText = this.OldEntryText;
-            DateTime oldEntryDate = this.OldEntryDate;
-
-            this.IsEditing = false;
-
-            bool changed = false;
-            if (oldEntryText != this.SelectedEntry.EntryText)
-            {
-                this.SelectedEntry.EntryText = oldEntryText;
-                changed = true;
-            }
-
-            if (oldEntryDate != this.SelectedEntry.UTCDateTime)
-            {
-                this.SelectedEntry.UTCDateTime = oldEntryDate;
-                changed = true;
-            }
-
-            if (changed)
-            {
-                this.SaveSelectedEntry(false);
-            }
-
-            this.UpdateDateAndTextFromEntry();
-            this.UpdateUI();
         }
 
         /// <summary>
