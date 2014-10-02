@@ -1677,11 +1677,26 @@
             // Cancel the editing mode first.
             this.IsEditing = false;
 
+            // Retrieve the index.
+            var sortedEntries = this.Entries.OrderByDescending(x => x.UTCDateTime).ToList();
+            int selectedIndex = sortedEntries.IndexOf(this.SelectedEntry);
+
+            // What to select next?
+            int nextIndex = selectedIndex == 0 ? selectedIndex + 1 : selectedIndex - 1;
+
+            // Actually perform the deletion.
             this.Entries.Remove(this.SelectedEntry);
             this.SelectedEntry.Delete(this.Settings.EntryFolderPath);
 
-            // After deleting, there shouldn't be any selected entry.
-            this.SelectedEntry = null;
+            // After deleting, select the next item.
+            if (this.Entries.Any())
+            {
+                this.SelectedEntry = sortedEntries[nextIndex];
+            }
+            else
+            {
+                this.SelectedEntry = null;
+            }
 
             this.UpdateFromScratch();
         }
