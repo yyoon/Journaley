@@ -1031,6 +1031,21 @@
             this.Entries.Add(newEntry);
 
             this.SelectedEntry = newEntry;
+
+            // Check if there are any "empty" entries on the same day.
+            var entriesToDelete = this.Entries
+                .Where(x => x != newEntry)
+                .Where(x => x.LocalTime.Date == newEntry.LocalTime.Date)
+                .Where(x => x.IsEmptyEntry())
+                .ToList();  // Make it a list to avoid concurrent modification exception.
+
+            // Delete those, if any.
+            foreach (var entryToDelete in entriesToDelete)
+            {
+                entryToDelete.Delete(this.Settings.EntryFolderPath);
+                this.Entries.Remove(entryToDelete);
+            }
+
             this.UpdateAllEntryLists();
             this.UpdateStats();
             this.spellCheckedEntryText.Focus();

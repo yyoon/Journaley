@@ -476,6 +476,16 @@
         }
 
         /// <summary>
+        /// Determines whether this entry is empty.
+        /// An empty entry should contain no text, and no attached photo.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsEmptyEntry()
+        {
+            return this.EntryText == string.Empty && this.PhotoPath == null;
+        }
+
+        /// <summary>
         /// Saves this entry into the specified folder path.
         /// </summary>
         /// <param name="folderPath">The folder path.</param>
