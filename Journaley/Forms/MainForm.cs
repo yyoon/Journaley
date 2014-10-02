@@ -117,7 +117,7 @@
 
             // Set the font of the text entry box.
             this.spellCheckedEntryText.Font = new Font(
-                this.FontFamilyOpenSansRegular,
+                this.FontFamilyNotoSansRegular,
                 this.spellCheckedEntryText.Font.Size,
                 this.spellCheckedEntryText.Font.Style);
 
@@ -366,7 +366,7 @@
         /// <value>
         /// The Open Sans font family.
         /// </value>
-        private FontFamily FontFamilyOpenSansRegular
+        private FontFamily FontFamilyNotoSansRegular
         {
             get
             {
