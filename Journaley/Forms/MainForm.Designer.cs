@@ -52,7 +52,7 @@ namespace Journaley.Forms
             this.contextMenuStripPhotoWithPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.replaceWithAnotherPhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panelSidebar = new System.Windows.Forms.Panel();
+            this.panelSidebar = new Journaley.Controls.EntryListAreaPanel();
             this.pictureBoxSidebarSeperatorBottom = new System.Windows.Forms.PictureBox();
             this.pictureBoxResize = new System.Windows.Forms.PictureBox();
             this.tableLayoutSidebarWrapper = new System.Windows.Forms.TableLayoutPanel();
@@ -479,13 +479,13 @@ namespace Journaley.Forms
             // 
             this.panelSidebar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
-            this.panelSidebar.BackgroundImage = global::Journaley.Properties.Resources.main_pane_sidebar_background;
+            this.panelSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
             this.panelSidebar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelSidebar.Controls.Add(this.pictureBoxSidebarSeperatorBottom);
             this.panelSidebar.Controls.Add(this.pictureBoxResize);
             this.panelSidebar.Controls.Add(this.buttonSettings);
             this.panelSidebar.Controls.Add(this.tableLayoutSidebarWrapper);
+            this.panelSidebar.ForeColor = System.Drawing.Color.Black;
             this.panelSidebar.Location = new System.Drawing.Point(883, 20);
             this.panelSidebar.Margin = new System.Windows.Forms.Padding(0);
             this.panelSidebar.Name = "panelSidebar";
@@ -1241,7 +1241,7 @@ namespace Journaley.Forms
         private System.Windows.Forms.ContextMenuStrip contextMenuStripPhotoWithPhoto;
         private System.Windows.Forms.ToolStripMenuItem replaceWithAnotherPhotoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deletePhotoToolStripMenuItem;
-        private System.Windows.Forms.Panel panelSidebar;
+        private EntryListAreaPanel panelSidebar;
         private ImageButton buttonMainTimeline;
         private ImageButton buttonMainCalendar;
         private ImageButton buttonMainTags;
