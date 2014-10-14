@@ -469,7 +469,7 @@
                 // Make it normal state before moving.
                 if (this.WindowState == FormWindowState.Maximized)
                 {
-                    this.WindowState = FormWindowState.Normal;
+                    this.ToggleMaximize();
                 }
 
                 Point curScreenPos = this.PointToScreen(e.Location);
