@@ -40,13 +40,13 @@ namespace Journaley.Forms
             this.labelEntriesLabel = new Journaley.Controls.MouseFallThroughLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.buttonSettings = new Journaley.Controls.ImageButton();
-            this.buttonEdit = new Journaley.Controls.ImageButton();
-            this.buttonDone = new Journaley.Controls.ImageButton();
             this.buttonStar = new Journaley.Controls.ImageButton();
             this.buttonPhoto = new Journaley.Controls.ImageButton();
             this.buttonTag = new Journaley.Controls.ImageButton();
             this.buttonDelete = new Journaley.Controls.ImageButton();
             this.buttonAddEntry = new Journaley.Controls.ImageButton();
+            this.buttonEdit = new Journaley.Controls.ImageButton();
+            this.buttonDone = new Journaley.Controls.ImageButton();
             this.panelWebBrowserWrapper = new System.Windows.Forms.Panel();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.contextMenuStripPhotoWithPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -98,13 +98,13 @@ namespace Journaley.Forms
             labelTodayLabel = new Journaley.Controls.MouseFallThroughLabel();
             this.tableLayoutStats.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonDone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonStar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonPhoto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonTag)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDone)).BeginInit();
             this.panelWebBrowserWrapper.SuspendLayout();
             this.contextMenuStripPhotoWithPhoto.SuspendLayout();
             this.panelSidebar.SuspendLayout();
@@ -283,48 +283,6 @@ namespace Journaley.Forms
             this.toolTip.SetToolTip(this.buttonSettings, "Settings");
             this.buttonSettings.Click += new System.EventHandler(this.ButtonSettings_Click);
             // 
-            // buttonEdit
-            // 
-            this.buttonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonEdit.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonEdit.DownImage = global::Journaley.Properties.Resources.sidebar_btn_edit_down;
-            this.buttonEdit.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_edit_over;
-            this.buttonEdit.Image = global::Journaley.Properties.Resources.sidebar_btn_edit_norm;
-            this.buttonEdit.Location = new System.Drawing.Point(0, 12);
-            this.buttonEdit.Margin = new System.Windows.Forms.Padding(0, 12, 0, 12);
-            this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_edit_norm;
-            this.buttonEdit.Selected = false;
-            this.buttonEdit.SelectedDownImage = null;
-            this.buttonEdit.SelectedHoverImage = null;
-            this.buttonEdit.SelectedImage = null;
-            this.buttonEdit.Size = new System.Drawing.Size(37, 37);
-            this.buttonEdit.TabIndex = 5;
-            this.buttonEdit.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonEdit, "Edit");
-            this.buttonEdit.Click += new System.EventHandler(this.ButtonEdit_Click);
-            // 
-            // buttonDone
-            // 
-            this.buttonDone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonDone.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonDone.DownImage = global::Journaley.Properties.Resources.sidebar_btn_done_down;
-            this.buttonDone.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_done_over;
-            this.buttonDone.Image = global::Journaley.Properties.Resources.sidebar_btn_done_norm;
-            this.buttonDone.Location = new System.Drawing.Point(0, 73);
-            this.buttonDone.Margin = new System.Windows.Forms.Padding(0, 12, 0, 6);
-            this.buttonDone.Name = "buttonDone";
-            this.buttonDone.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_done_norm;
-            this.buttonDone.Selected = false;
-            this.buttonDone.SelectedDownImage = null;
-            this.buttonDone.SelectedHoverImage = null;
-            this.buttonDone.SelectedImage = null;
-            this.buttonDone.Size = new System.Drawing.Size(37, 37);
-            this.buttonDone.TabIndex = 6;
-            this.buttonDone.TabStop = false;
-            this.toolTip.SetToolTip(this.buttonDone, "Done");
-            this.buttonDone.Click += new System.EventHandler(this.ButtonDone_Click);
-            // 
             // buttonStar
             // 
             this.buttonStar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -430,6 +388,46 @@ namespace Journaley.Forms
             this.buttonAddEntry.TabStop = false;
             this.toolTip.SetToolTip(this.buttonAddEntry, "Add a new entry");
             this.buttonAddEntry.Click += new System.EventHandler(this.ButtonAddEntry_Click);
+            // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonEdit.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonEdit.DownImage = global::Journaley.Properties.Resources.sidebar_btn_edit_down;
+            this.buttonEdit.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_edit_over;
+            this.buttonEdit.Image = global::Journaley.Properties.Resources.sidebar_btn_edit_norm;
+            this.buttonEdit.Location = new System.Drawing.Point(0, 12);
+            this.buttonEdit.Margin = new System.Windows.Forms.Padding(0, 12, 0, 12);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_edit_norm;
+            this.buttonEdit.Selected = false;
+            this.buttonEdit.SelectedDownImage = null;
+            this.buttonEdit.SelectedHoverImage = null;
+            this.buttonEdit.SelectedImage = null;
+            this.buttonEdit.Size = new System.Drawing.Size(37, 37);
+            this.buttonEdit.TabIndex = 5;
+            this.buttonEdit.TabStop = false;
+            this.buttonEdit.Click += new System.EventHandler(this.ButtonEdit_Click);
+            // 
+            // buttonDone
+            // 
+            this.buttonDone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDone.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonDone.DownImage = global::Journaley.Properties.Resources.sidebar_btn_done_down;
+            this.buttonDone.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_done_over;
+            this.buttonDone.Image = global::Journaley.Properties.Resources.sidebar_btn_done_norm;
+            this.buttonDone.Location = new System.Drawing.Point(0, 73);
+            this.buttonDone.Margin = new System.Windows.Forms.Padding(0, 12, 0, 12);
+            this.buttonDone.Name = "buttonDone";
+            this.buttonDone.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_done_norm;
+            this.buttonDone.Selected = false;
+            this.buttonDone.SelectedDownImage = null;
+            this.buttonDone.SelectedHoverImage = null;
+            this.buttonDone.SelectedImage = null;
+            this.buttonDone.Size = new System.Drawing.Size(37, 37);
+            this.buttonDone.TabIndex = 6;
+            this.buttonDone.TabStop = false;
+            this.buttonDone.Click += new System.EventHandler(this.ButtonDone_Click);
             // 
             // panelWebBrowserWrapper
             // 
@@ -558,7 +556,7 @@ namespace Journaley.Forms
             // pictureBoxSidebarButtonsSeparator
             // 
             this.pictureBoxSidebarButtonsSeparator.Image = global::Journaley.Properties.Resources.sidebar_seperator_buttonContainer;
-            this.pictureBoxSidebarButtonsSeparator.Location = new System.Drawing.Point(0, 116);
+            this.pictureBoxSidebarButtonsSeparator.Location = new System.Drawing.Point(0, 122);
             this.pictureBoxSidebarButtonsSeparator.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxSidebarButtonsSeparator.Name = "pictureBoxSidebarButtonsSeparator";
             this.pictureBoxSidebarButtonsSeparator.Size = new System.Drawing.Size(37, 1);
@@ -577,7 +575,7 @@ namespace Journaley.Forms
             this.flowLayoutSidebarTopButtons.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutSidebarTopButtons.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutSidebarTopButtons.Name = "flowLayoutSidebarTopButtons";
-            this.flowLayoutSidebarTopButtons.Size = new System.Drawing.Size(37, 116);
+            this.flowLayoutSidebarTopButtons.Size = new System.Drawing.Size(37, 122);
             this.flowLayoutSidebarTopButtons.TabIndex = 1;
             // 
             // flowLayoutSidebarBottomButtons
@@ -588,10 +586,10 @@ namespace Journaley.Forms
             this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonTag);
             this.flowLayoutSidebarBottomButtons.Controls.Add(this.buttonDelete);
             this.flowLayoutSidebarBottomButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutSidebarBottomButtons.Location = new System.Drawing.Point(0, 117);
+            this.flowLayoutSidebarBottomButtons.Location = new System.Drawing.Point(0, 123);
             this.flowLayoutSidebarBottomButtons.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutSidebarBottomButtons.Name = "flowLayoutSidebarBottomButtons";
-            this.flowLayoutSidebarBottomButtons.Size = new System.Drawing.Size(37, 205);
+            this.flowLayoutSidebarBottomButtons.Size = new System.Drawing.Size(37, 199);
             this.flowLayoutSidebarBottomButtons.TabIndex = 2;
             // 
             // tableLayoutBottom
@@ -1178,13 +1176,13 @@ namespace Journaley.Forms
             this.tableLayoutStats.ResumeLayout(false);
             this.tableLayoutStats.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSettings)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonDone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonStar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonPhoto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonTag)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonAddEntry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDone)).EndInit();
             this.panelWebBrowserWrapper.ResumeLayout(false);
             this.contextMenuStripPhotoWithPhoto.ResumeLayout(false);
             this.panelSidebar.ResumeLayout(false);
