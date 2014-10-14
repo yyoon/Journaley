@@ -509,6 +509,7 @@ namespace Journaley.Forms
             // 
             this.pictureBoxResize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxResize.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxResize.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.pictureBoxResize.Image = global::Journaley.Properties.Resources.frame_pane_resize;
             this.pictureBoxResize.Location = new System.Drawing.Point(37, 570);
             this.pictureBoxResize.Margin = new System.Windows.Forms.Padding(0);
