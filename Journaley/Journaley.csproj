@@ -448,6 +448,15 @@
   <ItemGroup>
     <None Include="images\NewDesign\zoom_out.cur" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\frame_btn_restore_down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\frame_btn_restore_norm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\NewDesign\frame_btn_restore_over.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

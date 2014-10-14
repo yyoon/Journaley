@@ -130,6 +130,8 @@
 
             this.SetupAutoSaveTimer();
 
+            this.UpdateMaximizeRestoreButtonImage();
+
             // Jump List
             if (createJumpList)
             {
@@ -617,6 +619,16 @@
 
             this.panelEntryTextWrapper.Visible = this.IsEditing;
             this.panelWebBrowserWrapper.Visible = this.webBrowser.Visible = noEntry || !this.IsEditing;
+
+            this.UpdateMaximizeRestoreButtonImage();
+        }
+
+        /// <summary>
+        /// Updates the maximize/restore button image.
+        /// </summary>
+        private void UpdateMaximizeRestoreButtonImage()
+        {
+            this.imageButtonFormMaximize.Selected = this.WindowState == FormWindowState.Maximized;
         }
 
         /// <summary>
@@ -1267,6 +1279,8 @@
             {
                 this.WindowState = FormWindowState.Maximized;
             }
+
+            this.UpdateMaximizeRestoreButtonImage();
         }
 
         /// <summary>

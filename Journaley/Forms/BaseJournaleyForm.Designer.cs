@@ -102,9 +102,9 @@
             this.imageButtonFormMaximize.Name = "imageButtonFormMaximize";
             this.imageButtonFormMaximize.NormalImage = global::Journaley.Properties.Resources.frame_btn_maximize_norm;
             this.imageButtonFormMaximize.Selected = false;
-            this.imageButtonFormMaximize.SelectedDownImage = null;
-            this.imageButtonFormMaximize.SelectedHoverImage = null;
-            this.imageButtonFormMaximize.SelectedImage = null;
+            this.imageButtonFormMaximize.SelectedDownImage = global::Journaley.Properties.Resources.frame_btn_restore_down;
+            this.imageButtonFormMaximize.SelectedHoverImage = global::Journaley.Properties.Resources.frame_btn_restore_over;
+            this.imageButtonFormMaximize.SelectedImage = global::Journaley.Properties.Resources.frame_btn_restore_norm;
             this.imageButtonFormMaximize.Size = new System.Drawing.Size(46, 20);
             this.imageButtonFormMaximize.TabIndex = 2;
             this.imageButtonFormMaximize.TabStop = false;
