@@ -1924,7 +1924,7 @@
         {
             if (this.PointToScreen(e.Location).Y == 0 && this.WindowState == FormWindowState.Normal)
             {
-                this.WindowState = FormWindowState.Maximized;
+                this.ToggleMaximize();
             }
 
             this.DraggingTitleBar = false;
