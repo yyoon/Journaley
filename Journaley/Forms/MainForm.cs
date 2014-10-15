@@ -187,7 +187,7 @@
         /// <value>
         /// The entries.
         /// </value>
-        private List<Entry> Entries
+        private Dictionary<Guid, Entry> Entries
         {
             get
             {
@@ -220,7 +220,7 @@
                 if (this.selectedEntry != null)
                 {
                     // If this is still in the Entries list, it's alive.
-                    if (this.Entries.Contains(this.selectedEntry))
+                    if (this.Entries.ContainsKey(this.selectedEntry.UUID))
                     {
                         this.SaveSelectedEntry();
                     }
@@ -706,7 +706,7 @@
         /// </summary>
         private void UpdateEntryListBoxAll()
         {
-            this.UpdateEntryList(this.Entries, this.entryListBoxAll);
+            this.UpdateEntryList(this.Entries.Values, this.entryListBoxAll);
         }
 
         /// <summary>
@@ -719,19 +719,19 @@
             this.listBoxTags.SelectedIndex = -1;
 
             // First, display all the starred entries.
-            int starredCount = this.Entries.Count(e => e.Starred);
+            int starredCount = this.Entries.Values.Count(e => e.Starred);
             if (starredCount > 0)
             {
                 this.listBoxTags.Items.Add(new StarredCountEntry(starredCount));
             }
 
             // Then, collect all the tags.
-            var tags = this.Entries
+            var tags = this.Entries.Values
                 .SelectMany(x => x.Tags)
                 .Distinct();
 
             var tagsAndCounts = tags
-                .Select(x => new TagCountEntry(x, this.Entries.Count(e => e.Tags.Contains(x))))
+                .Select(x => new TagCountEntry(x, this.Entries.Values.Count(e => e.Tags.Contains(x))))
                 .OrderByDescending(x => x.Count);
 
             // If there is any entry,
@@ -766,7 +766,7 @@
             else
             {
                 this.UpdateEntryList(
-                    this.Entries.Where(x => x.LocalTime.ToShortDateString() == this.monthCalendar.SelectedDates[0].ToShortDateString()),
+                    this.Entries.Values.Where(x => x.LocalTime.ToShortDateString() == this.monthCalendar.SelectedDates[0].ToShortDateString()),
                     this.entryListBoxCalendar);
             }
         }
@@ -1010,12 +1010,12 @@
                 newEntry = new Entry();
             }
 
-            this.Entries.Add(newEntry);
+            this.Entries.Add(newEntry.UUID, newEntry);
 
             this.SelectedEntry = newEntry;
 
             // Check if there are any "empty" entries on the same day.
-            var entriesToDelete = this.Entries
+            var entriesToDelete = this.Entries.Values
                 .Where(x => x != newEntry)
                 .Where(x => x.LocalTime.Date == newEntry.LocalTime.Date)
                 .Where(x => x.IsEmptyEntry())
@@ -1025,7 +1025,7 @@
             foreach (var entryToDelete in entriesToDelete)
             {
                 entryToDelete.Delete(this.Settings.EntryFolderPath);
-                this.Entries.Remove(entryToDelete);
+                this.Entries.Remove(entryToDelete.UUID);
             }
 
             this.UpdateAllEntryLists();
@@ -1259,7 +1259,7 @@
             // Select the latest entry by default.
             if (this.Entries.Any())
             {
-                this.SelectedEntry = this.Entries.OrderByDescending(x => x.UTCDateTime).First();
+                this.SelectedEntry = this.Entries.Values.OrderByDescending(x => x.UTCDateTime).First();
             }
 
             this.UpdateFromScratch();
@@ -1440,11 +1440,11 @@
                         {
                             if (entry is StarredCountEntry)
                             {
-                                this.UpdateEntryList(this.Entries.Where(x => x.Starred), this.entryListBoxTags);
+                                this.UpdateEntryList(this.Entries.Values.Where(x => x.Starred), this.entryListBoxTags);
                             }
                             else
                             {
-                                this.UpdateEntryList(this.Entries.Where(x => x.Tags.Contains(entry.Tag)), this.entryListBoxTags);
+                                this.UpdateEntryList(this.Entries.Values.Where(x => x.Tags.Contains(entry.Tag)), this.entryListBoxTags);
                             }
                         }
                         else
@@ -1476,7 +1476,7 @@
         /// <param name="e">The <see cref="DayQueryInfoEventArgs"/> instance containing the event data.</param>
         private void MonthCalendar_DayQueryInfo(object sender, DayQueryInfoEventArgs e)
         {
-            e.Info.BoldedDate = this.Entries.Any(x => x.LocalTime.Date == e.Date);
+            e.Info.BoldedDate = this.Entries.Values.Any(x => x.LocalTime.Date == e.Date);
             e.OwnerDraw = true;
         }
 
@@ -1573,7 +1573,7 @@
             tagEditForm.Location = this.buttonTag.PointToScreen(new Point(-tagEditForm.Width, -8));
 
             tagEditForm.AssignedTags.AddRange(this.SelectedEntry.Tags.OrderBy(x => x));
-            tagEditForm.OtherTags.AddRange(this.Entries.SelectMany(x => x.Tags).Distinct().Where(x => !this.SelectedEntry.Tags.Contains(x)).OrderBy(x => x));
+            tagEditForm.OtherTags.AddRange(this.Entries.Values.SelectMany(x => x.Tags).Distinct().Where(x => !this.SelectedEntry.Tags.Contains(x)).OrderBy(x => x));
 
             // Event handlers.
             tagEditForm.FormClosed += new FormClosedEventHandler(this.TagEditForm_FormClosed);
@@ -1640,14 +1640,14 @@
             this.IsEditing = false;
 
             // Retrieve the index.
-            var sortedEntries = this.Entries.OrderByDescending(x => x.UTCDateTime).ToList();
+            var sortedEntries = this.Entries.Values.OrderByDescending(x => x.UTCDateTime).ToList();
             int selectedIndex = sortedEntries.IndexOf(this.SelectedEntry);
 
             // What to select next?
             int nextIndex = selectedIndex == 0 ? selectedIndex + 1 : selectedIndex - 1;
 
             // Actually perform the deletion.
-            this.Entries.Remove(this.SelectedEntry);
+            this.Entries.Remove(this.SelectedEntry.UUID);
             this.SelectedEntry.Delete(this.Settings.EntryFolderPath);
 
             // After deleting, select the next item.

@@ -18,7 +18,7 @@
         /// <value>
         /// The entries.
         /// </value>
-        public List<Entry> Entries { get; private set; }
+        public Dictionary<Guid, Entry> Entries { get; private set; }
 
         /// <summary>
         /// Loads the entries.
@@ -39,7 +39,10 @@
             DirectoryInfo dinfo = new DirectoryInfo(path);
             FileInfo[] files = dinfo.GetFiles("*.doentry");
 
-            this.Entries = files.Select(x => Entry.LoadFromFile(x.FullName, settings)).Where(x => x != null).ToList();
+            this.Entries = files
+                .Select(x => Entry.LoadFromFile(x.FullName, settings))
+                .Where(x => x != null)
+                .ToDictionary(x => x.UUID, x => x);
         }
 
         /// <summary>
@@ -47,7 +50,7 @@
         /// </summary>
         public void ResetEntries()
         {
-            this.Entries = Enumerable.Empty<Entry>().ToList();
+            this.Entries = new Dictionary<Guid, Entry>();
         }
 
         /// <summary>
@@ -56,7 +59,7 @@
         /// <returns>The number of all entries</returns>
         public int GetAllEntriesCount()
         {
-            return this.Entries.Count;
+            return this.Entries.Count();
         }
 
         /// <summary>
@@ -65,7 +68,7 @@
         /// <returns>The number of all days which have one or more entries</returns>
         public int GetDaysCount()
         {
-            return this.Entries.Select(x => x.LocalTime.Date).Distinct().Count();
+            return this.Entries.Values.Select(x => x.LocalTime.Date).Distinct().Count();
         }
 
         /// <summary>
@@ -88,7 +91,7 @@
 
             DateTime basis = now.AddDays(-diff).Date;
 
-            return this.Entries.Where(x => basis <= x.LocalTime.Date && x.LocalTime <= now).Count();
+            return this.Entries.Values.Where(x => basis <= x.LocalTime.Date && x.LocalTime <= now).Count();
         }
 
         /// <summary>
@@ -100,7 +103,7 @@
         {
             Debug.Assert(now.Kind == DateTimeKind.Local, "\"now\" parameter must be of DateTimeKind.Local");
 
-            return this.Entries.Where(x => x.LocalTime.Date == now.Date).Count();
+            return this.Entries.Values.Where(x => x.LocalTime.Date == now.Date).Count();
         }
     }
 }
