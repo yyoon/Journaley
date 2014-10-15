@@ -306,6 +306,7 @@
             set
             {
                 this.photoPath = value;
+                this.UpdatePhotoFileSizeAndWriteTime();
                 this.OnPhotoChanged();
             }
         }
@@ -431,6 +432,9 @@
                     }
 
                     newEntry.IsDirty = false;
+
+                    // Check the size and write time.
+                    newEntry.UpdateEntryFileSizeAndWriteTime(Path.GetDirectoryName(path));
 
                     return newEntry;
                 }
@@ -588,10 +592,13 @@
                 using (StreamWriter streamWriter = new StreamWriter(Path.Combine(folderPath, this.FileName), false, new UTF8Encoding()))
                 {
                     streamWriter.Write(builder.ToString());
-
-                    // Now it's not dirty!
-                    this.IsDirty = false;
                 }
+
+                // Now it's not dirty!
+                this.IsDirty = false;
+
+                // Update the file size and the last write time.
+                this.UpdateEntryFileSizeAndWriteTime(folderPath);
             }
         }
 
@@ -618,20 +625,49 @@
         public void CheckExistingPhoto(string photoFolderPath)
         {
             // If there is a photo already, don't do anything.
-            if (this.PhotoPath != null && new FileInfo(this.PhotoPath).Exists)
+            if (this.PhotoPath != null && File.Exists(this.PhotoPath))
             {
                 return;
             }
 
-            this.photoPath = null;
+            this.PhotoPath = null;
             foreach (var format in SupportedPhotoFormats)
             {
                 string candidatePhotoPath = Path.Combine(photoFolderPath, this.UUIDString + "." + format);
-                if (new FileInfo(candidatePhotoPath).Exists)
+                if (File.Exists(candidatePhotoPath))
                 {
-                    this.photoPath = candidatePhotoPath;
+                    this.PhotoPath = candidatePhotoPath;
                     return;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Updates the entry file size and write time.
+        /// </summary>
+        /// <param name="entryFolderPath">The entry folder path.</param>
+        public void UpdateEntryFileSizeAndWriteTime(string entryFolderPath)
+        {
+            FileInfo finfo = new FileInfo(Path.Combine(entryFolderPath, this.FileName));
+            this.LastKnownEntryFileSize = finfo.Length;
+            this.LastKnownEntryWriteTime = finfo.LastWriteTime;
+        }
+
+        /// <summary>
+        /// Updates the photo file size and write time.
+        /// </summary>
+        public void UpdatePhotoFileSizeAndWriteTime()
+        {
+            if (this.PhotoPath == null || !File.Exists(this.PhotoPath))
+            {
+                this.LastKnownPhotoFileSize = 0;
+                this.LastKnownPhotoWriteTime = DateTime.MinValue;
+            }
+            else
+            {
+                FileInfo finfo = new FileInfo(this.PhotoPath);
+                this.LastKnownPhotoFileSize = finfo.Length;
+                this.LastKnownPhotoWriteTime = finfo.LastWriteTime;
             }
         }
 
