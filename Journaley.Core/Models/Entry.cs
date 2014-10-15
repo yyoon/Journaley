@@ -479,7 +479,7 @@
         /// Determines whether this entry is empty.
         /// An empty entry should contain no text, and no attached photo.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>true if this entry has neither text nor photo. false otherwise.</returns>
         public bool IsEmptyEntry()
         {
             return this.EntryText == string.Empty && this.PhotoPath == null;

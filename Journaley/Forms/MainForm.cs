@@ -603,7 +603,6 @@
             this.tableLayoutSidebar.Visible = !noEntry;
 
             this.dateTimePicker.Enabled = this.IsEditing;
-            //this.toolTip.SetToolTip(this.buttonEdit, this.IsEditing ? "Save" : "Edit");
             this.spellCheckedEntryText.ReadOnly = !this.IsEditing;
 
             if (this.IsEditing && this.flowLayoutSidebarTopButtons.Controls.Contains(this.buttonEdit))
