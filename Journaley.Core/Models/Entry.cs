@@ -343,6 +343,38 @@
         public bool IsDirty { get; private set; }
 
         /// <summary>
+        /// Gets the last known size of the entry file.
+        /// </summary>
+        /// <value>
+        /// The last known size of the entry file.
+        /// </value>
+        public long LastKnownEntryFileSize { get; private set; }
+
+        /// <summary>
+        /// Gets the last known entry write time.
+        /// </summary>
+        /// <value>
+        /// The last known entry write time.
+        /// </value>
+        public DateTime LastKnownEntryWriteTime { get; private set; }
+
+        /// <summary>
+        /// Gets the last known size of the corresponding photo file.
+        /// </summary>
+        /// <value>
+        /// The last known size of the corresponding photo file.
+        /// </value>
+        public long LastKnownPhotoFileSize { get; private set; }
+
+        /// <summary>
+        /// Gets the last known photo write time.
+        /// </summary>
+        /// <value>
+        /// The last known photo write time.
+        /// </value>
+        public DateTime LastKnownPhotoWriteTime { get; private set; }
+
+        /// <summary>
         /// Loads an entry from the given filename.
         /// </summary>
         /// <param name="path">The path.</param>
