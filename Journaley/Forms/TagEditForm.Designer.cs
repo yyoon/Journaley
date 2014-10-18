@@ -58,7 +58,7 @@
             this.listBoxAssignedTags.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.listBoxAssignedTags.FormattingEnabled = true;
             this.listBoxAssignedTags.ItemHeight = 15;
-            this.listBoxAssignedTags.Location = new System.Drawing.Point(1, 34);
+            this.listBoxAssignedTags.Location = new System.Drawing.Point(2, 38);
             this.listBoxAssignedTags.Name = "listBoxAssignedTags";
             this.listBoxAssignedTags.Size = new System.Drawing.Size(219, 75);
             this.listBoxAssignedTags.TabIndex = 1;
@@ -68,7 +68,7 @@
             // 
             this.listBoxOtherTags.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBoxOtherTags.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBoxOtherTags.BackColor = System.Drawing.Color.LightGray;
             this.listBoxOtherTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBoxOtherTags.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxOtherTags.ForeColor = System.Drawing.SystemColors.InfoText;
@@ -84,13 +84,13 @@
             // 
             this.textTagInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textTagInput.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.textTagInput.BackColor = System.Drawing.Color.White;
             this.textTagInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textTagInput.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textTagInput.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.textTagInput.Location = new System.Drawing.Point(2, 114);
             this.textTagInput.Name = "textTagInput";
-            this.textTagInput.Size = new System.Drawing.Size(153, 23);
+            this.textTagInput.Size = new System.Drawing.Size(150, 23);
             this.textTagInput.TabIndex = 2;
             this.textTagInput.TextChanged += new System.EventHandler(this.TextTagInput_TextChanged);
             this.textTagInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextTagInput_KeyPress);
@@ -101,7 +101,7 @@
             this.buttonAdd.Enabled = false;
             this.buttonAdd.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonAdd.Location = new System.Drawing.Point(153, 113);
+            this.buttonAdd.Location = new System.Drawing.Point(152, 113);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(70, 25);
             this.buttonAdd.TabIndex = 3;
@@ -114,11 +114,11 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.label3.Location = new System.Drawing.Point(65, 11);
+            this.label3.Location = new System.Drawing.Point(65, 15);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(92, 20);
+            this.label3.Size = new System.Drawing.Size(86, 20);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Current Tags";
+            this.label3.Text = "Entry\'s Tags";
             // 
             // label4
             // 
@@ -127,9 +127,9 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.label4.Location = new System.Drawing.Point(62, 153);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 20);
+            this.label4.Size = new System.Drawing.Size(106, 20);
             this.label4.TabIndex = 8;
-            this.label4.Text = "Previous Tags";
+            this.label4.Text = "Available Tags";
             // 
             // TagEditForm
             // 
