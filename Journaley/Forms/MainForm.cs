@@ -1406,27 +1406,6 @@
         }
 
         /// <summary>
-        /// Handles the PhotoChanged event of the Watcher control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EntryEventArgs"/> instance containing the event data.</param>
-        private void Watcher_PhotoChanged(object sender, EntryEventArgs e)
-        {
-            switch (e.Type)
-            {
-                case ChangeType.PhotoAdded:
-                case ChangeType.PhotoChanged:
-                    break;
-
-                case ChangeType.PhotoDeleted:
-                    break;
-
-                default:
-                    break;
-            }
-        }
-
-        /// <summary>
         /// Removes the selected entry from the database and select next item.
         /// </summary>
         private void RemoveSelectedAndSelectNext()
@@ -2319,6 +2298,27 @@
 
                 this.DeletionTimers.Add(e.UUID, timer);
                 timer.Start();
+            }
+        }
+
+        /// <summary>
+        /// Handles the PhotoChanged event of the Watcher control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EntryEventArgs"/> instance containing the event data.</param>
+        private void Watcher_PhotoChanged(object sender, EntryEventArgs e)
+        {
+            switch (e.Type)
+            {
+                case ChangeType.PhotoAdded:
+                case ChangeType.PhotoChanged:
+                    break;
+
+                case ChangeType.PhotoDeleted:
+                    break;
+
+                default:
+                    break;
             }
         }
 
