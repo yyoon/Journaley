@@ -15,6 +15,7 @@
     using Journaley.Controls;
     using Journaley.Core.Models;
     using Journaley.Core.Utilities;
+    using Journaley.Core.Watcher;
     using Journaley.Utilities;
     using MarkdownSharp;
     using Pabo.Calendar;
@@ -407,6 +408,14 @@
                 this.draggingTitleBar = value;
             }
         }
+
+        /// <summary>
+        /// Gets or sets the watcher.
+        /// </summary>
+        /// <value>
+        /// The entry watcher for monitoring file changes within the data folders.
+        /// </value>
+        private EntryWatcher Watcher { get; set; }
 
         /// <summary>
         /// Gets the entry text for the provided journal entry.
@@ -1250,11 +1259,33 @@
         /// </summary>
         private void ReloadEntries()
         {
+            // Detach the EntryWatcher, if it is already set.
+            if (this.Watcher != null)
+            {
+                this.Watcher.EnableRaisingEvents = false;
+                this.Watcher.Dispose();
+                this.Watcher = null;
+            }
+
+            // Clear the current entries.
             this.SelectedEntry = null;
             this.EntryList.ResetEntries();
             this.UpdateAllEntryLists();
 
+            // Load the entries.
             this.EntryList.LoadEntries(this.Settings);
+
+            // Set the EntryWatcher.
+            this.Watcher = new EntryWatcher(this.Settings.EntryFolderPath, this.Settings.PhotoFolderPath);
+
+            this.Watcher.EntryAdded += new EntryEventHandler(this.Watcher_EntryChanged);
+            this.Watcher.EntryChanged += new EntryEventHandler(this.Watcher_EntryChanged);
+            this.Watcher.EntryDeleted += new EntryEventHandler(this.Watcher_EntryChanged);
+            this.Watcher.PhotoAdded += new EntryEventHandler(this.Watcher_PhotoChanged);
+            this.Watcher.PhotoChanged += new EntryEventHandler(this.Watcher_PhotoChanged);
+            this.Watcher.PhotoDeleted += new EntryEventHandler(this.Watcher_PhotoChanged);
+
+            this.Watcher.EnableRaisingEvents = true;
 
             // Select the latest entry by default.
             if (this.Entries.Any())
@@ -1262,7 +1293,31 @@
                 this.SelectedEntry = this.Entries.Values.OrderByDescending(x => x.UTCDateTime).First();
             }
 
+            // Update all the UIs.
             this.UpdateFromScratch();
+
+            // Enable the watcher.
+            this.Watcher.EnableRaisingEvents = true;
+        }
+
+        /// <summary>
+        /// Handles the EntryChanged event of the Watcher control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EntryEventArgs"/> instance containing the event data.</param>
+        private void Watcher_EntryChanged(object sender, EntryEventArgs e)
+        {
+            MessageBox.Show(e.Type.ToString());
+        }
+
+        /// <summary>
+        /// Handles the PhotoChanged event of the Watcher control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EntryEventArgs"/> instance containing the event data.</param>
+        private void Watcher_PhotoChanged(object sender, EntryEventArgs e)
+        {
+            MessageBox.Show(e.Type.ToString());
         }
 
         /// <summary>

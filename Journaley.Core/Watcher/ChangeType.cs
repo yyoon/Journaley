@@ -8,7 +8,7 @@
         /// <summary>
         /// The creation of an entry.
         /// </summary>
-        EntryCreated,
+        EntryAdded,
 
         /// <summary>
         /// The change of an entry.
@@ -23,7 +23,7 @@
         /// <summary>
         /// The creation of a photo.
         /// </summary>
-        PhotoCreated,
+        PhotoAdded,
 
         /// <summary>
         /// The change of a photo.
