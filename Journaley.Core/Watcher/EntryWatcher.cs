@@ -127,10 +127,7 @@
         {
             if (this.EntryAdded != null)
             {
-                EntryEventArgs eea = new EntryEventArgs();
-                eea.UUID = new Guid(Path.GetFileNameWithoutExtension(e.Name));
-                eea.Type = ChangeType.EntryAdded;
-
+                EntryEventArgs eea = new EntryEventArgs(e, ChangeType.EntryAdded);
                 this.EntryAdded(this, eea);
             }
         }
@@ -145,10 +142,7 @@
         {
             if (this.EntryChanged != null)
             {
-                EntryEventArgs eea = new EntryEventArgs();
-                eea.UUID = new Guid(Path.GetFileNameWithoutExtension(e.Name));
-                eea.Type = ChangeType.EntryChanged;
-
+                EntryEventArgs eea = new EntryEventArgs(e, ChangeType.EntryChanged);
                 this.EntryChanged(this, eea);
             }
         }
@@ -163,10 +157,7 @@
         {
             if (this.EntryDeleted != null)
             {
-                EntryEventArgs eea = new EntryEventArgs();
-                eea.UUID = new Guid(Path.GetFileNameWithoutExtension(e.Name));
-                eea.Type = ChangeType.EntryDeleted;
-
+                EntryEventArgs eea = new EntryEventArgs(e, ChangeType.EntryDeleted);
                 this.EntryDeleted(this, eea);
             }
         }
@@ -181,10 +172,7 @@
         {
             if (this.PhotoAdded != null)
             {
-                EntryEventArgs eea = new EntryEventArgs();
-                eea.UUID = new Guid(Path.GetFileNameWithoutExtension(e.Name));
-                eea.Type = ChangeType.PhotoAdded;
-
+                EntryEventArgs eea = new EntryEventArgs(e, ChangeType.PhotoAdded);
                 this.PhotoAdded(this, eea);
             }
         }
@@ -199,10 +187,7 @@
         {
             if (this.PhotoChanged != null)
             {
-                EntryEventArgs eea = new EntryEventArgs();
-                eea.UUID = new Guid(Path.GetFileNameWithoutExtension(e.Name));
-                eea.Type = ChangeType.PhotoChanged;
-
+                EntryEventArgs eea = new EntryEventArgs(e, ChangeType.PhotoChanged);
                 this.PhotoChanged(this, eea);
             }
         }
@@ -217,10 +202,7 @@
         {
             if (this.PhotoDeleted != null)
             {
-                EntryEventArgs eea = new EntryEventArgs();
-                eea.UUID = new Guid(Path.GetFileNameWithoutExtension(e.Name));
-                eea.Type = ChangeType.PhotoDeleted;
-
+                EntryEventArgs eea = new EntryEventArgs(e, ChangeType.PhotoDeleted);
                 this.PhotoDeleted(this, eea);
             }
         }

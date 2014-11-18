@@ -382,7 +382,7 @@
         /// <returns>An <see cref="Entry"/> object representing the given file.</returns>
         public static Entry LoadFromFile(string path)
         {
-            return LoadFromFile(path, null);
+            return LoadFromFile(path, null, false);
         }
 
         /// <summary>
@@ -390,10 +390,22 @@
         /// </summary>
         /// <param name="path">The path.</param>
         /// <param name="settings">The settings object, which can be null.</param>
+        /// <returns>An <see cref="Entry" /> object representing the given file.</returns>
+        public static Entry LoadFromFile(string path, Settings settings)
+        {
+            return LoadFromFile(path, settings, false);
+        }
+
+        /// <summary>
+        /// Loads an entry from the given filename.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="settings">The settings object, which can be null.</param>
+        /// <param name="throwExceptions">if set to <c>true</c> [throw exceptions].</param>
         /// <returns>
         /// An <see cref="Entry" /> object representing the given file.
         /// </returns>
-        public static Entry LoadFromFile(string path, Settings settings)
+        public static Entry LoadFromFile(string path, Settings settings, bool throwExceptions)
         {
             try
             {
@@ -441,6 +453,11 @@
             }
             catch (Exception e)
             {
+                if (throwExceptions)
+                {
+                    throw e;
+                }
+
                 // Write to a log file.
                 StringBuilder builder = new StringBuilder();
                 builder.AppendLine("An error occurred while reading entry \"" + path + "\"");
