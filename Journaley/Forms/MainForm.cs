@@ -15,6 +15,7 @@
     using Journaley.Controls;
     using Journaley.Core.Models;
     using Journaley.Core.Utilities;
+    using Journaley.Core.Watcher;
     using Journaley.Utilities;
     using MarkdownSharp;
     using Pabo.Calendar;
@@ -187,7 +188,7 @@
         /// <value>
         /// The entries.
         /// </value>
-        private List<Entry> Entries
+        private Dictionary<Guid, Entry> Entries
         {
             get
             {
@@ -220,7 +221,10 @@
                 if (this.selectedEntry != null)
                 {
                     // If this is still in the Entries list, it's alive.
-                    if (this.Entries.Contains(this.selectedEntry))
+                    // The second if condition is necessary,
+                    // because when the selected entry is set due to an external change (c.f. Watcher_EntryChanged method)
+                    // the entry should NOT be saved.
+                    if (this.Entries.ContainsKey(this.selectedEntry.UUID) && this.Entries[this.selectedEntry.UUID] == this.selectedEntry)
                     {
                         this.SaveSelectedEntry();
                     }
@@ -409,6 +413,14 @@
         }
 
         /// <summary>
+        /// Gets or sets the watcher.
+        /// </summary>
+        /// <value>
+        /// The entry watcher for monitoring file changes within the data folders.
+        /// </value>
+        private EntryWatcher Watcher { get; set; }
+
+        /// <summary>
         /// Gets the entry text for the provided journal entry.
         /// If the entry is currently selected and being edited,
         /// the text being edited should be returned.
@@ -538,7 +550,17 @@
 
             if (this.SelectedEntry.IsDirty)
             {
-                this.SelectedEntry.Save(this.Settings.EntryFolderPath);
+                // Disable the file watcher temporarily, and make sure that it turns back on after saving.
+                try
+                {
+                    this.Watcher.EnableRaisingEvents = false;
+
+                    this.SelectedEntry.Save(this.Settings.EntryFolderPath);
+                }
+                finally
+                {
+                    this.Watcher.EnableRaisingEvents = true;
+                }
 
                 // Update the EntryList items as well.
                 this.InvalidateEntryInEntryList(this.SelectedEntry);
@@ -706,7 +728,7 @@
         /// </summary>
         private void UpdateEntryListBoxAll()
         {
-            this.UpdateEntryList(this.Entries, this.entryListBoxAll);
+            this.UpdateEntryList(this.Entries.Values, this.entryListBoxAll);
         }
 
         /// <summary>
@@ -719,19 +741,19 @@
             this.listBoxTags.SelectedIndex = -1;
 
             // First, display all the starred entries.
-            int starredCount = this.Entries.Count(e => e.Starred);
+            int starredCount = this.Entries.Values.Count(e => e.Starred);
             if (starredCount > 0)
             {
                 this.listBoxTags.Items.Add(new StarredCountEntry(starredCount));
             }
 
             // Then, collect all the tags.
-            var tags = this.Entries
+            var tags = this.Entries.Values
                 .SelectMany(x => x.Tags)
                 .Distinct();
 
             var tagsAndCounts = tags
-                .Select(x => new TagCountEntry(x, this.Entries.Count(e => e.Tags.Contains(x))))
+                .Select(x => new TagCountEntry(x, this.Entries.Values.Count(e => e.Tags.Contains(x))))
                 .OrderByDescending(x => x.Count);
 
             // If there is any entry,
@@ -766,7 +788,7 @@
             else
             {
                 this.UpdateEntryList(
-                    this.Entries.Where(x => x.LocalTime.ToShortDateString() == this.monthCalendar.SelectedDates[0].ToShortDateString()),
+                    this.Entries.Values.Where(x => x.LocalTime.ToShortDateString() == this.monthCalendar.SelectedDates[0].ToShortDateString()),
                     this.entryListBoxCalendar);
             }
         }
@@ -1010,12 +1032,12 @@
                 newEntry = new Entry();
             }
 
-            this.Entries.Add(newEntry);
+            this.Entries.Add(newEntry.UUID, newEntry);
 
             this.SelectedEntry = newEntry;
 
             // Check if there are any "empty" entries on the same day.
-            var entriesToDelete = this.Entries
+            var entriesToDelete = this.Entries.Values
                 .Where(x => x != newEntry)
                 .Where(x => x.LocalTime.Date == newEntry.LocalTime.Date)
                 .Where(x => x.IsEmptyEntry())
@@ -1025,7 +1047,7 @@
             foreach (var entryToDelete in entriesToDelete)
             {
                 entryToDelete.Delete(this.Settings.EntryFolderPath);
-                this.Entries.Remove(entryToDelete);
+                this.Entries.Remove(entryToDelete.UUID);
             }
 
             this.UpdateAllEntryLists();
@@ -1250,19 +1272,71 @@
         /// </summary>
         private void ReloadEntries()
         {
+            // Detach the EntryWatcher, if it is already set.
+            if (this.Watcher != null)
+            {
+                this.Watcher.EnableRaisingEvents = false;
+                this.Watcher.Dispose();
+                this.Watcher = null;
+            }
+
+            // Clear the current entries.
             this.SelectedEntry = null;
             this.EntryList.ResetEntries();
             this.UpdateAllEntryLists();
 
+            // Load the entries.
             this.EntryList.LoadEntries(this.Settings);
+
+            // Set the EntryWatcher.
+            this.Watcher = new EntryWatcher(this.Settings.EntryFolderPath, this.Settings.PhotoFolderPath, this);
+
+            this.Watcher.EntryAdded += new EntryEventHandler(this.Watcher_EntryChanged);
+            this.Watcher.EntryChanged += new EntryEventHandler(this.Watcher_EntryChanged);
+            this.Watcher.EntryDeleted += new EntryEventHandler(this.Watcher_EntryDeleted);
+            this.Watcher.PhotoAdded += new EntryEventHandler(this.Watcher_PhotoChanged);
+            this.Watcher.PhotoChanged += new EntryEventHandler(this.Watcher_PhotoChanged);
+            this.Watcher.PhotoDeleted += new EntryEventHandler(this.Watcher_PhotoDeleted);
+
+            this.Watcher.EnableRaisingEvents = true;
 
             // Select the latest entry by default.
             if (this.Entries.Any())
             {
-                this.SelectedEntry = this.Entries.OrderByDescending(x => x.UTCDateTime).First();
+                this.SelectedEntry = this.Entries.Values.OrderByDescending(x => x.UTCDateTime).First();
             }
 
+            // Update all the UIs.
             this.UpdateFromScratch();
+
+            // Enable the watcher.
+            this.Watcher.EnableRaisingEvents = true;
+        }
+
+        /// <summary>
+        /// Removes the selected entry from the database and select next item.
+        /// </summary>
+        private void RemoveSelectedAndSelectNext()
+        {
+            // Retrieve the index.
+            var sortedEntries = this.Entries.Values.OrderByDescending(x => x.UTCDateTime).ToList();
+            int selectedIndex = sortedEntries.IndexOf(this.SelectedEntry);
+
+            // What to select next?
+            int nextIndex = selectedIndex == 0 ? selectedIndex + 1 : selectedIndex - 1;
+
+            // Remove from the database.
+            this.Entries.Remove(this.SelectedEntry.UUID);
+
+            // After deleting, select the next item.
+            if (this.Entries.Any())
+            {
+                this.SelectedEntry = sortedEntries[nextIndex];
+            }
+            else
+            {
+                this.SelectedEntry = null;
+            }
         }
 
         /// <summary>
@@ -1440,11 +1514,11 @@
                         {
                             if (entry is StarredCountEntry)
                             {
-                                this.UpdateEntryList(this.Entries.Where(x => x.Starred), this.entryListBoxTags);
+                                this.UpdateEntryList(this.Entries.Values.Where(x => x.Starred), this.entryListBoxTags);
                             }
                             else
                             {
-                                this.UpdateEntryList(this.Entries.Where(x => x.Tags.Contains(entry.Tag)), this.entryListBoxTags);
+                                this.UpdateEntryList(this.Entries.Values.Where(x => x.Tags.Contains(entry.Tag)), this.entryListBoxTags);
                             }
                         }
                         else
@@ -1476,7 +1550,7 @@
         /// <param name="e">The <see cref="DayQueryInfoEventArgs"/> instance containing the event data.</param>
         private void MonthCalendar_DayQueryInfo(object sender, DayQueryInfoEventArgs e)
         {
-            e.Info.BoldedDate = this.Entries.Any(x => x.LocalTime.Date == e.Date);
+            e.Info.BoldedDate = this.Entries.Values.Any(x => x.LocalTime.Date == e.Date);
             e.OwnerDraw = true;
         }
 
@@ -1573,7 +1647,7 @@
             tagEditForm.Location = this.buttonTag.PointToScreen(new Point(-tagEditForm.Width, -8));
 
             tagEditForm.AssignedTags.AddRange(this.SelectedEntry.Tags.OrderBy(x => x));
-            tagEditForm.OtherTags.AddRange(this.Entries.SelectMany(x => x.Tags).Distinct().Where(x => !this.SelectedEntry.Tags.Contains(x)).OrderBy(x => x));
+            tagEditForm.OtherTags.AddRange(this.Entries.Values.SelectMany(x => x.Tags).Distinct().Where(x => !this.SelectedEntry.Tags.Contains(x)).OrderBy(x => x));
 
             // Event handlers.
             tagEditForm.FormClosed += new FormClosedEventHandler(this.TagEditForm_FormClosed);
@@ -1639,26 +1713,10 @@
             // Cancel the editing mode first.
             this.IsEditing = false;
 
-            // Retrieve the index.
-            var sortedEntries = this.Entries.OrderByDescending(x => x.UTCDateTime).ToList();
-            int selectedIndex = sortedEntries.IndexOf(this.SelectedEntry);
-
-            // What to select next?
-            int nextIndex = selectedIndex == 0 ? selectedIndex + 1 : selectedIndex - 1;
-
             // Actually perform the deletion.
-            this.Entries.Remove(this.SelectedEntry);
             this.SelectedEntry.Delete(this.Settings.EntryFolderPath);
 
-            // After deleting, select the next item.
-            if (this.Entries.Any())
-            {
-                this.SelectedEntry = sortedEntries[nextIndex];
-            }
-            else
-            {
-                this.SelectedEntry = null;
-            }
+            this.RemoveSelectedAndSelectNext();
 
             this.UpdateFromScratch();
         }
@@ -2040,6 +2098,219 @@
                             IntPtr.Zero);
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Handles the EntryChanged event of the Watcher control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EntryEventArgs"/> instance containing the event data.</param>
+        private void Watcher_EntryChanged(object sender, EntryEventArgs e)
+        {
+            Entry newEntry = Entry.LoadFromFile(e.FullPath, this.Settings);
+
+            // See if this entry is being edited in the current window.
+            if (this.IsEditing && this.SelectedEntry.UUID == e.UUID)
+            {
+                // Stop the auto save timer here.
+                this.AutoSaveTimer.Stop();
+
+                string message = "The current entry has been changed outside Journaley.\n"
+                    + "Would you like to reload the entry?\n"
+                    + "(If you do, you will lose your local changes to this entry)";
+
+                // Ask if the user wants to reload the entry, or keep the current version.
+                DialogResult result = MessageBox.Show(
+                    message,
+                    "Change detected",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.No)
+                {
+                    // Re-enable the auto save timer.
+                    this.AutoSaveTimer.Start();
+
+                    return;
+                }
+
+                // Here, cancel the edit mode, replace the entry, and replace the selected entry as well.
+                this.IsEditing = false;
+            }
+
+            // If there was an existing entry with the same ID
+            if (this.Entries.ContainsKey(e.UUID))
+            {
+                Entry oldEntry = this.Entries[e.UUID];
+
+                this.Entries[e.UUID] = newEntry;
+
+                // If the local time remains unchanged, just invalidate the item in the entry list.
+                // Otherwise, just refresh the entire list.
+                if (oldEntry.LocalTime == newEntry.LocalTime)
+                {
+                    foreach (var entryList in this.GetAllEntryLists())
+                    {
+                        int oldIndex = entryList.Items.IndexOf(oldEntry);
+                        if (oldIndex >= 0)
+                        {
+                            entryList.Items[oldIndex] = newEntry;
+                        }
+                    }
+
+                    this.InvalidateEntryInEntryList(newEntry);
+                }
+                else
+                {
+                    this.UpdateAllEntryLists();
+                }
+            }
+            else
+            {
+                int prevTopIndex = this.GetActiveEntryList().TopIndex;
+
+                this.Entries.Add(e.UUID, newEntry);
+
+                this.UpdateAllEntryLists();
+
+                this.GetActiveEntryList().TopIndex = prevTopIndex;
+            }
+
+            if (this.SelectedEntry != null && this.SelectedEntry.UUID == e.UUID)
+            {
+                this.SelectedEntry = newEntry;
+            }
+        }
+
+        /// <summary>
+        /// Handles the EntryDeleted event of the Watcher control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EntryEventArgs"/> instance containing the event data.</param>
+        private void Watcher_EntryDeleted(object sender, EntryEventArgs e)
+        {
+            // See if the UUID exists in the database at all.
+            if (!this.Entries.ContainsKey(e.UUID))
+            {
+                // Do nothing.
+                return;
+            }
+
+            // See if this entry is being edited in the current window.
+            if (this.IsEditing && this.SelectedEntry.UUID == e.UUID)
+            {
+                // Stop the auto save timer here.
+                this.AutoSaveTimer.Stop();
+
+                string message = "The current entry has been deleted outside Journaley.\n"
+                    + "Would you like to delete the entry?\n"
+                    + "(If you do, you will lose your local changes to this entry)";
+
+                // Ask if the user wants to delete this entry, or keep it.
+                DialogResult result = MessageBox.Show(
+                    message,
+                    "Deletion detected",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.No)
+                {
+                    // Re-enable the auto save timer.
+                    this.AutoSaveTimer.Start();
+
+                    return;
+                }
+
+                // Here, cancel the edit mode, and remove the entry.
+                this.IsEditing = false;
+            }
+
+            // Select next entry.
+            if (this.SelectedEntry != null && this.SelectedEntry.UUID == e.UUID)
+            {
+                this.RemoveSelectedAndSelectNext();
+            }
+            else if (this.Entries.ContainsKey(e.UUID))
+            {
+                this.Entries.Remove(e.UUID);
+            }
+            else
+            {
+                return;
+            }
+
+            this.UpdateFromScratch();
+        }
+
+        /// <summary>
+        /// Handles the PhotoChanged event of the Watcher control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EntryEventArgs"/> instance containing the event data.</param>
+        private void Watcher_PhotoChanged(object sender, EntryEventArgs e)
+        {
+            // Ignore this event, in case the associated entry does not exist in the current database.
+            if (!this.Entries.ContainsKey(e.UUID))
+            {
+                return;
+            }
+
+            Entry entry = this.Entries[e.UUID];
+
+            // Assign the photo path to the entry.
+            entry.PhotoPath = e.FullPath;
+
+            // Update the UIs related to photo.
+            if (this.SelectedEntry == entry)
+            {
+                this.UpdatePhotoUIs();
+
+                // Reset the auto save timer.
+                if (this.IsEditing)
+                {
+                    this.AutoSaveTimer.Stop();
+                    this.AutoSaveTimer.Start();
+                }
+            }
+            else
+            {
+                this.InvalidateEntryInEntryList(entry);
+            }
+        }
+
+        /// <summary>
+        /// Handles the PhotoDeleted event of the Watcher control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EntryEventArgs"/> instance containing the event data.</param>
+        private void Watcher_PhotoDeleted(object sender, EntryEventArgs e)
+        {
+            // Ignore this event, in case the associated entry does not exist in the current database.
+            if (!this.Entries.ContainsKey(e.UUID))
+            {
+                return;
+            }
+
+            Entry entry = this.Entries[e.UUID];
+
+            entry.PhotoPath = null;
+
+            // Update the UIs related to photo.
+            if (this.SelectedEntry == entry)
+            {
+                this.UpdatePhotoUIs();
+
+                // Reset the auto save timer.
+                if (this.IsEditing)
+                {
+                    this.AutoSaveTimer.Stop();
+                    this.AutoSaveTimer.Start();
+                }
+            }
+            else
+            {
+                this.InvalidateEntryInEntryList(entry);
             }
         }
 

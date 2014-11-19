@@ -349,7 +349,7 @@
         /// <returns>An <see cref="Entry"/> object representing the given file.</returns>
         public static Entry LoadFromFile(string path)
         {
-            return LoadFromFile(path, null);
+            return LoadFromFile(path, null, false);
         }
 
         /// <summary>
@@ -357,10 +357,22 @@
         /// </summary>
         /// <param name="path">The path.</param>
         /// <param name="settings">The settings object, which can be null.</param>
+        /// <returns>An <see cref="Entry" /> object representing the given file.</returns>
+        public static Entry LoadFromFile(string path, Settings settings)
+        {
+            return LoadFromFile(path, settings, false);
+        }
+
+        /// <summary>
+        /// Loads an entry from the given filename.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="settings">The settings object, which can be null.</param>
+        /// <param name="throwExceptions">if set to <c>true</c> [throw exceptions].</param>
         /// <returns>
         /// An <see cref="Entry" /> object representing the given file.
         /// </returns>
-        public static Entry LoadFromFile(string path, Settings settings)
+        public static Entry LoadFromFile(string path, Settings settings, bool throwExceptions)
         {
             try
             {
@@ -405,6 +417,11 @@
             }
             catch (Exception e)
             {
+                if (throwExceptions)
+                {
+                    throw e;
+                }
+
                 // Write to a log file.
                 StringBuilder builder = new StringBuilder();
                 builder.AppendLine("An error occurred while reading entry \"" + path + "\"");
@@ -586,18 +603,18 @@
         public void CheckExistingPhoto(string photoFolderPath)
         {
             // If there is a photo already, don't do anything.
-            if (this.PhotoPath != null && new FileInfo(this.PhotoPath).Exists)
+            if (this.PhotoPath != null && File.Exists(this.PhotoPath))
             {
                 return;
             }
 
-            this.photoPath = null;
+            this.PhotoPath = null;
             foreach (var format in SupportedPhotoFormats)
             {
                 string candidatePhotoPath = Path.Combine(photoFolderPath, this.UUIDString + "." + format);
-                if (new FileInfo(candidatePhotoPath).Exists)
+                if (File.Exists(candidatePhotoPath))
                 {
-                    this.photoPath = candidatePhotoPath;
+                    this.PhotoPath = candidatePhotoPath;
                     return;
                 }
             }
