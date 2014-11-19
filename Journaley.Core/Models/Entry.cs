@@ -306,7 +306,6 @@
             set
             {
                 this.photoPath = value;
-                this.UpdatePhotoFileSizeAndWriteTime();
                 this.OnPhotoChanged();
             }
         }
@@ -342,38 +341,6 @@
         ///   <c>true</c> if this instance is dirty; otherwise, <c>false</c>.
         /// </value>
         public bool IsDirty { get; private set; }
-
-        /// <summary>
-        /// Gets the last known size of the entry file.
-        /// </summary>
-        /// <value>
-        /// The last known size of the entry file.
-        /// </value>
-        public long LastKnownEntryFileSize { get; private set; }
-
-        /// <summary>
-        /// Gets the last known entry write time.
-        /// </summary>
-        /// <value>
-        /// The last known entry write time.
-        /// </value>
-        public DateTime LastKnownEntryWriteTime { get; private set; }
-
-        /// <summary>
-        /// Gets the last known size of the corresponding photo file.
-        /// </summary>
-        /// <value>
-        /// The last known size of the corresponding photo file.
-        /// </value>
-        public long LastKnownPhotoFileSize { get; private set; }
-
-        /// <summary>
-        /// Gets the last known photo write time.
-        /// </summary>
-        /// <value>
-        /// The last known photo write time.
-        /// </value>
-        public DateTime LastKnownPhotoWriteTime { get; private set; }
 
         /// <summary>
         /// Loads an entry from the given filename.
@@ -444,9 +411,6 @@
                     }
 
                     newEntry.IsDirty = false;
-
-                    // Check the size and write time.
-                    newEntry.UpdateEntryFileSizeAndWriteTime(Path.GetDirectoryName(path));
 
                     return newEntry;
                 }
@@ -609,13 +573,10 @@
                 using (StreamWriter streamWriter = new StreamWriter(Path.Combine(folderPath, this.FileName), false, new UTF8Encoding()))
                 {
                     streamWriter.Write(builder.ToString());
+
+                    // Now it's not dirty!
+                    this.IsDirty = false;
                 }
-
-                // Now it's not dirty!
-                this.IsDirty = false;
-
-                // Update the file size and the last write time.
-                this.UpdateEntryFileSizeAndWriteTime(folderPath);
             }
         }
 
@@ -656,35 +617,6 @@
                     this.PhotoPath = candidatePhotoPath;
                     return;
                 }
-            }
-        }
-
-        /// <summary>
-        /// Updates the entry file size and write time.
-        /// </summary>
-        /// <param name="entryFolderPath">The entry folder path.</param>
-        public void UpdateEntryFileSizeAndWriteTime(string entryFolderPath)
-        {
-            FileInfo finfo = new FileInfo(Path.Combine(entryFolderPath, this.FileName));
-            this.LastKnownEntryFileSize = finfo.Length;
-            this.LastKnownEntryWriteTime = finfo.LastWriteTime;
-        }
-
-        /// <summary>
-        /// Updates the photo file size and write time.
-        /// </summary>
-        public void UpdatePhotoFileSizeAndWriteTime()
-        {
-            if (this.PhotoPath == null || !File.Exists(this.PhotoPath))
-            {
-                this.LastKnownPhotoFileSize = 0;
-                this.LastKnownPhotoWriteTime = DateTime.MinValue;
-            }
-            else
-            {
-                FileInfo finfo = new FileInfo(this.PhotoPath);
-                this.LastKnownPhotoFileSize = finfo.Length;
-                this.LastKnownPhotoWriteTime = finfo.LastWriteTime;
             }
         }
 
