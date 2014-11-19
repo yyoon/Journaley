@@ -2108,7 +2108,7 @@
         /// <param name="e">The <see cref="EntryEventArgs"/> instance containing the event data.</param>
         private void Watcher_EntryChanged(object sender, EntryEventArgs e)
         {
-            Entry entry = Entry.LoadFromFile(e.FullPath, this.Settings);
+            Entry newEntry = Entry.LoadFromFile(e.FullPath, this.Settings);
 
             // See if this entry is being edited in the current window.
             if (this.IsEditing && this.SelectedEntry.UUID == e.UUID)
@@ -2139,20 +2139,47 @@
                 this.IsEditing = false;
             }
 
+            // If there was an existing entry with the same ID
             if (this.Entries.ContainsKey(e.UUID))
             {
-                this.Entries[e.UUID] = entry;
+                Entry oldEntry = this.Entries[e.UUID];
+
+                this.Entries[e.UUID] = newEntry;
+
+                // If the local time remains unchanged, just invalidate the item in the entry list.
+                // Otherwise, just refresh the entire list.
+                if (oldEntry.LocalTime == newEntry.LocalTime)
+                {
+                    foreach (var entryList in this.GetAllEntryLists())
+                    {
+                        int oldIndex = entryList.Items.IndexOf(oldEntry);
+                        if (oldIndex >= 0)
+                        {
+                            entryList.Items[oldIndex] = newEntry;
+                        }
+                    }
+
+                    this.InvalidateEntryInEntryList(newEntry);
+                }
+                else
+                {
+                    this.UpdateAllEntryLists();
+                }
             }
             else
             {
-                this.Entries.Add(e.UUID, entry);
-            }
+                int prevTopIndex = this.GetActiveEntryList().TopIndex;
 
-            this.UpdateAllEntryLists();
+                this.Entries.Add(e.UUID, newEntry);
+
+                this.UpdateAllEntryLists();
+
+                this.GetActiveEntryList().TopIndex = prevTopIndex;
+            }
 
             if (this.SelectedEntry != null && this.SelectedEntry.UUID == e.UUID)
             {
-                this.SelectedEntry = entry;
+                this.SelectedEntry = newEntry;
             }
         }
 
