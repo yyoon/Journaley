@@ -1,7 +1,6 @@
 ﻿namespace Journaley.Forms
 {
     using System;
-    using System.Collections.Concurrent;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Drawing;
@@ -30,11 +29,6 @@
         /// The auto save threshold in milliseconds.
         /// </summary>
         private static readonly int AutoSaveThreshold = 3000;
-
-        /// <summary>
-        /// The deletion defer time (c.f. Watcher_EntryDeleted)
-        /// </summary>
-        private static readonly int DeletionDeferTime = 3000;
 
         /// <summary>
         /// The backing field of selected entry
@@ -85,11 +79,6 @@
         /// The dragging offset
         /// </summary>
         private Point draggingOffset;
-
-        /// <summary>
-        /// The deletion timers
-        /// </summary>
-        private IDictionary<Guid, System.Timers.Timer> deletionTimers = new ConcurrentDictionary<Guid, System.Timers.Timer>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
@@ -395,21 +384,6 @@
         /// The auto save timer.
         /// </value>
         private System.Timers.Timer AutoSaveTimer { get; set; }
-
-        /// <summary>
-        /// Gets the deletion timers dictionary.
-        /// Used to defer processing the external deletion.
-        /// </summary>
-        /// <value>
-        /// The deletion timers.
-        /// </value>
-        private IDictionary<Guid, System.Timers.Timer> DeletionTimers
-        {
-            get
-            {
-                return this.deletionTimers;
-            }
-        }
 
         /// <summary>
         /// Gets or sets a value indicating whether [dragging title bar].
@@ -1315,7 +1289,7 @@
             this.EntryList.LoadEntries(this.Settings);
 
             // Set the EntryWatcher.
-            this.Watcher = new EntryWatcher(this.Settings.EntryFolderPath, this.Settings.PhotoFolderPath);
+            this.Watcher = new EntryWatcher(this.Settings.EntryFolderPath, this.Settings.PhotoFolderPath, this);
 
             this.Watcher.EntryAdded += new EntryEventHandler(this.Watcher_EntryChanged);
             this.Watcher.EntryChanged += new EntryEventHandler(this.Watcher_EntryChanged);
@@ -1337,72 +1311,6 @@
 
             // Enable the watcher.
             this.Watcher.EnableRaisingEvents = true;
-        }
-
-        /// <summary>
-        /// Processes the external deletion.
-        /// </summary>
-        /// <param name="uuid">The UUID.</param>
-        private void ProcessExternalDeletion(Guid uuid)
-        {
-            // See if the UUID exists in the database at all.
-            if (!this.Entries.ContainsKey(uuid))
-            {
-                // Do nothing.
-                return;
-            }
-
-            // See if this entry is being edited in the current window.
-            if (this.IsEditing && this.SelectedEntry.UUID == uuid)
-            {
-                // Stop the auto save timer here.
-                this.AutoSaveTimer.Stop();
-
-                string message = "The current entry has been deleted outside Journaley.\n"
-                    + "Would you like to delete the entry?\n"
-                    + "(If you do, you will lose your local changes to this entry)";
-
-                // Ask if the user wants to delete this entry, or keep it.
-                DialogResult result = MessageBox.Show(
-                    message,
-                    "Deletion detected",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning);
-
-                if (result == DialogResult.No)
-                {
-                    // Re-enable the auto save timer.
-                    this.AutoSaveTimer.Start();
-
-                    return;
-                }
-
-                // Here, cancel the edit mode, and remove the entry.
-                this.IsEditing = false;
-            }
-
-            // Select next entry.
-            if (this.SelectedEntry != null && this.SelectedEntry.UUID == uuid)
-            {
-                this.RemoveSelectedAndSelectNext();
-            }
-            else if (this.Entries.ContainsKey(uuid))
-            {
-                this.Entries.Remove(uuid);
-            }
-            else
-            {
-                return;
-            }
-
-            this.UpdateFromScratch();
-
-            // Delete the timer object from the dictionary.
-            if (this.DeletionTimers.ContainsKey(uuid))
-            {
-                this.DeletionTimers[uuid].Dispose();
-                this.DeletionTimers.Remove(uuid);
-            }
         }
 
         /// <summary>
@@ -2200,73 +2108,52 @@
         /// <param name="e">The <see cref="EntryEventArgs"/> instance containing the event data.</param>
         private void Watcher_EntryChanged(object sender, EntryEventArgs e)
         {
-            // See if there is a deletion timer set for this particular uuid.
-            if (this.DeletionTimers.ContainsKey(e.UUID))
-            {
-                this.DeletionTimers[e.UUID].Stop();
-                this.DeletionTimers.Remove(e.UUID);
-            }
+            Entry entry = Entry.LoadFromFile(e.FullPath, this.Settings);
 
-            // Make sure all of the following code runs on the UI thread.
-            this.Invoke(new Action(() =>
+            // See if this entry is being edited in the current window.
+            if (this.IsEditing && this.SelectedEntry.UUID == e.UUID)
             {
-                // First, see if the entry is parsable.
-                Entry entry = null;
-                try
+                // Stop the auto save timer here.
+                this.AutoSaveTimer.Stop();
+
+                string message = "The current entry has been changed outside Journaley.\n"
+                    + "Would you like to reload the entry?\n"
+                    + "(If you do, you will lose your local changes to this entry)";
+
+                // Ask if the user wants to reload the entry, or keep the current version.
+                DialogResult result = MessageBox.Show(
+                    message,
+                    "Change detected",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.No)
                 {
-                    entry = Entry.LoadFromFile(e.FullPath, this.Settings, true);
-                }
-                catch (Exception)
-                {
-                    // If it's not parsable, then just ignore it for now.
+                    // Re-enable the auto save timer.
+                    this.AutoSaveTimer.Start();
+
                     return;
                 }
 
-                // See if this entry is being edited in the current window.
-                if (this.IsEditing && this.SelectedEntry.UUID == e.UUID)
-                {
-                    // Stop the auto save timer here.
-                    this.AutoSaveTimer.Stop();
+                // Here, cancel the edit mode, replace the entry, and replace the selected entry as well.
+                this.IsEditing = false;
+            }
 
-                    string message = "The current entry has been changed outside Journaley.\n"
-                        + "Would you like to reload the entry?\n"
-                        + "(If you do, you will lose your local changes to this entry)";
+            if (this.Entries.ContainsKey(e.UUID))
+            {
+                this.Entries[e.UUID] = entry;
+            }
+            else
+            {
+                this.Entries.Add(e.UUID, entry);
+            }
 
-                    // Ask if the user wants to reload the entry, or keep the current version.
-                    DialogResult result = MessageBox.Show(
-                        message,
-                        "Change detected",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Warning);
+            this.UpdateAllEntryLists();
 
-                    if (result == DialogResult.No)
-                    {
-                        // Re-enable the auto save timer.
-                        this.AutoSaveTimer.Start();
-
-                        return;
-                    }
-
-                    // Here, cancel the edit mode, replace the entry, and replace the selected entry as well.
-                    this.IsEditing = false;
-                }
-
-                if (this.Entries.ContainsKey(e.UUID))
-                {
-                    this.Entries[e.UUID] = entry;
-                }
-                else
-                {
-                    this.Entries.Add(e.UUID, entry);
-                }
-
-                this.UpdateAllEntryLists();
-
-                if (this.SelectedEntry != null && this.SelectedEntry.UUID == e.UUID)
-                {
-                    this.SelectedEntry = entry;
-                }
-            }));
+            if (this.SelectedEntry != null && this.SelectedEntry.UUID == e.UUID)
+            {
+                this.SelectedEntry = entry;
+            }
         }
 
         /// <summary>
@@ -2276,29 +2163,57 @@
         /// <param name="e">The <see cref="EntryEventArgs"/> instance containing the event data.</param>
         private void Watcher_EntryDeleted(object sender, EntryEventArgs e)
         {
-            // IMPORTANT
-            // Even when a deletion event is caught,
-            // wait for a few more seconds and see if it is in fact a deletion.
-            //
-            // In case of using Dropbox synchronization,
-            // A file is updated by first being deleted and then being replaced with a new file.
-            // In this case, three events, (1) EntryDeleted, (2) EntryAdded, (3) EntryChanged, will occur,
-            // and we want to handle only the last EntryChanged event.
-            //
-            // Use a Timer object to achieve this.
-            if (!this.DeletionTimers.ContainsKey(e.UUID))
+            // See if the UUID exists in the database at all.
+            if (!this.Entries.ContainsKey(e.UUID))
             {
-                System.Timers.Timer timer = new System.Timers.Timer(DeletionDeferTime);
-                timer.AutoReset = false;
-                timer.SynchronizingObject = this;
-                timer.Elapsed += delegate(object s, System.Timers.ElapsedEventArgs e2)
-                {
-                    this.ProcessExternalDeletion(e.UUID);
-                };
-
-                this.DeletionTimers.Add(e.UUID, timer);
-                timer.Start();
+                // Do nothing.
+                return;
             }
+
+            // See if this entry is being edited in the current window.
+            if (this.IsEditing && this.SelectedEntry.UUID == e.UUID)
+            {
+                // Stop the auto save timer here.
+                this.AutoSaveTimer.Stop();
+
+                string message = "The current entry has been deleted outside Journaley.\n"
+                    + "Would you like to delete the entry?\n"
+                    + "(If you do, you will lose your local changes to this entry)";
+
+                // Ask if the user wants to delete this entry, or keep it.
+                DialogResult result = MessageBox.Show(
+                    message,
+                    "Deletion detected",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.No)
+                {
+                    // Re-enable the auto save timer.
+                    this.AutoSaveTimer.Start();
+
+                    return;
+                }
+
+                // Here, cancel the edit mode, and remove the entry.
+                this.IsEditing = false;
+            }
+
+            // Select next entry.
+            if (this.SelectedEntry != null && this.SelectedEntry.UUID == e.UUID)
+            {
+                this.RemoveSelectedAndSelectNext();
+            }
+            else if (this.Entries.ContainsKey(e.UUID))
+            {
+                this.Entries.Remove(e.UUID);
+            }
+            else
+            {
+                return;
+            }
+
+            this.UpdateFromScratch();
         }
 
         /// <summary>
