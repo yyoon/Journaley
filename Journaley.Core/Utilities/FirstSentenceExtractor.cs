@@ -109,7 +109,7 @@
             // See if this is part of the popular abbreviations.
             foreach (var abbr in PopularAbbreviations)
             {
-                if (pos >= abbr.Length - 1 && line.Substring(pos - abbr.Length + 1, abbr.Length).Equals(abbr, StringComparison.InvariantCultureIgnoreCase))
+                if (pos >= abbr.Length - 1 && line.Substring(pos - abbr.Length + 1, abbr.Length).Equals(abbr, StringComparison.OrdinalIgnoreCase))
                 {
                     return IndexOfPunctuationMark(line, pos + 1);
                 }
