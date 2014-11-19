@@ -395,6 +395,21 @@
                 return;
             }
 
+            // Check the file extension. Now it only supports jpg or jpeg.
+            string ext = Path.GetExtension(e.Name).ToLower();
+            if (ext != ".jpg" && ext != ".jpeg")
+            {
+                return;
+            }
+
+            // Second, check if the added file size is greater than zero.
+            // If this is zero-sized, then it is very likely that a subsequent change event is fired very soon.
+            FileInfo finfo = new FileInfo(e.FullPath);
+            if (finfo.Length == 0)
+            {
+                return;
+            }
+
             this.StopDeletionTimer(this.PhotoDeletionTimers, uuid);
 
             if (this.PhotoAdded != null)
@@ -427,6 +442,13 @@
                 uuid = new Guid(Path.GetFileNameWithoutExtension(e.Name));
             }
             catch (Exception)
+            {
+                return;
+            }
+
+            // Check the file extension. Now it only supports jpg or jpeg.
+            string ext = Path.GetExtension(e.Name).ToLower();
+            if (ext != ".jpg" && ext != ".jpeg")
             {
                 return;
             }

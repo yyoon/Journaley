@@ -1296,7 +1296,7 @@
             this.Watcher.EntryDeleted += new EntryEventHandler(this.Watcher_EntryDeleted);
             this.Watcher.PhotoAdded += new EntryEventHandler(this.Watcher_PhotoChanged);
             this.Watcher.PhotoChanged += new EntryEventHandler(this.Watcher_PhotoChanged);
-            this.Watcher.PhotoDeleted += new EntryEventHandler(this.Watcher_PhotoChanged);
+            this.Watcher.PhotoDeleted += new EntryEventHandler(this.Watcher_PhotoDeleted);
 
             this.Watcher.EnableRaisingEvents = true;
 
@@ -2223,17 +2223,67 @@
         /// <param name="e">The <see cref="EntryEventArgs"/> instance containing the event data.</param>
         private void Watcher_PhotoChanged(object sender, EntryEventArgs e)
         {
-            switch (e.Type)
+            // Ignore this event, in case the associated entry does not exist in the current database.
+            if (!this.Entries.ContainsKey(e.UUID))
             {
-                case ChangeType.PhotoAdded:
-                case ChangeType.PhotoChanged:
-                    break;
+                return;
+            }
 
-                case ChangeType.PhotoDeleted:
-                    break;
+            Entry entry = this.Entries[e.UUID];
 
-                default:
-                    break;
+            // Assign the photo path to the entry.
+            entry.PhotoPath = e.FullPath;
+
+            // Update the UIs related to photo.
+            if (this.SelectedEntry == entry)
+            {
+                this.UpdatePhotoUIs();
+
+                // Reset the auto save timer.
+                if (this.IsEditing)
+                {
+                    this.AutoSaveTimer.Stop();
+                    this.AutoSaveTimer.Start();
+                }
+            }
+            else
+            {
+                this.InvalidateEntryInEntryList(entry);
+            }
+        }
+
+        /// <summary>
+        /// Handles the PhotoDeleted event of the Watcher control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EntryEventArgs"/> instance containing the event data.</param>
+        private void Watcher_PhotoDeleted(object sender, EntryEventArgs e)
+        {
+            // Ignore this event, in case the associated entry does not exist in the current database.
+            if (!this.Entries.ContainsKey(e.UUID))
+            {
+                return;
+            }
+
+            Entry entry = this.Entries[e.UUID];
+
+            entry.PhotoPath = null;
+
+            // Update the UIs related to photo.
+            if (this.SelectedEntry == entry)
+            {
+                this.UpdatePhotoUIs();
+
+                // Reset the auto save timer.
+                if (this.IsEditing)
+                {
+                    this.AutoSaveTimer.Stop();
+                    this.AutoSaveTimer.Start();
+                }
+            }
+            else
+            {
+                this.InvalidateEntryInEntryList(entry);
             }
         }
 
