@@ -18,7 +18,7 @@
         /// <summary>
         /// The popular abbreviations
         /// </summary>
-        private static readonly string[] PopularAbbreviations = new string[] { "Mr.", "Mrs.", "Ms.", "Dr." };
+        private static readonly string[] PopularAbbreviations = new string[] { "Mr.", "Mrs.", "Ms.", "Dr.", "vs." };
 
         /// <summary>
         /// Extracts the first sentence.
