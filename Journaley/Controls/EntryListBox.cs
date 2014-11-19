@@ -282,7 +282,7 @@
         /// <param name="m">The windows message object.</param>
         private void OnMouseWheel(ref Message m)
         {
-            int wheelDelta = (int)m.WParam >> 16;
+            int wheelDelta = unchecked((short)((long)m.WParam >> 16));
 
             if (wheelDelta > 0)
             {
