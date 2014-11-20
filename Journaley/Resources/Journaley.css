@@ -12,41 +12,12 @@ background-color: #EFEFEF;
 overflow: auto;
 }
 
-
-h1 {
-font-family: "Noto Sans";
-font-size: 20pt;
-
-padding-top: 10px;
-
-color: #37393B;
-}
-
-h2 {
-font-family: "Noto Sans";
-font-size: 16pt;
-
-padding-top: 0px;
-
-color: #37393B;
-}
-
-h3 {
-font-family: "Noto Sans";
-font-style: italic;
-font-size: 13pt;
-
-padding-top: 0px;
-
-color: #37393B;
-}
-
 div {
 padding: 0px 30px 20px 30px;
 }
 
 div p {
-margin: -10px 0px 0px 0px;
+margin: 20px 0px 0px 0px;
 }
 
 img {
