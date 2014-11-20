@@ -1,5 +1,5 @@
 html {
-margin: 0px;
+margin: 20px 0px 0px 0px;
 padding: 0px;
 }
 
@@ -10,6 +10,34 @@ font-size: 13pt;
 background-color: #EFEFEF;
 
 overflow: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Noto Sans";
+  color: #37393B;
+  margin-bottom: -15px;
+}
+
+h1 {
+font-size: 20pt;
+
+margin-bottom: 0px;
+}
+
+h2 {
+font-size: 16pt;
+}
+
+h3 {
+font-style: italic;
+font-size: 13pt;
+
+margin-bottom: -12px;
 }
 
 div {
