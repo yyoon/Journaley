@@ -1,5 +1,5 @@
 html {
-margin: 20px 0px 0px 0px;
+margin: 0px;
 padding: 0px;
 }
 
@@ -41,12 +41,9 @@ margin-bottom: -12px;
 }
 
 div {
-padding: 0px 30px 20px 30px;
+padding: 20px 35px 20px 35px;
 }
 
-div p {
-margin: 20px 0px 0px 0px;
-}
 
 img {
 width: 100%;
