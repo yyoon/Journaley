@@ -546,6 +546,7 @@
 
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Forms.Control.MouseMove" /> event.
+        /// Changes cursor to Hand Cursor.
         /// Also determines the hover states.
         /// </summary>
         /// <param name="e">A <see cref="T:System.Windows.Forms.MouseEventArgs" /> that contains the event data.</param>
@@ -556,11 +557,18 @@
             this.BackButtonHover = this.BackButtonBounds.Contains(e.Location);
             this.PopoutButtonHover = this.PopoutButtonBounds.Contains(e.Location);
 
+            // Sets Hand Cursor only when EntryPhotoArea is not expanded.
+            if (!this.Expanded)
+            {
+                Cursor.Current = Cursors.Hand;
+            }
+
             base.OnMouseMove(e);
         }
 
         /// <summary>
         /// Raises the <see cref="E:System.Windows.Forms.Control.MouseLeave" /> event.
+        /// Resets cursor to Default Cursor.
         /// Removes all hover states.
         /// </summary>
         /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
@@ -570,6 +578,7 @@
             this.ImageHover = false;
             this.BackButtonHover = false;
             this.PopoutButtonHover = false;
+            this.Cursor = Cursors.Default;
 
             base.OnMouseLeave(e);
         }
