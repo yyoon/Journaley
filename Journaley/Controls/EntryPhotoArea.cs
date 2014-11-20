@@ -558,11 +558,10 @@
             this.PopoutButtonHover = this.PopoutButtonBounds.Contains(e.Location);
 
             // Sets Hand Cursor only when EntryPhotoArea is not expanded.
-            if (!expanded)
+            if (!this.Expanded)
             {
                 Cursor.Current = Cursors.Hand;
             }
-           
 
             base.OnMouseMove(e);
         }
