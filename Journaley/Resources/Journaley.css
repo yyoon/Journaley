@@ -19,7 +19,10 @@ h4,
 h5,
 h6 {
   font-family: "Noto Sans";
+  font-size: 13pt;
+
   color: #37393B;
+
   margin-bottom: -15px;
 }
 
@@ -31,17 +34,18 @@ margin-bottom: 0px;
 
 h2 {
 font-size: 16pt;
+
+margin-bottom: -12px;
 }
 
 h3 {
 font-style: italic;
-font-size: 13pt;
 
 margin-bottom: -12px;
 }
 
 div {
-padding: 20px 35px 20px 35px;
+padding: 20px 7% 20px 7%;
 }
 
 
