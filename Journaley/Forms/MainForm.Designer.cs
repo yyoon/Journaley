@@ -1031,7 +1031,7 @@ namespace Journaley.Forms
             this.spellCheckedEntryText.Location = new System.Drawing.Point(0, 0);
             this.spellCheckedEntryText.Multiline = true;
             this.spellCheckedEntryText.Name = "spellCheckedEntryText";
-            this.spellCheckedEntryText.Padding = new System.Windows.Forms.Padding(30);
+            this.spellCheckedEntryText.Padding = new System.Windows.Forms.Padding(43, 37, 40, 37);
             this.spellCheckedEntryText.ReadOnly = false;
             this.spellCheckedEntryText.Size = new System.Drawing.Size(618, 318);
             this.spellCheckedEntryText.TabIndex = 1;
