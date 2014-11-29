@@ -1,6 +1,7 @@
 html {
 margin: 0px;
 padding: 0px;
+color: #37393B;
 }
 
 body {
@@ -21,15 +22,13 @@ h6 {
   font-family: "Noto Sans";
   font-size: 13pt;
 
-  color: #37393B;
-
   margin-bottom: -15px;
 }
 
 h1 {
-font-size: 20pt;
+font-size: 22pt;
 
-margin-bottom: 0px;
+margin-bottom: 2px;
 }
 
 h2 {
