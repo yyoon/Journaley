@@ -5,7 +5,7 @@ color: #37393B;
 }
 
 body {
-font-family: "Noto Sans";
+font-family: "Noto Sans", Arial, Verdana, "lucida sans unicode", Tahoma, Sans-serif;
 font-size: 13pt;
 
 background-color: #EFEFEF;
@@ -19,34 +19,31 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Noto Sans";
-  font-size: 13pt;
-
-  margin-bottom: -15px;
+  margin-bottom: -10px;
 }
 
 h1 {
-font-size: 22pt;
+font-size: 23pt;
 
-margin-bottom: 2px;
+margin-bottom: 5px;
 }
 
 h2 {
 font-size: 16pt;
-
-margin-bottom: -12px;
 }
 
 h3 {
-font-style: italic;
+font-size: 14pt;
+}
 
-margin-bottom: -12px;
+h4 {
+font-style: italic;
+font-size: 12pt;
 }
 
 div {
 padding: 20px 7% 20px 7%;
 }
-
 
 img {
 width: 100%;
