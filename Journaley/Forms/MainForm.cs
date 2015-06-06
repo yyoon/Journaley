@@ -981,9 +981,8 @@
 
             this.IsEditing = true;
 
-            // Puts focus on textbox and moves cursor to end of entry
+            // Puts focus on textbox
             this.spellCheckedEntryText.Focus();
-            this.spellCheckedEntryText.Select(this.spellCheckedEntryText.Text.Length, 0);
         }
 
         /// <summary>
