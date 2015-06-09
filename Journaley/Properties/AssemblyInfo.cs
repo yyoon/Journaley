@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Journaley")]
 [assembly: AssemblyDescription("Journal/Diary application for Windows. Compatible with Day One App for iOS/Mac")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("nullstein")]
+[assembly: AssemblyCompany("Journaley")]
 [assembly: AssemblyProduct("Journaley")]
-[assembly: AssemblyCopyright("Copyright ©  2012-2014")]
+[assembly: AssemblyCopyright("Copyright ©  2012-2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
