@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <Rebuild>true</Rebuild>
+    <ReleaseType>Stable</ReleaseType>
+    <ReleaseDir>..\Journaley\bin\Release\</ReleaseDir>
+    <ResourcesDir>..\Journaley\Resources\</ResourcesDir>
+  </PropertyGroup>
+
+  <Target Name="Clean">
+    <ItemGroup>
+      <FilesToClean Include="*.nupkg" />
+    </ItemGroup>
+    <Message Text="*** Cleaning" />
+    <Delete Files="@(FilesToClean)" />
+    <RemoveDir Directories="lib" />
+  </Target>
+  
+  <Target Name="Build">
+    <ItemGroup>
+      <FilesToCopy Include="$(ReleaseDir)Journaley.exe;$(ReleaseDir)*.dll;$(ResourcesDir)*;..\mit-license.rtf" />
+    </ItemGroup>
+    
+    <CallTarget Targets="Clean" />
+    <MSBuild Condition="$(Rebuild)" Projects="../Journaley.sln" Properties="Configuration=Release" Targets="Rebuild" />
+    <Exec Command="VersionExtractor $(ReleaseDir)Journaley.exe $(ReleaseType)" ConsoleToMSBuild="true">
+      <Output PropertyName="VersionNum" TaskParameter="ConsoleOutput" />
+    </Exec>
+    <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="lib\net45" />
+    <Exec Command="nuget pack Journaley.nuspec -Version $(VersionNum)" />
+    <Exec Command="..\packages\squirrel.windows.0.99.1.1\tools\Squirrel --releasify Journaley.$(VersionNum).nupkg" />
+    <Move SourceFiles="Releases\Setup.exe" DestinationFiles="Releases\Journaley.$(VersionNum).Setup.exe" />
+  </Target>
+  
+</Project>

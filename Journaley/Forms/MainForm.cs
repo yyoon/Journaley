@@ -1,5 +1,7 @@
 ﻿namespace Journaley.Forms
 {
+    extern alias MDS;
+
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -17,7 +19,7 @@
     using Journaley.Core.Utilities;
     using Journaley.Core.Watcher;
     using Journaley.Utilities;
-    using MarkdownSharp;
+    using MDS.MarkdownSharp;
     using Pabo.Calendar;
 
     /// <summary>
@@ -329,7 +331,7 @@
                 if (this.markdown == null)
                 {
                     this.markdown = new Markdown();
-                    ((MarkdownSharp.MarkdownOptions)this.markdown.Options).AutoNewLines = true;
+                    ((MarkdownOptions)this.markdown.Options).AutoNewLines = true;
                 }
 
                 return this.markdown;
