@@ -10,3 +10,5 @@ StyleCop.Cache
 **/Debug/*
 **/Release/*
 packages/*
+Installer/*.nupkg
+Installer/lib/*
