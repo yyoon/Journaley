@@ -63,36 +63,6 @@ namespace Journaley.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Copy_32x32 {
-            get {
-                object obj = ResourceManager.GetObject("Copy_32x32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Delete_32x32 {
-            get {
-                object obj = ResourceManager.GetObject("Delete_32x32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Edit_32x32 {
-            get {
-                object obj = ResourceManager.GetObject("Edit_32x32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap entires_pane_entryContainer_background {
             get {
                 object obj = ResourceManager.GetObject("entires_pane_entryContainer_background", resourceCulture);
@@ -236,26 +206,6 @@ namespace Journaley.Properties {
         internal static System.Drawing.Bitmap frame_pane_resize {
             get {
                 object obj = ResourceManager.GetObject("frame_pane_resize", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Image_32x32 {
-            get {
-                object obj = ResourceManager.GetObject("Image_32x32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ImageGray_32x32 {
-            get {
-                object obj = ResourceManager.GetObject("ImageGray_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -652,36 +602,6 @@ namespace Journaley.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Plus_32x32 {
-            get {
-                object obj = ResourceManager.GetObject("Plus_32x32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Save_32x32 {
-            get {
-                object obj = ResourceManager.GetObject("Save_32x32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Settings_32x32 {
-            get {
-                object obj = ResourceManager.GetObject("Settings_32x32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap sidebar_btn_cancel_down {
             get {
                 object obj = ResourceManager.GetObject("sidebar_btn_cancel_down", resourceCulture);
@@ -1035,66 +955,6 @@ namespace Journaley.Properties {
         internal static System.Drawing.Bitmap sidebar_seperator_buttonContainer {
             get {
                 object obj = ResourceManager.GetObject("sidebar_seperator_buttonContainer", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap StarGray_16x16 {
-            get {
-                object obj = ResourceManager.GetObject("StarGray_16x16", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap StarGray_32x32 {
-            get {
-                object obj = ResourceManager.GetObject("StarGray_32x32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap StarYellow_16x16 {
-            get {
-                object obj = ResourceManager.GetObject("StarYellow_16x16", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap StarYellow_32x32 {
-            get {
-                object obj = ResourceManager.GetObject("StarYellow_32x32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TagGreen_32x32 {
-            get {
-                object obj = ResourceManager.GetObject("TagGreen_32x32", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap TagWhite_32x32 {
-            get {
-                object obj = ResourceManager.GetObject("TagWhite_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
