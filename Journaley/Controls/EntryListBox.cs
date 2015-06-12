@@ -464,12 +464,12 @@
                 }
                 else
                 {
-                    this.DrawToFit(e.Graphics, Resources.Image_32x32, bounds);
+                    this.DrawToFit(e.Graphics, Resources.sidebar_btn_image_norm, bounds);
                 }
             }
             catch (Exception)
             {
-                this.DrawToFit(e.Graphics, Resources.Image_32x32, bounds);
+                this.DrawToFit(e.Graphics, Resources.sidebar_btn_image_norm, bounds);
             }
 
             bounds.Inflate(1, 1);
