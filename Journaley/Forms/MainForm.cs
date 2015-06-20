@@ -21,6 +21,7 @@
     using Journaley.Utilities;
     using MDS.MarkdownSharp;
     using Pabo.Calendar;
+    using Squirrel;
 
     /// <summary>
     /// The Main Form of the application. Contains the entry list, preview, buttons, etc.
@@ -1434,6 +1435,20 @@
             if (this.addNewEntryOnLoad)
             {
                 this.AddNewEntry();
+            }
+        }
+
+        /// <summary>
+        /// Handles the Shown event of the MainForm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private async void MainForm_Shown(object sender, EventArgs e)
+        {
+            // Update Check
+            using (var mgr = new UpdateManager(@"http://journaley.s3.amazonaws.com/stable"))
+            {
+                await mgr.UpdateApp();
             }
         }
 
