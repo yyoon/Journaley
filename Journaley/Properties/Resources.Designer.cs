@@ -602,6 +602,36 @@ namespace Journaley.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap settings_folder_btn_down {
+            get {
+                object obj = ResourceManager.GetObject("settings_folder_btn_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap settings_folder_btn_norm {
+            get {
+                object obj = ResourceManager.GetObject("settings_folder_btn_norm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap settings_folder_btn_over {
+            get {
+                object obj = ResourceManager.GetObject("settings_folder_btn_over", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sidebar_btn_cancel_down {
             get {
                 object obj = ResourceManager.GetObject("sidebar_btn_cancel_down", resourceCulture);

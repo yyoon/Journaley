@@ -34,7 +34,7 @@
             this.buttonRemovePassword = new System.Windows.Forms.Button();
             this.buttonChangePassword = new System.Windows.Forms.Button();
             this.textFolder = new System.Windows.Forms.TextBox();
-            this.buttonSelectFolder = new System.Windows.Forms.Button();
+            this.buttonSelectFolder = new Journaley.Controls.ImageButton();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.labelFormCaption = new Journaley.Controls.TitleLabel();
@@ -49,6 +49,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
             this.panelContent.SuspendLayout();
             this.groupPassword.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonSelectFolder)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTitlebar
@@ -145,22 +146,31 @@
             // 
             // textFolder
             // 
-            this.textFolder.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textFolder.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textFolder.Location = new System.Drawing.Point(30, 416);
             this.textFolder.Name = "textFolder";
             this.textFolder.ReadOnly = true;
-            this.textFolder.Size = new System.Drawing.Size(334, 25);
+            this.textFolder.Size = new System.Drawing.Size(334, 27);
             this.textFolder.TabIndex = 1;
             // 
             // buttonSelectFolder
             // 
             this.buttonSelectFolder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSelectFolder.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonSelectFolder.DownImage = global::Journaley.Properties.Resources.settings_folder_btn_down;
+            this.buttonSelectFolder.HoverImage = global::Journaley.Properties.Resources.settings_folder_btn_over;
+            this.buttonSelectFolder.Image = global::Journaley.Properties.Resources.settings_folder_btn_norm;
             this.buttonSelectFolder.Location = new System.Drawing.Point(370, 416);
             this.buttonSelectFolder.Name = "buttonSelectFolder";
-            this.buttonSelectFolder.Size = new System.Drawing.Size(45, 25);
+            this.buttonSelectFolder.NormalImage = global::Journaley.Properties.Resources.settings_folder_btn_norm;
+            this.buttonSelectFolder.Selected = false;
+            this.buttonSelectFolder.SelectedDownImage = null;
+            this.buttonSelectFolder.SelectedHoverImage = null;
+            this.buttonSelectFolder.SelectedImage = null;
+            this.buttonSelectFolder.Size = new System.Drawing.Size(47, 27);
             this.buttonSelectFolder.TabIndex = 0;
+            this.buttonSelectFolder.TabStop = false;
             this.buttonSelectFolder.Text = "...";
-            this.buttonSelectFolder.UseVisualStyleBackColor = true;
             this.buttonSelectFolder.Click += new System.EventHandler(this.ButtonSelectFolder_Click);
             // 
             // buttonOK
@@ -267,6 +277,7 @@
             this.panelContent.PerformLayout();
             this.groupPassword.ResumeLayout(false);
             this.groupPassword.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonSelectFolder)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -279,7 +290,7 @@
         private System.Windows.Forms.Button buttonRemovePassword;
         private System.Windows.Forms.Button buttonChangePassword;
         private System.Windows.Forms.TextBox textFolder;
-        private System.Windows.Forms.Button buttonSelectFolder;
+        private Controls.ImageButton buttonSelectFolder;
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
         protected Controls.TitleLabel labelFormCaption;
