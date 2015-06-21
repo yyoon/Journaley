@@ -38,9 +38,31 @@
             this.buttonSelectFolder = new System.Windows.Forms.Button();
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.panelTitlebar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
+            this.panelContent.SuspendLayout();
             this.groupPassword.SuspendLayout();
             this.groupFolder.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // imageButtonFormMinimize
+            // 
+            this.imageButtonFormMinimize.Visible = false;
+            // 
+            // imageButtonFormMaximize
+            // 
+            this.imageButtonFormMaximize.Visible = false;
+            // 
+            // panelContent
+            // 
+            this.panelContent.Controls.Add(this.buttonOK);
+            this.panelContent.Controls.Add(this.buttonCancel);
+            this.panelContent.Controls.Add(this.groupFolder);
+            this.panelContent.Controls.Add(this.groupPassword);
+            this.panelContent.Padding = new System.Windows.Forms.Padding(1, 0, 1, 1);
+            this.panelContent.Size = new System.Drawing.Size(284, 155);
             // 
             // groupPassword
             // 
@@ -151,19 +173,21 @@
             this.AcceptButton = this.buttonOK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(284, 155);
+            this.ClientSize = new System.Drawing.Size(284, 175);
             this.ControlBox = false;
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonOK);
-            this.Controls.Add(this.groupFolder);
-            this.Controls.Add(this.groupPassword);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "SettingsForm";
+            this.RealClientSize = new System.Drawing.Size(282, 154);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
+            this.panelTitlebar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).EndInit();
+            this.panelContent.ResumeLayout(false);
             this.groupPassword.ResumeLayout(false);
             this.groupPassword.PerformLayout();
             this.groupFolder.ResumeLayout(false);

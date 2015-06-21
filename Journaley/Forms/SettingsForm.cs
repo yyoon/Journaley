@@ -9,7 +9,7 @@
     /// <summary>
     /// A form used for adjusting various settings.
     /// </summary>
-    public partial class SettingsForm : Form
+    public partial class SettingsForm : BaseJournaleyForm
     {
         /// <summary>
         /// The backing field for Settings property.
