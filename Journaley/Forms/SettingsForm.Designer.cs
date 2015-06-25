@@ -28,15 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupPassword = new System.Windows.Forms.GroupBox();
+            this.buttonEnablePassword = new Journaley.Controls.ColorButton();
+            this.buttonRemovePassword = new Journaley.Controls.ColorButton();
+            this.buttonChangePassword = new Journaley.Controls.ColorButton();
             this.labelPasswordStatus = new System.Windows.Forms.Label();
-            this.buttonEnablePassword = new System.Windows.Forms.Button();
-            this.buttonRemovePassword = new System.Windows.Forms.Button();
-            this.buttonChangePassword = new System.Windows.Forms.Button();
             this.textFolder = new System.Windows.Forms.TextBox();
             this.buttonSelectFolder = new Journaley.Controls.ImageButton();
-            this.buttonOK = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
+            this.buttonOK = new Journaley.Controls.ColorButton();
+            this.buttonCancel = new Journaley.Controls.ColorButton();
             this.labelFormCaption = new Journaley.Controls.TitleLabel();
             this.horizontalSeparator1 = new System.Windows.Forms.Panel();
             this.horizontalSeparator2 = new System.Windows.Forms.Panel();
@@ -48,7 +47,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
             this.panelContent.SuspendLayout();
-            this.groupPassword.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSelectFolder)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,70 +82,91 @@
             this.panelContent.Controls.Add(this.labelFolderPath);
             this.panelContent.Controls.Add(this.labelJournalLocationSection);
             this.panelContent.Controls.Add(this.horizontalSeparator2);
+            this.panelContent.Controls.Add(this.buttonEnablePassword);
+            this.panelContent.Controls.Add(this.buttonRemovePassword);
+            this.panelContent.Controls.Add(this.buttonChangePassword);
+            this.panelContent.Controls.Add(this.labelPasswordStatus);
             this.panelContent.Controls.Add(this.labelPasswordSection);
             this.panelContent.Controls.Add(this.horizontalSeparator1);
-            this.panelContent.Controls.Add(this.groupPassword);
-            this.panelContent.Padding = new System.Windows.Forms.Padding(1, 0, 1, 1);
+            this.panelContent.Padding = new System.Windows.Forms.Padding(1);
             this.panelContent.Size = new System.Drawing.Size(450, 580);
-            // 
-            // groupPassword
-            // 
-            this.groupPassword.Controls.Add(this.labelPasswordStatus);
-            this.groupPassword.Controls.Add(this.buttonEnablePassword);
-            this.groupPassword.Controls.Add(this.buttonRemovePassword);
-            this.groupPassword.Controls.Add(this.buttonChangePassword);
-            this.groupPassword.Location = new System.Drawing.Point(12, 12);
-            this.groupPassword.Name = "groupPassword";
-            this.groupPassword.Size = new System.Drawing.Size(260, 48);
-            this.groupPassword.TabIndex = 2;
-            this.groupPassword.TabStop = false;
-            this.groupPassword.Text = "Password";
-            // 
-            // labelPasswordStatus
-            // 
-            this.labelPasswordStatus.AutoSize = true;
-            this.labelPasswordStatus.Location = new System.Drawing.Point(6, 24);
-            this.labelPasswordStatus.Name = "labelPasswordStatus";
-            this.labelPasswordStatus.Size = new System.Drawing.Size(0, 13);
-            this.labelPasswordStatus.TabIndex = 3;
             // 
             // buttonEnablePassword
             // 
             this.buttonEnablePassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonEnablePassword.Location = new System.Drawing.Point(179, 19);
+            this.buttonEnablePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonEnablePassword.BorderColor = System.Drawing.Color.Black;
+            this.buttonEnablePassword.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonEnablePassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonEnablePassword.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonEnablePassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonEnablePassword.Location = new System.Drawing.Point(333, 200);
             this.buttonEnablePassword.Name = "buttonEnablePassword";
-            this.buttonEnablePassword.Size = new System.Drawing.Size(75, 23);
+            this.buttonEnablePassword.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonEnablePassword.Selected = false;
+            this.buttonEnablePassword.SelectedColor = System.Drawing.Color.Empty;
+            this.buttonEnablePassword.SelectedDownColor = System.Drawing.Color.Empty;
+            this.buttonEnablePassword.SelectedHoverColor = System.Drawing.Color.Empty;
+            this.buttonEnablePassword.Size = new System.Drawing.Size(100, 30);
             this.buttonEnablePassword.TabIndex = 2;
             this.buttonEnablePassword.Text = "Enable";
-            this.buttonEnablePassword.UseVisualStyleBackColor = true;
             this.buttonEnablePassword.Click += new System.EventHandler(this.ButtonEnablePassword_Click);
             // 
             // buttonRemovePassword
             // 
             this.buttonRemovePassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRemovePassword.Location = new System.Drawing.Point(179, 19);
+            this.buttonRemovePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonRemovePassword.BorderColor = System.Drawing.Color.Black;
+            this.buttonRemovePassword.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonRemovePassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonRemovePassword.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRemovePassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonRemovePassword.Location = new System.Drawing.Point(333, 200);
             this.buttonRemovePassword.Name = "buttonRemovePassword";
-            this.buttonRemovePassword.Size = new System.Drawing.Size(75, 23);
+            this.buttonRemovePassword.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonRemovePassword.Selected = false;
+            this.buttonRemovePassword.SelectedColor = System.Drawing.Color.Empty;
+            this.buttonRemovePassword.SelectedDownColor = System.Drawing.Color.Empty;
+            this.buttonRemovePassword.SelectedHoverColor = System.Drawing.Color.Empty;
+            this.buttonRemovePassword.Size = new System.Drawing.Size(100, 30);
             this.buttonRemovePassword.TabIndex = 1;
             this.buttonRemovePassword.Text = "Remove";
-            this.buttonRemovePassword.UseVisualStyleBackColor = true;
             this.buttonRemovePassword.Click += new System.EventHandler(this.ButtonRemovePassword_Click);
             // 
             // buttonChangePassword
             // 
             this.buttonChangePassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonChangePassword.Location = new System.Drawing.Point(98, 19);
+            this.buttonChangePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonChangePassword.BorderColor = System.Drawing.Color.Black;
+            this.buttonChangePassword.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonChangePassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonChangePassword.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonChangePassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonChangePassword.Location = new System.Drawing.Point(218, 200);
             this.buttonChangePassword.Name = "buttonChangePassword";
-            this.buttonChangePassword.Size = new System.Drawing.Size(75, 23);
+            this.buttonChangePassword.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonChangePassword.Selected = false;
+            this.buttonChangePassword.SelectedColor = System.Drawing.Color.Empty;
+            this.buttonChangePassword.SelectedDownColor = System.Drawing.Color.Empty;
+            this.buttonChangePassword.SelectedHoverColor = System.Drawing.Color.Empty;
+            this.buttonChangePassword.Size = new System.Drawing.Size(100, 30);
             this.buttonChangePassword.TabIndex = 0;
             this.buttonChangePassword.Text = "Change";
-            this.buttonChangePassword.UseVisualStyleBackColor = true;
             this.buttonChangePassword.Click += new System.EventHandler(this.ButtonChangePassword_Click);
+            // 
+            // labelPasswordStatus
+            // 
+            this.labelPasswordStatus.AutoSize = true;
+            this.labelPasswordStatus.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPasswordStatus.Location = new System.Drawing.Point(27, 212);
+            this.labelPasswordStatus.Name = "labelPasswordStatus";
+            this.labelPasswordStatus.Size = new System.Drawing.Size(0, 20);
+            this.labelPasswordStatus.TabIndex = 3;
             // 
             // textFolder
             // 
-            this.textFolder.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textFolder.Location = new System.Drawing.Point(30, 416);
+            this.textFolder.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.textFolder.Location = new System.Drawing.Point(30, 417);
             this.textFolder.Name = "textFolder";
             this.textFolder.ReadOnly = true;
             this.textFolder.Size = new System.Drawing.Size(334, 27);
@@ -160,7 +179,7 @@
             this.buttonSelectFolder.DownImage = global::Journaley.Properties.Resources.settings_folder_btn_down;
             this.buttonSelectFolder.HoverImage = global::Journaley.Properties.Resources.settings_folder_btn_over;
             this.buttonSelectFolder.Image = global::Journaley.Properties.Resources.settings_folder_btn_norm;
-            this.buttonSelectFolder.Location = new System.Drawing.Point(370, 416);
+            this.buttonSelectFolder.Location = new System.Drawing.Point(370, 417);
             this.buttonSelectFolder.Name = "buttonSelectFolder";
             this.buttonSelectFolder.NormalImage = global::Journaley.Properties.Resources.settings_folder_btn_norm;
             this.buttonSelectFolder.Selected = false;
@@ -175,23 +194,41 @@
             // 
             // buttonOK
             // 
+            this.buttonOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonOK.BorderColor = System.Drawing.Color.Black;
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.buttonOK.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOK.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonOK.Location = new System.Drawing.Point(333, 535);
             this.buttonOK.Name = "buttonOK";
+            this.buttonOK.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonOK.Selected = false;
+            this.buttonOK.SelectedColor = System.Drawing.Color.Empty;
+            this.buttonOK.SelectedDownColor = System.Drawing.Color.Empty;
+            this.buttonOK.SelectedHoverColor = System.Drawing.Color.Empty;
             this.buttonOK.Size = new System.Drawing.Size(100, 30);
             this.buttonOK.TabIndex = 0;
-            this.buttonOK.Text = "OK";
-            this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Text = "Ok";
             // 
             // buttonCancel
             // 
+            this.buttonCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonCancel.BorderColor = System.Drawing.Color.Black;
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonCancel.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCancel.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonCancel.Location = new System.Drawing.Point(218, 535);
             this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonCancel.Selected = false;
+            this.buttonCancel.SelectedColor = System.Drawing.Color.Empty;
+            this.buttonCancel.SelectedDownColor = System.Drawing.Color.Empty;
+            this.buttonCancel.SelectedHoverColor = System.Drawing.Color.Empty;
             this.buttonCancel.Size = new System.Drawing.Size(100, 30);
             this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
             // 
             // labelFormCaption
             // 
@@ -228,7 +265,7 @@
             // 
             this.labelJournalLocationSection.AutoSize = true;
             this.labelJournalLocationSection.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelJournalLocationSection.Location = new System.Drawing.Point(10, 358);
+            this.labelJournalLocationSection.Location = new System.Drawing.Point(10, 359);
             this.labelJournalLocationSection.Name = "labelJournalLocationSection";
             this.labelJournalLocationSection.Size = new System.Drawing.Size(114, 20);
             this.labelJournalLocationSection.TabIndex = 6;
@@ -238,7 +275,7 @@
             // 
             this.labelFolderPath.AutoSize = true;
             this.labelFolderPath.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFolderPath.Location = new System.Drawing.Point(27, 394);
+            this.labelFolderPath.Location = new System.Drawing.Point(27, 395);
             this.labelFolderPath.Name = "labelFolderPath";
             this.labelFolderPath.Size = new System.Drawing.Size(89, 20);
             this.labelFolderPath.TabIndex = 7;
@@ -248,7 +285,7 @@
             // 
             this.labelPasswordSection.AutoSize = true;
             this.labelPasswordSection.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPasswordSection.Location = new System.Drawing.Point(10, 175);
+            this.labelPasswordSection.Location = new System.Drawing.Point(10, 176);
             this.labelPasswordSection.Name = "labelPasswordSection";
             this.labelPasswordSection.Size = new System.Drawing.Size(70, 20);
             this.labelPasswordSection.TabIndex = 8;
@@ -263,7 +300,7 @@
             this.ControlBox = false;
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "SettingsForm";
-            this.RealClientSize = new System.Drawing.Size(448, 579);
+            this.RealClientSize = new System.Drawing.Size(448, 578);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -275,8 +312,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).EndInit();
             this.panelContent.ResumeLayout(false);
             this.panelContent.PerformLayout();
-            this.groupPassword.ResumeLayout(false);
-            this.groupPassword.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSelectFolder)).EndInit();
             this.ResumeLayout(false);
 
@@ -284,15 +319,14 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupPassword;
         private System.Windows.Forms.Label labelPasswordStatus;
-        private System.Windows.Forms.Button buttonEnablePassword;
-        private System.Windows.Forms.Button buttonRemovePassword;
-        private System.Windows.Forms.Button buttonChangePassword;
+        private Controls.ColorButton buttonEnablePassword;
+        private Controls.ColorButton buttonRemovePassword;
+        private Controls.ColorButton buttonChangePassword;
         private System.Windows.Forms.TextBox textFolder;
         private Controls.ImageButton buttonSelectFolder;
-        private System.Windows.Forms.Button buttonOK;
-        private System.Windows.Forms.Button buttonCancel;
+        private Controls.ColorButton buttonOK;
+        private Controls.ColorButton buttonCancel;
         protected Controls.TitleLabel labelFormCaption;
         private System.Windows.Forms.Panel horizontalSeparator1;
         private System.Windows.Forms.Panel horizontalSeparator2;
