@@ -6,6 +6,7 @@
     using System.IO;
     using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// A class representing a list of Entries
@@ -40,6 +41,7 @@
             FileInfo[] files = dinfo.GetFiles("*.doentry");
 
             this.Entries = files
+                .Where(x => Regex.IsMatch(x.Name.ToLower(), @"[0-9a-f]{32}\.doentry"))
                 .Select(x => Entry.LoadFromFile(x.FullName, settings))
                 .Where(x => x != null)
                 .ToDictionary(x => x.UUID, x => x);
