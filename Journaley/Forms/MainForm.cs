@@ -1311,6 +1311,12 @@
             // Load the entries.
             this.EntryList.LoadEntries(this.Settings);
 
+            // Before adding the EntryWatcher, create the "photos" directory if it doesn't exist.
+            if (!Directory.Exists(this.Settings.PhotoFolderPath))
+            {
+                Directory.CreateDirectory(this.Settings.PhotoFolderPath);
+            }
+
             // Set the EntryWatcher.
             this.Watcher = new EntryWatcher(this.Settings.EntryFolderPath, this.Settings.PhotoFolderPath, this);
 
