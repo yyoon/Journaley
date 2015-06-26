@@ -35,6 +35,7 @@
         {
             this.PasswordHash = null;
             this.DayOneFolderPath = null;
+            this.TextSize = 0.0f;
         }
 
         /// <summary>
@@ -45,6 +46,7 @@
         {
             this.PasswordHash = other.PasswordHash;
             this.DayOneFolderPath = other.DayOneFolderPath;
+            this.TextSize = other.TextSize;
         }
 
         /// <summary>
@@ -76,6 +78,14 @@
         /// The day one folder path.
         /// </value>
         public string DayOneFolderPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the size of the text.
+        /// </summary>
+        /// <value>
+        /// The size of the text.
+        /// </value>
+        public float TextSize { get; set; }
 
         /// <summary>
         /// Gets the entry folder path under the day one folder.

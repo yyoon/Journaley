@@ -11,7 +11,7 @@
     /// <summary>
     /// Part of this code was taken from: http://www.codeproject.com/Articles/29010/WinForm-ImageButton.
     /// </summary>
-    public class ImageButton : PictureBox, IButtonControl, INotifyPropertyChanged
+    public class ImageButton : PictureBox, ISelectable, IButtonControl, INotifyPropertyChanged
     {
         /// <summary>
         /// WM_KEYDOWN code

@@ -339,10 +339,10 @@
             this.buttonSizeSmall.Size = new System.Drawing.Size(36, 36);
             this.buttonSizeSmall.TabIndex = 11;
             this.buttonSizeSmall.Text = "T";
+            this.buttonSizeSmall.Click += new System.EventHandler(this.ButtonSizeSmall_Click);
             // 
             // buttonSizeMedium
             // 
-            this.buttonSizeMedium.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeMedium.BorderColor = System.Drawing.Color.Black;
             this.buttonSizeMedium.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonSizeMedium.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
@@ -351,13 +351,14 @@
             this.buttonSizeMedium.Location = new System.Drawing.Point(70, 93);
             this.buttonSizeMedium.Name = "buttonSizeMedium";
             this.buttonSizeMedium.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonSizeMedium.Selected = true;
             this.buttonSizeMedium.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeMedium.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeMedium.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonSizeMedium.Selected = true;
             this.buttonSizeMedium.Size = new System.Drawing.Size(36, 36);
             this.buttonSizeMedium.TabIndex = 12;
             this.buttonSizeMedium.Text = "T";
+            this.buttonSizeMedium.Click += new System.EventHandler(this.ButtonSizeMedium_Click);
             // 
             // buttonSizeLarge
             // 
@@ -377,6 +378,7 @@
             this.buttonSizeLarge.Size = new System.Drawing.Size(36, 36);
             this.buttonSizeLarge.TabIndex = 13;
             this.buttonSizeLarge.Text = "T";
+            this.buttonSizeLarge.Click += new System.EventHandler(this.ButtonSizeLarge_Click);
             // 
             // SettingsForm
             // 
