@@ -116,6 +116,10 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ColorButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ISelectable.cs" />
     <Compile Include="Controls\PaddingBorderPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -336,7 +340,7 @@
     <None Include="Images\sidebar_btn_edit_over.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Journaley.css" />
+    <None Include="Resources\JournaleyMedium.css" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\sidebar_btn_image_enabled_norm.png" />
@@ -447,6 +451,11 @@
   <ItemGroup>
     <Content Include="Images\entires_pane_entryContainer_background_selected.png" />
     <Content Include="Images\NewEntry.ico" />
+    <Content Include="Images\settings_folder_btn_down.png" />
+    <Content Include="Images\settings_folder_btn_norm.png" />
+    <Content Include="Images\settings_folder_btn_over.png" />
+    <Content Include="Resources\JournaleyLarge.css" />
+    <Content Include="Resources\JournaleySmall.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild.4.7.48.2\build\StyleCop.MSBuild.Targets')" />

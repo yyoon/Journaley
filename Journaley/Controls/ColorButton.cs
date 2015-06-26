@@ -6,12 +6,13 @@
     using System.Drawing;
     using System.Linq;
     using System.Text;
+    using System.Threading.Tasks;
     using System.Windows.Forms;
 
     /// <summary>
-    /// Part of this code was taken from: http://www.codeproject.com/Articles/29010/WinForm-ImageButton.
+    /// A custom button control which changes the background color depending on its state.
     /// </summary>
-    public class ImageButton : PictureBox, ISelectable, IButtonControl, INotifyPropertyChanged
+    public class ColorButton : Control, ISelectable, IButtonControl, INotifyPropertyChanged
     {
         /// <summary>
         /// WM_KEYDOWN code
@@ -49,6 +50,22 @@
         private bool holdingSpace = false;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="ColorButton"/> class.
+        /// Sets up some default values.
+        /// </summary>
+        public ColorButton()
+        {
+            this.SetStyle(ControlStyles.Selectable, true);
+
+            // Set the default values.
+            this.BackColor = this.NormalColor = Color.FromArgb(195, 196, 211);
+            this.HoverColor = Color.FromArgb(218, 219, 228);
+            this.DownColor = Color.FromArgb(0, 147, 255);
+
+            this.BorderColor = Color.Black;
+        }
+
+        /// <summary>
         /// Occurs when a property value changes.
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
@@ -79,84 +96,64 @@
         }
 
         /// <summary>
-        /// Gets or sets the image that is displayed by <see cref="T:System.Windows.Forms.PictureBox" />.
-        /// </summary>
-        /// <returns>The <see cref="T:System.Drawing.Image" /> to display.</returns>
-        public virtual new Image Image
-        {
-            get
-            {
-                return base.Image;
-            }
-
-            set
-            {
-                if (base.Image != value)
-                {
-                    base.Image = value;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the hover image.
+        /// Gets or sets the hover color.
         /// </summary>
         /// <value>
-        /// The hover image.
+        /// The hover color.
         /// </value>
         [Category("Appearance")]
-        [Description("Image to show when the button is hovered over.")]
-        public Image HoverImage { get; set; }
+        [Description("Background color to show when the button is hovered over.")]
+        public Color HoverColor { get; set; }
 
         /// <summary>
-        /// Gets or sets the selected hover image.
+        /// Gets or sets the selected hover color.
         /// </summary>
         /// <value>
-        /// The selected hover image.
+        /// The selected hover color.
         /// </value>
         [Category("Appearance")]
-        [Description("Image to show when the button is both selected and hovered over.")]
-        public Image SelectedHoverImage { get; set; }
+        [Description("Background color to show when the button is hovered over.")]
+        public Color SelectedHoverColor { get; set; }
 
         /// <summary>
-        /// Gets or sets down image.
+        /// Gets or sets the down color.
         /// </summary>
         /// <value>
-        /// Down image.
+        /// The down color.
         /// </value>
         [Category("Appearance")]
-        [Description("Image to show when the button is depressed.")]
-        public Image DownImage { get; set; }
+        [Description("Background color to show when the button is hovered over.")]
+        public Color DownColor { get; set; }
 
         /// <summary>
-        /// Gets or sets the selected down image.
+        /// Gets or sets the selected down color.
         /// </summary>
         /// <value>
-        /// The selected down image.
+        /// The selected down color.
         /// </value>
         [Category("Appearance")]
-        [Description("Image to show when the button is both selected and depressed.")]
-        public Image SelectedDownImage { get; set; }
+        [Description("Background color to show when the button is hovered over.")]
+        public Color SelectedDownColor { get; set; }
 
         /// <summary>
-        /// Gets or sets the normal image.
+        /// Gets or sets the normal color.
         /// </summary>
         /// <value>
-        /// The normal image.
+        /// The normal color.
         /// </value>
         [Category("Appearance")]
-        [Description("Image to show when the button is not in any other state.")]
-        public Image NormalImage { get; set; }
+        [Description("Background color to show when the button is not in any other state.")]
+        public Color NormalColor { get; set; }
 
         /// <summary>
-        /// Gets or sets the selected image.
+        /// Gets or sets the selected color.
         /// </summary>
         /// <value>
-        /// The selected image.
+        /// The selected color.
         /// </value>
         [Category("Appearance")]
-        [Description("Image to show when the button is currently selected.")]
-        public Image SelectedImage { get; set; }
+        [Description("Background color to show when the button is currently selected.")]
+        public Color SelectedColor { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether [selected].
@@ -177,23 +174,30 @@
             {
                 this.selected = value;
 
-                if (this.SelectedImage != null)
+                if (this.down)
                 {
-                    if (this.down && this.DownImageToDisplay != null)
-                    {
-                        this.Image = this.DownImageToDisplay;
-                    }
-                    else if (this.Hover && this.HoverImageToDisplay != null)
-                    {
-                        this.Image = this.HoverImageToDisplay;
-                    }
-                    else
-                    {
-                        this.Image = value ? this.SelectedImage : this.NormalImage;
-                    }
+                    this.BackColor = this.DownColorToDisplay;
+                }
+                else if (this.Hover)
+                {
+                    this.BackColor = this.HoverColorToDisplay;
+                }
+                else
+                {
+                    this.BackColor = value ? this.SelectedColor : this.NormalColor;
                 }
             }
         }
+
+        /// <summary>
+        /// Gets or sets the color of the border.
+        /// </summary>
+        /// <value>
+        /// The color of the border.
+        /// </value>
+        [Category("Appearance")]
+        [Description("Border color")]
+        public Color BorderColor { get; set; }
 
         /// <summary>
         /// Gets or sets the value returned to the parent form when the button is clicked.
@@ -202,34 +206,30 @@
         public DialogResult DialogResult { get; set; }
 
         /// <summary>
-        /// Gets the hover image to display.
+        /// Gets the hover color to display.
         /// </summary>
         /// <value>
-        /// The hover image to display.
+        /// The hover color to display.
         /// </value>
-        private Image HoverImageToDisplay
+        private Color HoverColorToDisplay
         {
             get
             {
-                return (this.SelectedImage != null && this.SelectedHoverImage != null && this.Selected)
-                    ? this.SelectedHoverImage
-                    : this.HoverImage;
+                return this.Selected ? this.SelectedHoverColor : this.HoverColor;
             }
         }
 
         /// <summary>
-        /// Gets down image to display.
+        /// Gets down color to display.
         /// </summary>
         /// <value>
-        /// Down image to display.
+        /// The down color to display.
         /// </value>
-        private Image DownImageToDisplay
+        private Color DownColorToDisplay
         {
             get
             {
-                return (this.SelectedImage != null && this.SelectedDownImage != null && this.Selected)
-                    ? this.SelectedDownImage
-                    : this.DownImage;
+                return this.Selected ? this.SelectedDownColor : this.DownColor;
             }
         }
 
@@ -247,7 +247,10 @@
         /// </summary>
         public void PerformClick()
         {
-            this.OnClick(EventArgs.Empty);
+            if (this.CanSelect)
+            {
+                this.OnClick(EventArgs.Empty);
+            }
         }
 
         /// <summary>
@@ -306,18 +309,7 @@
         protected override void OnMouseMove(MouseEventArgs e)
         {
             this.Hover = true;
-            if (this.down)
-            {
-                if (this.DownImageToDisplay != null && this.Image != this.DownImageToDisplay)
-                {
-                    this.Image = this.DownImageToDisplay;
-                }
-            }
-            else
-            {
-                this.Image = this.HoverImageToDisplay != null ? this.HoverImageToDisplay :
-                    (this.SelectedImage != null && this.Selected ? this.SelectedImage : this.NormalImage);
-            }
+            this.BackColor = this.down ? this.DownColorToDisplay : this.HoverColorToDisplay;
 
             base.OnMouseMove(e);
         }
@@ -341,7 +333,7 @@
         protected override void OnMouseLeave(EventArgs e)
         {
             this.Hover = false;
-            this.Image = this.SelectedImage != null && this.Selected ? this.SelectedImage : this.NormalImage;
+            this.BackColor = this.Selected ? this.SelectedColor : this.NormalColor;
 
             base.OnMouseLeave(e);
         }
@@ -355,10 +347,7 @@
             this.Focus();
             this.down = true;
 
-            if (this.DownImageToDisplay != null)
-            {
-                this.Image = this.DownImageToDisplay;
-            }
+            this.BackColor = this.DownColorToDisplay;
 
             base.OnMouseDown(e);
         }
@@ -372,17 +361,48 @@
             this.down = false;
             if (this.Hover)
             {
-                if (this.HoverImageToDisplay != null)
-                {
-                    this.Image = this.HoverImageToDisplay;
-                }
+                this.BackColor = this.HoverColorToDisplay;
             }
             else
             {
-                this.Image = this.SelectedImage != null && this.Selected ? this.SelectedImage : this.NormalImage;
+                this.BackColor = this.Selected ? this.SelectedColor : this.NormalColor;
             }
 
             base.OnMouseUp(e);
+        }
+
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.Forms.Control.Click" /> event.
+        /// </summary>
+        /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
+        protected override void OnClick(EventArgs e)
+        {
+            Form form = this.FindForm();
+            if (form != null)
+            {
+                form.DialogResult = this.DialogResult;  
+            }
+
+            base.OnClick(e);
+        }
+
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.Forms.Control.Paint" /> event.
+        /// </summary>
+        /// <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs" /> that contains the event data.</param>
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            // Draw the border
+            Rectangle rect = this.ClientRectangle;
+            rect.Width -= 1;
+            rect.Height -= 1;
+
+            e.Graphics.DrawRectangle(new Pen(this.BorderColor), rect);
+
+            // Draw the text
+            TextRenderer.DrawText(e.Graphics, this.Text, this.Font, this.ClientRectangle, this.ForeColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+
+            base.OnPaint(e);
         }
     }
 }

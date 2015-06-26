@@ -523,8 +523,28 @@
             this.webBrowser.DocumentText =
                 string.Format(
                     "<style type=\"text/css\">\n{0}\n</style><html><body><div>{1}</div></body></html>",
-                    Journaley.Properties.Resources.JournaleyCSS,
+                    this.GetWebBrowserCSS(),
                     Markdown.Transform(this.SelectedEntry.EntryText));
+        }
+
+        /// <summary>
+        /// Gets the CSS text to be used in the web browser control.
+        /// </summary>
+        /// <returns>CSS text</returns>
+        private string GetWebBrowserCSS()
+        {
+            string result = Journaley.Properties.Resources.JournaleyCSSMedium;
+
+            if (this.Settings.TextSize == SettingsForm.TextSizeSmall)
+            {
+                result = Journaley.Properties.Resources.JournaleyCSSSmall;
+            }
+            else if (this.Settings.TextSize == SettingsForm.TextSizeLarge)
+            {
+                result = Journaley.Properties.Resources.JournaleyCSSLarge;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -622,7 +642,7 @@
                 this.spellCheckedEntryText.Text = string.Empty;
                 this.webBrowser.DocumentText = string.Format(
                     "<style type=\"text/css\">\n{0}\n</style><html><body></body></html>",
-                    Journaley.Properties.Resources.JournaleyCSS);
+                    this.GetWebBrowserCSS());
             }
 
             this.tableLayoutSidebar.Visible = !noEntry;
@@ -686,6 +706,7 @@
         {
             this.flowLayoutSidebarTopButtons.Controls.Clear();
 
+            this.UpdateSpellCheckedEntryTextSize();
             this.UpdateStats();
             this.UpdateAllEntryLists();
             this.UpdateUI();
@@ -1369,6 +1390,25 @@
             this.AutoSaveTimer.Elapsed += this.AutoSaveTimer_Elapsed;
         }
 
+        /// <summary>
+        /// Updates the size of the spell checked entry text.
+        /// </summary>
+        private void UpdateSpellCheckedEntryTextSize()
+        {
+            if (this.Settings.TextSize == 0.0f)
+            {
+                this.Settings.TextSize = SettingsForm.TextSizeMedium;
+                this.Settings.Save();
+            }
+
+            this.spellCheckedEntryText.Font = new Font(
+                this.spellCheckedEntryText.Font.FontFamily,
+                this.Settings.TextSize,
+                this.spellCheckedEntryText.Font.Style);
+
+            this.spellCheckedEntryText.Initialize();
+        }
+
         #region Event Handlers
 
         /// <summary>
@@ -1421,6 +1461,9 @@
             }
 
             Debug.Assert(this.Settings != null, "At this point, a valid Settings object must be present.");
+
+            // Update the text editor font size.
+            this.UpdateSpellCheckedEntryTextSize();
 
             this.ReloadEntries();
 
@@ -1583,9 +1626,19 @@
             if (result == DialogResult.OK)
             {
                 bool dayOneFolderChanged = this.Settings.DayOneFolderPath != form.Settings.DayOneFolderPath;
+                bool textSizeChanged = this.Settings.TextSize != form.Settings.TextSize;
 
                 this.Settings = form.Settings;
                 this.Settings.Save();
+
+                if (textSizeChanged)
+                {
+                    // Update the text editor font size.
+                    this.UpdateSpellCheckedEntryTextSize();
+
+                    // Update the web browser font size.
+                    this.UpdateWebBrowser();
+                }
 
                 if (dayOneFolderChanged)
                 {
