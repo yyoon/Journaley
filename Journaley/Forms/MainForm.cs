@@ -1446,6 +1446,14 @@
                 // When there is no settings file, show up the settings dialog first.
                 SettingsForm settingsForm = new SettingsForm();
                 DialogResult result = settingsForm.ShowDialog();
+
+                // If the user cancels the initial settings dialog, just close the whole application.
+                if (result != DialogResult.OK)
+                {
+                    this.Close();
+                    return;
+                }
+
                 Debug.Assert(result == DialogResult.OK, "When running the application for the first time, you must choose the settings.");
 
                 Debug.Assert(Directory.Exists(settingsForm.Settings.DayOneFolderPath), "The selected path must exist");
