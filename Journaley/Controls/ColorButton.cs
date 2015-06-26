@@ -400,8 +400,7 @@
             e.Graphics.DrawRectangle(new Pen(this.BorderColor), rect);
 
             // Draw the text
-            rect.Inflate(-1, -1);
-            TextRenderer.DrawText(e.Graphics, this.Text, this.Font, rect, this.ForeColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+            TextRenderer.DrawText(e.Graphics, this.Text, this.Font, this.ClientRectangle, this.ForeColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
 
             base.OnPaint(e);
         }

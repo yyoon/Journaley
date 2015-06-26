@@ -42,6 +42,11 @@
             this.labelJournalLocationSection = new System.Windows.Forms.Label();
             this.labelFolderPath = new System.Windows.Forms.Label();
             this.labelPasswordSection = new System.Windows.Forms.Label();
+            this.labelAppearanceSection = new System.Windows.Forms.Label();
+            this.labelTextSize = new System.Windows.Forms.Label();
+            this.buttonSizeSmall = new Journaley.Controls.ColorButton();
+            this.buttonSizeMedium = new Journaley.Controls.ColorButton();
+            this.buttonSizeLarge = new Journaley.Controls.ColorButton();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -88,6 +93,11 @@
             this.panelContent.Controls.Add(this.labelPasswordStatus);
             this.panelContent.Controls.Add(this.labelPasswordSection);
             this.panelContent.Controls.Add(this.horizontalSeparator1);
+            this.panelContent.Controls.Add(this.buttonSizeLarge);
+            this.panelContent.Controls.Add(this.buttonSizeMedium);
+            this.panelContent.Controls.Add(this.buttonSizeSmall);
+            this.panelContent.Controls.Add(this.labelTextSize);
+            this.panelContent.Controls.Add(this.labelAppearanceSection);
             this.panelContent.Padding = new System.Windows.Forms.Padding(1);
             this.panelContent.Size = new System.Drawing.Size(450, 580);
             // 
@@ -291,6 +301,83 @@
             this.labelPasswordSection.TabIndex = 8;
             this.labelPasswordSection.Text = "Password";
             // 
+            // labelAppearanceSection
+            // 
+            this.labelAppearanceSection.AutoSize = true;
+            this.labelAppearanceSection.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAppearanceSection.Location = new System.Drawing.Point(10, 15);
+            this.labelAppearanceSection.Name = "labelAppearanceSection";
+            this.labelAppearanceSection.Size = new System.Drawing.Size(120, 20);
+            this.labelAppearanceSection.TabIndex = 9;
+            this.labelAppearanceSection.Text = "Entry Appearance";
+            // 
+            // labelTextSize
+            // 
+            this.labelTextSize.AutoSize = true;
+            this.labelTextSize.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTextSize.Location = new System.Drawing.Point(27, 62);
+            this.labelTextSize.Name = "labelTextSize";
+            this.labelTextSize.Size = new System.Drawing.Size(70, 20);
+            this.labelTextSize.TabIndex = 10;
+            this.labelTextSize.Text = "Text Size";
+            // 
+            // buttonSizeSmall
+            // 
+            this.buttonSizeSmall.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonSizeSmall.BorderColor = System.Drawing.Color.Black;
+            this.buttonSizeSmall.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonSizeSmall.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonSizeSmall.Font = new System.Drawing.Font("Noto Sans", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSizeSmall.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonSizeSmall.Location = new System.Drawing.Point(30, 93);
+            this.buttonSizeSmall.Name = "buttonSizeSmall";
+            this.buttonSizeSmall.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonSizeSmall.Selected = false;
+            this.buttonSizeSmall.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonSizeSmall.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonSizeSmall.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonSizeSmall.Size = new System.Drawing.Size(36, 36);
+            this.buttonSizeSmall.TabIndex = 11;
+            this.buttonSizeSmall.Text = "T";
+            // 
+            // buttonSizeMedium
+            // 
+            this.buttonSizeMedium.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonSizeMedium.BorderColor = System.Drawing.Color.Black;
+            this.buttonSizeMedium.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonSizeMedium.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonSizeMedium.Font = new System.Drawing.Font("Noto Sans", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSizeMedium.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonSizeMedium.Location = new System.Drawing.Point(70, 93);
+            this.buttonSizeMedium.Name = "buttonSizeMedium";
+            this.buttonSizeMedium.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonSizeMedium.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonSizeMedium.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonSizeMedium.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonSizeMedium.Selected = true;
+            this.buttonSizeMedium.Size = new System.Drawing.Size(36, 36);
+            this.buttonSizeMedium.TabIndex = 12;
+            this.buttonSizeMedium.Text = "T";
+            // 
+            // buttonSizeLarge
+            // 
+            this.buttonSizeLarge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonSizeLarge.BorderColor = System.Drawing.Color.Black;
+            this.buttonSizeLarge.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonSizeLarge.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonSizeLarge.Font = new System.Drawing.Font("Noto Sans", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSizeLarge.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonSizeLarge.Location = new System.Drawing.Point(110, 93);
+            this.buttonSizeLarge.Name = "buttonSizeLarge";
+            this.buttonSizeLarge.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonSizeLarge.Selected = false;
+            this.buttonSizeLarge.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonSizeLarge.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonSizeLarge.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonSizeLarge.Size = new System.Drawing.Size(36, 36);
+            this.buttonSizeLarge.TabIndex = 13;
+            this.buttonSizeLarge.Text = "T";
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.buttonOK;
@@ -333,5 +420,10 @@
         private System.Windows.Forms.Label labelJournalLocationSection;
         private System.Windows.Forms.Label labelFolderPath;
         private System.Windows.Forms.Label labelPasswordSection;
+        private System.Windows.Forms.Label labelAppearanceSection;
+        private System.Windows.Forms.Label labelTextSize;
+        private Controls.ColorButton buttonSizeLarge;
+        private Controls.ColorButton buttonSizeMedium;
+        private Controls.ColorButton buttonSizeSmall;
     }
 }
