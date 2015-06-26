@@ -377,28 +377,29 @@
                 bounds.Width -= PhotoWidth + EntryCenterMargin;
             }
 
-            Brush brush = (e.State & DrawItemState.Selected) == DrawItemState.Selected ? Brushes.Black : Brushes.White;
+            bool selected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
+            Color textColor = selected ? Color.Black : Color.White;
 
-            StringFormat stringFormat = new StringFormat(StringFormat.GenericDefault);
-            stringFormat.LineAlignment = StringAlignment.Center;
-            stringFormat.FormatFlags = StringFormatFlags.LineLimit;
-            stringFormat.Trimming = StringTrimming.EllipsisCharacter;
+            TextFormatFlags textFormat =
+                TextFormatFlags.EndEllipsis |
+                TextFormatFlags.VerticalCenter |
+                TextFormatFlags.WordBreak;
 
             string entryTitle = previewText.Item1;
             string entryText = previewText.Item2;
 
-            if (string.IsNullOrEmpty(previewText.Item1))
+            if (string.IsNullOrEmpty(entryTitle))
             {
-                e.Graphics.DrawString(entryText, EntryTextFont, brush, bounds, stringFormat);
+                TextRenderer.DrawText(e.Graphics, entryText, EntryTextFont, bounds, textColor, textFormat);
             }
             else
             {
                 // Measure.
-                var titleMeasure = e.Graphics.MeasureString(entryTitle, EntryTitleFont);
-                int titleHeight = (int)Math.Ceiling(titleMeasure.Height);
+                var titleMeasure = TextRenderer.MeasureText(entryTitle, EntryTitleFont);
+                int titleHeight = titleMeasure.Height;
 
-                var textMeasure = e.Graphics.MeasureString(entryText, EntryTextFont, new SizeF(bounds.Width, bounds.Height - titleHeight));
-                int textHeight = (int)Math.Ceiling(textMeasure.Height);
+                var textMeasure = TextRenderer.MeasureText(e.Graphics, entryText, EntryTextFont, new Size(bounds.Width, bounds.Height - titleHeight), textFormat);
+                int textHeight = textMeasure.Height;
 
                 int totalHeight = Math.Min(titleHeight + textHeight, bounds.Height);
 
@@ -407,14 +408,14 @@
                 titleBounds.Y += (bounds.Height - totalHeight) / 2;
                 titleBounds.Height = titleHeight;
 
-                e.Graphics.DrawString(entryTitle, EntryTitleFont, brush, titleBounds, stringFormat);
+                TextRenderer.DrawText(e.Graphics, entryTitle, EntryTitleFont, titleBounds, textColor, textFormat | TextFormatFlags.SingleLine);
 
                 // Draw first sentence
                 Rectangle textBounds = bounds;
                 textBounds.Y = titleBounds.Bottom;
                 textBounds.Height = totalHeight - titleHeight;
 
-                e.Graphics.DrawString(entryText, EntryTextFont, brush, textBounds, stringFormat);
+                TextRenderer.DrawText(e.Graphics, entryText, EntryTextFont, textBounds, textColor, textFormat);
             }
         }
 
