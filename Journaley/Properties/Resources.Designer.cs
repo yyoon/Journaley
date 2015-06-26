@@ -229,6 +229,65 @@ namespace Journaley.Properties {
         ///
         ///body {
         ///font-family: &quot;Noto Sans&quot;, Arial, Verdana, &quot;lucida sans unicode&quot;, Tahoma, Sans-serif;
+        ///font-size: 16pt;
+        ///
+        ///background-color: #EFEFEF;
+        ///
+        ///overflow: auto;
+        ///}
+        ///
+        ///h1,
+        ///h2,
+        ///h3,
+        ///h4,
+        ///h5,
+        ///h6 {
+        ///  margin-bottom: -10px;
+        ///}
+        ///
+        ///h1 {
+        ///font-size: 26pt;
+        ///
+        ///margin-bottom: 5px;
+        ///}
+        ///
+        ///h2 {
+        ///font-size: 20pt;
+        ///}
+        ///
+        ///h3 {
+        ///font-size: 18pt;
+        ///}
+        ///
+        ///h4 {
+        ///font-style: italic;
+        ///font-size: 16pt;
+        ///}
+        ///
+        ///div {
+        ///padding: 20px 7% 20px 7%;
+        ///}
+        ///
+        ///img {
+        ///width: 100%;
+        ///}
+        ///.
+        /// </summary>
+        internal static string JournaleyCSSLarge {
+            get {
+                return ResourceManager.GetString("JournaleyCSSLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to html {
+        ///margin: 0px;
+        ///padding: 0px;
+        ///color: #37393B;
+        ///}
+        ///
+        ///body {
+        ///font-family: &quot;Noto Sans&quot;, Arial, Verdana, &quot;lucida sans unicode&quot;, Tahoma, Sans-serif;
         ///font-size: 13pt;
         ///
         ///background-color: #EFEFEF;
@@ -273,9 +332,68 @@ namespace Journaley.Properties {
         ///}
         ///.
         /// </summary>
-        internal static string JournaleyCSS {
+        internal static string JournaleyCSSMedium {
             get {
-                return ResourceManager.GetString("JournaleyCSS", resourceCulture);
+                return ResourceManager.GetString("JournaleyCSSMedium", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to html {
+        ///margin: 0px;
+        ///padding: 0px;
+        ///color: #37393B;
+        ///}
+        ///
+        ///body {
+        ///font-family: &quot;Noto Sans&quot;, Arial, Verdana, &quot;lucida sans unicode&quot;, Tahoma, Sans-serif;
+        ///font-size: 10pt;
+        ///
+        ///background-color: #EFEFEF;
+        ///
+        ///overflow: auto;
+        ///}
+        ///
+        ///h1,
+        ///h2,
+        ///h3,
+        ///h4,
+        ///h5,
+        ///h6 {
+        ///  margin-bottom: -10px;
+        ///}
+        ///
+        ///h1 {
+        ///font-size: 18pt;
+        ///
+        ///margin-bottom: 5px;
+        ///}
+        ///
+        ///h2 {
+        ///font-size: 14pt;
+        ///}
+        ///
+        ///h3 {
+        ///font-size: 12pt;
+        ///}
+        ///
+        ///h4 {
+        ///font-style: italic;
+        ///font-size: 11pt;
+        ///}
+        ///
+        ///div {
+        ///padding: 20px 7% 20px 7%;
+        ///}
+        ///
+        ///img {
+        ///width: 100%;
+        ///}
+        ///.
+        /// </summary>
+        internal static string JournaleyCSSSmall {
+            get {
+                return ResourceManager.GetString("JournaleyCSSSmall", resourceCulture);
             }
         }
         

@@ -1,0 +1,50 @@
+html {
+margin: 0px;
+padding: 0px;
+color: #37393B;
+}
+
+body {
+font-family: "Noto Sans", Arial, Verdana, "lucida sans unicode", Tahoma, Sans-serif;
+font-size: 16pt;
+
+background-color: #EFEFEF;
+
+overflow: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: -10px;
+}
+
+h1 {
+font-size: 26pt;
+
+margin-bottom: 5px;
+}
+
+h2 {
+font-size: 20pt;
+}
+
+h3 {
+font-size: 18pt;
+}
+
+h4 {
+font-style: italic;
+font-size: 16pt;
+}
+
+div {
+padding: 20px 7% 20px 7%;
+}
+
+img {
+width: 100%;
+}

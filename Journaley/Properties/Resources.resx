@@ -127,9 +127,6 @@
   <data name="sidebar_btn_tag_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\sidebar_btn_tag_over.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="JournaleyCSS" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Journaley.css;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="entires_pane_entryContainer_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\entires_pane_entryContainer_background.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -387,5 +384,14 @@
   </data>
   <data name="settings_folder_btn_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\settings_folder_btn_over.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="JournaleyCSSLarge" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\JournaleyLarge.css;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;ks_c_5601-1987</value>
+  </data>
+  <data name="JournaleyCSSMedium" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\JournaleyMedium.css;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;ks_c_5601-1987</value>
+  </data>
+  <data name="JournaleyCSSSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\JournaleySmall.css;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;ks_c_5601-1987</value>
   </data>
 </root>
