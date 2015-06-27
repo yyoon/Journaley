@@ -261,6 +261,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Resources\NotoSans-Regular.ttf" />
+    <None Include="Resources\NotoSerif-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\sidebar_btn_image_enabled_down.png" />

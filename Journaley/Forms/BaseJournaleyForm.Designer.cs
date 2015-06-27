@@ -41,6 +41,7 @@
             // 
             // panelContent
             // 
+            this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.Location = new System.Drawing.Point(0, 20);
             this.panelContent.Margin = new System.Windows.Forms.Padding(0);

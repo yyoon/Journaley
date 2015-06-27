@@ -175,6 +175,8 @@
             // 
             // textFolder
             // 
+            this.textFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.textFolder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textFolder.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.textFolder.Location = new System.Drawing.Point(30, 417);
             this.textFolder.Name = "textFolder";
@@ -223,7 +225,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
             this.buttonCancel.BorderColor = System.Drawing.Color.Black;
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
@@ -231,7 +233,7 @@
             this.buttonCancel.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonCancel.Location = new System.Drawing.Point(218, 535);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonCancel.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
             this.buttonCancel.Selected = false;
             this.buttonCancel.SelectedColor = System.Drawing.Color.Empty;
             this.buttonCancel.SelectedDownColor = System.Drawing.Color.Empty;
@@ -284,10 +286,10 @@
             // labelFolderPath
             // 
             this.labelFolderPath.AutoSize = true;
-            this.labelFolderPath.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFolderPath.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFolderPath.Location = new System.Drawing.Point(27, 395);
             this.labelFolderPath.Name = "labelFolderPath";
-            this.labelFolderPath.Size = new System.Drawing.Size(89, 20);
+            this.labelFolderPath.Size = new System.Drawing.Size(88, 20);
             this.labelFolderPath.TabIndex = 7;
             this.labelFolderPath.Text = "Folder Path";
             // 
@@ -314,10 +316,10 @@
             // labelTextSize
             // 
             this.labelTextSize.AutoSize = true;
-            this.labelTextSize.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTextSize.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTextSize.Location = new System.Drawing.Point(27, 62);
             this.labelTextSize.Name = "labelTextSize";
-            this.labelTextSize.Size = new System.Drawing.Size(70, 20);
+            this.labelTextSize.Size = new System.Drawing.Size(68, 20);
             this.labelTextSize.TabIndex = 10;
             this.labelTextSize.Text = "Text Size";
             // 
@@ -327,7 +329,7 @@
             this.buttonSizeSmall.BorderColor = System.Drawing.Color.Black;
             this.buttonSizeSmall.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonSizeSmall.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonSizeSmall.Font = new System.Drawing.Font("Noto Sans", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSizeSmall.Font = new System.Drawing.Font("Noto Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSizeSmall.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonSizeSmall.Location = new System.Drawing.Point(30, 93);
             this.buttonSizeSmall.Name = "buttonSizeSmall";
@@ -335,7 +337,7 @@
             this.buttonSizeSmall.Selected = false;
             this.buttonSizeSmall.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeSmall.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonSizeSmall.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonSizeSmall.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeSmall.Size = new System.Drawing.Size(36, 36);
             this.buttonSizeSmall.TabIndex = 11;
             this.buttonSizeSmall.Text = "T";
@@ -346,7 +348,7 @@
             this.buttonSizeMedium.BorderColor = System.Drawing.Color.Black;
             this.buttonSizeMedium.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonSizeMedium.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonSizeMedium.Font = new System.Drawing.Font("Noto Sans", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSizeMedium.Font = new System.Drawing.Font("Noto Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSizeMedium.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonSizeMedium.Location = new System.Drawing.Point(70, 93);
             this.buttonSizeMedium.Name = "buttonSizeMedium";
@@ -354,7 +356,7 @@
             this.buttonSizeMedium.Selected = true;
             this.buttonSizeMedium.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeMedium.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonSizeMedium.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonSizeMedium.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeMedium.Size = new System.Drawing.Size(36, 36);
             this.buttonSizeMedium.TabIndex = 12;
             this.buttonSizeMedium.Text = "T";
@@ -366,7 +368,7 @@
             this.buttonSizeLarge.BorderColor = System.Drawing.Color.Black;
             this.buttonSizeLarge.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonSizeLarge.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonSizeLarge.Font = new System.Drawing.Font("Noto Sans", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSizeLarge.Font = new System.Drawing.Font("Noto Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSizeLarge.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonSizeLarge.Location = new System.Drawing.Point(110, 93);
             this.buttonSizeLarge.Name = "buttonSizeLarge";
@@ -374,7 +376,7 @@
             this.buttonSizeLarge.Selected = false;
             this.buttonSizeLarge.SelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeLarge.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonSizeLarge.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonSizeLarge.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeLarge.Size = new System.Drawing.Size(36, 36);
             this.buttonSizeLarge.TabIndex = 13;
             this.buttonSizeLarge.Text = "T";
