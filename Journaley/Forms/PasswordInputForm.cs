@@ -81,5 +81,16 @@
                     break;
             }
         }
+
+        /// <summary>
+        /// Handles the TextChanged event of the textBoxPassword control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void TextBoxPassword_TextChanged(object sender, System.EventArgs e)
+        {
+            this.pictureBoxPressEnter.Visible =
+                !string.IsNullOrEmpty(this.textBoxPassword.Text);
+        }
     }
 }

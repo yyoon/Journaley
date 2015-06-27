@@ -29,12 +29,14 @@
         private void InitializeComponent()
         {
             this.textBoxPassword = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelPrompt = new System.Windows.Forms.Label();
+            this.pictureBoxPressEnter = new System.Windows.Forms.PictureBox();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
             this.panelContent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPressEnter)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTitlebar
@@ -58,8 +60,9 @@
             // panelContent
             // 
             this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
+            this.panelContent.Controls.Add(this.pictureBoxPressEnter);
             this.panelContent.Controls.Add(this.textBoxPassword);
-            this.panelContent.Controls.Add(this.label1);
+            this.panelContent.Controls.Add(this.labelPrompt);
             this.panelContent.Size = new System.Drawing.Size(744, 240);
             // 
             // textBoxPassword
@@ -73,20 +76,32 @@
             this.textBoxPassword.Size = new System.Drawing.Size(450, 48);
             this.textBoxPassword.TabIndex = 1;
             this.textBoxPassword.UseSystemPasswordChar = true;
+            this.textBoxPassword.TextChanged += new System.EventHandler(this.TextBoxPassword_TextChanged);
             this.textBoxPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxPassword_KeyDown);
             this.textBoxPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxPassword_KeyPress);
             // 
-            // label1
+            // labelPrompt
             // 
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(210)))));
-            this.label1.Location = new System.Drawing.Point(148, 35);
-            this.label1.Margin = new System.Windows.Forms.Padding(30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(450, 35);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "What is your password?";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelPrompt.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPrompt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(210)))));
+            this.labelPrompt.Location = new System.Drawing.Point(148, 35);
+            this.labelPrompt.Margin = new System.Windows.Forms.Padding(30);
+            this.labelPrompt.Name = "labelPrompt";
+            this.labelPrompt.Size = new System.Drawing.Size(450, 35);
+            this.labelPrompt.TabIndex = 0;
+            this.labelPrompt.Text = "What is your password?";
+            this.labelPrompt.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pictureBoxPressEnter
+            // 
+            this.pictureBoxPressEnter.BackgroundImage = global::Journaley.Properties.Resources.password_ui_press_enter;
+            this.pictureBoxPressEnter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBoxPressEnter.Location = new System.Drawing.Point(318, 189);
+            this.pictureBoxPressEnter.Name = "pictureBoxPressEnter";
+            this.pictureBoxPressEnter.Size = new System.Drawing.Size(110, 19);
+            this.pictureBoxPressEnter.TabIndex = 3;
+            this.pictureBoxPressEnter.TabStop = false;
+            this.pictureBoxPressEnter.Visible = false;
             // 
             // PasswordInputForm
             // 
@@ -106,6 +121,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).EndInit();
             this.panelContent.ResumeLayout(false);
             this.panelContent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPressEnter)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -113,6 +129,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox textBoxPassword;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelPrompt;
+        private System.Windows.Forms.PictureBox pictureBoxPressEnter;
     }
 }
