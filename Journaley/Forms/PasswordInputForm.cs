@@ -29,6 +29,14 @@
         private IPasswordVerifier PasswordVerifier { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether [wrong password].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [wrong password]; otherwise, <c>false</c>.
+        /// </value>
+        private bool WrongPassword { get; set; }
+
+        /// <summary>
         /// Handles the KeyDown event of the textBoxPassword control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -46,8 +54,11 @@
                         }
                         else
                         {
-                            MessageBox.Show(this.ParentForm, "Wrong Password!", "Journaley", MessageBoxButtons.OK);
-                            this.textBoxPassword.SelectAll();
+                            this.pictureBoxPressEnter.BackgroundImage =
+                                Properties.Resources.password_ui_wrong_password;
+                            this.WrongPassword = true;
+
+                            this.textBoxPassword.Text = string.Empty;
                             this.textBoxPassword.Focus();
                         }
 
@@ -89,7 +100,7 @@
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void TextBoxPassword_TextChanged(object sender, System.EventArgs e)
         {
-            this.pictureBoxPressEnter.Visible =
+            this.pictureBoxPressEnter.Visible = this.WrongPassword ||
                 !string.IsNullOrEmpty(this.textBoxPassword.Text);
         }
     }

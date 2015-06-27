@@ -452,6 +452,7 @@
     <Content Include="Images\entires_pane_entryContainer_background_selected.png" />
     <Content Include="Images\NewEntry.ico" />
     <Content Include="Images\password_ui_press_enter.png" />
+    <Content Include="Images\password_ui_wrong_password.png" />
     <Content Include="Images\settings_folder_btn_down.png" />
     <Content Include="Images\settings_folder_btn_norm.png" />
     <Content Include="Images\settings_folder_btn_over.png" />

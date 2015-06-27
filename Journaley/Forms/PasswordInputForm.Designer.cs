@@ -70,7 +70,7 @@
             this.textBoxPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
             this.textBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 42F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(129)));
-            this.textBoxPassword.Location = new System.Drawing.Point(148, 109);
+            this.textBoxPassword.Location = new System.Drawing.Point(147, 109);
             this.textBoxPassword.Margin = new System.Windows.Forms.Padding(30);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(450, 48);
@@ -96,9 +96,9 @@
             // 
             this.pictureBoxPressEnter.BackgroundImage = global::Journaley.Properties.Resources.password_ui_press_enter;
             this.pictureBoxPressEnter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBoxPressEnter.Location = new System.Drawing.Point(318, 189);
+            this.pictureBoxPressEnter.Location = new System.Drawing.Point(302, 189);
             this.pictureBoxPressEnter.Name = "pictureBoxPressEnter";
-            this.pictureBoxPressEnter.Size = new System.Drawing.Size(110, 19);
+            this.pictureBoxPressEnter.Size = new System.Drawing.Size(140, 19);
             this.pictureBoxPressEnter.TabIndex = 3;
             this.pictureBoxPressEnter.TabStop = false;
             this.pictureBoxPressEnter.Visible = false;
