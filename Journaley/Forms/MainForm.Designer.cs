@@ -679,11 +679,11 @@ namespace Journaley.Forms
             // labelFormCaption
             // 
             this.labelFormCaption.AutoSize = true;
-            this.labelFormCaption.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.labelFormCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.labelFormCaption.Location = new System.Drawing.Point(31, 3);
+            this.labelFormCaption.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFormCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
+            this.labelFormCaption.Location = new System.Drawing.Point(31, 1);
             this.labelFormCaption.Name = "labelFormCaption";
-            this.labelFormCaption.Size = new System.Drawing.Size(57, 15);
+            this.labelFormCaption.Size = new System.Drawing.Size(63, 17);
             this.labelFormCaption.TabIndex = 4;
             this.labelFormCaption.Text = "Journaley";
             // 

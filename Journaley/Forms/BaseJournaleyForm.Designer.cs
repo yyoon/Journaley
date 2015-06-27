@@ -33,10 +33,12 @@
             this.imageButtonFormMinimize = new Journaley.Controls.ImageButton();
             this.imageButtonFormMaximize = new Journaley.Controls.ImageButton();
             this.imageButtonFormClose = new Journaley.Controls.ImageButton();
+            this.pictureBoxFormIcon = new System.Windows.Forms.PictureBox();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // panelContent
@@ -54,6 +56,7 @@
             // panelTitlebar
             // 
             this.panelTitlebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
+            this.panelTitlebar.Controls.Add(this.pictureBoxFormIcon);
             this.panelTitlebar.Controls.Add(this.imageButtonFormMinimize);
             this.panelTitlebar.Controls.Add(this.imageButtonFormMaximize);
             this.panelTitlebar.Controls.Add(this.imageButtonFormClose);
@@ -135,6 +138,17 @@
             this.imageButtonFormClose.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseDown);
             this.imageButtonFormClose.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseMove);
             // 
+            // pictureBoxFormIcon
+            // 
+            this.pictureBoxFormIcon.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxFormIcon.Image = global::Journaley.Properties.Resources.Journaley_16x16;
+            this.pictureBoxFormIcon.Location = new System.Drawing.Point(8, 0);
+            this.pictureBoxFormIcon.Name = "pictureBoxFormIcon";
+            this.pictureBoxFormIcon.Size = new System.Drawing.Size(20, 20);
+            this.pictureBoxFormIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxFormIcon.TabIndex = 4;
+            this.pictureBoxFormIcon.TabStop = false;
+            // 
             // BaseJournaleyForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -149,6 +163,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -160,5 +175,6 @@
         protected Controls.ImageButton imageButtonFormMinimize;
         protected Controls.ImageButton imageButtonFormMaximize;
         protected Controls.PaddingBorderPanel panelContent;
+        private System.Windows.Forms.PictureBox pictureBoxFormIcon;
     }
 }

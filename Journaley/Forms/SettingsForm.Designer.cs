@@ -246,14 +246,14 @@
             // 
             this.labelFormCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelFormCaption.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.labelFormCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.labelFormCaption.Location = new System.Drawing.Point(83, 0);
+            this.labelFormCaption.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFormCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
+            this.labelFormCaption.Location = new System.Drawing.Point(31, 1);
             this.labelFormCaption.Name = "labelFormCaption";
-            this.labelFormCaption.Size = new System.Drawing.Size(284, 20);
+            this.labelFormCaption.Size = new System.Drawing.Size(63, 17);
             this.labelFormCaption.TabIndex = 6;
             this.labelFormCaption.Text = "Settings";
-            this.labelFormCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelFormCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // horizontalSeparator1
             // 
