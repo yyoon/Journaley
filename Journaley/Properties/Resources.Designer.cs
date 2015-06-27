@@ -640,6 +640,26 @@ namespace Journaley.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap password_ui_press_enter {
+            get {
+                object obj = ResourceManager.GetObject("password_ui_press_enter", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap password_ui_wrong_password {
+            get {
+                object obj = ResourceManager.GetObject("password_ui_wrong_password", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap picture_btn_back_norm {
             get {
                 object obj = ResourceManager.GetObject("picture_btn_back_norm", resourceCulture);
