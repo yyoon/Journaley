@@ -6,7 +6,7 @@
     /// <summary>
     /// The password input form shown when the user returns from other applications.
     /// </summary>
-    public partial class PasswordInputForm : Form
+    public partial class PasswordInputForm : BaseJournaleyForm
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PasswordInputForm"/> class.
