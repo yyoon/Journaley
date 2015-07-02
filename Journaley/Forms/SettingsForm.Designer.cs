@@ -50,9 +50,13 @@
             this.labelPasswordConfirm = new System.Windows.Forms.Label();
             this.labelPassword = new System.Windows.Forms.Label();
             this.textPasswordConfirm = new System.Windows.Forms.TextBox();
+            this.borderPasswordConfirm = new System.Windows.Forms.Label();
             this.textPassword = new System.Windows.Forms.TextBox();
+            this.paddingTextPassword = new System.Windows.Forms.Label();
+            this.borderPassword = new System.Windows.Forms.Label();
             this.buttonSetPassword = new Journaley.Controls.ColorButton();
             this.buttonCancelPassword = new Journaley.Controls.ColorButton();
+            this.paddingPasswordConfirm = new System.Windows.Forms.Label();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -96,8 +100,8 @@
             this.panelContent.Controls.Add(this.labelJournalLocationSection);
             this.panelContent.Controls.Add(this.horizontalSeparator2);
             this.panelContent.Controls.Add(this.labelPasswordSection);
-            this.panelContent.Controls.Add(this.panelPasswordNormal);
             this.panelContent.Controls.Add(this.panelPasswordSetting);
+            this.panelContent.Controls.Add(this.panelPasswordNormal);
             this.panelContent.Controls.Add(this.horizontalSeparator1);
             this.panelContent.Controls.Add(this.buttonSizeLarge);
             this.panelContent.Controls.Add(this.buttonSizeMedium);
@@ -363,13 +367,18 @@
             this.checkBoxEnablePassword.TabIndex = 0;
             this.checkBoxEnablePassword.Text = "Enable password protection";
             this.checkBoxEnablePassword.UseVisualStyleBackColor = true;
+            this.checkBoxEnablePassword.CheckedChanged += new System.EventHandler(this.CheckBoxEnablePassword_CheckedChanged);
             // 
             // panelPasswordSetting
             // 
             this.panelPasswordSetting.Controls.Add(this.labelPasswordConfirm);
             this.panelPasswordSetting.Controls.Add(this.labelPassword);
             this.panelPasswordSetting.Controls.Add(this.textPasswordConfirm);
+            this.panelPasswordSetting.Controls.Add(this.paddingPasswordConfirm);
+            this.panelPasswordSetting.Controls.Add(this.borderPasswordConfirm);
             this.panelPasswordSetting.Controls.Add(this.textPassword);
+            this.panelPasswordSetting.Controls.Add(this.paddingTextPassword);
+            this.panelPasswordSetting.Controls.Add(this.borderPassword);
             this.panelPasswordSetting.Controls.Add(this.buttonSetPassword);
             this.panelPasswordSetting.Controls.Add(this.buttonCancelPassword);
             this.panelPasswordSetting.Font = new System.Drawing.Font("Segoe UI", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
@@ -403,22 +412,48 @@
             // textPasswordConfirm
             // 
             this.textPasswordConfirm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.textPasswordConfirm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textPasswordConfirm.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.textPasswordConfirm.Location = new System.Drawing.Point(193, 96);
+            this.textPasswordConfirm.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textPasswordConfirm.Font = new System.Drawing.Font("Segoe UI", 18.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.textPasswordConfirm.Location = new System.Drawing.Point(196, 99);
             this.textPasswordConfirm.Name = "textPasswordConfirm";
-            this.textPasswordConfirm.Size = new System.Drawing.Size(240, 31);
+            this.textPasswordConfirm.Size = new System.Drawing.Size(234, 25);
             this.textPasswordConfirm.TabIndex = 4;
+            this.textPasswordConfirm.UseSystemPasswordChar = true;
+            // 
+            // borderPasswordConfirm
+            // 
+            this.borderPasswordConfirm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.borderPasswordConfirm.Location = new System.Drawing.Point(193, 96);
+            this.borderPasswordConfirm.Name = "borderPasswordConfirm";
+            this.borderPasswordConfirm.Size = new System.Drawing.Size(240, 31);
+            this.borderPasswordConfirm.TabIndex = 14;
             // 
             // textPassword
             // 
             this.textPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
-            this.textPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textPassword.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.textPassword.Location = new System.Drawing.Point(193, 43);
+            this.textPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textPassword.Font = new System.Drawing.Font("Segoe UI", 18.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.textPassword.Location = new System.Drawing.Point(196, 46);
             this.textPassword.Name = "textPassword";
-            this.textPassword.Size = new System.Drawing.Size(240, 31);
+            this.textPassword.Size = new System.Drawing.Size(234, 25);
             this.textPassword.TabIndex = 3;
+            this.textPassword.UseSystemPasswordChar = true;
+            // 
+            // paddingTextPassword
+            // 
+            this.paddingTextPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.paddingTextPassword.Location = new System.Drawing.Point(194, 44);
+            this.paddingTextPassword.Name = "paddingTextPassword";
+            this.paddingTextPassword.Size = new System.Drawing.Size(238, 29);
+            this.paddingTextPassword.TabIndex = 15;
+            // 
+            // borderPassword
+            // 
+            this.borderPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.borderPassword.Location = new System.Drawing.Point(193, 43);
+            this.borderPassword.Name = "borderPassword";
+            this.borderPassword.Size = new System.Drawing.Size(240, 31);
+            this.borderPassword.TabIndex = 13;
             // 
             // buttonSetPassword
             // 
@@ -461,6 +496,14 @@
             this.buttonCancelPassword.Size = new System.Drawing.Size(140, 30);
             this.buttonCancelPassword.TabIndex = 1;
             this.buttonCancelPassword.Text = "Cancel";
+            // 
+            // paddingPasswordConfirm
+            // 
+            this.paddingPasswordConfirm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.paddingPasswordConfirm.Location = new System.Drawing.Point(194, 97);
+            this.paddingPasswordConfirm.Name = "paddingPasswordConfirm";
+            this.paddingPasswordConfirm.Size = new System.Drawing.Size(238, 29);
+            this.paddingPasswordConfirm.TabIndex = 16;
             // 
             // SettingsForm
             // 
@@ -519,5 +562,9 @@
         private System.Windows.Forms.TextBox textPasswordConfirm;
         private System.Windows.Forms.Label labelPasswordConfirm;
         private System.Windows.Forms.Label labelPassword;
+        private System.Windows.Forms.Label borderPassword;
+        private System.Windows.Forms.Label borderPasswordConfirm;
+        private System.Windows.Forms.Label paddingTextPassword;
+        private System.Windows.Forms.Label paddingPasswordConfirm;
     }
 }

@@ -34,6 +34,11 @@
         private Settings settings;
 
         /// <summary>
+        /// Indicates whether the password section is currently in the password setting mode.
+        /// </summary>
+        private bool settingPassword = false;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="SettingsForm"/> class.
         /// </summary>
         public SettingsForm()
@@ -66,6 +71,28 @@
             set
             {
                 this.settings = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the password section is in the setting mode.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the password section is in the setting mode; otherwise, <c>false</c>.
+        /// </value>
+        public bool SettingPassword
+        {
+            get
+            {
+                return this.settingPassword;
+            }
+
+            set
+            {
+                this.settingPassword = value;
+
+                this.panelPasswordNormal.Visible = !value;
+                this.panelPasswordSetting.Visible = value;
             }
         }
 
@@ -186,6 +213,31 @@
         {
             this.Settings.TextSize = TextSizeLarge;
             this.UpdateTextSizeInterface();
+        }
+
+        /// <summary>
+        /// Handles the CheckedChanged event of the checkBoxEnablePassword control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void CheckBoxEnablePassword_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.checkBoxEnablePassword.Checked)
+            {
+                // Get in to the password setting mode.
+                this.textPassword.Text = null;
+                this.textPasswordConfirm.Text = null;
+
+                this.SettingPassword = true;
+
+                this.textPassword.Focus();
+            }
+            else
+            {
+                // Now disable the password.
+                this.Settings.PasswordHash = null;
+                this.UpdatePasswordInterface();
+            }
         }
 
         /// <summary>
