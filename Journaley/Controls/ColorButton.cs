@@ -157,6 +157,16 @@
         public Color SelectedColor { get; set; }
 
         /// <summary>
+        /// Gets or sets the disabled color.
+        /// </summary>
+        /// <value>
+        /// The disabled color.
+        /// </value>
+        [Category("Appearance")]
+        [Description("Background color to show when the button is currently disabled.")]
+        public Color DisabledColor { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether [selected].
         /// </summary>
         /// <value>
@@ -175,18 +185,7 @@
             {
                 this.selected = value;
 
-                if (this.down)
-                {
-                    this.BackColor = this.DownColorToDisplay;
-                }
-                else if (this.Hover)
-                {
-                    this.BackColor = this.HoverColorToDisplay;
-                }
-                else
-                {
-                    this.BackColor = value ? this.SelectedColor : this.NormalColor;
-                }
+                this.UpdateBackColor();
             }
         }
 
@@ -303,6 +302,17 @@
         }
 
         /// <summary>
+        /// Raises the <see cref="E:System.Windows.Forms.Control.EnabledChanged" /> event.
+        /// </summary>
+        /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data.</param>
+        protected override void OnEnabledChanged(EventArgs e)
+        {
+            this.UpdateBackColor();
+
+            base.OnEnabledChanged(e);
+        }
+
+        /// <summary>
         /// Raises the <see cref="E:System.Windows.Forms.Control.MouseMove" /> event.
         /// For the purpose of ImageButton, this method handles the hover event.
         /// </summary>
@@ -310,7 +320,8 @@
         protected override void OnMouseMove(MouseEventArgs e)
         {
             this.Hover = true;
-            this.BackColor = this.down ? this.DownColorToDisplay : this.HoverColorToDisplay;
+
+            this.UpdateBackColor();
 
             base.OnMouseMove(e);
         }
@@ -348,7 +359,7 @@
             this.Focus();
             this.down = true;
 
-            this.BackColor = this.DownColorToDisplay;
+            this.UpdateBackColor();
 
             base.OnMouseDown(e);
         }
@@ -360,14 +371,8 @@
         protected override void OnMouseUp(MouseEventArgs e)
         {
             this.down = false;
-            if (this.Hover)
-            {
-                this.BackColor = this.HoverColorToDisplay;
-            }
-            else
-            {
-                this.BackColor = this.Selected ? this.SelectedColor : this.NormalColor;
-            }
+
+            this.UpdateBackColor();
 
             base.OnMouseUp(e);
         }
@@ -404,6 +409,32 @@
             TextRenderer.DrawText(e.Graphics, this.Text, this.Font, this.ClientRectangle, this.ForeColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
 
             base.OnPaint(e);
+        }
+
+        /// <summary>
+        /// Updates the background color of the button, depending on its current state.
+        /// </summary>
+        private void UpdateBackColor()
+        {
+            if (!this.Enabled)
+            {
+                this.BackColor = this.DisabledColor;
+            }
+            else
+            {
+                if (this.down)
+                {
+                    this.BackColor = this.DownColorToDisplay;
+                }
+                else if (this.Hover)
+                {
+                    this.BackColor = this.HoverColorToDisplay;
+                }
+                else
+                {
+                    this.BackColor = this.Selected ? this.SelectedColor : this.NormalColor;
+                }
+            }
         }
     }
 }
