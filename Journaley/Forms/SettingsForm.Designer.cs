@@ -71,6 +71,7 @@
             // 
             this.panelTitlebar.Controls.Add(this.labelFormCaption);
             this.panelTitlebar.Size = new System.Drawing.Size(450, 20);
+            this.panelTitlebar.TabIndex = 0;
             this.panelTitlebar.Controls.SetChildIndex(this.labelFormCaption, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormClose, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormMaximize, 0);
@@ -110,6 +111,7 @@
             this.panelContent.Controls.Add(this.labelAppearanceSection);
             this.panelContent.Padding = new System.Windows.Forms.Padding(1);
             this.panelContent.Size = new System.Drawing.Size(450, 580);
+            this.panelContent.TabIndex = 1;
             // 
             // buttonChangePassword
             // 
@@ -128,7 +130,7 @@
             this.buttonChangePassword.SelectedDownColor = System.Drawing.Color.Empty;
             this.buttonChangePassword.SelectedHoverColor = System.Drawing.Color.Empty;
             this.buttonChangePassword.Size = new System.Drawing.Size(140, 30);
-            this.buttonChangePassword.TabIndex = 0;
+            this.buttonChangePassword.TabIndex = 1;
             this.buttonChangePassword.Text = "Change Password";
             this.buttonChangePassword.Click += new System.EventHandler(this.ButtonChangePassword_Click);
             // 
@@ -141,7 +143,7 @@
             this.textFolder.Name = "textFolder";
             this.textFolder.ReadOnly = true;
             this.textFolder.Size = new System.Drawing.Size(334, 27);
-            this.textFolder.TabIndex = 1;
+            this.textFolder.TabIndex = 12;
             // 
             // buttonSelectFolder
             // 
@@ -180,7 +182,7 @@
             this.buttonOK.SelectedDownColor = System.Drawing.Color.Empty;
             this.buttonOK.SelectedHoverColor = System.Drawing.Color.Empty;
             this.buttonOK.Size = new System.Drawing.Size(100, 30);
-            this.buttonOK.TabIndex = 0;
+            this.buttonOK.TabIndex = 15;
             this.buttonOK.Text = "Ok";
             // 
             // buttonCancel
@@ -200,7 +202,7 @@
             this.buttonCancel.SelectedDownColor = System.Drawing.Color.Empty;
             this.buttonCancel.SelectedHoverColor = System.Drawing.Color.Empty;
             this.buttonCancel.Size = new System.Drawing.Size(100, 30);
-            this.buttonCancel.TabIndex = 1;
+            this.buttonCancel.TabIndex = 14;
             this.buttonCancel.Text = "Cancel";
             // 
             // labelFormCaption
@@ -223,7 +225,7 @@
             this.horizontalSeparator1.Margin = new System.Windows.Forms.Padding(0);
             this.horizontalSeparator1.Name = "horizontalSeparator1";
             this.horizontalSeparator1.Size = new System.Drawing.Size(448, 1);
-            this.horizontalSeparator1.TabIndex = 4;
+            this.horizontalSeparator1.TabIndex = 5;
             // 
             // horizontalSeparator2
             // 
@@ -232,7 +234,7 @@
             this.horizontalSeparator2.Margin = new System.Windows.Forms.Padding(0);
             this.horizontalSeparator2.Name = "horizontalSeparator2";
             this.horizontalSeparator2.Size = new System.Drawing.Size(448, 1);
-            this.horizontalSeparator2.TabIndex = 5;
+            this.horizontalSeparator2.TabIndex = 9;
             // 
             // labelJournalLocationSection
             // 
@@ -241,7 +243,7 @@
             this.labelJournalLocationSection.Location = new System.Drawing.Point(10, 302);
             this.labelJournalLocationSection.Name = "labelJournalLocationSection";
             this.labelJournalLocationSection.Size = new System.Drawing.Size(114, 20);
-            this.labelJournalLocationSection.TabIndex = 6;
+            this.labelJournalLocationSection.TabIndex = 10;
             this.labelJournalLocationSection.Text = "Journal Location";
             // 
             // labelFolderPath
@@ -251,7 +253,7 @@
             this.labelFolderPath.Location = new System.Drawing.Point(27, 335);
             this.labelFolderPath.Name = "labelFolderPath";
             this.labelFolderPath.Size = new System.Drawing.Size(80, 19);
-            this.labelFolderPath.TabIndex = 7;
+            this.labelFolderPath.TabIndex = 11;
             this.labelFolderPath.Text = "Folder Path";
             // 
             // labelPasswordSection
@@ -271,7 +273,7 @@
             this.labelAppearanceSection.Location = new System.Drawing.Point(10, 15);
             this.labelAppearanceSection.Name = "labelAppearanceSection";
             this.labelAppearanceSection.Size = new System.Drawing.Size(120, 20);
-            this.labelAppearanceSection.TabIndex = 9;
+            this.labelAppearanceSection.TabIndex = 0;
             this.labelAppearanceSection.Text = "Entry Appearance";
             // 
             // labelTextSize
@@ -281,7 +283,7 @@
             this.labelTextSize.Location = new System.Drawing.Point(27, 52);
             this.labelTextSize.Name = "labelTextSize";
             this.labelTextSize.Size = new System.Drawing.Size(65, 19);
-            this.labelTextSize.TabIndex = 10;
+            this.labelTextSize.TabIndex = 1;
             this.labelTextSize.Text = "Text Size";
             // 
             // buttonSizeSmall
@@ -301,7 +303,7 @@
             this.buttonSizeSmall.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeSmall.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeSmall.Size = new System.Drawing.Size(36, 36);
-            this.buttonSizeSmall.TabIndex = 11;
+            this.buttonSizeSmall.TabIndex = 2;
             this.buttonSizeSmall.Text = "T";
             this.buttonSizeSmall.Click += new System.EventHandler(this.ButtonSizeSmall_Click);
             // 
@@ -321,7 +323,7 @@
             this.buttonSizeMedium.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeMedium.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeMedium.Size = new System.Drawing.Size(36, 36);
-            this.buttonSizeMedium.TabIndex = 12;
+            this.buttonSizeMedium.TabIndex = 3;
             this.buttonSizeMedium.Text = "T";
             this.buttonSizeMedium.Click += new System.EventHandler(this.ButtonSizeMedium_Click);
             // 
@@ -342,7 +344,7 @@
             this.buttonSizeLarge.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeLarge.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeLarge.Size = new System.Drawing.Size(36, 36);
-            this.buttonSizeLarge.TabIndex = 13;
+            this.buttonSizeLarge.TabIndex = 4;
             this.buttonSizeLarge.Text = "T";
             this.buttonSizeLarge.Click += new System.EventHandler(this.ButtonSizeLarge_Click);
             // 
@@ -354,7 +356,7 @@
             this.panelPasswordNormal.Margin = new System.Windows.Forms.Padding(0);
             this.panelPasswordNormal.Name = "panelPasswordNormal";
             this.panelPasswordNormal.Size = new System.Drawing.Size(448, 140);
-            this.panelPasswordNormal.TabIndex = 14;
+            this.panelPasswordNormal.TabIndex = 7;
             // 
             // checkBoxEnablePassword
             // 
@@ -386,7 +388,7 @@
             this.panelPasswordSetting.Margin = new System.Windows.Forms.Padding(0);
             this.panelPasswordSetting.Name = "panelPasswordSetting";
             this.panelPasswordSetting.Size = new System.Drawing.Size(448, 140);
-            this.panelPasswordSetting.TabIndex = 15;
+            this.panelPasswordSetting.TabIndex = 6;
             this.panelPasswordSetting.Visible = false;
             // 
             // labelPasswordConfirm
@@ -417,7 +419,7 @@
             this.textPasswordConfirm.Location = new System.Drawing.Point(196, 99);
             this.textPasswordConfirm.Name = "textPasswordConfirm";
             this.textPasswordConfirm.Size = new System.Drawing.Size(234, 25);
-            this.textPasswordConfirm.TabIndex = 4;
+            this.textPasswordConfirm.TabIndex = 3;
             this.textPasswordConfirm.UseSystemPasswordChar = true;
             this.textPasswordConfirm.TextChanged += new System.EventHandler(this.TextPasswordConfirm_TextChanged);
             this.textPasswordConfirm.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextPasswordConfirm_KeyDown);
@@ -447,7 +449,7 @@
             this.textPassword.Location = new System.Drawing.Point(196, 46);
             this.textPassword.Name = "textPassword";
             this.textPassword.Size = new System.Drawing.Size(234, 25);
-            this.textPassword.TabIndex = 3;
+            this.textPassword.TabIndex = 2;
             this.textPassword.UseSystemPasswordChar = true;
             this.textPassword.TextChanged += new System.EventHandler(this.TextPassword_TextChanged);
             // 
@@ -507,7 +509,7 @@
             this.buttonSetPassword.SelectedDownColor = System.Drawing.Color.Empty;
             this.buttonSetPassword.SelectedHoverColor = System.Drawing.Color.Empty;
             this.buttonSetPassword.Size = new System.Drawing.Size(140, 30);
-            this.buttonSetPassword.TabIndex = 2;
+            this.buttonSetPassword.TabIndex = 0;
             this.buttonSetPassword.Text = "Set Password";
             this.buttonSetPassword.Click += new System.EventHandler(this.ButtonSetPassword_Click);
             // 
@@ -565,12 +567,12 @@
         private Controls.ColorButton buttonCancelPassword;
         private Controls.ColorButton buttonSetPassword;
         private System.Windows.Forms.TextBox textPassword;
-        private System.Windows.Forms.TextBox textPasswordConfirm;
         private System.Windows.Forms.Label labelPasswordConfirm;
         private System.Windows.Forms.Label labelPassword;
         private System.Windows.Forms.Label borderPassword;
         private System.Windows.Forms.Label borderPasswordConfirm;
         private System.Windows.Forms.Label paddingTextPassword;
         private System.Windows.Forms.Label paddingPasswordConfirm;
+        private Controls.EnterTextBox textPasswordConfirm;
     }
 }
