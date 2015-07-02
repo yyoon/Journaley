@@ -109,6 +109,7 @@ using Journaley.Core.Models;
 
         /// <summary>
         /// Gets or sets a value indicating whether the password section is in the setting mode.
+        /// When this property changes, the password UI also switches the panel shown to the user.
         /// </summary>
         /// <value>
         ///   <c>true</c> if the password section is in the setting mode; otherwise, <c>false</c>.
