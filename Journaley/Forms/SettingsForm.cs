@@ -115,11 +115,12 @@
         {
             bool passwordEnabled = this.Settings.HasPassword;
 
-            this.labelPasswordStatus.Text = passwordEnabled ? "Enabled" : "Disabled";
+            this.checkBoxEnablePassword.Checked = passwordEnabled;
+            this.buttonChangePassword.Enabled = passwordEnabled;
 
-            this.buttonChangePassword.Visible = passwordEnabled;
-            this.buttonEnablePassword.Visible = !passwordEnabled;
-            this.buttonRemovePassword.Visible = passwordEnabled;
+            // this.buttonChangePassword.Visible = passwordEnabled;
+            // this.buttonEnablePassword.Visible = !passwordEnabled;
+            // this.buttonRemovePassword.Visible = passwordEnabled;
         }
 
         /// <summary>
@@ -201,44 +202,6 @@
             if (result != DialogResult.Cancel)
             {
                 this.Settings.Password = form.NewPassword;
-            }
-
-            this.UpdatePasswordInterface();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the buttonEnablePassword control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void ButtonEnablePassword_Click(object sender, EventArgs e)
-        {
-            EnablePasswordForm form = new EnablePasswordForm();
-
-            DialogResult result = form.ShowDialog(this);
-
-            if (result != DialogResult.Cancel)
-            {
-                this.Settings.Password = form.NewPassword;
-            }
-
-            this.UpdatePasswordInterface();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the buttonRemovePassword control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void ButtonRemovePassword_Click(object sender, EventArgs e)
-        {
-            RemovePasswordForm form = new RemovePasswordForm(this.Settings);
-
-            DialogResult result = form.ShowDialog(this);
-
-            if (result != DialogResult.Cancel)
-            {
-                this.Settings.PasswordHash = null;
             }
 
             this.UpdatePasswordInterface();

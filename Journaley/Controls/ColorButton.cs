@@ -58,7 +58,8 @@
             this.SetStyle(ControlStyles.Selectable, true);
 
             // Set the default values.
-            this.BackColor = this.NormalColor = Color.FromArgb(195, 196, 211);
+            this.NormalColor = Color.FromArgb(195, 196, 211);
+            this.BackColor = this.NormalColor;
             this.HoverColor = Color.FromArgb(218, 219, 228);
             this.DownColor = Color.FromArgb(0, 147, 255);
 

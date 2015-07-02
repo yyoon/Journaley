@@ -28,10 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonEnablePassword = new Journaley.Controls.ColorButton();
-            this.buttonRemovePassword = new Journaley.Controls.ColorButton();
             this.buttonChangePassword = new Journaley.Controls.ColorButton();
-            this.labelPasswordStatus = new System.Windows.Forms.Label();
             this.textFolder = new System.Windows.Forms.TextBox();
             this.buttonSelectFolder = new Journaley.Controls.ImageButton();
             this.buttonOK = new Journaley.Controls.ColorButton();
@@ -48,8 +45,14 @@
             this.buttonSizeMedium = new Journaley.Controls.ColorButton();
             this.buttonSizeLarge = new Journaley.Controls.ColorButton();
             this.panelPasswordNormal = new System.Windows.Forms.Panel();
-            this.panelPasswordSetting = new System.Windows.Forms.Panel();
             this.checkBoxEnablePassword = new System.Windows.Forms.CheckBox();
+            this.panelPasswordSetting = new System.Windows.Forms.Panel();
+            this.labelPasswordConfirm = new System.Windows.Forms.Label();
+            this.labelPassword = new System.Windows.Forms.Label();
+            this.textPasswordConfirm = new System.Windows.Forms.TextBox();
+            this.textPassword = new System.Windows.Forms.TextBox();
+            this.buttonSetPassword = new Journaley.Controls.ColorButton();
+            this.buttonCancelPassword = new Journaley.Controls.ColorButton();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -57,6 +60,7 @@
             this.panelContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSelectFolder)).BeginInit();
             this.panelPasswordNormal.SuspendLayout();
+            this.panelPasswordSetting.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTitlebar
@@ -91,9 +95,6 @@
             this.panelContent.Controls.Add(this.labelFolderPath);
             this.panelContent.Controls.Add(this.labelJournalLocationSection);
             this.panelContent.Controls.Add(this.horizontalSeparator2);
-            this.panelContent.Controls.Add(this.buttonEnablePassword);
-            this.panelContent.Controls.Add(this.buttonRemovePassword);
-            this.panelContent.Controls.Add(this.labelPasswordStatus);
             this.panelContent.Controls.Add(this.labelPasswordSection);
             this.panelContent.Controls.Add(this.panelPasswordNormal);
             this.panelContent.Controls.Add(this.panelPasswordSetting);
@@ -106,58 +107,15 @@
             this.panelContent.Padding = new System.Windows.Forms.Padding(1);
             this.panelContent.Size = new System.Drawing.Size(450, 580);
             // 
-            // buttonEnablePassword
-            // 
-            this.buttonEnablePassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonEnablePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
-            this.buttonEnablePassword.BorderColor = System.Drawing.Color.Black;
-            this.buttonEnablePassword.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonEnablePassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonEnablePassword.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEnablePassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonEnablePassword.Location = new System.Drawing.Point(333, 200);
-            this.buttonEnablePassword.Name = "buttonEnablePassword";
-            this.buttonEnablePassword.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
-            this.buttonEnablePassword.Selected = false;
-            this.buttonEnablePassword.SelectedColor = System.Drawing.Color.Empty;
-            this.buttonEnablePassword.SelectedDownColor = System.Drawing.Color.Empty;
-            this.buttonEnablePassword.SelectedHoverColor = System.Drawing.Color.Empty;
-            this.buttonEnablePassword.Size = new System.Drawing.Size(100, 30);
-            this.buttonEnablePassword.TabIndex = 2;
-            this.buttonEnablePassword.Text = "Enable";
-            this.buttonEnablePassword.Click += new System.EventHandler(this.ButtonEnablePassword_Click);
-            // 
-            // buttonRemovePassword
-            // 
-            this.buttonRemovePassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonRemovePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
-            this.buttonRemovePassword.BorderColor = System.Drawing.Color.Black;
-            this.buttonRemovePassword.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonRemovePassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonRemovePassword.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRemovePassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonRemovePassword.Location = new System.Drawing.Point(333, 200);
-            this.buttonRemovePassword.Name = "buttonRemovePassword";
-            this.buttonRemovePassword.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
-            this.buttonRemovePassword.Selected = false;
-            this.buttonRemovePassword.SelectedColor = System.Drawing.Color.Empty;
-            this.buttonRemovePassword.SelectedDownColor = System.Drawing.Color.Empty;
-            this.buttonRemovePassword.SelectedHoverColor = System.Drawing.Color.Empty;
-            this.buttonRemovePassword.Size = new System.Drawing.Size(100, 30);
-            this.buttonRemovePassword.TabIndex = 1;
-            this.buttonRemovePassword.Text = "Remove";
-            this.buttonRemovePassword.Click += new System.EventHandler(this.ButtonRemovePassword_Click);
-            // 
             // buttonChangePassword
             // 
-            this.buttonChangePassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonChangePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
             this.buttonChangePassword.BorderColor = System.Drawing.Color.Black;
             this.buttonChangePassword.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonChangePassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonChangePassword.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonChangePassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonChangePassword.Location = new System.Drawing.Point(31, 87);
+            this.buttonChangePassword.Location = new System.Drawing.Point(30, 87);
             this.buttonChangePassword.Name = "buttonChangePassword";
             this.buttonChangePassword.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
             this.buttonChangePassword.Selected = false;
@@ -168,15 +126,6 @@
             this.buttonChangePassword.TabIndex = 0;
             this.buttonChangePassword.Text = "Change Password";
             this.buttonChangePassword.Click += new System.EventHandler(this.ButtonChangePassword_Click);
-            // 
-            // labelPasswordStatus
-            // 
-            this.labelPasswordStatus.AutoSize = true;
-            this.labelPasswordStatus.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPasswordStatus.Location = new System.Drawing.Point(27, 212);
-            this.labelPasswordStatus.Name = "labelPasswordStatus";
-            this.labelPasswordStatus.Size = new System.Drawing.Size(0, 20);
-            this.labelPasswordStatus.TabIndex = 3;
             // 
             // textFolder
             // 
@@ -291,10 +240,10 @@
             // labelFolderPath
             // 
             this.labelFolderPath.AutoSize = true;
-            this.labelFolderPath.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFolderPath.Location = new System.Drawing.Point(27, 334);
+            this.labelFolderPath.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFolderPath.Location = new System.Drawing.Point(27, 335);
             this.labelFolderPath.Name = "labelFolderPath";
-            this.labelFolderPath.Size = new System.Drawing.Size(88, 20);
+            this.labelFolderPath.Size = new System.Drawing.Size(80, 19);
             this.labelFolderPath.TabIndex = 7;
             this.labelFolderPath.Text = "Folder Path";
             // 
@@ -321,10 +270,10 @@
             // labelTextSize
             // 
             this.labelTextSize.AutoSize = true;
-            this.labelTextSize.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTextSize.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTextSize.Location = new System.Drawing.Point(27, 52);
             this.labelTextSize.Name = "labelTextSize";
-            this.labelTextSize.Size = new System.Drawing.Size(68, 20);
+            this.labelTextSize.Size = new System.Drawing.Size(65, 19);
             this.labelTextSize.TabIndex = 10;
             this.labelTextSize.Text = "Text Size";
             // 
@@ -397,8 +346,27 @@
             this.panelPasswordNormal.Size = new System.Drawing.Size(448, 140);
             this.panelPasswordNormal.TabIndex = 14;
             // 
+            // checkBoxEnablePassword
+            // 
+            this.checkBoxEnablePassword.AutoSize = true;
+            this.checkBoxEnablePassword.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxEnablePassword.Location = new System.Drawing.Point(30, 50);
+            this.checkBoxEnablePassword.Margin = new System.Windows.Forms.Padding(0);
+            this.checkBoxEnablePassword.Name = "checkBoxEnablePassword";
+            this.checkBoxEnablePassword.Size = new System.Drawing.Size(213, 24);
+            this.checkBoxEnablePassword.TabIndex = 0;
+            this.checkBoxEnablePassword.Text = "Enable password protection";
+            this.checkBoxEnablePassword.UseVisualStyleBackColor = true;
+            // 
             // panelPasswordSetting
             // 
+            this.panelPasswordSetting.Controls.Add(this.labelPasswordConfirm);
+            this.panelPasswordSetting.Controls.Add(this.labelPassword);
+            this.panelPasswordSetting.Controls.Add(this.textPasswordConfirm);
+            this.panelPasswordSetting.Controls.Add(this.textPassword);
+            this.panelPasswordSetting.Controls.Add(this.buttonSetPassword);
+            this.panelPasswordSetting.Controls.Add(this.buttonCancelPassword);
+            this.panelPasswordSetting.Font = new System.Drawing.Font("Segoe UI", 27F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.panelPasswordSetting.Location = new System.Drawing.Point(1, 145);
             this.panelPasswordSetting.Margin = new System.Windows.Forms.Padding(0);
             this.panelPasswordSetting.Name = "panelPasswordSetting";
@@ -406,17 +374,85 @@
             this.panelPasswordSetting.TabIndex = 15;
             this.panelPasswordSetting.Visible = false;
             // 
-            // checkBoxEnablePassword
+            // labelPasswordConfirm
             // 
-            this.checkBoxEnablePassword.AutoSize = true;
-            this.checkBoxEnablePassword.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxEnablePassword.Location = new System.Drawing.Point(31, 50);
-            this.checkBoxEnablePassword.Margin = new System.Windows.Forms.Padding(0);
-            this.checkBoxEnablePassword.Name = "checkBoxEnablePassword";
-            this.checkBoxEnablePassword.Size = new System.Drawing.Size(213, 24);
-            this.checkBoxEnablePassword.TabIndex = 0;
-            this.checkBoxEnablePassword.Text = "Enable password protection";
-            this.checkBoxEnablePassword.UseVisualStyleBackColor = true;
+            this.labelPasswordConfirm.AutoSize = true;
+            this.labelPasswordConfirm.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPasswordConfirm.Location = new System.Drawing.Point(189, 77);
+            this.labelPasswordConfirm.Name = "labelPasswordConfirm";
+            this.labelPasswordConfirm.Size = new System.Drawing.Size(52, 19);
+            this.labelPasswordConfirm.TabIndex = 12;
+            this.labelPasswordConfirm.Text = "Retype";
+            // 
+            // labelPassword
+            // 
+            this.labelPassword.AutoSize = true;
+            this.labelPassword.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPassword.Location = new System.Drawing.Point(189, 24);
+            this.labelPassword.Name = "labelPassword";
+            this.labelPassword.Size = new System.Drawing.Size(68, 19);
+            this.labelPassword.TabIndex = 11;
+            this.labelPassword.Text = "Password";
+            // 
+            // textPasswordConfirm
+            // 
+            this.textPasswordConfirm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.textPasswordConfirm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textPasswordConfirm.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.textPasswordConfirm.Location = new System.Drawing.Point(193, 96);
+            this.textPasswordConfirm.Name = "textPasswordConfirm";
+            this.textPasswordConfirm.Size = new System.Drawing.Size(240, 31);
+            this.textPasswordConfirm.TabIndex = 4;
+            // 
+            // textPassword
+            // 
+            this.textPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.textPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textPassword.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.textPassword.Location = new System.Drawing.Point(193, 43);
+            this.textPassword.Name = "textPassword";
+            this.textPassword.Size = new System.Drawing.Size(240, 31);
+            this.textPassword.TabIndex = 3;
+            // 
+            // buttonSetPassword
+            // 
+            this.buttonSetPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSetPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonSetPassword.BorderColor = System.Drawing.Color.Black;
+            this.buttonSetPassword.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonSetPassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonSetPassword.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSetPassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonSetPassword.Location = new System.Drawing.Point(30, 46);
+            this.buttonSetPassword.Name = "buttonSetPassword";
+            this.buttonSetPassword.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonSetPassword.Selected = false;
+            this.buttonSetPassword.SelectedColor = System.Drawing.Color.Empty;
+            this.buttonSetPassword.SelectedDownColor = System.Drawing.Color.Empty;
+            this.buttonSetPassword.SelectedHoverColor = System.Drawing.Color.Empty;
+            this.buttonSetPassword.Size = new System.Drawing.Size(140, 30);
+            this.buttonSetPassword.TabIndex = 2;
+            this.buttonSetPassword.Text = "Set Password";
+            // 
+            // buttonCancelPassword
+            // 
+            this.buttonCancelPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonCancelPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
+            this.buttonCancelPassword.BorderColor = System.Drawing.Color.Black;
+            this.buttonCancelPassword.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonCancelPassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonCancelPassword.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCancelPassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonCancelPassword.Location = new System.Drawing.Point(30, 87);
+            this.buttonCancelPassword.Name = "buttonCancelPassword";
+            this.buttonCancelPassword.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
+            this.buttonCancelPassword.Selected = false;
+            this.buttonCancelPassword.SelectedColor = System.Drawing.Color.Empty;
+            this.buttonCancelPassword.SelectedDownColor = System.Drawing.Color.Empty;
+            this.buttonCancelPassword.SelectedHoverColor = System.Drawing.Color.Empty;
+            this.buttonCancelPassword.Size = new System.Drawing.Size(140, 30);
+            this.buttonCancelPassword.TabIndex = 1;
+            this.buttonCancelPassword.Text = "Cancel";
             // 
             // SettingsForm
             // 
@@ -442,15 +478,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.buttonSelectFolder)).EndInit();
             this.panelPasswordNormal.ResumeLayout(false);
             this.panelPasswordNormal.PerformLayout();
+            this.panelPasswordSetting.ResumeLayout(false);
+            this.panelPasswordSetting.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label labelPasswordStatus;
-        private Controls.ColorButton buttonEnablePassword;
-        private Controls.ColorButton buttonRemovePassword;
         private Controls.ColorButton buttonChangePassword;
         private System.Windows.Forms.TextBox textFolder;
         private Controls.ImageButton buttonSelectFolder;
@@ -470,5 +505,11 @@
         private System.Windows.Forms.Panel panelPasswordNormal;
         private System.Windows.Forms.Panel panelPasswordSetting;
         private System.Windows.Forms.CheckBox checkBoxEnablePassword;
+        private Controls.ColorButton buttonCancelPassword;
+        private Controls.ColorButton buttonSetPassword;
+        private System.Windows.Forms.TextBox textPassword;
+        private System.Windows.Forms.TextBox textPasswordConfirm;
+        private System.Windows.Forms.Label labelPasswordConfirm;
+        private System.Windows.Forms.Label labelPassword;
     }
 }
