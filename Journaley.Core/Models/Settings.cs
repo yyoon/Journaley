@@ -36,6 +36,8 @@
             this.PasswordHash = null;
             this.DayOneFolderPath = null;
             this.TextSize = 0.0f;
+            this.SpellCheckEnabled = true;
+            this.SpellCheckCulture = "en-US";
         }
 
         /// <summary>
@@ -47,6 +49,8 @@
             this.PasswordHash = other.PasswordHash;
             this.DayOneFolderPath = other.DayOneFolderPath;
             this.TextSize = other.TextSize;
+            this.SpellCheckEnabled = other.SpellCheckEnabled;
+            this.SpellCheckCulture = other.SpellCheckCulture;
         }
 
         /// <summary>
@@ -86,6 +90,22 @@
         /// The size of the text.
         /// </value>
         public float TextSize { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [spell check enabled].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [spell check enabled]; otherwise, <c>false</c>.
+        /// </value>
+        public bool SpellCheckEnabled { get; set; }
+
+        /// <summary>
+        /// Gets or sets the spell check culture.
+        /// </summary>
+        /// <value>
+        /// The spell check culture.
+        /// </value>
+        public string SpellCheckCulture { get; set; }
 
         /// <summary>
         /// Gets the entry folder path under the day one folder.

@@ -57,6 +57,9 @@
             this.borderPassword = new System.Windows.Forms.Label();
             this.buttonCancelPassword = new Journaley.Controls.ColorButton();
             this.buttonSetPassword = new Journaley.Controls.ColorButton();
+            this.comboSpellcheckLanguages = new System.Windows.Forms.ComboBox();
+            this.labelSpellChecker = new System.Windows.Forms.Label();
+            this.checkBoxEnableSpellCheck = new System.Windows.Forms.CheckBox();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -104,6 +107,9 @@
             this.panelContent.Controls.Add(this.panelPasswordNormal);
             this.panelContent.Controls.Add(this.panelPasswordSetting);
             this.panelContent.Controls.Add(this.horizontalSeparator1);
+            this.panelContent.Controls.Add(this.comboSpellcheckLanguages);
+            this.panelContent.Controls.Add(this.checkBoxEnableSpellCheck);
+            this.panelContent.Controls.Add(this.labelSpellChecker);
             this.panelContent.Controls.Add(this.buttonSizeLarge);
             this.panelContent.Controls.Add(this.buttonSizeMedium);
             this.panelContent.Controls.Add(this.buttonSizeSmall);
@@ -513,6 +519,41 @@
             this.buttonSetPassword.Text = "Set Password";
             this.buttonSetPassword.Click += new System.EventHandler(this.ButtonSetPassword_Click);
             // 
+            // comboSpellcheckLanguages
+            // 
+            this.comboSpellcheckLanguages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.comboSpellcheckLanguages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboSpellcheckLanguages.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboSpellcheckLanguages.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboSpellcheckLanguages.FormattingEnabled = true;
+            this.comboSpellcheckLanguages.Location = new System.Drawing.Point(190, 105);
+            this.comboSpellcheckLanguages.Name = "comboSpellcheckLanguages";
+            this.comboSpellcheckLanguages.Size = new System.Drawing.Size(160, 23);
+            this.comboSpellcheckLanguages.TabIndex = 16;
+            // 
+            // labelSpellChecker
+            // 
+            this.labelSpellChecker.AutoSize = true;
+            this.labelSpellChecker.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSpellChecker.Location = new System.Drawing.Point(187, 52);
+            this.labelSpellChecker.Name = "labelSpellChecker";
+            this.labelSpellChecker.Size = new System.Drawing.Size(94, 19);
+            this.labelSpellChecker.TabIndex = 17;
+            this.labelSpellChecker.Text = "Spell Checker";
+            // 
+            // checkBoxEnableSpellCheck
+            // 
+            this.checkBoxEnableSpellCheck.AutoSize = true;
+            this.checkBoxEnableSpellCheck.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxEnableSpellCheck.Location = new System.Drawing.Point(190, 79);
+            this.checkBoxEnableSpellCheck.Margin = new System.Windows.Forms.Padding(0);
+            this.checkBoxEnableSpellCheck.Name = "checkBoxEnableSpellCheck";
+            this.checkBoxEnableSpellCheck.Size = new System.Drawing.Size(162, 24);
+            this.checkBoxEnableSpellCheck.TabIndex = 18;
+            this.checkBoxEnableSpellCheck.Text = "Enable spell checker";
+            this.checkBoxEnableSpellCheck.UseVisualStyleBackColor = true;
+            this.checkBoxEnableSpellCheck.Click += new System.EventHandler(this.CheckBoxEnableSpellCheck_Click);
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.buttonOK;
@@ -574,5 +615,8 @@
         private System.Windows.Forms.Label paddingTextPassword;
         private System.Windows.Forms.Label paddingPasswordConfirm;
         private Controls.EnterTextBox textPasswordConfirm;
+        private System.Windows.Forms.ComboBox comboSpellcheckLanguages;
+        private System.Windows.Forms.Label labelSpellChecker;
+        private System.Windows.Forms.CheckBox checkBoxEnableSpellCheck;
     }
 }
