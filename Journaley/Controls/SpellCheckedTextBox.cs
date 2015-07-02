@@ -8,6 +8,7 @@
     using System.Windows.Forms.Design;
     using System.Windows.Forms.Integration;
     using System.Windows.Input;
+    using System.Windows.Markup;
 
     /// <summary>
     /// Spell-checker enabled TextBox derived from WPF TextBox.
@@ -165,6 +166,34 @@
             set
             {
                 this.box.IsReadOnly = value;
+            }
+        }
+
+        /// <summary>
+        /// Sets a value indicating whether the spell checker is enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the spell checker is enabled; otherwise, <c>false</c>.
+        /// </value>
+        public bool SpellCheckEnabled
+        {
+            set
+            {
+                this.box.SpellCheck.IsEnabled = value;
+            }
+        }
+
+        /// <summary>
+        /// Sets the spell check language.
+        /// </summary>
+        /// <value>
+        /// The spell check language.
+        /// </value>
+        public string SpellCheckLanguage
+        {
+            set
+            {
+                this.box.Language = XmlLanguage.GetLanguage(value);
             }
         }
 

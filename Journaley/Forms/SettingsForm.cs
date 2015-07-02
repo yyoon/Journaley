@@ -1,13 +1,14 @@
 ﻿namespace Journaley.Forms
 {
     using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Windows.Forms;
-using Journaley.Controls;
-using Journaley.Core.Models;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Windows.Forms;
+    using Journaley.Controls;
+    using Journaley.Core.Models;
 
     /// <summary>
     /// A form used for adjusting various settings.
@@ -150,6 +151,52 @@ using Journaley.Core.Models;
         }
 
         /// <summary>
+        /// Initializes the spell check setting interface.
+        /// </summary>
+        private void InitializeSpellCheckInterface()
+        {
+            // Get all the available cultures.
+            string[] supportedLanguages = new string[] { "en", "fr", "de", "es" };
+
+            var cultureDict = supportedLanguages
+                .Select(x => CultureInfo.GetCultureInfo(x))
+                .OrderBy(x => x.EnglishName)
+                .ToDictionary(x => x.Name, x => x.EnglishName);
+
+            this.comboSpellcheckLanguages.DataSource = new BindingSource(cultureDict, null);
+            this.comboSpellcheckLanguages.DisplayMember = "Value";
+            this.comboSpellcheckLanguages.ValueMember = "Key";
+
+            // Use en-US as the default culture used by the spell checker.
+            if (string.IsNullOrEmpty(this.Settings.SpellCheckLanguage) ||
+                !cultureDict.ContainsKey(this.Settings.SpellCheckLanguage))
+            {
+                this.Settings.SpellCheckLanguage = "en";
+            }
+
+            // Find the current culture and select it from the combo box.
+            this.comboSpellcheckLanguages.SelectedItem = new KeyValuePair<string, string>(
+                this.Settings.SpellCheckLanguage,
+                cultureDict[this.Settings.SpellCheckLanguage]);
+
+            // Attach the handler here, in order to suppress this event being handled while
+            // populating the initial values.
+            this.comboSpellcheckLanguages.SelectedIndexChanged +=
+                this.ComboSpellcheckLanguages_SelectedIndexChanged;
+
+            this.UpdateSpellCheckInterface();
+        }
+
+        /// <summary>
+        /// Updates the spell check interface.
+        /// </summary>
+        private void UpdateSpellCheckInterface()
+        {
+            this.checkBoxEnableSpellCheck.Checked = this.Settings.SpellCheckEnabled;
+            this.comboSpellcheckLanguages.Enabled = this.Settings.SpellCheckEnabled;
+        }
+
+        /// <summary>
         /// Updates the text size interface.
         /// Highlight the currently used text size.
         /// </summary>
@@ -262,6 +309,9 @@ using Journaley.Core.Models;
                 this.Settings.TextSize = TextSizeMedium;
             }
 
+            this.InitializeSpellCheckInterface();
+
+            // Update the rest of the UIs.
             this.UpdateTextSizeInterface();
             this.UpdatePasswordInterface();
             this.UpdateFolderInterface();
@@ -298,6 +348,28 @@ using Journaley.Core.Models;
         {
             this.Settings.TextSize = TextSizeLarge;
             this.UpdateTextSizeInterface();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the checkBoxEnableSpellCheck control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void CheckBoxEnableSpellCheck_Click(object sender, EventArgs e)
+        {
+            this.Settings.SpellCheckEnabled = this.checkBoxEnableSpellCheck.Checked;
+
+            this.UpdateSpellCheckInterface();
+        }
+
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the comboSpellcheckLanguages control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ComboSpellcheckLanguages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.Settings.SpellCheckLanguage = this.comboSpellcheckLanguages.SelectedValue.ToString();
         }
 
         /// <summary>
