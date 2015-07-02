@@ -195,6 +195,7 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonChangePassword_Click(object sender, EventArgs e)
         {
+            /*
             ChangePasswordForm form = new ChangePasswordForm(this.Settings);
 
             DialogResult result = form.ShowDialog(this);
@@ -203,6 +204,7 @@
             {
                 this.Settings.Password = form.NewPassword;
             }
+            */
 
             this.UpdatePasswordInterface();
         }

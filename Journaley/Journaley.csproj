@@ -149,18 +149,6 @@
     <Compile Include="Forms\BaseJournaleyForm.Designer.cs">
       <DependentUpon>BaseJournaleyForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ChangePasswordForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ChangePasswordForm.Designer.cs">
-      <DependentUpon>ChangePasswordForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\EnablePasswordForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\EnablePasswordForm.Designer.cs">
-      <DependentUpon>EnablePasswordForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\PhotoDisplayForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,12 +192,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Forms\RemovePasswordForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\RemovePasswordForm.Designer.cs">
-      <DependentUpon>RemovePasswordForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -218,13 +200,6 @@
     </Compile>
     <EmbeddedResource Include="Forms\BaseJournaleyForm.resx">
       <DependentUpon>BaseJournaleyForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ChangePasswordForm.resx">
-      <DependentUpon>ChangePasswordForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\EnablePasswordForm.resx">
-      <DependentUpon>EnablePasswordForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -242,9 +217,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\RemovePasswordForm.resx">
-      <DependentUpon>RemovePasswordForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
