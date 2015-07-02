@@ -156,7 +156,10 @@
         private void InitializeSpellCheckInterface()
         {
             // Get all the available cultures.
-            var cultureDict = CultureInfo.GetCultures(CultureTypes.SpecificCultures)
+            string[] supportedLanguages = new string[] { "en-US", "fr-FR", "de-DE", "es-ES" };
+
+            var cultureDict = supportedLanguages
+                .Select(x => CultureInfo.GetCultureInfo(x))
                 .OrderBy(x => x.EnglishName)
                 .ToDictionary(x => x.Name, x => x.EnglishName);
 
@@ -165,16 +168,16 @@
             this.comboSpellcheckLanguages.ValueMember = "Key";
 
             // Use en-US as the default culture used by the spell checker.
-            if (string.IsNullOrEmpty(this.Settings.SpellCheckCulture) ||
-                !cultureDict.ContainsKey(this.Settings.SpellCheckCulture))
+            if (string.IsNullOrEmpty(this.Settings.SpellCheckLanguage) ||
+                !cultureDict.ContainsKey(this.Settings.SpellCheckLanguage))
             {
-                this.Settings.SpellCheckCulture = "en-US";
+                this.Settings.SpellCheckLanguage = "en-US";
             }
 
             // Find the current culture and select it from the combo box.
             this.comboSpellcheckLanguages.SelectedItem = new KeyValuePair<string, string>(
-                this.Settings.SpellCheckCulture,
-                cultureDict[this.Settings.SpellCheckCulture]);
+                this.Settings.SpellCheckLanguage,
+                cultureDict[this.Settings.SpellCheckLanguage]);
 
             // Attach the handler here, in order to suppress this event being handled while
             // populating the initial values.
@@ -366,7 +369,7 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ComboSpellcheckLanguages_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.Settings.SpellCheckCulture = this.comboSpellcheckLanguages.SelectedValue.ToString();
+            this.Settings.SpellCheckLanguage = this.comboSpellcheckLanguages.SelectedValue.ToString();
         }
 
         /// <summary>

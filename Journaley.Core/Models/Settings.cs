@@ -37,7 +37,7 @@
             this.DayOneFolderPath = null;
             this.TextSize = 0.0f;
             this.SpellCheckEnabled = true;
-            this.SpellCheckCulture = "en-US";
+            this.SpellCheckLanguage = "en-US";
         }
 
         /// <summary>
@@ -50,7 +50,7 @@
             this.DayOneFolderPath = other.DayOneFolderPath;
             this.TextSize = other.TextSize;
             this.SpellCheckEnabled = other.SpellCheckEnabled;
-            this.SpellCheckCulture = other.SpellCheckCulture;
+            this.SpellCheckLanguage = other.SpellCheckLanguage;
         }
 
         /// <summary>
@@ -105,7 +105,7 @@
         /// <value>
         /// The spell check culture.
         /// </value>
-        public string SpellCheckCulture { get; set; }
+        public string SpellCheckLanguage { get; set; }
 
         /// <summary>
         /// Gets the entry folder path under the day one folder.

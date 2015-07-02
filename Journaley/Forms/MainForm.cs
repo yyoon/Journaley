@@ -1401,9 +1401,17 @@
         /// </summary>
         private void UpdateCultureInfo()
         {
-            string culture = this.Settings.SpellCheckCulture;
+            string culture = this.Settings.SpellCheckLanguage;
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(culture);
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(culture);
+        }
+
+        /// <summary>
+        /// Updates the spell check language.
+        /// </summary>
+        private void UpdateSpellCheckLanguage()
+        {
+            this.spellCheckedEntryText.SpellCheckLanguage = this.Settings.SpellCheckLanguage;
         }
 
         /// <summary>
@@ -1491,6 +1499,7 @@
             Debug.Assert(this.Settings != null, "At this point, a valid Settings object must be present.");
 
             this.UpdateCultureInfo();
+            this.UpdateSpellCheckLanguage();
             this.UpdateSpellCheckEnabled();
             this.UpdateSpellCheckedEntryTextSize();
 
@@ -1656,7 +1665,7 @@
             {
                 bool dayOneFolderChanged = this.Settings.DayOneFolderPath != form.Settings.DayOneFolderPath;
                 bool spellCheckEnabledChanged = this.Settings.SpellCheckEnabled != form.Settings.SpellCheckEnabled;
-                bool cultureChanged = this.Settings.SpellCheckCulture != form.Settings.SpellCheckCulture;
+                bool languageChanged = this.Settings.SpellCheckLanguage != form.Settings.SpellCheckLanguage;
                 bool textSizeChanged = this.Settings.TextSize != form.Settings.TextSize;
 
                 this.Settings = form.Settings;
@@ -1667,9 +1676,9 @@
                     this.UpdateSpellCheckEnabled();
                 }
 
-                if (cultureChanged)
+                if (languageChanged)
                 {
-                    this.UpdateCultureInfo();
+                    this.UpdateSpellCheckLanguage();
                 }
 
                 if (textSizeChanged)
