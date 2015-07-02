@@ -49,12 +49,14 @@
             this.buttonSizeLarge = new Journaley.Controls.ColorButton();
             this.panelPasswordNormal = new System.Windows.Forms.Panel();
             this.panelPasswordSetting = new System.Windows.Forms.Panel();
+            this.checkBoxEnablePassword = new System.Windows.Forms.CheckBox();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
             this.panelContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSelectFolder)).BeginInit();
+            this.panelPasswordNormal.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTitlebar
@@ -91,11 +93,10 @@
             this.panelContent.Controls.Add(this.horizontalSeparator2);
             this.panelContent.Controls.Add(this.buttonEnablePassword);
             this.panelContent.Controls.Add(this.buttonRemovePassword);
-            this.panelContent.Controls.Add(this.buttonChangePassword);
             this.panelContent.Controls.Add(this.labelPasswordStatus);
             this.panelContent.Controls.Add(this.labelPasswordSection);
-            this.panelContent.Controls.Add(this.panelPasswordSetting);
             this.panelContent.Controls.Add(this.panelPasswordNormal);
+            this.panelContent.Controls.Add(this.panelPasswordSetting);
             this.panelContent.Controls.Add(this.horizontalSeparator1);
             this.panelContent.Controls.Add(this.buttonSizeLarge);
             this.panelContent.Controls.Add(this.buttonSizeMedium);
@@ -154,18 +155,18 @@
             this.buttonChangePassword.BorderColor = System.Drawing.Color.Black;
             this.buttonChangePassword.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonChangePassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonChangePassword.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonChangePassword.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonChangePassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonChangePassword.Location = new System.Drawing.Point(218, 200);
+            this.buttonChangePassword.Location = new System.Drawing.Point(31, 87);
             this.buttonChangePassword.Name = "buttonChangePassword";
             this.buttonChangePassword.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
             this.buttonChangePassword.Selected = false;
             this.buttonChangePassword.SelectedColor = System.Drawing.Color.Empty;
             this.buttonChangePassword.SelectedDownColor = System.Drawing.Color.Empty;
             this.buttonChangePassword.SelectedHoverColor = System.Drawing.Color.Empty;
-            this.buttonChangePassword.Size = new System.Drawing.Size(100, 30);
+            this.buttonChangePassword.Size = new System.Drawing.Size(140, 30);
             this.buttonChangePassword.TabIndex = 0;
-            this.buttonChangePassword.Text = "Change";
+            this.buttonChangePassword.Text = "Change Password";
             this.buttonChangePassword.Click += new System.EventHandler(this.ButtonChangePassword_Click);
             // 
             // labelPasswordStatus
@@ -388,6 +389,8 @@
             // 
             // panelPasswordNormal
             // 
+            this.panelPasswordNormal.Controls.Add(this.buttonChangePassword);
+            this.panelPasswordNormal.Controls.Add(this.checkBoxEnablePassword);
             this.panelPasswordNormal.Location = new System.Drawing.Point(1, 145);
             this.panelPasswordNormal.Margin = new System.Windows.Forms.Padding(0);
             this.panelPasswordNormal.Name = "panelPasswordNormal";
@@ -401,6 +404,19 @@
             this.panelPasswordSetting.Name = "panelPasswordSetting";
             this.panelPasswordSetting.Size = new System.Drawing.Size(448, 140);
             this.panelPasswordSetting.TabIndex = 15;
+            this.panelPasswordSetting.Visible = false;
+            // 
+            // checkBoxEnablePassword
+            // 
+            this.checkBoxEnablePassword.AutoSize = true;
+            this.checkBoxEnablePassword.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxEnablePassword.Location = new System.Drawing.Point(31, 50);
+            this.checkBoxEnablePassword.Margin = new System.Windows.Forms.Padding(0);
+            this.checkBoxEnablePassword.Name = "checkBoxEnablePassword";
+            this.checkBoxEnablePassword.Size = new System.Drawing.Size(213, 24);
+            this.checkBoxEnablePassword.TabIndex = 0;
+            this.checkBoxEnablePassword.Text = "Enable password protection";
+            this.checkBoxEnablePassword.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 
@@ -424,6 +440,8 @@
             this.panelContent.ResumeLayout(false);
             this.panelContent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSelectFolder)).EndInit();
+            this.panelPasswordNormal.ResumeLayout(false);
+            this.panelPasswordNormal.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -451,5 +469,6 @@
         private Controls.ColorButton buttonSizeSmall;
         private System.Windows.Forms.Panel panelPasswordNormal;
         private System.Windows.Forms.Panel panelPasswordSetting;
+        private System.Windows.Forms.CheckBox checkBoxEnablePassword;
     }
 }
