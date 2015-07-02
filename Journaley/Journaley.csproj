@@ -119,6 +119,9 @@
     <Compile Include="Controls\ColorButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Controls\EnterTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\ISelectable.cs" />
     <Compile Include="Controls\PaddingBorderPanel.cs">
       <SubType>Component</SubType>

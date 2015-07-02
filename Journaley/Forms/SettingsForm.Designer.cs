@@ -49,14 +49,14 @@
             this.panelPasswordSetting = new System.Windows.Forms.Panel();
             this.labelPasswordConfirm = new System.Windows.Forms.Label();
             this.labelPassword = new System.Windows.Forms.Label();
-            this.textPasswordConfirm = new System.Windows.Forms.TextBox();
+            this.textPasswordConfirm = new Journaley.Controls.EnterTextBox();
             this.paddingPasswordConfirm = new System.Windows.Forms.Label();
             this.borderPasswordConfirm = new System.Windows.Forms.Label();
             this.textPassword = new System.Windows.Forms.TextBox();
             this.paddingTextPassword = new System.Windows.Forms.Label();
             this.borderPassword = new System.Windows.Forms.Label();
-            this.buttonSetPassword = new Journaley.Controls.ColorButton();
             this.buttonCancelPassword = new Journaley.Controls.ColorButton();
+            this.buttonSetPassword = new Journaley.Controls.ColorButton();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -420,6 +420,8 @@
             this.textPasswordConfirm.TabIndex = 4;
             this.textPasswordConfirm.UseSystemPasswordChar = true;
             this.textPasswordConfirm.TextChanged += new System.EventHandler(this.TextPasswordConfirm_TextChanged);
+            this.textPasswordConfirm.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextPasswordConfirm_KeyDown);
+            this.textPasswordConfirm.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextPasswordConfirm_KeyPress);
             // 
             // paddingPasswordConfirm
             // 
@@ -465,28 +467,6 @@
             this.borderPassword.Size = new System.Drawing.Size(240, 31);
             this.borderPassword.TabIndex = 13;
             // 
-            // buttonSetPassword
-            // 
-            this.buttonSetPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSetPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
-            this.buttonSetPassword.BorderColor = System.Drawing.Color.Black;
-            this.buttonSetPassword.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonSetPassword.DisabledColor = System.Drawing.Color.Empty;
-            this.buttonSetPassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonSetPassword.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSetPassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonSetPassword.Location = new System.Drawing.Point(30, 46);
-            this.buttonSetPassword.Name = "buttonSetPassword";
-            this.buttonSetPassword.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
-            this.buttonSetPassword.Selected = false;
-            this.buttonSetPassword.SelectedColor = System.Drawing.Color.Empty;
-            this.buttonSetPassword.SelectedDownColor = System.Drawing.Color.Empty;
-            this.buttonSetPassword.SelectedHoverColor = System.Drawing.Color.Empty;
-            this.buttonSetPassword.Size = new System.Drawing.Size(140, 30);
-            this.buttonSetPassword.TabIndex = 2;
-            this.buttonSetPassword.Text = "Set Password";
-            this.buttonSetPassword.Click += new System.EventHandler(this.ButtonSetPassword_Click);
-            // 
             // buttonCancelPassword
             // 
             this.buttonCancelPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -508,6 +488,28 @@
             this.buttonCancelPassword.TabIndex = 1;
             this.buttonCancelPassword.Text = "Cancel";
             this.buttonCancelPassword.Click += new System.EventHandler(this.ButtonCancelPassword_Click);
+            // 
+            // buttonSetPassword
+            // 
+            this.buttonSetPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSetPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonSetPassword.BorderColor = System.Drawing.Color.Black;
+            this.buttonSetPassword.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonSetPassword.DisabledColor = System.Drawing.Color.Empty;
+            this.buttonSetPassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonSetPassword.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSetPassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonSetPassword.Location = new System.Drawing.Point(30, 46);
+            this.buttonSetPassword.Name = "buttonSetPassword";
+            this.buttonSetPassword.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonSetPassword.Selected = false;
+            this.buttonSetPassword.SelectedColor = System.Drawing.Color.Empty;
+            this.buttonSetPassword.SelectedDownColor = System.Drawing.Color.Empty;
+            this.buttonSetPassword.SelectedHoverColor = System.Drawing.Color.Empty;
+            this.buttonSetPassword.Size = new System.Drawing.Size(140, 30);
+            this.buttonSetPassword.TabIndex = 2;
+            this.buttonSetPassword.Text = "Set Password";
+            this.buttonSetPassword.Click += new System.EventHandler(this.ButtonSetPassword_Click);
             // 
             // SettingsForm
             // 

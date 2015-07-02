@@ -186,6 +186,41 @@ using Journaley.Core.Models;
         }
 
         /// <summary>
+        /// Tries to set password with the given values.
+        /// In this process, detect user mistakes and take appropriate actions.
+        /// (e.g., highlight the empty password box, change the message, ...)
+        /// </summary>
+        private void TrySetPassword()
+        {
+            // First, check if the password box is empty.
+            if (string.IsNullOrEmpty(this.textPassword.Text))
+            {
+                this.borderPassword.BackColor = BorderColorError;
+                this.textPassword.Focus();
+
+                return;
+            }
+
+            // Next, check if the password matches with the one in the confirm box.
+            if (this.textPassword.Text != this.textPasswordConfirm.Text)
+            {
+                this.labelPasswordConfirm.ForeColor = RetypeMessageColorError;
+                this.labelPasswordConfirm.Text = RetypeMessageError;
+
+                this.textPasswordConfirm.SelectAll();
+                this.textPasswordConfirm.Focus();
+
+                return;
+            }
+
+            // Finally, set the password and get back to the normal mode.
+            this.Settings.Password = this.textPassword.Text;
+            this.UpdatePasswordInterface();
+
+            this.SettingPassword = false;
+        }
+
+        /// <summary>
         /// Updates the password interface.
         /// </summary>
         private void UpdatePasswordInterface()
@@ -302,32 +337,7 @@ using Journaley.Core.Models;
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonSetPassword_Click(object sender, EventArgs e)
         {
-            // First, check if the password box is empty.
-            if (string.IsNullOrEmpty(this.textPassword.Text))
-            {
-                this.borderPassword.BackColor = BorderColorError;
-                this.textPassword.Focus();
-
-                return;
-            }
-
-            // Next, check if the password matches with the one in the confirm box.
-            if (this.textPassword.Text != this.textPasswordConfirm.Text)
-            {
-                this.labelPasswordConfirm.ForeColor = RetypeMessageColorError;
-                this.labelPasswordConfirm.Text = RetypeMessageError;
-
-                this.textPasswordConfirm.SelectAll();
-                this.textPasswordConfirm.Focus();
-
-                return;
-            }
-
-            // Finally, set the password and get back to the normal mode.
-            this.Settings.Password = this.textPassword.Text;
-            this.UpdatePasswordInterface();
-
-            this.SettingPassword = false;
+            this.TrySetPassword();
         }
 
         /// <summary>
@@ -364,6 +374,44 @@ using Journaley.Core.Models;
             if (this.labelPasswordConfirm.ForeColor == RetypeMessageColorError)
             {
                 this.labelPasswordConfirm.ForeColor = RetypeMessageColorNormal;
+            }
+        }
+
+        /// <summary>
+        /// Handles the KeyDown event of the textPasswordConfirm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
+        private void TextPasswordConfirm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    this.TrySetPassword();
+
+                    e.Handled = true;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Handles the KeyPress event of the textPasswordConfirm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        private void TextPasswordConfirm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case (char)Keys.Enter:
+                    e.Handled = true;
+                    break;
+
+                default:
+                    break;
             }
         }
 
