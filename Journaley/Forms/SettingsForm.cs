@@ -1,12 +1,13 @@
 ﻿namespace Journaley.Forms
 {
     using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Windows.Forms;
-    using Journaley.Controls;
-    using Journaley.Core.Models;
+using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Windows.Forms;
+using Journaley.Controls;
+using Journaley.Core.Models;
 
     /// <summary>
     /// A form used for adjusting various settings.
@@ -29,9 +30,44 @@
         public static readonly float TextSizeLarge = 16.0f;
 
         /// <summary>
+        /// The normal border color for the password textboxes.
+        /// </summary>
+        private static readonly Color BorderColorNormal = Color.FromArgb(100, 100, 100);
+
+        /// <summary>
+        /// The red border color for the password textboxes indicating an error.
+        /// </summary>
+        private static readonly Color BorderColorError = Color.FromArgb(218, 36, 36);
+
+        /// <summary>
+        /// The color of the retype message in its normal state.
+        /// </summary>
+        private static readonly Color RetypeMessageColorNormal = SystemColors.ControlText;
+
+        /// <summary>
+        /// The color of the retype message in its error state.
+        /// </summary>
+        private static readonly Color RetypeMessageColorError = Color.FromArgb(218, 36, 36);
+
+        /// <summary>
+        /// The normal retype message
+        /// </summary>
+        private static readonly string RetypeMessageNormal = "Retype";
+
+        /// <summary>
+        /// The retype message shown once the passwords in both boxes didn't match
+        /// </summary>
+        private static readonly string RetypeMessageError = "Retype password to confirm";
+
+        /// <summary>
         /// The backing field for Settings property.
         /// </summary>
         private Settings settings;
+
+        /// <summary>
+        /// Indicates whether the password section is currently in the password setting mode.
+        /// </summary>
+        private bool settingPassword = false;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SettingsForm"/> class.
@@ -43,6 +79,8 @@
             this.buttonSizeSmall.Tag = TextSizeSmall;
             this.buttonSizeMedium.Tag = TextSizeMedium;
             this.buttonSizeLarge.Tag = TextSizeLarge;
+
+            this.SettingPassword = false;
         }
 
         /// <summary>
@@ -66,6 +104,29 @@
             set
             {
                 this.settings = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the password section is in the setting mode.
+        /// When this property changes, the password UI also switches the panel shown to the user.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the password section is in the setting mode; otherwise, <c>false</c>.
+        /// </value>
+        public bool SettingPassword
+        {
+            get
+            {
+                return this.settingPassword;
+            }
+
+            set
+            {
+                this.settingPassword = value;
+
+                this.panelPasswordNormal.Visible = !value;
+                this.panelPasswordSetting.Visible = value;
             }
         }
 
@@ -109,17 +170,69 @@
         }
 
         /// <summary>
+        /// Starts the password editing UI.
+        /// </summary>
+        private void StartEditingPassword()
+        {
+            this.textPassword.Text = null;
+            this.textPasswordConfirm.Text = null;
+
+            this.labelPasswordConfirm.ForeColor = SystemColors.ControlText;
+            this.labelPasswordConfirm.Text = RetypeMessageNormal;
+
+            this.SettingPassword = true;
+
+            this.textPassword.Focus();
+        }
+
+        /// <summary>
+        /// Tries to set password with the given values.
+        /// In this process, detect user mistakes and take appropriate actions.
+        /// (e.g., highlight the empty password box, change the message, ...)
+        /// </summary>
+        private void TrySetPassword()
+        {
+            // First, check if the password box is empty.
+            if (string.IsNullOrEmpty(this.textPassword.Text))
+            {
+                this.borderPassword.BackColor = BorderColorError;
+                this.textPassword.Focus();
+
+                return;
+            }
+
+            // Next, check if the password matches with the one in the confirm box.
+            if (this.textPassword.Text != this.textPasswordConfirm.Text)
+            {
+                this.labelPasswordConfirm.ForeColor = RetypeMessageColorError;
+                this.labelPasswordConfirm.Text = RetypeMessageError;
+
+                this.textPasswordConfirm.SelectAll();
+                this.textPasswordConfirm.Focus();
+
+                return;
+            }
+
+            // Finally, set the password and get back to the normal mode.
+            this.Settings.Password = this.textPassword.Text;
+            this.UpdatePasswordInterface();
+
+            this.SettingPassword = false;
+        }
+
+        /// <summary>
         /// Updates the password interface.
         /// </summary>
         private void UpdatePasswordInterface()
         {
             bool passwordEnabled = this.Settings.HasPassword;
 
-            this.labelPasswordStatus.Text = passwordEnabled ? "Enabled" : "Disabled";
+            this.checkBoxEnablePassword.Checked = passwordEnabled;
+            this.buttonChangePassword.Enabled = passwordEnabled;
 
-            this.buttonChangePassword.Visible = passwordEnabled;
-            this.buttonEnablePassword.Visible = !passwordEnabled;
-            this.buttonRemovePassword.Visible = passwordEnabled;
+            // this.buttonChangePassword.Visible = passwordEnabled;
+            // this.buttonEnablePassword.Visible = !passwordEnabled;
+            // this.buttonRemovePassword.Visible = passwordEnabled;
         }
 
         /// <summary>
@@ -188,60 +301,118 @@
         }
 
         /// <summary>
+        /// Handles the Click event of the checkBoxEnablePassword control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void CheckBoxEnablePassword_Click(object sender, EventArgs e)
+        {
+            if (this.checkBoxEnablePassword.Checked)
+            {
+                // Get in to the password setting mode.
+                this.StartEditingPassword();
+            }
+            else
+            {
+                // Now disable the password.
+                this.Settings.PasswordHash = null;
+                this.UpdatePasswordInterface();
+            }
+        }
+
+        /// <summary>
         /// Handles the Click event of the buttonChangePassword control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonChangePassword_Click(object sender, EventArgs e)
         {
-            ChangePasswordForm form = new ChangePasswordForm(this.Settings);
-
-            DialogResult result = form.ShowDialog(this);
-
-            if (result != DialogResult.Cancel)
-            {
-                this.Settings.Password = form.NewPassword;
-            }
-
-            this.UpdatePasswordInterface();
+            this.StartEditingPassword();
         }
 
         /// <summary>
-        /// Handles the Click event of the buttonEnablePassword control.
+        /// Handles the Click event of the buttonSetPassword control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void ButtonEnablePassword_Click(object sender, EventArgs e)
+        private void ButtonSetPassword_Click(object sender, EventArgs e)
         {
-            EnablePasswordForm form = new EnablePasswordForm();
-
-            DialogResult result = form.ShowDialog(this);
-
-            if (result != DialogResult.Cancel)
-            {
-                this.Settings.Password = form.NewPassword;
-            }
-
-            this.UpdatePasswordInterface();
+            this.TrySetPassword();
         }
 
         /// <summary>
-        /// Handles the Click event of the buttonRemovePassword control.
+        /// Handles the Click event of the buttonCancelPassword control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void ButtonRemovePassword_Click(object sender, EventArgs e)
+        private void ButtonCancelPassword_Click(object sender, EventArgs e)
         {
-            RemovePasswordForm form = new RemovePasswordForm(this.Settings);
-
-            DialogResult result = form.ShowDialog(this);
-
-            if (result != DialogResult.Cancel)
-            {
-                this.Settings.PasswordHash = null;
-            }
-
             this.UpdatePasswordInterface();
+            this.SettingPassword = false;
+        }
+
+        /// <summary>
+        /// Handles the TextChanged event of the textPassword control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TextPassword_TextChanged(object sender, EventArgs e)
+        {
+            if (this.borderPassword.BackColor == BorderColorError)
+            {
+                this.borderPassword.BackColor = BorderColorNormal;
+            }
+        }
+
+        /// <summary>
+        /// Handles the TextChanged event of the textPasswordConfirm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TextPasswordConfirm_TextChanged(object sender, EventArgs e)
+        {
+            if (this.labelPasswordConfirm.ForeColor == RetypeMessageColorError)
+            {
+                this.labelPasswordConfirm.ForeColor = RetypeMessageColorNormal;
+            }
+        }
+
+        /// <summary>
+        /// Handles the KeyDown event of the textPasswordConfirm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyEventArgs"/> instance containing the event data.</param>
+        private void TextPasswordConfirm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    this.TrySetPassword();
+
+                    e.Handled = true;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Handles the KeyPress event of the textPasswordConfirm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="KeyPressEventArgs"/> instance containing the event data.</param>
+        private void TextPasswordConfirm_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            switch (e.KeyChar)
+            {
+                case (char)Keys.Enter:
+                    e.Handled = true;
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         /// <summary>
