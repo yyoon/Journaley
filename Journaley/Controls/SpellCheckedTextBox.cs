@@ -169,6 +169,20 @@
         }
 
         /// <summary>
+        /// Sets a value indicating whether the spell checker is enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the spell checker is enabled; otherwise, <c>false</c>.
+        /// </value>
+        public bool SpellCheckEnabled
+        {
+            set
+            {
+                this.box.SpellCheck.IsEnabled = value;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether [word wrap].
         /// </summary>
         /// <value>

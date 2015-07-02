@@ -1397,6 +1397,24 @@
         }
 
         /// <summary>
+        /// Updates the culture information for spell checking.
+        /// </summary>
+        private void UpdateCultureInfo()
+        {
+            string culture = this.Settings.SpellCheckCulture;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(culture);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(culture);
+        }
+
+        /// <summary>
+        /// Updates the spell checker enabled status.
+        /// </summary>
+        private void UpdateSpellCheckEnabled()
+        {
+            this.spellCheckedEntryText.SpellCheckEnabled = this.Settings.SpellCheckEnabled;
+        }
+
+        /// <summary>
         /// Updates the size of the spell checked entry text.
         /// </summary>
         private void UpdateSpellCheckedEntryTextSize()
@@ -1426,10 +1444,6 @@
         {
             // Remembre the system settings.
             this.FirstDayOfWeek = Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
-
-            // Set Current Culture for the spell checking.
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("en-US");
 
             // Disable the click sound of the web browser for this process.
             // http://stackoverflow.com/questions/393166/how-to-disable-click-sound-in-webbrowser-control
@@ -1476,7 +1490,8 @@
 
             Debug.Assert(this.Settings != null, "At this point, a valid Settings object must be present.");
 
-            // Update the text editor font size.
+            this.UpdateCultureInfo();
+            this.UpdateSpellCheckEnabled();
             this.UpdateSpellCheckedEntryTextSize();
 
             this.ReloadEntries();
@@ -1640,10 +1655,22 @@
             if (result == DialogResult.OK)
             {
                 bool dayOneFolderChanged = this.Settings.DayOneFolderPath != form.Settings.DayOneFolderPath;
+                bool spellCheckEnabledChanged = this.Settings.SpellCheckEnabled != form.Settings.SpellCheckEnabled;
+                bool cultureChanged = this.Settings.SpellCheckCulture != form.Settings.SpellCheckCulture;
                 bool textSizeChanged = this.Settings.TextSize != form.Settings.TextSize;
 
                 this.Settings = form.Settings;
                 this.Settings.Save();
+
+                if (spellCheckEnabledChanged)
+                {
+                    this.UpdateSpellCheckEnabled();
+                }
+
+                if (cultureChanged)
+                {
+                    this.UpdateCultureInfo();
+                }
 
                 if (textSizeChanged)
                 {
