@@ -66,6 +66,8 @@
         {
             this.InitializeComponent();
 
+            this.panelContent.IgnoreSetCursor = true;
+
             this.AdjustBorderSize();
 
             this.Image = image;

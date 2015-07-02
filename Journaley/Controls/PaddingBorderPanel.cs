@@ -24,6 +24,14 @@
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether [ignore set cursor].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [ignore set cursor]; otherwise, <c>false</c>.
+        /// </value>
+        public bool IgnoreSetCursor { get; set; }
+
+        /// <summary>
         /// Override the message loop.
         /// </summary>
         /// <param name="m">The Windows <see cref="T:System.Windows.Forms.Message" /> to process.</param>
@@ -32,7 +40,12 @@
             switch ((PInvoke.WindowsMessages)m.Msg)
             {
                 case PInvoke.WindowsMessages.WM_SETCURSOR:
-                    // Eat this.
+                    // Only process this when the ignore flag is not set.
+                    if (!this.IgnoreSetCursor)
+                    {
+                        base.WndProc(ref m);
+                    }
+
                     break;
 
                 default:
