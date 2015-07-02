@@ -12,6 +12,14 @@
     /// </summary>
     public class EnterTextBox : TextBox
     {
+        /// <summary>
+        /// Determines whether the specified key is an input key or a special key that requires
+        /// preprocessing.
+        /// </summary>
+        /// <param name="keyData">One of the key's values.</param>
+        /// <returns>
+        /// true if the specified key is an input key; otherwise, false.
+        /// </returns>
         protected override bool IsInputKey(Keys keyData)
         {
             if (keyData == Keys.Enter)
