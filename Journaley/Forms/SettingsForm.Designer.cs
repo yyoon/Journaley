@@ -528,7 +528,7 @@
             this.comboSpellcheckLanguages.FormattingEnabled = true;
             this.comboSpellcheckLanguages.Location = new System.Drawing.Point(190, 105);
             this.comboSpellcheckLanguages.Name = "comboSpellcheckLanguages";
-            this.comboSpellcheckLanguages.Size = new System.Drawing.Size(160, 23);
+            this.comboSpellcheckLanguages.Size = new System.Drawing.Size(100, 23);
             this.comboSpellcheckLanguages.TabIndex = 16;
             // 
             // labelSpellChecker

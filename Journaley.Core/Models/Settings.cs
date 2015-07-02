@@ -37,7 +37,7 @@
             this.DayOneFolderPath = null;
             this.TextSize = 0.0f;
             this.SpellCheckEnabled = true;
-            this.SpellCheckLanguage = "en-US";
+            this.SpellCheckLanguage = "en";
         }
 
         /// <summary>

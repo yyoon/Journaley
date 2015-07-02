@@ -156,7 +156,7 @@
         private void InitializeSpellCheckInterface()
         {
             // Get all the available cultures.
-            string[] supportedLanguages = new string[] { "en-US", "fr-FR", "de-DE", "es-ES" };
+            string[] supportedLanguages = new string[] { "en", "fr", "de", "es" };
 
             var cultureDict = supportedLanguages
                 .Select(x => CultureInfo.GetCultureInfo(x))
@@ -171,7 +171,7 @@
             if (string.IsNullOrEmpty(this.Settings.SpellCheckLanguage) ||
                 !cultureDict.ContainsKey(this.Settings.SpellCheckLanguage))
             {
-                this.Settings.SpellCheckLanguage = "en-US";
+                this.Settings.SpellCheckLanguage = "en";
             }
 
             // Find the current culture and select it from the combo box.
