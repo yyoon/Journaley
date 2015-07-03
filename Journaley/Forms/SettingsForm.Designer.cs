@@ -180,7 +180,7 @@
             this.buttonOK.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonOK.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonOK.Location = new System.Drawing.Point(333, 535);
+            this.buttonOK.Location = new System.Drawing.Point(218, 535);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
             this.buttonOK.Selected = false;
@@ -189,7 +189,7 @@
             this.buttonOK.SelectedHoverColor = System.Drawing.Color.Empty;
             this.buttonOK.Size = new System.Drawing.Size(100, 30);
             this.buttonOK.TabIndex = 15;
-            this.buttonOK.Text = "Ok";
+            this.buttonOK.Text = "Save";
             // 
             // buttonCancel
             // 
@@ -200,7 +200,7 @@
             this.buttonCancel.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCancel.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonCancel.Location = new System.Drawing.Point(218, 535);
+            this.buttonCancel.Location = new System.Drawing.Point(333, 535);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
             this.buttonCancel.Selected = false;
