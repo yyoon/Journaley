@@ -299,7 +299,7 @@
             this.buttonSizeSmall.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonSizeSmall.DisabledColor = System.Drawing.Color.Empty;
             this.buttonSizeSmall.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonSizeSmall.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSizeSmall.Font = new System.Drawing.Font("Noto Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSizeSmall.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonSizeSmall.Location = new System.Drawing.Point(30, 83);
             this.buttonSizeSmall.Name = "buttonSizeSmall";
@@ -319,7 +319,7 @@
             this.buttonSizeMedium.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonSizeMedium.DisabledColor = System.Drawing.Color.Empty;
             this.buttonSizeMedium.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonSizeMedium.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSizeMedium.Font = new System.Drawing.Font("Noto Serif", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSizeMedium.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonSizeMedium.Location = new System.Drawing.Point(70, 83);
             this.buttonSizeMedium.Name = "buttonSizeMedium";
@@ -340,7 +340,7 @@
             this.buttonSizeLarge.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonSizeLarge.DisabledColor = System.Drawing.Color.Empty;
             this.buttonSizeLarge.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonSizeLarge.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSizeLarge.Font = new System.Drawing.Font("Noto Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSizeLarge.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonSizeLarge.Location = new System.Drawing.Point(110, 83);
             this.buttonSizeLarge.Name = "buttonSizeLarge";
@@ -521,9 +521,8 @@
             // 
             // comboSpellcheckLanguages
             // 
-            this.comboSpellcheckLanguages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.comboSpellcheckLanguages.BackColor = System.Drawing.Color.White;
             this.comboSpellcheckLanguages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboSpellcheckLanguages.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboSpellcheckLanguages.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboSpellcheckLanguages.FormattingEnabled = true;
             this.comboSpellcheckLanguages.Location = new System.Drawing.Point(190, 105);
