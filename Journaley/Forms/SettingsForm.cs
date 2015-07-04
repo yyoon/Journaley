@@ -312,6 +312,24 @@
                 this.buttonCancel.Enabled = false;
             }
 
+            // Set the font of the font size buttons to Noto Serif.
+            // The font family is force set to in-memory Noto Serif.
+            // Other properties (size, style) will be inherited from the designer settings.
+            if (this.Owner != null && this.Owner is MainForm)
+            {
+                var fontFamily = ((MainForm)this.Owner).FontFamilyNotoSerifRegular;
+
+                foreach (var sizeButton in this.GetAllSizeButtons())
+                {
+                    sizeButton.Font = new Font(
+                        fontFamily,
+                        sizeButton.Font.Size,
+                        sizeButton.Font.Style,
+                        sizeButton.Font.Unit,
+                        sizeButton.Font.GdiCharSet);
+                }
+            }
+
             if (this.Settings.TextSize == 0.0)
             {
                 this.Settings.TextSize = TextSizeMedium;

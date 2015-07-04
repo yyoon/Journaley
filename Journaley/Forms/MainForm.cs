@@ -74,6 +74,11 @@
         private FontFamily fontFamilyNotoSansRegular;
 
         /// <summary>
+        /// The Noto Sans font family
+        /// </summary>
+        private FontFamily fontFamilyNotoSerifRegular;
+
+        /// <summary>
         /// Indicates whether the title bar is being dragged.
         /// </summary>
         private bool draggingTitleBar = false;
@@ -119,6 +124,10 @@
                 "NotoSans_Regular.ttf",
                 Journaley.Properties.Resources.NotoSans_Regular);
 
+            this.fontFamilyNotoSerifRegular = FontReader.ReadEmbeddedFont(
+                "NotoSerif_Regular.ttf",
+                Journaley.Properties.Resources.NotoSerif_Regular);
+
             // Set the font of the text entry box.
             this.spellCheckedEntryText.Font = new Font(
                 this.FontFamilyNotoSansRegular,
@@ -153,6 +162,34 @@
         /// The new entry message.
         /// </value>
         public static int NewEntryMessage { get; set; }
+
+        /// <summary>
+        /// Gets the Open Sans font family.
+        /// </summary>
+        /// <value>
+        /// The Open Sans font family.
+        /// </value>
+        internal FontFamily FontFamilyNotoSansRegular
+        {
+            get
+            {
+                return this.fontFamilyNotoSansRegular;
+            }
+        }
+
+        /// <summary>
+        /// Gets the Open Sans font family.
+        /// </summary>
+        /// <value>
+        /// The Open Sans font family.
+        /// </value>
+        internal FontFamily FontFamilyNotoSerifRegular
+        {
+            get
+            {
+                return this.fontFamilyNotoSerifRegular;
+            }
+        }
 
         /// <summary>
         /// Adds the sizing borders to the frame.
@@ -355,20 +392,6 @@
                 }
 
                 return this.htmlToText;
-            }
-        }
-
-        /// <summary>
-        /// Gets the Open Sans font family.
-        /// </summary>
-        /// <value>
-        /// The Open Sans font family.
-        /// </value>
-        private FontFamily FontFamilyNotoSansRegular
-        {
-            get
-            {
-                return this.fontFamilyNotoSansRegular;
             }
         }
 
@@ -1467,7 +1490,7 @@
             {
                 // When there is no settings file, show up the settings dialog first.
                 SettingsForm settingsForm = new SettingsForm();
-                DialogResult result = settingsForm.ShowDialog();
+                DialogResult result = settingsForm.ShowDialog(this);
 
                 // If the user cancels the initial settings dialog, just close the whole application.
                 if (result != DialogResult.OK)
