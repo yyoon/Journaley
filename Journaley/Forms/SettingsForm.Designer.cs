@@ -62,7 +62,7 @@
             this.checkBoxEnableSpellCheck = new System.Windows.Forms.CheckBox();
             this.horizontalSeparator3 = new System.Windows.Forms.Panel();
             this.labelUpdates = new System.Windows.Forms.Label();
-            this.checkBoxUpdateAutomatically = new System.Windows.Forms.CheckBox();
+            this.checkBoxAutoUpdate = new System.Windows.Forms.CheckBox();
             this.buttonUpdate = new Journaley.Controls.ColorButton();
             this.pictureUpdateIndicator = new System.Windows.Forms.PictureBox();
             this.panelTitlebar.SuspendLayout();
@@ -104,7 +104,7 @@
             // 
             this.panelContent.Controls.Add(this.pictureUpdateIndicator);
             this.panelContent.Controls.Add(this.buttonUpdate);
-            this.panelContent.Controls.Add(this.checkBoxUpdateAutomatically);
+            this.panelContent.Controls.Add(this.checkBoxAutoUpdate);
             this.panelContent.Controls.Add(this.labelUpdates);
             this.panelContent.Controls.Add(this.horizontalSeparator3);
             this.panelContent.Controls.Add(this.buttonOK);
@@ -583,17 +583,18 @@
             this.labelUpdates.TabIndex = 20;
             this.labelUpdates.Text = "Updates";
             // 
-            // checkBoxUpdateAutomatically
+            // checkBoxAutoUpdate
             // 
-            this.checkBoxUpdateAutomatically.AutoSize = true;
-            this.checkBoxUpdateAutomatically.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxUpdateAutomatically.Location = new System.Drawing.Point(30, 446);
-            this.checkBoxUpdateAutomatically.Margin = new System.Windows.Forms.Padding(0);
-            this.checkBoxUpdateAutomatically.Name = "checkBoxUpdateAutomatically";
-            this.checkBoxUpdateAutomatically.Size = new System.Drawing.Size(290, 24);
-            this.checkBoxUpdateAutomatically.TabIndex = 21;
-            this.checkBoxUpdateAutomatically.Text = "Check and install updates automatically";
-            this.checkBoxUpdateAutomatically.UseVisualStyleBackColor = true;
+            this.checkBoxAutoUpdate.AutoSize = true;
+            this.checkBoxAutoUpdate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxAutoUpdate.Location = new System.Drawing.Point(30, 446);
+            this.checkBoxAutoUpdate.Margin = new System.Windows.Forms.Padding(0);
+            this.checkBoxAutoUpdate.Name = "checkBoxAutoUpdate";
+            this.checkBoxAutoUpdate.Size = new System.Drawing.Size(290, 24);
+            this.checkBoxAutoUpdate.TabIndex = 21;
+            this.checkBoxAutoUpdate.Text = "Check and install updates automatically";
+            this.checkBoxAutoUpdate.UseVisualStyleBackColor = true;
+            this.checkBoxAutoUpdate.Click += new System.EventHandler(this.CheckBoxAutoUpdate_Click);
             // 
             // buttonUpdate
             // 
@@ -693,7 +694,7 @@
         private System.Windows.Forms.CheckBox checkBoxEnableSpellCheck;
         private System.Windows.Forms.Label labelUpdates;
         private System.Windows.Forms.Panel horizontalSeparator3;
-        private System.Windows.Forms.CheckBox checkBoxUpdateAutomatically;
+        private System.Windows.Forms.CheckBox checkBoxAutoUpdate;
         private Controls.ColorButton buttonUpdate;
         private System.Windows.Forms.PictureBox pictureUpdateIndicator;
     }

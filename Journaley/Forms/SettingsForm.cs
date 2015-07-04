@@ -253,15 +253,6 @@
         }
 
         /// <summary>
-        /// Updates the update interface depending on the availability.
-        /// </summary>
-        private void UpdateUpdateInterface()
-        {
-            this.pictureUpdateIndicator.Visible = this.UpdateAvailable;
-            this.buttonUpdate.Text = this.UpdateAvailable ? UpdateMessageAvailable : UpdateMessageCheck;
-        }
-
-        /// <summary>
         /// Starts the password editing UI.
         /// </summary>
         private void StartEditingPassword()
@@ -330,6 +321,19 @@
         {
             this.textFolder.Text = this.Settings.DayOneFolderPath;
             this.buttonOK.Enabled = Directory.Exists(this.Settings.DayOneFolderPath);
+        }
+
+        /// <summary>
+        /// Updates the update interface depending on the availability.
+        /// </summary>
+        private void UpdateUpdateInterface()
+        {
+            this.checkBoxAutoUpdate.Checked = this.Settings.AutoUpdate;
+
+            bool indicator = this.UpdateAvailable && !this.Settings.AutoUpdate;
+
+            this.pictureUpdateIndicator.Visible = indicator;
+            this.buttonUpdate.Text = indicator ? UpdateMessageAvailable : UpdateMessageCheck;
         }
 
         /// <summary>
@@ -553,6 +557,16 @@
                 default:
                     break;
             }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the checkBoxAutoUpdate control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void CheckBoxAutoUpdate_Click(object sender, EventArgs e)
+        {
+            this.Settings.AutoUpdate = this.checkBoxAutoUpdate.Checked;
         }
 
         /// <summary>
