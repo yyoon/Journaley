@@ -298,6 +298,14 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void SettingsForm_Load(object sender, EventArgs e)
         {
+            // Set the initial location.
+            if (this.Owner != null)
+            {
+                this.Location = new Point(
+                    this.Owner.Left + ((this.Owner.Width - this.Width) / 2) + 10,
+                    this.Owner.Top + this.panelTitlebar.Height);
+            }
+
             if (this.settings == null)
             {
                 this.DisableCancel = true;

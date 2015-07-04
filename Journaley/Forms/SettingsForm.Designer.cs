@@ -565,7 +565,7 @@
             this.RealClientSize = new System.Drawing.Size(448, 578);
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.panelTitlebar.ResumeLayout(false);
