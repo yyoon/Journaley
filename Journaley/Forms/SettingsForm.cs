@@ -61,6 +61,17 @@
         private static readonly string RetypeMessageError = "Retype password to confirm";
 
         /// <summary>
+        /// The update button message when there are no updates available.
+        /// (or when the app didn't get the available update information yet.)
+        /// </summary>
+        private static readonly string UpdateMessageCheck = "Check for Update";
+
+        /// <summary>
+        /// The update button message when there is an available update.
+        /// </summary>
+        private static readonly string UpdateMessageAvailable = "Update Available";
+
+        /// <summary>
         /// The backing field for Settings property.
         /// </summary>
         private Settings settings;
@@ -69,6 +80,11 @@
         /// Indicates whether the password section is currently in the password setting mode.
         /// </summary>
         private bool settingPassword = false;
+
+        /// <summary>
+        /// Backing field for UpdateAvailable property.
+        /// </summary>
+        private bool updateAvailable = false;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SettingsForm"/> class.
@@ -128,6 +144,26 @@
 
                 this.panelPasswordNormal.Visible = !value;
                 this.panelPasswordSetting.Visible = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether there is an available update.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if there is an available update; otherwise, <c>false</c>.
+        /// </value>
+        public bool UpdateAvailable
+        {
+            get
+            {
+                return this.updateAvailable;
+            }
+
+            set
+            {
+                this.updateAvailable = value;
+                this.UpdateUpdateInterface();
             }
         }
 
@@ -214,6 +250,15 @@
                     ((ISelectable)sizeButton).Selected = sizeButton.Tag.Equals(this.Settings.TextSize);
                 }
             }
+        }
+
+        /// <summary>
+        /// Updates the update interface depending on the availability.
+        /// </summary>
+        private void UpdateUpdateInterface()
+        {
+            this.pictureUpdateIndicator.Visible = this.UpdateAvailable;
+            this.buttonUpdate.Text = this.UpdateAvailable ? UpdateMessageAvailable : UpdateMessageCheck;
         }
 
         /// <summary>
@@ -337,6 +382,7 @@
             this.UpdateTextSizeInterface();
             this.UpdatePasswordInterface();
             this.UpdateFolderInterface();
+            this.UpdateUpdateInterface();
         }
 
         /// <summary>

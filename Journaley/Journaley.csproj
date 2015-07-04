@@ -435,6 +435,10 @@
     <Content Include="Images\settings_folder_btn_down.png" />
     <Content Include="Images\settings_folder_btn_norm.png" />
     <Content Include="Images\settings_folder_btn_over.png" />
+    <Content Include="Images\settings_updateIndicator.png" />
+    <Content Include="Images\sidebar_btn_setting_update_down.png" />
+    <Content Include="Images\sidebar_btn_setting_update_norm.png" />
+    <Content Include="Images\sidebar_btn_setting_update_over.png" />
     <Content Include="Resources\JournaleyLarge.css" />
     <Content Include="Resources\JournaleySmall.css" />
   </ItemGroup>
