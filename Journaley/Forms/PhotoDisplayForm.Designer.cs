@@ -82,9 +82,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelFormCaption.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.labelFormCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
-            this.labelFormCaption.Location = new System.Drawing.Point(0, 0);
+            this.labelFormCaption.Location = new System.Drawing.Point(1, 1);
             this.labelFormCaption.Name = "labelFormCaption";
-            this.labelFormCaption.Size = new System.Drawing.Size(284, 20);
+            this.labelFormCaption.Size = new System.Drawing.Size(282, 18);
             this.labelFormCaption.TabIndex = 5;
             this.labelFormCaption.Text = "Image Viewer";
             this.labelFormCaption.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

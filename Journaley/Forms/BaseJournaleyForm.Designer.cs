@@ -29,22 +29,23 @@
         private void InitializeComponent()
         {
             this.panelContent = new Journaley.Controls.PaddingBorderPanel();
-            this.panelTitlebar = new Journaley.Controls.PaddingBorderPanel();
+            this.panelTitlebar = new Journaley.Controls.BorderPanel();
+            this.pictureBoxFormIcon = new System.Windows.Forms.PictureBox();
             this.imageButtonFormMinimize = new Journaley.Controls.ImageButton();
             this.imageButtonFormMaximize = new Journaley.Controls.ImageButton();
             this.imageButtonFormClose = new Journaley.Controls.ImageButton();
-            this.pictureBoxFormIcon = new System.Windows.Forms.PictureBox();
             this.panelTitlebar.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // panelContent
             // 
             this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContent.IgnoreSetCursor = false;
             this.panelContent.Location = new System.Drawing.Point(0, 20);
             this.panelContent.Margin = new System.Windows.Forms.Padding(0);
             this.panelContent.Name = "panelContent";
@@ -56,12 +57,14 @@
             // panelTitlebar
             // 
             this.panelTitlebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
+            this.panelTitlebar.BorderWidth = new System.Windows.Forms.Padding(1, 1, 1, 0);
             this.panelTitlebar.Controls.Add(this.pictureBoxFormIcon);
             this.panelTitlebar.Controls.Add(this.imageButtonFormMinimize);
             this.panelTitlebar.Controls.Add(this.imageButtonFormMaximize);
             this.panelTitlebar.Controls.Add(this.imageButtonFormClose);
             this.panelTitlebar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTitlebar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
+            this.panelTitlebar.ForeColor = System.Drawing.Color.Black;
+            this.panelTitlebar.IgnoreSetCursor = false;
             this.panelTitlebar.Location = new System.Drawing.Point(0, 0);
             this.panelTitlebar.Margin = new System.Windows.Forms.Padding(0);
             this.panelTitlebar.Name = "panelTitlebar";
@@ -71,6 +74,17 @@
             this.panelTitlebar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseDown);
             this.panelTitlebar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseMove);
             this.panelTitlebar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseUp);
+            // 
+            // pictureBoxFormIcon
+            // 
+            this.pictureBoxFormIcon.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxFormIcon.Image = global::Journaley.Properties.Resources.Journaley_16x16;
+            this.pictureBoxFormIcon.Location = new System.Drawing.Point(8, 0);
+            this.pictureBoxFormIcon.Name = "pictureBoxFormIcon";
+            this.pictureBoxFormIcon.Size = new System.Drawing.Size(20, 20);
+            this.pictureBoxFormIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBoxFormIcon.TabIndex = 4;
+            this.pictureBoxFormIcon.TabStop = false;
             // 
             // imageButtonFormMinimize
             // 
@@ -138,17 +152,6 @@
             this.imageButtonFormClose.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseDown);
             this.imageButtonFormClose.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ControlButton_MouseMove);
             // 
-            // pictureBoxFormIcon
-            // 
-            this.pictureBoxFormIcon.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxFormIcon.Image = global::Journaley.Properties.Resources.Journaley_16x16;
-            this.pictureBoxFormIcon.Location = new System.Drawing.Point(8, 0);
-            this.pictureBoxFormIcon.Name = "pictureBoxFormIcon";
-            this.pictureBoxFormIcon.Size = new System.Drawing.Size(20, 20);
-            this.pictureBoxFormIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBoxFormIcon.TabIndex = 4;
-            this.pictureBoxFormIcon.TabStop = false;
-            // 
             // BaseJournaleyForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -160,17 +163,17 @@
             this.Text = "BaseJournaleyForm";
             this.Deactivate += new System.EventHandler(this.BaseJournaleyForm_Deactivate);
             this.panelTitlebar.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        protected Controls.PaddingBorderPanel panelTitlebar;
+        protected Controls.BorderPanel panelTitlebar;
         protected Controls.ImageButton imageButtonFormClose;
         protected Controls.ImageButton imageButtonFormMinimize;
         protected Controls.ImageButton imageButtonFormMaximize;
