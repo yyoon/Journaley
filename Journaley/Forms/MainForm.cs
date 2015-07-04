@@ -89,6 +89,11 @@
         private Point draggingOffset;
 
         /// <summary>
+        /// Backing field for UpdateAvailable property.
+        /// </summary>
+        private bool updateAvailable = false;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
         public MainForm() : this(false, false)
@@ -188,6 +193,26 @@
             get
             {
                 return this.fontFamilyNotoSerifRegular;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether there is an available update.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if there is an available update; otherwise, <c>false</c>.
+        /// </value>
+        internal bool UpdateAvailable
+        {
+            get
+            {
+                return this.updateAvailable;
+            }
+
+            set
+            {
+                this.updateAvailable = value;
+                this.UpdateSettingsButton();
             }
         }
 
@@ -952,6 +977,26 @@
         }
 
         /// <summary>
+        /// Updates the settings button, depending on the update availability.
+        /// </summary>
+        private void UpdateSettingsButton()
+        {
+            this.buttonSettings.NormalImage = this.UpdateAvailable
+                ? Properties.Resources.sidebar_btn_setting_update_norm
+                : Properties.Resources.sidebar_btn_setting_norm;
+
+            this.buttonSettings.HoverImage = this.UpdateAvailable
+                ? Properties.Resources.sidebar_btn_setting_update_over
+                : Properties.Resources.sidebar_btn_setting_over;
+
+            this.buttonSettings.DownImage = this.UpdateAvailable
+                ? Properties.Resources.sidebar_btn_setting_update_down
+                : Properties.Resources.sidebar_btn_setting_down;
+
+            this.buttonSettings.Refresh();
+        }
+
+        /// <summary>
         /// Highlights the selected entry.
         /// </summary>
         private void HighlightSelectedEntry()
@@ -1684,6 +1729,8 @@
         {
             SettingsForm form = new SettingsForm();
             form.Settings = new Settings(this.Settings);    // pass a copied settings object
+            form.UpdateAvailable = this.UpdateAvailable;
+
             DialogResult result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {
