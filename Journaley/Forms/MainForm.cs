@@ -10,6 +10,7 @@
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Runtime.InteropServices;
     using System.Threading;
     using System.Windows.Forms;
@@ -195,6 +196,14 @@
                 return this.fontFamilyNotoSerifRegular;
             }
         }
+
+        /// <summary>
+        /// Gets or sets the update information.
+        /// </summary>
+        /// <value>
+        /// The update information.
+        /// </value>
+        internal UpdateInfo UpdateInfo { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether there is an available update.
@@ -981,15 +990,17 @@
         /// </summary>
         private void UpdateSettingsButton()
         {
-            this.buttonSettings.NormalImage = this.UpdateAvailable
+            bool indicator = this.UpdateAvailable && !this.Settings.AutoUpdate;
+
+            this.buttonSettings.NormalImage = indicator
                 ? Properties.Resources.sidebar_btn_setting_update_norm
                 : Properties.Resources.sidebar_btn_setting_norm;
 
-            this.buttonSettings.HoverImage = this.UpdateAvailable
+            this.buttonSettings.HoverImage = indicator
                 ? Properties.Resources.sidebar_btn_setting_update_over
                 : Properties.Resources.sidebar_btn_setting_over;
 
-            this.buttonSettings.DownImage = this.UpdateAvailable
+            this.buttonSettings.DownImage = indicator
                 ? Properties.Resources.sidebar_btn_setting_update_down
                 : Properties.Resources.sidebar_btn_setting_down;
 
@@ -1595,10 +1606,60 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void MainForm_Shown(object sender, EventArgs e)
         {
-            // Update Check
-            using (var mgr = new UpdateManager(@"http://journaley.s3.amazonaws.com/stable"))
+            string updateUrl = @"http://journaley.s3.amazonaws.com/stable";
+
+            string updateSrcFile = Path.Combine(
+                Assembly.GetExecutingAssembly().Location,
+                "UpdateSource");
+
+            if (File.Exists(updateSrcFile))
             {
-                await mgr.UpdateApp();
+                updateUrl = File.ReadAllText(updateSrcFile, System.Text.Encoding.UTF8);
+            }
+
+            // Update Check
+            using (var mgr = new UpdateManager(updateUrl))
+            {
+                // Disable update check when in develop mode.
+                // (Is this really the way to go? What would be the way to test the update logic?)
+                if (!mgr.IsInstalledApp)
+                {
+                    return;
+                }
+
+                var currentVersion = mgr.CurrentlyInstalledVersion();
+
+                try
+                {
+                    var updateInfo = await mgr.CheckForUpdate();
+
+                    if (updateInfo == null)
+                    {
+                        return;
+                    }
+
+                    if (updateInfo.ReleasesToApply.Any())
+                    {
+                        await mgr.DownloadReleases(updateInfo.ReleasesToApply);
+
+                        // First, if the user already checked the auto-update option,
+                        // simply apply them.
+                        if (this.Settings.AutoUpdate)
+                        {
+                            await mgr.ApplyReleases(updateInfo);
+                            return;
+                        }
+
+                        // Save the updateInfo and indicate that there is an available update.
+                        this.UpdateInfo = updateInfo;
+                        this.UpdateAvailable = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log(ex.Message);
+                    Logger.Log(ex.StackTrace);
+                }
             }
         }
 
