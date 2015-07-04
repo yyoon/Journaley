@@ -276,10 +276,6 @@
 
             this.checkBoxEnablePassword.Checked = passwordEnabled;
             this.buttonChangePassword.Enabled = passwordEnabled;
-
-            // this.buttonChangePassword.Visible = passwordEnabled;
-            // this.buttonEnablePassword.Visible = !passwordEnabled;
-            // this.buttonRemovePassword.Visible = passwordEnabled;
         }
 
         /// <summary>

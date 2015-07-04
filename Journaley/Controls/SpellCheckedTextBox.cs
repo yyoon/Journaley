@@ -242,10 +242,6 @@
 
             switch (this.Font.Style)
             {
-                case System.Drawing.FontStyle.Regular:
-                    this.box.FontStyle = FontStyles.Normal;
-                    break;
-
                 case System.Drawing.FontStyle.Italic:
                     this.box.FontStyle = FontStyles.Italic;
                     break;

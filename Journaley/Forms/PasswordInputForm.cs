@@ -74,6 +74,9 @@
                         e.Handled = true;
                         break;
                     }
+
+                default:
+                    break;
             }
         }
 
@@ -89,6 +92,9 @@
                 case (char)Keys.Enter:
                 case (char)Keys.Escape:
                     e.Handled = true;
+                    break;
+
+                default:
                     break;
             }
         }

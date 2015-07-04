@@ -173,18 +173,6 @@
             set
             {
                 this.state = value;
-
-                switch (value)
-                {
-                    case PhotoState.Resized:
-                        break;
-
-                    case PhotoState.Actual:
-                        break;
-
-                    default:
-                        break;
-                }
             }
         }
 
@@ -451,6 +439,9 @@
                     case PhotoState.Actual:
                         // This is always possible.
                         this.Shrink(Screen.FromControl(this));
+                        break;
+
+                    default:
                         break;
                 }
             }

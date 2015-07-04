@@ -685,7 +685,8 @@
             }
 
             this.panelEntryTextWrapper.Visible = this.IsEditing;
-            this.panelWebBrowserWrapper.Visible = this.webBrowser.Visible = noEntry || !this.IsEditing;
+            this.webBrowser.Visible = noEntry || !this.IsEditing;
+            this.panelWebBrowserWrapper.Visible = this.webBrowser.Visible;
 
             this.UpdateMaximizeRestoreButtonImage();
         }
@@ -2068,11 +2069,7 @@
                 if (this.WindowState == FormWindowState.Maximized)
                 {
                     Point offset = new Point();
-                    if (this.RestoreBounds.Width >= this.Width)
-                    {
-                        offset = e.Location;
-                    }
-                    else if (e.X < this.RestoreBounds.Width / 2)
+                    if (this.RestoreBounds.Width >= this.Width || e.X < this.RestoreBounds.Width / 2)
                     {
                         offset = e.Location;
                     }

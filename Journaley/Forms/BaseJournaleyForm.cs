@@ -411,11 +411,7 @@
                 if (this.WindowState == FormWindowState.Maximized)
                 {
                     Point offset = new Point();
-                    if (this.RestoreBounds.Width >= this.Width)
-                    {
-                        offset = e.Location;
-                    }
-                    else if (e.X < this.RestoreBounds.Width / 2)
+                    if (this.RestoreBounds.Width >= this.Width || e.X < this.RestoreBounds.Width / 2)
                     {
                         offset = e.Location;
                     }
