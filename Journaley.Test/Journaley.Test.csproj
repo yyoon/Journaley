@@ -87,9 +87,6 @@
     <Compile Include="SettingsTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Shadow Include="Test References\Journaley.accessor" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Journaley.Core\Journaley.Core.csproj">
       <Project>{562e2182-fa60-423f-b06e-f776bb958a8a}</Project>
       <Name>Journaley.Core</Name>
@@ -98,9 +95,6 @@
       <Project>{3D43A7D2-2787-4292-BB3F-EB8C8E36014E}</Project>
       <Name>Journaley</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Shadow Include="Test References\Journaley.Core.accessor" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
