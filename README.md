@@ -1,9 +1,13 @@
 ![logo](http://cl.ly/VFVx/logo.png)
 =========
 
+
+
 Journaley is an open-source journal keeping software for Windows, which is compatible with Day One app for Mac.
 
 **License**: [MIT License](http://opensource.org/licenses/MIT "MIT License")
+
+[![Build Status](http://jenkins.yyoon.net/job/Journaley%20develop/badge/icon)](http://jenkins.yyoon.net/job/Journaley%20develop/)
 
 Installation Guide
 ==================
