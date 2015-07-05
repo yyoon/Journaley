@@ -598,7 +598,7 @@
                     // Disable update check when in develop mode.
                     if (!mgr.IsInstalledApp)
                     {
-                        MessageBox.Show("Checking for update is disabled in develop mode.");
+                        MessageBox.Show("Checking for update is disabled in develop mode.", "Update Journaley");
                         return;
                     }
 
@@ -606,7 +606,7 @@
 
                     if (updateInfo == null)
                     {
-                        MessageBox.Show("Failed to check for update.");
+                        MessageBox.Show("Failed to check for update.", "Update Journaley");
                         return;
                     }
 
@@ -618,7 +618,7 @@
                         MessageBox.Show(
                             "Journaley has been updated to v" +
                             updateInfo.ReleasesToApply.Max(x => x.Version) + ".\n" +
-                            "Restart Journaley to use the new version.");
+                            "Restart Journaley to use the new version.", "Update Journaley");
 
                         this.UpdateAvailable = false;
                         if (this.Owner is MainForm)
@@ -628,13 +628,13 @@
                     }
                     else
                     {
-                        MessageBox.Show("Journaley is already up to date!");
+                        MessageBox.Show("Journaley is already up to date!", "Update Journaley");
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error occurred while updating.");
+                MessageBox.Show("Error occurred while updating.", "Update Journaley");
                 Logger.Log(ex.Message);
                 Logger.Log(ex.StackTrace);
             }
