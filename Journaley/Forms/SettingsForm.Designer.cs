@@ -65,6 +65,7 @@
             this.checkBoxAutoUpdate = new System.Windows.Forms.CheckBox();
             this.buttonUpdate = new Journaley.Controls.ColorButton();
             this.pictureUpdateIndicator = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -102,6 +103,7 @@
             // 
             // panelContent
             // 
+            this.panelContent.Controls.Add(this.panel1);
             this.panelContent.Controls.Add(this.pictureUpdateIndicator);
             this.panelContent.Controls.Add(this.buttonUpdate);
             this.panelContent.Controls.Add(this.checkBoxAutoUpdate);
@@ -191,7 +193,7 @@
             this.buttonOK.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonOK.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonOK.Location = new System.Drawing.Point(218, 535);
+            this.buttonOK.Location = new System.Drawing.Point(218, 540);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
             this.buttonOK.Selected = false;
@@ -211,7 +213,7 @@
             this.buttonCancel.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCancel.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonCancel.Location = new System.Drawing.Point(333, 535);
+            this.buttonCancel.Location = new System.Drawing.Point(333, 540);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
             this.buttonCancel.Selected = false;
@@ -628,6 +630,15 @@
             this.pictureUpdateIndicator.TabStop = false;
             this.pictureUpdateIndicator.Visible = false;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Location = new System.Drawing.Point(1, 527);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(448, 1);
+            this.panel1.TabIndex = 20;
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.buttonOK;
@@ -698,5 +709,6 @@
         private System.Windows.Forms.CheckBox checkBoxAutoUpdate;
         private Controls.ColorButton buttonUpdate;
         private System.Windows.Forms.PictureBox pictureUpdateIndicator;
+        private System.Windows.Forms.Panel panel1;
     }
 }
