@@ -177,21 +177,7 @@
             {
                 this.selected = value;
 
-                if (this.SelectedImage != null)
-                {
-                    if (this.down && this.DownImageToDisplay != null)
-                    {
-                        this.Image = this.DownImageToDisplay;
-                    }
-                    else if (this.Hover && this.HoverImageToDisplay != null)
-                    {
-                        this.Image = this.HoverImageToDisplay;
-                    }
-                    else
-                    {
-                        this.Image = value ? this.SelectedImage : this.NormalImage;
-                    }
-                }
+                this.UpdateImage();
             }
         }
 
@@ -251,6 +237,27 @@
         }
 
         /// <summary>
+        /// Updates the current image.
+        /// </summary>
+        public void UpdateImage()
+        {
+            if (this.down && this.DownImageToDisplay != null)
+            {
+                this.Image = this.DownImageToDisplay;
+            }
+            else if (this.Hover && this.HoverImageToDisplay != null)
+            {
+                this.Image = this.HoverImageToDisplay;
+            }
+            else
+            {
+                this.Image = this.Selected && this.SelectedImage != null
+                    ? this.SelectedImage
+                    : this.NormalImage;
+            }
+        }
+
+        /// <summary>
         /// Preprocesses keyboard or input messages within the message loop before they are dispatched.
         /// </summary>
         /// <param name="msg">A <see cref="T:System.Windows.Forms.Message" />, passed by reference, that represents the message to process.
@@ -306,18 +313,8 @@
         protected override void OnMouseMove(MouseEventArgs e)
         {
             this.Hover = true;
-            if (this.down)
-            {
-                if (this.DownImageToDisplay != null && this.Image != this.DownImageToDisplay)
-                {
-                    this.Image = this.DownImageToDisplay;
-                }
-            }
-            else
-            {
-                this.Image = this.HoverImageToDisplay != null ? this.HoverImageToDisplay :
-                    (this.SelectedImage != null && this.Selected ? this.SelectedImage : this.NormalImage);
-            }
+
+            this.UpdateImage();
 
             base.OnMouseMove(e);
         }
@@ -341,7 +338,8 @@
         protected override void OnMouseLeave(EventArgs e)
         {
             this.Hover = false;
-            this.Image = this.SelectedImage != null && this.Selected ? this.SelectedImage : this.NormalImage;
+
+            this.UpdateImage();
 
             base.OnMouseLeave(e);
         }
@@ -370,17 +368,8 @@
         protected override void OnMouseUp(MouseEventArgs e)
         {
             this.down = false;
-            if (this.Hover)
-            {
-                if (this.HoverImageToDisplay != null)
-                {
-                    this.Image = this.HoverImageToDisplay;
-                }
-            }
-            else
-            {
-                this.Image = this.SelectedImage != null && this.Selected ? this.SelectedImage : this.NormalImage;
-            }
+
+            this.UpdateImage();
 
             base.OnMouseUp(e);
         }
