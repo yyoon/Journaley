@@ -1578,6 +1578,8 @@
 
             Debug.Assert(this.Settings != null, "At this point, a valid Settings object must be present.");
 
+            this.buttonMainTimeline.UpdateImage();
+
             this.UpdateCultureInfo();
             this.UpdateSpellCheckLanguage();
             this.UpdateSpellCheckEnabled();
