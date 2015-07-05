@@ -12,3 +12,4 @@ StyleCop.Cache
 packages/*
 Installer/*.nupkg
 Installer/lib/*
+Installer/temp/*
