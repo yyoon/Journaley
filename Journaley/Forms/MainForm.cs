@@ -1617,8 +1617,6 @@
                 updateUrl = File.ReadAllText(updateSrcFile, System.Text.Encoding.UTF8).Trim();
             }
 
-            Logger.Log("UpdateURL: " + updateUrl);
-
             // Update Check
             using (var mgr = new UpdateManager(updateUrl))
             {
