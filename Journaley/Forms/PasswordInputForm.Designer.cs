@@ -63,6 +63,7 @@
             this.panelContent.Controls.Add(this.pictureBoxPressEnter);
             this.panelContent.Controls.Add(this.textBoxPassword);
             this.panelContent.Controls.Add(this.labelPrompt);
+            this.panelContent.Padding = new System.Windows.Forms.Padding(1);
             this.panelContent.Size = new System.Drawing.Size(744, 240);
             // 
             // textBoxPassword
@@ -112,7 +113,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PasswordInputForm";
-            this.RealClientSize = new System.Drawing.Size(744, 240);
+            this.RealClientSize = new System.Drawing.Size(742, 238);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Journaley";
             this.panelTitlebar.ResumeLayout(false);
