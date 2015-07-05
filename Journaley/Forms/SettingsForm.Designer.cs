@@ -291,9 +291,9 @@
             this.labelAppearanceSection.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAppearanceSection.Location = new System.Drawing.Point(10, 15);
             this.labelAppearanceSection.Name = "labelAppearanceSection";
-            this.labelAppearanceSection.Size = new System.Drawing.Size(120, 20);
+            this.labelAppearanceSection.Size = new System.Drawing.Size(111, 20);
             this.labelAppearanceSection.TabIndex = 0;
-            this.labelAppearanceSection.Text = "Entry Appearance";
+            this.labelAppearanceSection.Text = "Entry Preference";
             // 
             // labelTextSize
             // 
