@@ -719,8 +719,8 @@
             }
 
             this.panelEntryTextWrapper.Visible = this.IsEditing;
-            this.webBrowser.Visible = noEntry || !this.IsEditing;
-            this.panelWebBrowserWrapper.Visible = this.webBrowser.Visible;
+            this.panelWebBrowserWrapper.Visible = noEntry || !this.IsEditing;
+            this.webBrowser.Visible = this.panelWebBrowserWrapper.Visible;
 
             this.UpdateMaximizeRestoreButtonImage();
         }
