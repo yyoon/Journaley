@@ -6,9 +6,12 @@
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Windows.Forms;
     using Journaley.Controls;
     using Journaley.Core.Models;
+    using Journaley.Core.Utilities;
+    using Squirrel;
 
     /// <summary>
     /// A form used for adjusting various settings.
@@ -61,6 +64,17 @@
         private static readonly string RetypeMessageError = "Retype password to confirm";
 
         /// <summary>
+        /// The update button message when there are no updates available.
+        /// (or when the app didn't get the available update information yet.)
+        /// </summary>
+        private static readonly string UpdateMessageCheck = "Check for Update";
+
+        /// <summary>
+        /// The update button message when there is an available update.
+        /// </summary>
+        private static readonly string UpdateMessageAvailable = "Update Available";
+
+        /// <summary>
         /// The backing field for Settings property.
         /// </summary>
         private Settings settings;
@@ -69,6 +83,11 @@
         /// Indicates whether the password section is currently in the password setting mode.
         /// </summary>
         private bool settingPassword = false;
+
+        /// <summary>
+        /// Backing field for UpdateAvailable property.
+        /// </summary>
+        private bool updateAvailable = false;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SettingsForm"/> class.
@@ -128,6 +147,26 @@
 
                 this.panelPasswordNormal.Visible = !value;
                 this.panelPasswordSetting.Visible = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether there is an available update.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if there is an available update; otherwise, <c>false</c>.
+        /// </value>
+        public bool UpdateAvailable
+        {
+            get
+            {
+                return this.updateAvailable;
+            }
+
+            set
+            {
+                this.updateAvailable = value;
+                this.UpdateUpdateInterface();
             }
         }
 
@@ -288,6 +327,19 @@
         }
 
         /// <summary>
+        /// Updates the update interface depending on the availability.
+        /// </summary>
+        private void UpdateUpdateInterface()
+        {
+            this.checkBoxAutoUpdate.Checked = this.Settings.AutoUpdate;
+
+            bool indicator = this.UpdateAvailable && !this.Settings.AutoUpdate;
+
+            this.pictureUpdateIndicator.Visible = indicator;
+            this.buttonUpdate.Text = indicator ? UpdateMessageAvailable : UpdateMessageCheck;
+        }
+
+        /// <summary>
         /// Handles the Load event of the SettingsForm control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -337,6 +389,7 @@
             this.UpdateTextSizeInterface();
             this.UpdatePasswordInterface();
             this.UpdateFolderInterface();
+            this.UpdateUpdateInterface();
         }
 
         /// <summary>
@@ -506,6 +559,84 @@
 
                 default:
                     break;
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the checkBoxAutoUpdate control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void CheckBoxAutoUpdate_Click(object sender, EventArgs e)
+        {
+            this.Settings.AutoUpdate = this.checkBoxAutoUpdate.Checked;
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonUpdate control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private async void ButtonUpdate_Click(object sender, EventArgs e)
+        {
+            string updateUrl = @"http://journaley.s3.amazonaws.com/stable";
+
+            string updateSrcFile = Path.Combine(
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                "UpdateSource");
+
+            if (File.Exists(updateSrcFile))
+            {
+                updateUrl = File.ReadAllText(updateSrcFile, System.Text.Encoding.UTF8).Trim();
+            }
+
+            // Update Check
+            try
+            {
+                using (var mgr = new UpdateManager(updateUrl))
+                {
+                    // Disable update check when in develop mode.
+                    if (!mgr.IsInstalledApp)
+                    {
+                        MessageBox.Show("Checking for update is disabled in develop mode.");
+                        return;
+                    }
+
+                    var updateInfo = await mgr.CheckForUpdate();
+
+                    if (updateInfo == null)
+                    {
+                        MessageBox.Show("Failed to check for update.");
+                        return;
+                    }
+
+                    if (updateInfo.ReleasesToApply.Any())
+                    {
+                        await mgr.DownloadReleases(updateInfo.ReleasesToApply);
+                        await mgr.ApplyReleases(updateInfo);
+
+                        MessageBox.Show(
+                            "Journaley has been updated to v" +
+                            updateInfo.ReleasesToApply.Max(x => x.Version) + ".\n" +
+                            "Restart Journaley to use the new version.");
+
+                        this.UpdateAvailable = false;
+                        if (this.Owner is MainForm)
+                        {
+                            ((MainForm)this.Owner).UpdateAvailable = false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Journaley is already up to date!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error occurred while updating.");
+                Logger.Log(ex.Message);
+                Logger.Log(ex.StackTrace);
             }
         }
 

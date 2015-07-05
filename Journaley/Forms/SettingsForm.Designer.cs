@@ -60,6 +60,11 @@
             this.comboSpellcheckLanguages = new System.Windows.Forms.ComboBox();
             this.labelSpellChecker = new System.Windows.Forms.Label();
             this.checkBoxEnableSpellCheck = new System.Windows.Forms.CheckBox();
+            this.horizontalSeparator3 = new System.Windows.Forms.Panel();
+            this.labelUpdates = new System.Windows.Forms.Label();
+            this.checkBoxAutoUpdate = new System.Windows.Forms.CheckBox();
+            this.buttonUpdate = new Journaley.Controls.ColorButton();
+            this.pictureUpdateIndicator = new System.Windows.Forms.PictureBox();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -68,6 +73,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.buttonSelectFolder)).BeginInit();
             this.panelPasswordNormal.SuspendLayout();
             this.panelPasswordSetting.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureUpdateIndicator)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTitlebar
@@ -96,6 +102,11 @@
             // 
             // panelContent
             // 
+            this.panelContent.Controls.Add(this.pictureUpdateIndicator);
+            this.panelContent.Controls.Add(this.buttonUpdate);
+            this.panelContent.Controls.Add(this.checkBoxAutoUpdate);
+            this.panelContent.Controls.Add(this.labelUpdates);
+            this.panelContent.Controls.Add(this.horizontalSeparator3);
             this.panelContent.Controls.Add(this.buttonOK);
             this.panelContent.Controls.Add(this.buttonCancel);
             this.panelContent.Controls.Add(this.buttonSelectFolder);
@@ -553,6 +564,70 @@
             this.checkBoxEnableSpellCheck.UseVisualStyleBackColor = true;
             this.checkBoxEnableSpellCheck.Click += new System.EventHandler(this.CheckBoxEnableSpellCheck_Click);
             // 
+            // horizontalSeparator3
+            // 
+            this.horizontalSeparator3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(148)))), ((int)(((byte)(144)))));
+            this.horizontalSeparator3.Location = new System.Drawing.Point(1, 400);
+            this.horizontalSeparator3.Margin = new System.Windows.Forms.Padding(0);
+            this.horizontalSeparator3.Name = "horizontalSeparator3";
+            this.horizontalSeparator3.Size = new System.Drawing.Size(448, 1);
+            this.horizontalSeparator3.TabIndex = 19;
+            // 
+            // labelUpdates
+            // 
+            this.labelUpdates.AutoSize = true;
+            this.labelUpdates.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUpdates.Location = new System.Drawing.Point(10, 413);
+            this.labelUpdates.Name = "labelUpdates";
+            this.labelUpdates.Size = new System.Drawing.Size(61, 20);
+            this.labelUpdates.TabIndex = 20;
+            this.labelUpdates.Text = "Updates";
+            // 
+            // checkBoxAutoUpdate
+            // 
+            this.checkBoxAutoUpdate.AutoSize = true;
+            this.checkBoxAutoUpdate.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxAutoUpdate.Location = new System.Drawing.Point(30, 446);
+            this.checkBoxAutoUpdate.Margin = new System.Windows.Forms.Padding(0);
+            this.checkBoxAutoUpdate.Name = "checkBoxAutoUpdate";
+            this.checkBoxAutoUpdate.Size = new System.Drawing.Size(290, 24);
+            this.checkBoxAutoUpdate.TabIndex = 21;
+            this.checkBoxAutoUpdate.Text = "Check and install updates automatically";
+            this.checkBoxAutoUpdate.UseVisualStyleBackColor = true;
+            this.checkBoxAutoUpdate.Click += new System.EventHandler(this.CheckBoxAutoUpdate_Click);
+            // 
+            // buttonUpdate
+            // 
+            this.buttonUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonUpdate.BorderColor = System.Drawing.Color.Black;
+            this.buttonUpdate.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonUpdate.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(83)))), ((int)(((byte)(89)))));
+            this.buttonUpdate.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonUpdate.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonUpdate.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonUpdate.Location = new System.Drawing.Point(30, 478);
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonUpdate.Selected = false;
+            this.buttonUpdate.SelectedColor = System.Drawing.Color.Empty;
+            this.buttonUpdate.SelectedDownColor = System.Drawing.Color.Empty;
+            this.buttonUpdate.SelectedHoverColor = System.Drawing.Color.Empty;
+            this.buttonUpdate.Size = new System.Drawing.Size(140, 30);
+            this.buttonUpdate.TabIndex = 22;
+            this.buttonUpdate.Text = "Check for Update";
+            this.buttonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
+            // 
+            // pictureUpdateIndicator
+            // 
+            this.pictureUpdateIndicator.BackColor = System.Drawing.Color.Transparent;
+            this.pictureUpdateIndicator.Image = global::Journaley.Properties.Resources.settings_updateIndicator;
+            this.pictureUpdateIndicator.Location = new System.Drawing.Point(13, 489);
+            this.pictureUpdateIndicator.Name = "pictureUpdateIndicator";
+            this.pictureUpdateIndicator.Size = new System.Drawing.Size(9, 8);
+            this.pictureUpdateIndicator.TabIndex = 23;
+            this.pictureUpdateIndicator.TabStop = false;
+            this.pictureUpdateIndicator.Visible = false;
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.buttonOK;
@@ -579,6 +654,7 @@
             this.panelPasswordNormal.PerformLayout();
             this.panelPasswordSetting.ResumeLayout(false);
             this.panelPasswordSetting.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureUpdateIndicator)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -617,5 +693,10 @@
         private System.Windows.Forms.ComboBox comboSpellcheckLanguages;
         private System.Windows.Forms.Label labelSpellChecker;
         private System.Windows.Forms.CheckBox checkBoxEnableSpellCheck;
+        private System.Windows.Forms.Label labelUpdates;
+        private System.Windows.Forms.Panel horizontalSeparator3;
+        private System.Windows.Forms.CheckBox checkBoxAutoUpdate;
+        private Controls.ColorButton buttonUpdate;
+        private System.Windows.Forms.PictureBox pictureUpdateIndicator;
     }
 }

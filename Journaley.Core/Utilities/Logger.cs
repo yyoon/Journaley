@@ -7,7 +7,7 @@
     /// <summary>
     /// A utility class used for error logging.
     /// </summary>
-    internal class Logger
+    public class Logger
     {
         /// <summary>
         /// The log file name.

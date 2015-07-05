@@ -952,7 +952,7 @@ namespace Journaley.Forms
             this.buttonMainTimeline.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonMainTimeline.DownImage = global::Journaley.Properties.Resources.main_btn_timeline_down;
             this.buttonMainTimeline.HoverImage = global::Journaley.Properties.Resources.main_btn_timeline_over;
-            this.buttonMainTimeline.Image = global::Journaley.Properties.Resources.main_btn_timeline_down;
+            this.buttonMainTimeline.Image = global::Journaley.Properties.Resources.main_btn_timeline_norm;
             this.buttonMainTimeline.Location = new System.Drawing.Point(0, 518);
             this.buttonMainTimeline.Margin = new System.Windows.Forms.Padding(0);
             this.buttonMainTimeline.Name = "buttonMainTimeline";
@@ -1177,6 +1177,7 @@ namespace Journaley.Forms
             this.Text = "Journaley";
             this.Deactivate += new System.EventHandler(this.MainForm_Deactivate);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.tableLayoutStats.ResumeLayout(false);
             this.tableLayoutStats.PerformLayout();

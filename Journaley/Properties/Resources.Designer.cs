@@ -780,6 +780,16 @@ namespace Journaley.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap settings_updateIndicator {
+            get {
+                object obj = ResourceManager.GetObject("settings_updateIndicator", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sidebar_btn_cancel_down {
             get {
                 object obj = ResourceManager.GetObject("sidebar_btn_cancel_down", resourceCulture);
@@ -983,6 +993,36 @@ namespace Journaley.Properties {
         internal static System.Drawing.Bitmap sidebar_btn_setting_over {
             get {
                 object obj = ResourceManager.GetObject("sidebar_btn_setting_over", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sidebar_btn_setting_update_down {
+            get {
+                object obj = ResourceManager.GetObject("sidebar_btn_setting_update_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sidebar_btn_setting_update_norm {
+            get {
+                object obj = ResourceManager.GetObject("sidebar_btn_setting_update_norm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap sidebar_btn_setting_update_over {
+            get {
+                object obj = ResourceManager.GetObject("sidebar_btn_setting_update_over", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -10,6 +10,7 @@
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Runtime.InteropServices;
     using System.Threading;
     using System.Windows.Forms;
@@ -87,6 +88,11 @@
         /// The dragging offset
         /// </summary>
         private Point draggingOffset;
+
+        /// <summary>
+        /// Backing field for UpdateAvailable property.
+        /// </summary>
+        private bool updateAvailable = false;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
@@ -188,6 +194,34 @@
             get
             {
                 return this.fontFamilyNotoSerifRegular;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the update information.
+        /// </summary>
+        /// <value>
+        /// The update information.
+        /// </value>
+        internal UpdateInfo UpdateInfo { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether there is an available update.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if there is an available update; otherwise, <c>false</c>.
+        /// </value>
+        internal bool UpdateAvailable
+        {
+            get
+            {
+                return this.updateAvailable;
+            }
+
+            set
+            {
+                this.updateAvailable = value;
+                this.UpdateSettingsButton();
             }
         }
 
@@ -952,6 +986,28 @@
         }
 
         /// <summary>
+        /// Updates the settings button, depending on the update availability.
+        /// </summary>
+        private void UpdateSettingsButton()
+        {
+            bool indicator = this.UpdateAvailable && !this.Settings.AutoUpdate;
+
+            this.buttonSettings.NormalImage = indicator
+                ? Properties.Resources.sidebar_btn_setting_update_norm
+                : Properties.Resources.sidebar_btn_setting_norm;
+
+            this.buttonSettings.HoverImage = indicator
+                ? Properties.Resources.sidebar_btn_setting_update_over
+                : Properties.Resources.sidebar_btn_setting_over;
+
+            this.buttonSettings.DownImage = indicator
+                ? Properties.Resources.sidebar_btn_setting_update_down
+                : Properties.Resources.sidebar_btn_setting_down;
+
+            this.buttonSettings.UpdateImage();
+        }
+
+        /// <summary>
         /// Highlights the selected entry.
         /// </summary>
         private void HighlightSelectedEntry()
@@ -1550,10 +1606,57 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private async void MainForm_Shown(object sender, EventArgs e)
         {
-            // Update Check
-            using (var mgr = new UpdateManager(@"http://journaley.s3.amazonaws.com/stable"))
+            string updateUrl = @"http://journaley.s3.amazonaws.com/stable";
+
+            string updateSrcFile = Path.Combine(
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                "UpdateSource");
+
+            if (File.Exists(updateSrcFile))
             {
-                await mgr.UpdateApp();
+                updateUrl = File.ReadAllText(updateSrcFile, System.Text.Encoding.UTF8).Trim();
+            }
+
+            // Update Check
+            try
+            {
+                using (var mgr = new UpdateManager(updateUrl))
+                {
+                    // Disable update check when in develop mode.
+                    if (!mgr.IsInstalledApp)
+                    {
+                        return;
+                    }
+
+                    var updateInfo = await mgr.CheckForUpdate();
+
+                    if (updateInfo == null)
+                    {
+                        return;
+                    }
+
+                    if (updateInfo.ReleasesToApply.Any())
+                    {
+                        await mgr.DownloadReleases(updateInfo.ReleasesToApply);
+
+                        // First, if the user already checked the auto-update option,
+                        // simply apply them.
+                        if (this.Settings.AutoUpdate)
+                        {
+                            await mgr.ApplyReleases(updateInfo);
+                            return;
+                        }
+
+                        // Save the updateInfo and indicate that there is an available update.
+                        this.UpdateInfo = updateInfo;
+                        this.UpdateAvailable = true;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex.Message);
+                Logger.Log(ex.StackTrace);
             }
         }
 
@@ -1684,6 +1787,8 @@
         {
             SettingsForm form = new SettingsForm();
             form.Settings = new Settings(this.Settings);    // pass a copied settings object
+            form.UpdateAvailable = this.UpdateAvailable;
+
             DialogResult result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {

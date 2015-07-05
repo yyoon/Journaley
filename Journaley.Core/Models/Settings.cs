@@ -38,6 +38,7 @@
             this.TextSize = 0.0f;
             this.SpellCheckEnabled = true;
             this.SpellCheckLanguage = "en";
+            this.AutoUpdate = false;
         }
 
         /// <summary>
@@ -51,6 +52,7 @@
             this.TextSize = other.TextSize;
             this.SpellCheckEnabled = other.SpellCheckEnabled;
             this.SpellCheckLanguage = other.SpellCheckLanguage;
+            this.AutoUpdate = other.AutoUpdate;
         }
 
         /// <summary>
@@ -172,6 +174,14 @@
                 return this.PasswordHash != null;
             }
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the user checked the auto-update option.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the user checked the auto-update option; otherwise, <c>false</c>.
+        /// </value>
+        public bool AutoUpdate { get; set; }
 
         /// <summary>
         /// Gets the MD5 instance.
