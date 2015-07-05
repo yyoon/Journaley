@@ -615,6 +615,7 @@
             this.buttonUpdate.Size = new System.Drawing.Size(140, 30);
             this.buttonUpdate.TabIndex = 22;
             this.buttonUpdate.Text = "Check for Update";
+            this.buttonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
             // 
             // pictureUpdateIndicator
             // 

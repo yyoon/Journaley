@@ -6,9 +6,12 @@
     using System.Globalization;
     using System.IO;
     using System.Linq;
+    using System.Reflection;
     using System.Windows.Forms;
     using Journaley.Controls;
     using Journaley.Core.Models;
+    using Journaley.Core.Utilities;
+    using Squirrel;
 
     /// <summary>
     /// A form used for adjusting various settings.
@@ -567,6 +570,76 @@
         private void CheckBoxAutoUpdate_Click(object sender, EventArgs e)
         {
             this.Settings.AutoUpdate = this.checkBoxAutoUpdate.Checked;
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonUpdate control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private async void ButtonUpdate_Click(object sender, EventArgs e)
+        {
+            string updateUrl = @"http://journaley.s3.amazonaws.com/stable";
+
+            string updateSrcFile = Path.Combine(
+                Assembly.GetExecutingAssembly().Location,
+                "UpdateSource");
+
+            if (File.Exists(updateSrcFile))
+            {
+                updateUrl = File.ReadAllText(updateSrcFile, System.Text.Encoding.UTF8);
+            }
+
+            // Update Check
+            using (var mgr = new UpdateManager(updateUrl))
+            {
+                // Disable update check when in develop mode.
+                if (!mgr.IsInstalledApp)
+                {
+                    MessageBox.Show("Checking for update is disabled in develop mode.");
+                    return;
+                }
+
+                var currentVersion = mgr.CurrentlyInstalledVersion();
+
+                try
+                {
+                    var updateInfo = await mgr.CheckForUpdate();
+
+                    if (updateInfo == null)
+                    {
+                        MessageBox.Show("Failed to check for update.");
+                        return;
+                    }
+
+                    if (updateInfo.ReleasesToApply.Any())
+                    {
+                        await mgr.DownloadReleases(updateInfo.ReleasesToApply);
+                        await mgr.ApplyReleases(updateInfo);
+
+                        MessageBox.Show(
+                            "Journaley has been updated to v" +
+                            updateInfo.ReleasesToApply.Max(x => x.Version) + ".\n" +
+                            "Restart Journaley to use the new version.");
+
+                        this.UpdateAvailable = false;
+                        if (this.Owner is MainForm)
+                        {
+                            ((MainForm)this.Owner).UpdateAvailable = false;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Journaley is already up to date!");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error occurred while updating.");
+                    Logger.Log(ex.Message);
+                    Logger.Log(ex.StackTrace);
+                }
+            }
         }
 
         /// <summary>
