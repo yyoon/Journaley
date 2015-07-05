@@ -1618,17 +1618,16 @@
             }
 
             // Update Check
-            using (var mgr = new UpdateManager(updateUrl))
+            try
             {
-                // Disable update check when in develop mode.
-                // (Is this really the way to go? What would be the way to test the update logic?)
-                if (!mgr.IsInstalledApp)
+                using (var mgr = new UpdateManager(updateUrl))
                 {
-                    return;
-                }
+                    // Disable update check when in develop mode.
+                    if (!mgr.IsInstalledApp)
+                    {
+                        return;
+                    }
 
-                try
-                {
                     var updateInfo = await mgr.CheckForUpdate();
 
                     if (updateInfo == null)
@@ -1653,11 +1652,11 @@
                         this.UpdateAvailable = true;
                     }
                 }
-                catch (Exception ex)
-                {
-                    Logger.Log(ex.Message);
-                    Logger.Log(ex.StackTrace);
-                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(ex.Message);
+                Logger.Log(ex.StackTrace);
             }
         }
 

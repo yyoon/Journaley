@@ -591,17 +591,17 @@
             }
 
             // Update Check
-            using (var mgr = new UpdateManager(updateUrl))
+            try
             {
-                // Disable update check when in develop mode.
-                if (!mgr.IsInstalledApp)
+                using (var mgr = new UpdateManager(updateUrl))
                 {
-                    MessageBox.Show("Checking for update is disabled in develop mode.");
-                    return;
-                }
+                    // Disable update check when in develop mode.
+                    if (!mgr.IsInstalledApp)
+                    {
+                        MessageBox.Show("Checking for update is disabled in develop mode.");
+                        return;
+                    }
 
-                try
-                {
                     var updateInfo = await mgr.CheckForUpdate();
 
                     if (updateInfo == null)
@@ -631,12 +631,12 @@
                         MessageBox.Show("Journaley is already up to date!");
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error occurred while updating.");
-                    Logger.Log(ex.Message);
-                    Logger.Log(ex.StackTrace);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error occurred while updating.");
+                Logger.Log(ex.Message);
+                Logger.Log(ex.StackTrace);
             }
         }
 
