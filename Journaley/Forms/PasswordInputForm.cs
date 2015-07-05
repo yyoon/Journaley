@@ -54,12 +54,13 @@
                         }
                         else
                         {
-                            this.pictureBoxPressEnter.BackgroundImage =
-                                Properties.Resources.password_ui_wrong_password;
                             this.WrongPassword = true;
 
                             this.textBoxPassword.Text = string.Empty;
                             this.textBoxPassword.Focus();
+
+                            this.pictureBoxPressEnter.BackgroundImage =
+                                Properties.Resources.password_ui_wrong_password;
                         }
 
                         e.Handled = true;
@@ -106,6 +107,7 @@
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         private void TextBoxPassword_TextChanged(object sender, System.EventArgs e)
         {
+            this.pictureBoxPressEnter.BackgroundImage = Properties.Resources.password_ui_press_enter;
             this.pictureBoxPressEnter.Visible = this.WrongPassword ||
                 !string.IsNullOrEmpty(this.textBoxPassword.Text);
         }

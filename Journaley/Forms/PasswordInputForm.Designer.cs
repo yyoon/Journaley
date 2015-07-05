@@ -114,7 +114,7 @@
             this.MinimizeBox = false;
             this.Name = "PasswordInputForm";
             this.RealClientSize = new System.Drawing.Size(742, 238);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Journaley";
             this.panelTitlebar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();
