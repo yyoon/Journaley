@@ -40,7 +40,7 @@
   
   <Target Name="Build">
     <ItemGroup>
-      <FilesToCopy Include="$(ReleaseDir)Journaley.exe;$(ReleaseDir)*.dll;..\mit-license.rtf" />
+      <FilesToCopy Include="$(ReleaseDir)Journaley.exe;$(ReleaseDir)*.dll;..\LICENSE" />
     </ItemGroup>
     
     <CallTarget Targets="Clean" />
