@@ -582,12 +582,12 @@
             string updateUrl = @"http://journaley.s3.amazonaws.com/stable";
 
             string updateSrcFile = Path.Combine(
-                Assembly.GetExecutingAssembly().Location,
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
                 "UpdateSource");
 
             if (File.Exists(updateSrcFile))
             {
-                updateUrl = File.ReadAllText(updateSrcFile, System.Text.Encoding.UTF8);
+                updateUrl = File.ReadAllText(updateSrcFile, System.Text.Encoding.UTF8).Trim();
             }
 
             // Update Check
@@ -599,8 +599,6 @@
                     MessageBox.Show("Checking for update is disabled in develop mode.");
                     return;
                 }
-
-                var currentVersion = mgr.CurrentlyInstalledVersion();
 
                 try
                 {
