@@ -618,7 +618,8 @@
                         MessageBox.Show(
                             "Journaley has been updated to v" +
                             updateInfo.ReleasesToApply.Max(x => x.Version) + ".\n" +
-                            "Restart Journaley to use the new version.", "Update Journaley");
+                            "Restart Journaley to use the new version.",
+                            "Update Journaley");
 
                         this.UpdateAvailable = false;
                         if (this.Owner is MainForm)
