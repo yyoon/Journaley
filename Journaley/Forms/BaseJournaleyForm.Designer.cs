@@ -178,6 +178,6 @@
         protected Controls.ImageButton imageButtonFormMinimize;
         protected Controls.ImageButton imageButtonFormMaximize;
         protected Controls.PaddingBorderPanel panelContent;
-        private System.Windows.Forms.PictureBox pictureBoxFormIcon;
+        protected System.Windows.Forms.PictureBox pictureBoxFormIcon;
     }
 }
