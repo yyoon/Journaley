@@ -1521,6 +1521,26 @@
             this.spellCheckedEntryText.Initialize();
         }
 
+        /// <summary>
+        /// Determines whether the given mouse location relative to the month calendar
+        /// is in the header label area.
+        /// </summary>
+        /// <param name="location">The mouse location relative to the month calendar.</param>
+        /// <returns>
+        /// true if the cursor is in the label area, false otherwise.
+        /// </returns>
+        private bool IsCursorInHeaderLabel(Point location)
+        {
+            int calendarWidth = this.monthCalendar.Width;
+            int labelWidth = 100;
+            int headerHeight = 30;
+
+            return (calendarWidth - labelWidth) / 2 <= location.X &&
+                    location.X < ((calendarWidth - labelWidth) / 2) + labelWidth &&
+                    0 <= location.Y &&
+                    location.Y < headerHeight;
+        }
+
         #region Event Handlers
 
         /// <summary>
@@ -1778,6 +1798,50 @@
         {
             e.Info.BoldedDate = this.Entries.Values.Any(x => x.LocalTime.Date == e.Date);
             e.OwnerDraw = true;
+        }
+
+        /// <summary>
+        /// Handles the HeaderMouseLeave event of the monthCalendar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void MonthCalendar_HeaderMouseLeave(object sender, EventArgs e)
+        {
+            this.monthCalendar.Header.TextColor = Color.FromArgb(200, 200, 200);
+            this.monthCalendar.Header.ShowMonth = true;
+        }
+
+        /// <summary>
+        /// Handles the MouseMove event of the monthCalendar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void MonthCalendar_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (this.IsCursorInHeaderLabel(e.Location))
+            {
+                this.monthCalendar.Header.TextColor = Color.FromArgb(0, 163, 0);
+                this.monthCalendar.Header.ShowMonth = false;
+            }
+            else
+            {
+                this.monthCalendar.Header.TextColor = Color.FromArgb(200, 200, 200);
+                this.monthCalendar.Header.ShowMonth = true;
+            }
+        }
+
+        /// <summary>
+        /// Handles the HeaderClick event of the monthCalendar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="ClickEventArgs"/> instance containing the event data.</param>
+        private void MonthCalendar_HeaderClick(object sender, ClickEventArgs e)
+        {
+            Point location = this.monthCalendar.PointToClient(Control.MousePosition);
+            if (this.IsCursorInHeaderLabel(location))
+            {
+                this.monthCalendar.SelectDate(DateTime.Today);
+            }
         }
 
         /// <summary>

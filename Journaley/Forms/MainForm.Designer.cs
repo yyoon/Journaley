@@ -1026,6 +1026,7 @@ namespace Journaley.Forms
             this.monthCalendar.Header.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(46)))), ((int)(((byte)(49)))));
             this.monthCalendar.Header.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.monthCalendar.Header.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monthCalendar.Header.Text = "Go to Today";
             this.monthCalendar.Header.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.monthCalendar.ImageList = null;
             this.monthCalendar.Location = new System.Drawing.Point(0, 0);
@@ -1052,7 +1053,10 @@ namespace Journaley.Forms
             this.monthCalendar.Weeknumbers.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monthCalendar.Weeknumbers.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
             this.monthCalendar.DayQueryInfo += new Pabo.Calendar.DayQueryInfoEventHandler(this.MonthCalendar_DayQueryInfo);
+            this.monthCalendar.HeaderClick += new Pabo.Calendar.ClickEventHandler(this.MonthCalendar_HeaderClick);
             this.monthCalendar.DaySelected += new Pabo.Calendar.DaySelectedEventHandler(this.MonthCalendar_DaySelected);
+            this.monthCalendar.HeaderMouseLeave += new System.EventHandler(this.MonthCalendar_HeaderMouseLeave);
+            this.monthCalendar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MonthCalendar_MouseMove);
             // 
             // panelCalendarSeparator
             // 
