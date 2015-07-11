@@ -31,6 +31,7 @@
             this.textBoxPassword = new System.Windows.Forms.TextBox();
             this.labelPrompt = new System.Windows.Forms.Label();
             this.pictureBoxPressEnter = new System.Windows.Forms.PictureBox();
+            this.labelFormCaption = new Journaley.Controls.TitleLabel();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -41,7 +42,12 @@
             // 
             // panelTitlebar
             // 
+            this.panelTitlebar.Controls.Add(this.labelFormCaption);
             this.panelTitlebar.Size = new System.Drawing.Size(744, 20);
+            this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormClose, 0);
+            this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormMaximize, 0);
+            this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormMinimize, 0);
+            this.panelTitlebar.Controls.SetChildIndex(this.labelFormCaption, 0);
             // 
             // imageButtonFormClose
             // 
@@ -104,6 +110,19 @@
             this.pictureBoxPressEnter.TabStop = false;
             this.pictureBoxPressEnter.Visible = false;
             // 
+            // labelFormCaption
+            // 
+            this.labelFormCaption.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelFormCaption.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFormCaption.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
+            this.labelFormCaption.Location = new System.Drawing.Point(31, 1);
+            this.labelFormCaption.Name = "labelFormCaption";
+            this.labelFormCaption.Size = new System.Drawing.Size(460, 17);
+            this.labelFormCaption.TabIndex = 7;
+            this.labelFormCaption.Text = "Journaley";
+            this.labelFormCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // PasswordInputForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -132,5 +151,6 @@
         private System.Windows.Forms.TextBox textBoxPassword;
         private System.Windows.Forms.Label labelPrompt;
         private System.Windows.Forms.PictureBox pictureBoxPressEnter;
+        protected Controls.TitleLabel labelFormCaption;
     }
 }
