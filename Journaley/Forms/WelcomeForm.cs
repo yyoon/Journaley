@@ -10,6 +10,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using System.Windows.Forms;
+    using Journaley.Core.Models;
 
     /// <summary>
     /// The welcome screen which will be shown to the user when Journaley is launched
@@ -52,6 +53,11 @@
         private Dictionary<int, string> panelMessages;
 
         /// <summary>
+        /// The backing field for Settings property.
+        /// </summary>
+        private Settings settings;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="WelcomeForm"/> class.
         /// </summary>
         public WelcomeForm()
@@ -74,6 +80,30 @@
             this.panelMessages.Add(6, "Welcome.");
 
             this.ShowBottomPanel(1);
+        }
+
+        /// <summary>
+        /// Gets or sets the settings.
+        /// </summary>
+        /// <value>
+        /// The settings.
+        /// </value>
+        public Settings Settings
+        {
+            get
+            {
+                if (this.settings == null)
+                {
+                    this.settings = new Settings();
+                }
+
+                return this.settings;
+            }
+
+            set
+            {
+                this.settings = value;
+            }
         }
 
         /// <summary>
@@ -234,6 +264,28 @@
             {
                 this.BrowseToNewJournal();
             }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonPanel2Browse control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonPanel2Browse_Click(object sender, EventArgs e)
+        {
+            this.BrowseToNewJournal();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonDropboxJournaley control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonDropboxJournaley_Click(object sender, EventArgs e)
+        {
+            this.Settings.DayOneFolderPath = Path.Combine(this.FindDropboxLocation(), "Journaley");
+            this.labelJournalLocation.Text = this.Settings.DayOneFolderPath;
+            this.ShowBottomPanel(3);
         }
     }
 }

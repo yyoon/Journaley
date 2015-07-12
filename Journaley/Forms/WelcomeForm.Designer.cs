@@ -257,6 +257,7 @@
             this.buttonDropboxJournaley.Size = new System.Drawing.Size(260, 42);
             this.buttonDropboxJournaley.TabIndex = 3;
             this.buttonDropboxJournaley.TabStop = false;
+            this.buttonDropboxJournaley.Click += new System.EventHandler(this.ButtonDropboxJournaley_Click);
             // 
             // buttonPanel2Browse
             // 
@@ -274,6 +275,7 @@
             this.buttonPanel2Browse.Size = new System.Drawing.Size(260, 42);
             this.buttonPanel2Browse.TabIndex = 2;
             this.buttonPanel2Browse.TabStop = false;
+            this.buttonPanel2Browse.Click += new System.EventHandler(this.ButtonPanel2Browse_Click);
             // 
             // labelPanel2Message
             // 
