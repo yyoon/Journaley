@@ -48,7 +48,7 @@
             this.labelPanel3Message = new System.Windows.Forms.Label();
             this.bottomPanel4PasswordSetting = new Journaley.Controls.BorderPanel();
             this.buttonSavePassword = new Journaley.Controls.ColorButton();
-            this.textPasswordConfirm = new Journaley.Controls.EnterTextBox();
+            this.textPasswordConfirm = new System.Windows.Forms.TextBox();
             this.paddingPasswordConfirm = new System.Windows.Forms.Label();
             this.borderPasswordConfirm = new System.Windows.Forms.Label();
             this.labelPasswordConfirm = new System.Windows.Forms.Label();
@@ -323,6 +323,7 @@
             this.buttonLaunchJournaley.Size = new System.Drawing.Size(260, 42);
             this.buttonLaunchJournaley.TabIndex = 4;
             this.buttonLaunchJournaley.Text = "Launch Journaley";
+            this.buttonLaunchJournaley.Click += new System.EventHandler(this.ButtonLaunchJournaley_Click);
             // 
             // buttonSetupPassword
             // 
@@ -343,6 +344,7 @@
             this.buttonSetupPassword.Size = new System.Drawing.Size(260, 42);
             this.buttonSetupPassword.TabIndex = 3;
             this.buttonSetupPassword.Text = "Setup a Password";
+            this.buttonSetupPassword.Click += new System.EventHandler(this.ButtonSetupPassword_Click);
             // 
             // labelJournalLocation
             // 
@@ -413,6 +415,7 @@
             this.buttonSavePassword.Size = new System.Drawing.Size(260, 42);
             this.buttonSavePassword.TabIndex = 25;
             this.buttonSavePassword.Text = "Save Password";
+            this.buttonSavePassword.Click += new System.EventHandler(this.ButtonSavePassword_Click);
             // 
             // textPasswordConfirm
             // 
@@ -424,6 +427,7 @@
             this.textPasswordConfirm.Size = new System.Drawing.Size(254, 25);
             this.textPasswordConfirm.TabIndex = 18;
             this.textPasswordConfirm.UseSystemPasswordChar = true;
+            this.textPasswordConfirm.TextChanged += new System.EventHandler(this.TextPasswordConfirm_TextChanged);
             // 
             // paddingPasswordConfirm
             // 
@@ -461,6 +465,7 @@
             this.textPassword.Size = new System.Drawing.Size(254, 25);
             this.textPassword.TabIndex = 17;
             this.textPassword.UseSystemPasswordChar = true;
+            this.textPassword.TextChanged += new System.EventHandler(this.TextPassword_TextChanged);
             // 
             // paddingTextPassword
             // 
@@ -518,6 +523,7 @@
             this.buttonDropboxDayOne.Size = new System.Drawing.Size(260, 42);
             this.buttonDropboxDayOne.TabIndex = 6;
             this.buttonDropboxDayOne.TabStop = false;
+            this.buttonDropboxDayOne.Click += new System.EventHandler(this.ButtonDropboxDayOne_Click);
             // 
             // buttonPanel5Browse
             // 
@@ -535,6 +541,7 @@
             this.buttonPanel5Browse.Size = new System.Drawing.Size(260, 42);
             this.buttonPanel5Browse.TabIndex = 5;
             this.buttonPanel5Browse.TabStop = false;
+            this.buttonPanel5Browse.Click += new System.EventHandler(this.ButtonPanel5Browse_Click);
             // 
             // labelPanel5Message
             // 
@@ -579,6 +586,7 @@
             this.buttonOK.Size = new System.Drawing.Size(260, 42);
             this.buttonOK.TabIndex = 26;
             this.buttonOK.Text = "OK";
+            this.buttonOK.Click += new System.EventHandler(this.ButtonOK_Click);
             // 
             // labelPanel6Message
             // 
@@ -646,7 +654,7 @@
         private Controls.ColorButton buttonLaunchJournaley;
         private System.Windows.Forms.Label labelPasswordConfirm;
         private System.Windows.Forms.Label labelPassword;
-        private Controls.EnterTextBox textPasswordConfirm;
+        private System.Windows.Forms.TextBox textPasswordConfirm;
         private System.Windows.Forms.Label paddingPasswordConfirm;
         private System.Windows.Forms.Label borderPasswordConfirm;
         private System.Windows.Forms.TextBox textPassword;

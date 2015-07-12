@@ -13,8 +13,8 @@
     using Journaley.Core.Models;
 
     /// <summary>
-    /// The welcome screen which will be shown to the user when Journaley is launched
-    /// for the first time
+    /// The welcome UI which will be shown to the user when Journaley is launched for the first time.
+    /// This class follows the storyboard described in "WelcomeUI_Storyboard" image file.
     /// </summary>
     public partial class WelcomeForm : BaseJournaleyForm
     {
@@ -41,6 +41,31 @@
             "アプリ",
             "앱"
         };
+
+        /// <summary>
+        /// The normal border color for the password textboxes.
+        /// </summary>
+        private static readonly Color BorderColorNormal = Color.FromArgb(100, 100, 100);
+
+        /// <summary>
+        /// The red border color for the password textboxes indicating an error.
+        /// </summary>
+        private static readonly Color BorderColorError = Color.FromArgb(218, 36, 36);
+
+        /// <summary>
+        /// The color of the retype message in its normal state.
+        /// </summary>
+        private static readonly Color RetypeMessageColorNormal = SystemColors.ControlText;
+
+        /// <summary>
+        /// The color of the retype message in its error state.
+        /// </summary>
+        private static readonly Color RetypeMessageColorError = Color.FromArgb(218, 36, 36);
+
+        /// <summary>
+        /// The retype message shown once the passwords in both boxes didn't match
+        /// </summary>
+        private static readonly string RetypeMessageError = "Retype password to confirm";
 
         /// <summary>
         /// List of all the bottom panels
@@ -286,6 +311,118 @@
             this.Settings.DayOneFolderPath = Path.Combine(this.FindDropboxLocation(), "Journaley");
             this.labelJournalLocation.Text = this.Settings.DayOneFolderPath;
             this.ShowBottomPanel(3);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonSetupPassword control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonSetupPassword_Click(object sender, EventArgs e)
+        {
+            this.ShowBottomPanel(4);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonLaunchJournaley control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonLaunchJournaley_Click(object sender, EventArgs e)
+        {
+            this.ShowBottomPanel(6);
+        }
+
+        /// <summary>
+        /// Handles the TextChanged event of the textPassword control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TextPassword_TextChanged(object sender, EventArgs e)
+        {
+            if (this.borderPassword.BackColor == BorderColorError)
+            {
+                this.borderPassword.BackColor = BorderColorNormal;
+            }
+        }
+
+        /// <summary>
+        /// Handles the TextChanged event of the textPasswordConfirm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TextPasswordConfirm_TextChanged(object sender, EventArgs e)
+        {
+            if (this.labelPasswordConfirm.ForeColor == RetypeMessageColorError)
+            {
+                this.labelPasswordConfirm.ForeColor = RetypeMessageColorNormal;
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonSavePassword control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonSavePassword_Click(object sender, EventArgs e)
+        {
+            // First, check if the password box is empty.
+            if (string.IsNullOrEmpty(this.textPassword.Text))
+            {
+                this.borderPassword.BackColor = BorderColorError;
+                this.textPassword.Focus();
+
+                return;
+            }
+
+            // Next, check if the password matches with the one in the confirm box.
+            if (this.textPassword.Text != this.textPasswordConfirm.Text)
+            {
+                this.labelPasswordConfirm.ForeColor = RetypeMessageColorError;
+                this.labelPasswordConfirm.Text = RetypeMessageError;
+
+                this.textPasswordConfirm.SelectAll();
+                this.textPasswordConfirm.Focus();
+
+                return;
+            }
+
+            // Finally, set the password and move to panel 6.
+            this.Settings.Password = this.textPassword.Text;
+            this.ShowBottomPanel(6);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonPanel5Browse control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonPanel5Browse_Click(object sender, EventArgs e)
+        {
+            this.BrowseToExistingJournal();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonDropboxDayOne control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonDropboxDayOne_Click(object sender, EventArgs e)
+        {
+            this.Settings.DayOneFolderPath = this.FindDropboxDayOneLocation();
+            this.labelJournalLocation.Text = this.Settings.DayOneFolderPath;
+            this.ShowBottomPanel(3);
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonOK control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonOK_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
