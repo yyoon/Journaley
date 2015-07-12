@@ -1178,6 +1178,166 @@ namespace Journaley.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_btn_browse_down {
+            get {
+                object obj = ResourceManager.GetObject("welcome_btn_browse_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_btn_browse_norm {
+            get {
+                object obj = ResourceManager.GetObject("welcome_btn_browse_norm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_btn_browse_over {
+            get {
+                object obj = ResourceManager.GetObject("welcome_btn_browse_over", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_btn_close_down {
+            get {
+                object obj = ResourceManager.GetObject("welcome_btn_close_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_btn_close_norm {
+            get {
+                object obj = ResourceManager.GetObject("welcome_btn_close_norm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_btn_close_over {
+            get {
+                object obj = ResourceManager.GetObject("welcome_btn_close_over", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_btn_dropboxDayOne_down {
+            get {
+                object obj = ResourceManager.GetObject("welcome_btn_dropboxDayOne_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_btn_dropboxDayOne_norm {
+            get {
+                object obj = ResourceManager.GetObject("welcome_btn_dropboxDayOne_norm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_btn_dropboxDayOne_over {
+            get {
+                object obj = ResourceManager.GetObject("welcome_btn_dropboxDayOne_over", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_btn_dropboxJournaley_down {
+            get {
+                object obj = ResourceManager.GetObject("welcome_btn_dropboxJournaley_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_btn_dropboxJournaley_norm {
+            get {
+                object obj = ResourceManager.GetObject("welcome_btn_dropboxJournaley_norm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_btn_dropboxJournaley_over {
+            get {
+                object obj = ResourceManager.GetObject("welcome_btn_dropboxJournaley_over", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_btn_minimize_down {
+            get {
+                object obj = ResourceManager.GetObject("welcome_btn_minimize_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_btn_minimize_norm {
+            get {
+                object obj = ResourceManager.GetObject("welcome_btn_minimize_norm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_btn_minimize_over {
+            get {
+                object obj = ResourceManager.GetObject("welcome_btn_minimize_over", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap welcome_journaley {
+            get {
+                object obj = ResourceManager.GetObject("welcome_journaley", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
         internal static byte[] ZoomInCursor {
