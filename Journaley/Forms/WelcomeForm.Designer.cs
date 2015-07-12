@@ -37,6 +37,10 @@
             this.buttonImportJournal = new Journaley.Controls.ColorButton();
             this.labelPanel1Message = new System.Windows.Forms.Label();
             this.bottomPanel2StartNewJournal = new Journaley.Controls.BorderPanel();
+            this.labelPanel2Message = new System.Windows.Forms.Label();
+            this.bottomPanel3LocationSelected = new Journaley.Controls.BorderPanel();
+            this.buttonPanel2Browse = new Journaley.Controls.ImageButton();
+            this.buttonDropboxJournaley = new Journaley.Controls.ImageButton();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -45,6 +49,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.bottomPanel1Init.SuspendLayout();
+            this.bottomPanel2StartNewJournal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonPanel2Browse)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDropboxJournaley)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTitlebar
@@ -80,6 +87,7 @@
             // 
             this.panelContent.Controls.Add(this.bottomPanel1Init);
             this.panelContent.Controls.Add(this.bottomPanel2StartNewJournal);
+            this.panelContent.Controls.Add(this.bottomPanel3LocationSelected);
             this.panelContent.Controls.Add(this.labelMainMessage);
             this.panelContent.Controls.Add(this.horizontalSeparator);
             this.panelContent.Controls.Add(this.pictureBoxLogo);
@@ -191,11 +199,70 @@
             this.bottomPanel2StartNewJournal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bottomPanel2StartNewJournal.BorderWidth = new System.Windows.Forms.Padding(1, 0, 1, 1);
+            this.bottomPanel2StartNewJournal.Controls.Add(this.buttonDropboxJournaley);
+            this.bottomPanel2StartNewJournal.Controls.Add(this.buttonPanel2Browse);
+            this.bottomPanel2StartNewJournal.Controls.Add(this.labelPanel2Message);
             this.bottomPanel2StartNewJournal.IgnoreSetCursor = false;
             this.bottomPanel2StartNewJournal.Location = new System.Drawing.Point(0, 330);
             this.bottomPanel2StartNewJournal.Name = "bottomPanel2StartNewJournal";
             this.bottomPanel2StartNewJournal.Size = new System.Drawing.Size(450, 249);
             this.bottomPanel2StartNewJournal.TabIndex = 4;
+            // 
+            // labelPanel2Message
+            // 
+            this.labelPanel2Message.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanel2Message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
+            this.labelPanel2Message.Location = new System.Drawing.Point(95, 28);
+            this.labelPanel2Message.Name = "labelPanel2Message";
+            this.labelPanel2Message.Size = new System.Drawing.Size(260, 50);
+            this.labelPanel2Message.TabIndex = 1;
+            this.labelPanel2Message.Text = "Where would you like to save\nyour journal?";
+            this.labelPanel2Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // bottomPanel3LocationSelected
+            // 
+            this.bottomPanel3LocationSelected.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bottomPanel3LocationSelected.BorderWidth = new System.Windows.Forms.Padding(1, 0, 1, 1);
+            this.bottomPanel3LocationSelected.IgnoreSetCursor = false;
+            this.bottomPanel3LocationSelected.Location = new System.Drawing.Point(0, 330);
+            this.bottomPanel3LocationSelected.Name = "bottomPanel3LocationSelected";
+            this.bottomPanel3LocationSelected.Size = new System.Drawing.Size(450, 249);
+            this.bottomPanel3LocationSelected.TabIndex = 5;
+            // 
+            // buttonPanel2Browse
+            // 
+            this.buttonPanel2Browse.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonPanel2Browse.DownImage = global::Journaley.Properties.Resources.welcome_btn_browse_down;
+            this.buttonPanel2Browse.HoverImage = global::Journaley.Properties.Resources.welcome_btn_browse_over;
+            this.buttonPanel2Browse.Image = global::Journaley.Properties.Resources.welcome_btn_browse_norm;
+            this.buttonPanel2Browse.Location = new System.Drawing.Point(95, 120);
+            this.buttonPanel2Browse.Name = "buttonPanel2Browse";
+            this.buttonPanel2Browse.NormalImage = global::Journaley.Properties.Resources.welcome_btn_browse_norm;
+            this.buttonPanel2Browse.Selected = false;
+            this.buttonPanel2Browse.SelectedDownImage = null;
+            this.buttonPanel2Browse.SelectedHoverImage = null;
+            this.buttonPanel2Browse.SelectedImage = null;
+            this.buttonPanel2Browse.Size = new System.Drawing.Size(260, 42);
+            this.buttonPanel2Browse.TabIndex = 2;
+            this.buttonPanel2Browse.TabStop = false;
+            // 
+            // buttonDropboxJournaley
+            // 
+            this.buttonDropboxJournaley.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonDropboxJournaley.DownImage = global::Journaley.Properties.Resources.welcome_btn_dropboxJournaley_down;
+            this.buttonDropboxJournaley.HoverImage = global::Journaley.Properties.Resources.welcome_btn_dropboxJournaley_over;
+            this.buttonDropboxJournaley.Image = global::Journaley.Properties.Resources.welcome_btn_dropboxJournaley_norm;
+            this.buttonDropboxJournaley.Location = new System.Drawing.Point(95, 180);
+            this.buttonDropboxJournaley.Name = "buttonDropboxJournaley";
+            this.buttonDropboxJournaley.NormalImage = global::Journaley.Properties.Resources.welcome_btn_dropboxJournaley_norm;
+            this.buttonDropboxJournaley.Selected = false;
+            this.buttonDropboxJournaley.SelectedDownImage = null;
+            this.buttonDropboxJournaley.SelectedHoverImage = null;
+            this.buttonDropboxJournaley.SelectedImage = null;
+            this.buttonDropboxJournaley.Size = new System.Drawing.Size(260, 42);
+            this.buttonDropboxJournaley.TabIndex = 3;
+            this.buttonDropboxJournaley.TabStop = false;
             // 
             // WelcomeForm
             // 
@@ -216,6 +283,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.bottomPanel1Init.ResumeLayout(false);
+            this.bottomPanel2StartNewJournal.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.buttonPanel2Browse)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDropboxJournaley)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -230,5 +300,9 @@
         private System.Windows.Forms.Label labelPanel1Message;
         private Controls.ColorButton buttonImportJournal;
         private Controls.ColorButton buttonStartNewJournal;
+        private Controls.BorderPanel bottomPanel3LocationSelected;
+        private System.Windows.Forms.Label labelPanel2Message;
+        private Controls.ImageButton buttonPanel2Browse;
+        private Controls.ImageButton buttonDropboxJournaley;
     }
 }
