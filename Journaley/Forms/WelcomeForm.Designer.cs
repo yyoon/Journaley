@@ -57,6 +57,9 @@
             this.paddingTextPassword = new System.Windows.Forms.Label();
             this.borderPassword = new System.Windows.Forms.Label();
             this.buttonSavePassword = new Journaley.Controls.ColorButton();
+            this.buttonDropboxDayOne = new Journaley.Controls.ImageButton();
+            this.buttonPanel5Browse = new Journaley.Controls.ImageButton();
+            this.labelPanel5Message = new System.Windows.Forms.Label();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -70,6 +73,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.buttonPanel2Browse)).BeginInit();
             this.bottomPanel3LocationSelected.SuspendLayout();
             this.bottomPanel4PasswordSetting.SuspendLayout();
+            this.bottomPanel5ImportJournal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDropboxDayOne)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonPanel5Browse)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTitlebar
@@ -325,6 +331,9 @@
             this.bottomPanel5ImportJournal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.bottomPanel5ImportJournal.BorderWidth = new System.Windows.Forms.Padding(1, 0, 1, 1);
+            this.bottomPanel5ImportJournal.Controls.Add(this.buttonDropboxDayOne);
+            this.bottomPanel5ImportJournal.Controls.Add(this.buttonPanel5Browse);
+            this.bottomPanel5ImportJournal.Controls.Add(this.labelPanel5Message);
             this.bottomPanel5ImportJournal.IgnoreSetCursor = false;
             this.bottomPanel5ImportJournal.Location = new System.Drawing.Point(0, 330);
             this.bottomPanel5ImportJournal.Name = "bottomPanel5ImportJournal";
@@ -490,6 +499,51 @@
             this.buttonSavePassword.TabIndex = 25;
             this.buttonSavePassword.Text = "Save Password";
             // 
+            // buttonDropboxDayOne
+            // 
+            this.buttonDropboxDayOne.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonDropboxDayOne.DownImage = global::Journaley.Properties.Resources.welcome_btn_dropboxDayOne_down;
+            this.buttonDropboxDayOne.HoverImage = global::Journaley.Properties.Resources.welcome_btn_dropboxDayOne_over;
+            this.buttonDropboxDayOne.Image = global::Journaley.Properties.Resources.welcome_btn_dropboxDayOne_norm;
+            this.buttonDropboxDayOne.Location = new System.Drawing.Point(95, 179);
+            this.buttonDropboxDayOne.Name = "buttonDropboxDayOne";
+            this.buttonDropboxDayOne.NormalImage = global::Journaley.Properties.Resources.welcome_btn_dropboxDayOne_norm;
+            this.buttonDropboxDayOne.Selected = false;
+            this.buttonDropboxDayOne.SelectedDownImage = null;
+            this.buttonDropboxDayOne.SelectedHoverImage = null;
+            this.buttonDropboxDayOne.SelectedImage = null;
+            this.buttonDropboxDayOne.Size = new System.Drawing.Size(260, 42);
+            this.buttonDropboxDayOne.TabIndex = 6;
+            this.buttonDropboxDayOne.TabStop = false;
+            // 
+            // buttonPanel5Browse
+            // 
+            this.buttonPanel5Browse.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonPanel5Browse.DownImage = global::Journaley.Properties.Resources.welcome_btn_browse_down;
+            this.buttonPanel5Browse.HoverImage = global::Journaley.Properties.Resources.welcome_btn_browse_over;
+            this.buttonPanel5Browse.Image = global::Journaley.Properties.Resources.welcome_btn_browse_norm;
+            this.buttonPanel5Browse.Location = new System.Drawing.Point(95, 119);
+            this.buttonPanel5Browse.Name = "buttonPanel5Browse";
+            this.buttonPanel5Browse.NormalImage = global::Journaley.Properties.Resources.welcome_btn_browse_norm;
+            this.buttonPanel5Browse.Selected = false;
+            this.buttonPanel5Browse.SelectedDownImage = null;
+            this.buttonPanel5Browse.SelectedHoverImage = null;
+            this.buttonPanel5Browse.SelectedImage = null;
+            this.buttonPanel5Browse.Size = new System.Drawing.Size(260, 42);
+            this.buttonPanel5Browse.TabIndex = 5;
+            this.buttonPanel5Browse.TabStop = false;
+            // 
+            // labelPanel5Message
+            // 
+            this.labelPanel5Message.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanel5Message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
+            this.labelPanel5Message.Location = new System.Drawing.Point(95, 27);
+            this.labelPanel5Message.Name = "labelPanel5Message";
+            this.labelPanel5Message.Size = new System.Drawing.Size(260, 50);
+            this.labelPanel5Message.TabIndex = 4;
+            this.labelPanel5Message.Text = "Where is your journal?";
+            this.labelPanel5Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // WelcomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -516,6 +570,9 @@
             this.bottomPanel3LocationSelected.PerformLayout();
             this.bottomPanel4PasswordSetting.ResumeLayout(false);
             this.bottomPanel4PasswordSetting.PerformLayout();
+            this.bottomPanel5ImportJournal.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.buttonDropboxDayOne)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonPanel5Browse)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -550,5 +607,8 @@
         private System.Windows.Forms.Label paddingTextPassword;
         private System.Windows.Forms.Label borderPassword;
         private Controls.ColorButton buttonSavePassword;
+        private Controls.ImageButton buttonDropboxDayOne;
+        private Controls.ImageButton buttonPanel5Browse;
+        private System.Windows.Forms.Label labelPanel5Message;
     }
 }
