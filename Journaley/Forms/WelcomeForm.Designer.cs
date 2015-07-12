@@ -193,6 +193,7 @@
             this.buttonStartNewJournal.Size = new System.Drawing.Size(260, 42);
             this.buttonStartNewJournal.TabIndex = 2;
             this.buttonStartNewJournal.Text = "Start a New Journal";
+            this.buttonStartNewJournal.Click += new System.EventHandler(this.ButtonStartNewJournal_Click);
             // 
             // buttonImportJournal
             // 

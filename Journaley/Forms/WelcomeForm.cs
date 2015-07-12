@@ -185,6 +185,14 @@
         }
 
         /// <summary>
+        /// Lets the user browse to a new journal location.
+        /// </summary>
+        private void BrowseToNewJournal()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Handles the Click event of the buttonImportJournal control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -203,6 +211,28 @@
             else
             {
                 this.BrowseToExistingJournal();
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonStartNewJournal control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonStartNewJournal_Click(object sender, EventArgs e)
+        {
+            // "Start a New Journal" button clicked from panel 1.
+            // Determine if Dropbox is installed in the current machine.
+            // If so, move to panel 2.
+            // Otherwise, show the folder selection dialog and
+            // let the user browse to the new journal location.
+            if (this.FindDropboxLocation() != null)
+            {
+                this.ShowBottomPanel(2);
+            }
+            else
+            {
+                this.BrowseToNewJournal();
             }
         }
     }
