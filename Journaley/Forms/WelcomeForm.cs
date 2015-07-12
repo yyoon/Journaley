@@ -5,6 +5,7 @@
     using System.ComponentModel;
     using System.Data;
     using System.Drawing;
+    using System.IO;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -16,6 +17,30 @@
     /// </summary>
     public partial class WelcomeForm : BaseJournaleyForm
     {
+        /// <summary>
+        /// The possible app folder names in all the different languages supported by Dropbox.
+        /// </summary>
+        private static readonly string[] AppFolderNames =
+        {
+            "Aplikasi",
+            "Apl",
+            "Apps",
+            "Aplicaciones",
+            "Applications",
+            "Applicazioni",
+            "Apper",
+            "Aplikacje",
+            "Aplicativos",
+            "Приложения",
+            "Applikationer",
+            "Програми",
+            "แอพ",
+            "应用",
+            "應用程式",
+            "アプリ",
+            "앱"
+        };
+
         /// <summary>
         /// List of all the bottom panels
         /// </summary>
@@ -99,6 +124,85 @@
             else
             {
                 this.labelMainMessage.Text = "Good evening.";
+            }
+        }
+
+        /// <summary>
+        /// Finds the Dropbox folder location.
+        /// </summary>
+        /// <returns>the Dropbox folder location if found, null otherwise.</returns>
+        private string FindDropboxLocation()
+        {
+            // Code taken from Stackoverflow.
+            // http://stackoverflow.com/questions/9660280/
+            var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var hostDBPath = Path.Combine(appDataPath, @"Dropbox\host.db");
+
+            if (!File.Exists(hostDBPath))
+            {
+                return null;
+            }
+
+            var lines = File.ReadAllLines(hostDBPath);
+            var base64Text = Convert.FromBase64String(lines[1]);
+            var folderPath = Encoding.UTF8.GetString(base64Text);
+
+            return folderPath;
+        }
+
+        /// <summary>
+        /// Finds the Day One app folder location under Dropbox.
+        /// </summary>
+        /// <returns>
+        /// the Day One app folder location if found, null otherwise.
+        /// </returns>
+        private string FindDropboxDayOneLocation()
+        {
+            var dropboxFolder = this.FindDropboxLocation();
+            if (dropboxFolder == null)
+            {
+                return null;
+            }
+
+            foreach (var appFolder in AppFolderNames)
+            {
+                var targetFolder = Path.Combine(dropboxFolder, appFolder, "Day One", "Journal.dayone");
+                if (Directory.Exists(targetFolder))
+                {
+                    return targetFolder;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Lets the user browse to their existing journal.
+        /// </summary>
+        private void BrowseToExistingJournal()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonImportJournal control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonImportJournal_Click(object sender, EventArgs e)
+        {
+            // "Import Your Journal" button clicked from panel 1.
+            // Determine if Dropbox is installed in the current machine and if Day One is installed
+            // under Dropbox. If so, move to panel 5.
+            // Otherwise, show the folder selection dialog and
+            // let the user browse to the existing Journal location.
+            if (this.FindDropboxDayOneLocation() != null)
+            {
+                this.ShowBottomPanel(5);
+            }
+            else
+            {
+                this.BrowseToExistingJournal();
             }
         }
     }

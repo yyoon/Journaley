@@ -213,6 +213,7 @@
             this.buttonImportJournal.Size = new System.Drawing.Size(260, 42);
             this.buttonImportJournal.TabIndex = 1;
             this.buttonImportJournal.Text = "Import Your Journal";
+            this.buttonImportJournal.Click += new System.EventHandler(this.ButtonImportJournal_Click);
             // 
             // labelPanel1Message
             // 
