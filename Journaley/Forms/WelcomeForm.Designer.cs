@@ -37,10 +37,17 @@
             this.buttonImportJournal = new Journaley.Controls.ColorButton();
             this.labelPanel1Message = new System.Windows.Forms.Label();
             this.bottomPanel2StartNewJournal = new Journaley.Controls.BorderPanel();
+            this.buttonDropboxJournaley = new Journaley.Controls.ImageButton();
+            this.buttonPanel2Browse = new Journaley.Controls.ImageButton();
             this.labelPanel2Message = new System.Windows.Forms.Label();
             this.bottomPanel3LocationSelected = new Journaley.Controls.BorderPanel();
-            this.buttonPanel2Browse = new Journaley.Controls.ImageButton();
-            this.buttonDropboxJournaley = new Journaley.Controls.ImageButton();
+            this.labelPanel3Message = new System.Windows.Forms.Label();
+            this.bottomPanel4PasswordSetting = new Journaley.Controls.BorderPanel();
+            this.bottomPanel5ImportJournal = new Journaley.Controls.BorderPanel();
+            this.bottomPanel6Complete = new Journaley.Controls.BorderPanel();
+            this.textBoxJournalLocation = new System.Windows.Forms.TextBox();
+            this.buttonSetupPassword = new Journaley.Controls.ColorButton();
+            this.buttonLaunchJournaley = new Journaley.Controls.ColorButton();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -50,8 +57,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
             this.bottomPanel1Init.SuspendLayout();
             this.bottomPanel2StartNewJournal.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonPanel2Browse)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonDropboxJournaley)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonPanel2Browse)).BeginInit();
+            this.bottomPanel3LocationSelected.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTitlebar
@@ -88,6 +96,9 @@
             this.panelContent.Controls.Add(this.bottomPanel1Init);
             this.panelContent.Controls.Add(this.bottomPanel2StartNewJournal);
             this.panelContent.Controls.Add(this.bottomPanel3LocationSelected);
+            this.panelContent.Controls.Add(this.bottomPanel4PasswordSetting);
+            this.panelContent.Controls.Add(this.bottomPanel5ImportJournal);
+            this.panelContent.Controls.Add(this.bottomPanel6Complete);
             this.panelContent.Controls.Add(this.labelMainMessage);
             this.panelContent.Controls.Add(this.horizontalSeparator);
             this.panelContent.Controls.Add(this.pictureBoxLogo);
@@ -208,27 +219,22 @@
             this.bottomPanel2StartNewJournal.Size = new System.Drawing.Size(450, 249);
             this.bottomPanel2StartNewJournal.TabIndex = 4;
             // 
-            // labelPanel2Message
+            // buttonDropboxJournaley
             // 
-            this.labelPanel2Message.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPanel2Message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
-            this.labelPanel2Message.Location = new System.Drawing.Point(95, 28);
-            this.labelPanel2Message.Name = "labelPanel2Message";
-            this.labelPanel2Message.Size = new System.Drawing.Size(260, 50);
-            this.labelPanel2Message.TabIndex = 1;
-            this.labelPanel2Message.Text = "Where would you like to save\nyour journal?";
-            this.labelPanel2Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // bottomPanel3LocationSelected
-            // 
-            this.bottomPanel3LocationSelected.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.bottomPanel3LocationSelected.BorderWidth = new System.Windows.Forms.Padding(1, 0, 1, 1);
-            this.bottomPanel3LocationSelected.IgnoreSetCursor = false;
-            this.bottomPanel3LocationSelected.Location = new System.Drawing.Point(0, 330);
-            this.bottomPanel3LocationSelected.Name = "bottomPanel3LocationSelected";
-            this.bottomPanel3LocationSelected.Size = new System.Drawing.Size(450, 249);
-            this.bottomPanel3LocationSelected.TabIndex = 5;
+            this.buttonDropboxJournaley.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonDropboxJournaley.DownImage = global::Journaley.Properties.Resources.welcome_btn_dropboxJournaley_down;
+            this.buttonDropboxJournaley.HoverImage = global::Journaley.Properties.Resources.welcome_btn_dropboxJournaley_over;
+            this.buttonDropboxJournaley.Image = global::Journaley.Properties.Resources.welcome_btn_dropboxJournaley_norm;
+            this.buttonDropboxJournaley.Location = new System.Drawing.Point(95, 180);
+            this.buttonDropboxJournaley.Name = "buttonDropboxJournaley";
+            this.buttonDropboxJournaley.NormalImage = global::Journaley.Properties.Resources.welcome_btn_dropboxJournaley_norm;
+            this.buttonDropboxJournaley.Selected = false;
+            this.buttonDropboxJournaley.SelectedDownImage = null;
+            this.buttonDropboxJournaley.SelectedHoverImage = null;
+            this.buttonDropboxJournaley.SelectedImage = null;
+            this.buttonDropboxJournaley.Size = new System.Drawing.Size(260, 42);
+            this.buttonDropboxJournaley.TabIndex = 3;
+            this.buttonDropboxJournaley.TabStop = false;
             // 
             // buttonPanel2Browse
             // 
@@ -247,22 +253,129 @@
             this.buttonPanel2Browse.TabIndex = 2;
             this.buttonPanel2Browse.TabStop = false;
             // 
-            // buttonDropboxJournaley
+            // labelPanel2Message
             // 
-            this.buttonDropboxJournaley.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.buttonDropboxJournaley.DownImage = global::Journaley.Properties.Resources.welcome_btn_dropboxJournaley_down;
-            this.buttonDropboxJournaley.HoverImage = global::Journaley.Properties.Resources.welcome_btn_dropboxJournaley_over;
-            this.buttonDropboxJournaley.Image = global::Journaley.Properties.Resources.welcome_btn_dropboxJournaley_norm;
-            this.buttonDropboxJournaley.Location = new System.Drawing.Point(95, 180);
-            this.buttonDropboxJournaley.Name = "buttonDropboxJournaley";
-            this.buttonDropboxJournaley.NormalImage = global::Journaley.Properties.Resources.welcome_btn_dropboxJournaley_norm;
-            this.buttonDropboxJournaley.Selected = false;
-            this.buttonDropboxJournaley.SelectedDownImage = null;
-            this.buttonDropboxJournaley.SelectedHoverImage = null;
-            this.buttonDropboxJournaley.SelectedImage = null;
-            this.buttonDropboxJournaley.Size = new System.Drawing.Size(260, 42);
-            this.buttonDropboxJournaley.TabIndex = 3;
-            this.buttonDropboxJournaley.TabStop = false;
+            this.labelPanel2Message.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanel2Message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
+            this.labelPanel2Message.Location = new System.Drawing.Point(95, 28);
+            this.labelPanel2Message.Name = "labelPanel2Message";
+            this.labelPanel2Message.Size = new System.Drawing.Size(260, 50);
+            this.labelPanel2Message.TabIndex = 1;
+            this.labelPanel2Message.Text = "Where would you like to save\nyour journal?";
+            this.labelPanel2Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // bottomPanel3LocationSelected
+            // 
+            this.bottomPanel3LocationSelected.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bottomPanel3LocationSelected.BorderWidth = new System.Windows.Forms.Padding(1, 0, 1, 1);
+            this.bottomPanel3LocationSelected.Controls.Add(this.buttonLaunchJournaley);
+            this.bottomPanel3LocationSelected.Controls.Add(this.buttonSetupPassword);
+            this.bottomPanel3LocationSelected.Controls.Add(this.textBoxJournalLocation);
+            this.bottomPanel3LocationSelected.Controls.Add(this.labelPanel3Message);
+            this.bottomPanel3LocationSelected.IgnoreSetCursor = false;
+            this.bottomPanel3LocationSelected.Location = new System.Drawing.Point(0, 330);
+            this.bottomPanel3LocationSelected.Name = "bottomPanel3LocationSelected";
+            this.bottomPanel3LocationSelected.Size = new System.Drawing.Size(450, 249);
+            this.bottomPanel3LocationSelected.TabIndex = 5;
+            // 
+            // labelPanel3Message
+            // 
+            this.labelPanel3Message.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanel3Message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
+            this.labelPanel3Message.Location = new System.Drawing.Point(95, 9);
+            this.labelPanel3Message.Name = "labelPanel3Message";
+            this.labelPanel3Message.Size = new System.Drawing.Size(260, 50);
+            this.labelPanel3Message.TabIndex = 1;
+            this.labelPanel3Message.Text = "Your journal entries will be\nsafely located here:";
+            this.labelPanel3Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // bottomPanel4PasswordSetting
+            // 
+            this.bottomPanel4PasswordSetting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bottomPanel4PasswordSetting.BorderWidth = new System.Windows.Forms.Padding(1, 0, 1, 1);
+            this.bottomPanel4PasswordSetting.IgnoreSetCursor = false;
+            this.bottomPanel4PasswordSetting.Location = new System.Drawing.Point(0, 330);
+            this.bottomPanel4PasswordSetting.Name = "bottomPanel4PasswordSetting";
+            this.bottomPanel4PasswordSetting.Size = new System.Drawing.Size(450, 249);
+            this.bottomPanel4PasswordSetting.TabIndex = 6;
+            // 
+            // bottomPanel5ImportJournal
+            // 
+            this.bottomPanel5ImportJournal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bottomPanel5ImportJournal.BorderWidth = new System.Windows.Forms.Padding(1, 0, 1, 1);
+            this.bottomPanel5ImportJournal.IgnoreSetCursor = false;
+            this.bottomPanel5ImportJournal.Location = new System.Drawing.Point(0, 330);
+            this.bottomPanel5ImportJournal.Name = "bottomPanel5ImportJournal";
+            this.bottomPanel5ImportJournal.Size = new System.Drawing.Size(450, 249);
+            this.bottomPanel5ImportJournal.TabIndex = 7;
+            // 
+            // bottomPanel6Complete
+            // 
+            this.bottomPanel6Complete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bottomPanel6Complete.BorderWidth = new System.Windows.Forms.Padding(1, 0, 1, 1);
+            this.bottomPanel6Complete.IgnoreSetCursor = false;
+            this.bottomPanel6Complete.Location = new System.Drawing.Point(0, 330);
+            this.bottomPanel6Complete.Name = "bottomPanel6Complete";
+            this.bottomPanel6Complete.Size = new System.Drawing.Size(450, 249);
+            this.bottomPanel6Complete.TabIndex = 8;
+            // 
+            // textBoxJournalLocation
+            // 
+            this.textBoxJournalLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxJournalLocation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.textBoxJournalLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxJournalLocation.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.textBoxJournalLocation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(44)))), ((int)(((byte)(49)))));
+            this.textBoxJournalLocation.Location = new System.Drawing.Point(0, 80);
+            this.textBoxJournalLocation.Name = "textBoxJournalLocation";
+            this.textBoxJournalLocation.ReadOnly = true;
+            this.textBoxJournalLocation.Size = new System.Drawing.Size(450, 31);
+            this.textBoxJournalLocation.TabIndex = 2;
+            // 
+            // buttonSetupPassword
+            // 
+            this.buttonSetupPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
+            this.buttonSetupPassword.BorderColor = System.Drawing.Color.Black;
+            this.buttonSetupPassword.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonSetupPassword.DisabledColor = System.Drawing.Color.Empty;
+            this.buttonSetupPassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonSetupPassword.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSetupPassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonSetupPassword.Location = new System.Drawing.Point(95, 120);
+            this.buttonSetupPassword.Name = "buttonSetupPassword";
+            this.buttonSetupPassword.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
+            this.buttonSetupPassword.Selected = false;
+            this.buttonSetupPassword.SelectedColor = System.Drawing.Color.Empty;
+            this.buttonSetupPassword.SelectedDownColor = System.Drawing.Color.Empty;
+            this.buttonSetupPassword.SelectedHoverColor = System.Drawing.Color.Empty;
+            this.buttonSetupPassword.Size = new System.Drawing.Size(260, 42);
+            this.buttonSetupPassword.TabIndex = 3;
+            this.buttonSetupPassword.Text = "Setup a Password";
+            // 
+            // buttonLaunchJournaley
+            // 
+            this.buttonLaunchJournaley.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonLaunchJournaley.BorderColor = System.Drawing.Color.Black;
+            this.buttonLaunchJournaley.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonLaunchJournaley.DisabledColor = System.Drawing.Color.Empty;
+            this.buttonLaunchJournaley.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonLaunchJournaley.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLaunchJournaley.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
+            this.buttonLaunchJournaley.Location = new System.Drawing.Point(95, 180);
+            this.buttonLaunchJournaley.Name = "buttonLaunchJournaley";
+            this.buttonLaunchJournaley.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
+            this.buttonLaunchJournaley.Selected = false;
+            this.buttonLaunchJournaley.SelectedColor = System.Drawing.Color.Empty;
+            this.buttonLaunchJournaley.SelectedDownColor = System.Drawing.Color.Empty;
+            this.buttonLaunchJournaley.SelectedHoverColor = System.Drawing.Color.Empty;
+            this.buttonLaunchJournaley.Size = new System.Drawing.Size(260, 42);
+            this.buttonLaunchJournaley.TabIndex = 4;
+            this.buttonLaunchJournaley.Text = "Launch Journaley";
             // 
             // WelcomeForm
             // 
@@ -284,8 +397,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
             this.bottomPanel1Init.ResumeLayout(false);
             this.bottomPanel2StartNewJournal.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.buttonPanel2Browse)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonDropboxJournaley)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonPanel2Browse)).EndInit();
+            this.bottomPanel3LocationSelected.ResumeLayout(false);
+            this.bottomPanel3LocationSelected.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -304,5 +419,12 @@
         private System.Windows.Forms.Label labelPanel2Message;
         private Controls.ImageButton buttonPanel2Browse;
         private Controls.ImageButton buttonDropboxJournaley;
+        private Controls.BorderPanel bottomPanel6Complete;
+        private Controls.BorderPanel bottomPanel4PasswordSetting;
+        private Controls.BorderPanel bottomPanel5ImportJournal;
+        private System.Windows.Forms.Label labelPanel3Message;
+        private System.Windows.Forms.TextBox textBoxJournalLocation;
+        private Controls.ColorButton buttonSetupPassword;
+        private Controls.ColorButton buttonLaunchJournaley;
     }
 }
