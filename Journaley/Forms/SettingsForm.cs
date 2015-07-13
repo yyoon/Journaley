@@ -171,14 +171,6 @@
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether [disable cancel].
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if [disable cancel]; otherwise, <c>false</c>.
-        /// </value>
-        private bool DisableCancel { get; set; }
-
-        /// <summary>
         /// Gets all the text size buttons.
         /// </summary>
         /// <returns>All the text size buttons.</returns>
@@ -352,12 +344,6 @@
                 this.Location = new Point(
                     this.Owner.Left + ((this.Owner.Width - this.Width) / 2) + 10,
                     this.Owner.Top + this.panelTitlebar.Height);
-            }
-
-            if (this.settings == null)
-            {
-                this.DisableCancel = true;
-                this.buttonCancel.Enabled = false;
             }
 
             // Set the font of the font size buttons to Noto Serif.
