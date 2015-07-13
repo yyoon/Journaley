@@ -303,6 +303,7 @@
             this.bottomPanel3LocationSelected.Name = "bottomPanel3LocationSelected";
             this.bottomPanel3LocationSelected.Size = new System.Drawing.Size(450, 249);
             this.bottomPanel3LocationSelected.TabIndex = 5;
+            this.bottomPanel3LocationSelected.VisibleChanged += new System.EventHandler(this.BottomPanel3LocationSelected_VisibleChanged);
             // 
             // buttonLaunchJournaley
             // 

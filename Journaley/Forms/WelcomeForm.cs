@@ -535,7 +535,6 @@
                 return;
             }
 
-            this.labelJournalLocation.Text = this.Settings.DayOneFolderPath;
             this.ShowBottomPanel(3);
         }
 
@@ -636,7 +635,6 @@
         private void ButtonDropboxDayOne_Click(object sender, EventArgs e)
         {
             this.Settings.DayOneFolderPath = this.FindDropboxDayOneLocation();
-            this.labelJournalLocation.Text = this.Settings.DayOneFolderPath;
             this.ShowBottomPanel(3);
         }
 
@@ -649,6 +647,16 @@
         {
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        /// <summary>
+        /// Handles the VisibleChanged event of the bottomPanel3LocationSelected control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void BottomPanel3LocationSelected_VisibleChanged(object sender, EventArgs e)
+        {
+            this.labelJournalLocation.Text = this.Settings.DayOneFolderPath;
         }
     }
 }
