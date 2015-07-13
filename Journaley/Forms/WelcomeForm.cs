@@ -236,7 +236,112 @@
         /// </summary>
         private void BrowseToExistingJournal()
         {
-            throw new NotImplementedException();
+            while (true)
+            {
+                FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+                folderDialog.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                DialogResult result = folderDialog.ShowDialog(this);
+
+                if (result == DialogResult.Cancel)
+                {
+                    break;
+                }
+
+                // Does the folder exist?
+                if (!Directory.Exists(folderDialog.SelectedPath))
+                {
+                    MessageBox.Show(
+                        this,
+                        "The provided folder does not exist.\nPlease select another folder.",
+                        "Journaley",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    continue;
+                }
+
+                string entriesPath = Path.Combine(folderDialog.SelectedPath, "entries");
+
+                // Is it an empty folder?
+                if (!Directory.EnumerateFileSystemEntries(folderDialog.SelectedPath).Any())
+                {
+                    // Ask the user if she wants to create Journaley files there.
+                    DialogResult createDirectoryResult = MessageBox.Show(
+                        this,
+                        "The selected folder is empty.\nWould you like to use this folder to store your data?",
+                        "Journaley",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button1);
+
+                    if (createDirectoryResult == DialogResult.Yes)
+                    {
+                        // Create "entries" folder.
+                        try
+                        {
+                            Directory.CreateDirectory(entriesPath);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(
+                                this,
+                                "Failed to create subfolders.\nPlease select another folder.",
+                                "Journaley",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+
+                // Is it a valid Journaley / Day One folder?
+                if (!Directory.Exists(entriesPath))
+                {
+                    DialogResult createDirectoryResult = MessageBox.Show(
+                        this,
+                        "The selected folder is not a Journaley folder.\nWould you like to create a subfolder named \"Journaley\" and use it to store your data?",
+                        "Journaley",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning,
+                        MessageBoxDefaultButton.Button1);
+
+                    if (createDirectoryResult == DialogResult.Yes)
+                    {
+                        // Create "Journaley\entries" folder.
+                        try
+                        {
+                            Directory.CreateDirectory(Path.Combine(folderDialog.SelectedPath, "Journaley"));
+                            folderDialog.SelectedPath = Path.Combine(folderDialog.SelectedPath, "Journaley");
+                            Directory.CreateDirectory(Path.Combine(folderDialog.SelectedPath, "entries"));
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(
+                                this,
+                                "Failed to create subfolders.\nPlease select another folder.",
+                                "Journaley",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+
+                this.Settings.DayOneFolderPath = folderDialog.SelectedPath;
+                this.ShowBottomPanel(3);
+
+                break;
+            }
         }
 
         /// <summary>
@@ -244,7 +349,109 @@
         /// </summary>
         private void BrowseToNewJournal()
         {
-            throw new NotImplementedException();
+            while (true)
+            {
+                FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+                folderDialog.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                DialogResult result = folderDialog.ShowDialog(this);
+                DialogResult createDirectoryResult;
+
+                if (result == DialogResult.Cancel)
+                {
+                    break;
+                }
+
+                // Does the folder exist?
+                if (!Directory.Exists(folderDialog.SelectedPath))
+                {
+                    MessageBox.Show(
+                        this,
+                        "The provided folder does not exist.\nPlease select another folder.",
+                        "Journaley",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    continue;
+                }
+
+                string entriesPath = Path.Combine(folderDialog.SelectedPath, "entries");
+
+                // Is it an empty folder?
+                if (!Directory.EnumerateFileSystemEntries(folderDialog.SelectedPath).Any())
+                {
+                    // Ask the user if she wants to create Journaley files there.
+                    createDirectoryResult = MessageBox.Show(
+                        this,
+                        "The selected folder is empty.\nWould you like to use this folder to store your data?",
+                        "Journaley",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question,
+                        MessageBoxDefaultButton.Button1);
+
+                    if (createDirectoryResult == DialogResult.Yes)
+                    {
+                        // Create "entries" folder.
+                        try
+                        {
+                            Directory.CreateDirectory(entriesPath);
+                        }
+                        catch (Exception)
+                        {
+                            MessageBox.Show(
+                                this,
+                                "Failed to create subfolders.\nPlease select another folder.",
+                                "Journaley",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+
+                createDirectoryResult = MessageBox.Show(
+                    this,
+                    "The selected folder is not empty.\nWould you like to create a subfolder named \"Journaley\" and use it to store your data?",
+                    "Journaley",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1);
+
+                if (createDirectoryResult == DialogResult.Yes)
+                {
+                    // Create "Journaley\entries" folder.
+                    try
+                    {
+                        Directory.CreateDirectory(Path.Combine(folderDialog.SelectedPath, "Journaley"));
+                        folderDialog.SelectedPath = Path.Combine(folderDialog.SelectedPath, "Journaley");
+                        Directory.CreateDirectory(Path.Combine(folderDialog.SelectedPath, "entries"));
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show(
+                            this,
+                            "Failed to create subfolders.\nPlease select another folder.",
+                            "Journaley",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
+                        continue;
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+
+                this.Settings.DayOneFolderPath = folderDialog.SelectedPath;
+                this.ShowBottomPanel(3);
+
+                break;
+            }
         }
 
         /// <summary>
@@ -308,7 +515,26 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonDropboxJournaley_Click(object sender, EventArgs e)
         {
-            this.Settings.DayOneFolderPath = Path.Combine(this.FindDropboxLocation(), "Journaley");
+            var dropboxFolder = this.FindDropboxLocation();
+            this.Settings.DayOneFolderPath = Path.Combine(dropboxFolder, "Journaley");
+
+            try
+            {
+                Directory.CreateDirectory(Path.Combine(dropboxFolder, "Journaley"));
+                Directory.CreateDirectory(Path.Combine(dropboxFolder, "Journaley", "entries"));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(
+                    this,
+                    "Failed to create subfolders.\nPlease select another folder.",
+                    "Journaley",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return;
+            }
+
             this.labelJournalLocation.Text = this.Settings.DayOneFolderPath;
             this.ShowBottomPanel(3);
         }
