@@ -1149,7 +1149,17 @@
             // Delete those, if any.
             foreach (var entryToDelete in entriesToDelete)
             {
-                entryToDelete.Delete(this.Settings.EntryFolderPath);
+                // Protect against the occasional exception dialog. (GitHub Issue #40).
+                try
+                {
+                    entryToDelete.Delete(this.Settings.EntryFolderPath);
+                }
+                catch (IOException e)
+                {
+                    Logger.Log(e.Message);
+                    Logger.Log(e.StackTrace);
+                }
+
                 this.Entries.Remove(entryToDelete.UUID);
             }
 
