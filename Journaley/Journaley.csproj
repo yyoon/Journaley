@@ -182,6 +182,12 @@
     <Compile Include="Controls\EntryListBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Forms\WelcomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WelcomeForm.Designer.cs">
+      <DependentUpon>WelcomeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -230,6 +236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\TagEditForm.resx">
       <DependentUpon>TagEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WelcomeForm.resx">
+      <DependentUpon>WelcomeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -451,6 +460,22 @@
     <Content Include="Images\sidebar_btn_setting_update_down.png" />
     <Content Include="Images\sidebar_btn_setting_update_norm.png" />
     <Content Include="Images\sidebar_btn_setting_update_over.png" />
+    <Content Include="Images\welcome_btn_browse_down.png" />
+    <Content Include="Images\welcome_btn_browse_norm.png" />
+    <Content Include="Images\welcome_btn_browse_over.png" />
+    <Content Include="Images\welcome_btn_close_down.png" />
+    <Content Include="Images\welcome_btn_close_norm.png" />
+    <Content Include="Images\welcome_btn_close_over.png" />
+    <Content Include="Images\welcome_btn_dropboxDayOne_down.png" />
+    <Content Include="Images\welcome_btn_dropboxDayOne_norm.png" />
+    <Content Include="Images\welcome_btn_dropboxDayOne_over.png" />
+    <Content Include="Images\welcome_btn_dropboxJournaley_down.png" />
+    <Content Include="Images\welcome_btn_dropboxJournaley_norm.png" />
+    <Content Include="Images\welcome_btn_dropboxJournaley_over.png" />
+    <Content Include="Images\welcome_btn_minimize_down.png" />
+    <Content Include="Images\welcome_btn_minimize_norm.png" />
+    <Content Include="Images\welcome_btn_minimize_over.png" />
+    <Content Include="Images\welcome_journaley.png" />
     <Content Include="Resources\JournaleyLarge.css" />
     <Content Include="Resources\JournaleySmall.css" />
   </ItemGroup>

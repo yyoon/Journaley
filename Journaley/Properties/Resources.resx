@@ -415,4 +415,52 @@
   <data name="sidebar_btn_setting_update_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\sidebar_btn_setting_update_over.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="welcome_btn_browse_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_btn_browse_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_btn_browse_norm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_btn_browse_norm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_btn_browse_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_btn_browse_over.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_btn_close_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_btn_close_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_btn_close_norm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_btn_close_norm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_btn_close_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_btn_close_over.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_btn_dropboxDayOne_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_btn_dropboxDayOne_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_btn_dropboxDayOne_norm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_btn_dropboxDayOne_norm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_btn_dropboxDayOne_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_btn_dropboxDayOne_over.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_btn_dropboxJournaley_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_btn_dropboxJournaley_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_btn_dropboxJournaley_norm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_btn_dropboxJournaley_norm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_btn_dropboxJournaley_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_btn_dropboxJournaley_over.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_btn_minimize_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_btn_minimize_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_btn_minimize_norm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_btn_minimize_norm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_btn_minimize_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_btn_minimize_over.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="welcome_journaley" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\welcome_journaley.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
