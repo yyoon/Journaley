@@ -1565,9 +1565,9 @@
 
             if (this.Settings == null)
             {
-                // When there is no settings file, show up the settings dialog first.
-                SettingsForm settingsForm = new SettingsForm();
-                DialogResult result = settingsForm.ShowDialog(this);
+                // When there is no settings file, show up the welcome dialog first.
+                WelcomeForm welcomeForm = new WelcomeForm();
+                DialogResult result = welcomeForm.ShowDialog(this);
 
                 // If the user cancels the initial settings dialog, just close the whole application.
                 if (result != DialogResult.OK)
@@ -1578,8 +1578,8 @@
 
                 Debug.Assert(result == DialogResult.OK, "When running the application for the first time, you must choose the settings.");
 
-                Debug.Assert(Directory.Exists(settingsForm.Settings.DayOneFolderPath), "The selected path must exist");
-                this.Settings = settingsForm.Settings;
+                Debug.Assert(Directory.Exists(welcomeForm.Settings.DayOneFolderPath), "The selected path must exist");
+                this.Settings = welcomeForm.Settings;
                 this.Settings.Save();
             }
             else if (this.Settings.HasPassword)
