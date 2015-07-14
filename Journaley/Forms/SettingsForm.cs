@@ -329,6 +329,7 @@
 
             this.pictureUpdateIndicator.Visible = indicator;
             this.buttonUpdate.Text = indicator ? UpdateMessageAvailable : UpdateMessageCheck;
+            this.buttonUpdate.Refresh();
         }
 
         /// <summary>
