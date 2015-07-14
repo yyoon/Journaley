@@ -567,6 +567,7 @@
             this.bottomPanel6Complete.Name = "bottomPanel6Complete";
             this.bottomPanel6Complete.Size = new System.Drawing.Size(450, 249);
             this.bottomPanel6Complete.TabIndex = 8;
+            this.bottomPanel6Complete.VisibleChanged += new System.EventHandler(this.BottomPanel6Complete_VisibleChanged);
             // 
             // buttonOK
             // 

@@ -665,5 +665,22 @@
         {
             this.labelJournalLocation.Text = this.Settings.DayOneFolderPath;
         }
+
+        /// <summary>
+        /// Handles the VisibleChanged event of the bottomPanel6Complete control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void BottomPanel6Complete_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.bottomPanel6Complete.Visible)
+            {
+                // Launch the last welcome screen on top of this form, and close this form.
+                WelcomeFormLastScreen lastScreen = new WelcomeFormLastScreen();
+                lastScreen.Location = this.Location;
+                lastScreen.WelcomeForm = this;
+                lastScreen.Show();
+            }
+        }
     }
 }
