@@ -63,6 +63,15 @@
             Timer timer = new Timer();
             timer.Tick += delegate(object obj, EventArgs args)
             {
+                // Move the main form so that it centers the current welcome UI.
+                MainForm mainForm = this.WelcomeForm.Owner as MainForm;
+                if (mainForm != null)
+                {
+                    mainForm.Location = new Point(
+                        this.Location.X - ((mainForm.Width - this.Width) / 2) - 10,
+                        this.Location.Y - ((mainForm.Height - this.Height) / 2) - 10);
+                }
+
                 this.WelcomeForm.DialogResult = DialogResult.OK;
                 this.WelcomeForm.Close();
             };
