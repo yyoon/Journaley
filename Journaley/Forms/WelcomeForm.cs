@@ -195,7 +195,14 @@
 
             if (!File.Exists(hostDBPath))
             {
-                return null;
+                // Try the local app data.
+                appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                hostDBPath = Path.Combine(appDataPath, @"Dropbox\host.db");
+
+                if (!File.Exists(hostDBPath))
+                {
+                    return null;
+                }
             }
 
             var lines = File.ReadAllLines(hostDBPath);
