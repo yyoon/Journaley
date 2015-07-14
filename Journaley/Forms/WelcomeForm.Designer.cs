@@ -514,7 +514,7 @@
             this.buttonDropboxDayOne.DownImage = global::Journaley.Properties.Resources.welcome_btn_dropboxDayOne_down;
             this.buttonDropboxDayOne.HoverImage = global::Journaley.Properties.Resources.welcome_btn_dropboxDayOne_over;
             this.buttonDropboxDayOne.Image = global::Journaley.Properties.Resources.welcome_btn_dropboxDayOne_norm;
-            this.buttonDropboxDayOne.Location = new System.Drawing.Point(95, 179);
+            this.buttonDropboxDayOne.Location = new System.Drawing.Point(95, 180);
             this.buttonDropboxDayOne.Name = "buttonDropboxDayOne";
             this.buttonDropboxDayOne.NormalImage = global::Journaley.Properties.Resources.welcome_btn_dropboxDayOne_norm;
             this.buttonDropboxDayOne.Selected = false;
@@ -532,7 +532,7 @@
             this.buttonPanel5Browse.DownImage = global::Journaley.Properties.Resources.welcome_btn_browse_down;
             this.buttonPanel5Browse.HoverImage = global::Journaley.Properties.Resources.welcome_btn_browse_over;
             this.buttonPanel5Browse.Image = global::Journaley.Properties.Resources.welcome_btn_browse_norm;
-            this.buttonPanel5Browse.Location = new System.Drawing.Point(95, 119);
+            this.buttonPanel5Browse.Location = new System.Drawing.Point(95, 120);
             this.buttonPanel5Browse.Name = "buttonPanel5Browse";
             this.buttonPanel5Browse.NormalImage = global::Journaley.Properties.Resources.welcome_btn_browse_norm;
             this.buttonPanel5Browse.Selected = false;
