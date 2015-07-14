@@ -66,11 +66,13 @@
             this.buttonUpdate = new Journaley.Controls.ColorButton();
             this.pictureUpdateIndicator = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelCurrentVersion = new System.Windows.Forms.Label();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
             this.panelContent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSelectFolder)).BeginInit();
             this.panelPasswordNormal.SuspendLayout();
             this.panelPasswordSetting.SuspendLayout();
@@ -82,6 +84,7 @@
             this.panelTitlebar.Controls.Add(this.labelFormCaption);
             this.panelTitlebar.Size = new System.Drawing.Size(450, 20);
             this.panelTitlebar.TabIndex = 0;
+            this.panelTitlebar.Controls.SetChildIndex(this.pictureBoxFormIcon, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.labelFormCaption, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormClose, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormMaximize, 0);
@@ -103,6 +106,7 @@
             // 
             // panelContent
             // 
+            this.panelContent.Controls.Add(this.labelCurrentVersion);
             this.panelContent.Controls.Add(this.panel1);
             this.panelContent.Controls.Add(this.pictureUpdateIndicator);
             this.panelContent.Controls.Add(this.buttonUpdate);
@@ -639,6 +643,16 @@
             this.panel1.Size = new System.Drawing.Size(448, 1);
             this.panel1.TabIndex = 20;
             // 
+            // labelCurrentVersion
+            // 
+            this.labelCurrentVersion.AutoSize = true;
+            this.labelCurrentVersion.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCurrentVersion.Location = new System.Drawing.Point(190, 482);
+            this.labelCurrentVersion.Name = "labelCurrentVersion";
+            this.labelCurrentVersion.Size = new System.Drawing.Size(164, 19);
+            this.labelCurrentVersion.TabIndex = 24;
+            this.labelCurrentVersion.Text = "Current Version: Develop";
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.buttonOK;
@@ -660,6 +674,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).EndInit();
             this.panelContent.ResumeLayout(false);
             this.panelContent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonSelectFolder)).EndInit();
             this.panelPasswordNormal.ResumeLayout(false);
             this.panelPasswordNormal.PerformLayout();
@@ -710,5 +725,6 @@
         private Controls.ColorButton buttonUpdate;
         private System.Windows.Forms.PictureBox pictureUpdateIndicator;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label labelCurrentVersion;
     }
 }

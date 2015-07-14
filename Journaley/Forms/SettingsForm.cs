@@ -90,6 +90,11 @@
         private bool updateAvailable = false;
 
         /// <summary>
+        /// The current version
+        /// </summary>
+        private Version currentVersion;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="SettingsForm"/> class.
         /// </summary>
         public SettingsForm()
@@ -167,6 +172,35 @@
             {
                 this.updateAvailable = value;
                 this.UpdateUpdateInterface();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the current version.
+        /// </summary>
+        /// <value>
+        /// The current version.
+        /// </value>
+        public Version CurrentVersion
+        {
+            get
+            {
+                return this.currentVersion;
+            }
+
+            set
+            {
+                this.currentVersion = value;
+                if (value != null)
+                {
+                    this.labelCurrentVersion.Text = "Current Version: " + this.currentVersion.ToString();
+                }
+                else
+                {
+                    this.labelCurrentVersion.Text = string.Format(
+                        "Current Version: {0} (dev)",
+                        Assembly.GetExecutingAssembly().GetName().Version);
+                }
             }
         }
 

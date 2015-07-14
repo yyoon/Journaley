@@ -198,6 +198,14 @@
         }
 
         /// <summary>
+        /// Gets or sets the currently installed version.
+        /// </summary>
+        /// <value>
+        /// The currently installed version.
+        /// </value>
+        internal Version CurrentlyInstalledVersion { get; set; }
+
+        /// <summary>
         /// Gets or sets the update information.
         /// </summary>
         /// <value>
@@ -1660,6 +1668,8 @@
                         return;
                     }
 
+                    this.CurrentlyInstalledVersion = mgr.CurrentlyInstalledVersion();
+
                     var updateInfo = await mgr.CheckForUpdate();
 
                     if (updateInfo == null)
@@ -1864,6 +1874,7 @@
             SettingsForm form = new SettingsForm();
             form.Settings = new Settings(this.Settings);    // pass a copied settings object
             form.UpdateAvailable = this.UpdateAvailable;
+            form.CurrentVersion = this.CurrentlyInstalledVersion;
 
             DialogResult result = form.ShowDialog(this);
             if (result == DialogResult.OK)
