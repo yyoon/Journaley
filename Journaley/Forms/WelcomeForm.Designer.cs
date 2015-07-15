@@ -115,10 +115,10 @@
             // 
             // panelContent
             // 
-            this.panelContent.Controls.Add(this.bottomPanel4PasswordSetting);
             this.panelContent.Controls.Add(this.bottomPanel1Init);
             this.panelContent.Controls.Add(this.bottomPanel2StartNewJournal);
             this.panelContent.Controls.Add(this.bottomPanel3LocationSelected);
+            this.panelContent.Controls.Add(this.bottomPanel4PasswordSetting);
             this.panelContent.Controls.Add(this.bottomPanel5ImportJournal);
             this.panelContent.Controls.Add(this.bottomPanel6Complete);
             this.panelContent.Controls.Add(this.labelMainMessage);
