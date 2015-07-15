@@ -244,7 +244,7 @@
             this.buttonOK.SelectedHoverColor = System.Drawing.Color.Empty;
             this.buttonOK.Size = new System.Drawing.Size(100, 32);
             this.buttonOK.TabIndex = 15;
-            this.buttonOK.Text = "Save";
+            this.buttonOK.Text = "Done";
             // 
             // buttonCancel
             // 

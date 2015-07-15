@@ -148,7 +148,7 @@
             this.buttonOK.SelectedHoverColor = System.Drawing.Color.Empty;
             this.buttonOK.Size = new System.Drawing.Size(260, 42);
             this.buttonOK.TabIndex = 26;
-            this.buttonOK.Text = "OK";
+            this.buttonOK.Text = "Start";
             this.buttonOK.Click += new System.EventHandler(this.ButtonOK_Click);
             // 
             // labelPanel6Message
