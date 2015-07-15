@@ -649,7 +649,7 @@
             // 
             this.labelCurrentVersion.AutoSize = true;
             this.labelCurrentVersion.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCurrentVersion.Location = new System.Drawing.Point(190, 482);
+            this.labelCurrentVersion.Location = new System.Drawing.Point(184, 483);
             this.labelCurrentVersion.Name = "labelCurrentVersion";
             this.labelCurrentVersion.Size = new System.Drawing.Size(109, 19);
             this.labelCurrentVersion.TabIndex = 24;
@@ -659,7 +659,7 @@
             // 
             this.labelVersionNumber.AutoSize = true;
             this.labelVersionNumber.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVersionNumber.Location = new System.Drawing.Point(294, 482);
+            this.labelVersionNumber.Location = new System.Drawing.Point(288, 483);
             this.labelVersionNumber.Name = "labelVersionNumber";
             this.labelVersionNumber.Size = new System.Drawing.Size(59, 19);
             this.labelVersionNumber.TabIndex = 25;
