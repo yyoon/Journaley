@@ -280,7 +280,7 @@
                     // Ask the user if she wants to create Journaley files there.
                     DialogResult createDirectoryResult = MessageBox.Show(
                         this,
-                        "The selected folder is empty.\nWould you like to use this folder to store your data?",
+                        "The selected folder is empty.\nWould you like to use this folder to store your journal?",
                         "Journaley",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question,
@@ -316,7 +316,7 @@
                 {
                     DialogResult createDirectoryResult = MessageBox.Show(
                         this,
-                        "The selected folder is not a Journaley folder.\nWould you like to create a subfolder named \"Journaley\" and use it to store your data?",
+                        "The selected folder is not a Journaley folder.\nWould you like to create a subfolder named \"Journaley\" and use it to store your journal?",
                         "Journaley",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Warning,
@@ -412,7 +412,7 @@
                 {
                     createDirectoryResult = MessageBox.Show(
                         this,
-                        "The selected folder is not empty.\nWould you like to create a subfolder named \"Journaley\" and use it to store your data?",
+                        "The selected folder is not empty.\nWould you like to create a subfolder named \"Journaley\" and use it to store your journal?",
                         "Journaley",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Warning,
