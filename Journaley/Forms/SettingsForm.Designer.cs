@@ -67,6 +67,7 @@
             this.pictureUpdateIndicator = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelCurrentVersion = new System.Windows.Forms.Label();
+            this.labelVersionNumber = new System.Windows.Forms.Label();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -106,6 +107,7 @@
             // 
             // panelContent
             // 
+            this.panelContent.Controls.Add(this.labelVersionNumber);
             this.panelContent.Controls.Add(this.labelCurrentVersion);
             this.panelContent.Controls.Add(this.panel1);
             this.panelContent.Controls.Add(this.pictureUpdateIndicator);
@@ -649,9 +651,19 @@
             this.labelCurrentVersion.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCurrentVersion.Location = new System.Drawing.Point(190, 482);
             this.labelCurrentVersion.Name = "labelCurrentVersion";
-            this.labelCurrentVersion.Size = new System.Drawing.Size(164, 19);
+            this.labelCurrentVersion.Size = new System.Drawing.Size(109, 19);
             this.labelCurrentVersion.TabIndex = 24;
-            this.labelCurrentVersion.Text = "Current Version: Develop";
+            this.labelCurrentVersion.Text = "Current Version:";
+            // 
+            // labelVersionNumber
+            // 
+            this.labelVersionNumber.AutoSize = true;
+            this.labelVersionNumber.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelVersionNumber.Location = new System.Drawing.Point(294, 482);
+            this.labelVersionNumber.Name = "labelVersionNumber";
+            this.labelVersionNumber.Size = new System.Drawing.Size(59, 19);
+            this.labelVersionNumber.TabIndex = 25;
+            this.labelVersionNumber.Text = "Develop";
             // 
             // SettingsForm
             // 
@@ -726,5 +738,6 @@
         private System.Windows.Forms.PictureBox pictureUpdateIndicator;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label labelCurrentVersion;
+        private System.Windows.Forms.Label labelVersionNumber;
     }
 }

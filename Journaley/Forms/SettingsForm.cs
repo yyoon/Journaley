@@ -193,12 +193,12 @@
                 this.currentVersion = value;
                 if (value != null)
                 {
-                    this.labelCurrentVersion.Text = "Current Version: " + this.currentVersion.ToString();
+                    this.labelVersionNumber.Text = this.currentVersion.ToString();
                 }
                 else
                 {
-                    this.labelCurrentVersion.Text = string.Format(
-                        "Current Version: {0} (dev)",
+                    this.labelVersionNumber.Text = string.Format(
+                        "{0} (dev)",
                         Assembly.GetExecutingAssembly().GetName().Version);
                 }
             }
