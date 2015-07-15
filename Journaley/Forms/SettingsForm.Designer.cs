@@ -65,9 +65,38 @@
             this.checkBoxAutoUpdate = new System.Windows.Forms.CheckBox();
             this.buttonUpdate = new Journaley.Controls.ColorButton();
             this.pictureUpdateIndicator = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.horizontalSeparator4 = new System.Windows.Forms.Panel();
             this.labelCurrentVersion = new System.Windows.Forms.Label();
             this.labelVersionNumber = new System.Windows.Forms.Label();
+            this.buttonAbout = new Journaley.Controls.ImageButton();
+            this.panelAbout = new Journaley.Controls.PaddingBorderPanel();
+            this.linkMITLicense = new System.Windows.Forms.LinkLabel();
+            this.labelLicensedUnder = new System.Windows.Forms.Label();
+            this.linkGitHub = new System.Windows.Forms.LinkLabel();
+            this.labelFeedback = new System.Windows.Forms.Label();
+            this.labelSupport = new System.Windows.Forms.Label();
+            this.horizontalSeparator6 = new System.Windows.Forms.Panel();
+            this.linkSquirrelWindowsLicense = new System.Windows.Forms.LinkLabel();
+            this.labelSquirrelWindowsAuthor = new System.Windows.Forms.Label();
+            this.labelSquirrelWindowsTitle = new System.Windows.Forms.Label();
+            this.linkMarkdownSharpLicense = new System.Windows.Forms.LinkLabel();
+            this.labelMarkdownSharpAuthor3 = new System.Windows.Forms.Label();
+            this.labelMarkdownSharpAuthor2 = new System.Windows.Forms.Label();
+            this.labelMarkdownSharpAuthor1 = new System.Windows.Forms.Label();
+            this.labelMarkdownSharpTitle = new System.Windows.Forms.Label();
+            this.linkAnotherMonthCalendarLicense = new System.Windows.Forms.LinkLabel();
+            this.labelAnotherMonthCalendarAuthor = new System.Windows.Forms.Label();
+            this.labelAnotherMonthCalendarTitle = new System.Windows.Forms.Label();
+            this.linkNotoSansLicense = new System.Windows.Forms.LinkLabel();
+            this.labelNotoSansAuthor = new System.Windows.Forms.Label();
+            this.labelNotoSansTitle = new System.Windows.Forms.Label();
+            this.labelOpenSourceLicense = new System.Windows.Forms.Label();
+            this.horizontalSeparator5 = new System.Windows.Forms.Panel();
+            this.linkSammyGuergachi = new System.Windows.Forms.LinkLabel();
+            this.labelDesignedBy = new System.Windows.Forms.Label();
+            this.linkYoungSeokYoon = new System.Windows.Forms.LinkLabel();
+            this.labelDevelopedBy = new System.Windows.Forms.Label();
+            this.labelCredits = new System.Windows.Forms.Label();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -78,6 +107,8 @@
             this.panelPasswordNormal.SuspendLayout();
             this.panelPasswordSetting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureUpdateIndicator)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonAbout)).BeginInit();
+            this.panelAbout.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTitlebar
@@ -107,9 +138,13 @@
             // 
             // panelContent
             // 
+            this.panelContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelContent.Controls.Add(this.buttonAbout);
             this.panelContent.Controls.Add(this.labelVersionNumber);
             this.panelContent.Controls.Add(this.labelCurrentVersion);
-            this.panelContent.Controls.Add(this.panel1);
+            this.panelContent.Controls.Add(this.horizontalSeparator4);
             this.panelContent.Controls.Add(this.pictureUpdateIndicator);
             this.panelContent.Controls.Add(this.buttonUpdate);
             this.panelContent.Controls.Add(this.checkBoxAutoUpdate);
@@ -134,6 +169,7 @@
             this.panelContent.Controls.Add(this.buttonSizeSmall);
             this.panelContent.Controls.Add(this.labelTextSize);
             this.panelContent.Controls.Add(this.labelAppearanceSection);
+            this.panelContent.Dock = System.Windows.Forms.DockStyle.None;
             this.panelContent.Padding = new System.Windows.Forms.Padding(1);
             this.panelContent.Size = new System.Drawing.Size(450, 580);
             this.panelContent.TabIndex = 1;
@@ -197,7 +233,7 @@
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOK.DisabledColor = System.Drawing.Color.Empty;
             this.buttonOK.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonOK.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonOK.Location = new System.Drawing.Point(218, 540);
             this.buttonOK.Name = "buttonOK";
@@ -206,7 +242,7 @@
             this.buttonOK.SelectedColor = System.Drawing.Color.Empty;
             this.buttonOK.SelectedDownColor = System.Drawing.Color.Empty;
             this.buttonOK.SelectedHoverColor = System.Drawing.Color.Empty;
-            this.buttonOK.Size = new System.Drawing.Size(100, 30);
+            this.buttonOK.Size = new System.Drawing.Size(100, 32);
             this.buttonOK.TabIndex = 15;
             this.buttonOK.Text = "Save";
             // 
@@ -217,7 +253,7 @@
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.DisabledColor = System.Drawing.Color.Empty;
             this.buttonCancel.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonCancel.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonCancel.Location = new System.Drawing.Point(333, 540);
             this.buttonCancel.Name = "buttonCancel";
@@ -226,7 +262,7 @@
             this.buttonCancel.SelectedColor = System.Drawing.Color.Empty;
             this.buttonCancel.SelectedDownColor = System.Drawing.Color.Empty;
             this.buttonCancel.SelectedHoverColor = System.Drawing.Color.Empty;
-            this.buttonCancel.Size = new System.Drawing.Size(100, 30);
+            this.buttonCancel.Size = new System.Drawing.Size(100, 32);
             this.buttonCancel.TabIndex = 14;
             this.buttonCancel.Text = "Cancel";
             // 
@@ -636,14 +672,14 @@
             this.pictureUpdateIndicator.TabStop = false;
             this.pictureUpdateIndicator.Visible = false;
             // 
-            // panel1
+            // horizontalSeparator4
             // 
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(1, 527);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(448, 1);
-            this.panel1.TabIndex = 20;
+            this.horizontalSeparator4.BackColor = System.Drawing.Color.Black;
+            this.horizontalSeparator4.Location = new System.Drawing.Point(1, 527);
+            this.horizontalSeparator4.Margin = new System.Windows.Forms.Padding(0);
+            this.horizontalSeparator4.Name = "horizontalSeparator4";
+            this.horizontalSeparator4.Size = new System.Drawing.Size(448, 1);
+            this.horizontalSeparator4.TabIndex = 20;
             // 
             // labelCurrentVersion
             // 
@@ -665,6 +701,346 @@
             this.labelVersionNumber.TabIndex = 25;
             this.labelVersionNumber.Text = "Develop";
             // 
+            // buttonAbout
+            // 
+            this.buttonAbout.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.buttonAbout.DownImage = global::Journaley.Properties.Resources.settings_btn_about_up_down;
+            this.buttonAbout.HoverImage = global::Journaley.Properties.Resources.settings_btn_about_up_over;
+            this.buttonAbout.Image = global::Journaley.Properties.Resources.settings_btn_about_up_norm;
+            this.buttonAbout.Location = new System.Drawing.Point(27, 540);
+            this.buttonAbout.Name = "buttonAbout";
+            this.buttonAbout.NormalImage = global::Journaley.Properties.Resources.settings_btn_about_up_norm;
+            this.buttonAbout.Selected = false;
+            this.buttonAbout.SelectedDownImage = global::Journaley.Properties.Resources.settings_btn_about_down_down;
+            this.buttonAbout.SelectedHoverImage = global::Journaley.Properties.Resources.settings_btn_about_down_over;
+            this.buttonAbout.SelectedImage = global::Journaley.Properties.Resources.settings_btn_about_down_norm;
+            this.buttonAbout.Size = new System.Drawing.Size(121, 32);
+            this.buttonAbout.TabIndex = 26;
+            this.buttonAbout.TabStop = false;
+            this.buttonAbout.Click += new System.EventHandler(this.ButtonAbout_Click);
+            // 
+            // panelAbout
+            // 
+            this.panelAbout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
+            this.panelAbout.Controls.Add(this.linkMITLicense);
+            this.panelAbout.Controls.Add(this.labelLicensedUnder);
+            this.panelAbout.Controls.Add(this.linkGitHub);
+            this.panelAbout.Controls.Add(this.labelFeedback);
+            this.panelAbout.Controls.Add(this.labelSupport);
+            this.panelAbout.Controls.Add(this.horizontalSeparator6);
+            this.panelAbout.Controls.Add(this.linkSquirrelWindowsLicense);
+            this.panelAbout.Controls.Add(this.labelSquirrelWindowsAuthor);
+            this.panelAbout.Controls.Add(this.labelSquirrelWindowsTitle);
+            this.panelAbout.Controls.Add(this.linkMarkdownSharpLicense);
+            this.panelAbout.Controls.Add(this.labelMarkdownSharpAuthor3);
+            this.panelAbout.Controls.Add(this.labelMarkdownSharpAuthor2);
+            this.panelAbout.Controls.Add(this.labelMarkdownSharpAuthor1);
+            this.panelAbout.Controls.Add(this.labelMarkdownSharpTitle);
+            this.panelAbout.Controls.Add(this.linkAnotherMonthCalendarLicense);
+            this.panelAbout.Controls.Add(this.labelAnotherMonthCalendarAuthor);
+            this.panelAbout.Controls.Add(this.labelAnotherMonthCalendarTitle);
+            this.panelAbout.Controls.Add(this.linkNotoSansLicense);
+            this.panelAbout.Controls.Add(this.labelNotoSansAuthor);
+            this.panelAbout.Controls.Add(this.labelNotoSansTitle);
+            this.panelAbout.Controls.Add(this.labelOpenSourceLicense);
+            this.panelAbout.Controls.Add(this.horizontalSeparator5);
+            this.panelAbout.Controls.Add(this.linkSammyGuergachi);
+            this.panelAbout.Controls.Add(this.labelDesignedBy);
+            this.panelAbout.Controls.Add(this.linkYoungSeokYoon);
+            this.panelAbout.Controls.Add(this.labelDevelopedBy);
+            this.panelAbout.Controls.Add(this.labelCredits);
+            this.panelAbout.IgnoreSetCursor = false;
+            this.panelAbout.Location = new System.Drawing.Point(0, 20);
+            this.panelAbout.Name = "panelAbout";
+            this.panelAbout.Padding = new System.Windows.Forms.Padding(1, 1, 1, 0);
+            this.panelAbout.Size = new System.Drawing.Size(450, 527);
+            this.panelAbout.TabIndex = 2;
+            this.panelAbout.Visible = false;
+            // 
+            // linkMITLicense
+            // 
+            this.linkMITLicense.AutoSize = true;
+            this.linkMITLicense.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkMITLicense.Location = new System.Drawing.Point(300, 477);
+            this.linkMITLicense.Name = "linkMITLicense";
+            this.linkMITLicense.Size = new System.Drawing.Size(81, 19);
+            this.linkMITLicense.TabIndex = 48;
+            this.linkMITLicense.TabStop = true;
+            this.linkMITLicense.Text = "MIT License";
+            this.linkMITLicense.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkClicked);
+            // 
+            // labelLicensedUnder
+            // 
+            this.labelLicensedUnder.AutoSize = true;
+            this.labelLicensedUnder.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLicensedUnder.Location = new System.Drawing.Point(300, 459);
+            this.labelLicensedUnder.Name = "labelLicensedUnder";
+            this.labelLicensedUnder.Size = new System.Drawing.Size(103, 19);
+            this.labelLicensedUnder.TabIndex = 47;
+            this.labelLicensedUnder.Text = "Licensed under";
+            // 
+            // linkGitHub
+            // 
+            this.linkGitHub.AutoSize = true;
+            this.linkGitHub.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkGitHub.Location = new System.Drawing.Point(37, 477);
+            this.linkGitHub.Name = "linkGitHub";
+            this.linkGitHub.Size = new System.Drawing.Size(53, 19);
+            this.linkGitHub.TabIndex = 46;
+            this.linkGitHub.TabStop = true;
+            this.linkGitHub.Text = "GitHub";
+            this.linkGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkClicked);
+            // 
+            // labelFeedback
+            // 
+            this.labelFeedback.AutoSize = true;
+            this.labelFeedback.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFeedback.Location = new System.Drawing.Point(37, 459);
+            this.labelFeedback.Name = "labelFeedback";
+            this.labelFeedback.Size = new System.Drawing.Size(208, 19);
+            this.labelFeedback.TabIndex = 45;
+            this.labelFeedback.Text = "For feedback, bugs or questions";
+            // 
+            // labelSupport
+            // 
+            this.labelSupport.AutoSize = true;
+            this.labelSupport.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSupport.Location = new System.Drawing.Point(10, 420);
+            this.labelSupport.Name = "labelSupport";
+            this.labelSupport.Size = new System.Drawing.Size(58, 20);
+            this.labelSupport.TabIndex = 44;
+            this.labelSupport.Text = "Support";
+            // 
+            // horizontalSeparator6
+            // 
+            this.horizontalSeparator6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(148)))), ((int)(((byte)(144)))));
+            this.horizontalSeparator6.Location = new System.Drawing.Point(1, 404);
+            this.horizontalSeparator6.Margin = new System.Windows.Forms.Padding(0);
+            this.horizontalSeparator6.Name = "horizontalSeparator6";
+            this.horizontalSeparator6.Size = new System.Drawing.Size(448, 1);
+            this.horizontalSeparator6.TabIndex = 22;
+            // 
+            // linkSquirrelWindowsLicense
+            // 
+            this.linkSquirrelWindowsLicense.AutoSize = true;
+            this.linkSquirrelWindowsLicense.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkSquirrelWindowsLicense.Location = new System.Drawing.Point(200, 322);
+            this.linkSquirrelWindowsLicense.Name = "linkSquirrelWindowsLicense";
+            this.linkSquirrelWindowsLicense.Size = new System.Drawing.Size(53, 19);
+            this.linkSquirrelWindowsLicense.TabIndex = 43;
+            this.linkSquirrelWindowsLicense.TabStop = true;
+            this.linkSquirrelWindowsLicense.Text = "License";
+            this.linkSquirrelWindowsLicense.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkClicked);
+            // 
+            // labelSquirrelWindowsAuthor
+            // 
+            this.labelSquirrelWindowsAuthor.AutoSize = true;
+            this.labelSquirrelWindowsAuthor.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSquirrelWindowsAuthor.Location = new System.Drawing.Point(200, 304);
+            this.labelSquirrelWindowsAuthor.Name = "labelSquirrelWindowsAuthor";
+            this.labelSquirrelWindowsAuthor.Size = new System.Drawing.Size(198, 19);
+            this.labelSquirrelWindowsAuthor.TabIndex = 42;
+            this.labelSquirrelWindowsAuthor.Text = "Copyright © 2012 GitHub, Inc.";
+            // 
+            // labelSquirrelWindowsTitle
+            // 
+            this.labelSquirrelWindowsTitle.AutoSize = true;
+            this.labelSquirrelWindowsTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelSquirrelWindowsTitle.Location = new System.Drawing.Point(200, 286);
+            this.labelSquirrelWindowsTitle.Name = "labelSquirrelWindowsTitle";
+            this.labelSquirrelWindowsTitle.Size = new System.Drawing.Size(120, 19);
+            this.labelSquirrelWindowsTitle.TabIndex = 41;
+            this.labelSquirrelWindowsTitle.Text = "Squirrel.Windows";
+            // 
+            // linkMarkdownSharpLicense
+            // 
+            this.linkMarkdownSharpLicense.AutoSize = true;
+            this.linkMarkdownSharpLicense.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkMarkdownSharpLicense.Location = new System.Drawing.Point(10, 358);
+            this.linkMarkdownSharpLicense.Name = "linkMarkdownSharpLicense";
+            this.linkMarkdownSharpLicense.Size = new System.Drawing.Size(81, 19);
+            this.linkMarkdownSharpLicense.TabIndex = 40;
+            this.linkMarkdownSharpLicense.TabStop = true;
+            this.linkMarkdownSharpLicense.Text = "MIT License";
+            this.linkMarkdownSharpLicense.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkClicked);
+            // 
+            // labelMarkdownSharpAuthor3
+            // 
+            this.labelMarkdownSharpAuthor3.AutoSize = true;
+            this.labelMarkdownSharpAuthor3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMarkdownSharpAuthor3.Location = new System.Drawing.Point(10, 340);
+            this.labelMarkdownSharpAuthor3.Name = "labelMarkdownSharpAuthor3";
+            this.labelMarkdownSharpAuthor3.Size = new System.Drawing.Size(85, 19);
+            this.labelMarkdownSharpAuthor3.TabIndex = 39;
+            this.labelMarkdownSharpAuthor3.Text = "John Gruber";
+            // 
+            // labelMarkdownSharpAuthor2
+            // 
+            this.labelMarkdownSharpAuthor2.AutoSize = true;
+            this.labelMarkdownSharpAuthor2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMarkdownSharpAuthor2.Location = new System.Drawing.Point(10, 322);
+            this.labelMarkdownSharpAuthor2.Name = "labelMarkdownSharpAuthor2";
+            this.labelMarkdownSharpAuthor2.Size = new System.Drawing.Size(105, 19);
+            this.labelMarkdownSharpAuthor2.TabIndex = 38;
+            this.labelMarkdownSharpAuthor2.Text = "Milan Negovan,";
+            // 
+            // labelMarkdownSharpAuthor1
+            // 
+            this.labelMarkdownSharpAuthor1.AutoSize = true;
+            this.labelMarkdownSharpAuthor1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMarkdownSharpAuthor1.Location = new System.Drawing.Point(10, 304);
+            this.labelMarkdownSharpAuthor1.Name = "labelMarkdownSharpAuthor1";
+            this.labelMarkdownSharpAuthor1.Size = new System.Drawing.Size(84, 19);
+            this.labelMarkdownSharpAuthor1.TabIndex = 37;
+            this.labelMarkdownSharpAuthor1.Text = "Jeff Atwood,";
+            // 
+            // labelMarkdownSharpTitle
+            // 
+            this.labelMarkdownSharpTitle.AutoSize = true;
+            this.labelMarkdownSharpTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMarkdownSharpTitle.Location = new System.Drawing.Point(10, 286);
+            this.labelMarkdownSharpTitle.Name = "labelMarkdownSharpTitle";
+            this.labelMarkdownSharpTitle.Size = new System.Drawing.Size(112, 19);
+            this.labelMarkdownSharpTitle.TabIndex = 36;
+            this.labelMarkdownSharpTitle.Text = "MarkdownSharp";
+            // 
+            // linkAnotherMonthCalendarLicense
+            // 
+            this.linkAnotherMonthCalendarLicense.AutoSize = true;
+            this.linkAnotherMonthCalendarLicense.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkAnotherMonthCalendarLicense.Location = new System.Drawing.Point(200, 250);
+            this.linkAnotherMonthCalendarLicense.Name = "linkAnotherMonthCalendarLicense";
+            this.linkAnotherMonthCalendarLicense.Size = new System.Drawing.Size(199, 19);
+            this.linkAnotherMonthCalendarLicense.TabIndex = 35;
+            this.linkAnotherMonthCalendarLicense.TabStop = true;
+            this.linkAnotherMonthCalendarLicense.Text = "The Code Project Open License";
+            this.linkAnotherMonthCalendarLicense.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkClicked);
+            // 
+            // labelAnotherMonthCalendarAuthor
+            // 
+            this.labelAnotherMonthCalendarAuthor.AutoSize = true;
+            this.labelAnotherMonthCalendarAuthor.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAnotherMonthCalendarAuthor.Location = new System.Drawing.Point(200, 232);
+            this.labelAnotherMonthCalendarAuthor.Name = "labelAnotherMonthCalendarAuthor";
+            this.labelAnotherMonthCalendarAuthor.Size = new System.Drawing.Size(219, 19);
+            this.labelAnotherMonthCalendarAuthor.TabIndex = 34;
+            this.labelAnotherMonthCalendarAuthor.Text = "Copyright © 2005, Patrik Bohman";
+            // 
+            // labelAnotherMonthCalendarTitle
+            // 
+            this.labelAnotherMonthCalendarTitle.AutoSize = true;
+            this.labelAnotherMonthCalendarTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAnotherMonthCalendarTitle.Location = new System.Drawing.Point(200, 214);
+            this.labelAnotherMonthCalendarTitle.Name = "labelAnotherMonthCalendarTitle";
+            this.labelAnotherMonthCalendarTitle.Size = new System.Drawing.Size(164, 19);
+            this.labelAnotherMonthCalendarTitle.TabIndex = 33;
+            this.labelAnotherMonthCalendarTitle.Text = "Another Month Calendar";
+            // 
+            // linkNotoSansLicense
+            // 
+            this.linkNotoSansLicense.AutoSize = true;
+            this.linkNotoSansLicense.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkNotoSansLicense.Location = new System.Drawing.Point(10, 250);
+            this.linkNotoSansLicense.Name = "linkNotoSansLicense";
+            this.linkNotoSansLicense.Size = new System.Drawing.Size(176, 19);
+            this.linkNotoSansLicense.TabIndex = 32;
+            this.linkNotoSansLicense.TabStop = true;
+            this.linkNotoSansLicense.Text = "Apache License, version 2.0";
+            this.linkNotoSansLicense.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkClicked);
+            // 
+            // labelNotoSansAuthor
+            // 
+            this.labelNotoSansAuthor.AutoSize = true;
+            this.labelNotoSansAuthor.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNotoSansAuthor.Location = new System.Drawing.Point(10, 232);
+            this.labelNotoSansAuthor.Name = "labelNotoSansAuthor";
+            this.labelNotoSansAuthor.Size = new System.Drawing.Size(53, 19);
+            this.labelNotoSansAuthor.TabIndex = 31;
+            this.labelNotoSansAuthor.Text = "Google";
+            // 
+            // labelNotoSansTitle
+            // 
+            this.labelNotoSansTitle.AutoSize = true;
+            this.labelNotoSansTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNotoSansTitle.Location = new System.Drawing.Point(10, 214);
+            this.labelNotoSansTitle.Name = "labelNotoSansTitle";
+            this.labelNotoSansTitle.Size = new System.Drawing.Size(106, 19);
+            this.labelNotoSansTitle.TabIndex = 30;
+            this.labelNotoSansTitle.Text = "Noto Sans Font";
+            // 
+            // labelOpenSourceLicense
+            // 
+            this.labelOpenSourceLicense.AutoSize = true;
+            this.labelOpenSourceLicense.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelOpenSourceLicense.Location = new System.Drawing.Point(10, 173);
+            this.labelOpenSourceLicense.Name = "labelOpenSourceLicense";
+            this.labelOpenSourceLicense.Size = new System.Drawing.Size(139, 20);
+            this.labelOpenSourceLicense.TabIndex = 29;
+            this.labelOpenSourceLicense.Text = "Open Source License";
+            // 
+            // horizontalSeparator5
+            // 
+            this.horizontalSeparator5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(148)))), ((int)(((byte)(144)))));
+            this.horizontalSeparator5.Location = new System.Drawing.Point(1, 154);
+            this.horizontalSeparator5.Margin = new System.Windows.Forms.Padding(0);
+            this.horizontalSeparator5.Name = "horizontalSeparator5";
+            this.horizontalSeparator5.Size = new System.Drawing.Size(448, 1);
+            this.horizontalSeparator5.TabIndex = 21;
+            // 
+            // linkSammyGuergachi
+            // 
+            this.linkSammyGuergachi.AutoSize = true;
+            this.linkSammyGuergachi.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkSammyGuergachi.Location = new System.Drawing.Point(212, 88);
+            this.linkSammyGuergachi.Name = "linkSammyGuergachi";
+            this.linkSammyGuergachi.Size = new System.Drawing.Size(129, 20);
+            this.linkSammyGuergachi.TabIndex = 28;
+            this.linkSammyGuergachi.TabStop = true;
+            this.linkSammyGuergachi.Text = "Sammy Guergachi";
+            this.linkSammyGuergachi.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkClicked);
+            // 
+            // labelDesignedBy
+            // 
+            this.labelDesignedBy.AutoSize = true;
+            this.labelDesignedBy.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDesignedBy.Location = new System.Drawing.Point(116, 89);
+            this.labelDesignedBy.Name = "labelDesignedBy";
+            this.labelDesignedBy.Size = new System.Drawing.Size(86, 19);
+            this.labelDesignedBy.TabIndex = 27;
+            this.labelDesignedBy.Text = "Designed by";
+            // 
+            // linkYoungSeokYoon
+            // 
+            this.linkYoungSeokYoon.AutoSize = true;
+            this.linkYoungSeokYoon.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkYoungSeokYoon.Location = new System.Drawing.Point(212, 56);
+            this.linkYoungSeokYoon.Name = "linkYoungSeokYoon";
+            this.linkYoungSeokYoon.Size = new System.Drawing.Size(121, 20);
+            this.linkYoungSeokYoon.TabIndex = 26;
+            this.linkYoungSeokYoon.TabStop = true;
+            this.linkYoungSeokYoon.Text = "YoungSeok Yoon";
+            this.linkYoungSeokYoon.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkClicked);
+            // 
+            // labelDevelopedBy
+            // 
+            this.labelDevelopedBy.AutoSize = true;
+            this.labelDevelopedBy.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDevelopedBy.Location = new System.Drawing.Point(108, 57);
+            this.labelDevelopedBy.Name = "labelDevelopedBy";
+            this.labelDevelopedBy.Size = new System.Drawing.Size(94, 19);
+            this.labelDevelopedBy.TabIndex = 25;
+            this.labelDevelopedBy.Text = "Developed by";
+            // 
+            // labelCredits
+            // 
+            this.labelCredits.AutoSize = true;
+            this.labelCredits.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCredits.Location = new System.Drawing.Point(10, 15);
+            this.labelCredits.Name = "labelCredits";
+            this.labelCredits.Size = new System.Drawing.Size(54, 20);
+            this.labelCredits.TabIndex = 24;
+            this.labelCredits.Text = "Credits";
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.buttonOK;
@@ -672,6 +1048,7 @@
             this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(450, 600);
             this.ControlBox = false;
+            this.Controls.Add(this.panelAbout);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "SettingsForm";
             this.RealClientSize = new System.Drawing.Size(448, 578);
@@ -680,6 +1057,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
+            this.Controls.SetChildIndex(this.panelTitlebar, 0);
+            this.Controls.SetChildIndex(this.panelContent, 0);
+            this.Controls.SetChildIndex(this.panelAbout, 0);
             this.panelTitlebar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).EndInit();
@@ -693,6 +1073,9 @@
             this.panelPasswordSetting.ResumeLayout(false);
             this.panelPasswordSetting.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureUpdateIndicator)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonAbout)).EndInit();
+            this.panelAbout.ResumeLayout(false);
+            this.panelAbout.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -736,8 +1119,37 @@
         private System.Windows.Forms.CheckBox checkBoxAutoUpdate;
         private Controls.ColorButton buttonUpdate;
         private System.Windows.Forms.PictureBox pictureUpdateIndicator;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel horizontalSeparator4;
         private System.Windows.Forms.Label labelCurrentVersion;
         private System.Windows.Forms.Label labelVersionNumber;
+        private Controls.ImageButton buttonAbout;
+        private Controls.PaddingBorderPanel panelAbout;
+        private System.Windows.Forms.Panel horizontalSeparator5;
+        private System.Windows.Forms.Panel horizontalSeparator6;
+        private System.Windows.Forms.Label labelCredits;
+        private System.Windows.Forms.LinkLabel linkYoungSeokYoon;
+        private System.Windows.Forms.Label labelDevelopedBy;
+        private System.Windows.Forms.Label labelDesignedBy;
+        private System.Windows.Forms.LinkLabel linkSammyGuergachi;
+        private System.Windows.Forms.Label labelOpenSourceLicense;
+        private System.Windows.Forms.Label labelNotoSansTitle;
+        private System.Windows.Forms.LinkLabel linkNotoSansLicense;
+        private System.Windows.Forms.Label labelNotoSansAuthor;
+        private System.Windows.Forms.Label labelAnotherMonthCalendarAuthor;
+        private System.Windows.Forms.Label labelAnotherMonthCalendarTitle;
+        private System.Windows.Forms.LinkLabel linkAnotherMonthCalendarLicense;
+        private System.Windows.Forms.Label labelMarkdownSharpTitle;
+        private System.Windows.Forms.Label labelMarkdownSharpAuthor1;
+        private System.Windows.Forms.Label labelMarkdownSharpAuthor2;
+        private System.Windows.Forms.Label labelMarkdownSharpAuthor3;
+        private System.Windows.Forms.LinkLabel linkMarkdownSharpLicense;
+        private System.Windows.Forms.Label labelSquirrelWindowsTitle;
+        private System.Windows.Forms.Label labelSquirrelWindowsAuthor;
+        private System.Windows.Forms.LinkLabel linkSquirrelWindowsLicense;
+        private System.Windows.Forms.Label labelSupport;
+        private System.Windows.Forms.Label labelFeedback;
+        private System.Windows.Forms.LinkLabel linkGitHub;
+        private System.Windows.Forms.Label labelLicensedUnder;
+        private System.Windows.Forms.LinkLabel linkMITLicense;
     }
 }

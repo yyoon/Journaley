@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Drawing;
     using System.Globalization;
     using System.IO;
@@ -106,6 +107,17 @@
             this.buttonSizeLarge.Tag = TextSizeLarge;
 
             this.SettingPassword = false;
+
+            this.linkYoungSeokYoon.Links[0].LinkData = @"https://github.com/yyoon";
+            this.linkSammyGuergachi.Links[0].LinkData = @"https://github.com/sguergachi";
+
+            this.linkNotoSansLicense.Links[0].LinkData = @"http://www.apache.org/licenses/LICENSE-2.0.html";
+            this.linkAnotherMonthCalendarLicense.Links[0].LinkData = @"http://www.codeproject.com/info/cpol10.aspx";
+            this.linkMarkdownSharpLicense.Links[0].LinkData = @"http://opensource.org/licenses/mit-license.php";
+            this.linkSquirrelWindowsLicense.Links[0].LinkData = @"https://github.com/Squirrel/Squirrel.Windows/blob/master/COPYING";
+
+            this.linkGitHub.Links[0].LinkData = @"https://github.com/yyoon/Journaley";
+            this.linkMITLicense.Links[0].LinkData = @"http://opensource.org/licenses/mit-license.php";
         }
 
         /// <summary>
@@ -774,6 +786,32 @@
                 this.UpdateFolderInterface();
 
                 break;
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the buttonAbout control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonAbout_Click(object sender, EventArgs e)
+        {
+            this.panelAbout.Visible ^= true;
+            this.buttonAbout.Selected = this.panelAbout.Visible;
+            this.buttonAbout.Refresh();
+        }
+
+        /// <summary>
+        /// Handles the LinkClicked event of all the link label controls.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="LinkLabelLinkClickedEventArgs"/> instance containing the event data.</param>
+        private void LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            LinkLabel linkLabel = sender as LinkLabel;
+            if (linkLabel != null)
+            {
+                Process.Start(linkLabel.Links[0].LinkData.ToString());
             }
         }
     }
