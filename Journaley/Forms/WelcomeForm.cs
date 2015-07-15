@@ -63,6 +63,11 @@
         private static readonly Color RetypeMessageColorError = Color.FromArgb(218, 36, 36);
 
         /// <summary>
+        /// The retype message shown at the beginning.
+        /// </summary>
+        private static readonly string RetypeMessageNormal = "Retype";
+
+        /// <summary>
         /// The retype message shown once the passwords in both boxes didn't match
         /// </summary>
         private static readonly string RetypeMessageError = "Retype password to confirm";
@@ -578,6 +583,16 @@
         }
 
         /// <summary>
+        /// Handles the Click event of the buttonGoBack control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonGoBack_Click(object sender, EventArgs e)
+        {
+            this.ShowBottomPanel(3);
+        }
+
+        /// <summary>
         /// Handles the Click event of the buttonSavePassword control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -650,6 +665,23 @@
         private void BottomPanel3LocationSelected_VisibleChanged(object sender, EventArgs e)
         {
             this.textJournalLocation.Text = this.Settings.DayOneFolderPath;
+        }
+
+        /// <summary>
+        /// Handles the VisibleChanged event of the bottomPanel4PasswordSetting control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void BottomPanel4PasswordSetting_VisibleChanged(object sender, EventArgs e)
+        {
+            this.borderPassword.BackColor = BorderColorNormal;
+            this.labelPasswordConfirm.ForeColor = RetypeMessageColorNormal;
+            this.labelPasswordConfirm.Text = RetypeMessageNormal;
+
+            this.textPassword.Text = string.Empty;
+            this.textPasswordConfirm.Text = string.Empty;
+
+            this.textPassword.Focus();
         }
 
         /// <summary>
