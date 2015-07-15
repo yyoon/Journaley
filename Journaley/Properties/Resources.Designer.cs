@@ -63,26 +63,6 @@ namespace Journaley.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap entires_pane_entryContainer_background {
-            get {
-                object obj = ResourceManager.GetObject("entires_pane_entryContainer_background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap entries_pane_dateHeader_background {
-            get {
-                object obj = ResourceManager.GetObject("entries_pane_dateHeader_background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap frame_btn_close_down {
             get {
                 object obj = ResourceManager.GetObject("frame_btn_close_down", resourceCulture);
@@ -530,16 +510,6 @@ namespace Journaley.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap main_frame_background {
-            get {
-                object obj = ResourceManager.GetObject("main_frame_background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap main_frame_bottom_background {
             get {
                 object obj = ResourceManager.GetObject("main_frame_bottom_background", resourceCulture);
@@ -553,16 +523,6 @@ namespace Journaley.Properties {
         internal static System.Drawing.Bitmap main_frame_bottom_separator {
             get {
                 object obj = ResourceManager.GetObject("main_frame_bottom_separator", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap main_pane_date_background {
-            get {
-                object obj = ResourceManager.GetObject("main_pane_date_background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -603,26 +563,6 @@ namespace Journaley.Properties {
         internal static System.Drawing.Bitmap main_pane_entriesStat_background {
             get {
                 object obj = ResourceManager.GetObject("main_pane_entriesStat_background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap main_pane_sidebar_background {
-            get {
-                object obj = ResourceManager.GetObject("main_pane_sidebar_background", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap main_text_entry_background {
-            get {
-                object obj = ResourceManager.GetObject("main_text_entry_background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

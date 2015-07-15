@@ -1158,8 +1158,7 @@ namespace Journaley.Forms
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackgroundImage = global::Journaley.Properties.Resources.main_frame_background;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(930, 600);
             this.Controls.Add(this.panelSidebar);
             this.Controls.Add(this.panelTitlebar);
