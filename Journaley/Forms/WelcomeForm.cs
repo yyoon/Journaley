@@ -386,21 +386,41 @@
                 // Is it an empty folder?
                 if (!Directory.EnumerateFileSystemEntries(folderDialog.SelectedPath).Any())
                 {
-                    // Ask the user if she wants to create Journaley files there.
+                    // Create "entries" folder.
+                    try
+                    {
+                        Directory.CreateDirectory(entriesPath);
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show(
+                            this,
+                            "Failed to create subfolders.\nPlease select another folder.",
+                            "Journaley",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
+                        continue;
+                    }
+                }
+                else
+                {
                     createDirectoryResult = MessageBox.Show(
                         this,
-                        "The selected folder is empty.\nWould you like to use this folder to store your data?",
+                        "The selected folder is not empty.\nWould you like to create a subfolder named \"Journaley\" and use it to store your data?",
                         "Journaley",
                         MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Question,
+                        MessageBoxIcon.Warning,
                         MessageBoxDefaultButton.Button1);
 
                     if (createDirectoryResult == DialogResult.Yes)
                     {
-                        // Create "entries" folder.
+                        // Create "Journaley\entries" folder.
                         try
                         {
-                            Directory.CreateDirectory(entriesPath);
+                            Directory.CreateDirectory(Path.Combine(folderDialog.SelectedPath, "Journaley"));
+                            folderDialog.SelectedPath = Path.Combine(folderDialog.SelectedPath, "Journaley");
+                            Directory.CreateDirectory(Path.Combine(folderDialog.SelectedPath, "entries"));
                         }
                         catch (Exception)
                         {
@@ -418,40 +438,6 @@
                     {
                         continue;
                     }
-                }
-
-                createDirectoryResult = MessageBox.Show(
-                    this,
-                    "The selected folder is not empty.\nWould you like to create a subfolder named \"Journaley\" and use it to store your data?",
-                    "Journaley",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning,
-                    MessageBoxDefaultButton.Button1);
-
-                if (createDirectoryResult == DialogResult.Yes)
-                {
-                    // Create "Journaley\entries" folder.
-                    try
-                    {
-                        Directory.CreateDirectory(Path.Combine(folderDialog.SelectedPath, "Journaley"));
-                        folderDialog.SelectedPath = Path.Combine(folderDialog.SelectedPath, "Journaley");
-                        Directory.CreateDirectory(Path.Combine(folderDialog.SelectedPath, "entries"));
-                    }
-                    catch (Exception)
-                    {
-                        MessageBox.Show(
-                            this,
-                            "Failed to create subfolders.\nPlease select another folder.",
-                            "Journaley",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-
-                        continue;
-                    }
-                }
-                else
-                {
-                    continue;
                 }
 
                 this.Settings.DayOneFolderPath = folderDialog.SelectedPath;
