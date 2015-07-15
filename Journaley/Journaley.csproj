@@ -462,6 +462,12 @@
     <Content Include="Images\NewEntry.ico" />
     <Content Include="Images\password_ui_press_enter.png" />
     <Content Include="Images\password_ui_wrong_password.png" />
+    <Content Include="Images\settings_btn_about_down_down.png" />
+    <Content Include="Images\settings_btn_about_down_norm.png" />
+    <Content Include="Images\settings_btn_about_down_over.png" />
+    <Content Include="Images\settings_btn_about_up_down.png" />
+    <Content Include="Images\settings_btn_about_up_norm.png" />
+    <Content Include="Images\settings_btn_about_up_over.png" />
     <Content Include="Images\settings_folder_btn_down.png" />
     <Content Include="Images\settings_folder_btn_norm.png" />
     <Content Include="Images\settings_folder_btn_over.png" />

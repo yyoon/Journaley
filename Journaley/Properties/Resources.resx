@@ -463,4 +463,22 @@
   <data name="welcome_journaley" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Images\welcome_journaley.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="settings_btn_about_down_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\settings_btn_about_down_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settings_btn_about_down_norm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\settings_btn_about_down_norm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settings_btn_about_down_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\settings_btn_about_down_over.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settings_btn_about_up_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\settings_btn_about_up_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settings_btn_about_up_norm" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\settings_btn_about_up_norm.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settings_btn_about_up_over" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Images\settings_btn_about_up_over.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
