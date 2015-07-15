@@ -974,9 +974,9 @@
             this.labelOpenSourceLicense.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelOpenSourceLicense.Location = new System.Drawing.Point(10, 173);
             this.labelOpenSourceLicense.Name = "labelOpenSourceLicense";
-            this.labelOpenSourceLicense.Size = new System.Drawing.Size(139, 20);
+            this.labelOpenSourceLicense.Size = new System.Drawing.Size(145, 20);
             this.labelOpenSourceLicense.TabIndex = 29;
-            this.labelOpenSourceLicense.Text = "Open Source License";
+            this.labelOpenSourceLicense.Text = "Open Source Licenses";
             // 
             // horizontalSeparator5
             // 
