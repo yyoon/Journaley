@@ -43,7 +43,8 @@
             this.bottomPanel3LocationSelected = new Journaley.Controls.BorderPanel();
             this.buttonLaunchJournaley = new Journaley.Controls.ColorButton();
             this.buttonSetupPassword = new Journaley.Controls.ColorButton();
-            this.labelJournalLocation = new System.Windows.Forms.Label();
+            this.textJournalLocation = new System.Windows.Forms.TextBox();
+            this.labelJournalLocationPadding = new System.Windows.Forms.Label();
             this.labelJournalLocationBorder = new System.Windows.Forms.Label();
             this.labelPanel3Message = new System.Windows.Forms.Label();
             this.bottomPanel4PasswordSetting = new Journaley.Controls.BorderPanel();
@@ -113,9 +114,9 @@
             // 
             // panelContent
             // 
+            this.panelContent.Controls.Add(this.bottomPanel3LocationSelected);
             this.panelContent.Controls.Add(this.bottomPanel1Init);
             this.panelContent.Controls.Add(this.bottomPanel2StartNewJournal);
-            this.panelContent.Controls.Add(this.bottomPanel3LocationSelected);
             this.panelContent.Controls.Add(this.bottomPanel4PasswordSetting);
             this.panelContent.Controls.Add(this.bottomPanel5ImportJournal);
             this.panelContent.Controls.Add(this.bottomPanel6Complete);
@@ -295,7 +296,8 @@
             this.bottomPanel3LocationSelected.BorderWidth = new System.Windows.Forms.Padding(1, 0, 1, 1);
             this.bottomPanel3LocationSelected.Controls.Add(this.buttonLaunchJournaley);
             this.bottomPanel3LocationSelected.Controls.Add(this.buttonSetupPassword);
-            this.bottomPanel3LocationSelected.Controls.Add(this.labelJournalLocation);
+            this.bottomPanel3LocationSelected.Controls.Add(this.textJournalLocation);
+            this.bottomPanel3LocationSelected.Controls.Add(this.labelJournalLocationPadding);
             this.bottomPanel3LocationSelected.Controls.Add(this.labelJournalLocationBorder);
             this.bottomPanel3LocationSelected.Controls.Add(this.labelPanel3Message);
             this.bottomPanel3LocationSelected.IgnoreSetCursor = false;
@@ -347,16 +349,28 @@
             this.buttonSetupPassword.Text = "Setup a Password";
             this.buttonSetupPassword.Click += new System.EventHandler(this.ButtonSetupPassword_Click);
             // 
-            // labelJournalLocation
+            // textJournalLocation
             // 
-            this.labelJournalLocation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.labelJournalLocation.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.labelJournalLocation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(44)))), ((int)(((byte)(49)))));
-            this.labelJournalLocation.Location = new System.Drawing.Point(1, 73);
-            this.labelJournalLocation.Name = "labelJournalLocation";
-            this.labelJournalLocation.Size = new System.Drawing.Size(448, 31);
-            this.labelJournalLocation.TabIndex = 6;
-            this.labelJournalLocation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.textJournalLocation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.textJournalLocation.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textJournalLocation.Font = new System.Drawing.Font("Segoe UI", 19F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.textJournalLocation.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(44)))), ((int)(((byte)(49)))));
+            this.textJournalLocation.Location = new System.Drawing.Point(3, 75);
+            this.textJournalLocation.Name = "textJournalLocation";
+            this.textJournalLocation.ReadOnly = true;
+            this.textJournalLocation.Size = new System.Drawing.Size(444, 26);
+            this.textJournalLocation.TabIndex = 7;
+            // 
+            // labelJournalLocationPadding
+            // 
+            this.labelJournalLocationPadding.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.labelJournalLocationPadding.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.labelJournalLocationPadding.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(44)))), ((int)(((byte)(49)))));
+            this.labelJournalLocationPadding.Location = new System.Drawing.Point(1, 73);
+            this.labelJournalLocationPadding.Name = "labelJournalLocationPadding";
+            this.labelJournalLocationPadding.Size = new System.Drawing.Size(448, 31);
+            this.labelJournalLocationPadding.TabIndex = 6;
+            this.labelJournalLocationPadding.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelJournalLocationBorder
             // 
@@ -624,6 +638,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.buttonDropboxJournaley)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonPanel2Browse)).EndInit();
             this.bottomPanel3LocationSelected.ResumeLayout(false);
+            this.bottomPanel3LocationSelected.PerformLayout();
             this.bottomPanel4PasswordSetting.ResumeLayout(false);
             this.bottomPanel4PasswordSetting.PerformLayout();
             this.bottomPanel5ImportJournal.ResumeLayout(false);
@@ -669,6 +684,7 @@
         private System.Windows.Forms.Label labelPanel6Message;
         private Controls.ColorButton buttonOK;
         private System.Windows.Forms.Label labelJournalLocationBorder;
-        private System.Windows.Forms.Label labelJournalLocation;
+        private System.Windows.Forms.Label labelJournalLocationPadding;
+        private System.Windows.Forms.TextBox textJournalLocation;
     }
 }

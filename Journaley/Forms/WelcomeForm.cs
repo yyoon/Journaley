@@ -663,7 +663,7 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BottomPanel3LocationSelected_VisibleChanged(object sender, EventArgs e)
         {
-            this.labelJournalLocation.Text = this.Settings.DayOneFolderPath;
+            this.textJournalLocation.Text = this.Settings.DayOneFolderPath;
         }
 
         /// <summary>
