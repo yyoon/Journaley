@@ -718,6 +718,7 @@
             this.buttonAbout.TabIndex = 26;
             this.buttonAbout.TabStop = false;
             this.buttonAbout.Click += new System.EventHandler(this.ButtonAbout_Click);
+            this.buttonAbout.DoubleClick += new System.EventHandler(this.ButtonAbout_Click);
             // 
             // panelAbout
             // 
