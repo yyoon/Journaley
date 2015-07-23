@@ -52,7 +52,7 @@
     <Exec Command="ECHO $(UpdateSource) > temp\lib\net45\UpdateSource" />
     <Copy SourceFiles="Journaley.nuspec" DestinationFolder="temp" />
     <Exec Command="nuget pack temp\Journaley.nuspec -Version $(VersionNum)" />
-    <Exec Command="..\packages\squirrel.windows.0.99.1.1\tools\Squirrel --releasify Journaley.$(VersionNum).nupkg" />
+    <Exec Command="..\packages\squirrel.windows.0.99.2\tools\Squirrel --releasify Journaley.$(VersionNum).nupkg" />
     <Move SourceFiles="Releases\Setup.exe" DestinationFiles="Releases\Journaley.$(VersionNum).Setup.exe" />
   </Target>
   
