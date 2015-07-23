@@ -35,6 +35,11 @@
         private static readonly int AutoSaveThreshold = 3000;
 
         /// <summary>
+        /// The custom CSS file name.
+        /// </summary>
+        private static readonly string CustomCSSFileName = "Custom.css";
+
+        /// <summary>
         /// The backing field of selected entry
         /// </summary>
         private Entry selectedEntry;
@@ -442,6 +447,14 @@
         private EntryWatcher Watcher { get; set; }
 
         /// <summary>
+        /// Gets or sets the custom CSS rules defined by the user.
+        /// </summary>
+        /// <value>
+        /// The custom CSS rules defined by the user.
+        /// </value>
+        private string CustomCSS { get; set; }
+
+        /// <summary>
         /// Gets the entry text for the provided journal entry.
         /// If the entry is currently selected and being edited,
         /// the text being edited should be returned.
@@ -540,8 +553,9 @@
         {
             this.webBrowser.DocumentText =
                 string.Format(
-                    "<style type=\"text/css\">\n{0}\n</style><html><body><div>{1}</div></body></html>",
+                    "<style type=\"text/css\">\n<!-- Journaley CSS -->\n{0}\n<!-- Custom CSS -->\n{1}\n</style><html><body><div>{2}</div></body></html>",
                     this.GetWebBrowserCSS(),
+                    this.CustomCSS ?? string.Empty,
                     Markdown.Transform(this.SelectedEntry.EntryText));
         }
 
@@ -1487,6 +1501,18 @@
                     location.Y < headerHeight;
         }
 
+        /// <summary>
+        /// Reads the custom CSS file if one exists.
+        /// </summary>
+        private void ReadCustomCSS()
+        {
+            var filePath = Settings.GetFilePathUnderApplicationData(CustomCSSFileName);
+            if (File.Exists(filePath))
+            {
+                this.CustomCSS = File.ReadAllText(filePath);
+            }
+        }
+
         #region Event Handlers
 
         /// <summary>
@@ -1496,7 +1522,7 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // Remembre the system settings.
+            // Remember the system settings.
             this.FirstDayOfWeek = Thread.CurrentThread.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
 
             // Disable the click sound of the web browser for this process.
@@ -1543,6 +1569,9 @@
             }
 
             Debug.Assert(this.Settings != null, "At this point, a valid Settings object must be present.");
+
+            // Read custom CSS override file if one exists.
+            this.ReadCustomCSS();
 
             this.buttonMainTimeline.UpdateImage();
 

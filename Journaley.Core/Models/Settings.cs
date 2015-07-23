@@ -266,6 +266,24 @@
         }
 
         /// <summary>
+        /// Gets the file path under %APPDATA% folder.
+        /// Creates "Journaley" folder if it doesn't exist.
+        /// </summary>
+        /// <param name="filename">The filename.</param>
+        /// <returns>the full file path combined with the %APPDATA%/Journaley folder.</returns>
+        public static string GetFilePathUnderApplicationData(string filename)
+        {
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), SettingsFolder);
+            DirectoryInfo dinfo = new DirectoryInfo(path);
+            if (!dinfo.Exists)
+            {
+                dinfo.Create();
+            }
+
+            return Path.Combine(path, filename);
+        }
+
+        /// <summary>
         /// Saves this instance to the default settings file path.
         /// </summary>
         /// <returns>
@@ -414,23 +432,5 @@
         #endregion
 
         #endregion
-
-        /// <summary>
-        /// Gets the file path under %APPDATA% folder.
-        /// Creates "Journaley" folder if it doesn't exist.
-        /// </summary>
-        /// <param name="filename">The filename.</param>
-        /// <returns>the full file path combined with the %APPDATA%/Journaley folder.</returns>
-        internal static string GetFilePathUnderApplicationData(string filename)
-        {
-            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), SettingsFolder);
-            DirectoryInfo dinfo = new DirectoryInfo(path);
-            if (!dinfo.Exists)
-            {
-                dinfo.Create();
-            }
-
-            return Path.Combine(path, filename);
-        }
     }
 }
