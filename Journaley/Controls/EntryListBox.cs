@@ -139,6 +139,12 @@
         {
             this.ScrollAlwaysVisible = true;
 
+            this.SetStyle(
+                ControlStyles.OptimizedDoubleBuffer |
+                ControlStyles.ResizeRedraw |
+                ControlStyles.UserPaint,
+                true);
+
             this.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
         }
 
@@ -234,47 +240,60 @@
         /// <param name="e">A <see cref="T:System.Windows.Forms.DrawItemEventArgs" /> that contains the event data.</param>
         protected override void OnDrawItem(DrawItemEventArgs e)
         {
-            BufferedGraphicsContext currentContext = BufferedGraphicsManager.Current;
-
             Rectangle bounds = new Rectangle(0, 0, e.Bounds.Width, e.Bounds.Height);
-            using (BufferedGraphics bufferedGraphics = currentContext.Allocate(e.Graphics, bounds))
+
+            DrawItemEventArgs args = new DrawItemEventArgs(
+                e.Graphics, e.Font, e.Bounds, e.Index, e.State, e.ForeColor, e.BackColor);
+
+            if (e.Index < 0 || e.Index >= this.Items.Count)
             {
-                DrawItemEventArgs args = new DrawItemEventArgs(
-                    bufferedGraphics.Graphics, e.Font, bounds, e.Index, e.State, e.ForeColor, e.BackColor);
-
-                if (e.Index < 0 || e.Index >= this.Items.Count)
-                {
-                    return;
-                }
-
-                object obj = this.Items[e.Index];
-
-                // Draw the item
-                if (obj is DateTime)
-                {
-                    this.DrawMonth(args, (DateTime)obj);
-                }
-                else if (obj is Entry)
-                {
-                    this.DrawEntry(args, (Entry)obj);
-                }
-                else
-                {
-                    // Unknown type. do nothing.
-                }
-
-                // Copy the bufferedGraphics into destination.
-                PInvoke.BitBlt(
-                    e.Graphics.GetHdc(),
-                    e.Bounds.X,
-                    e.Bounds.Y,
-                    e.Bounds.Width,
-                    e.Bounds.Height,
-                    bufferedGraphics.Graphics.GetHdc(),
-                    0,
-                    0,
-                    PInvoke.TernaryRasterOperations.SRCCOPY);
+                return;
             }
+
+            object obj = this.Items[e.Index];
+
+            // Draw the item
+            if (obj is DateTime)
+            {
+                this.DrawMonth(args, (DateTime)obj);
+            }
+            else if (obj is Entry)
+            {
+                this.DrawEntry(args, (Entry)obj);
+            }
+        }
+
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.Forms.Control.Paint" /> event.
+        /// </summary>
+        /// <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs" /> that contains the event data.</param>
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            Region region = new Region(e.ClipRectangle);
+
+            e.Graphics.FillRegion(new SolidBrush(this.BackColor), region);
+            if (this.Items.Count > 0)
+            {
+                for (int i = 0; i < this.Items.Count; ++i)
+                {
+                    System.Drawing.Rectangle irect = this.GetItemRectangle(i);
+                    if (e.ClipRectangle.IntersectsWith(irect))
+                    {
+                        this.OnDrawItem(new DrawItemEventArgs(
+                            e.Graphics,
+                            this.Font,
+                            irect,
+                            i,
+                            this.SelectedIndex == i ? DrawItemState.Selected : DrawItemState.Default,
+                            this.ForeColor,
+                            this.BackColor));
+
+                        region.Complement(irect);
+                    }
+                }
+            }
+
+            base.OnPaint(e);
         }
 
         /// <summary>
