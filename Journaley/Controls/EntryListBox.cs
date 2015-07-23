@@ -77,19 +77,9 @@
         private static readonly Font EntryTitleFont = new Font("Segoe UI Semibold", 9.0f, System.Drawing.FontStyle.Regular);
 
         /// <summary>
-        /// The entry day font
-        /// </summary>
-        private static Font EntryDayFont = new Font(EntryTextFont.FontFamily, 26.0f, FontStyle.Bold);
-
-        /// <summary>
         /// The entry day of week font
         /// </summary>
         private static readonly Font EntryDayOfWeekFont = new Font(EntryTextFont.FontFamily, 11.0f, FontStyle.Regular);
-
-        /// <summary>
-        /// The entry time font
-        /// </summary>
-        private static Font EntryTimeFont = new Font(EntryTextFont.FontFamily, 8.9f);
 
         /// <summary>
         /// Brush for filling the background of month entries
@@ -120,6 +110,16 @@
         /// The boundary line pen
         /// </summary>
         private static readonly Pen BoundaryLinePen = Pens.Black;
+
+        /// <summary>
+        /// The entry day font. Not marked as read-only because its size can change dynamically.
+        /// </summary>
+        private static Font entryDayFont = new Font(EntryTextFont.FontFamily, 26.0f, FontStyle.Bold);
+
+        /// <summary>
+        /// The entry time font. Not marked as read-only because its size can change dynamically.
+        /// </summary>
+        private static Font entryTimeFont = new Font(EntryTextFont.FontFamily, 8.9f);
 
         /// <summary>
         /// The thumbnail cache
@@ -533,14 +533,14 @@
 
             var dayString = entry.LocalTime.ToString("%d");
 
-            SizeF measuredSize = e.Graphics.MeasureString(dayString, EntryDayFont);
+            SizeF measuredSize = e.Graphics.MeasureString(dayString, entryDayFont);
             while (measuredSize.Width > bounds.Width)
             {
-                EntryDayFont = new Font(EntryDayFont.FontFamily, EntryDayFont.Size - 0.1f, GraphicsUnit.Point);
-                measuredSize = e.Graphics.MeasureString(dayString, EntryDayFont);
+                entryDayFont = new Font(entryDayFont.FontFamily, entryDayFont.Size - 0.1f, GraphicsUnit.Point);
+                measuredSize = e.Graphics.MeasureString(dayString, entryDayFont);
             }
 
-            e.Graphics.DrawString(dayString, EntryDayFont, brush, bounds, stringFormat);
+            e.Graphics.DrawString(dayString, entryDayFont, brush, bounds, stringFormat);
             e.Graphics.ResetTransform();
         }
 
@@ -594,14 +594,14 @@
 
             var timeString = entry.LocalTime.ToString("h:mm tt").ToLower();
 
-            SizeF measuredSize = e.Graphics.MeasureString(timeString, EntryTimeFont);
+            SizeF measuredSize = e.Graphics.MeasureString(timeString, entryTimeFont);
             while (measuredSize.Width > bounds.Width)
             {
-                EntryTimeFont = new Font(EntryTimeFont.FontFamily, EntryTimeFont.Size - 0.1f, GraphicsUnit.Point);
-                measuredSize = e.Graphics.MeasureString(timeString, EntryTimeFont);
+                entryTimeFont = new Font(entryTimeFont.FontFamily, entryTimeFont.Size - 0.1f, GraphicsUnit.Point);
+                measuredSize = e.Graphics.MeasureString(timeString, entryTimeFont);
             }
 
-            e.Graphics.DrawString(timeString, EntryTimeFont, brush, bounds, stringFormat);
+            e.Graphics.DrawString(timeString, entryTimeFont, brush, bounds, stringFormat);
         }
 
         /// <summary>
