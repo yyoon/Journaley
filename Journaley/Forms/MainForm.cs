@@ -27,7 +27,7 @@
     /// <summary>
     /// The Main Form of the application. Contains the entry list, preview, buttons, etc.
     /// </summary>
-    public partial class MainForm : Form, IEntryTextProvider
+    public partial class MainForm : BaseJournaleyForm, IEntryTextProvider
     {
         /// <summary>
         /// The auto save threshold in milliseconds.
@@ -80,16 +80,6 @@
         private FontFamily fontFamilyNotoSerifRegular;
 
         /// <summary>
-        /// Indicates whether the title bar is being dragged.
-        /// </summary>
-        private bool draggingTitleBar = false;
-
-        /// <summary>
-        /// The dragging offset
-        /// </summary>
-        private Point draggingOffset;
-
-        /// <summary>
         /// Backing field for UpdateAvailable property.
         /// </summary>
         private bool updateAvailable = false;
@@ -109,16 +99,6 @@
         public MainForm(bool newEntry, bool createJumpList)
         {
             this.EntryList = new EntryList();
-
-            int val = 2;
-            PInvoke.DwmSetWindowAttribute(this.Handle, 2, ref val, 4);  // Enabling the DWM-based NC painting.
-
-            PInvoke.MARGINS margins = new PInvoke.MARGINS();
-            margins.leftWidth = 1;
-            margins.topHeight = 1;
-            margins.rightWidth = 1;
-            margins.bottomHeight = 1;
-            PInvoke.DwmExtendFrameIntoClientArea(this.Handle, ref margins);
 
             this.InitializeComponent();
 
@@ -454,33 +434,6 @@
         private System.Timers.Timer AutoSaveTimer { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether [dragging title bar].
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if [dragging title bar]; otherwise, <c>false</c>.
-        /// </value>
-        private bool DraggingTitleBar
-        {
-            get
-            {
-                return this.draggingTitleBar;
-            }
-
-            set
-            {
-                if (this.draggingTitleBar == true && value == false)
-                {
-                    if (this.WindowState != FormWindowState.Maximized && this.Location.Y < 0)
-                    {
-                        this.Location = new Point(this.Location.X, 0);
-                    }
-                }
-
-                this.draggingTitleBar = value;
-            }
-        }
-
-        /// <summary>
         /// Gets or sets the watcher.
         /// </summary>
         /// <value>
@@ -731,14 +684,6 @@
             this.webBrowser.Visible = this.panelWebBrowserWrapper.Visible;
 
             this.UpdateMaximizeRestoreButtonImage();
-        }
-
-        /// <summary>
-        /// Updates the maximize/restore button image.
-        /// </summary>
-        private void UpdateMaximizeRestoreButtonImage()
-        {
-            this.imageButtonFormMaximize.Selected = this.WindowState == FormWindowState.Maximized;
         }
 
         /// <summary>
@@ -1467,23 +1412,6 @@
         }
 
         /// <summary>
-        /// Toggles the maximize state.
-        /// </summary>
-        private void ToggleMaximize()
-        {
-            if (this.WindowState == FormWindowState.Maximized)
-            {
-                this.WindowState = FormWindowState.Normal;
-            }
-            else
-            {
-                this.WindowState = FormWindowState.Maximized;
-            }
-
-            this.UpdateMaximizeRestoreButtonImage();
-        }
-
-        /// <summary>
         /// Sets up the auto save timer.
         /// </summary>
         private void SetupAutoSaveTimer()
@@ -1716,46 +1644,6 @@
                     this.StartEditing();
                 }
             }
-        }
-
-        /// <summary>
-        /// Handles the Deactivate event of the MainForm control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void MainForm_Deactivate(object sender, EventArgs e)
-        {
-            this.DraggingTitleBar = false;
-        }
-
-        /// <summary>
-        /// Handles the Click event of the imageButtonFormClose control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void ImageButtonFormClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the imageButtonFormMaximize control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void ImageButtonFormMaximize_Click(object sender, EventArgs e)
-        {
-            this.ToggleMaximize();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the imageButtonFormMinimize control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void ImageButtonFormMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
         }
 
         /// <summary>
@@ -2245,87 +2133,6 @@
                 this.SaveAndFinishEditing();
                 e.Handled = true;
             }
-        }
-
-        /// <summary>
-        /// Handles the MouseDown event of the panel title bar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
-        private void PanelTitlebar_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                this.DraggingTitleBar = true;
-
-                if (this.WindowState == FormWindowState.Maximized)
-                {
-                    Point offset = new Point();
-                    if (this.RestoreBounds.Width >= this.Width || e.X < this.RestoreBounds.Width / 2)
-                    {
-                        offset = e.Location;
-                    }
-                    else if (e.X >= this.Width - (this.RestoreBounds.Width / 2))
-                    {
-                        offset = new Point(e.Location.X - (this.Width - this.RestoreBounds.Width), e.Location.Y);
-                    }
-                    else
-                    {
-                        offset = new Point(this.RestoreBounds.Width / 2, e.Location.Y);
-                    }
-
-                    this.draggingOffset = offset;
-                }
-                else
-                {
-                    this.draggingOffset = e.Location;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Handles the MouseMove event of the panel title bar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
-        private void PanelTitlebar_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (this.DraggingTitleBar)
-            {
-                // Make it normal state before moving.
-                if (this.WindowState == FormWindowState.Maximized)
-                {
-                    this.ToggleMaximize();
-                }
-
-                Point curScreenPos = this.PointToScreen(e.Location);
-                this.Location = new Point(curScreenPos.X - this.draggingOffset.X, curScreenPos.Y - this.draggingOffset.Y);
-            }
-        }
-
-        /// <summary>
-        /// Handles the MouseUp event of the panel title bar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
-        private void PanelTitlebar_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (this.PointToScreen(e.Location).Y == 0 && this.WindowState == FormWindowState.Normal)
-            {
-                this.ToggleMaximize();
-            }
-
-            this.DraggingTitleBar = false;
-        }
-
-        /// <summary>
-        /// Handles the MouseDoubleClick event of the panel title bar control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
-        private void PanelTitlebar_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            this.ToggleMaximize();
         }
 
         /// <summary>

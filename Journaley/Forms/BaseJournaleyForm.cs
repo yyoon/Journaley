@@ -179,6 +179,14 @@
         }
 
         /// <summary>
+        /// Updates the maximize/restore button image.
+        /// </summary>
+        protected void UpdateMaximizeRestoreButtonImage()
+        {
+            this.imageButtonFormMaximize.Selected = this.WindowState == FormWindowState.Maximized;
+        }
+
+        /// <summary>
         /// Toggles the maximize state.
         /// </summary>
         private void ToggleMaximize()
@@ -323,14 +331,6 @@
                     Cursor.Current = this.Cursor;
                     break;
             }
-        }
-
-        /// <summary>
-        /// Updates the maximize/restore button image.
-        /// </summary>
-        private void UpdateMaximizeRestoreButtonImage()
-        {
-            this.imageButtonFormMaximize.Selected = this.WindowState == FormWindowState.Maximized;
         }
 
         #region Event Handlers
