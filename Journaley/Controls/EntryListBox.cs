@@ -1,7 +1,9 @@
 ﻿namespace Journaley.Controls
 {
     using System;
+    using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.Diagnostics;
     using System.Drawing;
     using System.Windows.Forms;
@@ -446,26 +448,22 @@
 
             try
             {
-                if (!cache.HasCachedImage(entry))
+                if (cache.HasCachedImage(entry))
                 {
-                    Image thumbnailImage = new Bitmap(bounds.Width, bounds.Height);
-
-                    using (Image image = Image.FromFile(entry.PhotoPath))
+                    Image cachedImage = cache.GetCachedImage(entry);
+                    if (cachedImage != null)
                     {
-                        this.DrawToFit(Graphics.FromImage(thumbnailImage), image, new Rectangle(0, 0, bounds.Width, bounds.Height));
+                        e.Graphics.DrawImage(cachedImage, bounds.X, bounds.Y);
                     }
-
-                    cache.AddCachedImage(entry, thumbnailImage);
-                }
-
-                Image cachedImage = cache.GetCachedImage(entry);
-                if (cachedImage != null)
-                {
-                    e.Graphics.DrawImage(cachedImage, bounds.X, bounds.Y);
+                    else
+                    {
+                        this.DrawToFit(e.Graphics, Resources.sidebar_btn_image_norm, bounds);
+                    }
                 }
                 else
                 {
-                    this.DrawToFit(e.Graphics, Resources.sidebar_btn_image_norm, bounds);
+                    // Spawn a new thread that loads the specified image.
+                    this.LoadImageToCache(e.Index, entry, cache, bounds);
                 }
             }
             catch (Exception)
@@ -589,6 +587,38 @@
         }
 
         /// <summary>
+        /// Loads the image thumbnail to image cache in a background thread.
+        /// When the loading is complete, invalidate the item rectangle to make it redraw.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <param name="entry">The entry.</param>
+        /// <param name="cache">The cache.</param>
+        /// <param name="bounds">The bounds.</param>
+        private void LoadImageToCache(int index, Entry entry, ImageCache cache, Rectangle bounds)
+        {
+            BackgroundWorker worker = new BackgroundWorker();
+
+            worker.DoWork += delegate(object sender, DoWorkEventArgs args)
+            {
+                Image thumbnailImage = new Bitmap(bounds.Width, bounds.Height);
+
+                using (Image image = Image.FromFile(entry.PhotoPath))
+                {
+                    this.DrawToFit(Graphics.FromImage(thumbnailImage), image, new Rectangle(0, 0, bounds.Width, bounds.Height));
+                }
+
+                cache.AddCachedImage(entry, thumbnailImage);
+            };
+
+            worker.RunWorkerCompleted += delegate(object sender, RunWorkerCompletedEventArgs args)
+            {
+                this.Invalidate(this.GetItemRectangle(index));
+            };
+
+            worker.RunWorkerAsync();
+        }
+
+        /// <summary>
         /// Class for caching thumbnail images. Avoid reading the images from the file over and over again.
         /// </summary>
         private class ImageCache
@@ -597,7 +627,7 @@
             /// The thumbnail cache dictionary. The keys are UUIDString of the entry,
             /// and the values are the corresponding thumbnail images.
             /// </summary>
-            private IDictionary<string, Image> thumbnailCache = new Dictionary<string, Image>();
+            private IDictionary<string, Image> thumbnailCache = new ConcurrentDictionary<string, Image>();
 
             /// <summary>
             /// Determines whether there is a cached thumbnail image for the given entry.
