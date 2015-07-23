@@ -79,7 +79,7 @@
         /// <summary>
         /// The entry day font
         /// </summary>
-        private static readonly Font EntryDayFont = new Font(EntryTextFont.FontFamily, 26.0f, FontStyle.Bold);
+        private static Font EntryDayFont = new Font(EntryTextFont.FontFamily, 26.0f, FontStyle.Bold);
 
         /// <summary>
         /// The entry day of week font
@@ -89,7 +89,7 @@
         /// <summary>
         /// The entry time font
         /// </summary>
-        private static readonly Font EntryTimeFont = new Font(EntryTextFont.FontFamily, 8.9f);
+        private static Font EntryTimeFont = new Font(EntryTextFont.FontFamily, 8.9f);
 
         /// <summary>
         /// Brush for filling the background of month entries
@@ -531,7 +531,16 @@
             stringFormat.Alignment = StringAlignment.Near;
             stringFormat.LineAlignment = StringAlignment.Center;
 
-            e.Graphics.DrawString(entry.LocalTime.ToString("%d"), EntryDayFont, brush, bounds, stringFormat);
+            var dayString = entry.LocalTime.ToString("%d");
+
+            SizeF measuredSize = e.Graphics.MeasureString(dayString, EntryDayFont);
+            while (measuredSize.Width > bounds.Width)
+            {
+                EntryDayFont = new Font(EntryDayFont.FontFamily, EntryDayFont.Size - 0.1f, GraphicsUnit.Point);
+                measuredSize = e.Graphics.MeasureString(dayString, EntryDayFont);
+            }
+
+            e.Graphics.DrawString(dayString, EntryDayFont, brush, bounds, stringFormat);
             e.Graphics.ResetTransform();
         }
 
@@ -583,7 +592,16 @@
             stringFormat.Alignment = StringAlignment.Near;
             stringFormat.LineAlignment = StringAlignment.Center;
 
-            e.Graphics.DrawString(entry.LocalTime.ToString("h:mm tt").ToLower(), EntryTimeFont, brush, bounds, stringFormat);
+            var timeString = entry.LocalTime.ToString("h:mm tt").ToLower();
+
+            SizeF measuredSize = e.Graphics.MeasureString(timeString, EntryTimeFont);
+            while (measuredSize.Width > bounds.Width)
+            {
+                EntryTimeFont = new Font(EntryTimeFont.FontFamily, EntryTimeFont.Size - 0.1f, GraphicsUnit.Point);
+                measuredSize = e.Graphics.MeasureString(timeString, EntryTimeFont);
+            }
+
+            e.Graphics.DrawString(timeString, EntryTimeFont, brush, bounds, stringFormat);
         }
 
         /// <summary>
