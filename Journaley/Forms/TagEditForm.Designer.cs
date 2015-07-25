@@ -98,16 +98,15 @@
             // buttonAdd
             // 
             this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonAdd.BackColor = System.Drawing.Color.Transparent;
             this.buttonAdd.Enabled = false;
             this.buttonAdd.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAdd.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.buttonAdd.Location = new System.Drawing.Point(152, 105);
+            this.buttonAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
+            this.buttonAdd.Location = new System.Drawing.Point(152, 104);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(70, 25);
+            this.buttonAdd.Size = new System.Drawing.Size(70, 27);
             this.buttonAdd.TabIndex = 3;
             this.buttonAdd.Text = "New Tag";
-            this.buttonAdd.UseVisualStyleBackColor = false;
+            this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.ButtonAdd_Click);
             // 
             // label3
