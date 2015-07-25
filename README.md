@@ -1,9 +1,9 @@
-![Logo](https://raw.githubusercontent.com/yyoon/Journaley/screenshots/Logo.png)
+Journaley
 =========
 
 
 
-Journaley is an open-source journal keeping software for Windows, which is compatible with Day One app for iOS/Mac.
+Journaley is a simple and elegant open-source journal keeping software for Windows, which is compatible with Day One app for iOS/Mac.
 
 [![Build Status](http://jenkins.yyoon.net/job/Journaley%20develop/badge/icon)](http://jenkins.yyoon.net/job/Journaley%20develop/) [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yyoon/Journaley/raw/develop/LICENSE)
 
