@@ -163,8 +163,8 @@ namespace Journaley.Forms
             this.panelContent.Controls.Add(this.buttonMainTags);
             this.panelContent.Controls.Add(this.buttonMainCalendar);
             this.panelContent.Controls.Add(this.buttonMainTimeline);
-            this.panelContent.Controls.Add(this.tableLayoutEntryArea);
             this.panelContent.Controls.Add(this.panelEntryListArea);
+            this.panelContent.Controls.Add(this.tableLayoutEntryArea);
             this.panelContent.Controls.Add(this.tableLayoutStats);
             this.panelContent.Size = new System.Drawing.Size(930, 580);
             // 
