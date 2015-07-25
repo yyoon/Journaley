@@ -1167,7 +1167,7 @@
                 if (File.Exists(this.Settings.PhotoFolderPath))
                 {
                     MessageBox.Show(
-                        "Your Day One folder contains a file named \"photos\", which is preventing Journaley from creating the photo directory.",
+                        "Your journal folder contains a file named \"photos\", which is preventing Journaley from creating the photo directory.",
                         "Error creating photo folder",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
