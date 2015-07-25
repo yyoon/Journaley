@@ -6,7 +6,7 @@
     <title>Journaley</title>
     <authors>YoungSeok Yoon, Sammy Guergachi</authors>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
-    <projectUrl>http://journaley.webs.com/</projectUrl>
+    <projectUrl>https://github.com/yyoon/Journaley</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/yyoon/Journaley/screenshots/Journaley.ico</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Journal/Diary application for Windows. Compatible with Day One App for iOS/Mac</description>
