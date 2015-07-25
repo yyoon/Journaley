@@ -697,7 +697,7 @@
                 {
                     MessageBox.Show(
                         this,
-                        "The provided folder does not exist.\nPlease select another folder.",
+                        "The selected folder does not exist.\nPlease select another folder.",
                         "Journaley",
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Warning);
@@ -713,7 +713,7 @@
                     // Ask the user if she wants to create Journaley files there.
                     DialogResult createDirectoryResult = MessageBox.Show(
                         this,
-                        "The selected folder is empty.\nWould you like to use this folder to store your data?",
+                        "The selected folder is empty.\nWould you like to use this folder to store your journal?",
                         "Journaley",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question,
@@ -730,7 +730,7 @@
                         {
                             MessageBox.Show(
                                 this,
-                                "Failed to create subfolders.\nPlease select another folder.",
+                                "Failed to create journal subfolders.\nPlease select another folder.",
                                 "Journaley",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);
@@ -749,7 +749,7 @@
                 {
                     DialogResult createDirectoryResult = MessageBox.Show(
                         this,
-                        "The selected folder is not a Journaley folder.\nWould you like to create a subfolder named \"Journaley\" and use it to store your data?",
+                        "Couldn't find any entries in the selected folder.\nWould you like to create a \"Journaley\" subfolder and use it to store your journal?",
                         "Journaley",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Warning,
@@ -768,7 +768,7 @@
                         {
                             MessageBox.Show(
                                 this,
-                                "Failed to create subfolders.\nPlease select another folder.",
+                                "Failed to create journal subfolders.\nPlease select another folder.",
                                 "Journaley",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Error);

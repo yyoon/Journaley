@@ -233,16 +233,16 @@
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOK.DisabledColor = System.Drawing.Color.Empty;
             this.buttonOK.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.buttonOK.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonOK.Location = new System.Drawing.Point(218, 540);
+            this.buttonOK.Location = new System.Drawing.Point(218, 542);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
             this.buttonOK.Selected = false;
             this.buttonOK.SelectedColor = System.Drawing.Color.Empty;
             this.buttonOK.SelectedDownColor = System.Drawing.Color.Empty;
             this.buttonOK.SelectedHoverColor = System.Drawing.Color.Empty;
-            this.buttonOK.Size = new System.Drawing.Size(100, 32);
+            this.buttonOK.Size = new System.Drawing.Size(100, 30);
             this.buttonOK.TabIndex = 15;
             this.buttonOK.Text = "Done";
             // 
@@ -253,16 +253,17 @@
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.DisabledColor = System.Drawing.Color.Empty;
             this.buttonCancel.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
+            this.buttonCancel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonCancel.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonCancel.Location = new System.Drawing.Point(333, 540);
+            this.buttonCancel.Location = new System.Drawing.Point(334, 542);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
             this.buttonCancel.Selected = false;
             this.buttonCancel.SelectedColor = System.Drawing.Color.Empty;
             this.buttonCancel.SelectedDownColor = System.Drawing.Color.Empty;
             this.buttonCancel.SelectedHoverColor = System.Drawing.Color.Empty;
-            this.buttonCancel.Size = new System.Drawing.Size(100, 32);
+            this.buttonCancel.Size = new System.Drawing.Size(100, 30);
             this.buttonCancel.TabIndex = 14;
             this.buttonCancel.Text = "Cancel";
             // 
@@ -707,14 +708,14 @@
             this.buttonAbout.DownImage = global::Journaley.Properties.Resources.settings_btn_about_up_down;
             this.buttonAbout.HoverImage = global::Journaley.Properties.Resources.settings_btn_about_up_over;
             this.buttonAbout.Image = global::Journaley.Properties.Resources.settings_btn_about_up_norm;
-            this.buttonAbout.Location = new System.Drawing.Point(27, 540);
+            this.buttonAbout.Location = new System.Drawing.Point(25, 542);
             this.buttonAbout.Name = "buttonAbout";
             this.buttonAbout.NormalImage = global::Journaley.Properties.Resources.settings_btn_about_up_norm;
             this.buttonAbout.Selected = false;
             this.buttonAbout.SelectedDownImage = global::Journaley.Properties.Resources.settings_btn_about_down_down;
             this.buttonAbout.SelectedHoverImage = global::Journaley.Properties.Resources.settings_btn_about_down_over;
             this.buttonAbout.SelectedImage = global::Journaley.Properties.Resources.settings_btn_about_down_norm;
-            this.buttonAbout.Size = new System.Drawing.Size(121, 32);
+            this.buttonAbout.Size = new System.Drawing.Size(121, 30);
             this.buttonAbout.TabIndex = 26;
             this.buttonAbout.TabStop = false;
             this.buttonAbout.Click += new System.EventHandler(this.ButtonAbout_Click);
