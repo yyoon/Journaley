@@ -817,9 +817,6 @@
             {
                 this.listBoxTags.SelectedIndex = 0;
             }
-
-            // Resize the upper list box
-            this.listBoxTags.Height = this.listBoxTags.PreferredHeight;
         }
 
         /// <summary>
