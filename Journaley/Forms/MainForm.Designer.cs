@@ -78,16 +78,18 @@ namespace Journaley.Forms
             this.buttonMainCalendar = new Journaley.Controls.ImageButton();
             this.buttonMainTimeline = new Journaley.Controls.ImageButton();
             this.panelEntryListArea = new Journaley.Controls.EntryListAreaPanel();
+            this.panelTags = new System.Windows.Forms.Panel();
+            this.tableLayoutTags = new System.Windows.Forms.TableLayoutPanel();
+            this.listBoxTags = new System.Windows.Forms.ListBox();
+            this.panelTagsSeparator = new System.Windows.Forms.Panel();
+            this.entryListBoxTags = new Journaley.Controls.EntryListBox();
+            this.panelTimeline = new System.Windows.Forms.Panel();
+            this.entryListBoxAll = new Journaley.Controls.EntryListBox();
             this.panelCalendar = new System.Windows.Forms.Panel();
             this.tableLayoutCalendar = new System.Windows.Forms.TableLayoutPanel();
             this.monthCalendar = new Pabo.Calendar.MonthCalendar();
             this.panelCalendarSeparator = new System.Windows.Forms.Panel();
             this.entryListBoxCalendar = new Journaley.Controls.EntryListBox();
-            this.panelTimeline = new System.Windows.Forms.Panel();
-            this.entryListBoxAll = new Journaley.Controls.EntryListBox();
-            this.panelTags = new System.Windows.Forms.Panel();
-            this.entryListBoxTags = new Journaley.Controls.EntryListBox();
-            this.listBoxTags = new System.Windows.Forms.ListBox();
             this.labelFormCaption = new System.Windows.Forms.Label();
             labelThisWeekLabel = new Journaley.Controls.MouseFallThroughLabel();
             labelTodayLabel = new Journaley.Controls.MouseFallThroughLabel();
@@ -126,10 +128,11 @@ namespace Journaley.Forms
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).BeginInit();
             this.panelEntryListArea.SuspendLayout();
+            this.panelTags.SuspendLayout();
+            this.tableLayoutTags.SuspendLayout();
+            this.panelTimeline.SuspendLayout();
             this.panelCalendar.SuspendLayout();
             this.tableLayoutCalendar.SuspendLayout();
-            this.panelTimeline.SuspendLayout();
-            this.panelTags.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTitlebar
@@ -897,8 +900,8 @@ namespace Journaley.Forms
             // 
             this.panelEntryListArea.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.panelEntryListArea.Controls.Add(this.panelCalendar);
             this.panelEntryListArea.Controls.Add(this.panelTimeline);
+            this.panelEntryListArea.Controls.Add(this.panelCalendar);
             this.panelEntryListArea.Controls.Add(this.panelTags);
             this.panelEntryListArea.Location = new System.Drawing.Point(0, 24);
             this.panelEntryListArea.Margin = new System.Windows.Forms.Padding(0);
@@ -906,6 +909,105 @@ namespace Journaley.Forms
             this.panelEntryListArea.Padding = new System.Windows.Forms.Padding(1);
             this.panelEntryListArea.Size = new System.Drawing.Size(266, 475);
             this.panelEntryListArea.TabIndex = 18;
+            // 
+            // panelTags
+            // 
+            this.panelTags.Controls.Add(this.tableLayoutTags);
+            this.panelTags.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTags.Location = new System.Drawing.Point(1, 1);
+            this.panelTags.Name = "panelTags";
+            this.panelTags.Size = new System.Drawing.Size(264, 473);
+            this.panelTags.TabIndex = 2;
+            this.panelTags.Visible = false;
+            // 
+            // tableLayoutTags
+            // 
+            this.tableLayoutTags.BackColor = System.Drawing.Color.Black;
+            this.tableLayoutTags.ColumnCount = 1;
+            this.tableLayoutTags.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutTags.Controls.Add(this.listBoxTags, 0, 0);
+            this.tableLayoutTags.Controls.Add(this.panelTagsSeparator, 0, 1);
+            this.tableLayoutTags.Controls.Add(this.entryListBoxTags, 0, 2);
+            this.tableLayoutTags.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutTags.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutTags.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutTags.Name = "tableLayoutTags";
+            this.tableLayoutTags.RowCount = 2;
+            this.tableLayoutTags.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutTags.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
+            this.tableLayoutTags.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutTags.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutTags.Size = new System.Drawing.Size(264, 473);
+            this.tableLayoutTags.TabIndex = 1;
+            // 
+            // listBoxTags
+            // 
+            this.listBoxTags.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBoxTags.Dock = System.Windows.Forms.DockStyle.Top;
+            this.listBoxTags.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxTags.FormattingEnabled = true;
+            this.listBoxTags.IntegralHeight = false;
+            this.listBoxTags.ItemHeight = 17;
+            this.listBoxTags.Location = new System.Drawing.Point(0, 0);
+            this.listBoxTags.Margin = new System.Windows.Forms.Padding(0);
+            this.listBoxTags.Name = "listBoxTags";
+            this.listBoxTags.Size = new System.Drawing.Size(264, 184);
+            this.listBoxTags.TabIndex = 0;
+            this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
+            // 
+            // panelTagsSeparator
+            // 
+            this.panelTagsSeparator.BackColor = System.Drawing.Color.Black;
+            this.panelTagsSeparator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTagsSeparator.Location = new System.Drawing.Point(0, 184);
+            this.panelTagsSeparator.Margin = new System.Windows.Forms.Padding(0);
+            this.panelTagsSeparator.Name = "panelTagsSeparator";
+            this.panelTagsSeparator.Size = new System.Drawing.Size(264, 1);
+            this.panelTagsSeparator.TabIndex = 1;
+            // 
+            // entryListBoxTags
+            // 
+            this.entryListBoxTags.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(46)))), ((int)(((byte)(49)))));
+            this.entryListBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.entryListBoxTags.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxTags.EntryTextProvider = null;
+            this.entryListBoxTags.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.entryListBoxTags.FormattingEnabled = true;
+            this.entryListBoxTags.Location = new System.Drawing.Point(0, 185);
+            this.entryListBoxTags.Margin = new System.Windows.Forms.Padding(0);
+            this.entryListBoxTags.Name = "entryListBoxTags";
+            this.entryListBoxTags.ScrollAlwaysVisible = true;
+            this.entryListBoxTags.Size = new System.Drawing.Size(264, 288);
+            this.entryListBoxTags.TabIndex = 0;
+            this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
+            // 
+            // panelTimeline
+            // 
+            this.panelTimeline.Controls.Add(this.entryListBoxAll);
+            this.panelTimeline.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTimeline.Location = new System.Drawing.Point(1, 1);
+            this.panelTimeline.Name = "panelTimeline";
+            this.panelTimeline.Size = new System.Drawing.Size(264, 473);
+            this.panelTimeline.TabIndex = 0;
+            // 
+            // entryListBoxAll
+            // 
+            this.entryListBoxAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(46)))), ((int)(((byte)(49)))));
+            this.entryListBoxAll.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxAll.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxAll.EntryTextProvider = null;
+            this.entryListBoxAll.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.entryListBoxAll.FormattingEnabled = true;
+            this.entryListBoxAll.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.entryListBoxAll.Location = new System.Drawing.Point(0, 0);
+            this.entryListBoxAll.Name = "entryListBoxAll";
+            this.entryListBoxAll.ScrollAlwaysVisible = true;
+            this.entryListBoxAll.Size = new System.Drawing.Size(264, 473);
+            this.entryListBoxAll.TabIndex = 0;
+            this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
             // panelCalendar
             // 
@@ -1015,73 +1117,6 @@ namespace Journaley.Forms
             this.entryListBoxCalendar.TabIndex = 1;
             this.entryListBoxCalendar.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
             // 
-            // panelTimeline
-            // 
-            this.panelTimeline.Controls.Add(this.entryListBoxAll);
-            this.panelTimeline.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTimeline.Location = new System.Drawing.Point(1, 1);
-            this.panelTimeline.Name = "panelTimeline";
-            this.panelTimeline.Size = new System.Drawing.Size(264, 473);
-            this.panelTimeline.TabIndex = 0;
-            // 
-            // entryListBoxAll
-            // 
-            this.entryListBoxAll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(46)))), ((int)(((byte)(49)))));
-            this.entryListBoxAll.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.entryListBoxAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxAll.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxAll.EntryTextProvider = null;
-            this.entryListBoxAll.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.entryListBoxAll.FormattingEnabled = true;
-            this.entryListBoxAll.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.entryListBoxAll.Location = new System.Drawing.Point(0, 0);
-            this.entryListBoxAll.Name = "entryListBoxAll";
-            this.entryListBoxAll.ScrollAlwaysVisible = true;
-            this.entryListBoxAll.Size = new System.Drawing.Size(264, 473);
-            this.entryListBoxAll.TabIndex = 0;
-            this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
-            // 
-            // panelTags
-            // 
-            this.panelTags.Controls.Add(this.entryListBoxTags);
-            this.panelTags.Controls.Add(this.listBoxTags);
-            this.panelTags.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTags.Location = new System.Drawing.Point(1, 1);
-            this.panelTags.Name = "panelTags";
-            this.panelTags.Size = new System.Drawing.Size(264, 473);
-            this.panelTags.TabIndex = 2;
-            this.panelTags.Visible = false;
-            // 
-            // entryListBoxTags
-            // 
-            this.entryListBoxTags.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(46)))), ((int)(((byte)(49)))));
-            this.entryListBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.entryListBoxTags.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxTags.EntryTextProvider = null;
-            this.entryListBoxTags.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.entryListBoxTags.FormattingEnabled = true;
-            this.entryListBoxTags.Location = new System.Drawing.Point(0, 17);
-            this.entryListBoxTags.Name = "entryListBoxTags";
-            this.entryListBoxTags.ScrollAlwaysVisible = true;
-            this.entryListBoxTags.Size = new System.Drawing.Size(264, 456);
-            this.entryListBoxTags.TabIndex = 0;
-            this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
-            // 
-            // listBoxTags
-            // 
-            this.listBoxTags.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBoxTags.Dock = System.Windows.Forms.DockStyle.Top;
-            this.listBoxTags.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxTags.FormattingEnabled = true;
-            this.listBoxTags.ItemHeight = 17;
-            this.listBoxTags.Location = new System.Drawing.Point(0, 0);
-            this.listBoxTags.Name = "listBoxTags";
-            this.listBoxTags.Size = new System.Drawing.Size(264, 17);
-            this.listBoxTags.TabIndex = 0;
-            this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
-            // 
             // labelFormCaption
             // 
             this.labelFormCaption.AutoSize = true;
@@ -1150,10 +1185,11 @@ namespace Journaley.Forms
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).EndInit();
             this.panelEntryListArea.ResumeLayout(false);
+            this.panelTags.ResumeLayout(false);
+            this.tableLayoutTags.ResumeLayout(false);
+            this.panelTimeline.ResumeLayout(false);
             this.panelCalendar.ResumeLayout(false);
             this.tableLayoutCalendar.ResumeLayout(false);
-            this.panelTimeline.ResumeLayout(false);
-            this.panelTags.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1217,6 +1253,8 @@ namespace Journaley.Forms
         private System.Windows.Forms.Panel panelCalendarSeparator;
         private EntryPhotoArea entryPhotoArea;
         private System.Windows.Forms.Label labelFormCaption;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutTags;
+        private System.Windows.Forms.Panel panelTagsSeparator;
     }
 }
 

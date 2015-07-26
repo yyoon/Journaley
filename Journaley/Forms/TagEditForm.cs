@@ -15,6 +15,16 @@
     public partial class TagEditForm : Form
     {
         /// <summary>
+        /// The fore color for buttonAdd when enabled.
+        /// </summary>
+        private static readonly Color EnabledButtonAddColor = Color.FromArgb(0, 147, 255);
+
+        /// <summary>
+        /// The fore color for buttonAdd when disabled.
+        /// </summary>
+        private static readonly Color DisabledButtonAddColor = SystemColors.GrayText;
+
+        /// <summary>
         /// The list of assigned tags
         /// </summary>
         private List<string> assignedTags = new List<string>();
@@ -23,7 +33,7 @@
         /// The list of other tags (not assigned to this entry but used in other entries)
         /// </summary>
         private List<string> otherTags = new List<string>();
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="TagEditForm"/> class.
         /// </summary>
@@ -113,6 +123,16 @@
         private void TextTagInput_TextChanged(object sender, EventArgs e)
         {
             this.buttonAdd.Enabled = this.textTagInput.Text != string.Empty;
+
+            // Update buttonAdd foreColor when enabled or disabled.
+            if (this.buttonAdd.Enabled)
+            {
+                this.buttonAdd.ForeColor = EnabledButtonAddColor;
+            }
+            else
+            {
+                this.buttonAdd.ForeColor = DisabledButtonAddColor;
+            }
         }
 
         /// <summary>

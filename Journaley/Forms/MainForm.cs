@@ -817,9 +817,6 @@
             {
                 this.listBoxTags.SelectedIndex = 0;
             }
-
-            // Resize the upper list box
-            this.listBoxTags.Height = this.listBoxTags.PreferredHeight;
         }
 
         /// <summary>
@@ -1167,7 +1164,7 @@
                 if (File.Exists(this.Settings.PhotoFolderPath))
                 {
                     MessageBox.Show(
-                        "Your Day One folder contains a file named \"photos\", which is preventing Journaley from creating the photo directory.",
+                        "Your journal folder contains a file named \"photos\", which is preventing Journaley from creating the photo directory.",
                         "Error creating photo folder",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
@@ -1531,6 +1528,9 @@
                 21,     // FEATURE_DISABLE_NAVIGATION_SOUNDS
                 2,      // SET_FEATURE_ON_PROCESS
                 true);  // Enable
+
+            // Set up the initial location of the main form.
+            this.CenterToScreen();
 
             // Get the settings file.
             this.Settings = Settings.Default;
