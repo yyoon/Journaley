@@ -1529,6 +1529,9 @@
                 2,      // SET_FEATURE_ON_PROCESS
                 true);  // Enable
 
+            // Set up the initial location of the main form.
+            this.CenterToScreen();
+
             // Get the settings file.
             this.Settings = Settings.Default;
 
