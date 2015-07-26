@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <Rebuild>true</Rebuild>
+    <ReleaseType>Stable</ReleaseType>
+    <ReleaseDir>..\Journaley\bin\Release\</ReleaseDir>
+  </PropertyGroup>
+  
+  <Choose>
+    <When Condition=" '$(ReleaseType)' == 'Stable' ">
+      <PropertyGroup>
+        <VersionType>Stable</VersionType>
+        <UpdateSource>http://journaley.s3.amazonaws.com/stable</UpdateSource>
+      </PropertyGroup>
+    </When>
+    <When Condition=" '$(ReleaseType)' == 'Develop' ">
+      <PropertyGroup>
+        <VersionType>Develop</VersionType>
+        <UpdateSource>http://journaley.s3.amazonaws.com/develop</UpdateSource>
+      </PropertyGroup>
+    </When>
+    <When Condition=" '$(ReleaseType)' == 'Local' ">
+      <PropertyGroup>
+        <VersionType>Develop</VersionType>
+        <UpdateSource>$(MSBuildThisFileDirectory)Releases</UpdateSource>
+      </PropertyGroup>
+    </When>
+  </Choose>
+
+  <Target Name="Clean">
+    <ItemGroup>
+      <FilesToClean Include="*.nupkg" />
+    </ItemGroup>
+    <Message Text="*** Cleaning" />
+    <Delete Files="@(FilesToClean)" />
+    <RemoveDir Directories="lib" />
+    <RemoveDir Directories="temp" />
+  </Target>
+  
+  <Target Name="Build">
+    <ItemGroup>
+      <FilesToCopy Include="$(ReleaseDir)Journaley.exe;$(ReleaseDir)*.dll;..\LICENSE" />
+    </ItemGroup>
+    
+    <CallTarget Targets="Clean" />
+    <MSBuild Condition="$(Rebuild)" Projects="../Journaley.sln" Properties="Configuration=Release" Targets="Rebuild" />
+    <Exec Command="VersionExtractor $(ReleaseDir)Journaley.exe $(VersionType)" ConsoleToMSBuild="true">
+      <Output PropertyName="VersionNum" TaskParameter="ConsoleOutput" />
+    </Exec>
+    <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="temp\lib\net45" />
+    <Exec Command="ECHO $(UpdateSource) > temp\lib\net45\UpdateSource" />
+    <Copy SourceFiles="Journaley.nuspec" DestinationFolder="temp" />
+    <Exec Command="nuget pack temp\Journaley.nuspec -Version $(VersionNum)" />
+    <Exec Command="..\packages\squirrel.windows.0.99.2\tools\Squirrel --releasify Journaley.$(VersionNum).nupkg" />
+    <Move SourceFiles="Releases\Setup.exe" DestinationFiles="Releases\Journaley.$(VersionNum).Setup.exe" />
+  </Target>
+  
+</Project>

@@ -1,7 +1,10 @@
 <StyleCopSettings Version="105">
   <GlobalSettings>
     <CollectionProperty Name="RecognizedWords">
+      <Value>codeproject</Value>
       <Value>Journaley</Value>
+      <Value>Noto</Value>
+      <Value>popout</Value>
     </CollectionProperty>
   </GlobalSettings>
   <Parsers>

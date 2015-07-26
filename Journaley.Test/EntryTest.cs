@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using System.Text;
-using Journaley.Models;
+using Journaley.Core.Models;
 
 namespace Journaley.Test
 {

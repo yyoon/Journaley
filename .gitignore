@@ -10,4 +10,6 @@ StyleCop.Cache
 **/Debug/*
 **/Release/*
 packages/*
-!packages/repositories.config
+Installer/*.nupkg
+Installer/lib/*
+Installer/temp/*

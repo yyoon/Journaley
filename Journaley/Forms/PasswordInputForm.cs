@@ -1,12 +1,12 @@
 ﻿namespace Journaley.Forms
 {
     using System.Windows.Forms;
-    using Journaley.Models;
+    using Journaley.Core.Models;
 
     /// <summary>
     /// The password input form shown when the user returns from other applications.
     /// </summary>
-    public partial class PasswordInputForm : Form
+    public partial class PasswordInputForm : BaseJournaleyForm
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PasswordInputForm"/> class.
@@ -16,7 +16,7 @@
         {
             this.InitializeComponent();
 
-            this.Icon = Properties.Resources.MainIcon;
+            this.Icon = Properties.Resources.JournaleyIcon;
             this.PasswordVerifier = passwordVerifier;
         }
 
@@ -27,6 +27,14 @@
         /// The password verifier.
         /// </value>
         private IPasswordVerifier PasswordVerifier { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [wrong password].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [wrong password]; otherwise, <c>false</c>.
+        /// </value>
+        private bool WrongPassword { get; set; }
 
         /// <summary>
         /// Handles the KeyDown event of the textBoxPassword control.
@@ -46,9 +54,13 @@
                         }
                         else
                         {
-                            MessageBox.Show(this.ParentForm, "Wrong Password!", "Journaley", MessageBoxButtons.OK);
-                            this.textBoxPassword.SelectAll();
+                            this.WrongPassword = true;
+
+                            this.textBoxPassword.Text = string.Empty;
                             this.textBoxPassword.Focus();
+
+                            this.pictureBoxPressEnter.BackgroundImage =
+                                Properties.Resources.password_ui_wrong_password;
                         }
 
                         e.Handled = true;
@@ -63,6 +75,9 @@
                         e.Handled = true;
                         break;
                     }
+
+                default:
+                    break;
             }
         }
 
@@ -79,7 +94,22 @@
                 case (char)Keys.Escape:
                     e.Handled = true;
                     break;
+
+                default:
+                    break;
             }
+        }
+
+        /// <summary>
+        /// Handles the TextChanged event of the textBoxPassword control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
+        private void TextBoxPassword_TextChanged(object sender, System.EventArgs e)
+        {
+            this.pictureBoxPressEnter.BackgroundImage = Properties.Resources.password_ui_press_enter;
+            this.pictureBoxPressEnter.Visible = this.WrongPassword ||
+                !string.IsNullOrEmpty(this.textBoxPassword.Text);
         }
     }
 }
