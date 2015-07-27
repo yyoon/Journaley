@@ -185,7 +185,7 @@
             this.buttonStartNewJournal.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonStartNewJournal.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonStartNewJournal.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonStartNewJournal.Location = new System.Drawing.Point(95, 180);
+            this.buttonStartNewJournal.Location = new System.Drawing.Point(95, 120);
             this.buttonStartNewJournal.Name = "buttonStartNewJournal";
             this.buttonStartNewJournal.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
             this.buttonStartNewJournal.Selected = false;
@@ -194,7 +194,7 @@
             this.buttonStartNewJournal.SelectedHoverColor = System.Drawing.Color.Empty;
             this.buttonStartNewJournal.Size = new System.Drawing.Size(260, 42);
             this.buttonStartNewJournal.TabIndex = 2;
-            this.buttonStartNewJournal.Text = "Start a New Journal";
+            this.buttonStartNewJournal.Text = "Start Your Journal";
             this.buttonStartNewJournal.Click += new System.EventHandler(this.ButtonStartNewJournal_Click);
             // 
             // buttonImportJournal
@@ -206,7 +206,7 @@
             this.buttonImportJournal.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonImportJournal.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonImportJournal.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonImportJournal.Location = new System.Drawing.Point(95, 120);
+            this.buttonImportJournal.Location = new System.Drawing.Point(95, 180);
             this.buttonImportJournal.Name = "buttonImportJournal";
             this.buttonImportJournal.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
             this.buttonImportJournal.Selected = false;
