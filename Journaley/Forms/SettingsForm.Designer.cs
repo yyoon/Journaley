@@ -235,7 +235,7 @@
             this.buttonOK.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.buttonOK.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonOK.Location = new System.Drawing.Point(218, 542);
+            this.buttonOK.Location = new System.Drawing.Point(221, 542);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
             this.buttonOK.Selected = false;
@@ -256,7 +256,7 @@
             this.buttonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.buttonCancel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonCancel.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonCancel.Location = new System.Drawing.Point(334, 542);
+            this.buttonCancel.Location = new System.Drawing.Point(337, 542);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
             this.buttonCancel.Selected = false;
@@ -708,7 +708,7 @@
             this.buttonAbout.DownImage = global::Journaley.Properties.Resources.settings_btn_about_up_down;
             this.buttonAbout.HoverImage = global::Journaley.Properties.Resources.settings_btn_about_up_over;
             this.buttonAbout.Image = global::Journaley.Properties.Resources.settings_btn_about_up_norm;
-            this.buttonAbout.Location = new System.Drawing.Point(25, 542);
+            this.buttonAbout.Location = new System.Drawing.Point(13, 542);
             this.buttonAbout.Name = "buttonAbout";
             this.buttonAbout.NormalImage = global::Journaley.Properties.Resources.settings_btn_about_up_norm;
             this.buttonAbout.Selected = false;
