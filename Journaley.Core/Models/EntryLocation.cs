@@ -71,6 +71,8 @@
         /// </value>
         public string PlaceName { get; set; }
 
+        public CircularRegion Region { get; set; }
+
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
@@ -80,6 +82,18 @@
         public override string ToString()
         {
             return string.Format("{0}, {1}, {2}", this.Locality, this.AdministrativeArea, this.Country);
+        }
+
+        public class GeoLocation
+        {
+            public decimal Longitude { get; set; }
+            public decimal Latitude { get; set; }
+        }
+
+        public class CircularRegion
+        {
+            public GeoLocation Center { get; set; }
+            public decimal Radius { get; set; }
         }
     }
 }
