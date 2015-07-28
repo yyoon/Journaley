@@ -67,7 +67,7 @@
             this.pictureUpdateIndicator = new System.Windows.Forms.PictureBox();
             this.horizontalSeparator4 = new System.Windows.Forms.Panel();
             this.labelCurrentVersion = new System.Windows.Forms.Label();
-            this.labelVersionNumber = new System.Windows.Forms.Label();
+            this.labelVersionNumber = new System.Windows.Forms.LinkLabel();
             this.buttonAbout = new Journaley.Controls.ImageButton();
             this.panelAbout = new Journaley.Controls.PaddingBorderPanel();
             this.linkMITLicense = new System.Windows.Forms.LinkLabel();
@@ -700,7 +700,9 @@
             this.labelVersionNumber.Name = "labelVersionNumber";
             this.labelVersionNumber.Size = new System.Drawing.Size(59, 19);
             this.labelVersionNumber.TabIndex = 25;
+            this.labelVersionNumber.TabStop = true;
             this.labelVersionNumber.Text = "Develop";
+            this.labelVersionNumber.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkClicked);
             // 
             // buttonAbout
             // 
@@ -1060,8 +1062,8 @@
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.Controls.SetChildIndex(this.panelTitlebar, 0);
-            this.Controls.SetChildIndex(this.panelContent, 0);
             this.Controls.SetChildIndex(this.panelAbout, 0);
+            this.Controls.SetChildIndex(this.panelContent, 0);
             this.panelTitlebar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).EndInit();
@@ -1123,7 +1125,7 @@
         private System.Windows.Forms.PictureBox pictureUpdateIndicator;
         private System.Windows.Forms.Panel horizontalSeparator4;
         private System.Windows.Forms.Label labelCurrentVersion;
-        private System.Windows.Forms.Label labelVersionNumber;
+        private System.Windows.Forms.LinkLabel labelVersionNumber;
         private Controls.ImageButton buttonAbout;
         private Controls.PaddingBorderPanel panelAbout;
         private System.Windows.Forms.Panel horizontalSeparator5;

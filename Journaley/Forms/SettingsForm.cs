@@ -203,16 +203,21 @@
             set
             {
                 this.currentVersion = value;
+
+                var version = value ?? Assembly.GetExecutingAssembly().GetName().Version;
+                var versionString = version.ToString();
+
                 if (value != null)
                 {
-                    this.labelVersionNumber.Text = this.currentVersion.ToString();
+                    this.labelVersionNumber.Text = versionString;
                 }
                 else
                 {
-                    this.labelVersionNumber.Text = string.Format(
-                        "{0} (dev)",
-                        Assembly.GetExecutingAssembly().GetName().Version);
+                    this.labelVersionNumber.Text = string.Format("{0} (dev)", versionString);
                 }
+
+                this.labelVersionNumber.Links[0].LinkData =
+                    "https://github.com/yyoon/Journaley/releases/tag/v" + version.ToString(2);
             }
         }
 
