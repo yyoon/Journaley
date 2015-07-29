@@ -90,6 +90,11 @@
         private bool updateAvailable = false;
 
         /// <summary>
+        /// The update process count
+        /// </summary>
+        private int updateProcessCount;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
         public MainForm() : this(false, false)
@@ -215,6 +220,29 @@
             {
                 this.updateAvailable = value;
                 this.UpdateSettingsButton();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the update process count.
+        /// </summary>
+        /// <value>
+        /// The update process count.
+        /// </value>
+        internal int UpdateProcessCount
+        {
+            get
+            {
+                return this.updateProcessCount;
+            }
+
+            set
+            {
+                this.updateProcessCount = value;
+                if (value == 0 && this.DeferredClosing)
+                {
+                    this.Close();
+                }
             }
         }
 
@@ -453,6 +481,14 @@
         /// The custom CSS rules defined by the user.
         /// </value>
         private string CustomCSS { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether [deferred closing].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [deferred closing]; otherwise, <c>false</c>.
+        /// </value>
+        private bool DeferredClosing { get; set; }
 
         /// <summary>
         /// Gets the entry text for the provided journal entry.
@@ -1615,6 +1651,8 @@
             }
 
             // Update Check
+            ++this.UpdateProcessCount;
+
             try
             {
                 using (var mgr = new UpdateManager(updateUrl))
@@ -1656,6 +1694,10 @@
             {
                 Logger.Log(ex.Message);
                 Logger.Log(ex.StackTrace);
+            }
+            finally
+            {
+                --this.UpdateProcessCount;
             }
         }
 
@@ -2478,6 +2520,24 @@
             else
             {
                 this.InvalidateEntryInEntryList(entry);
+            }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the imageButtonFormClose control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ImageButtonFormClose_Click(object sender, EventArgs e)
+        {
+            if (this.UpdateProcessCount > 0)
+            {
+                this.DeferredClosing = true;
+                this.Hide();
+            }
+            else
+            {
+                this.Close();
             }
         }
 

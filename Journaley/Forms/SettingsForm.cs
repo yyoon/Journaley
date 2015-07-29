@@ -629,6 +629,11 @@
             }
 
             // Update Check
+            if (this.Owner is MainForm)
+            {
+                ++((MainForm)this.Owner).UpdateProcessCount;
+            }
+
             try
             {
                 using (var mgr = new UpdateManager(updateUrl))
@@ -676,6 +681,13 @@
                 MessageBox.Show("Error occurred while updating.", "Update Journaley");
                 Logger.Log(ex.Message);
                 Logger.Log(ex.StackTrace);
+            }
+            finally
+            {
+                if (this.Owner is MainForm)
+                {
+                    --((MainForm)this.Owner).UpdateProcessCount;
+                }
             }
         }
 
