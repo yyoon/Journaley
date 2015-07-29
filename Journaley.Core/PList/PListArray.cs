@@ -64,6 +64,60 @@
         }
 
         /// <summary>
+        /// Adds the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public void Add(string value)
+        {
+            this.array.Add(new PListString(value));
+        }
+
+        /// <summary>
+        /// Adds the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public void Add(decimal value)
+        {
+            this.array.Add(new PListReal(value));
+        }
+
+        /// <summary>
+        /// Adds the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public void Add(int value)
+        {
+            this.array.Add(new PListInteger(value));
+        }
+
+        /// <summary>
+        /// Adds the specified value.
+        /// </summary>
+        /// <param name="value">if set to <c>true</c> [value].</param>
+        public void Add(bool value)
+        {
+            this.array.Add(new PListBoolean(value));
+        }
+
+        /// <summary>
+        /// Adds the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public void Add(DateTime value)
+        {
+            this.array.Add(new PListDate(value));
+        }
+
+        /// <summary>
+        /// Adds the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public void Add(byte[] value)
+        {
+            this.array.Add(new PListData(value));
+        }
+
+        /// <summary>
         /// Saves this PList data to XML.
         /// </summary>
         /// <param name="parent">The parent.</param>

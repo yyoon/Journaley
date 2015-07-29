@@ -93,6 +93,66 @@
         }
 
         /// <summary>
+        /// Adds the specified key value pair.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
+        public void Add(string key, string value)
+        {
+            this.Add(key, new PListString(value));
+        }
+
+        /// <summary>
+        /// Adds the specified key value pair.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
+        public void Add(string key, decimal value)
+        {
+            this.Add(key, new PListReal(value));
+        }
+
+        /// <summary>
+        /// Adds the specified key value pair.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
+        public void Add(string key, int value)
+        {
+            this.Add(key, new PListInteger(value));
+        }
+
+        /// <summary>
+        /// Adds the specified key value pair.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
+        public void Add(string key, bool value)
+        {
+            this.Add(key, new PListBoolean(value));
+        }
+
+        /// <summary>
+        /// Adds the specified key value pair.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
+        public void Add(string key, DateTime value)
+        {
+            this.Add(key, new PListDate(value));
+        }
+
+        /// <summary>
+        /// Adds the specified key value pair.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
+        public void Add(string key, byte[] value)
+        {
+            this.Add(key, new PListData(value));
+        }
+
+        /// <summary>
         /// Saves this PList data to XML.
         /// </summary>
         /// <param name="parent">The parent.</param>
