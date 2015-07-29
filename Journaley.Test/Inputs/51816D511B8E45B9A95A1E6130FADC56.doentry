@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Activity</key>
+	<string>Stationary</string>
+	<key>Creation Date</key>
+	<date>2015-07-28T12:07:20Z</date>
+	<key>Creator</key>
+	<dict>
+		<key>Device Agent</key>
+		<string>iPhone/iPhone7,2</string>
+		<key>Generation Date</key>
+		<date>2015-07-28T12:07:20Z</date>
+		<key>Host Name</key>
+		<string>nullstein-iPhone</string>
+		<key>OS Agent</key>
+		<string>iOS/8.4</string>
+		<key>Software Agent</key>
+		<string>Day One iOS/1.17.1</string>
+	</dict>
+	<key>Entry Text</key>
+	<string>This is a test entry created from Day One.</string>
+	<key>Location</key>
+	<dict>
+		<key>Administrative Area</key>
+		<string>Seoul</string>
+		<key>Country</key>
+		<string>South Korea</string>
+		<key>Latitude</key>
+		<real>37.496763073273272</real>
+		<key>Locality</key>
+		<string>Gangnamgu</string>
+		<key>Longitude</key>
+		<real>127.03590421008128</real>
+		<key>Place Name</key>
+		<string>744-4 Yeoksamdong</string>
+		<key>Region</key>
+		<dict>
+			<key>Center</key>
+			<dict>
+				<key>Latitude</key>
+				<real>37.496837798641067</real>
+				<key>Longitude</key>
+				<real>127.03593650000002</real>
+			</dict>
+			<key>Radius</key>
+			<real>70.86290319732386</real>
+		</dict>
+	</dict>
+	<key>Starred</key>
+	<false/>
+	<key>Tags</key>
+	<array/>
+	<key>Time Zone</key>
+	<string>Asia/Seoul</string>
+	<key>UUID</key>
+	<string>51816D511B8E45B9A95A1E6130FADC56</string>
+	<key>Weather</key>
+	<dict>
+		<key>Celsius</key>
+		<string>27</string>
+		<key>Description</key>
+		<string>Mostly Cloudy</string>
+		<key>Fahrenheit</key>
+		<string>81</string>
+		<key>IconName</key>
+		<string>mcloudyn.png</string>
+		<key>Pressure MB</key>
+		<integer>1007</integer>
+		<key>Relative Humidity</key>
+		<integer>79</integer>
+		<key>Service</key>
+		<string>HAMweather</string>
+		<key>Sunrise Date</key>
+		<date>2015-07-27T20:33:12Z</date>
+		<key>Sunset Date</key>
+		<date>2015-07-28T10:45:34Z</date>
+		<key>Visibility KM</key>
+		<integer>6</integer>
+		<key>Wind Bearing</key>
+		<integer>280</integer>
+		<key>Wind Chill Celsius</key>
+		<integer>27</integer>
+		<key>Wind Speed KPH</key>
+		<integer>11</integer>
+	</dict>
+</dict>
+</plist>

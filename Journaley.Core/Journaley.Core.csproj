@@ -61,13 +61,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Entry.cs" />
-    <Compile Include="Models\EntryCreator.cs" />
     <Compile Include="Models\EntryList.cs" />
-    <Compile Include="Models\EntryLocation.cs" />
-    <Compile Include="Models\EntryWeather.cs" />
     <Compile Include="Models\IPasswordVerifier.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PList\IPListElement.cs" />
+    <Compile Include="PList\PListArray.cs" />
+    <Compile Include="PList\PListBoolean.cs" />
+    <Compile Include="PList\PListData.cs" />
+    <Compile Include="PList\PListDate.cs" />
+    <Compile Include="PList\PListDictionary.cs" />
+    <Compile Include="PList\PListInteger.cs" />
+    <Compile Include="PList\PListLoader.cs" />
+    <Compile Include="PList\PListReal.cs" />
+    <Compile Include="PList\PListString.cs" />
     <Compile Include="Watcher\ChangeType.cs" />
     <Compile Include="Watcher\EntryEventArgs.cs" />
     <Compile Include="Watcher\EntryEventHandler.cs" />
