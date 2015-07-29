@@ -537,36 +537,36 @@
             root.AppendChild(dict);
 
             // Core key values
-            this.AppendKeyValue(doc, dict, "Creation Date", "date", this.CreationDate);
-            this.AppendKeyValue(doc, dict, "Entry Text", "string", this.EntryText);
-            this.AppendKeyValue(doc, dict, "Starred", this.Starred.ToString().ToLower(), null);
-            this.AppendKeyValue(doc, dict, "UUID", "string", this.UUIDString);
+            this.AppendKeyValue(dict, "Creation Date", "date", this.CreationDate);
+            this.AppendKeyValue(dict, "Entry Text", "string", this.EntryText);
+            this.AppendKeyValue(dict, "Starred", this.Starred.ToString().ToLower(), null);
+            this.AppendKeyValue(dict, "UUID", "string", this.UUIDString);
 
             if (this.Creator != null)
             {
-                this.AppendKeyValue(doc, dict, "Creator", this.Creator);
+                this.AppendKeyValue(dict, "Creator", this.Creator);
             }
 
             if (this.Location != null)
             {
-                this.AppendKeyValue(doc, dict, "Location", this.Location);
+                this.AppendKeyValue(dict, "Location", this.Location);
             }
 
             if (this.Weather != null)
             {
-                this.AppendKeyValue(doc, dict, "Weather", this.Weather);
+                this.AppendKeyValue(dict, "Weather", this.Weather);
             }
 
             // Store the tags
             if (this.Tags.Any())
             {
-                this.AppendArrayKeyValue(doc, dict, "Tags", this.Tags);
+                this.AppendArrayKeyValue(dict, "Tags", this.Tags);
             }
 
             // Handle unknown key values. (just keep them.)
             foreach (var kvp in this.UnknownKeyValues)
             {
-                this.AppendKeyValue(doc, dict, kvp.Key, kvp.Value);
+                this.AppendKeyValue(dict, kvp.Key, kvp.Value);
             }
 
             // Write to the stringbuilder first, and then write it to the file.
@@ -800,13 +800,13 @@
         /// <summary>
         /// Appends the key value.
         /// </summary>
-        /// <param name="doc">The xml document.</param>
         /// <param name="dict">The xml element corresponding to dictionary part.</param>
         /// <param name="keyString">The key string.</param>
         /// <param name="valueType">Type of the value.</param>
         /// <param name="valueString">The value string.</param>
-        private void AppendKeyValue(XmlDocument doc, XmlElement dict, string keyString, string valueType, string valueString)
+        private void AppendKeyValue(XmlElement dict, string keyString, string valueType, string valueString)
         {
+            var doc = dict.OwnerDocument;
             var key = doc.CreateElement("key");
             dict.AppendChild(key);
             key.InnerText = keyString;
@@ -822,12 +822,12 @@
         /// <summary>
         /// Appends the key value.
         /// </summary>
-        /// <param name="doc">The document.</param>
         /// <param name="dict">The dictionary.</param>
         /// <param name="keyString">The key string.</param>
         /// <param name="data">The data.</param>
-        private void AppendKeyValue(XmlDocument doc, XmlElement dict, string keyString, IPListElement data)
+        private void AppendKeyValue(XmlElement dict, string keyString, IPListElement data)
         {
+            var doc = dict.OwnerDocument;
             var key = doc.CreateElement("key");
             key.InnerText = keyString;
             dict.AppendChild(key);
@@ -838,12 +838,12 @@
         /// <summary>
         /// Appends the array typed key values.
         /// </summary>
-        /// <param name="doc">The document.</param>
         /// <param name="dict">The dictionary.</param>
         /// <param name="keyString">The key string.</param>
         /// <param name="values">The values.</param>
-        private void AppendArrayKeyValue(XmlDocument doc, XmlElement dict, string keyString, IEnumerable<string> values)
+        private void AppendArrayKeyValue(XmlElement dict, string keyString, IEnumerable<string> values)
         {
+            var doc = dict.OwnerDocument;
             var key = doc.CreateElement("key");
             dict.AppendChild(key);
             key.InnerText = keyString;
@@ -861,12 +861,12 @@
         /// <summary>
         /// Appends the key value. Used to preserve the unknown key values existed in the original entries.
         /// </summary>
-        /// <param name="doc">The document.</param>
         /// <param name="dict">The dictionary.</param>
         /// <param name="keyNodeFromOtherDoc">The key node from other document.</param>
         /// <param name="valueNodeFromOtherDoc">The value node from other document.</param>
-        private void AppendKeyValue(XmlDocument doc, XmlElement dict, XmlNode keyNodeFromOtherDoc, XmlNode valueNodeFromOtherDoc)
+        private void AppendKeyValue(XmlElement dict, XmlNode keyNodeFromOtherDoc, XmlNode valueNodeFromOtherDoc)
         {
+            var doc = dict.OwnerDocument;
             var key = doc.ImportNode(keyNodeFromOtherDoc, true);
             var value = doc.ImportNode(valueNodeFromOtherDoc, true);
 
