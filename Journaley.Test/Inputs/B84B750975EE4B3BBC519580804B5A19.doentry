@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Activity</key>
+	<string>Flying</string>
+	<key>Creation Date</key>
+	<date>2015-07-29T05:17:38Z</date>
+	<key>Creator</key>
+	<dict>
+		<key>Device Agent</key>
+		<string>iPhone/iPhone7,2</string>
+		<key>Generation Date</key>
+		<date>2015-07-29T05:17:38Z</date>
+		<key>Host Name</key>
+		<string>nullstein-iPhone</string>
+		<key>OS Agent</key>
+		<string>iOS/8.4</string>
+		<key>Software Agent</key>
+		<string>Day One iOS/1.17.1</string>
+	</dict>
+	<key>Entry Text</key>
+	<string>This is a test entry testing the activity metadata.</string>
+	<key>Location</key>
+	<dict>
+		<key>Administrative Area</key>
+		<string>Seoul</string>
+		<key>Country</key>
+		<string>South Korea</string>
+		<key>Latitude</key>
+		<real>37.49533462873638</real>
+		<key>Locality</key>
+		<string>Gangnamgu</string>
+		<key>Longitude</key>
+		<real>127.0329354759161</real>
+		<key>Place Name</key>
+		<string>829-1 Yeoksamdong</string>
+		<key>Region</key>
+		<dict>
+			<key>Center</key>
+			<dict>
+				<key>Latitude</key>
+				<real>37.495563698641121</real>
+				<key>Longitude</key>
+				<real>127.03292280000002</real>
+			</dict>
+			<key>Radius</key>
+			<real>70.862908222012393</real>
+		</dict>
+	</dict>
+	<key>Starred</key>
+	<false/>
+	<key>Time Zone</key>
+	<string>Asia/Seoul</string>
+	<key>UUID</key>
+	<string>B84B750975EE4B3BBC519580804B5A19</string>
+	<key>Weather</key>
+	<dict>
+		<key>Celsius</key>
+		<string>29</string>
+		<key>Description</key>
+		<string>Cloudy</string>
+		<key>Fahrenheit</key>
+		<string>84</string>
+		<key>IconName</key>
+		<string>cloudy.png</string>
+		<key>Pressure MB</key>
+		<integer>1005</integer>
+		<key>Relative Humidity</key>
+		<integer>74</integer>
+		<key>Service</key>
+		<string>HAMweather</string>
+		<key>Sunrise Date</key>
+		<date>2015-07-28T20:34:01Z</date>
+		<key>Sunset Date</key>
+		<date>2015-07-29T10:44:43Z</date>
+		<key>Visibility KM</key>
+		<integer>8</integer>
+		<key>Wind Bearing</key>
+		<integer>200</integer>
+		<key>Wind Chill Celsius</key>
+		<integer>29</integer>
+		<key>Wind Speed KPH</key>
+		<integer>17</integer>
+	</dict>
+</dict>
+</plist>

@@ -57,6 +57,11 @@
         private string photoPath;
 
         /// <summary>
+        /// The activity.
+        /// </summary>
+        private string activity = "Stationary";
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Entry"/> class.
         /// </summary>
         public Entry()
@@ -336,6 +341,25 @@
         public PListDictionary Creator { get; private set; }
 
         /// <summary>
+        /// Gets or sets the activity.
+        /// </summary>
+        /// <value>
+        /// The activity.
+        /// </value>
+        public string Activity
+        {
+            get
+            {
+                return this.activity;
+            }
+
+            set
+            {
+                this.activity = value;
+            }
+        }
+
+        /// <summary>
         /// Gets a value indicating whether this instance is dirty.
         /// </summary>
         /// <value>
@@ -537,6 +561,7 @@
             root.AppendChild(dict);
 
             // Core key values
+            this.AppendKeyValue(dict, "Activity", "string", this.Activity);
             this.AppendKeyValue(dict, "Creation Date", "date", this.CreationDate);
             this.AppendKeyValue(dict, "Entry Text", "string", this.EntryText);
             this.AppendKeyValue(dict, "Starred", this.Starred.ToString().ToLower(), null);
@@ -746,6 +771,10 @@
         {
             switch (keyNode.InnerText)
             {
+                case "Activity":
+                    newEntry.Activity = valueNode.InnerText;
+                    break;
+
                 case "Creation Date":
                     newEntry.UTCDateTime = DateTime.Parse(valueNode.InnerText).ToUniversalTime();
                     break;
