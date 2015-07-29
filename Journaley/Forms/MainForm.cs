@@ -971,6 +971,15 @@
         }
 
         /// <summary>
+        /// Determines whether the main form is in tags view.
+        /// </summary>
+        /// <returns>true if in tags mode, false otherwise.</returns>
+        private bool IsInTagsView()
+        {
+            return this.GetActiveEntryList() == this.entryListBoxTags;
+        }
+
+        /// <summary>
         /// Updates the word counts.
         /// </summary>
         private void UpdateWordCounts()
@@ -1147,6 +1156,19 @@
                     DateTimeKind.Local);
 
                 newEntry = new Entry(date.ToUniversalTime());
+            }
+            else if (this.IsInTagsView() && this.listBoxTags.SelectedIndex != -1)
+            {
+                newEntry = new Entry();
+
+                if (this.listBoxTags.SelectedItem is StarredCountEntry)
+                {
+                    newEntry.Starred = true;
+                }
+                else if (this.listBoxTags.SelectedItem is TagCountEntry)
+                {
+                    newEntry.AddTag(((TagCountEntry)this.listBoxTags.SelectedItem).Tag);
+                }
             }
             else
             {
