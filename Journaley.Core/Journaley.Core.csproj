@@ -61,10 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Entry.cs" />
-    <Compile Include="Models\EntryCreator.cs" />
     <Compile Include="Models\EntryList.cs" />
-    <Compile Include="Models\EntryLocation.cs" />
-    <Compile Include="Models\EntryWeather.cs" />
     <Compile Include="Models\IPasswordVerifier.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
