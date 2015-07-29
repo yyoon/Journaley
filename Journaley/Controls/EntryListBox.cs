@@ -6,6 +6,7 @@
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Drawing;
+    using System.Drawing.Text;
     using System.Windows.Forms;
     using Journaley.Core.Models;
     using Journaley.Properties;
@@ -552,6 +553,9 @@
 
             var dayString = entry.LocalTime.ToString("%d");
 
+            var oldHint = e.Graphics.TextRenderingHint;
+            e.Graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
+
             SizeF measuredSize = e.Graphics.MeasureString(dayString, entryDayFont);
             while (measuredSize.Width > bounds.Width)
             {
@@ -561,6 +565,8 @@
 
             e.Graphics.DrawString(dayString, entryDayFont, brush, bounds, stringFormat);
             e.Graphics.ResetTransform();
+
+            e.Graphics.TextRenderingHint = oldHint;
         }
 
         /// <summary>
