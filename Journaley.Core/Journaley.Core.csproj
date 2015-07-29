@@ -53,6 +53,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,6 +76,7 @@
     <Compile Include="PList\PListLoader.cs" />
     <Compile Include="PList\PListReal.cs" />
     <Compile Include="PList\PListString.cs" />
+    <Compile Include="Utilities\OSNameRetriever.cs" />
     <Compile Include="Watcher\ChangeType.cs" />
     <Compile Include="Watcher\EntryEventArgs.cs" />
     <Compile Include="Watcher\EntryEventHandler.cs" />

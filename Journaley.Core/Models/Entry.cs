@@ -113,6 +113,16 @@
             this.UUID = uuid;
 
             this.IsDirty = isDirty;
+
+            // Fill in the creator info here.
+            this.Creator = new PListDictionary();
+            this.Creator.Add("Device Agent", "PC");
+            this.Creator.Add("Generation Date", dateTime);
+            this.Creator.Add("Host Name", Environment.MachineName);
+            this.Creator.Add("OS Agent", OSNameRetriever.GetOSFriendlyName());
+
+            var version = Assembly.GetEntryAssembly().GetName().Version;
+            this.Creator.Add("Software Agent", string.Format("Journaley/{0}", version.ToString(2)));
         }
 
         /// <summary>
