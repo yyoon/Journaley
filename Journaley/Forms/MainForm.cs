@@ -821,6 +821,10 @@
         /// </summary>
         private void UpdateEntryListBoxTags()
         {
+            // Save the currently selected tag, if any.
+            TagCountEntry selected = this.listBoxTags.SelectedItem as TagCountEntry;
+            string selectedTagName = selected != null ? selected.Tag : null;
+
             // Clear everything.
             this.listBoxTags.Items.Clear();
             this.listBoxTags.SelectedIndex = -1;
@@ -839,7 +843,8 @@
 
             var tagsAndCounts = tags
                 .Select(x => new TagCountEntry(x, this.Entries.Values.Count(e => e.Tags.Contains(x))))
-                .OrderByDescending(x => x.Count);
+                .OrderByDescending(x => x.Count)
+                .ThenBy(x => x.Tag);
 
             // If there is any entry,
             if (tagsAndCounts.Any())
@@ -848,8 +853,21 @@
                 this.listBoxTags.Items.AddRange(tagsAndCounts.ToArray());
             }
 
-            // Select the first item.
-            if (this.listBoxTags.Items.Count > 0)
+            // Select the previously selected item.
+            if (selectedTagName != null)
+            {
+                for (int i = 0; i < this.listBoxTags.Items.Count; ++i)
+                {
+                    TagCountEntry tagAndCount = this.listBoxTags.Items[i] as TagCountEntry;
+                    if (tagAndCount.Tag == selectedTagName)
+                    {
+                        this.listBoxTags.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            if (this.listBoxTags.SelectedIndex == -1 && this.listBoxTags.Items.Count > 0)
             {
                 this.listBoxTags.SelectedIndex = 0;
             }
