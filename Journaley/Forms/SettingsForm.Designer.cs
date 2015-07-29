@@ -233,7 +233,7 @@
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOK.DisabledColor = System.Drawing.Color.Empty;
             this.buttonOK.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
+            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
             this.buttonOK.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonOK.Location = new System.Drawing.Point(221, 542);
             this.buttonOK.Name = "buttonOK";
@@ -253,7 +253,7 @@
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.DisabledColor = System.Drawing.Color.Empty;
             this.buttonCancel.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
+            this.buttonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
             this.buttonCancel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonCancel.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonCancel.Location = new System.Drawing.Point(337, 542);

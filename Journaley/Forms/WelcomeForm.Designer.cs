@@ -183,7 +183,7 @@
             this.buttonStartNewJournal.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonStartNewJournal.DisabledColor = System.Drawing.Color.Empty;
             this.buttonStartNewJournal.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonStartNewJournal.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonStartNewJournal.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonStartNewJournal.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonStartNewJournal.Location = new System.Drawing.Point(95, 120);
             this.buttonStartNewJournal.Name = "buttonStartNewJournal";
@@ -204,7 +204,7 @@
             this.buttonImportJournal.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonImportJournal.DisabledColor = System.Drawing.Color.Empty;
             this.buttonImportJournal.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonImportJournal.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonImportJournal.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonImportJournal.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonImportJournal.Location = new System.Drawing.Point(95, 180);
             this.buttonImportJournal.Name = "buttonImportJournal";
@@ -315,7 +315,7 @@
             this.buttonLaunchJournaley.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonLaunchJournaley.DisabledColor = System.Drawing.Color.Empty;
             this.buttonLaunchJournaley.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonLaunchJournaley.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLaunchJournaley.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLaunchJournaley.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonLaunchJournaley.Location = new System.Drawing.Point(95, 180);
             this.buttonLaunchJournaley.Name = "buttonLaunchJournaley";
@@ -336,7 +336,7 @@
             this.buttonSetupPassword.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonSetupPassword.DisabledColor = System.Drawing.Color.Empty;
             this.buttonSetupPassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonSetupPassword.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSetupPassword.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSetupPassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonSetupPassword.Location = new System.Drawing.Point(95, 120);
             this.buttonSetupPassword.Name = "buttonSetupPassword";
@@ -421,7 +421,7 @@
             this.buttonGoBack.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonGoBack.DisabledColor = System.Drawing.Color.Empty;
             this.buttonGoBack.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonGoBack.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonGoBack.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonGoBack.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonGoBack.Location = new System.Drawing.Point(95, 120);
             this.buttonGoBack.Name = "buttonGoBack";
@@ -442,7 +442,7 @@
             this.buttonSavePassword.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonSavePassword.DisabledColor = System.Drawing.Color.Empty;
             this.buttonSavePassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonSavePassword.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSavePassword.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSavePassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonSavePassword.Location = new System.Drawing.Point(95, 180);
             this.buttonSavePassword.Name = "buttonSavePassword";
@@ -614,7 +614,7 @@
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonOK.DisabledColor = System.Drawing.Color.Empty;
             this.buttonOK.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonOK.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonOK.Location = new System.Drawing.Point(95, 180);
             this.buttonOK.Name = "buttonOK";
