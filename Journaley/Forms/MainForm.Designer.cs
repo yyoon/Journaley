@@ -48,6 +48,7 @@ namespace Journaley.Forms
             this.panelWebBrowserWrapper = new System.Windows.Forms.Panel();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.contextMenuStripPhotoWithPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.replaceWithTheClipboardImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.replaceWithAnotherPhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutBottom = new System.Windows.Forms.TableLayoutPanel();
@@ -91,6 +92,9 @@ namespace Journaley.Forms
             this.panelTagsSeparator = new System.Windows.Forms.Panel();
             this.entryListBoxTags = new Journaley.Controls.EntryListBox();
             this.labelFormCaption = new System.Windows.Forms.Label();
+            this.contextMenuStripPhotoWithoutPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addFromFileExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             labelThisWeekLabel = new Journaley.Controls.MouseFallThroughLabel();
             labelTodayLabel = new Journaley.Controls.MouseFallThroughLabel();
             this.panelTitlebar.SuspendLayout();
@@ -133,6 +137,7 @@ namespace Journaley.Forms
             this.tableLayoutCalendar.SuspendLayout();
             this.panelTags.SuspendLayout();
             this.tableLayoutTags.SuspendLayout();
+            this.contextMenuStripPhotoWithoutPhoto.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTitlebar
@@ -449,17 +454,26 @@ namespace Journaley.Forms
             // 
             this.contextMenuStripPhotoWithPhoto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
             this.contextMenuStripPhotoWithPhoto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.replaceWithTheClipboardImageToolStripMenuItem,
             this.replaceWithAnotherPhotoToolStripMenuItem,
             this.deletePhotoToolStripMenuItem});
             this.contextMenuStripPhotoWithPhoto.Name = "contextMenuStripPhotoWithPhoto";
             this.contextMenuStripPhotoWithPhoto.ShowImageMargin = false;
-            this.contextMenuStripPhotoWithPhoto.Size = new System.Drawing.Size(207, 48);
+            this.contextMenuStripPhotoWithPhoto.Size = new System.Drawing.Size(228, 92);
+            // 
+            // replaceWithTheClipboardImageToolStripMenuItem
+            // 
+            this.replaceWithTheClipboardImageToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.replaceWithTheClipboardImageToolStripMenuItem.Name = "replaceWithTheClipboardImageToolStripMenuItem";
+            this.replaceWithTheClipboardImageToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.replaceWithTheClipboardImageToolStripMenuItem.Text = "Replace with the Clipboard Image";
+            this.replaceWithTheClipboardImageToolStripMenuItem.Click += new System.EventHandler(this.ReplaceWithTheClipboardImageToolStripMenuItem_Click);
             // 
             // replaceWithAnotherPhotoToolStripMenuItem
             // 
             this.replaceWithAnotherPhotoToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.replaceWithAnotherPhotoToolStripMenuItem.Name = "replaceWithAnotherPhotoToolStripMenuItem";
-            this.replaceWithAnotherPhotoToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.replaceWithAnotherPhotoToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
             this.replaceWithAnotherPhotoToolStripMenuItem.Text = "Replace with Another Photo...";
             this.replaceWithAnotherPhotoToolStripMenuItem.Click += new System.EventHandler(this.ReplaceWithAnotherPhotoToolStripMenuItem_Click);
             // 
@@ -467,7 +481,7 @@ namespace Journaley.Forms
             // 
             this.deletePhotoToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.deletePhotoToolStripMenuItem.Name = "deletePhotoToolStripMenuItem";
-            this.deletePhotoToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.deletePhotoToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
             this.deletePhotoToolStripMenuItem.Text = "Delete Photo";
             this.deletePhotoToolStripMenuItem.Click += new System.EventHandler(this.DeletePhotoToolStripMenuItem_Click);
             // 
@@ -1129,6 +1143,32 @@ namespace Journaley.Forms
             this.labelFormCaption.TabIndex = 4;
             this.labelFormCaption.Text = "Journaley";
             // 
+            // contextMenuStripPhotoWithoutPhoto
+            // 
+            this.contextMenuStripPhotoWithoutPhoto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
+            this.contextMenuStripPhotoWithoutPhoto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addFromClipboardToolStripMenuItem,
+            this.addFromFileExplorerToolStripMenuItem});
+            this.contextMenuStripPhotoWithoutPhoto.Name = "contextMenuStripPhotoWithoutPhotoClipboard";
+            this.contextMenuStripPhotoWithoutPhoto.ShowImageMargin = false;
+            this.contextMenuStripPhotoWithoutPhoto.Size = new System.Drawing.Size(176, 48);
+            // 
+            // addFromClipboardToolStripMenuItem
+            // 
+            this.addFromClipboardToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.addFromClipboardToolStripMenuItem.Name = "addFromClipboardToolStripMenuItem";
+            this.addFromClipboardToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.addFromClipboardToolStripMenuItem.Text = "Add from Clipboard";
+            this.addFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.AddFromClipboardToolStripMenuItem_Click);
+            // 
+            // addFromFileExplorerToolStripMenuItem
+            // 
+            this.addFromFileExplorerToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.addFromFileExplorerToolStripMenuItem.Name = "addFromFileExplorerToolStripMenuItem";
+            this.addFromFileExplorerToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.addFromFileExplorerToolStripMenuItem.Text = "Add from File Explorer...";
+            this.addFromFileExplorerToolStripMenuItem.Click += new System.EventHandler(this.AddFromFileExplorerToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1191,6 +1231,7 @@ namespace Journaley.Forms
             this.tableLayoutCalendar.ResumeLayout(false);
             this.panelTags.ResumeLayout(false);
             this.tableLayoutTags.ResumeLayout(false);
+            this.contextMenuStripPhotoWithoutPhoto.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1256,6 +1297,10 @@ namespace Journaley.Forms
         private System.Windows.Forms.Label labelFormCaption;
         private System.Windows.Forms.TableLayoutPanel tableLayoutTags;
         private System.Windows.Forms.Panel panelTagsSeparator;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripPhotoWithoutPhoto;
+        private System.Windows.Forms.ToolStripMenuItem addFromClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addFromFileExplorerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem replaceWithTheClipboardImageToolStripMenuItem;
     }
 }
 

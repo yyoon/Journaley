@@ -1267,52 +1267,19 @@
             }
             else
             {
-                try
+                bool success = this.SavePhotoForSelectedEntry(
+                    Image.FromFile(openDialog.FileName),
+                    targetFullPath,
+                    "Error reading the selected photo.");
+
+                if (!success)
                 {
-                    using (Image image = Image.FromFile(openDialog.FileName))
-                    {
-                        using (Bitmap b = new Bitmap(image.Width, image.Height))
-                        {
-                            b.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-                            using (Graphics g = Graphics.FromImage(b))
-                            {
-                                g.Clear(Color.White);
-                                g.DrawImageUnscaled(image, 0, 0);
-                            }
-
-                            // Set the JPEG quality to 100L.
-                            ImageCodecInfo jpgEncoder = this.GetEncoder(ImageFormat.Jpeg);
-
-                            if (jpgEncoder != null)
-                            {
-                                Encoder encoder = Encoder.Quality;
-                                EncoderParameters encoderParameters = new EncoderParameters(1);
-                                encoderParameters.Param[0] = new EncoderParameter(encoder, 100L);
-
-                                b.Save(targetFullPath, jpgEncoder, encoderParameters);
-                            }
-                            else
-                            {
-                                // Just use the default save method with 75% quality in case the encoder object is not found.
-                                b.Save(targetFullPath, ImageFormat.Jpeg);
-                            }
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show(
-                        "Error reading the selected photo.",
-                        "Failed to add photo",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-
                     return;
                 }
             }
 
             // Assign the photo path to the selected entry.
-            this.SelectedEntry.PhotoPath = Path.Combine(this.Settings.PhotoFolderPath, targetFileName);
+            this.SelectedEntry.PhotoPath = targetFullPath;
 
             // Update the UIs related to photo.
             this.UpdatePhotoUIs();
@@ -1320,6 +1287,106 @@
             // Reset the auto save timer.
             this.AutoSaveTimer.Stop();
             this.AutoSaveTimer.Start();
+        }
+
+        /// <summary>
+        /// Adds the photo from clipboard.
+        /// </summary>
+        private void AddPhotoFromClipboard()
+        {
+            string targetFileName = Path.ChangeExtension(this.SelectedEntry.UUIDString, "jpg");
+            string targetFullPath = Path.Combine(this.Settings.PhotoFolderPath, targetFileName);
+
+            bool success = this.SavePhotoForSelectedEntry(
+                Clipboard.GetImage(),
+                targetFullPath,
+                "Error reading the photo from clipboard.");
+
+            if (!success)
+            {
+                return;
+            }
+
+            // Assign the photo path to the selected entry.
+            this.SelectedEntry.PhotoPath = targetFullPath;
+
+            // Update the UIs related to photo.
+            this.UpdatePhotoUIs();
+
+            // Reset the auto save timer.
+            this.AutoSaveTimer.Stop();
+            this.AutoSaveTimer.Start();
+        }
+
+        /// <summary>
+        /// Saves the photo for selected entry.
+        /// </summary>
+        /// <param name="imageSource">The image source.</param>
+        /// <param name="targetFullPath">The target full path.</param>
+        /// <param name="errorMessage">The error message.</param>
+        /// <returns>true if saving succeeds, false otherwise.</returns>
+        private bool SavePhotoForSelectedEntry(Image imageSource, string targetFullPath, string errorMessage)
+        {
+            try
+            {
+                using (Image image = imageSource)
+                {
+                    using (Bitmap b = new Bitmap(image.Width, image.Height))
+                    {
+                        b.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+                        using (Graphics g = Graphics.FromImage(b))
+                        {
+                            g.Clear(Color.White);
+                            g.DrawImageUnscaled(image, 0, 0);
+                        }
+
+                        // Set the JPEG quality to 100L.
+                        ImageCodecInfo jpgEncoder = this.GetEncoder(ImageFormat.Jpeg);
+
+                        if (jpgEncoder != null)
+                        {
+                            Encoder encoder = Encoder.Quality;
+                            EncoderParameters encoderParameters = new EncoderParameters(1);
+                            encoderParameters.Param[0] = new EncoderParameter(encoder, 100L);
+
+                            try
+                            {
+                                this.Watcher.EnableRaisingEvents = false;
+                                b.Save(targetFullPath, jpgEncoder, encoderParameters);
+                            }
+                            finally
+                            {
+                                this.Watcher.EnableRaisingEvents = true;
+                            }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                // Just use the default save method with 75% quality in case the encoder object is not found.
+                                this.Watcher.EnableRaisingEvents = false;
+                                b.Save(targetFullPath, ImageFormat.Jpeg);
+                            }
+                            finally
+                            {
+                                this.Watcher.EnableRaisingEvents = true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(
+                    errorMessage,
+                    "Failed to add photo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -1959,7 +2026,14 @@
 
             if (this.SelectedEntry.PhotoPath != null)
             {
+                this.replaceWithTheClipboardImageToolStripMenuItem.Visible = Clipboard.ContainsImage();
+
                 this.contextMenuStripPhotoWithPhoto.Show(
+                    this.buttonPhoto, new Point(), ToolStripDropDownDirection.BelowLeft);
+            }
+            else if (Clipboard.ContainsImage())
+            {
+                this.contextMenuStripPhotoWithoutPhoto.Show(
                     this.buttonPhoto, new Point(), ToolStripDropDownDirection.BelowLeft);
             }
             else
@@ -2120,6 +2194,27 @@
         }
 
         /// <summary>
+        /// Handles the Click event of the replaceWithTheClipboardImageToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ReplaceWithTheClipboardImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "By replacing with the clipboard image, the current photo will be deleted." + Environment.NewLine + "Would you like to continue?",
+                "Replace Photo",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result != System.Windows.Forms.DialogResult.Yes)
+            {
+                return;
+            }
+
+            this.AddPhotoFromClipboard();
+        }
+
+        /// <summary>
         /// Handles the Click event of the replaceWithAnotherPhotoToolStripMenuItem control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -2166,6 +2261,26 @@
             // Reset the auto save timer.
             this.AutoSaveTimer.Stop();
             this.AutoSaveTimer.Start();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the addFromClipboardToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void AddFromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.AddPhotoFromClipboard();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the addFromFileExplorerToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void AddFromFileExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.AskToChooseExistingPhoto();
         }
 
         /// <summary>
