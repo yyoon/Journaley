@@ -2696,6 +2696,38 @@
             }
         }
 
+        /// <summary>
+        /// Handles the MouseMove event of all the scrollable controls.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void Scrollable_MouseMove(object sender, MouseEventArgs e)
+        {
+            Control control = sender as Control;
+            if (control == null || this.IsEditing)
+            {
+                return;
+            }
+
+            control.Focus();
+        }
+
+        /// <summary>
+        /// Handles the DocumentCompleted event of the webBrowser control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="WebBrowserDocumentCompletedEventArgs"/> instance containing the event data.</param>
+        private void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            this.webBrowser.Document.MouseMove += delegate(object s, HtmlElementEventArgs a)
+            {
+                if (!this.IsEditing)
+                {
+                    this.webBrowser.Document.Focus();
+                }
+            };
+        }
+
         #endregion
 
         #region Private Classes

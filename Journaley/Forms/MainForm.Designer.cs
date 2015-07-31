@@ -449,6 +449,7 @@ namespace Journaley.Forms
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.Size = new System.Drawing.Size(618, 318);
             this.webBrowser.TabIndex = 0;
+            this.webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowser_DocumentCompleted);
             // 
             // contextMenuStripPhotoWithPhoto
             // 
@@ -950,6 +951,7 @@ namespace Journaley.Forms
             this.entryListBoxAll.Size = new System.Drawing.Size(264, 473);
             this.entryListBoxAll.TabIndex = 0;
             this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
+            this.entryListBoxAll.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Scrollable_MouseMove);
             // 
             // panelCalendar
             // 
@@ -1058,6 +1060,7 @@ namespace Journaley.Forms
             this.entryListBoxCalendar.Size = new System.Drawing.Size(264, 288);
             this.entryListBoxCalendar.TabIndex = 1;
             this.entryListBoxCalendar.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
+            this.entryListBoxCalendar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Scrollable_MouseMove);
             // 
             // panelTags
             // 
@@ -1104,6 +1107,7 @@ namespace Journaley.Forms
             this.listBoxTags.Size = new System.Drawing.Size(264, 184);
             this.listBoxTags.TabIndex = 0;
             this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
+            this.listBoxTags.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Scrollable_MouseMove);
             // 
             // panelTagsSeparator
             // 
@@ -1131,6 +1135,7 @@ namespace Journaley.Forms
             this.entryListBoxTags.Size = new System.Drawing.Size(264, 288);
             this.entryListBoxTags.TabIndex = 0;
             this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
+            this.entryListBoxTags.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Scrollable_MouseMove);
             // 
             // labelFormCaption
             // 
