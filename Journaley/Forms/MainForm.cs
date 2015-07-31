@@ -1155,11 +1155,19 @@
                     now.Millisecond,
                     DateTimeKind.Local);
 
-                newEntry = new Entry(date.ToUniversalTime());
+                do
+                {
+                    newEntry = new Entry(date.ToUniversalTime());
+                }
+                while (this.Entries.ContainsKey(newEntry.UUID));
             }
             else if (this.IsInTagsView() && this.listBoxTags.SelectedIndex != -1)
             {
-                newEntry = new Entry();
+                do
+                {
+                    newEntry = new Entry();
+                }
+                while (this.Entries.ContainsKey(newEntry.UUID));
 
                 if (this.listBoxTags.SelectedItem is StarredCountEntry)
                 {
@@ -1172,7 +1180,11 @@
             }
             else
             {
-                newEntry = new Entry();
+                do
+                {
+                    newEntry = new Entry();
+                }
+                while (this.Entries.ContainsKey(newEntry.UUID));
             }
 
             this.Entries.Add(newEntry.UUID, newEntry);
