@@ -2704,7 +2704,7 @@
         private void Scrollable_MouseMove(object sender, MouseEventArgs e)
         {
             Control control = sender as Control;
-            if (control == null || this.IsEditing)
+            if (control == null || this.IsEditing || Form.ActiveForm != this)
             {
                 return;
             }
@@ -2721,7 +2721,7 @@
         {
             this.webBrowser.Document.MouseMove += delegate(object s, HtmlElementEventArgs a)
             {
-                if (!this.IsEditing)
+                if (!this.IsEditing && Form.ActiveForm == this)
                 {
                     this.webBrowser.Document.Focus();
                 }
