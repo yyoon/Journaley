@@ -1065,8 +1065,8 @@
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.Controls.SetChildIndex(this.panelTitlebar, 0);
-            this.Controls.SetChildIndex(this.panelAbout, 0);
             this.Controls.SetChildIndex(this.panelContent, 0);
+            this.Controls.SetChildIndex(this.panelAbout, 0);
             this.panelTitlebar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).EndInit();
