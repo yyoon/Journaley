@@ -408,7 +408,7 @@
 
             // Draw the text
             var oldHint = e.Graphics.TextRenderingHint;
-            e.Graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
+            e.Graphics.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
 
             Brush brush = new SolidBrush(this.ForeColor);
 
