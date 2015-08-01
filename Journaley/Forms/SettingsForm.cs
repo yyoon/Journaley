@@ -209,14 +209,14 @@
 
                 if (value != null)
                 {
-                    this.labelVersionNumber.Text = versionString;
+                    this.linkVersionNumber.Text = versionString;
                 }
                 else
                 {
-                    this.labelVersionNumber.Text = string.Format("{0} (dev)", versionString);
+                    this.linkVersionNumber.Text = string.Format("{0} (dev)", versionString);
                 }
 
-                this.labelVersionNumber.Links[0].LinkData =
+                this.linkVersionNumber.Links[0].LinkData =
                     "https://github.com/yyoon/Journaley/releases/tag/v" + version.ToString(2);
             }
         }

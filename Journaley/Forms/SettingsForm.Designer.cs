@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonChangePassword = new Journaley.Controls.ColorButton();
             this.textFolder = new System.Windows.Forms.TextBox();
             this.buttonSelectFolder = new Journaley.Controls.ImageButton();
@@ -67,7 +68,7 @@
             this.pictureUpdateIndicator = new System.Windows.Forms.PictureBox();
             this.horizontalSeparator4 = new System.Windows.Forms.Panel();
             this.labelCurrentVersion = new System.Windows.Forms.Label();
-            this.labelVersionNumber = new System.Windows.Forms.LinkLabel();
+            this.linkVersionNumber = new System.Windows.Forms.LinkLabel();
             this.buttonAbout = new Journaley.Controls.ImageButton();
             this.panelAbout = new Journaley.Controls.PaddingBorderPanel();
             this.linkMITLicense = new System.Windows.Forms.LinkLabel();
@@ -97,6 +98,7 @@
             this.linkYoungSeokYoon = new System.Windows.Forms.LinkLabel();
             this.labelDevelopedBy = new System.Windows.Forms.Label();
             this.labelCredits = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -142,7 +144,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.Controls.Add(this.buttonAbout);
-            this.panelContent.Controls.Add(this.labelVersionNumber);
+            this.panelContent.Controls.Add(this.linkVersionNumber);
             this.panelContent.Controls.Add(this.labelCurrentVersion);
             this.panelContent.Controls.Add(this.horizontalSeparator4);
             this.panelContent.Controls.Add(this.pictureUpdateIndicator);
@@ -692,17 +694,18 @@
             this.labelCurrentVersion.TabIndex = 24;
             this.labelCurrentVersion.Text = "Current Version:";
             // 
-            // labelVersionNumber
+            // linkVersionNumber
             // 
-            this.labelVersionNumber.AutoSize = true;
-            this.labelVersionNumber.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVersionNumber.Location = new System.Drawing.Point(288, 483);
-            this.labelVersionNumber.Name = "labelVersionNumber";
-            this.labelVersionNumber.Size = new System.Drawing.Size(59, 19);
-            this.labelVersionNumber.TabIndex = 25;
-            this.labelVersionNumber.TabStop = true;
-            this.labelVersionNumber.Text = "Develop";
-            this.labelVersionNumber.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkClicked);
+            this.linkVersionNumber.AutoSize = true;
+            this.linkVersionNumber.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkVersionNumber.Location = new System.Drawing.Point(288, 483);
+            this.linkVersionNumber.Name = "linkVersionNumber";
+            this.linkVersionNumber.Size = new System.Drawing.Size(59, 19);
+            this.linkVersionNumber.TabIndex = 25;
+            this.linkVersionNumber.TabStop = true;
+            this.linkVersionNumber.Text = "Develop";
+            this.toolTip.SetToolTip(this.linkVersionNumber, "Change Log (Opens Browser)");
+            this.linkVersionNumber.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkClicked);
             // 
             // buttonAbout
             // 
@@ -1125,7 +1128,7 @@
         private System.Windows.Forms.PictureBox pictureUpdateIndicator;
         private System.Windows.Forms.Panel horizontalSeparator4;
         private System.Windows.Forms.Label labelCurrentVersion;
-        private System.Windows.Forms.LinkLabel labelVersionNumber;
+        private System.Windows.Forms.LinkLabel linkVersionNumber;
         private Controls.ImageButton buttonAbout;
         private Controls.PaddingBorderPanel panelAbout;
         private System.Windows.Forms.Panel horizontalSeparator5;
@@ -1155,5 +1158,6 @@
         private System.Windows.Forms.LinkLabel linkGitHub;
         private System.Windows.Forms.Label labelLicensedUnder;
         private System.Windows.Forms.LinkLabel linkMITLicense;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
