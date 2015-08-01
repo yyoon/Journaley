@@ -91,7 +91,7 @@ namespace Journaley.Forms
             this.listBoxTags = new System.Windows.Forms.ListBox();
             this.panelTagsSeparator = new System.Windows.Forms.Panel();
             this.entryListBoxTags = new Journaley.Controls.EntryListBox();
-            this.labelFormCaption = new System.Windows.Forms.Label();
+            this.labelFormCaption = new Journaley.Controls.TitleLabel();
             this.contextMenuStripPhotoWithoutPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addFromFileExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1299,7 +1299,7 @@ namespace Journaley.Forms
         private Pabo.Calendar.MonthCalendar monthCalendar;
         private System.Windows.Forms.Panel panelCalendarSeparator;
         private EntryPhotoArea entryPhotoArea;
-        private System.Windows.Forms.Label labelFormCaption;
+        private Journaley.Controls.TitleLabel labelFormCaption;
         private System.Windows.Forms.TableLayoutPanel tableLayoutTags;
         private System.Windows.Forms.Panel panelTagsSeparator;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripPhotoWithoutPhoto;
