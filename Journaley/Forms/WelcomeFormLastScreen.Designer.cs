@@ -108,9 +108,9 @@
             // 
             // labelMainMessage
             // 
-            this.labelMainMessage.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMainMessage.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelMainMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(125)))), ((int)(((byte)(249)))));
-            this.labelMainMessage.Location = new System.Drawing.Point(10, 295);
+            this.labelMainMessage.Location = new System.Drawing.Point(10, 294);
             this.labelMainMessage.Name = "labelMainMessage";
             this.labelMainMessage.Size = new System.Drawing.Size(430, 30);
             this.labelMainMessage.TabIndex = 2;
@@ -137,7 +137,7 @@
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonOK.DisabledColor = System.Drawing.Color.Empty;
             this.buttonOK.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 13F);
             this.buttonOK.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonOK.Location = new System.Drawing.Point(95, 180);
             this.buttonOK.Name = "buttonOK";
@@ -153,11 +153,11 @@
             // 
             // labelPanel6Message
             // 
-            this.labelPanel6Message.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanel6Message.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Italic);
             this.labelPanel6Message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
-            this.labelPanel6Message.Location = new System.Drawing.Point(95, 27);
+            this.labelPanel6Message.Location = new System.Drawing.Point(95, 19);
             this.labelPanel6Message.Name = "labelPanel6Message";
-            this.labelPanel6Message.Size = new System.Drawing.Size(260, 75);
+            this.labelPanel6Message.Size = new System.Drawing.Size(260, 108);
             this.labelPanel6Message.TabIndex = 5;
             this.labelPanel6Message.Text = "Write what you think.\nClear your mind.\nNever worry.";
             this.labelPanel6Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
