@@ -141,6 +141,21 @@
 
             this.UpdateMaximizeRestoreButtonImage();
 
+            foreach (ContextMenuStrip menu in new ContextMenuStrip[]
+            {
+                this.contextMenuStripPhotoWithoutPhoto,
+                this.contextMenuStripPhotoWithPhoto
+            })
+            {
+                menu.Renderer = new ToolStripProfessionalRenderer(new PhotoMenuColorTable());
+
+                foreach (ToolStripMenuItem menuItem in menu.Items)
+                {
+                    menuItem.MouseMove += this.ToolStripMenuItem_MouseMove;
+                    menuItem.MouseLeave += this.ToolStripMenuItem_MouseLeave;
+                }
+            }
+
             // Jump List
             if (createJumpList)
             {
@@ -2740,6 +2755,38 @@
             };
         }
 
+        /// <summary>
+        /// Handles the MouseMove event of the ToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void ToolStripMenuItem_MouseMove(object sender, MouseEventArgs e)
+        {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            if (menuItem == null)
+            {
+                return;
+            }
+
+            menuItem.ForeColor = Color.FromArgb(57, 51, 49);
+        }
+
+        /// <summary>
+        /// Handles the MouseLeave event of the ToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ToolStripMenuItem_MouseLeave(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            if (menuItem == null)
+            {
+                return;
+            }
+
+            menuItem.ForeColor = SystemColors.ControlLightLight;
+        }
+
         #endregion
 
         #region Private Classes
@@ -2844,6 +2891,23 @@
             public StarredCountEntry(int count)
                 : base("Starred", count)
             {
+            }
+        }
+
+        /// <summary>
+        /// Custom color table for the photo menus.
+        /// </summary>
+        private class PhotoMenuColorTable : ProfessionalColorTable
+        {
+            /// <summary>
+            /// Gets the solid color to use when a <see cref="T:System.Windows.Forms.ToolStripMenuItem" /> other than the top-level <see cref="T:System.Windows.Forms.ToolStripMenuItem" /> is selected.
+            /// </summary>
+            public override Color MenuItemSelected
+            {
+                get
+                {
+                    return Color.FromArgb(41, 161, 249);
+                }
             }
         }
 
