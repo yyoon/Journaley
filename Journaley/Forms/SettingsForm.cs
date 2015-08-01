@@ -390,12 +390,20 @@
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void SettingsForm_Load(object sender, EventArgs e)
         {
-            // Set the initial location.
-            if (this.Owner != null)
+            // Set the initial location. 
+            // Offset location if MainForm not maximized, and center if it is.
+            if (this.Owner != null && this.Owner is MainForm)
             {
-                this.Location = new Point(
-                    this.Owner.Left + ((this.Owner.Width - this.Width) / 2) + 10,
-                    this.Owner.Top + this.panelTitlebar.Height);
+                if (this.Owner.WindowState == FormWindowState.Maximized)
+                {
+                    this.CenterToParent();
+                }
+                else
+                {
+                    this.Location = new Point(
+                        this.Owner.Left + ((this.Owner.Width - this.Width) / 2) + 10,
+                        this.Owner.Top - this.panelTitlebar.Height);
+                }
             }
 
             // Set the font of the font size buttons to Noto Serif.
