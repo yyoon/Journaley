@@ -583,7 +583,7 @@
             this.comboSpellcheckLanguages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboSpellcheckLanguages.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboSpellcheckLanguages.FormattingEnabled = true;
-            this.comboSpellcheckLanguages.Location = new System.Drawing.Point(190, 105);
+            this.comboSpellcheckLanguages.Location = new System.Drawing.Point(298, 105);
             this.comboSpellcheckLanguages.Name = "comboSpellcheckLanguages";
             this.comboSpellcheckLanguages.Size = new System.Drawing.Size(100, 23);
             this.comboSpellcheckLanguages.TabIndex = 16;
@@ -592,7 +592,7 @@
             // 
             this.labelSpellChecker.AutoSize = true;
             this.labelSpellChecker.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSpellChecker.Location = new System.Drawing.Point(187, 52);
+            this.labelSpellChecker.Location = new System.Drawing.Point(295, 52);
             this.labelSpellChecker.Name = "labelSpellChecker";
             this.labelSpellChecker.Size = new System.Drawing.Size(94, 19);
             this.labelSpellChecker.TabIndex = 17;
@@ -602,12 +602,12 @@
             // 
             this.checkBoxEnableSpellCheck.AutoSize = true;
             this.checkBoxEnableSpellCheck.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxEnableSpellCheck.Location = new System.Drawing.Point(190, 79);
+            this.checkBoxEnableSpellCheck.Location = new System.Drawing.Point(298, 79);
             this.checkBoxEnableSpellCheck.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxEnableSpellCheck.Name = "checkBoxEnableSpellCheck";
-            this.checkBoxEnableSpellCheck.Size = new System.Drawing.Size(162, 24);
+            this.checkBoxEnableSpellCheck.Size = new System.Drawing.Size(73, 24);
             this.checkBoxEnableSpellCheck.TabIndex = 18;
-            this.checkBoxEnableSpellCheck.Text = "Enable spell checker";
+            this.checkBoxEnableSpellCheck.Text = "Enable";
             this.checkBoxEnableSpellCheck.UseVisualStyleBackColor = true;
             this.checkBoxEnableSpellCheck.Click += new System.EventHandler(this.CheckBoxEnableSpellCheck_Click);
             // 
@@ -1065,8 +1065,8 @@
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             this.Controls.SetChildIndex(this.panelTitlebar, 0);
-            this.Controls.SetChildIndex(this.panelContent, 0);
             this.Controls.SetChildIndex(this.panelAbout, 0);
+            this.Controls.SetChildIndex(this.panelContent, 0);
             this.panelTitlebar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).EndInit();
