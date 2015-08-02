@@ -93,9 +93,14 @@
         private static readonly Brush MonthTextBrush = new SolidBrush(Color.FromArgb(187, 187, 187));
 
         /// <summary>
+        /// The entry background normal color
+        /// </summary>
+        private static readonly Color EntryBackgroundNormalColor = Color.FromArgb(38, 46, 60);
+
+        /// <summary>
         /// Brush for filling the background of normal journal entries.
         /// </summary>
-        private static readonly Brush EntryBackgroundNormalBrush = new SolidBrush(Color.FromArgb(38, 46, 60));
+        private static readonly Brush EntryBackgroundNormalBrush = new SolidBrush(EntryBackgroundNormalColor);
 
         /// <summary>
         /// Brush for filling the background of selected journal entries.
@@ -105,12 +110,17 @@
         /// <summary>
         /// Brush for filling the background of selected and starred journal entries.
         /// </summary>
-        private static readonly Brush EntryBackgroundSelectedStarredBrush = Brushes.Yellow;
+        private static readonly Brush EntryBackgroundSelectedStarredBrush = new SolidBrush(Color.Yellow);
 
         /// <summary>
         /// The boundary line pen
         /// </summary>
         private static readonly Pen BoundaryLinePen = Pens.Black;
+
+        /// <summary>
+        /// The photo fade in time in milliseconds.
+        /// </summary>
+        private static readonly int PhotoFadeInTime = 400;
 
         /// <summary>
         /// The entry day font. Not marked as read-only because its size can change dynamically.
@@ -131,6 +141,11 @@
         /// The wide thumbnail cache
         /// </summary>
         private ImageCache wideThumbnailCache = new ImageCache();
+
+        /// <summary>
+        /// The photo alpha values
+        /// </summary>
+        private Dictionary<Entry, int> photoAlphaValues = new Dictionary<Entry, int>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EntryListBox"/> class.
@@ -182,6 +197,20 @@
             get
             {
                 return this.wideThumbnailCache;
+            }
+        }
+
+        /// <summary>
+        /// Gets the photo alpha values.
+        /// </summary>
+        /// <value>
+        /// The photo alpha values.
+        /// </value>
+        private Dictionary<Entry, int> PhotoAlphaValues
+        {
+            get
+            {
+                return this.photoAlphaValues;
             }
         }
 
@@ -298,6 +327,20 @@
         }
 
         /// <summary>
+        /// Gets the background brush.
+        /// </summary>
+        /// <param name="e">The <see cref="DrawItemEventArgs"/> instance containing the event data.</param>
+        /// <param name="entry">The entry.</param>
+        /// <returns>The background brush.</returns>
+        private static Brush GetBackgroundBrush(DrawItemEventArgs e, Entry entry)
+        {
+            Brush brush = (e.State & DrawItemState.Selected) == DrawItemState.Selected
+                ? (entry.Starred ? EntryBackgroundSelectedStarredBrush : EntryBackgroundSelectedBrush)
+                : EntryBackgroundNormalBrush;
+            return brush;
+        }
+
+        /// <summary>
         /// Called when [mouse wheel].
         /// Eat the mouse wheel event, and send the SB_LINEUP / SB_LINEDOWN message instead.
         /// </summary>
@@ -374,10 +417,7 @@
             Rectangle bounds = e.Bounds;
             bounds.Height -= 1;
 
-            Brush brush = (e.State & DrawItemState.Selected) == DrawItemState.Selected
-                ? (entry.Starred ? EntryBackgroundSelectedStarredBrush : EntryBackgroundSelectedBrush)
-                : EntryBackgroundNormalBrush;
-            e.Graphics.FillRectangle(brush, bounds);
+            e.Graphics.FillRectangle(GetBackgroundBrush(e, entry), bounds);
         }
 
         /// <summary>
@@ -474,6 +514,18 @@
                     if (cachedImage != null)
                     {
                         e.Graphics.DrawImage(cachedImage, bounds.X, bounds.Y);
+
+                        // Alpha Value
+                        int alpha = this.PhotoAlphaValues.ContainsKey(entry)
+                            ? this.PhotoAlphaValues[entry]
+                            : 0;
+
+                        if (alpha > 0)
+                        {
+                            e.Graphics.FillRectangle(
+                                new SolidBrush(Color.FromArgb(alpha, EntryBackgroundNormalColor)),
+                                bounds);
+                        }
                     }
                     else
                     {
@@ -655,7 +707,44 @@
 
             worker.RunWorkerCompleted += delegate(object sender, RunWorkerCompletedEventArgs args)
             {
-                this.Invalidate(this.GetItemRectangle(index));
+                // Start the timer to do the fade in animation.
+                Timer timer = new Timer();
+                timer.Interval = 1;
+
+                long initialTimestamp = DateTime.Now.Ticks;
+
+                timer.Tick += delegate(object s, EventArgs e)
+                {
+                    long diff = (DateTime.Now.Ticks - initialTimestamp) / 10000;
+                    int alpha = (int)(255 - (255 * diff / PhotoFadeInTime));
+
+                    Debug.WriteLine("diff: " + diff + "\talpha: " + alpha);
+
+                    if (alpha <= 0)
+                    {
+                        if (this.PhotoAlphaValues.ContainsKey(entry))
+                        {
+                            this.PhotoAlphaValues.Remove(entry);
+                        }
+
+                        timer.Stop();
+                    }
+                    else
+                    {
+                        if (this.PhotoAlphaValues.ContainsKey(entry))
+                        {
+                            this.PhotoAlphaValues[entry] = alpha;
+                        }
+                        else
+                        {
+                            this.PhotoAlphaValues.Add(entry, alpha);
+                        }
+                    }
+
+                    this.Invalidate(this.GetItemRectangle(index));
+                };
+
+                timer.Start();
             };
 
             worker.RunWorkerAsync();
