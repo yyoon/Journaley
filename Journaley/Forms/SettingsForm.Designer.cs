@@ -99,6 +99,9 @@
             this.labelDevelopedBy = new System.Windows.Forms.Label();
             this.labelCredits = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.labelTypeface = new System.Windows.Forms.Label();
+            this.radioButtonNotoSans = new System.Windows.Forms.RadioButton();
+            this.radioButtonNotoSerif = new System.Windows.Forms.RadioButton();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -166,6 +169,9 @@
             this.panelContent.Controls.Add(this.comboSpellcheckLanguages);
             this.panelContent.Controls.Add(this.checkBoxEnableSpellCheck);
             this.panelContent.Controls.Add(this.labelSpellChecker);
+            this.panelContent.Controls.Add(this.radioButtonNotoSerif);
+            this.panelContent.Controls.Add(this.radioButtonNotoSans);
+            this.panelContent.Controls.Add(this.labelTypeface);
             this.panelContent.Controls.Add(this.buttonSizeLarge);
             this.panelContent.Controls.Add(this.buttonSizeMedium);
             this.panelContent.Controls.Add(this.buttonSizeSmall);
@@ -337,7 +343,7 @@
             this.labelAppearanceSection.Location = new System.Drawing.Point(10, 15);
             this.labelAppearanceSection.Name = "labelAppearanceSection";
             this.labelAppearanceSection.Size = new System.Drawing.Size(111, 20);
-            this.labelAppearanceSection.TabIndex = 0;
+            this.labelAppearanceSection.TabIndex = 1;
             this.labelAppearanceSection.Text = "Entry Preference";
             // 
             // labelTextSize
@@ -347,7 +353,7 @@
             this.labelTextSize.Location = new System.Drawing.Point(27, 52);
             this.labelTextSize.Name = "labelTextSize";
             this.labelTextSize.Size = new System.Drawing.Size(65, 19);
-            this.labelTextSize.TabIndex = 1;
+            this.labelTextSize.TabIndex = 2;
             this.labelTextSize.Text = "Text Size";
             // 
             // buttonSizeSmall
@@ -367,7 +373,7 @@
             this.buttonSizeSmall.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeSmall.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeSmall.Size = new System.Drawing.Size(36, 36);
-            this.buttonSizeSmall.TabIndex = 2;
+            this.buttonSizeSmall.TabIndex = 3;
             this.buttonSizeSmall.Text = "T";
             this.buttonSizeSmall.Click += new System.EventHandler(this.ButtonSizeSmall_Click);
             // 
@@ -387,7 +393,7 @@
             this.buttonSizeMedium.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeMedium.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeMedium.Size = new System.Drawing.Size(36, 36);
-            this.buttonSizeMedium.TabIndex = 3;
+            this.buttonSizeMedium.TabIndex = 4;
             this.buttonSizeMedium.Text = "T";
             this.buttonSizeMedium.Click += new System.EventHandler(this.ButtonSizeMedium_Click);
             // 
@@ -408,7 +414,7 @@
             this.buttonSizeLarge.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeLarge.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeLarge.Size = new System.Drawing.Size(36, 36);
-            this.buttonSizeLarge.TabIndex = 4;
+            this.buttonSizeLarge.TabIndex = 5;
             this.buttonSizeLarge.Text = "T";
             this.buttonSizeLarge.Click += new System.EventHandler(this.ButtonSizeLarge_Click);
             // 
@@ -586,7 +592,7 @@
             this.comboSpellcheckLanguages.Location = new System.Drawing.Point(298, 105);
             this.comboSpellcheckLanguages.Name = "comboSpellcheckLanguages";
             this.comboSpellcheckLanguages.Size = new System.Drawing.Size(100, 23);
-            this.comboSpellcheckLanguages.TabIndex = 16;
+            this.comboSpellcheckLanguages.TabIndex = 11;
             // 
             // labelSpellChecker
             // 
@@ -595,7 +601,7 @@
             this.labelSpellChecker.Location = new System.Drawing.Point(295, 52);
             this.labelSpellChecker.Name = "labelSpellChecker";
             this.labelSpellChecker.Size = new System.Drawing.Size(94, 19);
-            this.labelSpellChecker.TabIndex = 17;
+            this.labelSpellChecker.TabIndex = 9;
             this.labelSpellChecker.Text = "Spell Checker";
             // 
             // checkBoxEnableSpellCheck
@@ -606,7 +612,7 @@
             this.checkBoxEnableSpellCheck.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxEnableSpellCheck.Name = "checkBoxEnableSpellCheck";
             this.checkBoxEnableSpellCheck.Size = new System.Drawing.Size(73, 24);
-            this.checkBoxEnableSpellCheck.TabIndex = 18;
+            this.checkBoxEnableSpellCheck.TabIndex = 10;
             this.checkBoxEnableSpellCheck.Text = "Enable";
             this.checkBoxEnableSpellCheck.UseVisualStyleBackColor = true;
             this.checkBoxEnableSpellCheck.Click += new System.EventHandler(this.CheckBoxEnableSpellCheck_Click);
@@ -1048,6 +1054,42 @@
             this.labelCredits.TabIndex = 24;
             this.labelCredits.Text = "Credits";
             // 
+            // labelTypeface
+            // 
+            this.labelTypeface.AutoSize = true;
+            this.labelTypeface.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTypeface.Location = new System.Drawing.Point(173, 52);
+            this.labelTypeface.Name = "labelTypeface";
+            this.labelTypeface.Size = new System.Drawing.Size(64, 19);
+            this.labelTypeface.TabIndex = 6;
+            this.labelTypeface.Text = "Typeface";
+            // 
+            // radioButtonNotoSans
+            // 
+            this.radioButtonNotoSans.AutoSize = true;
+            this.radioButtonNotoSans.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonNotoSans.Location = new System.Drawing.Point(176, 79);
+            this.radioButtonNotoSans.Name = "radioButtonNotoSans";
+            this.radioButtonNotoSans.Size = new System.Drawing.Size(95, 24);
+            this.radioButtonNotoSans.TabIndex = 7;
+            this.radioButtonNotoSans.TabStop = true;
+            this.radioButtonNotoSans.Text = "Noto Sans";
+            this.radioButtonNotoSans.UseVisualStyleBackColor = true;
+            this.radioButtonNotoSans.Click += new System.EventHandler(this.RadioButtonNotoSans_Click);
+            // 
+            // radioButtonNotoSerif
+            // 
+            this.radioButtonNotoSerif.AutoSize = true;
+            this.radioButtonNotoSerif.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonNotoSerif.Location = new System.Drawing.Point(176, 104);
+            this.radioButtonNotoSerif.Name = "radioButtonNotoSerif";
+            this.radioButtonNotoSerif.Size = new System.Drawing.Size(95, 24);
+            this.radioButtonNotoSerif.TabIndex = 8;
+            this.radioButtonNotoSerif.TabStop = true;
+            this.radioButtonNotoSerif.Text = "Noto Serif";
+            this.radioButtonNotoSerif.UseVisualStyleBackColor = true;
+            this.radioButtonNotoSerif.CheckedChanged += new System.EventHandler(this.RadioButtonNotoSerif_CheckedChanged);
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.buttonOK;
@@ -1159,5 +1201,8 @@
         private System.Windows.Forms.Label labelLicensedUnder;
         private System.Windows.Forms.LinkLabel linkMITLicense;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Label labelTypeface;
+        private System.Windows.Forms.RadioButton radioButtonNotoSans;
+        private System.Windows.Forms.RadioButton radioButtonNotoSerif;
     }
 }

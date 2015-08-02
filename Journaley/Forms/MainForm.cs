@@ -604,17 +604,34 @@
         {
             this.webBrowser.DocumentText =
                 string.Format(
-                    "<style type=\"text/css\">\n<!-- Journaley CSS -->\n{0}\n<!-- Custom CSS -->\n{1}\n</style><html><body><div>{2}</div></body></html>",
-                    this.GetWebBrowserCSS(),
+                    "<style type=\"text/css\">\n<!-- Font CSS -->\n{0}\n<!-- Size CSS -->\n{1}\n<!-- Custom CSS -->\n{2}\n</style><html><body><div>{3}</div></body></html>",
+                    this.GetWebBrowserTypefaceCSS(),
+                    this.GetWebBrowserSizeCSS(),
                     this.CustomCSS ?? string.Empty,
                     Markdown.Transform(this.SelectedEntry.EntryText));
         }
 
         /// <summary>
-        /// Gets the CSS text to be used in the web browser control.
+        /// Gets the CSS text containing the typeface to be used in the web browser control.
         /// </summary>
         /// <returns>CSS text</returns>
-        private string GetWebBrowserCSS()
+        private string GetWebBrowserTypefaceCSS()
+        {
+            string result = Journaley.Properties.Resources.JournaleyCSSNotoSans;
+
+            if (this.Settings.Typeface == "Noto Serif")
+            {
+                result = Journaley.Properties.Resources.JournaleyCSSNotoSerif;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets the CSS text containing the font sizes to be used in the web browser control.
+        /// </summary>
+        /// <returns>CSS text</returns>
+        private string GetWebBrowserSizeCSS()
         {
             string result = Journaley.Properties.Resources.JournaleyCSSMedium;
 
@@ -725,7 +742,7 @@
                 this.spellCheckedEntryText.Text = string.Empty;
                 this.webBrowser.DocumentText = string.Format(
                     "<style type=\"text/css\">\n{0}\n</style><html><body></body></html>",
-                    this.GetWebBrowserCSS());
+                    this.GetWebBrowserSizeCSS());
             }
 
             this.tableLayoutSidebar.Visible = !noEntry;
@@ -783,6 +800,7 @@
             this.flowLayoutSidebarTopButtons.Controls.Clear();
 
             this.UpdateSpellCheckedEntryTextSize();
+            this.UpdateSpellCheckedEntryTypeface();
             this.UpdateStats();
             this.UpdateAllEntryLists();
             this.UpdateUI();
@@ -1630,6 +1648,40 @@
         }
 
         /// <summary>
+        /// Updates the spell checked entry typeface.
+        /// </summary>
+        private void UpdateSpellCheckedEntryTypeface()
+        {
+            if (this.Settings.Typeface == null)
+            {
+                this.Settings.Typeface = "Noto Sans";
+                this.Settings.Save();
+            }
+
+            switch (this.Settings.Typeface)
+            {
+                case "Noto Sans":
+                    this.spellCheckedEntryText.Font = new Font(
+                        this.FontFamilyNotoSansRegular,
+                        this.spellCheckedEntryText.Font.Size,
+                        this.spellCheckedEntryText.Font.Style);
+                    break;
+
+                case "Noto Serif":
+                    this.spellCheckedEntryText.Font = new Font(
+                        this.FontFamilyNotoSerifRegular,
+                        this.spellCheckedEntryText.Font.Size,
+                        this.spellCheckedEntryText.Font.Style);
+                    break;
+
+                default:
+                    break;
+            }
+
+            this.spellCheckedEntryText.Initialize();
+        }
+
+        /// <summary>
         /// Updates the size of the spell checked entry text.
         /// </summary>
         private void UpdateSpellCheckedEntryTextSize()
@@ -1749,6 +1801,7 @@
             this.UpdateSpellCheckLanguage();
             this.UpdateSpellCheckEnabled();
             this.UpdateSpellCheckedEntryTextSize();
+            this.UpdateSpellCheckedEntryTypeface();
 
             this.ReloadEntries();
 
@@ -1975,6 +2028,7 @@
                 bool dayOneFolderChanged = this.Settings.DayOneFolderPath != form.Settings.DayOneFolderPath;
                 bool spellCheckEnabledChanged = this.Settings.SpellCheckEnabled != form.Settings.SpellCheckEnabled;
                 bool languageChanged = this.Settings.SpellCheckLanguage != form.Settings.SpellCheckLanguage;
+                bool typefaceChanged = this.Settings.Typeface != form.Settings.Typeface;
                 bool textSizeChanged = this.Settings.TextSize != form.Settings.TextSize;
 
                 this.Settings = form.Settings;
@@ -1996,6 +2050,12 @@
                     this.UpdateSpellCheckedEntryTextSize();
 
                     // Update the web browser font size.
+                    this.UpdateWebBrowser();
+                }
+
+                if (typefaceChanged)
+                {
+                    this.UpdateSpellCheckedEntryTypeface();
                     this.UpdateWebBrowser();
                 }
 
