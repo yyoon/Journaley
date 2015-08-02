@@ -85,6 +85,16 @@
         private FontFamily fontFamilyNotoSerifRegular;
 
         /// <summary>
+        /// The Noto Sans font family for WPF
+        /// </summary>
+        private System.Windows.Media.FontFamily fontFamilyNotoSansWPF;
+
+        /// <summary>
+        /// The Noto Serif font family for WPF
+        /// </summary>
+        private System.Windows.Media.FontFamily fontFamilyNotoSerifWPF;
+
+        /// <summary>
         /// Backing field for UpdateAvailable property.
         /// </summary>
         private bool updateAvailable = false;
@@ -124,11 +134,8 @@
                 "NotoSerif_Regular.ttf",
                 Journaley.Properties.Resources.NotoSerif_Regular);
 
-            // Set the font of the text entry box.
-            this.spellCheckedEntryText.Font = new Font(
-                this.FontFamilyNotoSansRegular,
-                this.spellCheckedEntryText.Font.Size,
-                this.spellCheckedEntryText.Font.Style);
+            this.fontFamilyNotoSansWPF = FontReader.ReadEmbeddedFont("NotoSans_Regular.ttf", "Noto Sans");
+            this.fontFamilyNotoSerifWPF = FontReader.ReadEmbeddedFont("NotoSerif_Regular.ttf", "Noto Serif");
 
             this.spellCheckedEntryText.Initialize();
 
@@ -199,6 +206,34 @@
             get
             {
                 return this.fontFamilyNotoSerifRegular;
+            }
+        }
+
+        /// <summary>
+        /// Gets the Noto Sans font family for WPF.
+        /// </summary>
+        /// <value>
+        /// The Noto Sans font family for WPF.
+        /// </value>
+        internal System.Windows.Media.FontFamily FontFamilyNotoSansWPF
+        {
+            get
+            {
+                return this.fontFamilyNotoSansWPF;
+            }
+        }
+
+        /// <summary>
+        /// Gets the Noto Serif font family for WPF.
+        /// </summary>
+        /// <value>
+        /// The Noto Serif font family for WPF.
+        /// </value>
+        internal System.Windows.Media.FontFamily FontFamilyNotoSerifWPF
+        {
+            get
+            {
+                return this.fontFamilyNotoSerifWPF;
             }
         }
 
@@ -1661,24 +1696,16 @@
             switch (this.Settings.Typeface)
             {
                 case "Noto Sans":
-                    this.spellCheckedEntryText.Font = new Font(
-                        this.FontFamilyNotoSansRegular,
-                        this.spellCheckedEntryText.Font.Size,
-                        this.spellCheckedEntryText.Font.Style);
+                    this.spellCheckedEntryText.FontFamily = this.FontFamilyNotoSansWPF;
                     break;
 
                 case "Noto Serif":
-                    this.spellCheckedEntryText.Font = new Font(
-                        this.FontFamilyNotoSerifRegular,
-                        this.spellCheckedEntryText.Font.Size,
-                        this.spellCheckedEntryText.Font.Style);
+                    this.spellCheckedEntryText.FontFamily = this.FontFamilyNotoSerifWPF;
                     break;
 
                 default:
                     break;
             }
-
-            this.spellCheckedEntryText.Initialize();
         }
 
         /// <summary>
