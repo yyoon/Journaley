@@ -123,7 +123,7 @@
         /// <value>
         ///   <c>true</c> if [dragging title bar]; otherwise, <c>false</c>.
         /// </value>
-        private bool DraggingTitleBar
+        protected bool DraggingTitleBar
         {
             get
             {
@@ -141,6 +141,25 @@
                 }
 
                 this.draggingTitleBar = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the dragging offset.
+        /// </summary>
+        /// <value>
+        /// The dragging offset.
+        /// </value>
+        protected Point DraggingOffset
+        {
+            get
+            {
+                return this.draggingOffset;
+            }
+
+            set
+            {
+                this.draggingOffset = value;
             }
         }
 

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomeForm));
-            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.pictureBoxLogo = new Journaley.Controls.MouseFallThroughPictureBox();
             this.horizontalSeparator = new System.Windows.Forms.Panel();
             this.labelMainMessage = new System.Windows.Forms.Label();
             this.bottomPanel1Init = new Journaley.Controls.BorderPanel();
@@ -65,6 +65,7 @@
             this.bottomPanel6Complete = new Journaley.Controls.BorderPanel();
             this.buttonOK = new Journaley.Controls.ColorButton();
             this.labelPanel6Message = new System.Windows.Forms.Label();
+            this.panelExtendedTitleBar = new System.Windows.Forms.Panel();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -124,6 +125,7 @@
             this.panelContent.Controls.Add(this.labelMainMessage);
             this.panelContent.Controls.Add(this.horizontalSeparator);
             this.panelContent.Controls.Add(this.pictureBoxLogo);
+            this.panelContent.Controls.Add(this.panelExtendedTitleBar);
             this.panelContent.ForeColor = System.Drawing.Color.Black;
             this.panelContent.Location = new System.Drawing.Point(0, 21);
             this.panelContent.Padding = new System.Windows.Forms.Padding(1, 0, 1, 1);
@@ -639,6 +641,16 @@
             this.labelPanel6Message.Text = "Write what you think.\nClear your mind.\nNever worry.";
             this.labelPanel6Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // panelExtendedTitleBar
+            // 
+            this.panelExtendedTitleBar.Location = new System.Drawing.Point(1, 0);
+            this.panelExtendedTitleBar.Name = "panelExtendedTitleBar";
+            this.panelExtendedTitleBar.Size = new System.Drawing.Size(448, 239);
+            this.panelExtendedTitleBar.TabIndex = 9;
+            this.panelExtendedTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelExtendedTitleBar_MouseDown);
+            this.panelExtendedTitleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelExtendedTitleBar_MouseMove);
+            this.panelExtendedTitleBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelExtendedTitleBar_MouseUp);
+            // 
             // WelcomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -675,7 +687,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxLogo;
+        private Controls.MouseFallThroughPictureBox pictureBoxLogo;
         private System.Windows.Forms.Panel horizontalSeparator;
         private System.Windows.Forms.Label labelMainMessage;
         private Controls.BorderPanel bottomPanel1Init;
@@ -711,5 +723,6 @@
         private System.Windows.Forms.Label labelJournalLocationPadding;
         private System.Windows.Forms.TextBox textJournalLocation;
         private Controls.ColorButton buttonGoBack;
+        private System.Windows.Forms.Panel panelExtendedTitleBar;
     }
 }
