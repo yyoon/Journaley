@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.buttonChangePassword = new Journaley.Controls.ColorButton();
             this.textFolder = new System.Windows.Forms.TextBox();
             this.buttonSelectFolder = new Journaley.Controls.ImageButton();
@@ -67,7 +68,7 @@
             this.pictureUpdateIndicator = new System.Windows.Forms.PictureBox();
             this.horizontalSeparator4 = new System.Windows.Forms.Panel();
             this.labelCurrentVersion = new System.Windows.Forms.Label();
-            this.labelVersionNumber = new System.Windows.Forms.Label();
+            this.linkVersionNumber = new System.Windows.Forms.LinkLabel();
             this.buttonAbout = new Journaley.Controls.ImageButton();
             this.panelAbout = new Journaley.Controls.PaddingBorderPanel();
             this.linkMITLicense = new System.Windows.Forms.LinkLabel();
@@ -97,6 +98,10 @@
             this.linkYoungSeokYoon = new System.Windows.Forms.LinkLabel();
             this.labelDevelopedBy = new System.Windows.Forms.Label();
             this.labelCredits = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.labelTypeface = new System.Windows.Forms.Label();
+            this.radioButtonNotoSans = new System.Windows.Forms.RadioButton();
+            this.radioButtonNotoSerif = new System.Windows.Forms.RadioButton();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -142,7 +147,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelContent.Controls.Add(this.buttonAbout);
-            this.panelContent.Controls.Add(this.labelVersionNumber);
+            this.panelContent.Controls.Add(this.linkVersionNumber);
             this.panelContent.Controls.Add(this.labelCurrentVersion);
             this.panelContent.Controls.Add(this.horizontalSeparator4);
             this.panelContent.Controls.Add(this.pictureUpdateIndicator);
@@ -164,6 +169,9 @@
             this.panelContent.Controls.Add(this.comboSpellcheckLanguages);
             this.panelContent.Controls.Add(this.checkBoxEnableSpellCheck);
             this.panelContent.Controls.Add(this.labelSpellChecker);
+            this.panelContent.Controls.Add(this.radioButtonNotoSerif);
+            this.panelContent.Controls.Add(this.radioButtonNotoSans);
+            this.panelContent.Controls.Add(this.labelTypeface);
             this.panelContent.Controls.Add(this.buttonSizeLarge);
             this.panelContent.Controls.Add(this.buttonSizeMedium);
             this.panelContent.Controls.Add(this.buttonSizeSmall);
@@ -233,9 +241,9 @@
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOK.DisabledColor = System.Drawing.Color.Empty;
             this.buttonOK.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
+            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
             this.buttonOK.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonOK.Location = new System.Drawing.Point(218, 542);
+            this.buttonOK.Location = new System.Drawing.Point(221, 542);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
             this.buttonOK.Selected = false;
@@ -253,10 +261,10 @@
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.DisabledColor = System.Drawing.Color.Empty;
             this.buttonCancel.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
+            this.buttonCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 11F);
             this.buttonCancel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonCancel.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonCancel.Location = new System.Drawing.Point(334, 542);
+            this.buttonCancel.Location = new System.Drawing.Point(337, 542);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
             this.buttonCancel.Selected = false;
@@ -335,7 +343,7 @@
             this.labelAppearanceSection.Location = new System.Drawing.Point(10, 15);
             this.labelAppearanceSection.Name = "labelAppearanceSection";
             this.labelAppearanceSection.Size = new System.Drawing.Size(111, 20);
-            this.labelAppearanceSection.TabIndex = 0;
+            this.labelAppearanceSection.TabIndex = 1;
             this.labelAppearanceSection.Text = "Entry Preference";
             // 
             // labelTextSize
@@ -345,7 +353,7 @@
             this.labelTextSize.Location = new System.Drawing.Point(27, 52);
             this.labelTextSize.Name = "labelTextSize";
             this.labelTextSize.Size = new System.Drawing.Size(65, 19);
-            this.labelTextSize.TabIndex = 1;
+            this.labelTextSize.TabIndex = 2;
             this.labelTextSize.Text = "Text Size";
             // 
             // buttonSizeSmall
@@ -365,7 +373,7 @@
             this.buttonSizeSmall.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeSmall.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeSmall.Size = new System.Drawing.Size(36, 36);
-            this.buttonSizeSmall.TabIndex = 2;
+            this.buttonSizeSmall.TabIndex = 3;
             this.buttonSizeSmall.Text = "T";
             this.buttonSizeSmall.Click += new System.EventHandler(this.ButtonSizeSmall_Click);
             // 
@@ -385,7 +393,7 @@
             this.buttonSizeMedium.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeMedium.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeMedium.Size = new System.Drawing.Size(36, 36);
-            this.buttonSizeMedium.TabIndex = 3;
+            this.buttonSizeMedium.TabIndex = 4;
             this.buttonSizeMedium.Text = "T";
             this.buttonSizeMedium.Click += new System.EventHandler(this.ButtonSizeMedium_Click);
             // 
@@ -406,7 +414,7 @@
             this.buttonSizeLarge.SelectedDownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeLarge.SelectedHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
             this.buttonSizeLarge.Size = new System.Drawing.Size(36, 36);
-            this.buttonSizeLarge.TabIndex = 4;
+            this.buttonSizeLarge.TabIndex = 5;
             this.buttonSizeLarge.Text = "T";
             this.buttonSizeLarge.Click += new System.EventHandler(this.ButtonSizeLarge_Click);
             // 
@@ -581,31 +589,31 @@
             this.comboSpellcheckLanguages.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboSpellcheckLanguages.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboSpellcheckLanguages.FormattingEnabled = true;
-            this.comboSpellcheckLanguages.Location = new System.Drawing.Point(190, 105);
+            this.comboSpellcheckLanguages.Location = new System.Drawing.Point(298, 105);
             this.comboSpellcheckLanguages.Name = "comboSpellcheckLanguages";
             this.comboSpellcheckLanguages.Size = new System.Drawing.Size(100, 23);
-            this.comboSpellcheckLanguages.TabIndex = 16;
+            this.comboSpellcheckLanguages.TabIndex = 11;
             // 
             // labelSpellChecker
             // 
             this.labelSpellChecker.AutoSize = true;
             this.labelSpellChecker.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSpellChecker.Location = new System.Drawing.Point(187, 52);
+            this.labelSpellChecker.Location = new System.Drawing.Point(295, 52);
             this.labelSpellChecker.Name = "labelSpellChecker";
             this.labelSpellChecker.Size = new System.Drawing.Size(94, 19);
-            this.labelSpellChecker.TabIndex = 17;
+            this.labelSpellChecker.TabIndex = 9;
             this.labelSpellChecker.Text = "Spell Checker";
             // 
             // checkBoxEnableSpellCheck
             // 
             this.checkBoxEnableSpellCheck.AutoSize = true;
             this.checkBoxEnableSpellCheck.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxEnableSpellCheck.Location = new System.Drawing.Point(190, 79);
+            this.checkBoxEnableSpellCheck.Location = new System.Drawing.Point(298, 79);
             this.checkBoxEnableSpellCheck.Margin = new System.Windows.Forms.Padding(0);
             this.checkBoxEnableSpellCheck.Name = "checkBoxEnableSpellCheck";
-            this.checkBoxEnableSpellCheck.Size = new System.Drawing.Size(162, 24);
-            this.checkBoxEnableSpellCheck.TabIndex = 18;
-            this.checkBoxEnableSpellCheck.Text = "Enable spell checker";
+            this.checkBoxEnableSpellCheck.Size = new System.Drawing.Size(73, 24);
+            this.checkBoxEnableSpellCheck.TabIndex = 10;
+            this.checkBoxEnableSpellCheck.Text = "Enable";
             this.checkBoxEnableSpellCheck.UseVisualStyleBackColor = true;
             this.checkBoxEnableSpellCheck.Click += new System.EventHandler(this.CheckBoxEnableSpellCheck_Click);
             // 
@@ -692,15 +700,18 @@
             this.labelCurrentVersion.TabIndex = 24;
             this.labelCurrentVersion.Text = "Current Version:";
             // 
-            // labelVersionNumber
+            // linkVersionNumber
             // 
-            this.labelVersionNumber.AutoSize = true;
-            this.labelVersionNumber.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVersionNumber.Location = new System.Drawing.Point(288, 483);
-            this.labelVersionNumber.Name = "labelVersionNumber";
-            this.labelVersionNumber.Size = new System.Drawing.Size(59, 19);
-            this.labelVersionNumber.TabIndex = 25;
-            this.labelVersionNumber.Text = "Develop";
+            this.linkVersionNumber.AutoSize = true;
+            this.linkVersionNumber.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkVersionNumber.Location = new System.Drawing.Point(288, 483);
+            this.linkVersionNumber.Name = "linkVersionNumber";
+            this.linkVersionNumber.Size = new System.Drawing.Size(59, 19);
+            this.linkVersionNumber.TabIndex = 25;
+            this.linkVersionNumber.TabStop = true;
+            this.linkVersionNumber.Text = "Develop";
+            this.toolTip.SetToolTip(this.linkVersionNumber, "Change Log (Opens Browser)");
+            this.linkVersionNumber.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkClicked);
             // 
             // buttonAbout
             // 
@@ -708,7 +719,7 @@
             this.buttonAbout.DownImage = global::Journaley.Properties.Resources.settings_btn_about_up_down;
             this.buttonAbout.HoverImage = global::Journaley.Properties.Resources.settings_btn_about_up_over;
             this.buttonAbout.Image = global::Journaley.Properties.Resources.settings_btn_about_up_norm;
-            this.buttonAbout.Location = new System.Drawing.Point(25, 542);
+            this.buttonAbout.Location = new System.Drawing.Point(13, 542);
             this.buttonAbout.Name = "buttonAbout";
             this.buttonAbout.NormalImage = global::Journaley.Properties.Resources.settings_btn_about_up_norm;
             this.buttonAbout.Selected = false;
@@ -1043,6 +1054,42 @@
             this.labelCredits.TabIndex = 24;
             this.labelCredits.Text = "Credits";
             // 
+            // labelTypeface
+            // 
+            this.labelTypeface.AutoSize = true;
+            this.labelTypeface.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTypeface.Location = new System.Drawing.Point(173, 52);
+            this.labelTypeface.Name = "labelTypeface";
+            this.labelTypeface.Size = new System.Drawing.Size(64, 19);
+            this.labelTypeface.TabIndex = 6;
+            this.labelTypeface.Text = "Typeface";
+            // 
+            // radioButtonNotoSans
+            // 
+            this.radioButtonNotoSans.AutoSize = true;
+            this.radioButtonNotoSans.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonNotoSans.Location = new System.Drawing.Point(176, 79);
+            this.radioButtonNotoSans.Name = "radioButtonNotoSans";
+            this.radioButtonNotoSans.Size = new System.Drawing.Size(95, 24);
+            this.radioButtonNotoSans.TabIndex = 7;
+            this.radioButtonNotoSans.TabStop = true;
+            this.radioButtonNotoSans.Text = "Noto Sans";
+            this.radioButtonNotoSans.UseVisualStyleBackColor = true;
+            this.radioButtonNotoSans.Click += new System.EventHandler(this.RadioButtonNotoSans_Click);
+            // 
+            // radioButtonNotoSerif
+            // 
+            this.radioButtonNotoSerif.AutoSize = true;
+            this.radioButtonNotoSerif.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonNotoSerif.Location = new System.Drawing.Point(176, 104);
+            this.radioButtonNotoSerif.Name = "radioButtonNotoSerif";
+            this.radioButtonNotoSerif.Size = new System.Drawing.Size(95, 24);
+            this.radioButtonNotoSerif.TabIndex = 8;
+            this.radioButtonNotoSerif.TabStop = true;
+            this.radioButtonNotoSerif.Text = "Noto Serif";
+            this.radioButtonNotoSerif.UseVisualStyleBackColor = true;
+            this.radioButtonNotoSerif.CheckedChanged += new System.EventHandler(this.RadioButtonNotoSerif_CheckedChanged);
+            // 
             // SettingsForm
             // 
             this.AcceptButton = this.buttonOK;
@@ -1123,7 +1170,7 @@
         private System.Windows.Forms.PictureBox pictureUpdateIndicator;
         private System.Windows.Forms.Panel horizontalSeparator4;
         private System.Windows.Forms.Label labelCurrentVersion;
-        private System.Windows.Forms.Label labelVersionNumber;
+        private System.Windows.Forms.LinkLabel linkVersionNumber;
         private Controls.ImageButton buttonAbout;
         private Controls.PaddingBorderPanel panelAbout;
         private System.Windows.Forms.Panel horizontalSeparator5;
@@ -1153,5 +1200,9 @@
         private System.Windows.Forms.LinkLabel linkGitHub;
         private System.Windows.Forms.Label labelLicensedUnder;
         private System.Windows.Forms.LinkLabel linkMITLicense;
+        private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Label labelTypeface;
+        private System.Windows.Forms.RadioButton radioButtonNotoSans;
+        private System.Windows.Forms.RadioButton radioButtonNotoSerif;
     }
 }

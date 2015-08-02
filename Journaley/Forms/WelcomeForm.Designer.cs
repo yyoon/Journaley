@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WelcomeForm));
-            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.pictureBoxLogo = new Journaley.Controls.MouseFallThroughPictureBox();
             this.horizontalSeparator = new System.Windows.Forms.Panel();
             this.labelMainMessage = new System.Windows.Forms.Label();
             this.bottomPanel1Init = new Journaley.Controls.BorderPanel();
@@ -65,6 +65,7 @@
             this.bottomPanel6Complete = new Journaley.Controls.BorderPanel();
             this.buttonOK = new Journaley.Controls.ColorButton();
             this.labelPanel6Message = new System.Windows.Forms.Label();
+            this.panelExtendedTitleBar = new System.Windows.Forms.Panel();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -124,6 +125,7 @@
             this.panelContent.Controls.Add(this.labelMainMessage);
             this.panelContent.Controls.Add(this.horizontalSeparator);
             this.panelContent.Controls.Add(this.pictureBoxLogo);
+            this.panelContent.Controls.Add(this.panelExtendedTitleBar);
             this.panelContent.ForeColor = System.Drawing.Color.Black;
             this.panelContent.Location = new System.Drawing.Point(0, 21);
             this.panelContent.Padding = new System.Windows.Forms.Padding(1, 0, 1, 1);
@@ -153,11 +155,11 @@
             // 
             // labelMainMessage
             // 
-            this.labelMainMessage.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMainMessage.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelMainMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(125)))), ((int)(((byte)(249)))));
-            this.labelMainMessage.Location = new System.Drawing.Point(10, 295);
+            this.labelMainMessage.Location = new System.Drawing.Point(86, 294);
             this.labelMainMessage.Name = "labelMainMessage";
-            this.labelMainMessage.Size = new System.Drawing.Size(430, 30);
+            this.labelMainMessage.Size = new System.Drawing.Size(278, 30);
             this.labelMainMessage.TabIndex = 2;
             this.labelMainMessage.Text = "Good evening.";
             this.labelMainMessage.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -183,9 +185,9 @@
             this.buttonStartNewJournal.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonStartNewJournal.DisabledColor = System.Drawing.Color.Empty;
             this.buttonStartNewJournal.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonStartNewJournal.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonStartNewJournal.Font = new System.Drawing.Font("Segoe UI Semibold", 13F);
             this.buttonStartNewJournal.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonStartNewJournal.Location = new System.Drawing.Point(95, 180);
+            this.buttonStartNewJournal.Location = new System.Drawing.Point(95, 120);
             this.buttonStartNewJournal.Name = "buttonStartNewJournal";
             this.buttonStartNewJournal.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(196)))), ((int)(((byte)(211)))));
             this.buttonStartNewJournal.Selected = false;
@@ -194,7 +196,7 @@
             this.buttonStartNewJournal.SelectedHoverColor = System.Drawing.Color.Empty;
             this.buttonStartNewJournal.Size = new System.Drawing.Size(260, 42);
             this.buttonStartNewJournal.TabIndex = 2;
-            this.buttonStartNewJournal.Text = "Start a New Journal";
+            this.buttonStartNewJournal.Text = "Start a Journal";
             this.buttonStartNewJournal.Click += new System.EventHandler(this.ButtonStartNewJournal_Click);
             // 
             // buttonImportJournal
@@ -204,9 +206,9 @@
             this.buttonImportJournal.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonImportJournal.DisabledColor = System.Drawing.Color.Empty;
             this.buttonImportJournal.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonImportJournal.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonImportJournal.Font = new System.Drawing.Font("Segoe UI Semibold", 13F);
             this.buttonImportJournal.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
-            this.buttonImportJournal.Location = new System.Drawing.Point(95, 120);
+            this.buttonImportJournal.Location = new System.Drawing.Point(95, 180);
             this.buttonImportJournal.Name = "buttonImportJournal";
             this.buttonImportJournal.NormalColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
             this.buttonImportJournal.Selected = false;
@@ -215,18 +217,18 @@
             this.buttonImportJournal.SelectedHoverColor = System.Drawing.Color.Empty;
             this.buttonImportJournal.Size = new System.Drawing.Size(260, 42);
             this.buttonImportJournal.TabIndex = 1;
-            this.buttonImportJournal.Text = "Import Your Journal";
+            this.buttonImportJournal.Text = "Import a Journal";
             this.buttonImportJournal.Click += new System.EventHandler(this.ButtonImportJournal_Click);
             // 
             // labelPanel1Message
             // 
-            this.labelPanel1Message.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanel1Message.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelPanel1Message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
-            this.labelPanel1Message.Location = new System.Drawing.Point(95, 28);
+            this.labelPanel1Message.Location = new System.Drawing.Point(86, 10);
             this.labelPanel1Message.Name = "labelPanel1Message";
-            this.labelPanel1Message.Size = new System.Drawing.Size(260, 50);
+            this.labelPanel1Message.Size = new System.Drawing.Size(278, 62);
             this.labelPanel1Message.TabIndex = 0;
-            this.labelPanel1Message.Text = "Do you have a\nJournaley or Day One journal?";
+            this.labelPanel1Message.Text = "Do you have a\r\nJournaley or Day One journal?";
             this.labelPanel1Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // bottomPanel2StartNewJournal
@@ -281,11 +283,11 @@
             // 
             // labelPanel2Message
             // 
-            this.labelPanel2Message.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanel2Message.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelPanel2Message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
-            this.labelPanel2Message.Location = new System.Drawing.Point(95, 28);
+            this.labelPanel2Message.Location = new System.Drawing.Point(86, 10);
             this.labelPanel2Message.Name = "labelPanel2Message";
-            this.labelPanel2Message.Size = new System.Drawing.Size(260, 50);
+            this.labelPanel2Message.Size = new System.Drawing.Size(278, 60);
             this.labelPanel2Message.TabIndex = 1;
             this.labelPanel2Message.Text = "Where would you like to save\nyour journal?";
             this.labelPanel2Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -315,7 +317,7 @@
             this.buttonLaunchJournaley.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonLaunchJournaley.DisabledColor = System.Drawing.Color.Empty;
             this.buttonLaunchJournaley.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonLaunchJournaley.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLaunchJournaley.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLaunchJournaley.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonLaunchJournaley.Location = new System.Drawing.Point(95, 180);
             this.buttonLaunchJournaley.Name = "buttonLaunchJournaley";
@@ -336,7 +338,7 @@
             this.buttonSetupPassword.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonSetupPassword.DisabledColor = System.Drawing.Color.Empty;
             this.buttonSetupPassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonSetupPassword.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSetupPassword.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSetupPassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonSetupPassword.Location = new System.Drawing.Point(95, 120);
             this.buttonSetupPassword.Name = "buttonSetupPassword";
@@ -383,11 +385,11 @@
             // 
             // labelPanel3Message
             // 
-            this.labelPanel3Message.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanel3Message.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelPanel3Message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
-            this.labelPanel3Message.Location = new System.Drawing.Point(95, 9);
+            this.labelPanel3Message.Location = new System.Drawing.Point(86, 0);
             this.labelPanel3Message.Name = "labelPanel3Message";
-            this.labelPanel3Message.Size = new System.Drawing.Size(260, 50);
+            this.labelPanel3Message.Size = new System.Drawing.Size(278, 78);
             this.labelPanel3Message.TabIndex = 1;
             this.labelPanel3Message.Text = "Your journal entries will be\nsafely located here:";
             this.labelPanel3Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -421,7 +423,7 @@
             this.buttonGoBack.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonGoBack.DisabledColor = System.Drawing.Color.Empty;
             this.buttonGoBack.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonGoBack.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonGoBack.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonGoBack.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonGoBack.Location = new System.Drawing.Point(95, 120);
             this.buttonGoBack.Name = "buttonGoBack";
@@ -442,7 +444,7 @@
             this.buttonSavePassword.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonSavePassword.DisabledColor = System.Drawing.Color.Empty;
             this.buttonSavePassword.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonSavePassword.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSavePassword.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSavePassword.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonSavePassword.Location = new System.Drawing.Point(95, 180);
             this.buttonSavePassword.Name = "buttonSavePassword";
@@ -584,11 +586,11 @@
             // 
             // labelPanel5Message
             // 
-            this.labelPanel5Message.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanel5Message.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelPanel5Message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
-            this.labelPanel5Message.Location = new System.Drawing.Point(95, 27);
+            this.labelPanel5Message.Location = new System.Drawing.Point(86, 9);
             this.labelPanel5Message.Name = "labelPanel5Message";
-            this.labelPanel5Message.Size = new System.Drawing.Size(260, 50);
+            this.labelPanel5Message.Size = new System.Drawing.Size(278, 68);
             this.labelPanel5Message.TabIndex = 4;
             this.labelPanel5Message.Text = "Where is your journal?";
             this.labelPanel5Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -614,7 +616,7 @@
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonOK.DisabledColor = System.Drawing.Color.Empty;
             this.buttonOK.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonOK.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonOK.Location = new System.Drawing.Point(95, 180);
             this.buttonOK.Name = "buttonOK";
@@ -630,14 +632,24 @@
             // 
             // labelPanel6Message
             // 
-            this.labelPanel6Message.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanel6Message.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPanel6Message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
-            this.labelPanel6Message.Location = new System.Drawing.Point(95, 27);
+            this.labelPanel6Message.Location = new System.Drawing.Point(95, 19);
             this.labelPanel6Message.Name = "labelPanel6Message";
-            this.labelPanel6Message.Size = new System.Drawing.Size(260, 75);
+            this.labelPanel6Message.Size = new System.Drawing.Size(260, 108);
             this.labelPanel6Message.TabIndex = 5;
             this.labelPanel6Message.Text = "Write what you think.\nClear your mind.\nNever worry.";
             this.labelPanel6Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // panelExtendedTitleBar
+            // 
+            this.panelExtendedTitleBar.Location = new System.Drawing.Point(1, 0);
+            this.panelExtendedTitleBar.Name = "panelExtendedTitleBar";
+            this.panelExtendedTitleBar.Size = new System.Drawing.Size(448, 239);
+            this.panelExtendedTitleBar.TabIndex = 9;
+            this.panelExtendedTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelExtendedTitleBar_MouseDown);
+            this.panelExtendedTitleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelExtendedTitleBar_MouseMove);
+            this.panelExtendedTitleBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PanelExtendedTitleBar_MouseUp);
             // 
             // WelcomeForm
             // 
@@ -675,7 +687,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxLogo;
+        private Controls.MouseFallThroughPictureBox pictureBoxLogo;
         private System.Windows.Forms.Panel horizontalSeparator;
         private System.Windows.Forms.Label labelMainMessage;
         private Controls.BorderPanel bottomPanel1Init;
@@ -711,5 +723,6 @@
         private System.Windows.Forms.Label labelJournalLocationPadding;
         private System.Windows.Forms.TextBox textJournalLocation;
         private Controls.ColorButton buttonGoBack;
+        private System.Windows.Forms.Panel panelExtendedTitleBar;
     }
 }

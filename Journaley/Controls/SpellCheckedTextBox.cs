@@ -198,6 +198,20 @@
         }
 
         /// <summary>
+        /// Sets the font family.
+        /// </summary>
+        /// <value>
+        /// The font family.
+        /// </value>
+        public System.Windows.Media.FontFamily FontFamily
+        {
+            set
+            {
+                this.box.FontFamily = value;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether [word wrap].
         /// </summary>
         /// <value>
@@ -237,7 +251,6 @@
             this.Child = this.box;
 
             // Setup the Font
-            this.box.FontFamily = new System.Windows.Media.FontFamily(this.Font.FontFamily.Name);
             this.box.FontSize = this.Font.SizeInPoints * 96.0 / 72.0;
 
             switch (this.Font.Style)

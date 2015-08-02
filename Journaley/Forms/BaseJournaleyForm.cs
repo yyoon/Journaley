@@ -89,6 +89,16 @@
         public int ResizingBorderWidth { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether to disable the system menu.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the system menu should be disabled; otherwise, <c>false</c>.
+        /// </value>
+        [Category("Window Style")]
+        [Description("Specify whether to disable the windows system menu")]
+        public bool DisableSystemMenu { get; set; }
+
+        /// <summary>
         /// Gets or sets the real client size, which is the client area size - title bar size.
         /// </summary>
         /// <value>
@@ -113,7 +123,7 @@
         /// <value>
         ///   <c>true</c> if [dragging title bar]; otherwise, <c>false</c>.
         /// </value>
-        private bool DraggingTitleBar
+        protected bool DraggingTitleBar
         {
             get
             {
@@ -135,6 +145,25 @@
         }
 
         /// <summary>
+        /// Gets or sets the dragging offset.
+        /// </summary>
+        /// <value>
+        /// The dragging offset.
+        /// </value>
+        protected Point DraggingOffset
+        {
+            get
+            {
+                return this.draggingOffset;
+            }
+
+            set
+            {
+                this.draggingOffset = value;
+            }
+        }
+
+        /// <summary>
         /// Overrides the message loop.
         /// </summary>
         /// <param name="m">The Windows <see cref="T:System.Windows.Forms.Message" /> to process.</param>
@@ -152,6 +181,25 @@
                     base.WndProc(ref m);
                     break;
             }
+        }
+
+        /// <summary>
+        /// Processes a command key.
+        /// </summary>
+        /// <param name="msg">A <see cref="T:System.Windows.Forms.Message" />, passed by reference, that represents the Win32 message to process.</param>
+        /// <param name="keyData">One of the <see cref="T:System.Windows.Forms.Keys" /> values that represents the key to process.</param>
+        /// <returns>
+        /// true if the keystroke was processed and consumed by the control; otherwise, false to allow further processing.
+        /// </returns>
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Alt | Keys.Space))
+            {
+                this.PopupSystemMenu(this.PointToScreen(new Point(0, 20)));
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         /// <summary>
@@ -333,6 +381,67 @@
             }
         }
 
+        /// <summary>
+        /// Popups the system menu.
+        /// </summary>
+        /// <param name="p">The location in screen coordinates.</param>
+        private void PopupSystemMenu(Point p)
+        {
+            this.PopupSystemMenu(p.X, p.Y);
+        }
+
+        /// <summary>
+        /// Popups the system menu.
+        /// </summary>
+        /// <param name="screenX">The screen x.</param>
+        /// <param name="screenY">The screen y.</param>
+        private void PopupSystemMenu(int screenX, int screenY)
+        {
+            if (this.DisableSystemMenu)
+            {
+                return;
+            }
+
+            IntPtr menu = PInvoke.GetSystemMenu(this.Handle, false);
+
+            // Disable minimize menu if the minimize button is not visible.
+            if (!this.imageButtonFormMinimize.Visible)
+            {
+                PInvoke.EnableMenuItem(
+                    menu,
+                    PInvoke.SystemCommands.SC_MINIMIZE,
+                    PInvoke.MenuFlags.MF_GRAYED);
+            }
+
+            // Disable maximize menu if the maximize button is not visible.
+            if (!this.imageButtonFormMaximize.Visible)
+            {
+                PInvoke.EnableMenuItem(
+                    menu,
+                    PInvoke.SystemCommands.SC_MAXIMIZE,
+                    PInvoke.MenuFlags.MF_GRAYED);
+            }
+
+            int command = PInvoke.TrackPopupMenuEx(
+                menu,
+                PInvoke.TrackPopupMenuFlags.TPM_RETURNCMD,
+                screenX,
+                screenY,
+                this.Handle,
+                IntPtr.Zero);
+
+            if (command == 0)
+            {
+                return;
+            }
+
+            PInvoke.PostMessage(
+                this.Handle,
+                PInvoke.WindowsMessages.WM_SYSCOMMAND,
+                new IntPtr(command),
+                IntPtr.Zero);
+        }
+
         #region Event Handlers
 
         /// <summary>
@@ -390,7 +499,7 @@
         /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
         private void PanelTitlebar_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
+            if (e.Button == MouseButtons.Left)
             {
                 // Determine if the resizing border is clicked.
                 if (this.Resizable && this.WindowState != FormWindowState.Maximized)
@@ -430,6 +539,10 @@
                 {
                     this.draggingOffset = e.Location;
                 }
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                this.PopupSystemMenu(this.panelTitlebar.PointToScreen(e.Location));
             }
         }
 
@@ -571,6 +684,23 @@
                 PInvoke.HitTestValues val = this.BorderHitTest(p);
 
                 this.SetCursorOnBorder(val);
+            }
+        }
+
+        /// <summary>
+        /// Handles the MouseDown event of the pictureBoxFormIcon control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PictureBoxFormIcon_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.PopupSystemMenu(this.PointToScreen(new Point(0, 20)));
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                this.PopupSystemMenu(this.pictureBoxFormIcon.PointToScreen(e.Location));
             }
         }
 

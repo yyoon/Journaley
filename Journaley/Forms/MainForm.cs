@@ -85,9 +85,24 @@
         private FontFamily fontFamilyNotoSerifRegular;
 
         /// <summary>
+        /// The Noto Sans font family for WPF
+        /// </summary>
+        private System.Windows.Media.FontFamily fontFamilyNotoSansWPF;
+
+        /// <summary>
+        /// The Noto Serif font family for WPF
+        /// </summary>
+        private System.Windows.Media.FontFamily fontFamilyNotoSerifWPF;
+
+        /// <summary>
         /// Backing field for UpdateAvailable property.
         /// </summary>
         private bool updateAvailable = false;
+
+        /// <summary>
+        /// The update process count
+        /// </summary>
+        private int updateProcessCount;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
@@ -119,11 +134,8 @@
                 "NotoSerif_Regular.ttf",
                 Journaley.Properties.Resources.NotoSerif_Regular);
 
-            // Set the font of the text entry box.
-            this.spellCheckedEntryText.Font = new Font(
-                this.FontFamilyNotoSansRegular,
-                this.spellCheckedEntryText.Font.Size,
-                this.spellCheckedEntryText.Font.Style);
+            this.fontFamilyNotoSansWPF = FontReader.ReadEmbeddedFont("NotoSans_Regular.ttf", "Noto Sans");
+            this.fontFamilyNotoSerifWPF = FontReader.ReadEmbeddedFont("NotoSerif_Regular.ttf", "Noto Serif");
 
             this.spellCheckedEntryText.Initialize();
 
@@ -135,6 +147,21 @@
             this.SetupAutoSaveTimer();
 
             this.UpdateMaximizeRestoreButtonImage();
+
+            foreach (ContextMenuStrip menu in new ContextMenuStrip[]
+            {
+                this.contextMenuStripPhotoWithoutPhoto,
+                this.contextMenuStripPhotoWithPhoto
+            })
+            {
+                menu.Renderer = new ToolStripProfessionalRenderer(new PhotoMenuColorTable());
+
+                foreach (ToolStripMenuItem menuItem in menu.Items)
+                {
+                    menuItem.MouseMove += this.ToolStripMenuItem_MouseMove;
+                    menuItem.MouseLeave += this.ToolStripMenuItem_MouseLeave;
+                }
+            }
 
             // Jump List
             if (createJumpList)
@@ -183,6 +210,34 @@
         }
 
         /// <summary>
+        /// Gets the Noto Sans font family for WPF.
+        /// </summary>
+        /// <value>
+        /// The Noto Sans font family for WPF.
+        /// </value>
+        internal System.Windows.Media.FontFamily FontFamilyNotoSansWPF
+        {
+            get
+            {
+                return this.fontFamilyNotoSansWPF;
+            }
+        }
+
+        /// <summary>
+        /// Gets the Noto Serif font family for WPF.
+        /// </summary>
+        /// <value>
+        /// The Noto Serif font family for WPF.
+        /// </value>
+        internal System.Windows.Media.FontFamily FontFamilyNotoSerifWPF
+        {
+            get
+            {
+                return this.fontFamilyNotoSerifWPF;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the currently installed version.
         /// </summary>
         /// <value>
@@ -215,6 +270,29 @@
             {
                 this.updateAvailable = value;
                 this.UpdateSettingsButton();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the update process count.
+        /// </summary>
+        /// <value>
+        /// The update process count.
+        /// </value>
+        internal int UpdateProcessCount
+        {
+            get
+            {
+                return this.updateProcessCount;
+            }
+
+            set
+            {
+                this.updateProcessCount = value;
+                if (value == 0 && this.DeferredClosing)
+                {
+                    this.Close();
+                }
             }
         }
 
@@ -455,6 +533,14 @@
         private string CustomCSS { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether [deferred closing].
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [deferred closing]; otherwise, <c>false</c>.
+        /// </value>
+        private bool DeferredClosing { get; set; }
+
+        /// <summary>
         /// Gets the entry text for the provided journal entry.
         /// If the entry is currently selected and being edited,
         /// the text being edited should be returned.
@@ -553,17 +639,34 @@
         {
             this.webBrowser.DocumentText =
                 string.Format(
-                    "<style type=\"text/css\">\n<!-- Journaley CSS -->\n{0}\n<!-- Custom CSS -->\n{1}\n</style><html><body><div>{2}</div></body></html>",
-                    this.GetWebBrowserCSS(),
+                    "<style type=\"text/css\">\n<!-- Font CSS -->\n{0}\n<!-- Size CSS -->\n{1}\n<!-- Custom CSS -->\n{2}\n</style><html><body><div>{3}</div></body></html>",
+                    this.GetWebBrowserTypefaceCSS(),
+                    this.GetWebBrowserSizeCSS(),
                     this.CustomCSS ?? string.Empty,
                     Markdown.Transform(this.SelectedEntry.EntryText));
         }
 
         /// <summary>
-        /// Gets the CSS text to be used in the web browser control.
+        /// Gets the CSS text containing the typeface to be used in the web browser control.
         /// </summary>
         /// <returns>CSS text</returns>
-        private string GetWebBrowserCSS()
+        private string GetWebBrowserTypefaceCSS()
+        {
+            string result = Journaley.Properties.Resources.JournaleyCSSNotoSans;
+
+            if (this.Settings.Typeface == "Noto Serif")
+            {
+                result = Journaley.Properties.Resources.JournaleyCSSNotoSerif;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Gets the CSS text containing the font sizes to be used in the web browser control.
+        /// </summary>
+        /// <returns>CSS text</returns>
+        private string GetWebBrowserSizeCSS()
         {
             string result = Journaley.Properties.Resources.JournaleyCSSMedium;
 
@@ -674,7 +777,7 @@
                 this.spellCheckedEntryText.Text = string.Empty;
                 this.webBrowser.DocumentText = string.Format(
                     "<style type=\"text/css\">\n{0}\n</style><html><body></body></html>",
-                    this.GetWebBrowserCSS());
+                    this.GetWebBrowserSizeCSS());
             }
 
             this.tableLayoutSidebar.Visible = !noEntry;
@@ -732,6 +835,7 @@
             this.flowLayoutSidebarTopButtons.Controls.Clear();
 
             this.UpdateSpellCheckedEntryTextSize();
+            this.UpdateSpellCheckedEntryTypeface();
             this.UpdateStats();
             this.UpdateAllEntryLists();
             this.UpdateUI();
@@ -785,6 +889,10 @@
         /// </summary>
         private void UpdateEntryListBoxTags()
         {
+            // Save the currently selected tag, if any.
+            TagCountEntry selected = this.listBoxTags.SelectedItem as TagCountEntry;
+            string selectedTagName = selected != null ? selected.Tag : null;
+
             // Clear everything.
             this.listBoxTags.Items.Clear();
             this.listBoxTags.SelectedIndex = -1;
@@ -803,7 +911,8 @@
 
             var tagsAndCounts = tags
                 .Select(x => new TagCountEntry(x, this.Entries.Values.Count(e => e.Tags.Contains(x))))
-                .OrderByDescending(x => x.Count);
+                .OrderByDescending(x => x.Count)
+                .ThenBy(x => x.Tag);
 
             // If there is any entry,
             if (tagsAndCounts.Any())
@@ -812,8 +921,21 @@
                 this.listBoxTags.Items.AddRange(tagsAndCounts.ToArray());
             }
 
-            // Select the first item.
-            if (this.listBoxTags.Items.Count > 0)
+            // Select the previously selected item.
+            if (selectedTagName != null)
+            {
+                for (int i = 0; i < this.listBoxTags.Items.Count; ++i)
+                {
+                    TagCountEntry tagAndCount = this.listBoxTags.Items[i] as TagCountEntry;
+                    if (tagAndCount.Tag == selectedTagName)
+                    {
+                        this.listBoxTags.SelectedIndex = i;
+                        break;
+                    }
+                }
+            }
+
+            if (this.listBoxTags.SelectedIndex == -1 && this.listBoxTags.Items.Count > 0)
             {
                 this.listBoxTags.SelectedIndex = 0;
             }
@@ -914,6 +1036,15 @@
         private bool IsInCalendarView()
         {
             return this.GetActiveEntryList() == this.entryListBoxCalendar;
+        }
+
+        /// <summary>
+        /// Determines whether the main form is in tags view.
+        /// </summary>
+        /// <returns>true if in tags mode, false otherwise.</returns>
+        private bool IsInTagsView()
+        {
+            return this.GetActiveEntryList() == this.entryListBoxTags;
         }
 
         /// <summary>
@@ -1092,11 +1223,36 @@
                     now.Millisecond,
                     DateTimeKind.Local);
 
-                newEntry = new Entry(date.ToUniversalTime());
+                do
+                {
+                    newEntry = new Entry(date.ToUniversalTime());
+                }
+                while (this.Entries.ContainsKey(newEntry.UUID));
+            }
+            else if (this.IsInTagsView() && this.listBoxTags.SelectedIndex != -1)
+            {
+                do
+                {
+                    newEntry = new Entry();
+                }
+                while (this.Entries.ContainsKey(newEntry.UUID));
+
+                if (this.listBoxTags.SelectedItem is StarredCountEntry)
+                {
+                    newEntry.Starred = true;
+                }
+                else if (this.listBoxTags.SelectedItem is TagCountEntry)
+                {
+                    newEntry.AddTag(((TagCountEntry)this.listBoxTags.SelectedItem).Tag);
+                }
             }
             else
             {
-                newEntry = new Entry();
+                do
+                {
+                    newEntry = new Entry();
+                }
+                while (this.Entries.ContainsKey(newEntry.UUID));
             }
 
             this.Entries.Add(newEntry.UUID, newEntry);
@@ -1191,52 +1347,19 @@
             }
             else
             {
-                try
+                bool success = this.SavePhotoForSelectedEntry(
+                    Image.FromFile(openDialog.FileName),
+                    targetFullPath,
+                    "Error reading the selected photo.");
+
+                if (!success)
                 {
-                    using (Image image = Image.FromFile(openDialog.FileName))
-                    {
-                        using (Bitmap b = new Bitmap(image.Width, image.Height))
-                        {
-                            b.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-                            using (Graphics g = Graphics.FromImage(b))
-                            {
-                                g.Clear(Color.White);
-                                g.DrawImageUnscaled(image, 0, 0);
-                            }
-
-                            // Set the JPEG quality to 100L.
-                            ImageCodecInfo jpgEncoder = this.GetEncoder(ImageFormat.Jpeg);
-
-                            if (jpgEncoder != null)
-                            {
-                                Encoder encoder = Encoder.Quality;
-                                EncoderParameters encoderParameters = new EncoderParameters(1);
-                                encoderParameters.Param[0] = new EncoderParameter(encoder, 100L);
-
-                                b.Save(targetFullPath, jpgEncoder, encoderParameters);
-                            }
-                            else
-                            {
-                                // Just use the default save method with 75% quality in case the encoder object is not found.
-                                b.Save(targetFullPath, ImageFormat.Jpeg);
-                            }
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show(
-                        "Error reading the selected photo.",
-                        "Failed to add photo",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-
                     return;
                 }
             }
 
             // Assign the photo path to the selected entry.
-            this.SelectedEntry.PhotoPath = Path.Combine(this.Settings.PhotoFolderPath, targetFileName);
+            this.SelectedEntry.PhotoPath = targetFullPath;
 
             // Update the UIs related to photo.
             this.UpdatePhotoUIs();
@@ -1244,6 +1367,106 @@
             // Reset the auto save timer.
             this.AutoSaveTimer.Stop();
             this.AutoSaveTimer.Start();
+        }
+
+        /// <summary>
+        /// Adds the photo from clipboard.
+        /// </summary>
+        private void AddPhotoFromClipboard()
+        {
+            string targetFileName = Path.ChangeExtension(this.SelectedEntry.UUIDString, "jpg");
+            string targetFullPath = Path.Combine(this.Settings.PhotoFolderPath, targetFileName);
+
+            bool success = this.SavePhotoForSelectedEntry(
+                Clipboard.GetImage(),
+                targetFullPath,
+                "Error reading the photo from clipboard.");
+
+            if (!success)
+            {
+                return;
+            }
+
+            // Assign the photo path to the selected entry.
+            this.SelectedEntry.PhotoPath = targetFullPath;
+
+            // Update the UIs related to photo.
+            this.UpdatePhotoUIs();
+
+            // Reset the auto save timer.
+            this.AutoSaveTimer.Stop();
+            this.AutoSaveTimer.Start();
+        }
+
+        /// <summary>
+        /// Saves the photo for selected entry.
+        /// </summary>
+        /// <param name="imageSource">The image source.</param>
+        /// <param name="targetFullPath">The target full path.</param>
+        /// <param name="errorMessage">The error message.</param>
+        /// <returns>true if saving succeeds, false otherwise.</returns>
+        private bool SavePhotoForSelectedEntry(Image imageSource, string targetFullPath, string errorMessage)
+        {
+            try
+            {
+                using (Image image = imageSource)
+                {
+                    using (Bitmap b = new Bitmap(image.Width, image.Height))
+                    {
+                        b.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+                        using (Graphics g = Graphics.FromImage(b))
+                        {
+                            g.Clear(Color.White);
+                            g.DrawImageUnscaled(image, 0, 0);
+                        }
+
+                        // Set the JPEG quality to 100L.
+                        ImageCodecInfo jpgEncoder = this.GetEncoder(ImageFormat.Jpeg);
+
+                        if (jpgEncoder != null)
+                        {
+                            Encoder encoder = Encoder.Quality;
+                            EncoderParameters encoderParameters = new EncoderParameters(1);
+                            encoderParameters.Param[0] = new EncoderParameter(encoder, 100L);
+
+                            try
+                            {
+                                this.Watcher.EnableRaisingEvents = false;
+                                b.Save(targetFullPath, jpgEncoder, encoderParameters);
+                            }
+                            finally
+                            {
+                                this.Watcher.EnableRaisingEvents = true;
+                            }
+                        }
+                        else
+                        {
+                            try
+                            {
+                                // Just use the default save method with 75% quality in case the encoder object is not found.
+                                this.Watcher.EnableRaisingEvents = false;
+                                b.Save(targetFullPath, ImageFormat.Jpeg);
+                            }
+                            finally
+                            {
+                                this.Watcher.EnableRaisingEvents = true;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(
+                    errorMessage,
+                    "Failed to add photo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -1460,6 +1683,32 @@
         }
 
         /// <summary>
+        /// Updates the spell checked entry typeface.
+        /// </summary>
+        private void UpdateSpellCheckedEntryTypeface()
+        {
+            if (this.Settings.Typeface == null)
+            {
+                this.Settings.Typeface = "Noto Sans";
+                this.Settings.Save();
+            }
+
+            switch (this.Settings.Typeface)
+            {
+                case "Noto Sans":
+                    this.spellCheckedEntryText.FontFamily = this.FontFamilyNotoSansWPF;
+                    break;
+
+                case "Noto Serif":
+                    this.spellCheckedEntryText.FontFamily = this.FontFamilyNotoSerifWPF;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
         /// Updates the size of the spell checked entry text.
         /// </summary>
         private void UpdateSpellCheckedEntryTextSize()
@@ -1579,6 +1828,7 @@
             this.UpdateSpellCheckLanguage();
             this.UpdateSpellCheckEnabled();
             this.UpdateSpellCheckedEntryTextSize();
+            this.UpdateSpellCheckedEntryTypeface();
 
             this.ReloadEntries();
 
@@ -1615,6 +1865,8 @@
             }
 
             // Update Check
+            ++this.UpdateProcessCount;
+
             try
             {
                 using (var mgr = new UpdateManager(updateUrl))
@@ -1656,6 +1908,10 @@
             {
                 Logger.Log(ex.Message);
                 Logger.Log(ex.StackTrace);
+            }
+            finally
+            {
+                --this.UpdateProcessCount;
             }
         }
 
@@ -1799,6 +2055,7 @@
                 bool dayOneFolderChanged = this.Settings.DayOneFolderPath != form.Settings.DayOneFolderPath;
                 bool spellCheckEnabledChanged = this.Settings.SpellCheckEnabled != form.Settings.SpellCheckEnabled;
                 bool languageChanged = this.Settings.SpellCheckLanguage != form.Settings.SpellCheckLanguage;
+                bool typefaceChanged = this.Settings.Typeface != form.Settings.Typeface;
                 bool textSizeChanged = this.Settings.TextSize != form.Settings.TextSize;
 
                 this.Settings = form.Settings;
@@ -1820,6 +2077,12 @@
                     this.UpdateSpellCheckedEntryTextSize();
 
                     // Update the web browser font size.
+                    this.UpdateWebBrowser();
+                }
+
+                if (typefaceChanged)
+                {
+                    this.UpdateSpellCheckedEntryTypeface();
                     this.UpdateWebBrowser();
                 }
 
@@ -1877,7 +2140,14 @@
 
             if (this.SelectedEntry.PhotoPath != null)
             {
+                this.replaceWithTheClipboardImageToolStripMenuItem.Visible = Clipboard.ContainsImage();
+
                 this.contextMenuStripPhotoWithPhoto.Show(
+                    this.buttonPhoto, new Point(), ToolStripDropDownDirection.BelowLeft);
+            }
+            else if (Clipboard.ContainsImage())
+            {
+                this.contextMenuStripPhotoWithoutPhoto.Show(
                     this.buttonPhoto, new Point(), ToolStripDropDownDirection.BelowLeft);
             }
             else
@@ -2038,6 +2308,27 @@
         }
 
         /// <summary>
+        /// Handles the Click event of the replaceWithTheClipboardImageToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ReplaceWithTheClipboardImageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "By replacing with the clipboard image, the current photo will be deleted." + Environment.NewLine + "Would you like to continue?",
+                "Replace Photo",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result != System.Windows.Forms.DialogResult.Yes)
+            {
+                return;
+            }
+
+            this.AddPhotoFromClipboard();
+        }
+
+        /// <summary>
         /// Handles the Click event of the replaceWithAnotherPhotoToolStripMenuItem control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -2084,6 +2375,26 @@
             // Reset the auto save timer.
             this.AutoSaveTimer.Stop();
             this.AutoSaveTimer.Start();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the addFromClipboardToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void AddFromClipboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.AddPhotoFromClipboard();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the addFromFileExplorerToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void AddFromFileExplorerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.AskToChooseExistingPhoto();
         }
 
         /// <summary>
@@ -2481,6 +2792,88 @@
             }
         }
 
+        /// <summary>
+        /// Handles the Click event of the imageButtonFormClose control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ImageButtonFormClose_Click(object sender, EventArgs e)
+        {
+            if (this.UpdateProcessCount > 0)
+            {
+                this.DeferredClosing = true;
+                this.Hide();
+            }
+            else
+            {
+                this.Close();
+            }
+        }
+
+        /// <summary>
+        /// Handles the MouseMove event of all the scrollable controls.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void Scrollable_MouseMove(object sender, MouseEventArgs e)
+        {
+            Control control = sender as Control;
+            if (control == null || this.IsEditing || Form.ActiveForm != this)
+            {
+                return;
+            }
+
+            control.Focus();
+        }
+
+        /// <summary>
+        /// Handles the DocumentCompleted event of the webBrowser control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="WebBrowserDocumentCompletedEventArgs"/> instance containing the event data.</param>
+        private void WebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            this.webBrowser.Document.MouseMove += delegate(object s, HtmlElementEventArgs a)
+            {
+                if (!this.IsEditing && Form.ActiveForm == this)
+                {
+                    this.webBrowser.Document.Focus();
+                }
+            };
+        }
+
+        /// <summary>
+        /// Handles the MouseMove event of the ToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void ToolStripMenuItem_MouseMove(object sender, MouseEventArgs e)
+        {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            if (menuItem == null)
+            {
+                return;
+            }
+
+            menuItem.ForeColor = Color.FromArgb(57, 51, 49);
+        }
+
+        /// <summary>
+        /// Handles the MouseLeave event of the ToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ToolStripMenuItem_MouseLeave(object sender, EventArgs e)
+        {
+            ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
+            if (menuItem == null)
+            {
+                return;
+            }
+
+            menuItem.ForeColor = SystemColors.ControlLightLight;
+        }
+
         #endregion
 
         #region Private Classes
@@ -2585,6 +2978,23 @@
             public StarredCountEntry(int count)
                 : base("Starred", count)
             {
+            }
+        }
+
+        /// <summary>
+        /// Custom color table for the photo menus.
+        /// </summary>
+        private class PhotoMenuColorTable : ProfessionalColorTable
+        {
+            /// <summary>
+            /// Gets the solid color to use when a <see cref="T:System.Windows.Forms.ToolStripMenuItem" /> other than the top-level <see cref="T:System.Windows.Forms.ToolStripMenuItem" /> is selected.
+            /// </summary>
+            public override Color MenuItemSelected
+            {
+                get
+                {
+                    return Color.FromArgb(41, 161, 249);
+                }
             }
         }
 

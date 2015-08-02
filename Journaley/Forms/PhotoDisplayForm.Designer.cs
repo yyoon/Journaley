@@ -37,6 +37,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).BeginInit();
             this.panelContent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panelPhoto.SuspendLayout();
             this.SuspendLayout();
@@ -45,6 +46,7 @@
             // 
             this.panelTitlebar.Controls.Add(this.labelFormCaption);
             this.panelTitlebar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelTitlebar_MouseMove);
+            this.panelTitlebar.Controls.SetChildIndex(this.pictureBoxFormIcon, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.labelFormCaption, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormClose, 0);
             this.panelTitlebar.Controls.SetChildIndex(this.imageButtonFormMaximize, 0);
@@ -115,6 +117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMaximize)).EndInit();
             this.panelContent.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFormIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.panelPhoto.ResumeLayout(false);
             this.ResumeLayout(false);

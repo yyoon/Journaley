@@ -700,5 +700,40 @@
                 lastScreen.Show();
             }
         }
+
+        /// <summary>
+        /// Handles the MouseDown event of the panelExtendedTitleBar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PanelExtendedTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.DraggingTitleBar = true;
+            this.DraggingOffset = e.Location;
+        }
+
+        /// <summary>
+        /// Handles the MouseMove event of the panelExtendedTitleBar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PanelExtendedTitleBar_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (this.DraggingTitleBar)
+            {
+                Point curScreenPos = this.PointToScreen(e.Location);
+                this.Location = new Point(curScreenPos.X - this.DraggingOffset.X, curScreenPos.Y - this.DraggingOffset.Y);
+            }
+        }
+
+        /// <summary>
+        /// Handles the MouseUp event of the panelExtendedTitleBar control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void PanelExtendedTitleBar_MouseUp(object sender, MouseEventArgs e)
+        {
+            this.DraggingTitleBar = false;
+        }
     }
 }

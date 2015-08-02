@@ -208,7 +208,6 @@ namespace Journaley.Properties {
         ///}
         ///
         ///body {
-        ///font-family: &quot;Noto Sans&quot;, Arial, Verdana, &quot;lucida sans unicode&quot;, Tahoma, Sans-serif;
         ///font-size: 16pt;
         ///
         ///background-color: #EFEFEF;
@@ -267,7 +266,6 @@ namespace Journaley.Properties {
         ///}
         ///
         ///body {
-        ///font-family: &quot;Noto Sans&quot;, Arial, Verdana, &quot;lucida sans unicode&quot;, Tahoma, Sans-serif;
         ///font-size: 13pt;
         ///
         ///background-color: #EFEFEF;
@@ -319,6 +317,30 @@ namespace Journaley.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to body {
+        ///font-family: &quot;Noto Sans&quot;, Arial, Verdana, &quot;lucida sans unicode&quot;, Tahoma, Sans-serif;
+        ///}
+        ///.
+        /// </summary>
+        internal static string JournaleyCSSNotoSans {
+            get {
+                return ResourceManager.GetString("JournaleyCSSNotoSans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to body {
+        ///font-family: &quot;Noto Serif&quot;, Georgia, &quot;Times New Roman&quot;, Times, serif;
+        ///}
+        ///.
+        /// </summary>
+        internal static string JournaleyCSSNotoSerif {
+            get {
+                return ResourceManager.GetString("JournaleyCSSNotoSerif", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to html {
         ///margin: 0px;
         ///padding: 0px;
@@ -326,7 +348,6 @@ namespace Journaley.Properties {
         ///}
         ///
         ///body {
-        ///font-family: &quot;Noto Sans&quot;, Arial, Verdana, &quot;lucida sans unicode&quot;, Tahoma, Sans-serif;
         ///font-size: 10pt;
         ///
         ///background-color: #EFEFEF;

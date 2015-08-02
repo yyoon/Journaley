@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
+            this.pictureBoxLogo = new Journaley.Controls.MouseFallThroughPictureBox();
             this.horizontalSeparator = new System.Windows.Forms.Panel();
             this.labelMainMessage = new System.Windows.Forms.Label();
             this.bottomPanel6Complete = new Journaley.Controls.BorderPanel();
             this.buttonOK = new Journaley.Controls.ColorButton();
             this.labelPanel6Message = new System.Windows.Forms.Label();
+            this.panelExtendedTitleBar = new System.Windows.Forms.Panel();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -79,6 +80,7 @@
             this.panelContent.Controls.Add(this.labelMainMessage);
             this.panelContent.Controls.Add(this.horizontalSeparator);
             this.panelContent.Controls.Add(this.pictureBoxLogo);
+            this.panelContent.Controls.Add(this.panelExtendedTitleBar);
             this.panelContent.ForeColor = System.Drawing.Color.Black;
             this.panelContent.Location = new System.Drawing.Point(0, 21);
             this.panelContent.Padding = new System.Windows.Forms.Padding(1, 0, 1, 1);
@@ -108,9 +110,9 @@
             // 
             // labelMainMessage
             // 
-            this.labelMainMessage.Font = new System.Drawing.Font("Segoe UI Semibold", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMainMessage.Font = new System.Drawing.Font("Segoe UI", 15F);
             this.labelMainMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(125)))), ((int)(((byte)(249)))));
-            this.labelMainMessage.Location = new System.Drawing.Point(10, 295);
+            this.labelMainMessage.Location = new System.Drawing.Point(10, 294);
             this.labelMainMessage.Name = "labelMainMessage";
             this.labelMainMessage.Size = new System.Drawing.Size(430, 30);
             this.labelMainMessage.TabIndex = 2;
@@ -137,7 +139,7 @@
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.None;
             this.buttonOK.DisabledColor = System.Drawing.Color.Empty;
             this.buttonOK.DownColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(255)))));
-            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 12.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonOK.Font = new System.Drawing.Font("Segoe UI Semibold", 13F);
             this.buttonOK.HoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(219)))), ((int)(((byte)(228)))));
             this.buttonOK.Location = new System.Drawing.Point(95, 180);
             this.buttonOK.Name = "buttonOK";
@@ -153,14 +155,24 @@
             // 
             // labelPanel6Message
             // 
-            this.labelPanel6Message.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPanel6Message.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Italic);
             this.labelPanel6Message.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(45)))), ((int)(((byte)(49)))));
-            this.labelPanel6Message.Location = new System.Drawing.Point(95, 27);
+            this.labelPanel6Message.Location = new System.Drawing.Point(95, 19);
             this.labelPanel6Message.Name = "labelPanel6Message";
-            this.labelPanel6Message.Size = new System.Drawing.Size(260, 75);
+            this.labelPanel6Message.Size = new System.Drawing.Size(260, 108);
             this.labelPanel6Message.TabIndex = 5;
             this.labelPanel6Message.Text = "Write what you think.\nClear your mind.\nNever worry.";
             this.labelPanel6Message.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // panelExtendedTitleBar
+            // 
+            this.panelExtendedTitleBar.Location = new System.Drawing.Point(1, 0);
+            this.panelExtendedTitleBar.Name = "panelExtendedTitleBar";
+            this.panelExtendedTitleBar.Size = new System.Drawing.Size(448, 239);
+            this.panelExtendedTitleBar.TabIndex = 10;
+            this.panelExtendedTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelExtendedTitleBar_MouseDown);
+            this.panelExtendedTitleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelExtendedTitleBar_MouseMove);
+            this.panelExtendedTitleBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PanelExtendedTitleBar_MouseUp);
             // 
             // WelcomeFormLastScreen
             // 
@@ -190,11 +202,12 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxLogo;
+        private Controls.MouseFallThroughPictureBox pictureBoxLogo;
         private System.Windows.Forms.Panel horizontalSeparator;
         private System.Windows.Forms.Label labelMainMessage;
         private Controls.BorderPanel bottomPanel6Complete;
         private System.Windows.Forms.Label labelPanel6Message;
         private Controls.ColorButton buttonOK;
+        private System.Windows.Forms.Panel panelExtendedTitleBar;
     }
 }

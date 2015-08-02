@@ -138,5 +138,44 @@ namespace Journaley.Test
             target.Delete(folderPath);
             Assert.IsFalse(File.Exists(target.FileName));
         }
+
+        [TestMethod]
+        public void NewEntryActivityTest()
+        {
+            Entry target = new Entry();
+            Assert.AreEqual("Stationary", target.Activity);
+
+            string folderPath = ".";
+            target.Save(folderPath);
+            Assert.IsTrue(File.Exists(target.FileName));
+
+            string contents = File.ReadAllText(target.FileName);
+            Assert.IsTrue(contents.Contains("<key>Activity</key>"));
+            Assert.IsTrue(contents.Contains("<string>Stationary</string>"));
+
+            Entry loadedEntry = Entry.LoadFromFile(target.FileName);
+            Assert.AreEqual("Stationary", loadedEntry.Activity);
+        }
+
+        [TestMethod]
+        public void EntryActivityLoadTest()
+        {
+            string path = "B84B750975EE4B3BBC519580804B5A19.doentry";
+
+            Entry entry = Entry.LoadFromFile(path);
+
+            Assert.AreEqual("Flying", entry.Activity);
+
+            entry.EntryText += "\nAdded sentence.";
+
+            entry.Save(".");
+
+            string contents = File.ReadAllText(entry.FileName);
+            Assert.IsTrue(contents.Contains("<key>Activity</key>"));
+            Assert.IsTrue(contents.Contains("<string>Flying</string>"));
+
+            Entry loadedEntry = Entry.LoadFromFile(entry.FileName);
+            Assert.AreEqual("Flying", loadedEntry.Activity);
+        }
     }
 }

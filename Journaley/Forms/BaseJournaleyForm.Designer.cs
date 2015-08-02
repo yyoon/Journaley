@@ -85,6 +85,7 @@
             this.pictureBoxFormIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBoxFormIcon.TabIndex = 4;
             this.pictureBoxFormIcon.TabStop = false;
+            this.pictureBoxFormIcon.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBoxFormIcon_MouseDown);
             // 
             // imageButtonFormMinimize
             // 

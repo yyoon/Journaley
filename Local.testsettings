@@ -2,10 +2,12 @@
 <TestSettings name="Local" id="3131e310-4cfb-4d1d-9ef6-c696d891e499" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
   <Description>These are default test settings for a local test run.</Description>
   <Deployment>
+    <DeploymentItem filename="Journaley.Test\Inputs\51816D511B8E45B9A95A1E6130FADC56.doentry" />
     <DeploymentItem filename="Journaley.Test\Inputs\3C5D6CCEABCB43858752E69A1CCF4C4B.doentry" />
-    <DeploymentItem filename="Journaley.Test\Inputs\test1.settings" />
-    <DeploymentItem filename="Journaley.Test\Inputs\beforeRemovingEntries.settings" />
     <DeploymentItem filename="Journaley.Test\Inputs\EntrySet01\" />
+    <DeploymentItem filename="Journaley.Test\Inputs\beforeRemovingEntries.settings" />
+    <DeploymentItem filename="Journaley.Test\Inputs\B84B750975EE4B3BBC519580804B5A19.doentry" />
+    <DeploymentItem filename="Journaley.Test\Inputs\test1.settings" />
   </Deployment>
   <Execution>
     <TestTypeSpecific>
@@ -18,4 +20,5 @@
     <AgentRule name="Execution Agents">
     </AgentRule>
   </Execution>
+  <Properties />
 </TestSettings>

@@ -39,6 +39,7 @@
             this.SpellCheckEnabled = true;
             this.SpellCheckLanguage = "en";
             this.AutoUpdate = false;
+            this.Typeface = null;
         }
 
         /// <summary>
@@ -53,6 +54,7 @@
             this.SpellCheckEnabled = other.SpellCheckEnabled;
             this.SpellCheckLanguage = other.SpellCheckLanguage;
             this.AutoUpdate = other.AutoUpdate;
+            this.Typeface = other.Typeface;
         }
 
         /// <summary>
@@ -92,6 +94,14 @@
         /// The size of the text.
         /// </value>
         public float TextSize { get; set; }
+
+        /// <summary>
+        /// Gets or sets the typeface.
+        /// </summary>
+        /// <value>
+        /// The typeface.
+        /// </value>
+        public string Typeface { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether [spell check enabled].

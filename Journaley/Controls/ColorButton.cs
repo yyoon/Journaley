@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Drawing;
+    using System.Drawing.Text;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
@@ -406,7 +407,18 @@
             e.Graphics.DrawRectangle(new Pen(this.BorderColor), rect);
 
             // Draw the text
-            TextRenderer.DrawText(e.Graphics, this.Text, this.Font, this.ClientRectangle, this.ForeColor, TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+            var oldHint = e.Graphics.TextRenderingHint;
+            e.Graphics.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+
+            Brush brush = new SolidBrush(this.ForeColor);
+
+            StringFormat stringFormat = new StringFormat();
+            stringFormat.Alignment = StringAlignment.Center;
+            stringFormat.LineAlignment = StringAlignment.Center;
+
+            e.Graphics.DrawString(this.Text, this.Font, brush, this.ClientRectangle, stringFormat);
+
+            e.Graphics.TextRenderingHint = oldHint;
 
             base.OnPaint(e);
         }

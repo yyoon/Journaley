@@ -48,6 +48,7 @@ namespace Journaley.Forms
             this.panelWebBrowserWrapper = new System.Windows.Forms.Panel();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.contextMenuStripPhotoWithPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.replaceWithTheClipboardImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.replaceWithAnotherPhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deletePhotoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutBottom = new System.Windows.Forms.TableLayoutPanel();
@@ -78,11 +79,6 @@ namespace Journaley.Forms
             this.buttonMainCalendar = new Journaley.Controls.ImageButton();
             this.buttonMainTimeline = new Journaley.Controls.ImageButton();
             this.panelEntryListArea = new Journaley.Controls.EntryListAreaPanel();
-            this.panelTags = new System.Windows.Forms.Panel();
-            this.tableLayoutTags = new System.Windows.Forms.TableLayoutPanel();
-            this.listBoxTags = new System.Windows.Forms.ListBox();
-            this.panelTagsSeparator = new System.Windows.Forms.Panel();
-            this.entryListBoxTags = new Journaley.Controls.EntryListBox();
             this.panelTimeline = new System.Windows.Forms.Panel();
             this.entryListBoxAll = new Journaley.Controls.EntryListBox();
             this.panelCalendar = new System.Windows.Forms.Panel();
@@ -90,7 +86,15 @@ namespace Journaley.Forms
             this.monthCalendar = new Pabo.Calendar.MonthCalendar();
             this.panelCalendarSeparator = new System.Windows.Forms.Panel();
             this.entryListBoxCalendar = new Journaley.Controls.EntryListBox();
-            this.labelFormCaption = new System.Windows.Forms.Label();
+            this.panelTags = new System.Windows.Forms.Panel();
+            this.tableLayoutTags = new System.Windows.Forms.TableLayoutPanel();
+            this.listBoxTags = new System.Windows.Forms.ListBox();
+            this.panelTagsSeparator = new System.Windows.Forms.Panel();
+            this.entryListBoxTags = new Journaley.Controls.EntryListBox();
+            this.labelFormCaption = new Journaley.Controls.TitleLabel();
+            this.contextMenuStripPhotoWithoutPhoto = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addFromClipboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addFromFileExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             labelThisWeekLabel = new Journaley.Controls.MouseFallThroughLabel();
             labelTodayLabel = new Journaley.Controls.MouseFallThroughLabel();
             this.panelTitlebar.SuspendLayout();
@@ -128,11 +132,12 @@ namespace Journaley.Forms
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).BeginInit();
             this.panelEntryListArea.SuspendLayout();
-            this.panelTags.SuspendLayout();
-            this.tableLayoutTags.SuspendLayout();
             this.panelTimeline.SuspendLayout();
             this.panelCalendar.SuspendLayout();
             this.tableLayoutCalendar.SuspendLayout();
+            this.panelTags.SuspendLayout();
+            this.tableLayoutTags.SuspendLayout();
+            this.contextMenuStripPhotoWithoutPhoto.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelTitlebar
@@ -148,6 +153,7 @@ namespace Journaley.Forms
             // imageButtonFormClose
             // 
             this.imageButtonFormClose.Location = new System.Drawing.Point(883, 0);
+            this.imageButtonFormClose.Click += new System.EventHandler(this.ImageButtonFormClose_Click);
             // 
             // imageButtonFormMinimize
             // 
@@ -443,22 +449,32 @@ namespace Journaley.Forms
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.Size = new System.Drawing.Size(618, 318);
             this.webBrowser.TabIndex = 0;
+            this.webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowser_DocumentCompleted);
             // 
             // contextMenuStripPhotoWithPhoto
             // 
             this.contextMenuStripPhotoWithPhoto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
             this.contextMenuStripPhotoWithPhoto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.replaceWithTheClipboardImageToolStripMenuItem,
             this.replaceWithAnotherPhotoToolStripMenuItem,
             this.deletePhotoToolStripMenuItem});
             this.contextMenuStripPhotoWithPhoto.Name = "contextMenuStripPhotoWithPhoto";
             this.contextMenuStripPhotoWithPhoto.ShowImageMargin = false;
-            this.contextMenuStripPhotoWithPhoto.Size = new System.Drawing.Size(207, 48);
+            this.contextMenuStripPhotoWithPhoto.Size = new System.Drawing.Size(228, 92);
+            // 
+            // replaceWithTheClipboardImageToolStripMenuItem
+            // 
+            this.replaceWithTheClipboardImageToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.replaceWithTheClipboardImageToolStripMenuItem.Name = "replaceWithTheClipboardImageToolStripMenuItem";
+            this.replaceWithTheClipboardImageToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.replaceWithTheClipboardImageToolStripMenuItem.Text = "Replace with the Clipboard Image";
+            this.replaceWithTheClipboardImageToolStripMenuItem.Click += new System.EventHandler(this.ReplaceWithTheClipboardImageToolStripMenuItem_Click);
             // 
             // replaceWithAnotherPhotoToolStripMenuItem
             // 
             this.replaceWithAnotherPhotoToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.replaceWithAnotherPhotoToolStripMenuItem.Name = "replaceWithAnotherPhotoToolStripMenuItem";
-            this.replaceWithAnotherPhotoToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.replaceWithAnotherPhotoToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
             this.replaceWithAnotherPhotoToolStripMenuItem.Text = "Replace with Another Photo...";
             this.replaceWithAnotherPhotoToolStripMenuItem.Click += new System.EventHandler(this.ReplaceWithAnotherPhotoToolStripMenuItem_Click);
             // 
@@ -466,7 +482,7 @@ namespace Journaley.Forms
             // 
             this.deletePhotoToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.deletePhotoToolStripMenuItem.Name = "deletePhotoToolStripMenuItem";
-            this.deletePhotoToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.deletePhotoToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
             this.deletePhotoToolStripMenuItem.Text = "Delete Photo";
             this.deletePhotoToolStripMenuItem.Click += new System.EventHandler(this.DeletePhotoToolStripMenuItem_Click);
             // 
@@ -910,79 +926,6 @@ namespace Journaley.Forms
             this.panelEntryListArea.Size = new System.Drawing.Size(266, 475);
             this.panelEntryListArea.TabIndex = 18;
             // 
-            // panelTags
-            // 
-            this.panelTags.Controls.Add(this.tableLayoutTags);
-            this.panelTags.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTags.Location = new System.Drawing.Point(1, 1);
-            this.panelTags.Name = "panelTags";
-            this.panelTags.Size = new System.Drawing.Size(264, 473);
-            this.panelTags.TabIndex = 2;
-            this.panelTags.Visible = false;
-            // 
-            // tableLayoutTags
-            // 
-            this.tableLayoutTags.BackColor = System.Drawing.Color.Black;
-            this.tableLayoutTags.ColumnCount = 1;
-            this.tableLayoutTags.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutTags.Controls.Add(this.listBoxTags, 0, 0);
-            this.tableLayoutTags.Controls.Add(this.panelTagsSeparator, 0, 1);
-            this.tableLayoutTags.Controls.Add(this.entryListBoxTags, 0, 2);
-            this.tableLayoutTags.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutTags.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutTags.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutTags.Name = "tableLayoutTags";
-            this.tableLayoutTags.RowCount = 2;
-            this.tableLayoutTags.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutTags.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
-            this.tableLayoutTags.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutTags.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutTags.Size = new System.Drawing.Size(264, 473);
-            this.tableLayoutTags.TabIndex = 1;
-            // 
-            // listBoxTags
-            // 
-            this.listBoxTags.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.listBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBoxTags.Dock = System.Windows.Forms.DockStyle.Top;
-            this.listBoxTags.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxTags.FormattingEnabled = true;
-            this.listBoxTags.IntegralHeight = false;
-            this.listBoxTags.ItemHeight = 17;
-            this.listBoxTags.Location = new System.Drawing.Point(0, 0);
-            this.listBoxTags.Margin = new System.Windows.Forms.Padding(0);
-            this.listBoxTags.Name = "listBoxTags";
-            this.listBoxTags.Size = new System.Drawing.Size(264, 184);
-            this.listBoxTags.TabIndex = 0;
-            this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
-            // 
-            // panelTagsSeparator
-            // 
-            this.panelTagsSeparator.BackColor = System.Drawing.Color.Black;
-            this.panelTagsSeparator.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTagsSeparator.Location = new System.Drawing.Point(0, 184);
-            this.panelTagsSeparator.Margin = new System.Windows.Forms.Padding(0);
-            this.panelTagsSeparator.Name = "panelTagsSeparator";
-            this.panelTagsSeparator.Size = new System.Drawing.Size(264, 1);
-            this.panelTagsSeparator.TabIndex = 1;
-            // 
-            // entryListBoxTags
-            // 
-            this.entryListBoxTags.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(46)))), ((int)(((byte)(49)))));
-            this.entryListBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.entryListBoxTags.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.entryListBoxTags.EntryTextProvider = null;
-            this.entryListBoxTags.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.entryListBoxTags.FormattingEnabled = true;
-            this.entryListBoxTags.Location = new System.Drawing.Point(0, 185);
-            this.entryListBoxTags.Margin = new System.Windows.Forms.Padding(0);
-            this.entryListBoxTags.Name = "entryListBoxTags";
-            this.entryListBoxTags.ScrollAlwaysVisible = true;
-            this.entryListBoxTags.Size = new System.Drawing.Size(264, 288);
-            this.entryListBoxTags.TabIndex = 0;
-            this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
-            // 
             // panelTimeline
             // 
             this.panelTimeline.Controls.Add(this.entryListBoxAll);
@@ -1008,6 +951,7 @@ namespace Journaley.Forms
             this.entryListBoxAll.Size = new System.Drawing.Size(264, 473);
             this.entryListBoxAll.TabIndex = 0;
             this.entryListBoxAll.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
+            this.entryListBoxAll.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Scrollable_MouseMove);
             // 
             // panelCalendar
             // 
@@ -1116,6 +1060,82 @@ namespace Journaley.Forms
             this.entryListBoxCalendar.Size = new System.Drawing.Size(264, 288);
             this.entryListBoxCalendar.TabIndex = 1;
             this.entryListBoxCalendar.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
+            this.entryListBoxCalendar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Scrollable_MouseMove);
+            // 
+            // panelTags
+            // 
+            this.panelTags.Controls.Add(this.tableLayoutTags);
+            this.panelTags.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTags.Location = new System.Drawing.Point(1, 1);
+            this.panelTags.Name = "panelTags";
+            this.panelTags.Size = new System.Drawing.Size(264, 473);
+            this.panelTags.TabIndex = 2;
+            this.panelTags.Visible = false;
+            // 
+            // tableLayoutTags
+            // 
+            this.tableLayoutTags.BackColor = System.Drawing.Color.Black;
+            this.tableLayoutTags.ColumnCount = 1;
+            this.tableLayoutTags.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutTags.Controls.Add(this.listBoxTags, 0, 0);
+            this.tableLayoutTags.Controls.Add(this.panelTagsSeparator, 0, 1);
+            this.tableLayoutTags.Controls.Add(this.entryListBoxTags, 0, 2);
+            this.tableLayoutTags.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutTags.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutTags.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutTags.Name = "tableLayoutTags";
+            this.tableLayoutTags.RowCount = 2;
+            this.tableLayoutTags.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutTags.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 1F));
+            this.tableLayoutTags.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutTags.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutTags.Size = new System.Drawing.Size(264, 473);
+            this.tableLayoutTags.TabIndex = 1;
+            // 
+            // listBoxTags
+            // 
+            this.listBoxTags.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.listBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBoxTags.Dock = System.Windows.Forms.DockStyle.Top;
+            this.listBoxTags.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxTags.FormattingEnabled = true;
+            this.listBoxTags.IntegralHeight = false;
+            this.listBoxTags.ItemHeight = 17;
+            this.listBoxTags.Location = new System.Drawing.Point(0, 0);
+            this.listBoxTags.Margin = new System.Windows.Forms.Padding(0);
+            this.listBoxTags.Name = "listBoxTags";
+            this.listBoxTags.Size = new System.Drawing.Size(264, 184);
+            this.listBoxTags.TabIndex = 0;
+            this.listBoxTags.SelectedIndexChanged += new System.EventHandler(this.ListBoxTags_SelectedIndexChanged);
+            this.listBoxTags.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Scrollable_MouseMove);
+            // 
+            // panelTagsSeparator
+            // 
+            this.panelTagsSeparator.BackColor = System.Drawing.Color.Black;
+            this.panelTagsSeparator.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelTagsSeparator.Location = new System.Drawing.Point(0, 184);
+            this.panelTagsSeparator.Margin = new System.Windows.Forms.Padding(0);
+            this.panelTagsSeparator.Name = "panelTagsSeparator";
+            this.panelTagsSeparator.Size = new System.Drawing.Size(264, 1);
+            this.panelTagsSeparator.TabIndex = 1;
+            // 
+            // entryListBoxTags
+            // 
+            this.entryListBoxTags.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(46)))), ((int)(((byte)(49)))));
+            this.entryListBoxTags.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.entryListBoxTags.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.entryListBoxTags.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.entryListBoxTags.EntryTextProvider = null;
+            this.entryListBoxTags.Font = new System.Drawing.Font("Segoe UI Semilight", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.entryListBoxTags.FormattingEnabled = true;
+            this.entryListBoxTags.Location = new System.Drawing.Point(0, 185);
+            this.entryListBoxTags.Margin = new System.Windows.Forms.Padding(0);
+            this.entryListBoxTags.Name = "entryListBoxTags";
+            this.entryListBoxTags.ScrollAlwaysVisible = true;
+            this.entryListBoxTags.Size = new System.Drawing.Size(264, 288);
+            this.entryListBoxTags.TabIndex = 0;
+            this.entryListBoxTags.SelectedIndexChanged += new System.EventHandler(this.EntryListBox_SelectedIndexChanged);
+            this.entryListBoxTags.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Scrollable_MouseMove);
             // 
             // labelFormCaption
             // 
@@ -1127,6 +1147,32 @@ namespace Journaley.Forms
             this.labelFormCaption.Size = new System.Drawing.Size(63, 17);
             this.labelFormCaption.TabIndex = 4;
             this.labelFormCaption.Text = "Journaley";
+            // 
+            // contextMenuStripPhotoWithoutPhoto
+            // 
+            this.contextMenuStripPhotoWithoutPhoto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(46)))), ((int)(((byte)(60)))));
+            this.contextMenuStripPhotoWithoutPhoto.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addFromClipboardToolStripMenuItem,
+            this.addFromFileExplorerToolStripMenuItem});
+            this.contextMenuStripPhotoWithoutPhoto.Name = "contextMenuStripPhotoWithoutPhotoClipboard";
+            this.contextMenuStripPhotoWithoutPhoto.ShowImageMargin = false;
+            this.contextMenuStripPhotoWithoutPhoto.Size = new System.Drawing.Size(176, 48);
+            // 
+            // addFromClipboardToolStripMenuItem
+            // 
+            this.addFromClipboardToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.addFromClipboardToolStripMenuItem.Name = "addFromClipboardToolStripMenuItem";
+            this.addFromClipboardToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.addFromClipboardToolStripMenuItem.Text = "Add from Clipboard";
+            this.addFromClipboardToolStripMenuItem.Click += new System.EventHandler(this.AddFromClipboardToolStripMenuItem_Click);
+            // 
+            // addFromFileExplorerToolStripMenuItem
+            // 
+            this.addFromFileExplorerToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.addFromFileExplorerToolStripMenuItem.Name = "addFromFileExplorerToolStripMenuItem";
+            this.addFromFileExplorerToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.addFromFileExplorerToolStripMenuItem.Text = "Add from File Explorer...";
+            this.addFromFileExplorerToolStripMenuItem.Click += new System.EventHandler(this.AddFromFileExplorerToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -1185,11 +1231,12 @@ namespace Journaley.Forms
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainCalendar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.buttonMainTimeline)).EndInit();
             this.panelEntryListArea.ResumeLayout(false);
-            this.panelTags.ResumeLayout(false);
-            this.tableLayoutTags.ResumeLayout(false);
             this.panelTimeline.ResumeLayout(false);
             this.panelCalendar.ResumeLayout(false);
             this.tableLayoutCalendar.ResumeLayout(false);
+            this.panelTags.ResumeLayout(false);
+            this.tableLayoutTags.ResumeLayout(false);
+            this.contextMenuStripPhotoWithoutPhoto.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1252,9 +1299,13 @@ namespace Journaley.Forms
         private Pabo.Calendar.MonthCalendar monthCalendar;
         private System.Windows.Forms.Panel panelCalendarSeparator;
         private EntryPhotoArea entryPhotoArea;
-        private System.Windows.Forms.Label labelFormCaption;
+        private Journaley.Controls.TitleLabel labelFormCaption;
         private System.Windows.Forms.TableLayoutPanel tableLayoutTags;
         private System.Windows.Forms.Panel panelTagsSeparator;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripPhotoWithoutPhoto;
+        private System.Windows.Forms.ToolStripMenuItem addFromClipboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addFromFileExplorerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem replaceWithTheClipboardImageToolStripMenuItem;
     }
 }
 

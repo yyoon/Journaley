@@ -94,6 +94,7 @@
             WM_VSCROLL = 0x0115,
             WM_MOUSEWHEEL = 0x020A,
             WM_SETCURSOR = 0x0020,
+            WM_SYSCOMMAND = 0x0112,
         }
 
         public enum HitTestValues : int
@@ -259,6 +260,49 @@
             SIF_DISABLENOSCROLL = 0x8,
             SIF_TRACKPOS = 0x10,
             SIF_ALL = (SIF_RANGE | SIF_PAGE | SIF_POS | SIF_TRACKPOS),
-        }  
+        }
+
+        public enum TrackPopupMenuFlags : uint
+        {
+            TPM_LEFTALIGN = 0x0000,
+            TPM_CENTERALIGN = 0x0004,
+            TPM_RIGHTALIGN = 0x0008,
+            TPM_TOPALIGN = 0x0000,
+            TPM_VCENTERALIGN = 0x0010,
+            TPM_BOTTOMALIGN = 0x0020,
+            TPM_HORIZONTAL = 0x0000,
+            TPM_VERTICAL = 0x0040,
+            TPM_RETURNCMD = 0x0100,
+        }
+
+        public enum MenuFlags : uint
+        {
+            MF_BYCOMMAND = 0x0000,
+            MF_BYPOSITION = 0x0400,
+            MF_DISABLED = 0x0002,
+            MF_ENABLED = 0x0000,
+            MF_GRAYED = 0x0001,
+        }
+
+        public enum SystemCommands : uint
+        {
+            SC_RESTORE = 0xF120,
+            SC_MOVE = 0xF010,
+            SC_SIZE = 0xF000,
+            SC_MINIMIZE = 0xF020,
+            SC_MAXIMIZE = 0xF030,
+        }
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+
+        [DllImport("user32.dll")]
+        public static extern int TrackPopupMenuEx(IntPtr hmenu, TrackPopupMenuFlags flags, int x, int y, IntPtr hwnd, IntPtr lptpm);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr PostMessage(IntPtr hWnd, WindowsMessages msg, IntPtr wParam, IntPtr lParam);
+
+        [DllImport("user32.dll")]
+        public static extern bool EnableMenuItem(IntPtr hMenu, SystemCommands uIDEnableItem, MenuFlags uEnable);
     }
 }

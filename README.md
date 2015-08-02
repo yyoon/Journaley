@@ -41,3 +41,7 @@ We are always interested in improving Journaley, which is why we really value yo
 - You can either post a new issue [**here.**](https://github.com/yyoon/Journaley/issues)
 - Or if you prefer e-mail us [**here.**](mailto:journaleyapp@gmail.com)
 - You can also talk to us on twitter [**here.**](https://twitter.com/journaleyapp)
+
+Notice
+----
+Journaley isn't officially connected to, associated with, or supported by the official Day One apps.

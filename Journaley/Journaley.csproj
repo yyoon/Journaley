@@ -138,6 +138,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\ISelectable.cs" />
+    <Compile Include="Controls\MouseFallThroughPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Controls\PaddingBorderPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -485,6 +488,8 @@
     <Content Include="Images\welcome_btn_minimize_over.png" />
     <Content Include="Images\welcome_journaley.png" />
     <Content Include="Resources\JournaleyLarge.css" />
+    <None Include="Resources\JournaleyNotoSans.css" />
+    <None Include="Resources\JournaleyNotoSerif.css" />
     <Content Include="Resources\JournaleySmall.css" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

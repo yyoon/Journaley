@@ -8,6 +8,7 @@
     using System.Reflection;
     using System.Text;
     using System.Xml;
+    using Journaley.Core.PList;
     using Journaley.Core.Utilities;
 
     /// <summary>
@@ -54,6 +55,11 @@
         /// The path of the associated photo.
         /// </summary>
         private string photoPath;
+
+        /// <summary>
+        /// The activity.
+        /// </summary>
+        private string activity = "Stationary";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Entry"/> class.
@@ -107,6 +113,16 @@
             this.UUID = uuid;
 
             this.IsDirty = isDirty;
+
+            // Fill in the creator info here.
+            this.Creator = new PListDictionary();
+            this.Creator.Add("Device Agent", "PC");
+            this.Creator.Add("Generation Date", dateTime);
+            this.Creator.Add("Host Name", Environment.MachineName);
+            this.Creator.Add("OS Agent", OSNameRetriever.GetOSFriendlyName());
+
+            var version = Assembly.GetEntryAssembly().GetName().Version;
+            this.Creator.Add("Software Agent", string.Format("Journaley/{0}", version.ToString(2)));
         }
 
         /// <summary>
@@ -316,7 +332,7 @@
         /// <value>
         /// The location.
         /// </value>
-        public EntryLocation Location { get; private set; }
+        public PListDictionary Location { get; private set; }
 
         /// <summary>
         /// Gets the weather information.
@@ -324,7 +340,7 @@
         /// <value>
         /// The weather.
         /// </value>
-        public EntryWeather Weather { get; private set; }
+        public PListDictionary Weather { get; private set; }
 
         /// <summary>
         /// Gets the creator information.
@@ -332,7 +348,26 @@
         /// <value>
         /// The creator.
         /// </value>
-        public EntryCreator Creator { get; private set; }
+        public PListDictionary Creator { get; private set; }
+
+        /// <summary>
+        /// Gets or sets the activity.
+        /// </summary>
+        /// <value>
+        /// The activity.
+        /// </value>
+        public string Activity
+        {
+            get
+            {
+                return this.activity;
+            }
+
+            set
+            {
+                this.activity = value;
+            }
+        }
 
         /// <summary>
         /// Gets a value indicating whether this instance is dirty.
@@ -535,22 +570,38 @@
             var dict = doc.CreateElement("dict");
             root.AppendChild(dict);
 
-            // key values
-            this.AppendKeyValue(doc, dict, "Creation Date", "date", this.CreationDate);
-            this.AppendKeyValue(doc, dict, "Entry Text", "string", this.EntryText);
-            this.AppendKeyValue(doc, dict, "Starred", this.Starred.ToString().ToLower(), null);
-            this.AppendKeyValue(doc, dict, "UUID", "string", this.UUIDString);
+            // Core key values
+            this.AppendKeyValue(dict, "Activity", "string", this.Activity);
+            this.AppendKeyValue(dict, "Creation Date", "date", this.CreationDate);
+            this.AppendKeyValue(dict, "Entry Text", "string", this.EntryText);
+            this.AppendKeyValue(dict, "Starred", this.Starred.ToString().ToLower(), null);
+            this.AppendKeyValue(dict, "UUID", "string", this.UUIDString);
+
+            if (this.Creator != null)
+            {
+                this.AppendKeyValue(dict, "Creator", this.Creator);
+            }
+
+            if (this.Location != null)
+            {
+                this.AppendKeyValue(dict, "Location", this.Location);
+            }
+
+            if (this.Weather != null)
+            {
+                this.AppendKeyValue(dict, "Weather", this.Weather);
+            }
 
             // Store the tags
             if (this.Tags.Any())
             {
-                this.AppendArrayKeyValue(doc, dict, "Tags", this.Tags);
+                this.AppendArrayKeyValue(dict, "Tags", this.Tags);
             }
 
             // Handle unknown key values. (just keep them.)
             foreach (var kvp in this.UnknownKeyValues)
             {
-                this.AppendKeyValue(doc, dict, kvp.Key, kvp.Value);
+                this.AppendKeyValue(dict, kvp.Key, kvp.Value);
             }
 
             // Write to the stringbuilder first, and then write it to the file.
@@ -730,36 +781,40 @@
         {
             switch (keyNode.InnerText)
             {
+                case "Activity":
+                    newEntry.Activity = valueNode.InnerText;
+                    break;
+
                 case "Creation Date":
                     newEntry.UTCDateTime = DateTime.Parse(valueNode.InnerText).ToUniversalTime();
+                    break;
+
+                case "Creator":
+                    newEntry.Creator = (PListDictionary)PListLoader.LoadFromXmlNode(valueNode);
                     break;
 
                 case "Entry Text":
                     newEntry.EntryText = valueNode.InnerText;
                     break;
 
-                case "Starred":
-                    newEntry.Starred = valueNode.Name == "true";
+                case "Location":
+                    newEntry.Location = (PListDictionary)PListLoader.LoadFromXmlNode(valueNode);
                     break;
 
-                case "UUID":
-                    newEntry.UUID = new Guid(valueNode.InnerText);
+                case "Starred":
+                    newEntry.Starred = valueNode.Name == "true";
                     break;
 
                 case "Tags":
                     LoadTags(newEntry, valueNode);
                     break;
 
-                case "Location":
-                    LoadLocation(newEntry, valueNode);
+                case "UUID":
+                    newEntry.UUID = new Guid(valueNode.InnerText);
                     break;
 
                 case "Weather":
-                    LoadWeather(newEntry, valueNode);
-                    break;
-
-                case "Creator":
-                    LoadCreator(newEntry, valueNode);
+                    newEntry.Weather = (PListDictionary)PListLoader.LoadFromXmlNode(valueNode);
                     break;
 
                 default:
@@ -782,87 +837,15 @@
         }
 
         /// <summary>
-        /// Loads the location.
-        /// </summary>
-        /// <param name="newEntry">The new entry object.</param>
-        /// <param name="valueNode">The value node.</param>
-        private static void LoadLocation(Entry newEntry, XmlNode valueNode)
-        {
-            newEntry.Location = new EntryLocation();
-            foreach (XmlNode tagNode in valueNode.ChildNodes)
-            {
-                if (tagNode.Name.ToLower() == "key")
-                {
-                    string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
-                    string value = tagNode.NextSibling.InnerText;
-
-                    PropertyInfo pinfo = newEntry.Location.GetType().GetProperty(propertyName);
-                    if (pinfo != null)
-                    {
-                        pinfo.SetValue(newEntry.Location, value, null);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Loads the weather.
-        /// </summary>
-        /// <param name="newEntry">The new entry object.</param>
-        /// <param name="valueNode">The value node.</param>
-        private static void LoadWeather(Entry newEntry, XmlNode valueNode)
-        {
-            newEntry.Weather = new EntryWeather();
-            foreach (XmlNode tagNode in valueNode.ChildNodes)
-            {
-                if (tagNode.Name.ToLower() == "key")
-                {
-                    string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
-                    string value = tagNode.NextSibling.InnerText;
-
-                    PropertyInfo pinfo = newEntry.Weather.GetType().GetProperty(propertyName);
-                    if (pinfo != null)
-                    {
-                        pinfo.SetValue(newEntry.Weather, value, null);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Loads the creator.
-        /// </summary>
-        /// <param name="newEntry">The new entry object.</param>
-        /// <param name="valueNode">The value node.</param>
-        private static void LoadCreator(Entry newEntry, XmlNode valueNode)
-        {
-            newEntry.Creator = new EntryCreator();
-            foreach (XmlNode tagNode in valueNode.ChildNodes)
-            {
-                if (tagNode.Name.ToLower() == "key")
-                {
-                    string propertyName = tagNode.InnerText.Replace(" ", string.Empty);
-                    string value = tagNode.NextSibling.InnerText;
-
-                    PropertyInfo pinfo = newEntry.Creator.GetType().GetProperty(propertyName);
-                    if (pinfo != null)
-                    {
-                        pinfo.SetValue(newEntry.Creator, value, null);
-                    }
-                }
-            }
-        }
-
-        /// <summary>
         /// Appends the key value.
         /// </summary>
-        /// <param name="doc">The xml document.</param>
         /// <param name="dict">The xml element corresponding to dictionary part.</param>
         /// <param name="keyString">The key string.</param>
         /// <param name="valueType">Type of the value.</param>
         /// <param name="valueString">The value string.</param>
-        private void AppendKeyValue(XmlDocument doc, XmlElement dict, string keyString, string valueType, string valueString)
+        private void AppendKeyValue(XmlElement dict, string keyString, string valueType, string valueString)
         {
+            var doc = dict.OwnerDocument;
             var key = doc.CreateElement("key");
             dict.AppendChild(key);
             key.InnerText = keyString;
@@ -876,14 +859,30 @@
         }
 
         /// <summary>
+        /// Appends the key value.
+        /// </summary>
+        /// <param name="dict">The dictionary.</param>
+        /// <param name="keyString">The key string.</param>
+        /// <param name="data">The data.</param>
+        private void AppendKeyValue(XmlElement dict, string keyString, IPListElement data)
+        {
+            var doc = dict.OwnerDocument;
+            var key = doc.CreateElement("key");
+            key.InnerText = keyString;
+            dict.AppendChild(key);
+
+            data.SaveToXml(dict);
+        }
+
+        /// <summary>
         /// Appends the array typed key values.
         /// </summary>
-        /// <param name="doc">The document.</param>
         /// <param name="dict">The dictionary.</param>
         /// <param name="keyString">The key string.</param>
         /// <param name="values">The values.</param>
-        private void AppendArrayKeyValue(XmlDocument doc, XmlElement dict, string keyString, IEnumerable<string> values)
+        private void AppendArrayKeyValue(XmlElement dict, string keyString, IEnumerable<string> values)
         {
+            var doc = dict.OwnerDocument;
             var key = doc.CreateElement("key");
             dict.AppendChild(key);
             key.InnerText = keyString;
@@ -901,12 +900,12 @@
         /// <summary>
         /// Appends the key value. Used to preserve the unknown key values existed in the original entries.
         /// </summary>
-        /// <param name="doc">The document.</param>
         /// <param name="dict">The dictionary.</param>
         /// <param name="keyNodeFromOtherDoc">The key node from other document.</param>
         /// <param name="valueNodeFromOtherDoc">The value node from other document.</param>
-        private void AppendKeyValue(XmlDocument doc, XmlElement dict, XmlNode keyNodeFromOtherDoc, XmlNode valueNodeFromOtherDoc)
+        private void AppendKeyValue(XmlElement dict, XmlNode keyNodeFromOtherDoc, XmlNode valueNodeFromOtherDoc)
         {
+            var doc = dict.OwnerDocument;
             var key = doc.ImportNode(keyNodeFromOtherDoc, true);
             var value = doc.ImportNode(valueNodeFromOtherDoc, true);
 

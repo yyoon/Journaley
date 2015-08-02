@@ -203,16 +203,21 @@
             set
             {
                 this.currentVersion = value;
+
+                var version = value ?? Assembly.GetExecutingAssembly().GetName().Version;
+                var versionString = version.ToString();
+
                 if (value != null)
                 {
-                    this.labelVersionNumber.Text = this.currentVersion.ToString();
+                    this.linkVersionNumber.Text = versionString;
                 }
                 else
                 {
-                    this.labelVersionNumber.Text = string.Format(
-                        "{0} (dev)",
-                        Assembly.GetExecutingAssembly().GetName().Version);
+                    this.linkVersionNumber.Text = string.Format("{0} (dev)", versionString);
                 }
+
+                this.linkVersionNumber.Links[0].LinkData =
+                    "https://github.com/yyoon/Journaley/releases/tag/v" + version.ToString(2);
             }
         }
 
@@ -379,18 +384,45 @@
         }
 
         /// <summary>
+        /// Copies the font properties.
+        /// </summary>
+        /// <param name="fontFamily">The font family.</param>
+        /// <param name="originalFont">The original font.</param>
+        /// <returns>
+        /// A new Font with the specified font family and
+        /// all the other properties from the original font.
+        /// </returns>
+        private Font CopyFontProperties(FontFamily fontFamily, Font originalFont)
+        {
+            return new Font(
+                fontFamily,
+                originalFont.Size,
+                originalFont.Style,
+                originalFont.Unit,
+                originalFont.GdiCharSet);
+        }
+
+        /// <summary>
         /// Handles the Load event of the SettingsForm control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void SettingsForm_Load(object sender, EventArgs e)
         {
-            // Set the initial location.
-            if (this.Owner != null)
+            // Set the initial location. 
+            // Offset location if MainForm not maximized, and center if it is.
+            if (this.Owner != null && this.Owner is MainForm)
             {
-                this.Location = new Point(
-                    this.Owner.Left + ((this.Owner.Width - this.Width) / 2) + 10,
-                    this.Owner.Top + this.panelTitlebar.Height);
+                if (this.Owner.WindowState == FormWindowState.Maximized)
+                {
+                    this.CenterToParent();
+                }
+                else
+                {
+                    this.Location = new Point(
+                        this.Owner.Left + ((this.Owner.Width - this.Width) / 2) + 10,
+                        this.Owner.Top - this.panelTitlebar.Height);
+                }
             }
 
             // Set the font of the font size buttons to Noto Serif.
@@ -398,22 +430,40 @@
             // Other properties (size, style) will be inherited from the designer settings.
             if (this.Owner != null && this.Owner is MainForm)
             {
-                var fontFamily = ((MainForm)this.Owner).FontFamilyNotoSerifRegular;
+                var notoSans = ((MainForm)this.Owner).FontFamilyNotoSansRegular;
+                var notoSerif = ((MainForm)this.Owner).FontFamilyNotoSerifRegular;
 
                 foreach (var sizeButton in this.GetAllSizeButtons())
                 {
-                    sizeButton.Font = new Font(
-                        fontFamily,
-                        sizeButton.Font.Size,
-                        sizeButton.Font.Style,
-                        sizeButton.Font.Unit,
-                        sizeButton.Font.GdiCharSet);
+                    sizeButton.Font = this.CopyFontProperties(notoSerif, sizeButton.Font);
                 }
+
+                this.radioButtonNotoSans.Font =
+                    this.CopyFontProperties(notoSans, this.radioButtonNotoSans.Font);
+
+                this.radioButtonNotoSerif.Font =
+                    this.CopyFontProperties(notoSerif, this.radioButtonNotoSerif.Font);
             }
 
             if (this.Settings.TextSize == 0.0)
             {
                 this.Settings.TextSize = TextSizeMedium;
+            }
+
+            switch (this.Settings.Typeface)
+            {
+                case "Noto Sans":
+                    this.radioButtonNotoSans.Checked = true;
+                    break;
+
+                case "Noto Serif":
+                    this.radioButtonNotoSerif.Checked = true;
+                    break;
+
+                default:
+                    this.Settings.Typeface = "Noto Sans";
+                    this.radioButtonNotoSans.Checked = true;
+                    break;
             }
 
             this.InitializeSpellCheckInterface();
@@ -624,6 +674,11 @@
             }
 
             // Update Check
+            if (this.Owner is MainForm)
+            {
+                ++((MainForm)this.Owner).UpdateProcessCount;
+            }
+
             try
             {
                 using (var mgr = new UpdateManager(updateUrl))
@@ -671,6 +726,13 @@
                 MessageBox.Show("Error occurred while updating.", "Update Journaley");
                 Logger.Log(ex.Message);
                 Logger.Log(ex.StackTrace);
+            }
+            finally
+            {
+                if (this.Owner is MainForm)
+                {
+                    --((MainForm)this.Owner).UpdateProcessCount;
+                }
             }
         }
 
@@ -813,6 +875,26 @@
             {
                 Process.Start(linkLabel.Links[0].LinkData.ToString());
             }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the radioButtonNotoSans control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void RadioButtonNotoSans_Click(object sender, EventArgs e)
+        {
+            this.Settings.Typeface = "Noto Sans";
+        }
+
+        /// <summary>
+        /// Handles the CheckedChanged event of the radioButtonNotoSerif control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void RadioButtonNotoSerif_CheckedChanged(object sender, EventArgs e)
+        {
+            this.Settings.Typeface = "Noto Serif";
         }
     }
 }
