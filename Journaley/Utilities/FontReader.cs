@@ -36,5 +36,19 @@
 
             return pfc.Families[0];
         }
+
+        /// <summary>
+        /// Reads the embedded font for WPF.
+        /// </summary>
+        /// <param name="fontName">Name of the font.</param>
+        /// <param name="fontFamilyName">Name of the font family.</param>
+        /// <returns>The FontFamily object to be used.</returns>
+        public static System.Windows.Media.FontFamily ReadEmbeddedFont(string fontName, string fontFamilyName)
+        {
+            string path = Path.GetTempPath().Replace('\\', '/');
+            path += "#" + fontFamilyName;
+
+            return new System.Windows.Media.FontFamily(path);
+        }
     }
 }
