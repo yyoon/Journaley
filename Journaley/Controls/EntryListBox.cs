@@ -718,8 +718,6 @@
                     long diff = (DateTime.Now.Ticks - initialTimestamp) / 10000;
                     int alpha = (int)(255 - (255 * diff / PhotoFadeInTime));
 
-                    Debug.WriteLine("diff: " + diff + "\talpha: " + alpha);
-
                     if (alpha <= 0)
                     {
                         if (this.PhotoAlphaValues.ContainsKey(entry))

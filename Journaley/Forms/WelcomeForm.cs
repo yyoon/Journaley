@@ -731,7 +731,7 @@
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
-        private void panelExtendedTitleBar_MouseUp(object sender, MouseEventArgs e)
+        private void PanelExtendedTitleBar_MouseUp(object sender, MouseEventArgs e)
         {
             this.DraggingTitleBar = false;
         }

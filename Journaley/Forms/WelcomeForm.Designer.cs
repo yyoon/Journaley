@@ -649,7 +649,7 @@
             this.panelExtendedTitleBar.TabIndex = 9;
             this.panelExtendedTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelExtendedTitleBar_MouseDown);
             this.panelExtendedTitleBar.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PanelExtendedTitleBar_MouseMove);
-            this.panelExtendedTitleBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelExtendedTitleBar_MouseUp);
+            this.panelExtendedTitleBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PanelExtendedTitleBar_MouseUp);
             // 
             // WelcomeForm
             // 
