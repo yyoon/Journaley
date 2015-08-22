@@ -156,7 +156,7 @@
 
                 if (temp.Kind != DateTimeKind.Utc)
                 {
-                    temp.ToUniversalTime();
+                    temp = temp.ToUniversalTime();
                 }
 
                 if (this.utcDateTime != temp)
