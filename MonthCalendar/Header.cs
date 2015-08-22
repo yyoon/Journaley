@@ -68,7 +68,7 @@ namespace Pabo.Calendar
 		#region private class members
 		
 		private bool disposed;
-		private MonthCalendar m_calendar;
+		private readonly MonthCalendar m_calendar;
 		private Color m_backColor1;
         private Color m_backColor2;
         private mcGradientMode m_gradientMode; 
@@ -98,14 +98,14 @@ namespace Pabo.Calendar
 		private bool m_showMonth;
 				
 		private readonly Bitmap m_prevYear;
-		private Bitmap m_nextYear;
-		private Bitmap m_prevYearDisabled;
-		private Bitmap m_nextYearDisabled;
+		private readonly Bitmap m_nextYear;
+		private readonly Bitmap m_prevYearDisabled;
+		private readonly Bitmap m_nextYearDisabled;
 
-        private Bitmap m_prevMonthVs;
-        private Bitmap m_nextMonthVs;
-        private Bitmap m_prevYearVs;
-        private Bitmap m_nextYearVs;
+        private readonly Bitmap m_prevMonthVs;
+        private readonly Bitmap m_nextMonthVs;
+        private readonly Bitmap m_prevYearVs;
+        private readonly Bitmap m_nextYearVs;
 
 		#endregion
 
@@ -953,7 +953,7 @@ namespace Pabo.Calendar
 		/// <summary>
 		/// The property that has changed
 		/// </summary>
-		private mcHeaderProperty m_property;
+		private readonly mcHeaderProperty m_property;
 
 		#endregion
 

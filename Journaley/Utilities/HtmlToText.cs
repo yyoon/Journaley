@@ -263,8 +263,8 @@ namespace BlackBeltCoder
 		/// </summary>
 		protected class TextBuilder
 		{
-			private StringBuilder _text;
-			private StringBuilder _currLine;
+			private readonly StringBuilder _text;
+			private readonly StringBuilder _currLine;
 			private int _emptyLines;
 			private bool _preformatted;
 
