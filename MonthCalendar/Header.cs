@@ -78,7 +78,7 @@ namespace Pabo.Calendar
 		private bool m_yearSelector;
 		private bool m_contextMenu;
 		
-		private ContextMenu monthMenu = new ContextMenu();
+		private readonly ContextMenu monthMenu = new ContextMenu();
 		private Rectangle m_rect;
 		private Region m_region;
 		private Rectangle m_nextBtnRect;
@@ -97,7 +97,7 @@ namespace Pabo.Calendar
 
 		private bool m_showMonth;
 				
-		private Bitmap m_prevYear;
+		private readonly Bitmap m_prevYear;
 		private Bitmap m_nextYear;
 		private Bitmap m_prevYearDisabled;
 		private Bitmap m_nextYearDisabled;

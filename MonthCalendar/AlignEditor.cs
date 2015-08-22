@@ -49,7 +49,7 @@ namespace Pabo.Calendar
 		
 		private IWindowsFormsEditorService wfes;
 		private mcItemAlign m_selectedAlign = mcItemAlign.Center;
-		private AlignControl m_alignCtrl;
+		private readonly AlignControl m_alignCtrl;
 	
 		#endregion
 		

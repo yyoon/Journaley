@@ -14,7 +14,7 @@
         /// <summary>
         /// The dictionary
         /// </summary>
-        private Dictionary<string, IPListElement> dict;
+        private readonly Dictionary<string, IPListElement> dict;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PListDictionary"/> class.

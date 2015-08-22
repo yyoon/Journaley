@@ -22,12 +22,12 @@
         /// <summary>
         /// The entry deletion timers
         /// </summary>
-        private IDictionary<Guid, System.Timers.Timer> entryDeletionTimers = new ConcurrentDictionary<Guid, System.Timers.Timer>();
+        private readonly IDictionary<Guid, System.Timers.Timer> entryDeletionTimers = new ConcurrentDictionary<Guid, System.Timers.Timer>();
 
         /// <summary>
         /// The photo deletion timers
         /// </summary>
-        private IDictionary<Guid, System.Timers.Timer> photoDeletionTimers = new ConcurrentDictionary<Guid, System.Timers.Timer>();
+        private readonly IDictionary<Guid, System.Timers.Timer> photoDeletionTimers = new ConcurrentDictionary<Guid, System.Timers.Timer>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EntryWatcher" /> class.

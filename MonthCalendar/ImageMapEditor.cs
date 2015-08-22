@@ -50,7 +50,7 @@ namespace Pabo.Calendar
 		
 		private IWindowsFormsEditorService wfes;
 		private int m_selectedIndex = -1 ;
-		private ImageListPanel m_imagePanel;
+		private readonly ImageListPanel m_imagePanel;
 	
 		#endregion
 		
