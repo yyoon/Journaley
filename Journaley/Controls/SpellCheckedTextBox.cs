@@ -19,7 +19,7 @@
         /// <summary>
         /// The WPF TextBox control
         /// </summary>
-        private TextBox box;
+        private readonly TextBox box;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SpellCheckedTextBox"/> class.

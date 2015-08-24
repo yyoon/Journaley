@@ -52,7 +52,7 @@ namespace Pabo.Calendar
 		/// <summary>
 		/// The Calendar that owns this DateItemCollection
 		/// </summary>
-		private MonthCalendar owner;
+		private readonly MonthCalendar owner;
 
 		#endregion
 		

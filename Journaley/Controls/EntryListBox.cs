@@ -135,17 +135,17 @@
         /// <summary>
         /// The thumbnail cache
         /// </summary>
-        private ImageCache thumbnailCache = new ImageCache();
+        private readonly ImageCache thumbnailCache = new ImageCache();
 
         /// <summary>
         /// The wide thumbnail cache
         /// </summary>
-        private ImageCache wideThumbnailCache = new ImageCache();
+        private readonly ImageCache wideThumbnailCache = new ImageCache();
 
         /// <summary>
         /// The photo alpha values
         /// </summary>
-        private Dictionary<Entry, int> photoAlphaValues = new Dictionary<Entry, int>();
+        private readonly Dictionary<Entry, int> photoAlphaValues = new Dictionary<Entry, int>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EntryListBox"/> class.
@@ -757,7 +757,7 @@
             /// The thumbnail cache dictionary. The keys are UUIDString of the entry,
             /// and the values are the corresponding thumbnail images.
             /// </summary>
-            private IDictionary<string, Image> thumbnailCache = new ConcurrentDictionary<string, Image>();
+            private readonly IDictionary<string, Image> thumbnailCache = new ConcurrentDictionary<string, Image>();
 
             /// <summary>
             /// Determines whether there is a cached thumbnail image for the given entry.

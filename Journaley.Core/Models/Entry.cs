@@ -44,12 +44,12 @@
         /// <summary>
         /// The unknown key values
         /// </summary>
-        private Dictionary<XmlNode, XmlNode> unknownKeyValues = new Dictionary<XmlNode, XmlNode>();
+        private readonly Dictionary<XmlNode, XmlNode> unknownKeyValues = new Dictionary<XmlNode, XmlNode>();
 
         /// <summary>
         /// The tags
         /// </summary>
-        private List<string> tags = new List<string>();
+        private readonly List<string> tags = new List<string>();
 
         /// <summary>
         /// The path of the associated photo.
@@ -156,7 +156,7 @@
 
                 if (temp.Kind != DateTimeKind.Utc)
                 {
-                    temp.ToUniversalTime();
+                    temp = temp.ToUniversalTime();
                 }
 
                 if (this.utcDateTime != temp)

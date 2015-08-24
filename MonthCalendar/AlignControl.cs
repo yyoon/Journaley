@@ -293,7 +293,7 @@ namespace Pabo.Calendar
 	{
 		#region Class Data
 			
-		private mcItemAlign m_align;
+		private readonly mcItemAlign m_align;
 
 		#endregion
 

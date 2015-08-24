@@ -87,34 +87,34 @@ namespace Pabo.Calendar
 						
 		private Color m_borderColor;
       	private bool m_ctrlKey;
-		private GlobalHook m_hook = new GlobalHook();
+		private readonly GlobalHook m_hook = new GlobalHook();
         private bool m_keyHandled;
         private bool m_selectKeyDown;
         private bool m_keyboardEnabled;
 
 		private mcExtendedSelectionKey m_extendedKey;
 	
-		private Weekday m_weekday;
-		private Month m_month;
-		private Footer m_footer;
-		private Weeknumber m_weeknumber;
+		private readonly Weekday m_weekday;
+		private readonly Month m_month;
+		private readonly Footer m_footer;
+		private readonly Weeknumber m_weeknumber;
 		private int m_firstDayOfWeek;
 		private DayOfWeek m_defaultFirstDayOfWeek;
 
 		private mcCalendarRegion m_activeRegion;
-		private Header m_header;
-        private KeyboardConfig m_keyboard;
+		private readonly Header m_header;
+        private readonly KeyboardConfig m_keyboard;
 		private bool m_showToday;
 		private bool m_showTrailing;
 		private bool m_useTheme;
-		private IntPtr m_theme;
+		private readonly IntPtr m_theme;
 		private bool m_selectTrailing;
 		private mcSelectionMode m_selectionMode;
-		private CultureInfo[] m_installedCultures;
+		private readonly CultureInfo[] m_installedCultures;
 		private CultureInfo m_culture;
 
 		private ImageList m_imageList;
-		private PrintDocument m_printDoc = new PrintDocument(); 
+		private readonly PrintDocument m_printDoc = new PrintDocument(); 
 			
 		internal DateTimeFormatInfo m_dateTimeFormat = new  DateTimeFormatInfo();
 		
@@ -123,8 +123,8 @@ namespace Pabo.Calendar
 		private Rectangle m_footerRect = new Rectangle();
 		private Rectangle m_headerRect = new Rectangle();
 		private Rectangle m_weeknumbersRect = new Rectangle();
-		private DateItemCollection m_dateItemCollection;
-        private SelectedDatesCollection m_selectedDates; 
+		private readonly DateItemCollection m_dateItemCollection;
+        private readonly SelectedDatesCollection m_selectedDates; 
 
 		private ButtonBorderStyle m_borderStyle;
 		private bool m_showFocus;
@@ -140,7 +140,7 @@ namespace Pabo.Calendar
 		private bool m_showHeader;
 		private bool m_showWeeknumber;
 		
-		private ActiveMonth m_activeMonth;
+		private readonly ActiveMonth m_activeMonth;
 					
 		[field:NonSerialized]
 		public WeekCallBack WeeknumberCallBack;
@@ -2765,7 +2765,7 @@ namespace Pabo.Calendar
 
             #region variables
 
-            private MonthCalendar m_parent;
+            private readonly MonthCalendar m_parent;
             private Keys m_up;
             private Keys m_down;
             private Keys m_left;
@@ -3005,7 +3005,7 @@ namespace Pabo.Calendar
 	{
 		private int m_month;
 		private int m_year;
-		private MonthCalendar m_calendar;
+		private readonly MonthCalendar m_calendar;
 		private bool m_raiseEvent = true;
 
 		internal event MonthChangedEventHandler MonthChanged;
@@ -3498,8 +3498,8 @@ namespace Pabo.Calendar
 	{
 		#region Class Data
 			
-		private int m_month;
-		private int m_year;
+		private readonly int m_month;
+		private readonly int m_year;
 		
 		#endregion
 
@@ -3552,11 +3552,11 @@ namespace Pabo.Calendar
 	{
 		#region Class Data
 			
-		private Graphics m_graphics;
+		private readonly Graphics m_graphics;
 		private bool m_ownerDraw;
-		private Rectangle m_rect;
-		private DateTime m_date;
-		private mcDayState m_state;
+		private readonly Rectangle m_rect;
+		private readonly DateTime m_date;
+		private readonly mcDayState m_state;
 
 		#endregion
 
@@ -3647,10 +3647,10 @@ namespace Pabo.Calendar
     {
         #region Class Data
 
-        private DateItem m_info;
+        private readonly DateItem m_info;
         private bool m_ownerDraw;
-        private mcDayState m_state;
-        private DateTime m_date;
+        private readonly mcDayState m_state;
+        private readonly DateTime m_date;
 
         #endregion
 
@@ -3738,7 +3738,7 @@ namespace Pabo.Calendar
 	{
 		#region Class Data
 			
-		private MouseButtons m_button;
+		private readonly MouseButtons m_button;
 
 		#endregion
 
@@ -3785,7 +3785,7 @@ namespace Pabo.Calendar
 		/// <summary>
 		/// The color that has changed
 		/// </summary>
-		private mcCalendarColor m_color;
+		private readonly mcCalendarColor m_color;
 
 		#endregion
 
@@ -3831,8 +3831,8 @@ namespace Pabo.Calendar
         #region Class Data
 
         private bool m_cancel;
-        private int m_oldYear;
-        private int m_oldMonth;
+        private readonly int m_oldYear;
+        private readonly int m_oldMonth;
         private int m_newYear;
         private int m_newMonth;
 
@@ -3926,9 +3926,9 @@ namespace Pabo.Calendar
     {
         #region Class Data
 
-        private mcKeyboard m_key;
-        private Keys m_old;
-        private Keys m_new;
+        private readonly mcKeyboard m_key;
+        private readonly Keys m_old;
+        private readonly Keys m_new;
        
         #endregion
 
@@ -4050,9 +4050,9 @@ namespace Pabo.Calendar
 
     public class CalendarActionList : System.ComponentModel.Design.DesignerActionList
     {
-        private MonthCalendar calendar;
+        private readonly MonthCalendar calendar;
 
-        private DesignerActionUIService designerActionUISvc = null;
+        private readonly DesignerActionUIService designerActionUISvc = null;
 
         //The constructor associates the control 
         //with the smart tag list.

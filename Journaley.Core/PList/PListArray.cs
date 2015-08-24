@@ -14,7 +14,7 @@
         /// <summary>
         /// The array
         /// </summary>
-        private List<IPListElement> array;
+        private readonly List<IPListElement> array;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PListArray"/> class.

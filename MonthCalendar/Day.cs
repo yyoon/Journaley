@@ -672,9 +672,9 @@ namespace Pabo.Calendar
 	
 	public class DayEventArgs : EventArgs
 	{
-		#region Class Data
-		
-		string m_date;
+        #region Class Data
+
+        readonly string m_date;
 		
 		#endregion
 
@@ -718,13 +718,13 @@ namespace Pabo.Calendar
 	{
 		#region Class Data
 			
-		private string m_date;
-		private MouseButtons m_button;
-        private int m_dayX;
-        private int m_dayY;
-        private int m_x;
-        private int m_y;
-        private Rectangle m_dayRect;
+		private readonly string m_date;
+		private readonly MouseButtons m_button;
+        private readonly int m_dayX;
+        private readonly int m_dayY;
+        private readonly int m_x;
+        private readonly int m_y;
+        private readonly Rectangle m_dayRect;
 
 		#endregion
 
@@ -825,7 +825,7 @@ namespace Pabo.Calendar
 	{
 		#region Class Data
 		
-		private string[] m_days;
+		private readonly string[] m_days;
 		
 		#endregion
 
@@ -863,9 +863,9 @@ namespace Pabo.Calendar
 
 		#region Class Data
 			
-		private string m_date;
-		private int m_keyState;
-		private IDataObject m_data;
+		private readonly string m_date;
+		private readonly int m_keyState;
+		private readonly IDataObject m_data;
 
 		#endregion
 
@@ -925,9 +925,9 @@ namespace Pabo.Calendar
     {
         #region Class Data
 
-        private string m_date;
-        private mcDayState m_oldState;
-        private mcDayState m_newState;
+        private readonly string m_date;
+        private readonly mcDayState m_oldState;
+        private readonly mcDayState m_newState;
         private bool m_cancel;
 
         #endregion
@@ -1004,12 +1004,12 @@ namespace Pabo.Calendar
     {
         #region Class Data
 
-        private string m_date;
-        private int m_dayX;
-        private int m_dayY;
-        private int m_x;
-        private int m_y;
-        private Rectangle m_dayRect;
+        private readonly string m_date;
+        private readonly int m_dayX;
+        private readonly int m_dayY;
+        private readonly int m_x;
+        private readonly int m_y;
+        private readonly Rectangle m_dayRect;
 
         #endregion
 

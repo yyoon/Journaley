@@ -61,7 +61,7 @@ namespace Pabo.Calendar
 		#region private class members
 		
 		private bool disposed;
-		private MonthCalendar m_calendar;
+		private readonly MonthCalendar m_calendar;
 		private Color m_backColor1;
         private Color m_backColor2;
         private mcGradientMode m_gradientMode;
@@ -479,8 +479,8 @@ namespace Pabo.Calendar
 	{
 		#region Class Data
 			
-		private int m_week;
-		private MouseButtons m_button;
+		private readonly int m_week;
+		private readonly MouseButtons m_button;
 
 		#endregion
 
@@ -536,7 +536,7 @@ namespace Pabo.Calendar
 		/// <summary>
 		/// The property that has changed
 		/// </summary>
-		private mcWeeknumberProperty m_property;
+		private readonly mcWeeknumberProperty m_property;
 
 		#endregion
 

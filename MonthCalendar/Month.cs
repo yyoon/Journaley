@@ -81,7 +81,7 @@ namespace Pabo.Calendar
 		private const int NO_AREA = -2;
 	     	
 		private bool disposed;
-		private MonthCalendar m_calendar;
+		private readonly MonthCalendar m_calendar;
 		private Font m_dateFont;
 		private Font m_textFont;
 		private Rectangle m_rect;
@@ -111,8 +111,8 @@ namespace Pabo.Calendar
         private Image m_backgroundImage;
 		internal ArrayList m_selArea = new ArrayList(); // Collection of selected areas.
 
-		private MonthColors m_colors;
-		private MonthBorderStyles m_borderStyles;
+		private readonly MonthColors m_colors;
+		private readonly MonthBorderStyles m_borderStyles;
 
 		private DateTime m_selectedMonth;
 		private bool m_selected;		
@@ -1431,12 +1431,12 @@ namespace Pabo.Calendar
             private Color m_backColor2;
             private mcGradientMode m_gradientMode;
 			            
-            private TrailingColors m_trailingColors;
-            private WeekendColors m_weekendColors;
-            private DisabledColors m_disabledColors;
-            private SelectedColors m_selectedColors;
-            private FocusColors m_focusColors;
-            private DayColors m_dayColors;
+            private readonly TrailingColors m_trailingColors;
+            private readonly WeekendColors m_weekendColors;
+            private readonly DisabledColors m_disabledColors;
+            private readonly SelectedColors m_selectedColors;
+            private readonly FocusColors m_focusColors;
+            private readonly DayColors m_dayColors;
 
 			internal Month m_month;
 			
@@ -1595,7 +1595,7 @@ namespace Pabo.Calendar
             private Color m_textColor;
             private Color m_dateColor;
             private mcGradientMode m_gradientMode;
-            private MonthColors m_parent;
+            private readonly MonthColors m_parent;
 
             public DisabledColors(MonthColors parent)
             {
@@ -1728,7 +1728,7 @@ namespace Pabo.Calendar
             private Color m_textColor;
             private Color m_dateColor;
             private mcGradientMode m_gradientMode;
-            private MonthColors m_parent;
+            private readonly MonthColors m_parent;
 
             private bool m_sunday;
             private bool m_saturday;
@@ -1902,7 +1902,7 @@ namespace Pabo.Calendar
             private Color m_textColor;
             private Color m_dateColor;
             private mcGradientMode m_gradientMode;
-            private MonthColors m_parent;
+            private readonly MonthColors m_parent;
 
             public TrailingColors(MonthColors parent)
             {
@@ -2038,7 +2038,7 @@ namespace Pabo.Calendar
             private Color m_dateColor;
             private Color m_borderColor;
 
-            private MonthColors m_parent;
+            private readonly MonthColors m_parent;
 
             public SelectedColors(MonthColors parent)
             {
@@ -2153,7 +2153,7 @@ namespace Pabo.Calendar
             private Color m_dateColor;
             private Color m_borderColor;
 
-            private MonthColors m_parent;
+            private readonly MonthColors m_parent;
 
             public FocusColors(MonthColors parent)
             {
@@ -2268,7 +2268,7 @@ namespace Pabo.Calendar
             private Color m_dateColor;
             private Color m_borderColor;
             private mcGradientMode m_gradientMode;
-            private MonthColors m_parent;
+            private readonly MonthColors m_parent;
 
             public DayColors(MonthColors parent)
             {
@@ -2420,7 +2420,7 @@ namespace Pabo.Calendar
         [TypeConverter(typeof(BorderStylesTypeConverter))]
 		public class MonthBorderStyles
 		{
-			private Month m_month;
+			private readonly Month m_month;
 			
 			private ButtonBorderStyle m_borderStyle;
 			private ButtonBorderStyle m_focusBorderStyle;
@@ -2507,7 +2507,7 @@ namespace Pabo.Calendar
 		[TypeConverter(typeof(MonthPaddingTypeConverter))]		
 		public class MonthPadding
 		{
-			private Month m_month;
+			private readonly Month m_month;
 			private int m_horizontal;
 			private int m_vertical;
 			
@@ -2582,7 +2582,7 @@ namespace Pabo.Calendar
         [TypeConverter(typeof(TransparencyTypeConverter))]
         public class TransparencyCollection
         {
-            private Month m_month;
+            private readonly Month m_month;
             private int m_background;
             private int m_text;
 
@@ -2820,7 +2820,7 @@ namespace Pabo.Calendar
 		/// <summary>
 		/// The property that has changed
 		/// </summary>
-		private mcMonthProperty m_property;
+		private readonly mcMonthProperty m_property;
 
 		#endregion
 
@@ -2864,7 +2864,7 @@ namespace Pabo.Calendar
 		/// <summary>
 		/// The property that has changed
 		/// </summary>
-		private mcMonthColor m_color;
+		private readonly mcMonthColor m_color;
 
 		#endregion
 
@@ -2908,7 +2908,7 @@ namespace Pabo.Calendar
 		/// <summary>
 		/// The property that has changed
 		/// </summary>
-		private mcMonthBorderStyle m_borderStyle;
+		private readonly mcMonthBorderStyle m_borderStyle;
 
 		#endregion
 
