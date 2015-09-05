@@ -4,7 +4,7 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-body {
+ body {
     overflow-x: hidden;
 }
 
@@ -23,7 +23,7 @@ a:focus,
 a:active,
 a.active {
     outline: 0;
-    color: red;
+    color: white;
 }
 
 h1,
@@ -159,10 +159,10 @@ header .intro-text .subtitle {
 
 /* focused nav buttons */
 .navbar-default .navbar-nav > .active > a,
- .navbar-default .navbar-nav > .active > a:hover,
-  .navbar-default .navbar-nav > .active > a:focus{
-color:#E0DDDC;
-background-color: #191919;
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus{
+    color:#E0DDDC;
+    background-color: #191919;
 }
 
 
@@ -174,7 +174,7 @@ background-color: #191919;
 
 /* hover nav nav buttons default */
 .navbar-default .navbar-nav > li > a:focus, .navbar-default  .navbar-nav > li > a:hover {
-    color: #E0DDDC;
+    color: white;
 }
 
 /* unfocused nav title default */
@@ -184,7 +184,7 @@ background-color: #191919;
 
 /* hover nav title default */
 .navbar-default .navbar-brand:focus, .navbar-default  .navbar-brand:hover {
-    color: #E0DDDC;
+    color: white;
 }
 
 .navbar a:focus {
@@ -302,7 +302,7 @@ section.success a.active {
     margin-top: 15px;
     border: solid 2px #fff;
     font-size: 20px;
-    color: #262E3C;
+    color: white;
     background: 0 0;
     transition: all .3s ease-in-out;
 }
@@ -317,7 +317,9 @@ section.success a.active {
     background: #fff;
 }
 
-
+.btn-primary{
+    background-color: #262E3C;
+}
 footer {
     color: #fff;
 }
@@ -419,10 +421,10 @@ footer .footer-below {
 /* close button in overlay - right to left */
 .screenshots-modal .close-modal .lr {
     z-index: 1051;
-    width: 1px;
+    width: 2px;
     height: 75px;
     margin-left: 35px;
-    background-color: pink;
+    background-color: #007FFF;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
@@ -431,9 +433,9 @@ footer .footer-below {
 /* close button in overlay - left to right */
 .screenshots-modal .close-modal .lr .rl {
     z-index: 1052;
-    width: 1px;
+    width: 2px;
     height: 75px;
-    background-color: orange;
+    background-color: #007FFF;
     -webkit-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     transform: rotate(90deg);
