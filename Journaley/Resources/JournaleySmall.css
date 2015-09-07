@@ -1,15 +1,13 @@
 html {
-margin: 0px;
-padding: 0px;
-color: #37393B;
+    margin: 0px;
+    padding: 0px;
+    color: #37393B;
 }
 
 body {
-font-size: 10pt;
-
-background-color: #EFEFEF;
-
-overflow: auto;
+    font-size: 10pt;
+    background-color: #EFEFEF;
+    overflow: auto;
 }
 
 h1,
@@ -18,32 +16,32 @@ h3,
 h4,
 h5,
 h6 {
-  margin-bottom: -10px;
+    margin-bottom: -10px;
 }
 
 h1 {
-font-size: 18pt;
-
-margin-bottom: 5px;
+    font-size: 18pt;
+    margin-bottom: 5px;
 }
 
 h2 {
-font-size: 14pt;
+    font-size: 14pt;
 }
 
 h3 {
-font-size: 12pt;
+    font-style: italic;
+    font-size: 12.5pt;
 }
 
 h4 {
-font-style: italic;
-font-size: 11pt;
+    color: #3e4145;
+    font-size: 11pt;
 }
 
 div {
-padding: 20px 7% 20px 7%;
+    padding: 20px 7% 20px 7%;
 }
 
 img {
-width: 100%;
+    width: 100%;
 }
