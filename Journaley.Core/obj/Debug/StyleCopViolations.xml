@@ -1,0 +1,4 @@
+<StyleCopViolations>
+  <Violation Section="Root.Journaley.Core.Models.Entry.utcDateTime" LineNumber="47" Source="C:\Users\Sammy\Documents\GitHub\Journaley\Journaley.Core\Models\Entry.cs" RuleNamespace="StyleCop.CSharp.OrderingRules" Rule="InstanceReadonlyElementsMustAppearBeforeInstanceNonReadonlyElements" RuleId="SA1215">All non-static readonly private fields must be placed before all non-static non-readonly private fields.</Violation>
+  <Violation Section="Root.Journaley.Core.Models.Entry.utcDateTime" LineNumber="52" Source="C:\Users\Sammy\Documents\GitHub\Journaley\Journaley.Core\Models\Entry.cs" RuleNamespace="StyleCop.CSharp.OrderingRules" Rule="InstanceReadonlyElementsMustAppearBeforeInstanceNonReadonlyElements" RuleId="SA1215">All non-static readonly private fields must be placed before all non-static non-readonly private fields.</Violation>
+</StyleCopViolations>

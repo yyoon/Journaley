@@ -1,0 +1,10 @@
+C:\Users\Sammy\Documents\GitHub\Journaley\MonthCalendar\bin\Debug\MonthCalendar.dll
+C:\Users\Sammy\Documents\GitHub\Journaley\MonthCalendar\bin\Debug\MonthCalendar.pdb
+C:\Users\Sammy\Documents\GitHub\Journaley\MonthCalendar\obj\Debug\MonthCalendar.csprojResolveAssemblyReference.cache
+C:\Users\Sammy\Documents\GitHub\Journaley\MonthCalendar\obj\Debug\Pabo.Calendar.AlignControl.resources
+C:\Users\Sammy\Documents\GitHub\Journaley\MonthCalendar\obj\Debug\Pabo.Calendar.ImageListPanel.resources
+C:\Users\Sammy\Documents\GitHub\Journaley\MonthCalendar\obj\Debug\Pabo.Calendar.MonthCalendar.resources
+C:\Users\Sammy\Documents\GitHub\Journaley\MonthCalendar\obj\Debug\Pabo.Calendar.Resource1.resources
+C:\Users\Sammy\Documents\GitHub\Journaley\MonthCalendar\obj\Debug\MonthCalendar.csproj.GenerateResource.Cache
+C:\Users\Sammy\Documents\GitHub\Journaley\MonthCalendar\obj\Debug\MonthCalendar.dll
+C:\Users\Sammy\Documents\GitHub\Journaley\MonthCalendar\obj\Debug\MonthCalendar.pdb
