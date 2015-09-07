@@ -1,5 +1,0 @@
-C:\Users\Sammy\Documents\GitHub\Journaley\Journaley.Core\bin\Debug\Journaley.Core.dll
-C:\Users\Sammy\Documents\GitHub\Journaley\Journaley.Core\bin\Debug\Journaley.Core.pdb
-C:\Users\Sammy\Documents\GitHub\Journaley\Journaley.Core\obj\Debug\Journaley.Core.csprojResolveAssemblyReference.cache
-C:\Users\Sammy\Documents\GitHub\Journaley\Journaley.Core\obj\Debug\Journaley.Core.dll
-C:\Users\Sammy\Documents\GitHub\Journaley\Journaley.Core\obj\Debug\Journaley.Core.pdb
