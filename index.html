@@ -212,7 +212,7 @@
                         </div>
 
                         <div class="col-lg-8 col-lg-offset-2 text-center">
-                            <a href="https://github.com/yyoon/Journaley/releases/download/v2.1/Journaley.2.1.Setup.exe" class="btn btn-lg btn-outline">
+                            <a id="download-button" href="https://github.com/yyoon/Journaley/releases/download/v2.1/Journaley.2.1.Setup.exe" class="btn btn-lg btn-outline">
                                 <i class="fa fa-arrow-circle-down"></i> Download Journaley</a>
                                 <br>
                                 <br>
@@ -431,6 +431,11 @@
 
  <!-- Custom Theme JavaScript -->
  <script src="js/journaley.js"></script>
+ <script type="text/javascript">
+     $('a#download-button.btn.btn-lg.btn-outline').on('click', function() {
+        _gs('event', 'Clicked Download button');
+  });
+ </script>
 
 </body>
 
