@@ -60,7 +60,7 @@ hr.star-primary:after {
 
 /*line color*/
 hr.star-primary {
-    border-color: #262E3C;
+    border-color: #E0DDDC;
 }
 
 
@@ -72,11 +72,8 @@ header {
     text-align: center;
     color: #EFEFEF;
     background: #191919;
-}
-
-header .container {
-    padding-top: 100px;
-    padding-bottom: 50px;
+    padding-top: 22px;
+    padding-bottom: 15px;
 }
 
 header img {
@@ -99,8 +96,8 @@ header .intro-text .subtitle {
 
 @media(min-width:768px) {
     header .container {
-        padding-top: 200px;
-        padding-bottom: 100px;
+        padding-top: 20px;
+        padding-bottom: 10px;
     }
 
     header .intro-text .name {
@@ -112,100 +109,11 @@ header .intro-text .subtitle {
     }
 }
 
-.vertical-align{
-    display: flex;
-    align-items: center;
-}
-
-#icon{
-    float:left;
-}
-
-@media(min-width:768px) {
-    .navbar-fixed-top {
-        padding: 25px 0;
-        -webkit-transition: padding .3s;
-        -moz-transition: padding .3s;
-        transition: padding .3s;
-    }
-
-    .navbar-fixed-top .navbar-brand {
-        font-size: 2em;
-        -webkit-transition: all .3s;
-        -moz-transition: all .3s;
-        transition: all .3s;
-    }
-
-    .navbar-fixed-top.navbar-shrink {
-        padding: 10px 0;
-    }
-
-    .navbar-fixed-top.navbar-shrink .navbar-brand {
-        font-size: 1.5em;
-    }
-
-    .vertical-align {
-        display: flex;
-        align-items: left;
-    }
-}
-
-.navbar {
-    font-family: 'Noto Sans',"Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-weight: bold;
-    background-color: #007FFF;
-    color:red;
-}
-
-/* focused nav buttons */
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus{
-    color:#E0DDDC;
-    background-color: #191919;
-}
-
-
-
-/* unfocused nav buttons default */
-.navbar-default .navbar-nav > li > a{
-    color: black;
-}
-
-/* hover nav nav buttons default */
-.navbar-default .navbar-nav > li > a:focus, .navbar-default  .navbar-nav > li > a:hover {
-    color: white;
-}
-
-/* unfocused nav title default */
-.navbar-default .navbar-brand {
-    color: black;
-}
-
-/* hover nav title default */
-.navbar-default .navbar-brand:focus, .navbar-default  .navbar-brand:hover {
-    color: white;
-}
-
-.navbar a:focus {
-    outline: 0;
-}
-
-.navbar .navbar-nav {
-    letter-spacing: 1px;
-}
-
-.navbar .navbar-nav li a:focus {
-    outline: 0;
-}
-
-.navbar-default,
-.navbar-inverse {
-    border: 0;
-}
 
 section {
-    padding: 100px 0;
+    padding: 10px 0;
+    background-color: #191919;
+    color:#E0DDDC;
 }
 
 section h2 {
@@ -213,10 +121,20 @@ section h2 {
     font-size: 3em;
 }
 
+#screenshots{
+   padding-top: 120px;
+}
+
+#download {
+    padding-top: 110px;
+    padding-bottom: 110px;
+
+}
+
 /* download page background */
 section.success {
-    color: #EFEFEF;
-    background: #2B2E31;
+    color:#E0DDDC;
+    background-color: #191919;
 }
 
 /* download theme button */
