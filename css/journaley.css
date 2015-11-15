@@ -247,16 +247,17 @@ footer h3 {
 }
 
 footer .footer-above {
-    padding-top: 50px;
+    padding-top: 15px;
     background-color: #007FFF;
 }
 
 footer .footer-col {
-    margin-bottom: 50px;
+    margin-bottom: 0px;
 }
 
 footer .footer-below {
-    padding: 25px 0;
+    padding-top: 40px;
+    padding-bottom: 55px;
     background-color: #007FFF;
 }
 
