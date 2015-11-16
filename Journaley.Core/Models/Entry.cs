@@ -27,6 +27,16 @@
         private static readonly char[] InvalidCharacters = { '\u0000', '\u001C', '\u001D' };
 
         /// <summary>
+        /// The unknown key values
+        /// </summary>
+        private readonly Dictionary<XmlNode, XmlNode> unknownKeyValues = new Dictionary<XmlNode, XmlNode>();
+
+        /// <summary>
+        /// The tags
+        /// </summary>
+        private readonly List<string> tags = new List<string>();
+
+        /// <summary>
         /// The UTC date time
         /// </summary>
         private DateTime utcDateTime;
@@ -40,16 +50,6 @@
         /// Indicates whether this entry is starred or not
         /// </summary>
         private bool starred;
-
-        /// <summary>
-        /// The unknown key values
-        /// </summary>
-        private readonly Dictionary<XmlNode, XmlNode> unknownKeyValues = new Dictionary<XmlNode, XmlNode>();
-
-        /// <summary>
-        /// The tags
-        /// </summary>
-        private readonly List<string> tags = new List<string>();
 
         /// <summary>
         /// The path of the associated photo.
