@@ -637,13 +637,24 @@
         /// </summary>
         private void UpdateWebBrowser()
         {
-            this.webBrowser.DocumentText =
-                string.Format(
+
+            String formatedString = string.Format(
                     "<style type=\"text/css\">\n<!-- Font CSS -->\n{0}\n<!-- Size CSS -->\n{1}\n<!-- Custom CSS -->\n{2}\n</style><html><body><div>{3}</div></body></html>",
                     this.GetWebBrowserTypefaceCSS(),
                     this.GetWebBrowserSizeCSS(),
                     this.CustomCSS ?? string.Empty,
                     Markdown.Transform(this.SelectedEntry.EntryText));
+
+            // Hack to fix #114
+            if (formatedString.Contains("<ul>"))
+            {
+                String unorderListString = formatedString.Substring(formatedString.IndexOf("<ul>"), formatedString.LastIndexOf("</ul>") - formatedString.IndexOf("<ul>"));
+                formatedString = formatedString.Replace(unorderListString, unorderListString.Replace("<br />", ""));
+            }
+
+            this.webBrowser.DocumentText = formatedString;
+              
+
         }
 
         /// <summary>
