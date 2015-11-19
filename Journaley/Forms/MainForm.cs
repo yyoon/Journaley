@@ -12,6 +12,7 @@
     using System.Linq;
     using System.Reflection;
     using System.Runtime.InteropServices;
+    using System.Text.RegularExpressions;
     using System.Threading;
     using System.Windows.Forms;
     using BlackBeltCoder;
@@ -637,13 +638,53 @@
         /// </summary>
         private void UpdateWebBrowser()
         {
-            this.webBrowser.DocumentText =
-                string.Format(
+            string formattedString = string.Format(
                     "<style type=\"text/css\">\n<!-- Font CSS -->\n{0}\n<!-- Size CSS -->\n{1}\n<!-- Custom CSS -->\n{2}\n</style><html><body><div>{3}</div></body></html>",
                     this.GetWebBrowserTypefaceCSS(),
                     this.GetWebBrowserSizeCSS(),
                     this.CustomCSS ?? string.Empty,
                     Markdown.Transform(this.SelectedEntry.EntryText));
+
+            this.webBrowser.DocumentText = this.RemoveLineBreaksWithinLists(formattedString);
+        }
+
+        /// <summary>
+        /// Removes the wrong line breaks within nested ordered/unordered lists.
+        /// Hack to fix the issue #114.
+        /// </summary>
+        /// <param name="formattedString">The entry content formatted by MarkdownSharp.</param>
+        /// <returns>correctly formatted string with the wrong line breaks removed.</returns>
+        private string RemoveLineBreaksWithinLists(string formattedString)
+        {
+            System.Text.StringBuilder builder = new System.Text.StringBuilder();
+            string pattern = @"^</?(ol|ul|li)>";
+
+            var lines = formattedString.Split(
+                new string[] { "\r\n", "\n" },
+                StringSplitOptions.None);
+
+            for (int i = 0; i < lines.Length - 1; ++i)
+            {
+                string line = lines[i];
+                string nextLine = lines[i + 1];
+
+                // Remove the "<br />" tags only if the current line and the next line are starting
+                // with the opening/closing list tags. By doing this, it can prevent removing
+                // line breaks that are intentionally added by the user.
+                if (Regex.IsMatch(line, pattern) && Regex.IsMatch(nextLine, pattern))
+                {
+                    while (line.EndsWith("<br />"))
+                    {
+                        line = line.Substring(0, line.LastIndexOf("<br />"));
+                    }
+                }
+
+                builder.AppendLine(line);
+            }
+
+            builder.AppendLine(lines.Last());
+
+            return builder.ToString();
         }
 
         /// <summary>
