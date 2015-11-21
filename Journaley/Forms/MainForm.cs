@@ -1,6 +1,6 @@
 ﻿namespace Journaley.Forms
 {
-    extern alias MDS;
+    extern alias MDD;
 
     using System;
     using System.Collections.Generic;
@@ -21,7 +21,7 @@
     using Journaley.Core.Utilities;
     using Journaley.Core.Watcher;
     using Journaley.Utilities;
-    using MDS.MarkdownSharp;
+    using MDD.MarkdownDeep;
     using Pabo.Calendar;
     using Squirrel;
 
@@ -475,7 +475,9 @@
                 if (this.markdown == null)
                 {
                     this.markdown = new Markdown();
-                    ((MarkdownOptions)this.markdown.Options).AutoNewLines = true;
+
+                    this.markdown.ExtraMode = true;
+                    this.markdown.SafeMode = false;
                 }
 
                 return this.markdown;
