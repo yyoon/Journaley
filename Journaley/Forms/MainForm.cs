@@ -640,88 +640,17 @@
         private void UpdateWebBrowser()
         {
             string initialString = this.SelectedEntry.EntryText;
+            string docType = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">";
+
             string formattedString = string.Format(
-                    "<style type=\"text/css\">\n<!-- Font CSS -->\n{0}\n<!-- Size CSS -->\n{1}\n<!-- Custom CSS -->\n{2}\n</style>\n<html>\n<body>\n<div>\n{3}\n</div>\n</body>\n</html>",
+                    "{0}\n<style type=\"text/css\">\n<!-- Font CSS -->\n{1}\n<!-- Size CSS -->\n{2}\n<!-- Custom CSS -->\n{3}\n</style>\n<html>\n<body>\n<div>\n{4}\n</div>\n</body>\n</html>",
+                    docType,
                     this.GetWebBrowserTypefaceCSS(),
                     this.GetWebBrowserSizeCSS(),
                     this.CustomCSS ?? string.Empty,
-                    Markdown.Transform(initialString));
-            string lineBrokenString = this.AddSingleLineBreak(formattedString);
+                    PostMarkdownParser.PostMarkdown(Markdown.Transform(initialString)));
 
-            this.webBrowser.DocumentText = lineBrokenString;
-        }
-
-        /// <summary>
-        /// Adds break tags for single line breaks.
-        /// </summary>
-        /// <param name="formattedString">Formatted HTML string</param>
-        /// <returns>Properly formatted HTML string with br tags for single line breaks</returns>
-        private string AddSingleLineBreak(string formattedString)
-        {
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
-            System.Text.StringBuilder paragraphBuilder = new System.Text.StringBuilder();
-
-            bool isNewLine = false;
-
-            string newLineString;
-            string strippedOver;
-
-            Regex paragraphBegin = new Regex(@"(<p>)", RegexOptions.Multiline);
-            Regex paragraphEnd = new Regex(@"(</p>)", RegexOptions.Multiline);
-
-            var lines = formattedString.Split(
-                new string[] { "\r\n", "\n" },
-                StringSplitOptions.None);
-
-            for (int i = 0; i < lines.Length - 1; ++i)
-            {
-                string line = lines[i];
-
-                // We first incrementally check if the line begins with <p> tag. When it does,
-                // We turn on the paragraphBuilder to append the remaining lines.
-
-                // If the checks hit a line with the </p> closing, we disable check and proceed
-                // to parse the text, add <br /> tags and then adding it to the builder variable
-                // where it is assembled with the rest of the file.
-
-                // Note, this is unoptimized code and will still need work.
-                if (paragraphBegin.IsMatch(line))
-                {
-                    isNewLine = true;
-                }
-                else if (paragraphEnd.IsMatch(line))
-                {
-                    isNewLine = false;
-                }
-
-                if (isNewLine)
-                {
-                    paragraphBuilder.AppendLine(line);
-
-                    if (paragraphEnd.IsMatch(line))
-                    {
-                        builder.AppendLine(line);
-                        paragraphBuilder.Clear();
-                        isNewLine = false;
-                    }
-                }
-                else
-                {
-                    paragraphBuilder.AppendLine(line);
-
-                    newLineString = paragraphBuilder.ToString();
-                    newLineString = Regex.Replace(newLineString, @"^([\w\*\>\<\[][^\r\n]*)(?=\r?\n[\w\*\>\<\[].*$)", "$1<br />", RegexOptions.Multiline);
-
-                    builder.AppendLine(newLineString);
-                    paragraphBuilder.Clear();
-                }
-            }
-
-            builder.AppendLine(lines.Last());
-
-            strippedOver = Regex.Replace(builder.ToString(), @"^(\r\s)", string.Empty, RegexOptions.Multiline);
-
-            return strippedOver;
+            this.webBrowser.DocumentText = formattedString;
         }
 
         /// <summary>

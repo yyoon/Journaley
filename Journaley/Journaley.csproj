@@ -203,6 +203,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\PostMarkdownParser.cs" />
     <Compile Include="Utilities\CursorReader.cs" />
     <Compile Include="Utilities\FontReader.cs" />
     <Compile Include="Utilities\HtmlToText.cs">
