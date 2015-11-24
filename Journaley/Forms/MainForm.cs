@@ -640,10 +640,10 @@
         private void UpdateWebBrowser()
         {
             string initialString = this.SelectedEntry.EntryText;
-            string docType = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">";
+            string docType = "<!DOCTYPE html>";
 
             string formattedString = string.Format(
-                    "{0}\n<style type=\"text/css\">\n<!-- Font CSS -->\n{1}\n<!-- Size CSS -->\n{2}\n<!-- Custom CSS -->\n{3}\n</style>\n<html>\n<body>\n<div>\n{4}\n</div>\n</body>\n</html>",
+                    "{0}\n<style type=\"text/css\">\n<!-- Font CSS -->\n{1}\n<!-- Size CSS -->\n{2}\n<!-- Custom CSS -->\n{3}\n</style>\n<html>\n<body>\n<div>\n{4}</div>\n</body>\n</html>",
                     docType,
                     this.GetWebBrowserTypefaceCSS(),
                     this.GetWebBrowserSizeCSS(),

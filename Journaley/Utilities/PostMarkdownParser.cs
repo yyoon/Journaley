@@ -15,6 +15,8 @@
         /// <summary>
         /// Perform fixes after MarkdownDeep parsing for publishing
         /// to Journaley.
+        /// - automatically adds break tags on single line breaks.
+        /// - adds strikethrough style support.
         /// </summary>
         /// <param name="formattedString">Formatted HTML string</param>
         /// <returns>Properly formatted HTML string for publishing.</returns>
@@ -26,22 +28,23 @@
             formattedString = Regex.Replace(formattedString, @"<p><code>", "<pre><code>", RegexOptions.Multiline);
             formattedString = Regex.Replace(formattedString, @"</code></p>", "</code></pre>", RegexOptions.Multiline);
 
-            System.Text.StringBuilder builder = new System.Text.StringBuilder();
-            System.Text.StringBuilder paragraphBuilder = new System.Text.StringBuilder();
+            StringBuilder builder = new System.Text.StringBuilder();
+            StringBuilder paragraphBuilder = new System.Text.StringBuilder();
 
-            var isNewLine = 0;
+            // 0 - stumbles upon the beginning of a <p> tag/usual parsing.
+            // 1 - stumbles upon the end of </p> tag.
+            // 2 - stumbles upon a <pre> tag.
+            var parseState = 0;
 
             string newLineString;
-            string strippedOverString;
+            string singleStrike;
 
             var lines = formattedString.Split(
                 new string[] { "\r\n", "\n" },
                 StringSplitOptions.None);
 
-            for (int i = 0; i < lines.Length - 1; ++i)
+            foreach (string line in lines)
             {
-                string line = lines[i];
-
                 // We first incrementally check if the line begins with <p> tag. When it does,
                 // We turn on the paragraphBuilder to append the remaining lines.
 
@@ -52,47 +55,40 @@
                 // We dump the text to builder if it hits a <pre> tag.
                 if (line.Contains("<p>"))
                 {
-                    isNewLine = 1;
+                    parseState = 1;
                 }
                 else if (line.Contains("</p>"))
                 {
-                    isNewLine = 0;
+                    parseState = 0;
                 }
                 else if (line.Contains("<pre>"))
                 {
-                    isNewLine = -1;
+                    parseState = -1;
                 }
 
-                if (isNewLine == 1)
+                if (parseState == 1)
                 {
                     paragraphBuilder.AppendLine(line);
 
                     if (line.Contains("</p>"))
                     {
                         // Single line strikethroughs.
-                        line = Regex.Replace(line, @"(~~)(.*?)(~~)", "<del>$2</del>", RegexOptions.Multiline);
-                        builder.AppendLine(line);
+                        singleStrike = Regex.Replace(line, @"(~~)(.*?)(~~)", "<del>$2</del>", RegexOptions.Singleline);
+                        builder.AppendLine(singleStrike);
                         paragraphBuilder.Clear();
-                        isNewLine = 0;
+                        parseState = 0;
                     }
                 }
-                else if (isNewLine == 0)
+                else if (parseState == 0)
                 {
                     paragraphBuilder.AppendLine(line);
 
                     newLineString = paragraphBuilder.ToString();
 
-                    // Multiline strikethrough.
-                    if (Regex.IsMatch(newLineString, @"(~~)(.*?)(~~)"))
-                    {
-                        newLineString = Regex.Replace(newLineString, @"(~~)(.*?)(~~)", "<del>$2</del>", RegexOptions.Multiline);
-                    }
-                    else
-                    {
-                        newLineString = Regex.Replace(newLineString, @"<p>(~~)", "<p><del>", RegexOptions.Multiline);
-                        newLineString = Regex.Replace(newLineString, @"(~~)</p>", "</del></p>", RegexOptions.Multiline);
-                    }
+                    // Multi line strikethrough
+                    newLineString = Regex.Replace(newLineString, @"(~~)(.*?)(~~)", "<del>$2</del>", RegexOptions.Multiline);
 
+                    // Single line breaks append with <br> tags.
                     newLineString = Regex.Replace(newLineString, @"^([\w\*\>\<\[][^\r\n]*)(?=\r?\n[\w\*\>\<\[].*$)", "$1<br />", RegexOptions.Multiline);
 
                     builder.AppendLine(newLineString);
@@ -105,8 +101,7 @@
                 }
             }
 
-            builder.AppendLine(lines.Last());
-            strippedOverString = Regex.Replace(builder.ToString(), @"^(\r\s)", string.Empty, RegexOptions.Multiline);
+            string strippedOverString = Regex.Replace(builder.ToString(), @"^(\r\s)", string.Empty, RegexOptions.Multiline);
 
             return strippedOverString;
         }
