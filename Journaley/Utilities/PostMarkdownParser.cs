@@ -17,27 +17,21 @@
         /// to Journaley.
         /// - automatically adds break tags on single line breaks.
         /// - adds strikethrough style support.
+        /// - makes the first sentence into a header.
         /// </summary>
         /// <param name="formattedString">Formatted HTML string</param>
         /// <returns>Properly formatted HTML string for publishing.</returns>
         public static string PostMarkdown(string formattedString)
         {
-            // First convert all code blocks using <p> into <pre>
-            // which is used in almost all implementations of
-            // Markdown, even in the original Markdown specs.
-            formattedString = Regex.Replace(formattedString, @"<p><code>", "<pre><code>", RegexOptions.Multiline);
-            formattedString = Regex.Replace(formattedString, @"</code></p>", "</code></pre>", RegexOptions.Multiline);
-
-            StringBuilder builder = new System.Text.StringBuilder();
-            StringBuilder paragraphBuilder = new System.Text.StringBuilder();
+            StringBuilder builder = new StringBuilder();
+            StringBuilder paragraphBuilder = new StringBuilder();
 
             // 0 - stumbles upon the beginning of a <p> tag/usual parsing.
             // 1 - stumbles upon the end of </p> tag.
-            // 2 - stumbles upon a <pre> tag.
-            var parseState = 0;
+            // 2 - skips check and just dumps the line to builder.
+            var parseState = -1;
 
-            string newLineString;
-            string singleStrike;
+            bool firstTitleParsed = false;
 
             var lines = formattedString.Split(
                 new string[] { "\r\n", "\n" },
@@ -51,8 +45,6 @@
                 // If the checks hit a line with the </p> closing, we disable check and proceed
                 // to parse the text, add <br /> tags and then adding it to builder
                 // where it is assembled with the rest of the file.
-                
-                // We dump the text to builder if it hits a <pre> tag.
                 if (line.Contains("<p>"))
                 {
                     parseState = 1;
@@ -68,31 +60,30 @@
 
                 if (parseState == 1)
                 {
-                    paragraphBuilder.AppendLine(line);
-
                     if (line.Contains("</p>"))
                     {
-                        // Single line strikethroughs.
-                        singleStrike = Regex.Replace(line, @"(~~)(.*?)(~~)", "<del>$2</del>", RegexOptions.Singleline);
-                        builder.AppendLine(singleStrike);
-                        paragraphBuilder.Clear();
-                        parseState = 0;
+                        string singleLine = line;
+                        if (!firstTitleParsed)
+                        {
+                            singleLine = Regex.Replace(singleLine, @"(<p>)(.*?)(</p>)", "<h2>$2</h2>\n<br/>");
+                            firstTitleParsed = true;
+                        }
+
+                        builder.AppendLine(ReplaceMDStrikethrough(singleLine));
+                        parseState = -1;
+                    }
+                    else
+                    {
+                        paragraphBuilder.AppendLine(ReplaceMDStrikethrough(line) + "<br />");
                     }
                 }
                 else if (parseState == 0)
                 {
-                    paragraphBuilder.AppendLine(line);
+                    paragraphBuilder.AppendLine(ReplaceMDStrikethrough(line));
 
-                    newLineString = paragraphBuilder.ToString();
-
-                    // Multi line strikethrough
-                    newLineString = Regex.Replace(newLineString, @"(~~)(.*?)(~~)", "<del>$2</del>", RegexOptions.Multiline);
-
-                    // Single line breaks append with <br> tags.
-                    newLineString = Regex.Replace(newLineString, @"^([\w\*\>\<\[][^\r\n]*)(?=\r?\n[\w\*\>\<\[].*$)", "$1<br />", RegexOptions.Multiline);
-
-                    builder.AppendLine(newLineString);
+                    builder.AppendLine(paragraphBuilder.ToString());
                     paragraphBuilder.Clear();
+                    parseState = -1;
                 }
                 else
                 {
@@ -101,9 +92,21 @@
                 }
             }
 
-            string strippedOverString = Regex.Replace(builder.ToString(), @"^(\r\s)", string.Empty, RegexOptions.Multiline);
+            return builder.ToString();
+        }
+        
+        /// <summary>
+        /// Replaces "~~" strikethrough Markdown tag into del HTML tags.
+        /// </summary>
+        /// <param name="parsedString">Any string that has strikethrough tags</param>
+        /// <returns>A string with del HTML tags in place of Markdown strikethrough tags.</returns>
+        private static string ReplaceMDStrikethrough(string parsedString)
+        {
+            parsedString = Regex.Replace(parsedString, @"(~~)(.*?)(~~)", "<del>$2</del>", RegexOptions.Singleline);
+            parsedString = Regex.Replace(parsedString, @"(?<=<p>)(~~)", "<del>", RegexOptions.Singleline);
+            parsedString = Regex.Replace(parsedString, @"(~~)(?=</p>)", "</del>", RegexOptions.Singleline);
 
-            return strippedOverString;
+            return parsedString;
         }
     }
 }
