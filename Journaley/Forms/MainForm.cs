@@ -640,6 +640,10 @@
         private void UpdateWebBrowser()
         {
             string initialString = this.SelectedEntry.EntryText;
+
+            // Fix for backtick fenced code blocks is to replace it into tilde fenced.
+            initialString = initialString.Replace("```", "~~~");
+
             string docType = "<!DOCTYPE html>";
 
             string formattedString = string.Format(

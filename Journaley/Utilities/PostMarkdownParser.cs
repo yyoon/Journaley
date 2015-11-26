@@ -67,13 +67,6 @@
 
                         string paragraph = paragraphBuilder.ToString();
 
-                        if (paragraph.Contains("<p><code>"))
-                        {
-                            paragraph = paragraph.Replace("<br />", string.Empty);
-                            paragraph = paragraph.Replace("<p><code>", "<pre><code>");
-                            paragraph = paragraph.Replace("</code></p>", "</code></pre>");
-                        }
-
                         builder.Append(paragraph);
                         paragraphBuilder.Clear();
                         parseState = -1;
