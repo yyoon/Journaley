@@ -2,9 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Text;
-    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -16,8 +16,8 @@
         /// Perform fixes after MarkdownDeep parsing for publishing
         /// to Journaley.
         /// - automatically adds break tags on single line breaks.
-        /// - adds strikethrough style support.
         /// - makes the first sentence into a header.
+        /// - properly parses code blocks enclosed in p tags into pre.
         /// </summary>
         /// <param name="formattedString">Formatted HTML string</param>
         /// <returns>Properly formatted HTML string for publishing.</returns>
@@ -26,87 +26,66 @@
             StringBuilder builder = new StringBuilder();
             StringBuilder paragraphBuilder = new StringBuilder();
 
+            // -1 - skips check and just dumps the line to builder.
             // 0 - stumbles upon the beginning of a <p> tag/usual parsing.
             // 1 - stumbles upon the end of </p> tag.
-            // 2 - skips check and just dumps the line to builder.
             var parseState = -1;
 
-            bool firstTitleParsed = false;
-
-            var lines = formattedString.Split(
-                new string[] { "\r\n", "\n" },
-                StringSplitOptions.None);
-
-            foreach (string line in lines)
+            string line;
+            using (StringReader reader = new StringReader(formattedString))
             {
-                // We first incrementally check if the line begins with <p> tag. When it does,
-                // We turn on the paragraphBuilder to append the remaining lines.
-
-                // If the checks hit a line with the </p> closing, we disable check and proceed
-                // to parse the text, add <br /> tags and then adding it to builder
-                // where it is assembled with the rest of the file.
-                if (line.Contains("<p>"))
+                while ((line = reader.ReadLine()) != null)
                 {
-                    parseState = 1;
-                }
-                else if (line.Contains("</p>"))
-                {
-                    parseState = 0;
-                }
-                else if (line.Contains("<pre>"))
-                {
-                    parseState = -1;
-                }
-
-                if (parseState == 1)
-                {
-                    if (line.Contains("</p>"))
+                    if (line.Contains("<p>"))
                     {
-                        string singleLine = line;
-                        if (!firstTitleParsed)
+                        parseState = 1;
+                    }
+                    else if (line.Contains("</p>"))
+                    {
+                        parseState = 0;
+                    }
+                    else if (line.Contains("<pre>"))
+                    {
+                        parseState = -1;
+                    }
+
+                    if (parseState == 1)
+                    {
+                        if (line.Contains("</p>"))
                         {
-                            singleLine = Regex.Replace(singleLine, @"(<p>)(.*?)(</p>)", "<h2>$2</h2>\n<br/>");
-                            firstTitleParsed = true;
+                            builder.AppendLine(line);
+                            parseState = -1;
+                        }
+                        else
+                        {
+                            paragraphBuilder.AppendLine(line + "<br />");
+                        }
+                    }
+                    else if (parseState == 0)
+                    {
+                        paragraphBuilder.AppendLine(line);
+
+                        string paragraph = paragraphBuilder.ToString();
+
+                        if (paragraph.Contains("<p><code>"))
+                        {
+                            paragraph = paragraph.Replace("<br />", string.Empty);
+                            paragraph = paragraph.Replace("<p><code>", "<pre><code>");
+                            paragraph = paragraph.Replace("</code></p>", "</code></pre>");
                         }
 
-                        builder.AppendLine(ReplaceMDStrikethrough(singleLine));
+                        builder.Append(paragraph);
+                        paragraphBuilder.Clear();
                         parseState = -1;
                     }
                     else
                     {
-                        paragraphBuilder.AppendLine(ReplaceMDStrikethrough(line) + "<br />");
+                        builder.AppendLine(line);
                     }
-                }
-                else if (parseState == 0)
-                {
-                    paragraphBuilder.AppendLine(ReplaceMDStrikethrough(line));
-
-                    builder.AppendLine(paragraphBuilder.ToString());
-                    paragraphBuilder.Clear();
-                    parseState = -1;
-                }
-                else
-                {
-                    // For <pre> tagged text, just skip check and append to builder
-                    builder.AppendLine(line);
                 }
             }
 
             return builder.ToString();
-        }
-        
-        /// <summary>
-        /// Replaces "~~" strikethrough Markdown tag into del HTML tags.
-        /// </summary>
-        /// <param name="parsedString">Any string that has strikethrough tags</param>
-        /// <returns>A string with del HTML tags in place of Markdown strikethrough tags.</returns>
-        private static string ReplaceMDStrikethrough(string parsedString)
-        {
-            parsedString = Regex.Replace(parsedString, @"(~~)(.*?)(~~)", "<del>$2</del>", RegexOptions.Singleline);
-            parsedString = Regex.Replace(parsedString, @"(?<=<p>)(~~)", "<del>", RegexOptions.Singleline);
-            parsedString = Regex.Replace(parsedString, @"(~~)(?=</p>)", "</del>", RegexOptions.Singleline);
-
-            return parsedString;
         }
     }
 }
