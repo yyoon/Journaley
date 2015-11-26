@@ -113,7 +113,7 @@
 
             this.linkNotoSansLicense.Links[0].LinkData = @"http://www.apache.org/licenses/LICENSE-2.0.html";
             this.linkAnotherMonthCalendarLicense.Links[0].LinkData = @"http://www.codeproject.com/info/cpol10.aspx";
-            this.linkMarkdownSharpLicense.Links[0].LinkData = @"http://opensource.org/licenses/mit-license.php";
+            this.linkMarkdownDeepLicense.Links[0].LinkData = @"http://www.apache.org/licenses/LICENSE-2.0.html";
             this.linkSquirrelWindowsLicense.Links[0].LinkData = @"https://github.com/Squirrel/Squirrel.Windows/blob/master/COPYING";
 
             this.linkGitHub.Links[0].LinkData = @"https://github.com/yyoon/Journaley";

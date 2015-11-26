@@ -80,11 +80,9 @@
             this.linkSquirrelWindowsLicense = new System.Windows.Forms.LinkLabel();
             this.labelSquirrelWindowsAuthor = new System.Windows.Forms.Label();
             this.labelSquirrelWindowsTitle = new System.Windows.Forms.Label();
-            this.linkMarkdownSharpLicense = new System.Windows.Forms.LinkLabel();
-            this.labelMarkdownSharpAuthor3 = new System.Windows.Forms.Label();
-            this.labelMarkdownSharpAuthor2 = new System.Windows.Forms.Label();
-            this.labelMarkdownSharpAuthor1 = new System.Windows.Forms.Label();
-            this.labelMarkdownSharpTitle = new System.Windows.Forms.Label();
+            this.linkMarkdownDeepLicense = new System.Windows.Forms.LinkLabel();
+            this.labelMarkdownDeepAuthor1 = new System.Windows.Forms.Label();
+            this.labelMarkdownDeepTitle = new System.Windows.Forms.Label();
             this.linkAnotherMonthCalendarLicense = new System.Windows.Forms.LinkLabel();
             this.labelAnotherMonthCalendarAuthor = new System.Windows.Forms.Label();
             this.labelAnotherMonthCalendarTitle = new System.Windows.Forms.Label();
@@ -744,11 +742,9 @@
             this.panelAbout.Controls.Add(this.linkSquirrelWindowsLicense);
             this.panelAbout.Controls.Add(this.labelSquirrelWindowsAuthor);
             this.panelAbout.Controls.Add(this.labelSquirrelWindowsTitle);
-            this.panelAbout.Controls.Add(this.linkMarkdownSharpLicense);
-            this.panelAbout.Controls.Add(this.labelMarkdownSharpAuthor3);
-            this.panelAbout.Controls.Add(this.labelMarkdownSharpAuthor2);
-            this.panelAbout.Controls.Add(this.labelMarkdownSharpAuthor1);
-            this.panelAbout.Controls.Add(this.labelMarkdownSharpTitle);
+            this.panelAbout.Controls.Add(this.linkMarkdownDeepLicense);
+            this.panelAbout.Controls.Add(this.labelMarkdownDeepAuthor1);
+            this.panelAbout.Controls.Add(this.labelMarkdownDeepTitle);
             this.panelAbout.Controls.Add(this.linkAnotherMonthCalendarLicense);
             this.panelAbout.Controls.Add(this.labelAnotherMonthCalendarAuthor);
             this.panelAbout.Controls.Add(this.labelAnotherMonthCalendarTitle);
@@ -865,57 +861,37 @@
             this.labelSquirrelWindowsTitle.TabIndex = 41;
             this.labelSquirrelWindowsTitle.Text = "Squirrel.Windows";
             // 
-            // linkMarkdownSharpLicense
+            // linkMarkdownDeepLicense
             // 
-            this.linkMarkdownSharpLicense.AutoSize = true;
-            this.linkMarkdownSharpLicense.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkMarkdownSharpLicense.Location = new System.Drawing.Point(10, 358);
-            this.linkMarkdownSharpLicense.Name = "linkMarkdownSharpLicense";
-            this.linkMarkdownSharpLicense.Size = new System.Drawing.Size(81, 19);
-            this.linkMarkdownSharpLicense.TabIndex = 40;
-            this.linkMarkdownSharpLicense.TabStop = true;
-            this.linkMarkdownSharpLicense.Text = "MIT License";
-            this.linkMarkdownSharpLicense.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkClicked);
+            this.linkMarkdownDeepLicense.AutoSize = true;
+            this.linkMarkdownDeepLicense.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkMarkdownDeepLicense.Location = new System.Drawing.Point(10, 322);
+            this.linkMarkdownDeepLicense.Name = "linkMarkdownDeepLicense";
+            this.linkMarkdownDeepLicense.Size = new System.Drawing.Size(176, 19);
+            this.linkMarkdownDeepLicense.TabIndex = 40;
+            this.linkMarkdownDeepLicense.TabStop = true;
+            this.linkMarkdownDeepLicense.Text = "Apache License, version 2.0";
+            this.linkMarkdownDeepLicense.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkClicked);
             // 
-            // labelMarkdownSharpAuthor3
+            // labelMarkdownDeepAuthor1
             // 
-            this.labelMarkdownSharpAuthor3.AutoSize = true;
-            this.labelMarkdownSharpAuthor3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMarkdownSharpAuthor3.Location = new System.Drawing.Point(10, 340);
-            this.labelMarkdownSharpAuthor3.Name = "labelMarkdownSharpAuthor3";
-            this.labelMarkdownSharpAuthor3.Size = new System.Drawing.Size(85, 19);
-            this.labelMarkdownSharpAuthor3.TabIndex = 39;
-            this.labelMarkdownSharpAuthor3.Text = "John Gruber";
+            this.labelMarkdownDeepAuthor1.AutoSize = true;
+            this.labelMarkdownDeepAuthor1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMarkdownDeepAuthor1.Location = new System.Drawing.Point(10, 304);
+            this.labelMarkdownDeepAuthor1.Name = "labelMarkdownDeepAuthor1";
+            this.labelMarkdownDeepAuthor1.Size = new System.Drawing.Size(109, 19);
+            this.labelMarkdownDeepAuthor1.TabIndex = 37;
+            this.labelMarkdownDeepAuthor1.Text = "Topten Software";
             // 
-            // labelMarkdownSharpAuthor2
+            // labelMarkdownDeepTitle
             // 
-            this.labelMarkdownSharpAuthor2.AutoSize = true;
-            this.labelMarkdownSharpAuthor2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMarkdownSharpAuthor2.Location = new System.Drawing.Point(10, 322);
-            this.labelMarkdownSharpAuthor2.Name = "labelMarkdownSharpAuthor2";
-            this.labelMarkdownSharpAuthor2.Size = new System.Drawing.Size(105, 19);
-            this.labelMarkdownSharpAuthor2.TabIndex = 38;
-            this.labelMarkdownSharpAuthor2.Text = "Milan Negovan,";
-            // 
-            // labelMarkdownSharpAuthor1
-            // 
-            this.labelMarkdownSharpAuthor1.AutoSize = true;
-            this.labelMarkdownSharpAuthor1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMarkdownSharpAuthor1.Location = new System.Drawing.Point(10, 304);
-            this.labelMarkdownSharpAuthor1.Name = "labelMarkdownSharpAuthor1";
-            this.labelMarkdownSharpAuthor1.Size = new System.Drawing.Size(84, 19);
-            this.labelMarkdownSharpAuthor1.TabIndex = 37;
-            this.labelMarkdownSharpAuthor1.Text = "Jeff Atwood,";
-            // 
-            // labelMarkdownSharpTitle
-            // 
-            this.labelMarkdownSharpTitle.AutoSize = true;
-            this.labelMarkdownSharpTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelMarkdownSharpTitle.Location = new System.Drawing.Point(10, 286);
-            this.labelMarkdownSharpTitle.Name = "labelMarkdownSharpTitle";
-            this.labelMarkdownSharpTitle.Size = new System.Drawing.Size(112, 19);
-            this.labelMarkdownSharpTitle.TabIndex = 36;
-            this.labelMarkdownSharpTitle.Text = "MarkdownSharp";
+            this.labelMarkdownDeepTitle.AutoSize = true;
+            this.labelMarkdownDeepTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMarkdownDeepTitle.Location = new System.Drawing.Point(10, 286);
+            this.labelMarkdownDeepTitle.Name = "labelMarkdownDeepTitle";
+            this.labelMarkdownDeepTitle.Size = new System.Drawing.Size(108, 19);
+            this.labelMarkdownDeepTitle.TabIndex = 36;
+            this.labelMarkdownDeepTitle.Text = "MarkdownDeep";
             // 
             // linkAnotherMonthCalendarLicense
             // 
@@ -1187,11 +1163,9 @@
         private System.Windows.Forms.Label labelAnotherMonthCalendarAuthor;
         private System.Windows.Forms.Label labelAnotherMonthCalendarTitle;
         private System.Windows.Forms.LinkLabel linkAnotherMonthCalendarLicense;
-        private System.Windows.Forms.Label labelMarkdownSharpTitle;
-        private System.Windows.Forms.Label labelMarkdownSharpAuthor1;
-        private System.Windows.Forms.Label labelMarkdownSharpAuthor2;
-        private System.Windows.Forms.Label labelMarkdownSharpAuthor3;
-        private System.Windows.Forms.LinkLabel linkMarkdownSharpLicense;
+        private System.Windows.Forms.Label labelMarkdownDeepTitle;
+        private System.Windows.Forms.Label labelMarkdownDeepAuthor1;
+        private System.Windows.Forms.LinkLabel linkMarkdownDeepLicense;
         private System.Windows.Forms.Label labelSquirrelWindowsTitle;
         private System.Windows.Forms.Label labelSquirrelWindowsAuthor;
         private System.Windows.Forms.LinkLabel linkSquirrelWindowsLicense;
