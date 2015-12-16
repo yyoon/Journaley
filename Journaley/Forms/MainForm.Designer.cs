@@ -450,6 +450,7 @@ namespace Journaley.Forms
             this.webBrowser.Size = new System.Drawing.Size(618, 318);
             this.webBrowser.TabIndex = 0;
             this.webBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.WebBrowser_DocumentCompleted);
+            this.webBrowser.Navigating += new System.Windows.Forms.WebBrowserNavigatingEventHandler(this.WebBrowser_Navigating);
             // 
             // contextMenuStripPhotoWithPhoto
             // 
