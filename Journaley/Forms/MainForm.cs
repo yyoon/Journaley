@@ -2854,6 +2854,21 @@
         }
 
         /// <summary>
+        /// Handles the navigating event of the webBrowser control. In this case, effectively 
+        /// navigating external links to the default web browser.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="WebBrowserNavigatingEventArgs"/> instance containing the event data.</param>
+        private void WebBrowser_Navigating(object sender, WebBrowserNavigatingEventArgs e)
+        {
+            if (!e.Url.ToString().Contains("about:blank"))
+            {
+                Process.Start(e.Url.ToString());
+                e.Cancel = true;
+            }
+        }
+
+        /// <summary>
         /// Handles the MouseMove event of the ToolStripMenuItem control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
