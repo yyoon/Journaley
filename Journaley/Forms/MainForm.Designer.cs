@@ -310,7 +310,7 @@ namespace Journaley.Forms
             this.buttonSettings.DownImage = global::Journaley.Properties.Resources.sidebar_btn_setting_down;
             this.buttonSettings.HoverImage = global::Journaley.Properties.Resources.sidebar_btn_setting_over;
             this.buttonSettings.Image = global::Journaley.Properties.Resources.sidebar_btn_setting_norm;
-            this.buttonSettings.Location = new System.Drawing.Point(0, 539);
+            this.buttonSettings.Location = new System.Drawing.Point(0, 540);
             this.buttonSettings.Name = "buttonSettings";
             this.buttonSettings.NormalImage = global::Journaley.Properties.Resources.sidebar_btn_setting_norm;
             this.buttonSettings.Selected = false;
@@ -707,10 +707,10 @@ namespace Journaley.Forms
             this.panelSidebar.Controls.Add(this.buttonSettings);
             this.panelSidebar.Controls.Add(this.tableLayoutSidebarWrapper);
             this.panelSidebar.ForeColor = System.Drawing.Color.Black;
-            this.panelSidebar.Location = new System.Drawing.Point(883, 0);
+            this.panelSidebar.Location = new System.Drawing.Point(883, -1);
             this.panelSidebar.Margin = new System.Windows.Forms.Padding(0);
             this.panelSidebar.Name = "panelSidebar";
-            this.panelSidebar.Size = new System.Drawing.Size(47, 580);
+            this.panelSidebar.Size = new System.Drawing.Size(47, 581);
             this.panelSidebar.TabIndex = 12;
             // 
             // pictureBoxSidebarSeperatorBottom
@@ -718,7 +718,7 @@ namespace Journaley.Forms
             this.pictureBoxSidebarSeperatorBottom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBoxSidebarSeperatorBottom.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxSidebarSeperatorBottom.Image = global::Journaley.Properties.Resources.sidebar_seperator_bottom;
-            this.pictureBoxSidebarSeperatorBottom.Location = new System.Drawing.Point(1, 538);
+            this.pictureBoxSidebarSeperatorBottom.Location = new System.Drawing.Point(1, 539);
             this.pictureBoxSidebarSeperatorBottom.Name = "pictureBoxSidebarSeperatorBottom";
             this.pictureBoxSidebarSeperatorBottom.Size = new System.Drawing.Size(46, 1);
             this.pictureBoxSidebarSeperatorBottom.TabIndex = 11;
@@ -730,7 +730,7 @@ namespace Journaley.Forms
             this.pictureBoxResize.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxResize.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.pictureBoxResize.Image = global::Journaley.Properties.Resources.frame_pane_resize;
-            this.pictureBoxResize.Location = new System.Drawing.Point(37, 570);
+            this.pictureBoxResize.Location = new System.Drawing.Point(37, 571);
             this.pictureBoxResize.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBoxResize.Name = "pictureBoxResize";
             this.pictureBoxResize.Size = new System.Drawing.Size(10, 10);
@@ -751,7 +751,7 @@ namespace Journaley.Forms
             this.tableLayoutSidebarWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutSidebarWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 400F));
             this.tableLayoutSidebarWrapper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutSidebarWrapper.Size = new System.Drawing.Size(47, 580);
+            this.tableLayoutSidebarWrapper.Size = new System.Drawing.Size(47, 581);
             this.tableLayoutSidebarWrapper.TabIndex = 12;
             // 
             // tableLayoutSidebar
