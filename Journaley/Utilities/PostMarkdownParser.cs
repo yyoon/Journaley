@@ -19,7 +19,7 @@
         /// - automatically adds break tags on single line breaks.
         /// - makes the first sentence into a header.
         /// - properly parses code blocks enclosed in p tags into pre.
-        /// - auto-linking (converting bare URLs and enclose in a tags).
+        /// - auto-linking (Converting bare HTTP/HTTPs URLS and enclose in a tags).
         /// </summary>
         /// <param name="formattedString">Formatted HTML string</param>
         /// <returns>Properly formatted HTML string for publishing.</returns>
@@ -29,7 +29,7 @@
             StringBuilder paragraphBuilder = new StringBuilder();
 
             // Auto-link regex. Only detects http/https links.
-            Regex autoLink = new Regex(@"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'"".,<>?«»“”‘’]))", RegexOptions.Multiline);
+            Regex autoLink = new Regex(@"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'"".,<>?«»“”‘’]))", RegexOptions.Singleline);
 
             // -1 - skips check and just dumps the line to builder.
             // 0 - stumbles upon the beginning of a <p> tag/usual parsing.
