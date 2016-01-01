@@ -41,6 +41,12 @@ We are always interested in improving Journaley, which is why we really value yo
 - Or if you prefer e-mail us [**here.**](mailto:journaleyapp@gmail.com)
 - You can also talk to us on twitter [**here.**](https://twitter.com/journaleyapp)
 
+
+Frequently Asked Questions
+--------------------------
+Please refer to our [**FAQ page**](https://github.com/yyoon/Journaley/wiki/Frequently-Asked-Questions-(FAQ)).
+
+
 Notice
 ----
 Journaley isn't officially connected to, associated with, or supported by the official Day One apps.
