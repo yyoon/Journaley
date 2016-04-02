@@ -1943,6 +1943,21 @@
         }
 
         /// <summary>
+        /// Handles the Resize event of the MainForm.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            // Dynamically resizes the Left and Right Padding of the <see cref="SpellCheckedTextBox"/> based on MainForm's size.
+            this.spellCheckedEntryText.Padding = new Padding(
+                Convert.ToInt32(this.Width * 0.065),
+                spellCheckedEntryText.Padding.Top,
+                Convert.ToInt32(this.Width * 0.065),
+                spellCheckedEntryText.Padding.Bottom);
+        }
+
+        /// <summary>
         /// Handles the SelectedIndexChanged event of the ListBoxTags control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>

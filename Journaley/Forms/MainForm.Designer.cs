@@ -461,7 +461,7 @@ namespace Journaley.Forms
             this.deletePhotoToolStripMenuItem});
             this.contextMenuStripPhotoWithPhoto.Name = "contextMenuStripPhotoWithPhoto";
             this.contextMenuStripPhotoWithPhoto.ShowImageMargin = false;
-            this.contextMenuStripPhotoWithPhoto.Size = new System.Drawing.Size(228, 92);
+            this.contextMenuStripPhotoWithPhoto.Size = new System.Drawing.Size(228, 70);
             // 
             // replaceWithTheClipboardImageToolStripMenuItem
             // 
@@ -641,13 +641,13 @@ namespace Journaley.Forms
             this.spellCheckedEntryText.Location = new System.Drawing.Point(0, 0);
             this.spellCheckedEntryText.Multiline = true;
             this.spellCheckedEntryText.Name = "spellCheckedEntryText";
-            this.spellCheckedEntryText.Padding = new System.Windows.Forms.Padding(43, 37, 40, 37);
             this.spellCheckedEntryText.ReadOnly = false;
             this.spellCheckedEntryText.Size = new System.Drawing.Size(618, 318);
             this.spellCheckedEntryText.TabIndex = 1;
             this.spellCheckedEntryText.WordWrap = true;
             this.spellCheckedEntryText.TextChanged += new System.EventHandler(this.SpellCheckedEntryText_TextChanged);
             this.spellCheckedEntryText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SpellCheckedEntryText_KeyDown);
+            this.spellCheckedEntryText.Validated += new System.EventHandler(this.MainForm_Resize);
             this.spellCheckedEntryText.Child = null;
             // 
             // tableLayoutEntryArea
@@ -1191,6 +1191,7 @@ namespace Journaley.Forms
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Shown += new System.EventHandler(this.MainForm_Shown);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.Controls.SetChildIndex(this.panelTitlebar, 0);
             this.Controls.SetChildIndex(this.panelContent, 0);
             this.panelTitlebar.ResumeLayout(false);
