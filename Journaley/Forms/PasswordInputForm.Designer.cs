@@ -32,6 +32,7 @@
             this.labelPrompt = new System.Windows.Forms.Label();
             this.pictureBoxPressEnter = new System.Windows.Forms.PictureBox();
             this.labelFormCaption = new Journaley.Controls.TitleLabel();
+            this.panelPasswordPadding = new System.Windows.Forms.Panel();
             this.panelTitlebar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageButtonFormMinimize)).BeginInit();
@@ -71,6 +72,7 @@
             this.panelContent.Controls.Add(this.pictureBoxPressEnter);
             this.panelContent.Controls.Add(this.textBoxPassword);
             this.panelContent.Controls.Add(this.labelPrompt);
+            this.panelContent.Controls.Add(this.panelPasswordPadding);
             this.panelContent.Padding = new System.Windows.Forms.Padding(1);
             this.panelContent.Size = new System.Drawing.Size(744, 240);
             // 
@@ -125,7 +127,14 @@
             this.labelFormCaption.Text = "Journaley";
             this.labelFormCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // panelPasswordPadding
             // 
+            this.panelPasswordPadding.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(221)))), ((int)(((byte)(220)))));
+            this.panelPasswordPadding.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelPasswordPadding.Location = new System.Drawing.Point(137, 107);
+            this.panelPasswordPadding.Name = "panelPasswordPadding";
+            this.panelPasswordPadding.Size = new System.Drawing.Size(468, 52);
+            this.panelPasswordPadding.TabIndex = 4;
             // 
             // PasswordInputForm
             // 
@@ -157,5 +166,6 @@
         private System.Windows.Forms.Label labelPrompt;
         private System.Windows.Forms.PictureBox pictureBoxPressEnter;
         protected Controls.TitleLabel labelFormCaption;
+        private System.Windows.Forms.Panel panelPasswordPadding;
     }
 }
