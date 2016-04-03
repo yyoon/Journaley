@@ -131,6 +131,33 @@
         }
 
         /// <summary>
+        /// Gets or sets the padding for this <see cref="SpellCheckedTextBox"/>.
+        /// </summary>
+        /// <value>
+        ///  Padding of this <see cref="SpellCheckedTextBox"/>
+        /// </value>
+        public new System.Windows.Forms.Padding Padding
+        {
+            get
+            {
+                return new System.Windows.Forms.Padding(
+                     Convert.ToInt32(this.box.Padding.Left),
+                     Convert.ToInt32(this.box.Padding.Top),
+                     Convert.ToInt32(this.box.Padding.Right),
+                     Convert.ToInt32(this.box.Padding.Bottom));
+            }
+
+            set
+            {
+                this.box.Padding = new Thickness(
+                    value.Left,
+                    value.Top,
+                    value.Right,
+                    value.Bottom);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether this <see cref="SpellCheckedTextBox"/> is multiline.
         /// </summary>
         /// <value>
@@ -263,13 +290,6 @@
                     this.box.FontStyle = FontStyles.Normal;
                     break;
             }
-
-            // Setup the padding value.
-            this.box.Padding = new Thickness(
-                this.Padding.Left,
-                this.Padding.Top,
-                this.Padding.Right,
-                this.Padding.Bottom);
         }
 
         /// <summary>
