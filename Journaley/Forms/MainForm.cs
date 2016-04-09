@@ -1951,9 +1951,9 @@
         {
             // Dynamically resizes the Left and Right Padding of the <see cref="SpellCheckedTextBox"/> based on MainForm's size.
             this.spellCheckedEntryText.Padding = new Padding(
-                Convert.ToInt32(this.Width * 0.065),
+                Convert.ToInt32(this.Width * 0.052),
                 spellCheckedEntryText.Padding.Top,
-                Convert.ToInt32(this.Width * 0.065),
+                Convert.ToInt32(this.Width * 0.052),
                 spellCheckedEntryText.Padding.Bottom);
         }
 

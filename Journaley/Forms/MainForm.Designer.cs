@@ -649,7 +649,7 @@ namespace Journaley.Forms
             this.spellCheckedEntryText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SpellCheckedEntryText_KeyDown);
             this.spellCheckedEntryText.Validated += new System.EventHandler(this.MainForm_Resize);
             this.spellCheckedEntryText.Child = null;
-            this.spellCheckedEntryText.Padding = new System.Windows.Forms.Padding(35);
+            this.spellCheckedEntryText.Padding = new System.Windows.Forms.Padding(0,52,0,55);
 
             // 
             // tableLayoutEntryArea
