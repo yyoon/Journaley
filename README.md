@@ -3,7 +3,9 @@ Journaley
 
 
 
-Journaley is a simple and elegant open-source journal keeping software for Windows, which is compatible with Day One app for iOS/Mac.
+Journaley is a simple and elegant open-source journal keeping software for Windows, which is compatible with Day One journals for iOS/Mac. 
+
+**NOTE**: As of September 28th, 2017 Day One Classic for iOS and Mac no longer sync via Dropbox because it relied on an old version of the Dropbox API that is now [shut off](https://blogs.dropbox.com/developers/2016/06/api-v1-deprecated/). Journaley will still be able to create and edit Day One journals on Dropbox, but you won't be able to read or edit *new* journal entires from Dropbox on Day One Classic.
 
 [![Build Status](http://jenkins.yyoon.net/job/Journaley%20develop/badge/icon)](http://jenkins.yyoon.net/job/Journaley%20develop/) [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/yyoon/Journaley/raw/develop/LICENSE)
 
