@@ -639,6 +639,11 @@
         /// </summary>
         private void UpdateWebBrowser()
         {
+            if (this.selectedEntry == null)
+            {
+                return;
+            }
+
             string initialString = this.SelectedEntry.EntryText;
 
             // Fix for backtick fenced code blocks is to replace it into tilde fenced.
